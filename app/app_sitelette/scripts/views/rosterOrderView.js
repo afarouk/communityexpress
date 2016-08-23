@@ -111,10 +111,12 @@ var RosterOrderView = PageLayout.extend({
             city = address.substring(address.indexOf(',') + 1);
         } else {
             address = this.fundsource.address;
-            street = address.street;
-            street2 = address.street2;
-            city = address.city;
-            number = address.number;
+            if (address) {
+                street = address.street;
+                street2 = address.street2;
+                city = address.city;
+                number = address.number;
+            }
         }
 
         return {
