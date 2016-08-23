@@ -103,13 +103,25 @@ var RosterOrderView = PageLayout.extend({
 
     getPrefillAddress: function() {
         var queryString = h().parseQueryString(window.location.search.replace('?', '')),
-            address = unescape(queryString.prefilladdress),
-            street = address.substring(0, address.indexOf(',')),
+            address = address = unescape(queryString.prefilladdress),
+            street, street2, city, number;
+
+        if (address !== 'undefined') {
+            street = address.substring(0, address.indexOf(','));
             city = address.substring(address.indexOf(',') + 1);
+        } else {
+            address = this.fundsource.address;
+            street = address.street;
+            street2 = address.street2;
+            city = address.city;
+            number = address.number;
+        }
+
         return {
             deliveryStreet: street,
-            deliveryCity: city==='undefined'?'':city,
-            deliveryStreet2: ''
+            deliveryCity: city === 'undefined' ? '' : city,
+            deliveryStreet2: street2 || '',
+            deliveryNumber: number || ''
         };
     },
 
