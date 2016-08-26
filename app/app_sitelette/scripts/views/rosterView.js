@@ -78,7 +78,10 @@ var RosterView = PageLayout.extend({
         this.navbarView = options.navbarView;
         this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
-        this.basket.on('change', this.updateBasket, this);
+
+        // TODO check logic ,
+        // I don't know why we listened change event twice
+        // this.basket.on('change', this.updateBasket, this); 
 
     },
 

@@ -55,7 +55,6 @@ var RosterBasketModel = Backbone.Model.extend({
     //this.catalogs.add(catalog);
     //his.catalogs.remove(catalogId);
 
-
     var catalogModel = this.catalogs.get(catalog.catalogId);
     if (catalogModel) {
       var quantity = catalogModel.get('quantity');
@@ -219,7 +218,11 @@ var RosterBasketModel = Backbone.Model.extend({
         index++;
       });
       if(indexToRemove!==-1){
-        this.catalogs.models.splice(indexToRemove,1);
+        // TODO check all this logic
+        var modelToRemove = this.catalogs.at(indexToRemove);
+        this.catalogs.remove(modelToRemove);
+        // remove from array not enough (old commented part)
+        // this.catalogs.models.splice(indexToRemove,1);
       }else{
         console.log("didn't find catalog ");
       }
