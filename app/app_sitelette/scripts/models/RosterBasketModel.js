@@ -218,11 +218,7 @@ var RosterBasketModel = Backbone.Model.extend({
         index++;
       });
       if(indexToRemove!==-1){
-        // TODO check all this logic
-        var modelToRemove = this.catalogs.at(indexToRemove);
-        this.catalogs.remove(modelToRemove);
-        // remove from array not enough (old commented part)
-        // this.catalogs.models.splice(indexToRemove,1);
+        this.removeModelFromCatalogs(indexToRemove);
       }else{
         console.log("didn't find catalog ");
       }
@@ -230,6 +226,17 @@ var RosterBasketModel = Backbone.Model.extend({
       this.trigger('change');
       break;
 
+    }
+  },
+
+  removeModelFromCatalogs: function(indexToRemove) {
+    var modelToRemove = this.catalogs.at(indexToRemove);
+    if (modelToRemove.get('id')) {
+      // if regular model remove from collection
+      this.catalogs.remove(modelToRemove);
+    } else {
+      // remove if collection
+      this.catalogs.models.splice(indexToRemove,1);
     }
   },
 
