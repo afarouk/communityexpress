@@ -31,6 +31,7 @@ module.exports = function (grunt) {
 
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
+    grunt.loadNpmTasks('grunt-uncss');
     var webpack = require('webpack');
 
     var yeomanConfig = {
@@ -68,6 +69,15 @@ module.exports = function (grunt) {
             },
             options: {
                 report: 'min'
+            }
+        },
+        uncss: {
+            dist: {
+                files: [{
+                  nonull: true,
+                  src: ['http://localhost/zazagrill?demo=true&desktopiframe=true', 'http://localhost/zazagrill?demo=true&t=r&u=ROSTER&desktopiframe=true', '<%= yeoman.dist %>/build/styles.css', '<%= yeoman.dist %>/build/styles1.css', '<%= yeoman.dist %>/build/styles2.css', '<%= yeoman.dist %>/build/styles3.css', '<%= yeoman.dist %>/build/styles4.css'],
+                  dest: 'dist/build/cleaned.css'
+                }]
             }
         },
         copy: {
