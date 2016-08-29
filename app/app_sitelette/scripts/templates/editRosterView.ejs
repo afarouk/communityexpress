@@ -1,25 +1,25 @@
-<ul class="panel_header" data-role="listview" data-icon="carat-l">
-    <li><a class="back_button"></a></li>
-</ul>
-
-<ul class="cmntyex-list_container" data-role="listview"></ul>
-
-<% if (editable) { %>
-    <div class="ui-grid-a cmntyex-editpanel-buttons">
-        <div class="ui-block-a">
-            <button class="cmntyex-button-cancel" data-corners="false" data-mini="true">Cancel</button>
-        </div>
-        <div class="ui-block-b">
-            <button class="cmntyex-button-done ui-alt-icon ui-nodisc-icon" data-corners="false" data-icon="check" data-mini="true">Done</button>
-        </div>
+<div data-role="listview panel" id="left-panel" class="cart" data-display="overlay">
+    <div class="cart_header"> <span class="cart_header_title">Your order</span>
+        <a href="#" data-rel="close" class="close_cart_button left_arrow_icon"></a>
     </div>
-<% } else { %>
-    <div class="ui-grid-a cmntyex-editpanel-buttons">
-        <div class="ui-block-a">
-            <button class="close_button" data-corners="false" data-mini="true">Close</button>
-        </div>
-        <div class="ui-block-b">
-            <button class="ui-alt-icon ui-nodisc-icon cmntyex-button-edit" data-corners="false" data-icon="edit" data-mini="true">Edit</button>
-        </div>
-    </div>
-<% } %>
+    <div class="cmntyex-list_container"></div>
+    <ul class="price_list" style="display:none;">
+        <li><span class="order_name">Subtotal</span><span class="order_price">$30.00</span></li>
+        <li><span class="order_name">Shipping</span><span class="order_price">$5.00</span></li>
+        <li class="tip_price"><span class="order_name">Tip</span>
+            <div class="float_right">
+                <div class="select_container">
+                    <select data-role="none" class="select">
+                        <option value="tip0">0%</option>
+                        <option value="tip5">5%</option>
+                        <option value="tip10">10%</option>
+                        <option value="tip15">15%</option>
+                        <option value="tip20">20%</option>
+                    </select>
+                </div>  
+                <span class="order_price">$0.00</span>
+            </div></li>
+        <li class="total_price"><span class="order_name">Total</span><span class="order_price">$35.00</span></li>
+    </ul>
+    <button class="ui-btn ui-corner-all next_btn cart_order_btn order_btn" style="display:none;">order</button>
+</div>   

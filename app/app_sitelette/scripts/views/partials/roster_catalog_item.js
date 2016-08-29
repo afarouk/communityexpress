@@ -9,7 +9,7 @@ var template = require('ejs!../../templates/partials/roster_catalog_item.ejs'), 
 var RosterCatalogItemView = Backbone.View.extend({
     template : template,
     tagName : 'li',
-    className : 'cmtyex_roster_catalog_item',
+    className : 'cmtyex_roster_catalog_item menuItem build_combo',
     events : {
         'click .roster_catalog_item_add_button' : 'showCatalogLocal'
     },
@@ -21,8 +21,13 @@ var RosterCatalogItemView = Backbone.View.extend({
         //this.catalogId=options.catalogId;
         //this.catalogDisplayText=options.catalogDisplayText;
     },
+    
+     beforeShow: function(){
+       // $('.select').select2(); 
+     },
 
     render : function() {
+       // $('.select').select2();
         this.$el.html(this.template({
             catalog : this.model
         }));

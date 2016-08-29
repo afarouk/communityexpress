@@ -6,7 +6,7 @@ var gateway = require('../APIGateway/gateway.js'),
     appCache = require('../appCache.js'),
     Vent = require('../Vent.js'),
     User = require('../models/user.js'), 
-    Cookies = require('../../../vendor/scripts/js.cookie');;
+    Cookies = require('../../../vendor/scripts/js.cookie');
 
 var initUser = function(response) {
     return appCache.get('user').init(response.uid, response.userName)

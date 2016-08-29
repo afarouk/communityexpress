@@ -91,7 +91,7 @@ var LandingView = PageLayout.extend({
         try {
             addToHomescreen().show();
         } catch (e) {
-            console.log(' Desktop, not showing addToHomescreen');
+            console.warn(' failed showing addToHomescreen');
         }
     },
 
