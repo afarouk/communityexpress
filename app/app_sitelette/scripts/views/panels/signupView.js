@@ -22,9 +22,8 @@ var SignupView = PopupView.extend({
         this.callback = options.callback || function () {};
 
         this.addEvents({
-            'click .submit_signup': 'submitForm',
             'submit': 'submitForm',
-            'focus input': 'hideSignupError'
+            'focus input[type=password]': 'hideSignupError'
         });
     },
 
@@ -57,51 +56,20 @@ var SignupView = PopupView.extend({
     },
 
     validateForm: function(data) {
-        var regexEmail = regexEmail = /^(([a-zA-Z]|[0-9])|([-]|[_]|[.]))+[@](([a-zA-Z0-9])|([-])){2,32}[.](([a-z]){2,32})+$/gi;
-        if (!regexEmail.test(data.email)) {
-            this.showSignupError('email');
+        if (data.password !== data.password_confirmation) {
+            this.showSignupError();
             return false;
-        } else if (data.password !== data.password_confirmation) {
-            var text = 'Password does not match the confirm password';
-            this.showSignupError('password', text);
-            return false;
-        } else if(data.password === '') {
-            var text = 'Please, enter password';
-            this.showSignupError('password', text);
-        } else if (data.password.length < 6) {
-            var text = 'Please, use more than 6 characters';
-            this.showSignupError('password', text);
         } else {
             return true;
         };
     },
 
-    showSignupError: function(error, text) {
-        switch (error) {
-            case 'password':
-                this.$el.find('.signup_password_error').text(text).slideDown();
-                break;
-            case 'email':
-                this.$el.find('.signup_email_error').slideDown();
-                break;
-            default:
-
-        }
+    showSignupError: function() {
         this.$el.find('.signup_error').slideDown();
     },
 
-    hideSignupError: function(e) {
-        var target = e.target;
-        switch (target.type) {
-            case 'email':
-                this.$el.find('.signup_email_error').slideUp();
-                break;
-            case 'password':
-                this.$el.find('.signup_password_error').slideUp();
-                break;
-            default:
-
-        }
+    hideSignupError: function() {
+        this.$el.find('.signup_error').slideUp();
     },
 
     getFormData: function() {
@@ -123,10 +91,7 @@ var SignupView = PopupView.extend({
             callback = this.openSignup;
         this.shut();
         this.$el.on('popupafterclose', function () {
-            this.parent.openSubview('textPopup', {
-                text: text,
-                color: '#ff0000'
-            }, callback);
+            this.parent.openSubview('textPopup', { text: text }, callback);
         }.bind(this));
     },
 

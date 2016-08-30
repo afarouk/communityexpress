@@ -7,12 +7,13 @@ var template  = require('ejs!../../templates/partials/catalog-radio-item.ejs'), 
 
 var CatalogRadioItemView = Backbone.View.extend({
     tagName: 'li',
-    className : 'cmntyex-catalog-item',
+    className : 'cmntyex-catalog-item sub-radio-list',
 
     template : template,
       
     events : {
-        'change': 'changeOfItemSelectionInList'
+        'change': 'changeOfItemSelectionInList',
+        'click .combo_item_input': 'selectOwnCombo'
     },
 
 
@@ -20,6 +21,10 @@ var CatalogRadioItemView = Backbone.View.extend({
     	this.onChange();
     },
     
+    selectOwnCombo : function(e){
+        console.log(e);
+        console.log('### Selected Item :::: ' +e.target.attributes.itemlabel.value);
+    },
     
     initialize : function(options) {
     	/* we set the 'onClick' handler to the function that was

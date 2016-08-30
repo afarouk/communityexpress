@@ -5,10 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta charset="utf-8">
-<link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone5.jpg">
+<link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone5.jpg"> 
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
-
-<link rel="stylesheet" href="build/styles.css<?php echo '?version='. time();?>">
+ 
+<link rel="stylesheet" href="build/styles.css"> 
 <link rel="stylesheet" href="styles/themes/theme<?php echo $themeId ?>/sitelette_theme<?php echo $themeId ?>.css">
 
 <title><?php
@@ -99,7 +99,7 @@ if (!is_null($siteletteJSON)) {
 }
 ?>
 
-<script  src="build/bundle.js<?php echo '?version='. time();?>"></script>
+<script  src="build/bundle.js"></script>
 
 </body>
 </html>

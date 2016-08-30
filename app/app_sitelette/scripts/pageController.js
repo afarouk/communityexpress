@@ -439,16 +439,16 @@ module.exports = {
 
     catalog_order: function(options) {
         var sasl,
-            orderPrefillInfo,
+            cardType,
             catalogId = options.catalogId,
             backToCatalog = true, // options.backToCatalogs;
             backToCatalogs = options.backToCatalogs;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
-                return orderActions.getOrderPrefillInfo();
+                return orderActions.getCreditInfo();
             }).then(function(ret) {
-                orderPrefillInfo = ret;
+                cardType = ret;
                 var sa = sasl.get('serviceAccommodatorId'),
                     sl = sasl.get('serviceLocationId');
                 return orderActions.getPriceAddons(sa, sl);
@@ -459,7 +459,7 @@ module.exports = {
                 var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + catalogId + ':catalogbasket');
                 return {
                     sasl: sasl,
-                    orderPrefillInfo: orderPrefillInfo,
+                    cardType: cardType,
                     priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
@@ -472,7 +472,7 @@ module.exports = {
     },
     roster_order: function(options) {
         var sasl,
-            addresses,
+            cardTypes,
             fundsource,
             rosterId = options.rosterId,
             backToCatalog = true, // options.backToCatalogs;
@@ -483,9 +483,9 @@ module.exports = {
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
-                return orderActions.getOrderPrefillInfo();
+                return orderActions.getCreditInfo();
             }).then(function(ret) {
-                addresses = ret.addresses;
+                cardTypes = ret.acceptedCards;
                 fundsource = ret.fundsource;
                 var sa = sasl.get('serviceAccommodatorId'),
                     sl = sasl.get('serviceLocationId');
@@ -497,7 +497,7 @@ module.exports = {
                 var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + ':rosterbasket');
                 return {
                     sasl: sasl,
-                    addresses: addresses,
+                    cardTypes: cardTypes,
                     fundsource: fundsource,
                     priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
