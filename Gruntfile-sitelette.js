@@ -31,6 +31,7 @@ module.exports = function (grunt) {
 
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     var webpack = require('webpack');
 
     var yeomanConfig = {
@@ -44,7 +45,11 @@ module.exports = function (grunt) {
 
         webpack: {
             options: webpackConfig,
-            start: {
+            "prod": {
+                devtool: null // production
+            },
+            "build-dev": {
+                devtool: 'cheap-module-eval-source-map', // development
             }
         },
         clean: [
@@ -55,7 +60,8 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 compress: true,
-                mangle: true
+                sourceMap: false,
+                mangle: true // change to false if won't work
             },
             target: {
                 src: '<%= yeoman.dist %>/build/bundle.js',
@@ -68,6 +74,19 @@ module.exports = function (grunt) {
             },
             options: {
                 report: 'min'
+            }
+        },
+        imagemin: {
+            dist: {
+              options: {
+                optimizationLevel: 7
+              },
+              files: [{
+                 expand: true,
+                 cwd: 'dist/build/',
+                 src: ['*.{png,jpg,gif}'],
+                 dest: 'dist/build/'
+              }]
             }
         },
         copy: {
@@ -175,10 +194,22 @@ module.exports = function (grunt) {
     grunt.registerTask('default', function() {
         grunt.task.run([
             'clean',
-            'webpack',
+            'webpack:build-dev',
             'copy',
             'replace',
             'uglify',
+            'cssmin',
+            'compress'
+        ]);
+    });
+    grunt.registerTask('prod', function() {
+        grunt.task.run([
+            'clean',
+            'webpack:prod',
+            'copy',
+            'replace',
+            'uglify',
+            'imagemin',
             'cssmin',
             'compress'
         ]);
