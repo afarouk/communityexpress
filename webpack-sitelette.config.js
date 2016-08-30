@@ -13,8 +13,7 @@ module.exports = {
 		path: './app/app_sitelette/build/',
 		filename: '[name].js'
 	},
-	devtool: 'eval',
-	//devtool: 'source-map',
+	devtool: 'cheap-module-eval-source-map', // development
 	watch: true,
 	keepalive: true,
 	module: {

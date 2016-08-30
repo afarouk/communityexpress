@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
-    grunt.loadNpmTasks('grunt-uncss');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     var webpack = require('webpack');
 
     var yeomanConfig = {
@@ -46,6 +46,9 @@ module.exports = function (grunt) {
         webpack: {
             options: webpackConfig,
             start: {
+            },
+            build: {
+                devtool: null // development
             }
         },
         clean: [
@@ -56,7 +59,8 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 compress: true,
-                mangle: true
+                sourceMap: false,
+                mangle: true // change to false if won't work
             },
             target: {
                 src: '<%= yeoman.dist %>/build/bundle.js',
@@ -71,13 +75,17 @@ module.exports = function (grunt) {
                 report: 'min'
             }
         },
-        uncss: {
+        imagemin: {
             dist: {
-                files: [{
-                  nonull: true,
-                  src: ['http://localhost/zazagrill?demo=true&desktopiframe=true', 'http://localhost/zazagrill?demo=true&t=r&u=ROSTER&desktopiframe=true', '<%= yeoman.dist %>/build/styles.css', '<%= yeoman.dist %>/build/styles1.css', '<%= yeoman.dist %>/build/styles2.css', '<%= yeoman.dist %>/build/styles3.css', '<%= yeoman.dist %>/build/styles4.css'],
-                  dest: 'dist/build/cleaned.css'
-                }]
+              options: {
+                optimizationLevel: 7
+              },
+              files: [{
+                 expand: true,
+                 cwd: 'dist/build/',
+                 src: ['*.{png,jpg,gif}'],
+                 dest: 'dist/build/'
+              }]
             }
         },
         copy: {
@@ -189,6 +197,7 @@ module.exports = function (grunt) {
             'copy',
             'replace',
             'uglify',
+            'imagemin',
             'cssmin',
             'compress'
         ]);
