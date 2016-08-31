@@ -81,7 +81,7 @@ if (validateParams('friendlyURL')) {
   if($friendlyURL==='signup' ||
      $friendlyURL==='about'  ||
      $friendlyURL==='features' ||
-     $friendlyURL==='portalexpress' || 
+     $friendlyURL==='portalexpress' ||
      $friendlyURL==='apiLicensing' ||
      $friendlyURL==='developer' ||
      $friendlyURL==='common_senddemo.php'
@@ -159,9 +159,9 @@ if ($saslAccess || $urlKeyAccess) {
     $isPrivate = false;
     $canCreateAnonymousUser = false;
     if ($urlKeyAccess) {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkey?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false');
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false');
     } else {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASL?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false');
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false');
     }
 
     $siteletteJSON = makeApiCall($apiURL);
