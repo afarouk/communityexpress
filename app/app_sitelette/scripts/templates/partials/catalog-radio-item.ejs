@@ -1,7 +1,7 @@
- <label style="padding-left:20px; text-shadow:none;background-color: <%= color %>; border-color:#555;"
-        class="catalog-radio-button__label catalog-radio-button " for="<%= catalog_radio_item_id %>"  >
-     <%= catalog_radio_item_label %>
-    <input class="catalog-radio-button__input"
-           id="<%= catalog_radio_item_id %>" type="radio" name="<%= catalog_radio_item_name %>">
-    <span class="catalog-radio-button__icon"></span>
- </label>
+<div class="combo_item_container color1"><span class="catalog_sub_item_img"></span>
+    <div class="input_container" data-iconpos="right">
+        <div class="ui-radio">
+            <label for="<%= catalog_radio_item_id %>" class="catalog_sub_item_name"><%= catalog_radio_item_label %></label>
+            <input type="radio" itemlabel="<%= catalog_radio_item_label %>" name="<%= catalog_radio_item_name %>" id="<%= catalog_radio_item_id %>" class="combo_item_input"></div>
+    </div>      
+</div>

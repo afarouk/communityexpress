@@ -1,4 +1,3 @@
-<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 <% if (title) { %>
     <div class="signin_alert_header" data-role="header" data-theme="a">
         <h1><%= title %></h1>
@@ -8,33 +7,27 @@
     <form action="#" method="post">
         <div class="ui-grid-solo">
             <div class="ui-grid-a">
-                <fieldset class="auth_fieldset" data-role="controlgroup" data-corners="false" data-shadows="false" data-theme="c">
-                    <p class="login_error hidden error">Incorrect username / email or password</p>
+                <fieldset data-role="controlgroup" data-corners="false" data-shadows="false" data-theme="c">
+                <p class="login_error hidden error">Incorrect username / email or password</p>
                     <label for="username">Username / Email:</label>
-                    <input autocapitalize="off" type="text" name="username" data-corners="false"/>
+                    <input autocapitalize="off" type="text" name="username" placeholder="Username / Email" data-corners="false"/>
                     <label for="password">Password:</label>
-                    <input autocapitalize="off" type="password" name="password" data-corners="false"/>
+                    <input autocapitalize="off" type="password" name="password" placeholder="Password" data-corners="false"/>
                 </fieldset>
             </div>
         </div>
         <div class="ui-grid-a">
-            <!--div class="ui-block-a">
+            <div class="ui-block-a">
                 <a href="#" class="close_button" data-role="button" data-corners="false">Cancel</a>
-            </div-->
-
-            <div class="ui-grid-solo">
-                <div class="ui-block-a">
-                    <a type="submit" class="submit_button" data-role="button" data-corners="true">Sign in</a>
-                </div>
+            </div>
+            <div class="ui-block-b">
+                <a href="#" class="submit_button" data-role="button" data-corners="false">Sign in</a>
             </div>
         </div>
     </form>
-    <div class="ui-grid-a signin_links">
-        <div class="ui-block-a">
-            <a class="signup_button" data-theme="c"  data-corners="false">Create Account</a>
-        </div>
-        <div class="ui-block-b">
-            <a href="https://chalkboardstoday.com/support?svc=passwordChange"class="signup_button" data-theme="c"  data-corners="false">Forgot password ?</a>
+    <div class="ui-grid-solo">
+        <div class="ui-grid-a">
+            <a class="signup_button" data-theme="c" data-role="button" data-corners="false">Sign Up</a>
         </div>
     </div>
 </div>

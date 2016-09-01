@@ -111,12 +111,19 @@ $(document).ready(
 			 * ============================================== Bactstretch js
 			 * ===============================================
 			 */
+			/*
 			$.backstretch([ "desktop/images/bg/bg1.jpg", "desktop/images/bg/bg2.jpg",
 					"desktop/images/bg/bg3.jpg" ], {
 				fade : 950,
 				duration : 10000
 			});
+      */
+      $.backstretch([ "desktop/images/bg/bg1.jpg"], {
+        fade : 950,
+        duration : 10000
+      });
 
+			
 			/*
 			 * ============================================== Back To Top Button
 			 * ===============================================

@@ -13,7 +13,6 @@ var TextPopup = PopupView.extend({
 
     initialize: function (options) {
         this.text = options.model.text;
-        this.color = options.model.color || '#fff';
         this.options = options || {};
         this.callback = options.callback || function () {};
 
@@ -23,10 +22,7 @@ var TextPopup = PopupView.extend({
     },
 
     render: function () {
-        this.$el.html(this.template({
-            text: this.text,
-            color: this.color
-        }));
+        this.$el.html(this.template({text: this.text}));
         return this;
     },
 

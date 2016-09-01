@@ -15,7 +15,7 @@ var CatalogOrderView = PageLayout.extend({
     name: 'catalog_order',
 
     initialize: function(options) {
-        this.orderPrefillInfo = options.orderPrefillInfo;
+        this.cardType = options.cardType;
         options = options || {};
         this.sasl = options.sasl;
         this.basket = options.basket;
@@ -49,7 +49,7 @@ var CatalogOrderView = PageLayout.extend({
 
         var tmpData = _.extend({},  this.catalogOptions, {
             username: this.user.userName,
-            orderPrefillInfo: this.orderPrefillInfo,
+            cardTypes: this.cardType,
             country: this.country,
             years: this.years,
             months: this.months,
