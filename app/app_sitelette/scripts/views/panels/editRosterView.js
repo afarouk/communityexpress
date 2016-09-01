@@ -17,11 +17,12 @@ var EditRosterView = PanelView.extend({
         'click .back_button' : 'openSettings',
         'click .cmntyex-button-edit' : 'toggleEditable',
         'click .cmntyex-button-cancel' : 'toggleEditable',
-        'click .cmntyex-button-done' : 'removeSelected'
+        //'click .cmntyex-button-done' : 'removeSelected',
+        'change .combo_select_item': 'addOrDeleteItem'
     },
 
     initialize : function(options) {
-
+        this.options = options;
         options = options || {};
 
         this.itemTemplate = options.template;
@@ -37,7 +38,8 @@ var EditRosterView = PanelView.extend({
 
     render : function(update) {
         // prevent jqm panel widget from breaking when updated
-        var container = update ? this.$('.ui-panel-inner') : this.$el;
+        var container = update ? this.$('#left-panel') : this.$el;
+        //var container = update ? this.$('.ui-panel-inner') : this.$el;
         //var editable = this.collection.length > 0 ? this.collection.at(0).get('editable') : false;
         var editable = true;
 
@@ -77,7 +79,7 @@ var EditRosterView = PanelView.extend({
         this._update();
     },
 
-    removeSelected : function() {
+    removeSelected : function(e) {
 
         loader.show('deleting items');
         var selected = this.collection.where({
@@ -88,9 +90,40 @@ var EditRosterView = PanelView.extend({
         }.bind(this), function() {
             loader.showFlashMessage(h().getErrorMessage(e, 'error deleting'));
         });
-        
+
+        this.basket = this.options.parent.basket;
+        console.log(this.basket.getComboCount());
+        $('.cart_items_number').text(this.basket.getComboCount());
+
         this.shut();
 
+    },
+
+    addOrDeleteItem : function(e){
+        var count=e.target.selectedIndex;
+        if(count == 0){
+            this.removeSelected(e);
+        }
+        else{
+            // alert('order item picked');
+            console.log(e);
+
+            /*this.basket = this.options.parent.basket;
+            var initialCnt=this.basket.getComboCount();
+            this.catalogId = e.target.attributes.catalogid.value; 
+
+            console.log( this.catalogId);
+
+            this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value; 
+
+
+            this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);
+            console.log(this);   
+            this.listenTo(initialCnt, 'change:value', initialCnt+count, this);
+
+            console.log(this.basket.getComboCount());
+            $('.cart_items_number').text(this.basket.getComboCount());*/
+        }
     },
 
     _update : function() {

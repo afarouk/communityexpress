@@ -58,7 +58,8 @@ var RosterBasketModel = Backbone.Model.extend({
     var catalogModel = this.catalogs.get(catalog.catalogId);
     if (catalogModel) {
       var quantity = catalogModel.get('quantity');
-      quantity = quantity + count;
+      //quantity = quantity + count;
+      quantity = count;
       catalogModel.set('quantity', quantity);
     } else {
       /*

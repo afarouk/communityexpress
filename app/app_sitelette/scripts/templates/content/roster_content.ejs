@@ -1,8 +1,20 @@
-<div style="background-color:#444;color:#EEE; text-shadow:none" id="cmtyx_generatedView" data-role="page" class="page">
+<div id="cmtyx_generatedView" data-role="page" class="page sitelette" class="NoLeftPadding">
+    <div class="header">
+        <a href="#left-panel" class="edit_button sub_edit"><span class="shopping_icon"></span></a> <span class="cart_items_number"><%=basket.getComboCount()%></span>
+        <div class="total_price_order_block"><% if(basket.getComboCount() != 0) { %> <span class="total_price">Total $35.00</span> <% } %><a class="header_order_btn order_btn" id="roster_order_button">Order</a> </div>
+    </div>
+    <div role="main" style=" " data-role="content" class="content ui-content">
+
+        <div class="cmntyex-items_placeholder menu_body">
+        </div>
+    </div>
+</div>
+
+<!--<div style="background-color:#444;color:#EEE; text-shadow:none" id="cmtyx_generatedView" data-role="page" class="page">
   <div class="sprite_navbar navbutton_back back"></div>
   <div role="main" style=" " data-role="content" class="content ui-content">
     <div style="margin-top:10px;">
-      <!--  <div style="color:white;text-shadow:none;top:50px; background-color: rgba(68, 68, 68, 0.9);" data-fullscreen="true" data-position="fixed" data-role="header" data-tap-toggle="false" > -->
+      <div style="color:white;text-shadow:none;top:50px; background-color: rgba(68, 68, 68, 0.9);" data-fullscreen="true" data-position="fixed" data-role="header" data-tap-toggle="false" >
       <table id="cmtyex_roster_cart_summary"  style=" width:100%; margin:0;padding:0; border-collapse: collapse;">
         <tbody>
           <tr  >
@@ -31,4 +43,4 @@
     <div class="cmntyex-items_placeholder">
     </div>
   </div>
-</div>
+</div>-->

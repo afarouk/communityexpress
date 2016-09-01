@@ -24,6 +24,12 @@ require('jquery-mask-plugin');
 require('moment');
 require('fullcalendar');
 
+require('../vendor/styles/select2.css');
+require('../vendor/scripts/select2.full');
+
+require('../vendor/scripts/roster-fancy-view');
+
+
 var App = require('./scripts/app.js'),
     h = require('./scripts/globalHelpers.js'),
     updateActions = require('./scripts/actions/updateActions'),

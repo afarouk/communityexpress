@@ -44,6 +44,7 @@ var CatalogView = PageLayout.extend({
     },
 
     initialize : function(options) {
+        var colors = [ 'color1', 'color2', 'color3', 'color4' ];
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
@@ -55,7 +56,8 @@ var CatalogView = PageLayout.extend({
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
         this.catalogDisplayText = options.catalog.data.displayText;
-        this.colors = options.catalog.data.colors;
+        //this.colors = options.catalog.data.colors;
+        this.colors = colors;
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
         this.launchedViaURL=options.launchedViaURL;
@@ -196,6 +198,7 @@ var CatalogView = PageLayout.extend({
 
     generateColor : function(index) {
         // var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
+         var colors = [ 'color1', 'color2', 'color3', 'color4' ];
         return this.colors[index % this.colors.length];
     },
 

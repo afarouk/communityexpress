@@ -50,6 +50,7 @@ var RosterView = PageLayout.extend({
           $('#roster_order_button').prop('disabled', false);
         };
         this.checkIfOpened();
+        //$('.select').select2();
     },
 
     // check if user can make an order at this time
@@ -238,6 +239,8 @@ var RosterView = PageLayout.extend({
             case 'UNDEFINED':
             default:
         }
+        
+        //$('.select').select2();
     },
 
     triggerCatalogView: function(catalog, catalogId, catalogDisplayText) {
