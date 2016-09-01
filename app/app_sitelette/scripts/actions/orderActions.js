@@ -19,12 +19,10 @@ module.exports = {
         });
     },
 
-    // getCreditInfo: function() {
-    //     return gateway.sendRequest('getCreditCardTypes');
-    // },
+   
 
-    getCreditInfo: function() {
-        return gateway.sendRequest('getCreditCardInfo', {
+    getOrderPrefillInfo: function() {
+        return gateway.sendRequest('getOrderPrefillInfo', {
             UID: getUser().getUID()
             // simulate: true
         });

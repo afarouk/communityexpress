@@ -1,27 +1,26 @@
+<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 <div role="main" class="ui-content">
     <form action="#" method="post">
         <div class="ui-grid-solo">
             <div class="ui-grid-a">
-                <fieldset data-role="controlgroup" data-corners="false" data-shadows="false" data-theme="c">
+                <fieldset class="auth_fieldset" data-role="controlgroup" data-corners="false" data-shadows="false" data-theme="c">
                   <!--  <label for="username">Username:</label>
-                    <input type="text" autocapitalize="off" name="username" placeholder="Username" data-corners="false" />
+                    <input type="text" autocapitalize="off" name="username" data-corners="false" />
                   -->
                     <label for="email">Email:</label>
-                    <input type="email" autocapitalize="off" name="email" placeholder="Email" data-corners="false" />
+                    <input type="email" autocapitalize="off" name="email" data-corners="false" />
+                    <p class="signup_email_error hidden error">Please, enter a valid email</p>
                     <label for="password">Password:</label>
-                    <input type="password" autocapitalize="off" name="password" placeholder="Password" data-corners="false" />
+                    <input type="password" autocapitalize="off" name="password" data-corners="false" />
                     <label for="password_confirmation">Password Confirmation:</label>
-                    <input type="password" autocapitalize="off" name="password_confirmation" placeholder="Password Confirmation" data-corners="false" />
-                    <p class="signup_error hidden error">Password does not match the confirm password</p>
+                    <input type="password" autocapitalize="off" name="password_confirmation" data-corners="false" />
+                    <p class="signup_password_error hidden error">Password does not match the confirm password</p>
                 </fieldset>
             </div>
         </div>
-        <div class="ui-grid-a">
+        <div class="ui-grid-solo">
             <div class="ui-block-a">
-                <a class="close_button" data-role="button" data-theme="c" data-corners="false">Cancel</a>
-            </div>
-            <div class="ui-block-b">
-                <input type="submit" value="Sign up" data-corners="false" />
+                <a href="#" class="submit_signup" data-role="button" data-corners="true">Create Account</a>
             </div>
         </div>
     </form>

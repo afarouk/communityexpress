@@ -182,7 +182,7 @@ $(document)
    // 'https://' + api_server;
    //portalExpressURL = location.origin + '/plugins/portalexpress/'+ location.search;
 
-   portalExpressURL = location.origin + '/sitefiles/plugins/portalexpress/' + location.search + '&server=' + liveServer + 'ignorehistory=true';
+   portalExpressURL = location.origin + '/sitefiles/plugins/portalexpress/index.html?' + location.search + '&server=' + liveServer + 'ignorehistory=true';
    /*
     * ------------------ demo mode switch
     */
@@ -194,7 +194,7 @@ $(document)
      if ($(this).is(':checked')) {
       api_server_before_demo_switch = api_server;
       api_server = demoServer;
-      portalExpressURL = location.origin + '/sitefiles/plugins/portalexpress/?s=login&server=' + api_server;
+      portalExpressURL = location.origin + '/sitefiles/plugins/portalexpress/index.html?s=login&server=' + api_server;
 
 
       formSubmissionURL = protocol + api_server + '/apptsvc/rest/authentication/loginBootStrap';

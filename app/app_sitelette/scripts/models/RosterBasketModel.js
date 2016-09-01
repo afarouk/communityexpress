@@ -49,11 +49,16 @@ var RosterBasketModel = Backbone.Model.extend({
 
 
   addCatalog: function(catalog, count, catalogId, catalogDisplayText) {
+    // console.log("BasketModel:addItem::"+item.get('itemName')+",
+    // "+groupId+", "+catalogId);
+    //var xxx=
+    //this.catalogs.add(catalog);
+    //his.catalogs.remove(catalogId);
+
     var catalogModel = this.catalogs.get(catalog.catalogId);
     if (catalogModel) {
       var quantity = catalogModel.get('quantity');
-      //quantity = quantity + count;
-      quantity = count;
+      quantity = quantity + count;
       catalogModel.set('quantity', quantity);
     } else {
       /*
@@ -140,9 +145,12 @@ var RosterBasketModel = Backbone.Model.extend({
           });
         });
       } else {
-        console.log("From " + catalog.catalogId + ", type:" + catalog.catalogType);
+        console.log("From " + catalog.id + ", type:" + catalog.catalogType);
         /* A la carte (ITEMZIED) catalog items. NOTE: model = item */
         _(catalog.models).each(function(item, index, list) {
+
+          var x =   item.get('catalogId');
+
           var orderItem = {
             serviceAccommodatorId: sasl.sa(),
             serviceLocationId: sasl.sl(),
@@ -173,7 +181,6 @@ var RosterBasketModel = Backbone.Model.extend({
         var quantity = catalog.get('quantity');
         var catalogName = catalog.get('catalogDisplayText');
         var catalogId = catalog.get('catalogId');
-        var price = catalog.get('price');
         console.log("*** Combo " + catalogName + ":[" + quantity + "] @ " + catalog.get('price'));
       }
     });
@@ -211,7 +218,7 @@ var RosterBasketModel = Backbone.Model.extend({
         index++;
       });
       if(indexToRemove!==-1){
-        this.catalogs.models.splice(indexToRemove,1);
+        this.removeModelFromCatalogs(indexToRemove);
       }else{
         console.log("didn't find catalog ");
       }
@@ -219,6 +226,17 @@ var RosterBasketModel = Backbone.Model.extend({
       this.trigger('change');
       break;
 
+    }
+  },
+
+  removeModelFromCatalogs: function(indexToRemove) {
+    var modelToRemove = this.catalogs.at(indexToRemove);
+    if (modelToRemove.get('id')) {
+      // if regular model remove from collection
+      this.catalogs.remove(modelToRemove);
+    } else {
+      // remove if collection
+      this.catalogs.models.splice(indexToRemove,1);
     }
   },
 

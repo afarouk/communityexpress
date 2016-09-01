@@ -1302,3 +1302,23 @@ a.jquery-checkbox {
 .cmntyex_text_message {
 	margin-top: 10px;
 }
+
+.auth_fieldset .ui-controlgroup-controls > label {
+	position: relative!important;
+	height: 100%;
+	width: 100%;
+}
+
+.signin_links div a {
+	cursor: pointer;
+}
+
+.ui-grid-solo .ui-block-a .submit_signup,
+.ui-grid-solo .ui-block-a .submit_button {
+	background-color: #0000ff;
+}
+
+.ui-grid-solo .ui-block-a .submit_signup:hover,
+.ui-grid-solo .ui-block-a .submit_button:hover {
+	background-color: #0000ff;
+}

@@ -70,15 +70,12 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
 
     shut: function() {
         this.$el.popup('close');
-        this.close();
     },
 
-    onClose: function () {},
-
     close: function() {
-        this.onClose();
         this.trigger('closed');
         this.undelegateEvents();
+        this.$el.popup("destroy"); 
         this.remove();
     }
 

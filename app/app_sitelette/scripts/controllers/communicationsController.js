@@ -38,14 +38,14 @@ module.exports = {
         });
     },
 
-    sendMessage: function(sa, sl, messageBody, uid, offset, communicationId) {
+    sendMessage: function(sa, sl, messageBody, uid, messageId, communicationId) {
         return gateway.sendRequest('sendMessageToSASL',{
             payload: {
                 toServiceAccommodatorId: sa,
                 toServiceLocationId: sl,
                 messageBody: messageBody,
                 authorId: uid,
-                inReplyToCommunicationId: offset,
+                inReplyToMessageId: messageId,
                 communicationId: communicationId,
             },
             UID: uid

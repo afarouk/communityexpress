@@ -50,7 +50,6 @@ var RosterView = PageLayout.extend({
           $('#roster_order_button').prop('disabled', false);
         };
         this.checkIfOpened();
-        $('.select').select2();
     },
 
     // check if user can make an order at this time
@@ -59,7 +58,7 @@ var RosterView = PageLayout.extend({
         //this.roster.isOpen = true; // remove this row when param will be available !!!
         if (!this.roster.isOpen) {
             this.openSubview('textPopup',
-                { text: 'The business is not taking orders now. Please try tomorrow' },
+                { text: this.isOpenWarningMessage },
                 this.goBack);
             // I don't know, exactly, what should be when I click OK
             // right now we return to the restaurant
@@ -75,10 +74,14 @@ var RosterView = PageLayout.extend({
         this.rosterId = options.rosterId;
         this.rosterType = options.roster.data.rosterType.enumText;
         this.rosterDisplayText = options.roster.data.displayText;
+        this.isOpenWarningMessage = options.roster.data.isOpenWarningMessage;
         this.navbarView = options.navbarView;
         this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
-        this.basket.on('change', this.updateBasket, this);
+
+        // TODO check logic ,
+        // I don't know why we listened change event twice
+        // this.basket.on('change', this.updateBasket, this); 
 
     },
 
@@ -235,7 +238,6 @@ var RosterView = PageLayout.extend({
             case 'UNDEFINED':
             default:
         }
-        
     },
 
     triggerCatalogView: function(catalog, catalogId, catalogDisplayText) {

@@ -55,7 +55,7 @@
             <div data-role="collapsible" id="collapsible" data-inset="false" data-collapsed="false">
                 <h3>Delivery Address</h3>
                 <fieldset class="delivery_inputs" data-type="horizontal">
-                    <input style="display: inline-block;" autocapitalize="off" type="text" name="deliveryStreet2" placeholder="Apt/Bldg" data-corners="false"/>
+                    <input style="display: inline-block;" autocapitalize="off" type="text" name="delivery_number" placeholder="Apt/Bldg" data-corners="false" value="<%= prefillAddress.deliveryNumber %>" />
                     <input style="display: inline-block;" autocapitalize="off" type="text" name="delivery_street" placeholder="Street" data-corners="false" value="<%= prefillAddress.deliveryStreet %>" />
                 </fieldset>
                 <input autocapitalize="off" type="text" name="delivery_city" placeholder="City" data-corners="false" value="<%= prefillAddress.deliveryCity %>" />
@@ -89,14 +89,7 @@
 
                 <input class="credit_card_modifying" autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
                 <p class="cardNumber hidden error">Please, enter the card number</p>
-               <!--
-                <select name="select-choice-cardtype" class="cardtype"  id="select-choice-cardtype">
-                    <option>Card Type</option>
-                    <% _(cardTypes).each(function (cardType) { %>
-                        <option value="<%= cardType %>"><%= cardType %></option>
-                     <% }) %>
-                </select>
-              -->
+
                 <fieldset class="expiration_date" data-role="controlgroup" data-type="horizontal">
                     <select name="select-choice-month" class="month credit_card_modifying" id="select-choice-month">
                         <option value="notselected">Exp.Month</option>

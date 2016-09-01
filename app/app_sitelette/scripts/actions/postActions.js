@@ -40,7 +40,7 @@ module.exports = {
             postbody: comment,
             authorId: getUID(),
             communicationId: communicationId,
-            inReplyToCommunicationId: 1,
+            inReplyToMessageId: 1,
             UID: getUID()
         });
     }

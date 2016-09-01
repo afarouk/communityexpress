@@ -1,35 +1,11 @@
 <% if (editable) { %>
-<div class="float_right">
-    <div class="select_container">
-        <% if (quantity) { %>
-            <select data-role="none" class="select combo_select_item"> 
-                <% for (var i = 0; i <= 10; i++) { %>
-                        <% if(i == quantity) { %>
-                            <option value="<%= i %>" selected="selected"><%= i %></option>
-                        <% } else { %>
-                            <option value="<%= i %>"><%= i %></option>
-                        <% } %>
-                <% } %>
-            </select>
-        <% } %>
-</div>  
-<span class="order_price">$ <%= quantity * price %></span> 
-</div>
+    <a class="cmntyex-remove-list-item ui-btn ui-shadow ui-corner-all
+        <% if (selected) { %>ui-icon-delete<%} else {%>ui-icon-none<% } %>
+        ui-btn-icon-left">
+   <span>    <%=  quantity  %> x </span> <span style="padding-left:100px;" ><%=  displayText %></span>
+    </a>
 <% } else { %>
-<div class="float_right">
-    <div class="select_container">
-        <% if (quantity) { %>
-            <select data-role="none" class="select combo_select_item"> 
-                <% for (var i = 0; i <= 10; i++) { %>
-                        <% if(i == quantity) { %>
-                            <option value="<%= i %>" selected="selected"><%= i %></option>
-                        <% } else { %>
-                            <option value="<%= i %>"><%= i %></option>
-                        <% } %>
-                <% } %>
-            </select>
-        <% } %>
-    </div>  
-    <span class="order_price">$ <%= quantity * price %></span> 
-</div>
+    <li class="cmntyex-remove-list-item">
+  <span>     <%=  quantity %> x </span> <span style="padding-left:100px;" > <%=  displayText %>  </span>
+    </li>
 <% } %>

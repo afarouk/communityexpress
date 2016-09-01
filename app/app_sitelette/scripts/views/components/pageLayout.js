@@ -121,7 +121,10 @@ _.extend(PageLayout.prototype, Backbone.View.prototype, {
     },
 
     renderSubview: function(view) {
-        this.contentView.$el.append(view.render().el);
+        // this.contentView.$el.append(view.render().el);
+        // render popup directly to body now
+        // end remove from DOM after
+        $('body').append(view.render().el);
         view.enhance();
     },
 

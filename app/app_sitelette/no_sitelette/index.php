@@ -15,29 +15,6 @@
   <script src="no_sitelette/script.js"></script>
 
  </head>
-    <!--<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sitelette</title>
-    
-    <link href='https://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
-    
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="skeuocard-master/styles/skeuocard.reset.css" />
-    <link rel="stylesheet" href="skeuocard-master/styles/skeuocard.css" />
-    <link rel="stylesheet" href="skeuocard-master/styles/demo.css" />
-    <link href="select2/select2.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="skeuocard-master/javascripts/skeuocard.js"></script>
-    <script src="select2/select2.full.js"></script>
-    <script src="js/scripts.js"></script>
-</head>-->
  <body>
   <div class="container">
    <div class="row">

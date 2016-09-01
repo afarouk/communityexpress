@@ -51,7 +51,7 @@ var AddToRosterBasketView = PanelView.extend({
     addToBasket: function () {
     	var count=this.quantity.get('value');
 
-        this.basket.addCatalog(this.model, count,  this.catalogId, this.catalogDisplayText);
+        this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);
         this.shut();
     },
 
