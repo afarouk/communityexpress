@@ -200,6 +200,8 @@ if ($saslAccess || $urlKeyAccess) {
 
 
        //echo $siteletteJSON['landingViewHTML'];
+
+       
        include_once 'themes/3/index.html';
       } /*end valid sitelette*/
     } /*end can reach server */
