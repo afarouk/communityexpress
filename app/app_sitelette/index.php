@@ -196,7 +196,11 @@ if ($saslAccess || $urlKeyAccess) {
             $friendlyURL = null;
           }
         }
-        include_once 'sitelette.php';
+        //$evalscript='<script> window.community={};  window.community.themeId='.$themeId.'; window.community.embedded=\'';//.($embedded==TRUE?"true":"false").'\';';
+
+
+       //echo $siteletteJSON['landingViewHTML'];
+       include_once 'themes/3/index.html';
       } /*end valid sitelette*/
     } /*end can reach server */
   }
