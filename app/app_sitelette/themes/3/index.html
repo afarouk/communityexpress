@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,6 @@
         <link href="themes/3/slick/slick.css" rel="stylesheet">
         <link href="themes/3/slick/slick-theme.css" rel="stylesheet">
 
-
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="themes/3/js/jquery.mobile-1.4.5.min.js"></script>
         <script src="themes/3/js/bootstrap.min.js"></script>
@@ -34,32 +32,32 @@
 
 
         <script>
-              window.saslData = <?php
-        if (!is_null($saslJSON)) {
-            echo json_encode($saslJSON);
-        } else {
-            echo '{"error":"null sasl"}';
-        }
-        ?>;
-          window.community={};
-          window.community.themeId=<?php echo $themeId ?>;
-          window.community.domain='<?php echo $domain ?>';
-          window.community.protocol='<?php echo $protocol?>';
-          window.community.UID='<?php echo $UID ?>';
-          window.community.type='<?php echo $type ?>';
-          window.community.uuidURL='<?php echo $uuidURL ?>';
-          window.community.embedded=<?php echo  $embedded==TRUE?'true':'false'  ?>;
-          window.community.desktop=<?php echo  $desktopIFrame==TRUE?'true':'false' ?>;
-          window.community.publicAccess=<?php echo  $urlKeyAccess==TRUE?'true':'false'?>;
-          window.community.directAccess=<?php echo  $saslAccess==TRUE?'true':'false'?>;
-          window.community.demo=<?php echo  $demo==TRUE?'true':'false'?>;
-          window.community.server='<?php echo $server ?>';
-          window.community.host='<?php echo $serverName ?>';
-          window.community.friendlyURL='<?php echo $friendlyURL ?>';
-          window.community.isPrivate=<?php echo  $isPrivate==TRUE?'true':'false'?>;
-          window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
-          window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
-          window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
+            window.saslData = <?php
+            if (!is_null($saslJSON)) {
+                echo json_encode($saslJSON);
+            } else {
+                echo '{"error":"null sasl"}';
+            }
+            ?>;
+            window.community={};
+            window.community.themeId=<?php echo $themeId ?>;
+            window.community.domain='<?php echo $domain ?>';
+            window.community.protocol='<?php echo $protocol?>';
+            window.community.UID='<?php echo $UID ?>';
+            window.community.type='<?php echo $type ?>';
+            window.community.uuidURL='<?php echo $uuidURL ?>';
+            window.community.embedded=<?php echo  $embedded==TRUE?'true':'false'  ?>;
+            window.community.desktop=<?php echo  $desktopIFrame==TRUE?'true':'false' ?>;
+            window.community.publicAccess=<?php echo  $urlKeyAccess==TRUE?'true':'false'?>;
+            window.community.directAccess=<?php echo  $saslAccess==TRUE?'true':'false'?>;
+            window.community.demo=<?php echo  $demo==TRUE?'true':'false'?>;
+            window.community.server='<?php echo $server ?>';
+            window.community.host='<?php echo $serverName ?>';
+            window.community.friendlyURL='<?php echo $friendlyURL ?>';
+            window.community.isPrivate=<?php echo  $isPrivate==TRUE?'true':'false'?>;
+            window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
+            window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
+            window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
 
         </script>
 
@@ -72,49 +70,50 @@
     <body>
 
         <!-- HOME-->
-        <div data-role="page" id="home">
-            <div id="cmtyx_header" class="header">
-                <a href="#left-panel" class="menu_btn">
-                    <div class="menu_btn_img"></div>
-                </a>
-                <div class="logo_container">
-                    <div class="logo logo_img"></div>
-                </div>
-                <div data-role="panel" id="left-panel" class="cart" data-display="overlay">
+        <div id="cmtyx_landingView">
+            <div id="cmtyx_staticView">
+                <div data-role="page" id="home">
+                    <div id="cmtyx_header" class="header">
+                        <a href="#left-panel" class="menu_btn">
+                            <div class="menu_btn_img"></div>
+</a>
+                        <div class="logo_container">
+                            <div class="logo logo_img"></div>
+                        </div>
+                        <div data-role="panel" id="left-panel" class="cart" data-display="overlay">
 
-                    <ul class="left_panel_menu">
-                        <li class="menu_item">
-                            <div class="menu_item_icon list_img"></div>
-                            <span class="menu_item_title">View/Edit catalogue</span>
-                            <a href="#" data-rel="close" class="close_cart_button">
-                                <div class="left_arr_icon left_arr_img"></div>
-                            </a>
-                        </li>
-                        <li class="menu_item chat_btn">
-                            <div class="menu_item_icon speech_bubble_img"></div>
-                            <span class="menu_item_title">Messanging/Chat</span></li>
-                        <li class="menu_item business_hours_btn">
-                            <div class="menu_item_icon clock_circular_img"></div>
-                            <span class="menu_item_title">Business hours</span></li>
-                        <!--
-               <li class="menu_item">
-               <div class="menu_item_icon photo_camera_img"></div>><span class="menu_item_title">Upload photo</span></li>
+                            <ul class="left_panel_menu">
+                                <li class="menu_item">
+                                    <div class="menu_item_icon list_img"></div>
+                                    <span class="menu_item_title">View/Edit catalogue</span>
+                                    <a href="#" data-rel="close" class="close_cart_button">
+                                        <div class="left_arr_icon left_arr_img"></div>
+                                    </a>
+                                </li>
+                                <li class="menu_item chat_btn">
+                                    <div class="menu_item_icon speech_bubble_img"></div>
+                                    <span class="menu_item_title">Messanging/Chat</span></li>
+                                <li class="menu_item business_hours_btn">
+                                    <div class="menu_item_icon clock_circular_img"></div>
+                                    <span class="menu_item_title">Business hours</span></li>
+                                <!--
+<li class="menu_item">
+<div class="menu_item_icon photo_camera_img"></div>><span class="menu_item_title">Upload photo</span></li>
 -->
-                        <li class="menu_item user_reviews_btn">
-                            <div class="menu_item_icon speaking_img"></div>
-                            <span class="menu_item_title">User reviews</span></li>
-                        <li class="menu_item appointments_btn">
-                            <div class="menu_item_icon calendar_img"></div>
-                            <span class="menu_item_title">Appointments</span></li>
-                        <li class="menu_item contact_us_btn">
-                            <div class="menu_item_icon edit_img"></div>
-                            <span class="menu_item_title">Contact us</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="home_body p-0">
-               <div id="cmtyx_landingView">
-                   <div id="cmtyx_staticView">
+                                <li class="menu_item user_reviews_btn">
+                                    <div class="menu_item_icon speaking_img"></div>
+                                    <span class="menu_item_title">User reviews</span></li>
+                                <li class="menu_item appointments_btn">
+                                    <div class="menu_item_icon calendar_img"></div>
+                                    <span class="menu_item_title">Appointments</span></li>
+                                <li class="menu_item contact_us_btn">
+                                    <div class="menu_item_icon edit_img"></div>
+                                    <span class="menu_item_title">Contact us</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="home_body p-0">
+
                         <ul>
                             <li class="welcome_block">
                                 <div class="breaking_news">
@@ -122,7 +121,7 @@
                                 </div>
                                 <span class="title">Warm and cosy</span>
                                 <span class="undertitle">A quite room perfect for conversation with soft music in background</span>
-                                <button class="ui-btn ui-corner-all back_btn  open_menu_btn cmtyx_color1">open menu</button>
+                                <button class="ui-btn ui-corner-all back_btn  open_menu_btn cmtyx_color1 menu_button_3">open menu</button>
                                 <span class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></span><span class="open_label">open now</span>
                             </li>
                         </ul>
@@ -429,8 +428,8 @@
                         <ul>
                             <li class="share_block">
                                 <span class="title">
-                        Share this site
-                    </span>
+                                    Share this site
+                                </span>
                                 <div class="ui-grid-c">
                                     <div class="ui-block-a text"><span class="share_icon sms_icon"></span>
                                         <br>SMS</div>
@@ -445,8 +444,8 @@
                             <li class="contact_us_block">
                                 <span class="title">contact us</span>
                                 <!--
-                    <span class="address">1086 North 1st Street <br>
-                San jose CA 95112</span>
+<span class="address">1086 North 1st Street <br>
+San jose CA 95112</span>
 -->
                                 <div class="ui-grid-a btns_container">
                                     <div class="ui-block-a p-r-10">
@@ -462,36 +461,36 @@
                         </ul>
                     </div>
 
-                </div>
-            </div>
-            <div id="cmtyx_navbar" data-role="footer" class="home_footer">
-                <div data-role="navbar">
-                    <ul>
-                        <li>
-                            <a href="#" class="ui-btn-active">
-                                <div class="navbar_btn_icon document_img"></div>
-                                <br>Menu</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="menu_button_3 navbar_btn_icon calendar_grey_img m-b-11"></div>
-                                <br>Deals</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="navbar_btn_icon information_button_img m-b-7"></div>
-                                <br>About</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="navbar_btn_icon user_img m-b-9"></div>
-                                <br>User</a>
-                        </li>
-                    </ul>
+
+                    <div id="cmtyx_navbar" data-role="footer" class="home_footer">
+                        <div data-role="navbar">
+                            <ul>
+                                <li>
+                                    <a href="#" class="menu_button_3 ui-btn-active">
+                                        <div class="navbar_btn_icon document_img"></div>
+                                        <br>Menu</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="menu_button_2 navbar_btn_icon calendar_grey_img m-b-11"></div>
+                                        <br>Deals</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="menu_button_4 navbar_btn_icon information_button_img m-b-7"></div>
+                                        <br>About</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="menu_button_5 navbar_btn_icon user_img m-b-9"></div>
+                                        <br>User</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
         <!--    CONTACT US-->
 
         <div data-role="page" id="contact_us">
@@ -723,11 +722,11 @@
             <div class="body">
                 <div class="navigation_block">
                     <span class="arr back_arr">
-                    <span class="arr_icon back_arr_icon"></span>
+                        <span class="arr_icon back_arr_icon"></span>
                     </span>
                     <span class="date">Aug, 24, 2016</span>
                     <span class="arr next_arr">
-                    <span class="arr_icon next_arr_icon"></span>
+                        <span class="arr_icon next_arr_icon"></span>
                     </span>
                 </div>
                 <div class="schedule_block">
@@ -853,923 +852,13 @@
         </div>
 
 
-        <!--    ROSTER-->
-        <div data-role="page" id="roster">
-
-            <div class="headers_container">
-                <div class="header main_header">
-                    <span class="back_arr_icon"></span>
-                    <div class="zaza_logo zaza_logo_img"></div>
-                </div>
-                <div class="header second_header">
-                    <a href="#left-panel">
-                        <span class="cart_icon cart_img"></span>
-                        <!--                <span class="cart_items_number cmtyx_background_color1">3</span>-->
-
-                    </a>
-                    <span class="total_price cmtyx_color1">Total $35.00</span>
-                    <a class="header_order_btn order_btn">Order</a>
-
-
-                    <div data-role="panel" id="left-panel" class="cart" data-display="overlay">
-                        <div class="cart_header"> <span class="cart_header_title">Your order</span>
-                            <a href="#" data-rel="close" class="close_cart_button"><img src="images/left-arrow.png" alt=""></a>
-                        </div>
-                        <ul class="order_list">
-                            <li class="first"><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Combo 1</span>
-                                <div class="float_right">
-                                    <div class="select_container">
-                                        <select data-role="none" class="select">
-                                            <option value="num0">0</option>
-                                            <option value="num1">1</option>
-                                            <option value="num2">2</option>
-                                            <option value="num3">3</option>
-                                            <option value="num4">4</option>
-                                            <option value="num5">5</option>
-                                            <option value="num6">6</option>
-                                            <option value="num7">7</option>
-                                            <option value="num8">8</option>
-                                            <option value="num9">9</option>
-                                        </select>
-                                    </div>
-                                    <span class="order_price cmtyx_color1">$9.75</span>
-                                </div>
-                            </li>
-                            <li><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Ginger beer</span>
-                                <div class="float_right">
-                                    <div class="select_container">
-                                        <select data-role="none" class="select">
-                                            <option value="num0">0</option>
-                                            <option value="num1">1</option>
-                                            <option value="num2">2</option>
-                                            <option value="num3">3</option>
-                                            <option value="num4">4</option>
-                                            <option value="num5">5</option>
-                                            <option value="num6">6</option>
-                                            <option value="num7">7</option>
-                                            <option value="num8">8</option>
-                                            <option value="num9">9</option>
-                                        </select>
-                                    </div>
-                                    <span class="order_price cmtyx_color1">$3.50</span>
-                                </div>
-                            </li>
-                            <li class="last"><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Fresh fruits</span>
-                                <div class="float_right">
-                                    <div class="select_container">
-                                        <select data-role="none" class="select">
-                                            <option value="num0">0</option>
-                                            <option value="num1">1</option>
-                                            <option value="num2">2</option>
-                                            <option value="num3">3</option>
-                                            <option value="num4">4</option>
-                                            <option value="num5">5</option>
-                                            <option value="num6">6</option>
-                                            <option value="num7">7</option>
-                                            <option value="num8">8</option>
-                                            <option value="num9">9</option>
-                                        </select>
-                                    </div>
-                                    <span class="order_price cmtyx_color1">$9.75</span>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="price_list">
-                            <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
-                            <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
-                            <li class="tip_price"><span class="order_name">Tip</span>
-                                <div class="float_right">
-                                    <div class="select_container">
-                                        <select data-role="none" class="select">
-                                            <option value="tip0">0%</option>
-                                            <option value="tip5">5%</option>
-                                            <option value="tip10">10%</option>
-                                            <option value="tip15">15%</option>
-                                            <option value="tip20">20%</option>
-                                        </select>
-                                    </div>
-                                    <span class="order_price cmtyx_color1">$0.00</span>
-                                </div>
-                            </li>
-                            <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
-                        </ul>
-                        <button class="ui-btn ui-corner-all next_btn cart_order_btn order_btn cmtyx_background_color1">order</button>
-                    </div>
-                </div>
-            </div>
-            <div class="menu_body">
-                <ul>
-                    <li class="menuItem"> <img src="images/bg_home_4.png" alt=""> <span class="item_name">
-                        Combo 1
-                    </span>
-                        <div class="float_right">
-                            <div class="select_container">
-                                <select data-role="none" class="select">
-                                    <option value="num0">0</option>
-                                    <option value="num1">1</option>
-                                    <option value="num2">2</option>
-                                    <option value="num3">3</option>
-                                    <option value="num4">4</option>
-                                    <option value="num5">5</option>
-                                    <option value="num6">6</option>
-                                    <option value="num7">7</option>
-                                    <option value="num8">8</option>
-                                    <option value="num9">9</option>
-                                </select>
-                            </div> <span class="item_price cmtyx_color1">$9.75</span>
-                        </div>
-                        <div class="combo_items_list">Green Salad, Cauliflower Manchurian, Veg Fried Rice and Fresh Fruits</div>
-                    </li>
-                    <li class="menuItem"> <img src="images/meat-dinner.png" alt=""> <span class="item_name">
-                        Combo 2
-                    </span>
-                        <div class="float_right">
-                            <div class="select_container">
-                                <select data-role="none" class="select">
-                                    <option value="num0">0</option>
-                                    <option value="num1">1</option>
-                                    <option value="num2">2</option>
-                                    <option value="num3">3</option>
-                                    <option value="num4">4</option>
-                                    <option value="num5">5</option>
-                                    <option value="num6">6</option>
-                                    <option value="num7">7</option>
-                                    <option value="num8">8</option>
-                                    <option value="num9">9</option>
-                                </select>
-                            </div>
-                            <span class="item_price cmtyx_color1">$9.75</span>
-                        </div>
-                        <div class="combo_items_list">Veg Samosa, Naan, Chicken Pepper Fry and Gulab Jamoon</div>
-                    </li>
-                    <li class="menuItem"> <img src="images/1006p120-eggs-barbacoa_0.png" alt=""> <span class="item_name">
-                        Combo 3
-                    </span>
-                        <div class="float_right">
-                            <div class="select_container">
-                                <select data-role="none" class="select">
-                                    <option value="num0">0</option>
-                                    <option value="num1">1</option>
-                                    <option value="num2">2</option>
-                                    <option value="num3">3</option>
-                                    <option value="num4">4</option>
-                                    <option value="num5">5</option>
-                                    <option value="num6">6</option>
-                                    <option value="num7">7</option>
-                                    <option value="num8">8</option>
-                                    <option value="num9">9</option>
-                                </select>
-                            </div>
-                            <span class="item_price cmtyx_color1">$9.75</span>
-                        </div>
-                        <div class="combo_items_list">Greek Salad, Chicken Kabob, Pita and Baklava with Tomato Chutney</div>
-                    </li>
-                    <li class="menuItem build_combo"> <img src="images/14593877-Conceptual-making-of-burger-Stock-Photo.png" alt=""> <span class="item_name">
-                        build your own combo
-                    </span> <span class="item_price cmtyx_color1">$9.75</span> <span class="under_item_name_text">Choose delicious extras!</span>
-                        <div class="combo_items_container"> <span class="combo_items">Nun, Bak, Chi, Fre</span>
-                            <div class="select_container float_right">
-                                <select data-role="none" class="select">
-                                    <option value="num0">0</option>
-                                    <option value="num1">1</option>
-                                    <option value="num2">2</option>
-                                    <option value="num3">3</option>
-                                    <option value="num4">4</option>
-                                    <option value="num5">5</option>
-                                    <option value="num6">6</option>
-                                    <option value="num7">7</option>
-                                    <option value="num8">8</option>
-                                    <option value="num9">9</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="ui-btn ui-corner-all back_btn build_btn cmtyx_color1">Build own combo</button>
-                    </li>
-                    <li class="menuItem choose_extras"> <img src="images/images.png" alt=""> <span class="item_name">
-                        Sides/Extras
-                    </span> <span class="item_price cmtyx_color1">$9.75</span> <span class="under_item_name_text">Choose delicious extras!</span>
-                        <div class="combo_items_container"> <span class="combo_items">Ginger beer</span>
-                            <div class="select_container float_right">
-                                <select data-role="none" class="select">
-                                    <option value="num0">0</option>
-                                    <option value="num1">1</option>
-                                    <option value="num2">2</option>
-                                    <option value="num3">3</option>
-                                    <option value="num4">4</option>
-                                    <option value="num5">5</option>
-                                    <option value="num6">6</option>
-                                    <option value="num7">7</option>
-                                    <option value="num8">8</option>
-                                    <option value="num9">9</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="ui-btn ui-corner-all back_btn  choose_extr_btn cmtyx_color1">Choose extras</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!--    BUILD COMBO-->
-        <div data-role="page" id="build_combo">
-            <div class="header">
-                <a href="#left-panel"><img src="images/shopping-cart.png" alt=""></a> <span class="cart_items_number cmtyx_background_color1">3</span>
-                <div class="total_price_order_block"> <span class="total_price cmtyx_color1">Total $35.00</span> <a class="header_order_btn order_btn">Order</a> </div>
-                <div data-role="panel" id="left-panel" class="cart" data-display="overlay">
-                    <div class="cart_header"> <span class="cart_header_title">Your order</span>
-                        <a href="#" data-rel="close" class="close_cart_button"><img src="images/left-arrow.png" alt=""></a>
-                    </div>
-                    <ul class="order_list">
-                        <li class="first"><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Combo 1</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$9.75</span>
-                            </div>
-                        </li>
-                        <li><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Ginger beer</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$3.50</span>
-                            </div>
-                        </li>
-                        <li class="last"><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Fresh fruits</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$9.75</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="price_list">
-                        <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
-                        <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
-                        <li class="tip_price"><span class="order_name">Tip</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="tip0">0%</option>
-                                        <option value="tip5">5%</option>
-                                        <option value="tip10">10%</option>
-                                        <option value="tip15">15%</option>
-                                        <option value="tip20">20%</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$0.00</span>
-                            </div>
-                        </li>
-                        <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
-                    </ul>
-                    <button class="ui-btn ui-corner-all next_btn cart_order_btn order_btn cmtyx_background_color1">order</button>
-                </div>
-            </div>
-            <div class="menu_body">
-                <div class="build_combo_title"> <span class="build_combo_back_btn"><img src="images/left-arrow.png" alt=""></span> <span>BuilD your own combo</span> </div>
-                <div class="collapsibleSet build_combo_collapse" data-role="collapsibleset" data-inset="false">
-                    <div data-role="collapsible">
-                        <h3 class="firstItem">Starter<span class="right_block">
-                       <span class="selected_item_name">Green Salad</span>
-                        <span class="tick_img"><img src="images/checked.png" alt=""></span>
-                    </span></h3>
-                        <ul data-role="listview" data-inset="false"> </ul>      </div>
-                    <div data-role="collapsible">
-                        <h3>Bread or rise<span class="right_block">
-                       <span class="selected_item_name">Garlic Nan</span>
-                        <span class="tick_img"><img src="images/checked.png" alt=""></span>
-                    </span></h3>
-                        <ul data-role="listview" data-inset="false">          </ul>      </div>
-                    <div data-role="collapsible">
-                        <h3>Curries<span class="right_block">
-                       <span class="selected_item_name">Cauliflower Manchurian</span>
-                        <span class="tick_img"><img src="images/checked.png" alt=""></span>
-                    </span></h3>
-                        <ul data-role="listview" data-inset="false">       </ul>      </div>
-                    <div data-role="collapsible">
-                        <h3>Desert
-                    <span class="right_block">
-<!--                       <span class="selected_item_name">Cauliflower Manchurian</span>-->
-<!--                        <span class="tick_img"><img src="images/checked.png" alt=""></span>-->
-                    </span>
-                    </h3>
-                        <ul data-role="listview" data-inset="false" class="items_list">
-                            <div class="combo_item_container"> <img src="images/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82.png" alt="" class="item_img">
-                                <div class="input_container" data-iconpos="right">
-                                    <label for="combo_item1">Baklava</label>
-                                    <input type="radio" name="radio-choice-desert" id="combo_item1" class="combo_item_input"> </div>
-                            </div>
-                            <div class="combo_item_container"> <img src="images/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82.png" alt="" class="item_img">
-                                <div class="input_container" data-iconpos="right">
-                                    <label for="combo_item2">Fresh fruits</label>
-                                    <input type="radio" name="radio-choice-desert" id="combo_item2" class="combo_item_input"> </div>
-                            </div>
-                            <div class="combo_item_container"> <img src="images/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82.png" alt="" class="item_img">
-                                <div class="input_container" data-iconpos="right">
-                                    <label for="combo_item3">Gullab Jummon</label>
-                                    <input type="radio" name="radio-choice-desert" id="combo_item3" class="combo_item_input">
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-                <!--
-            <div class="created_combos_container">
-                <p>You’ve created</p>
-                <ul>
-                    <li> <span>Nun, Bak, Chi, Fre</span>
-                        <input type="number" name="quantity" min="0" max="9" value="0" data-role="none"> </li>
-                    <li> <span>Nun, Bak, Chi, Fre</span>
-                        <input type="number" name="quantity" min="0" max="9" value="0" data-role="none"> </li>
-                </ul>
-            </div>
--->
-                <div class="ui-grid-a back_next_btns">
-                    <button class="ui-btn ui-corner-all next_btn add_to_cart_btn cmtyx_background_color1">Add to cart</button>
-                </div>
-            </div>
-        </div>
-
-        <!--    SIDES OR EXTRAS-->
-        <div data-role="page" id="sides_extras">
-            <div class="header">
-                <a href="#left-panel"><img src="images/shopping-cart.png" alt=""></a> <span class="cart_items_number cmtyx_background_color1">3</span>
-                <div class="total_price_order_block"> <span class="total_price cmtyx_color1">Total $35.00</span> <a class="header_order_btn order_btn">Order</a> </div>
-                <div data-role="panel" id="left-panel" class="cart" data-display="overlay">
-                    <div class="cart_header"> <span class="cart_header_title">Your order</span>
-                        <a href="#" data-rel="close" class="close_cart_button"><img src="images/left-arrow.png" alt=""></a>
-                    </div>
-                    <ul class="order_list">
-                        <li class="first"><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Combo 1</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$9.75</span>
-                            </div>
-                        </li>
-                        <li><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Ginger beer</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$3.50</span>
-                            </div>
-                        </li>
-                        <li class="last"><span class="delete_btn"><img src="images/close.png" alt=""></span><span class="order_name">Fresh fruits</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$9.75</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="price_list">
-                        <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
-                        <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
-                        <li class="tip_price"><span class="order_name">Tip</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="tip0">0%</option>
-                                        <option value="tip5">5%</option>
-                                        <option value="tip10">10%</option>
-                                        <option value="tip15">15%</option>
-                                        <option value="tip20">20%</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$0.00</span>
-                            </div>
-                        </li>
-                        <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
-                    </ul>
-                    <button class="ui-btn ui-corner-all next_btn cart_order_btn order_btn cmtyx_background_color1">order</button>
-                </div>
-            </div>
-            <div class="menu_body">
-                <div class="build_combo_title"> <span class="sides_extras_back_btn"><img src="images/left-arrow.png" alt=""></span> <span>Sides or extras</span> </div>
-                <div class="collapsibleSet" data-role="collapsibleset" data-inset="false">
-                    <div data-role="collapsible">
-                        <h3>Extras</h3>
-                        <ul data-role="listview" data-inset="false" class="items_list">
-                            <div class="sides_extras_container"> <img src="images/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82.png" alt="" class="item_img">
-                                <div class="sides_extras_item_details"> <span class="item_name">Ginger beer</span>
-                                    <br> <span class="item_price">$3.5</span></div>
-                                <div class="select_container float_right">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="sides_extras_container"> <img src="images/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82.png" alt="" class="item_img">
-                                <div class="sides_extras_item_details"> <span class="item_name">Ginger beer</span>
-                                    <br> <span class="item_price">$3.5</span></div>
-                                <div class="select_container float_right">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="sides_extras_container"> <img src="images/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82.png" alt="" class="item_img">
-                                <div class="sides_extras_item_details"> <span class="item_name">Ginger beer</span>
-                                    <br> <span class="item_price">$3.5</span></div>
-                                <div class="select_container float_right">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="sides_extras_container"> <img src="images/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82.png" alt="" class="item_img">
-                                <div class="sides_extras_item_details"> <span class="item_name">Ginger beer</span>
-                                    <br> <span class="item_price">$3.5</span></div>
-                                <div class="select_container float_right">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="sides_extras_container"> <img src="images/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82.png" alt="" class="item_img">
-                                <div class="sides_extras_item_details"> <span class="item_name">Ginger beer</span>
-                                    <br> <span class="item_price">$3.5</span></div>
-                                <div class="select_container float_right">
-                                    <select data-role="none" class="select">
-                                        <option value="num0">0</option>
-                                        <option value="num1">1</option>
-                                        <option value="num2">2</option>
-                                        <option value="num3">3</option>
-                                        <option value="num4">4</option>
-                                        <option value="num5">5</option>
-                                        <option value="num6">6</option>
-                                        <option value="num7">7</option>
-                                        <option value="num8">8</option>
-                                        <option value="num9">9</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--    CHOOSE SHIPPING ADDRESS PAGE-->
-        <div data-role="page" id="choose_shipping_address_page">
-            <div class="circles_block">
-                <div class="circle cmtyx_background_color1"></div>
-                <div class="circle"></div>
-                <div class="circle last"></div>
-            </div>
-            <div class="navigation">
-                <div class="left_arr_block nav_back_btn"><img src="images/arrow-point-to-right-copy.png" alt=""><span>Back</span></div>
-                <div class="page_title">Shipping details</div>
-                <div class="right_arr_block nav_next_btn"><span>Next</span><img src="images/arrow-point-to-right.png" alt=""></div>
-            </div>
-            <div data-role="tabs" id="tabs">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="#delivery" data-ajax="false" class="leftBtn cmtyx_color1 ui-btn-active">Delivery</a></li>
-                        <li><a href="#pick_up" data-ajax="false" class="rightBtn cmtyx_color1">Pick up</a></li>
-                    </ul>
-                </div>
-                <div id="delivery" class="ui-body-d ui-content">
-                    <p class="choose_card_text">Choose address:</p>
-                    <form>
-                        <label for="saved_address">Some Street, 8, Random City</label>
-                        <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'>
-                        <label for="add_another">Add another address</label>
-                        <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice"> </form>
-                    <div class="ui-grid-a back_next_btns">
-                        <div class="ui-block-a p-r-10">
-                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1">Back</button>
-                        </div>
-                        <div class="ui-block-b p-l-10">
-                            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_background_color1">Next</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="pick_up" class="ui-body-d ui-content">
-                    <p class="order_address">You can get your order at Random Street, 22</p>
-                    <!--
-                <div id="home_map" class="map_container">
-                </div>
--->
-                    <div class="ui-grid-a back_next_btns">
-                        <div class="ui-block-a p-r-10">
-                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1">Back</button>
-                        </div>
-                        <div class="ui-block-b p-l-10">
-                            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_background_color1">Next</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--SHIPPING_PAGE-->
-        <div data-role="page" id="shipping_page">
-            <div class="circles_block">
-                <div class="circle cmtyx_background_color1"></div>
-                <div class="circle"></div>
-                <div class="circle last"></div>
-            </div>
-            <div class="navigation">
-                <div class="left_arr_block nav_back_btn"><img src="images/arrow-point-to-right-copy.png" alt=""><span>Back</span></div>
-                <div class="page_title">Shipping details</div>
-                <div class="right_arr_block nav_next_btn"><span>Next</span><img src="images/arrow-point-to-right.png" alt=""></div>
-            </div>
-            <div data-role="tabs" id="tabs">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="#delivery" data-ajax="false" class="leftBtn cmtyx_color1 ui-btn-active">Delivery</a></li>
-                        <li><a href="#pick_up" data-ajax="false" class="rightBtn cmtyx_color1">Pick up</a></li>
-                    </ul>
-                </div>
-                <div id="delivery" class="ui-body-d ui-content">
-                    <div class="wrapper">
-                        <div class="material-textfield yellow">
-                            <input type="text" required data-role="none" />
-                            <label data-content="Apt/Bldg">Apt/Bldg</label>
-                        </div>
-                        <div class="material-textfield yellow">
-                            <input type="text" required data-role="none" />
-                            <label data-content="Street">Street</label>
-                        </div>
-                        <div class="material-textfield yellow">
-                            <input type="text" required data-role="none" />
-                            <label data-content="City">City</label>
-                        </div>
-                        <div class="info-panel">
-                            <div class="origin_address">
-                                <div class="mini_circle_address_page cmtyx_background_color1"></div>
-                                <div class="origin_address_text">
-                                    <p class="address_title">Origin</p>
-                                    <p class="address_information">California, Some Address, Random Street</p>
-                                </div>
-                            </div>
-                            <div class="destination_address">
-                                <div class="mini_circle_address_page cmtyx_color1"></div>
-                                <div class="destination_address_text">
-                                    <p class="address_title">Destination</p>
-                                    <p class="address_information">California, Some Address, Random Street</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="pick_up" class="ui-body-d ui-content">
-                    <p class="order_address">You can get your order at Random Street, 22</p>
-                    <!--
-                <div id="home_map" class="map_container">
-                </div>
--->
-                </div>
-            </div>
-            <div class="ui-grid-a back_next_btns">
-                <div class="ui-block-a p-r-10">
-                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1">Back</button>
-                </div>
-                <div class="ui-block-b p-l-10">
-                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_background_color1">Next</button>
-                </div>
-            </div>
-        </div>
-
-        <!--    PAYMENT PAGE-->
-        <div data-role="page" id="payment_page">
-            <div class="circles_block">
-                <div class="circle"></div>
-                <div class="circle cmtyx_background_color1"></div>
-                <div class="circle last"></div>
-            </div>
-            <div class="navigation">
-                <div class="left_arr_block nav_back_btn"><img src="images/arrow-point-to-right-copy.png" alt=""><span>Back</span></div>
-                <div class="page_title">Payment</div>
-                <div class="right_arr_block nav_next_btn"><span>Next</span><img src="images/arrow-point-to-right.png" alt=""></div>
-            </div>
-
-            <div data-role="tabs" id="tabs">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="#credit" data-ajax="false" class="leftBtn cmtyx_color1 ui-btn-active">Credit</a></li>
-                        <li><a href="#cash" data-ajax="false" class="rightBtn cmtyx_color1">Cash</a></li>
-                    </ul>
-                </div>
-                <div id="credit" class="ui-body-d ui-content">
-                    <p class="choose_card_text">Choose card:</p>
-                    <form>
-                        <label for="saved_card">XXXX XXXX XXXX 6423</label>
-                        <input type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice" checked='checked'>
-                        <label for="use_another">Use another</label>
-                        <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice"> </form>
-                    <div class="ui-grid-a back_next_btns">
-                        <div class="ui-block-a p-r-10">
-                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1">Back</button>
-                        </div>
-                        <div class="ui-block-b p-l-10">
-                            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_background_color1">Next</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="cash" class="ui-body-d ui-content">
-                    <p class="your_order_text">Your order</p>
-                    <ul class="order_list">
-                        <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1">$9.75</span></li>
-                        <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1">$3.50</span></li>
-                        <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1">$9.75</span></li>
-                    </ul>
-                    <ul class="price_list">
-                        <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
-                        <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
-                        <li class="tip_price"><span class="order_name">Tip</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="tip0">0%</option>
-                                        <option value="tip5">5%</option>
-                                        <option value="tip10">10%</option>
-                                        <option value="tip15">15%</option>
-                                        <option value="tip20">20%</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$0.00</span>
-                            </div>
-                        </li>
-                        <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
-                    </ul>
-                    <div class="ui-grid-a back_next_btns">
-                        <div class="ui-block-a p-r-10">
-                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1">Back</button>
-                        </div>
-                        <div class="ui-block-b p-l-10">
-                            <button class="ui-btn ui-corner-all next_btn cmtyx_background_color1">Place order</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--    PAYMENT CARD-->
-        <div data-role="page" id="payment_card_page">
-            <div class="circles_block">
-                <div class="circle"></div>
-                <div class="circle cmtyx_background_color1"></div>
-                <div class="circle last"></div>
-            </div>
-            <div class="navigation">
-                <div class="left_arr_block nav_back_btn"><img src="images/arrow-point-to-right-copy.png" alt=""><span>Back</span></div>
-                <div class="page_title">Payment</div>
-                <div class="right_arr_block nav_next_btn"><span>Next</span><img src="images/arrow-point-to-right.png" alt=""></div>
-            </div>
-            <div class="credit_card_container">
-                <div class="credit-card-input no-js credit_card" id="skeuocard">
-                    <p class="no-support-warning"> Either you have Javascript disabled, or you're using an unsupported browser, amigo! That's why you're seeing this old-school credit card input form instead of a fancy new Skeuocard. On the other hand, at least you know it gracefully
-                        degrades... </p>
-                    <label for="cc_type">Card Type</label>
-                    <select name="cc_type" data-role="none">
-                        <option value="" data-role="none">...</option>
-                        <option value="visa" data-role="none">Visa</option>
-                        <option value="discover" data-role="none">Discover</option>
-                        <option value="mastercard" data-role="none">MasterCard</option>
-                        <option value="maestro" data-role="none">Maestro</option>
-                        <option value="jcb" data-role="none">JCB</option>
-                        <option value="unionpay" data-role="none">China UnionPay</option>
-                        <option value="amex" data-role="none">American Express</option>
-                        <option value="dinersclubintl" data-role="none">Diners Club</option>
-                    </select>
-                    <label for="cc_number">Card Number</label>
-                    <input type="text" name="cc_number" id="cc_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19">
-                    <label for="cc_exp_month">Expiration Month</label>
-                    <input type="text" name="cc_exp_month" id="cc_exp_month" placeholder="00">
-                    <label for="cc_exp_year">Expiration Year</label>
-                    <input type="text" name="cc_exp_year" id="cc_exp_year" placeholder="00">
-                    <label for="cc_name">Cardholder's Name</label>
-                    <input type="text" name="cc_name" id="cc_name" placeholder="John Doe">
-                    <label for="cc_cvc">Card Validation Code</label>
-                    <input type="text" name="cc_cvc" id="cc_cvc" placeholder="123" maxlength="3" size="3">
-                </div>
-            </div>
-            <div class="checkbox_save_card_container">
-                <form>
-                    <label class="checkbox_save_card">
-                        <input type="checkbox" name="checkbox_save_card" data-role="none">Save for future reference</label>
-                </form>
-            </div>
-            <div class="ui-grid-a back_next_btns">
-                <div class="ui-block-a p-r-10">
-                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1">Back</button>
-                </div>
-                <div class="ui-block-b p-l-10">
-                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_background_color1">Next</button>
-                </div>
-            </div>
-        </div>
-
-        <!--    SUMMARY PAGE-->
-        <div data-role="page" id="summary">
-            <div class="circles_block">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle last cmtyx_background_color1"></div>
-            </div>
-            <div class="navigation">
-                <div class="left_arr_block nav_back_btn"><img src="images/arrow-point-to-right-copy.png" alt=""><span>Back</span></div>
-                <div class="page_title">Summary</div>
-                <div class="right_arr_block paymentNextBtn"><span>Next</span><img src="images/arrow-point-to-right.png" alt=""></div>
-            </div>
-            <div data-role="tabs" id="tabs">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="#credit" data-ajax="false" class="leftBtn cmtyx_color1 ui-btn-active">Credit</a></li>
-                        <li><a href="#cash" data-ajax="false" class="rightBtn cmtyx_color1">Cash</a></li>
-                    </ul>
-                </div>
-                <div id="credit" class="ui-body-d ui-content">
-                    <p class="card_text">Card</p>
-                    <p class="card_number">XXXX XXXX XXXX 6423</p>
-                    <p class="delivery_address_text">Delivery address</p>
-                    <p class="address">Some Street, 8 Random City</p>
-                    <p class="your_order_text">Your order</p>
-                    <ul class="order_list">
-                        <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1">$9.75</span></li>
-                        <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1">$3.50</span></li>
-                        <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1">$9.75</span></li>
-                    </ul>
-                    <ul class="price_list">
-                        <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
-                        <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
-                        <li class="tip_price"><span class="order_name">Tip</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="tip0">0%</option>
-                                        <option value="tip5">5%</option>
-                                        <option value="tip10">10%</option>
-                                        <option value="tip15">15%</option>
-                                        <option value="tip20">20%</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$0.00</span>
-                            </div>
-                        </li>
-                        <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
-                    </ul>
-                    <div class="ui-grid-a back_next_btns">
-                        <div class="ui-block-a p-r-10">
-                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1">Back</button>
-                        </div>
-                        <div class="ui-block-b p-l-10">
-                            <button class="ui-btn ui-corner-all next_btn cmtyx_background_color1">Place order</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="cash" class="ui-body-d ui-content">
-                    <p class="your_order_text">Your order</p>
-                    <ul class="order_list">
-                        <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1">$9.75</span></li>
-                        <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1">$3.50</span></li>
-                        <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1">$9.75</span></li>
-                    </ul>
-                    <ul class="price_list">
-                        <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
-                        <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
-                        <li class="tip_price"><span class="order_name">Tip</span>
-                            <div class="float_right">
-                                <div class="select_container">
-                                    <select data-role="none" class="select">
-                                        <option value="tip0">0%</option>
-                                        <option value="tip5">5%</option>
-                                        <option value="tip10">10%</option>
-                                        <option value="tip15">15%</option>
-                                        <option value="tip20">20%</option>
-                                    </select>
-                                </div>
-                                <span class="order_price cmtyx_color1">$0.00</span>
-                            </div>
-                        </li>
-                        <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
-                    </ul>
-                    <div class="ui-grid-a back_next_btns">
-                        <div class="ui-block-a p-r-10">
-                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1">Back</button>
-                        </div>
-                        <div class="ui-block-b p-l-10">
-                            <button class="ui-btn ui-corner-all next_btn cmtyx_background_color1">Place order</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <script>
             $('.select').select2();
             $(".select2-search, .select2-focusser").remove();
         </script>
         <script src="build/bundle.js"></script>
+        
     </body>
 
 </html>
+
