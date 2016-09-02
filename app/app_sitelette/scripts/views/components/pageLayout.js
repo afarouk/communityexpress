@@ -43,7 +43,7 @@ _.extend(PageLayout.prototype, Backbone.View.prototype, {
         // 'click .poll_image': 'openSettings'
     },
 
-    el: '#cmtyx_landingView',
+    el: 'body',
 
     openSettings: function() {
         this.openSubview('options', configurationActions.getConfigurations());
