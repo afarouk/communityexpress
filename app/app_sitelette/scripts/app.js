@@ -1,20 +1,23 @@
 'use strict';
 
 var userController = require('./controllers/userController'),
-	configurationActions = require('./actions/configurationActions'),
-  updateActions = require('./actions/updateActions'),
-	sessionActions = require('./actions/sessionActions'),
-	pageController = require('./pageController.js'),
-	config = require('./appConfig.js'),
-	h = require('./globalHelpers'),
-	Vent = require('./Vent.js'),
-	loader = require('./loader'),
-	pageFactory = require('./pageFactory.js'),
-	Geolocation = require('./Geolocation.js'),
+    configurationActions = require('./actions/configurationActions'),
+    updateActions = require('./actions/updateActions'),
+    sessionActions = require('./actions/sessionActions'),
+    pageController = require('./pageController.js'),
+    config = require('./appConfig.js'),
+    h = require('./globalHelpers'),
+    Vent = require('./Vent.js'),
+    loader = require('./loader'),
+    pageFactory = require('./pageFactory.js'),
+    Geolocation = require('./Geolocation.js'),
     appCache = require('./appCache.js'),
-    Cookies = require('../../vendor/scripts/js.cookie');
+    Cookies = require('../../vendor/scripts/js.cookie'),
+    LandingView = require('./views/landingView'),
+    NavbarView = require('./views/headers/navbarView'),
+    HeaderView = require('./views/headers/headerView');
 
-var hasUIDinQueryParams = function () {
+var hasUIDinQueryParams = function() {
     var params = location.search.match(/UID=/);
     return (params && params.length);
 };
@@ -28,7 +31,16 @@ var App = function() {
         appCache.set('saslData', window.saslData);
     }
     Vent.on('viewChange', this.goToPage, this);
-    Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
+    /*
+		We may need LandingView to manage landing view (home) interactions.
+	  But we no longer have to switch to it. It is visible by default.*/
+
+
+    //Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
+    $.mobile.initializePage();
+    this.navbarView = new NavbarView();
+		this.headerView = new HeaderView();
+    this.landingView = new LandingView();
 };
 
 App.prototype = {
@@ -44,24 +56,34 @@ App.prototype = {
         var conf = configurationActions.getConfigurations();
 
 
-        if (this.params.demo) { configurationActions.toggleSimulate(true); };
-        if (this.params.embedded) { conf.set('embedded', true); };
+        if (this.params.demo) {
+            configurationActions.toggleSimulate(true);
+        };
+        if (this.params.embedded) {
+            conf.set('embedded', true);
+        };
         if (this.params.UID) {
             //localStorage.setItem("cmxUID", this.params.UID);
-						Cookies.set("cmxUID", this.params.UID);
+            Cookies.set("cmxUID", this.params.UID);
             sessionActions.authenticate(this.params.UID)
                 .always(function() {
-                    Backbone.history.start({pushState: true});
+                    Backbone.history.start({
+                        pushState: true
+                    });
                 });
-        //  } else if (localStorage.cmxUID) {
-				} else if (Cookies.get('cmxUID')) {
-            sessionActions.getSessionFromLocalStorage().then(function () {
-                Backbone.history.start({pushState: true});
+            //  } else if (localStorage.cmxUID) {
+        } else if (Cookies.get('cmxUID')) {
+            sessionActions.getSessionFromLocalStorage().then(function() {
+                Backbone.history.start({
+                    pushState: true
+                });
             });
         } else if (this.params.canCreateAnonymousUser) {
             $.when(sessionActions.createAnonymousUser()).done(function() {
-                sessionActions.getSessionFromLocalStorage().then(function () {
-                    Backbone.history.start({pushState: true});
+                sessionActions.getSessionFromLocalStorage().then(function() {
+                    Backbone.history.start({
+                        pushState: true
+                    });
                 });
             });
         } else {
@@ -69,14 +91,14 @@ App.prototype = {
         }
     },
 
-    isEmbedded: function () {
+    isEmbedded: function() {
         var params = location.search.match(/embedded=true/);
         return (params && params.length);
     },
 
-    setGlobalConfigurations: function (options) {
+    setGlobalConfigurations: function(options) {
         options = options || {};
-        if ( options.demo === true ) {
+        if (options.demo === true) {
             configurationActions.toggleSimulate(true);
         }
         if (options.server) {
@@ -89,28 +111,28 @@ App.prototype = {
     /*
      * 'roster', options, {reverse:false}
      */
-    goToPage: function( viewName, id, options ) {
-        console.log("app.js:gotoPage: "+viewName);
+    goToPage: function(viewName, id, options) {
+        console.log("app.js:gotoPage: " + viewName);
         this.setGlobalConfigurations(options);
 
-        if ( viewName === 'chat') { // redirect to restaurant view if user is not signed in
+        if (viewName === 'chat') { // redirect to restaurant view if user is not signed in
             viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
         }
 
-       // if ( viewName === 'catalog') { //
-             //if(typeof options==='undefined'){
-             //  var sa=window.community.serviceAccommodatorId;
-             //  var sl=window.community.serviceLocationId;
-             //}
-       // }
+        // if ( viewName === 'catalog') { //
+        //if(typeof options==='undefined'){
+        //  var sa=window.community.serviceAccommodatorId;
+        //  var sl=window.community.serviceLocationId;
+        //}
+        // }
 
 
         loader.show('loading');
 
-        this.initializePage(viewName, id, options).then(function(page){
+        this.initializePage(viewName, id, options).then(function(page) {
             this.changePage(page, options);
             loader.hide();
-        }.bind(this), function(e){
+        }.bind(this), function(e) {
             loader.showErrorMessage(e, 'There was a problem loading this page');
         });
 
@@ -118,35 +140,35 @@ App.prototype = {
 
     initializePage: function(viewName, options) {
         return pageController[viewName].call( //
-                pageController, options ).pipe(function(pageModel){
+            pageController, options).pipe(function(pageModel) {
             // this.updateTitle(viewName, pageModel);
             // this.updateTouchIcon(viewName, pageModel);
-            return pageFactory.create( viewName, pageModel );
+            return pageFactory.create(viewName, pageModel);
         }.bind(this));
     },
 
-    updateTitle: function (viewName, pageModel) {
+    updateTitle: function(viewName, pageModel) {
         var title;
         title = pageModel.model.get('saslName');
         switch (viewName) {
             case 'restaurant':
             case 'promotions':
                 title = pageModel.model.get('saslName');
-            break;
+                break;
             case 'chat':
             case 'reviews':
                 title = pageModel.restaurant.get('saslName');
-            break;
+                break;
             case 'editable':
                 title = pageModel.restaurant.get('saslName');
-            break;
+                break;
             default:
                 title = 'chalkboardstoday.com';
         }
         document.title = title;
     },
 
-    updateTouchIcon: function (viewName, pageModel) {
+    updateTouchIcon: function(viewName, pageModel) {
         var icon;
         switch (viewName) {
             case 'restaurant':
@@ -155,15 +177,15 @@ App.prototype = {
                 break;
             case 'chat':
                 icon = pageModel.restaurant.get('appleTouchIcon60URL');
-            break;
+                break;
             case 'reviews':
                 icon = pageModel.restaurant.get('appleTouchIcon60URL');
-            break;
+                break;
             default:
                 icon = 'icon_57.png';
         }
         var links = document.getElementsByTagName('link');
-        _(links).each(function (link) {
+        _(links).each(function(link) {
             if (link.getAttribute('rel') === 'apple-touch-icon') {
                 link.href = icon;
             }
@@ -174,17 +196,57 @@ App.prototype = {
         var defaults = {
             allowSinglePageTransition: true,
             transition: 'none',
-            changeHash:false,
+            changeHash: false,
             showLoader: false,
         };
         var settings = _.extend(defaults, jqmOptions);
-        var content = view.renderContent().$el;
 
-        // hide initial html content
-        $('#cmtyx_staticView').hide();
+        var content = view.renderContent();
+        if (typeof content === 'undefined') {
+            console.log("ERROR: cannot switch page, null content");
+            return;
+        }
 
-        $.mobile.initializePage();
-        $($.mobile.pageContainer).pagecontainer('change', content, settings);
+
+        this.lastPageId = $.mobile.pageContainer.pagecontainer('getActivePage').attr('id');
+        console.log(" Last page =" + this.lastPageId);
+
+
+        var newPageId = content.attr('id');
+        if ((typeof this.lastPageId !== 'undefined') && newPageId == this.lastPageId) {
+            console.log("WARN: ignoring same page reload");
+            return;
+        }
+
+
+        console.log("Switching to page : " + newPageId);
+
+
+
+        /* AF: We have to put this content in the
+        	 DOM first before jquery Mobile can manage the
+        	 page switching. We may want to remove the old
+        	 one. In this example we remove and re-add */
+        $('#' + newPageId).remove();
+        $('body').append(content);
+        /* done removing and adding */
+
+        /* If this is not the landing view, we may want to replace
+          the hamburger with a back button and set it up to
+          switch to the landing view */
+
+
+
+        $.mobile.pageContainer.pagecontainer('change', content, settings);
+
+        $("#cmtyx_header_menu_button").toggle();
+        $("#cmtyx_header_back_button").toggle();
+
+
+
+        /* need to re-initialize the header and footer. Bug in jqm? */
+        $("[data-role='navbar']").navbar();
+        $("[data-role='header'], [data-role='footer']").toolbar();
         $('.splash_screen').remove();
     }
 

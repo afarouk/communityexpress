@@ -4,22 +4,27 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
-    PageLayout = require('./components/pageLayout');
+    template= require('ejs!../templates/aboutUs.ejs');
 
-var AboutUs = PageLayout.extend({
+var AboutUs = Backbone.View.extend({
 
     name: 'about_us',
-
     initialize: function(options) {
-        window.globThis = this;
         options = options || {};
-        this.html = options.html;
+        this.render(options);
         this.sasl = options.sasl;
         this.on('show', this.onShow, this);
     },
+    render: function(data){
+        this.setElement(template(data));
+        return this;
+    },
 
-    renderData: function () {
-        return {html: this.html};
+    /* AF: we don't need this function. It was part of the
+       old PageLayout based layout management. We leave
+       it here for now, while we continue clean up */
+    renderContent : function (options){
+        return this.$el;
     },
 
     onShow:  function() {
@@ -30,7 +35,9 @@ var AboutUs = PageLayout.extend({
 
     triggerLandingView: function() {
         Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey());
-    },
+    }
+
+
 
 });
 

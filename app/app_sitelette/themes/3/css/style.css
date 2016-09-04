@@ -645,7 +645,7 @@ label.checkbox_save_card {
 
 /*ROSTER*/
 .common_header,
-#home > .header,
+#cmytx_landingView > .header,
 #roster .header,
 #build_combo > .header,
 #sides_extras > .header,
@@ -702,7 +702,7 @@ label.checkbox_save_card {
 .ui-page#roster,
 .ui-page#build_combo,
 .ui-page#sides_extras,
-.ui-page#home,
+.ui-page#cmytx_landingView,
 .ui-page#contact_us,
 .ui-page#user_reviews,
 .ui-page#business_hours,
@@ -766,7 +766,7 @@ label.checkbox_save_card {
     right: 1px;
 }
 
-.menu_body, .home_body {
+.menu_body {
     margin-top: 45px;
     padding: 20px 10px;
 }
@@ -1385,10 +1385,6 @@ border-right: solid 1px #e1e1e1;
 */
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-#cmtyx_landingView {
-    display: none;
-}
-
 .common_header {
     padding-left: 10px;
 }
@@ -1397,7 +1393,7 @@ border-right: solid 1px #e1e1e1;
     position: absolute;
 }
 
-.common_header .menu_btn:focus, #home > .header .menu_btn:active {
+.common_header .menu_btn:focus, #cmytx_landingView > .header .menu_btn:active {
     opacity: 0.7;
 }
 
@@ -1416,15 +1412,15 @@ border-right: solid 1px #e1e1e1;
 
 /*HOME*/
 
-#home > .header {
+#cmytx_landingView > .header {
     padding-left: 10px;
 }
 
-#home > .header .menu_btn {
+#cmytx_landingView > .header .menu_btn {
     position: absolute;
 }
 
-#home > .header .menu_btn:focus, #home > .header .menu_btn:active {
+#cmytx_landingView > .header .menu_btn:focus, #cmytx_landingView > .header .menu_btn:active {
     opacity: 0.7;
 }
 
@@ -1462,7 +1458,7 @@ border-right: solid 1px #e1e1e1;
     color: #faa019;
 }
 
-#home .left_panel_menu .close_cart_button {
+#cmytx_landingView .left_panel_menu .close_cart_button {
     position: relative;
     bottom: 3px;
 }
@@ -2284,7 +2280,7 @@ margin-bottom: 15px;
     z-index: 999;
 }
 
-#home.ui-page-theme-a a.ui-btn {
+#cmytx_landingView.ui-page-theme-a a.ui-btn {
     border-radius: 0;
     font: 400 11px Roboto !important;
     color: rgba(119, 119, 119, 0.7);
@@ -2293,7 +2289,7 @@ margin-bottom: 15px;
     border-bottom: solid 1px #464646 !important;
 }
 
-#home.ui-page-theme-a a.ui-btn.ui-btn-active {
+#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active {
     color: var(--cmtyx_color1) !important;
     border: none;
     border-bottom: solid 1px var(--cmtyx_color1) !important;
@@ -2313,7 +2309,7 @@ margin-bottom: 15px;
     background: url(images/document.png) no-repeat;
 }
 
-#home.ui-page-theme-a a.ui-btn.ui-btn-active .document_img {
+#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active .document_img {
     width: 17px;
     height: 21px;
     background: url(images/document_hover.png) no-repeat;
@@ -2325,7 +2321,7 @@ margin-bottom: 15px;
     background: url(images/calendar.png) no-repeat;
 }
 
-#home.ui-page-theme-a a.ui-btn.ui-btn-active .calendar_grey_img {
+#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active .calendar_grey_img {
     width: 24px;
     height: 20px;
     background: url(images/calendar_hover.png) no-repeat;
@@ -2337,7 +2333,7 @@ margin-bottom: 15px;
     background: url(images/information.png) no-repeat;
 }
 
-#home.ui-page-theme-a a.ui-btn.ui-btn-active .information_button_img {
+#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active .information_button_img {
     width: 24px;
     height: 24px;
     background: url(images/information_hover.png) no-repeat;
@@ -2349,7 +2345,7 @@ margin-bottom: 15px;
     background: url(images/user.png) no-repeat;
 }
 
-#home.ui-page-theme-a a.ui-btn.ui-btn-active .user_img {
+#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active .user_img {
     width: 16px;
     height: 22px;
     background: url(images/user_hover.png) no-repeat;

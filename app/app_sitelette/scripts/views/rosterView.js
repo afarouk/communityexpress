@@ -102,8 +102,8 @@ var RosterView = PageLayout.extend({
         }else{
           $('#roster_order_button').prop('disabled', false);
         }
-        this.$('#cmtyex_roster_cart_comboCount').text(comboCount + " x");
-        this.$('#cmtyex_roster_cart_nonComboCount').text(nonComboCount + " x");
+        this.$('#cmtyx_roster_cart_comboCount').text(comboCount + " x");
+        this.$('#cmtyx_roster_cart_nonComboCount').text(nonComboCount + " x");
     },
 
     goBack: function() {
@@ -199,7 +199,7 @@ var RosterView = PageLayout.extend({
                                 if (showOneClickOrder) {
                                     var li = new RosterComboItemView({
                                         onClick: function(model) {
-                                            //this.$('#cmtyex_roster_cart_summary').fadeIn('slow');
+                                            //this.$('#cmtyx_roster_cart_summary').fadeIn('slow');
                                             this.openAddToBasketView(model, catalogId, catalogDisplayText, catalogType);
                                         }.bind(this),
                                         model: catalog,

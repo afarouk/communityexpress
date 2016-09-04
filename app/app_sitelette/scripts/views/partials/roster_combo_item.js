@@ -8,7 +8,7 @@ var RosterComboItemView = Backbone.View.extend({
 
     template : template,
     tagName : 'li',
-    className : 'cmtyex_roster_combo_item menuItem',
+    className : 'cmtyx_roster_combo_item menuItem',
     events : {
         'click .roster_combo_item_add_button' : 'showAddToBusketView',
         'change .combo_select_item': 'addToCart'

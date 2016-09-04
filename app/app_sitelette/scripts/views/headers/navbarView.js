@@ -23,8 +23,8 @@ var NavbarView = Backbone.View.extend({
 
     initialize: function(options) {
         this.options = options || {};
-        this.restaurant = options.restaurant;
-        this.page = options.page;
+        //this.restaurant = options.restaurant;
+        //this.page = options.page;
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         this.visible=true;
@@ -47,9 +47,9 @@ var NavbarView = Backbone.View.extend({
             this.openPromotion(u);
         };
 
-        if (!this.page) {
-            throw new Error('MapHeader::Expected a page');
-        }
+        //if (!this.page) {
+        //    throw new Error('MapHeader::Expected a page');
+        //}
     },
 
     triggerCatalogsView: function() {

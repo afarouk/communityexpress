@@ -4,51 +4,51 @@
 //});
 
 $(function () {
-    
+
     $( "#user_reviews li:even" ).css( "background-color", "#363636" );
-    
-    $(document).on('scrollstart', function(){ 
-        if( $('#home').scrollTop() > 350 ) { 
+
+    $(document).on('scrollstart', function(){
+        if( $('#cmytx_landingView').scrollTop() > 350 ) {
             $('.home_footer').fadeOut("slow");
-            $('#home > .header').fadeOut("slow");
+            $('#cmytx_landingView > .header').fadeOut("slow");
         }
         else {
             $('.home_footer').fadeIn("fast");
-            $('#home > .header').fadeIn("fast");
+            $('#cmytx_landingView > .header').fadeIn("fast");
         }
     });
-    $(document).on('scrollstop', function(){ 
-        if( $('#home').scrollTop() > 350 ) { 
+    $(document).on('scrollstop', function(){
+        if( $('#cmytx_landingView').scrollTop() > 350 ) {
             $('.home_footer').fadeOut("slow");
-            $('#home > .header').fadeOut("slow");
+            $('#cmytx_landingView > .header').fadeOut("slow");
         }
         else {
             $('.home_footer').fadeIn("fast");
-            $('#home > .header').fadeIn("fast");
+            $('#cmytx_landingView > .header').fadeIn("fast");
         }
     });
-    
-    
-    $(document).on('scrollstart', function(){ 
-        if( $('#roster').scrollTop() > 350 ) { 
+
+
+    $(document).on('scrollstart', function(){
+        if( $('#roster').scrollTop() > 350 ) {
             $('.main_header').slideUp("fast");
         }
         else {
             $('.main_header').slideDown("fast");
         }
     });
-    $(document).on('scrollstop', function(){ 
-        if( $('#roster').scrollTop() > 350 ) { 
+    $(document).on('scrollstop', function(){
+        if( $('#roster').scrollTop() > 350 ) {
             $('.main_header').slideUp("fast");
         }
         else {
             $('.main_header').slideDown("fast");
         }
     });
-    
+
     var mapCanvas = document.getElementById("home_map");
     var mapOptions = {
-        center: new google.maps.LatLng(51.5, -0.2), 
+        center: new google.maps.LatLng(51.5, -0.2),
         zoom: 10,
         disableDefaultUI:true
     };
@@ -60,7 +60,7 @@ $(function () {
     });
 
     marker.setMap(map);
-    
+
     var infowindow = new google.maps.InfoWindow({
       content:"Our address is..."
     });
@@ -68,8 +68,8 @@ $(function () {
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map,marker);
     });
-    
-    
+
+
     $(".gallery_block .header").click(function(){
         $(".gallery_block .body").slideToggle("slow");
     });
@@ -97,22 +97,22 @@ $(function () {
     $(".video_block .header").click(function(){
         $(".video_block .body").slideToggle("slow");
     });
-    
+
 //    $(".events_block .body .add_to_calendar_btn").click(function(){
 //        $(".events_block .qr_code_block").fadeIn("slow");
 //    });
 //    $(".events_block .qr_code_block .close_btn").click(function(){
 //        $(".events_block .qr_code_block").fadeOut("slow");
-//    });  
-    
+//    });
+
     $(".loyalty_program_block .body .discount_container").click(function(){
         $(".loyalty_program_block .qr_code_block").fadeIn("slow");
     });
     $(".loyalty_program_block .qr_code_block .close_btn").click(function(){
         $(".loyalty_program_block .qr_code_block").fadeOut("slow");
     });
-    
-    
+
+
     $('.gallery').slick({
         dots: false
         , arrows: false
@@ -122,34 +122,34 @@ $(function () {
         , cssEase: 'linear'
         , slidesToShow: 1
         , autoplay: true
-        , autoplaySpeed: 3000      
+        , autoplaySpeed: 3000
 
 //                    , prevArrow: $('.prev')
 //                    , nextArrow: $('.next')
     });
-    
+
     $('.select_picture_gallery').slick({
         dots: false
         , arrows: true
         , infinite: true
         , speed: 300
         , cssEase: 'linear'
-        , slidesToShow: 4  
+        , slidesToShow: 4
         , focusOnSelect: true
         , adaptiveHeight: false
     });
-    
+
     $(".my-rating").starRating({
         initialRating: 3.5,
         strokeColor: '#894A00',
         strokeWidth: 10,
         starSize: 25
     });
-    
+
     $('.current_rating').text($('.my-rating').starRating('getRating'));
-    
-    card = new Skeuocard($("#skeuocard"));
-    
+
+    //card = new Skeuocard($("#skeuocard"));
+
 //    BUTTON CLICKS
     $(".open_menu_btn").click(function () {
         location.href = '#roster';
@@ -229,31 +229,31 @@ $(function () {
         location.href = '#upload_photo';
     });
     $("#upload_photo .cancel_btn").click(function () {
-        location.href = '#home';
+        location.href = '#cmytx_landingView';
     });
     $(".header .back_arr_icon").click(function () {
-        location.href = '#home';
+        location.href = '#cmytx_landingView';
     });
 
-   
-    
+
+
 //    OTHER
     $('input[type="text"]').on("focus", function () {
         $(".back_next_btns").hide();
     });
-    
+
     $('input[type="text"]').on("blur", function () {
         $(".back_next_btns").show();
     });
-    
+
     $('textarea').on("focus", function () {
         $(".back_next_btns").hide();
     });
-    
+
     $('textarea').on("blur", function () {
         $(".back_next_btns").show();
     });
-    
+
     $("#left-panel.cart").css("height", $(window).height() + "px");
 
 //    BUILD COMBO COLOR PANELS
@@ -263,8 +263,8 @@ $(function () {
     $(".collapsibleSet div:nth-child(4)").addClass("color4");
     $(".combo_item_container div").addClass("combo_item_color");
     $(".sides_extras_container").addClass("sides_extras_color");
-    
-    
+
+
 //    if ($('.combo_item_input').is(':checked')) {
 //        $('.tickImg').show();
 //    }

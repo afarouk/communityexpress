@@ -16,12 +16,14 @@ var Vent = require('../Vent'),
     catalogActions = require('../actions/catalogActions'),
     mediaActions = require('../actions/mediaActions'),
     updateActions = require('../actions/updateActions'),
-    PageLayout = require('./components/pageLayout'),
+    //PageLayout = require('./components/pageLayout'),
     h = require('../globalHelpers');
 
-var LandingView = PageLayout.extend({
+var LandingView = Backbone.View.extend({
 
     name: 'landing',
+    el: '#cmtyx_landingView',
+
 
     initialize: function(options) {
         options = options || {};
@@ -33,7 +35,12 @@ var LandingView = PageLayout.extend({
             'min-height': '0',
             'margin-bottom': '0px'
         });
-
+        /*
+        _.extend( {}, this.model.attributes, {
+            imagePath: config.imagePath,
+            isFavorite: this.user.hasFavorite(this.model.get('serviceAccommodatorId'), this.model.get('serviceLocationId'))
+        });
+        */
         // Check if user launches event URL or photoContest URL
         // and open page with current event/photoContest
         switch (community.type) {
@@ -48,14 +55,11 @@ var LandingView = PageLayout.extend({
             break;
         };
     },
-
-    renderData: function(){
-        return _.extend( {}, this.model.attributes, {
-            imagePath: config.imagePath,
-            isFavorite: this.user.hasFavorite(this.model.get('serviceAccommodatorId'), this.model.get('serviceLocationId'))
-        });
+    renderContent: function() {
+        //this.$el.append(this.contentView.render( this._data() ).el);
+        //return this.contentView;
+        return this.$el;
     },
-
     onShow: function(){
         this.addEvents({
             'click .openingHours': 'openHours',
@@ -95,13 +99,6 @@ var LandingView = PageLayout.extend({
         }
     },
 
-    onHide: function() {
-        this.$('#cmtyx_staticView').hide();
-    },
-
-    renderGallery: function(password) {
-        this.$('#cmtyx_staticView').show();
-    },
 
     triggerAboutUsView: function() {
         Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
