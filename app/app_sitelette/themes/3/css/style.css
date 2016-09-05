@@ -220,7 +220,8 @@ button.ui-btn {
     z-index: 2;
 }
 
-.back_btn {
+.back_btn,
+.open_menu_btn {
     background-color: transparent!important;
     /*    border-color: #faa019 !important;*/
     border-width: 1px;

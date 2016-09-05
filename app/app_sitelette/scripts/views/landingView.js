@@ -24,6 +24,34 @@ var LandingView = Backbone.View.extend({
     name: 'landing',
     el: '#cmtyx_landingView',
 
+    events: {
+        'click .openingHours': 'openHours',
+        'click .userMediaService': 'openUpload',
+        'click .userReviewsService': 'triggerReviewsView',
+        'click .messagingService': 'triggerChatView',
+        'click .catalog': 'triggerCatalogsView',
+        'click .appointmentService': 'triggerAppointmentView',
+        'click .wallService': 'triggerPostsView',
+        'click .lVphotoContestButton': 'triggerPhotoContestView',
+        'click .poll_submit_button': 'submitPollAction',
+        'click .embedded_video': 'activateVideoPlayer',
+        'click .theme2_generic_banner': 'triggerAboutUsView',
+        'click .theme2_event_entry_right_top_row_calendar a': 'triggerEventView',
+        'click #sms_button': 'openSMSInput',
+        'click #sms_send_button': 'sendSMSToMobile',
+
+        'click .promotionService': 'openPromotions',
+        'click .userPictures': 'openUserPictures',
+        'click .uploadPromtion': 'openUploadPromotion',
+        'click .uploadGallery': 'openUploadGallery',
+        'click .activatePromotion': 'triggerActivatePromotion',
+        'click .deActivatePromotion': 'triggerDeActivatePromotion',
+        'click .activateGallery': 'triggerActivateGallery',
+        'click .deActiveGallery': 'triggerDeActivateGallery',
+        'click .outofNetworkPromotions': 'showOutOfNetworkText',
+        'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
+        'click .outofNetworkUserReviews': 'showOutOfNetworkText'
+    },
 
     initialize: function(options) {
         options = options || {};
@@ -60,35 +88,8 @@ var LandingView = Backbone.View.extend({
         //return this.contentView;
         return this.$el;
     },
-    onShow: function(){
-        this.addEvents({
-            'click .openingHours': 'openHours',
-            'click .userMediaService': 'openUpload',
-            'click .userReviewsService': 'triggerReviewsView',
-            'click .messagingService': 'triggerChatView',
-            'click .catalog': 'triggerCatalogsView',
-            'click .appointmentService': 'triggerAppointmentView',
-            'click .wallService': 'triggerPostsView',
-            'click .lVphotoContestButton': 'triggerPhotoContestView',
-            'click .poll_submit_button': 'submitPollAction',
-            'click .embedded_video': 'activateVideoPlayer',
-            'click .theme2_generic_banner': 'triggerAboutUsView',
-            'click .theme2_event_entry_right_top_row_calendar a': 'triggerEventView',
-            'click #sms_button': 'openSMSInput',
-            'click #sms_send_button': 'sendSMSToMobile',
 
-            'click .promotionService': 'openPromotions',
-            'click .userPictures': 'openUserPictures',
-            'click .uploadPromtion': 'openUploadPromotion',
-            'click .uploadGallery': 'openUploadGallery',
-            'click .activatePromotion': 'triggerActivatePromotion',
-            'click .deActivatePromotion': 'triggerDeActivatePromotion',
-            'click .activateGallery': 'triggerActivateGallery',
-            'click .deActiveGallery': 'triggerDeActivateGallery',
-            'click .outofNetworkPromotions': 'showOutOfNetworkText',
-            'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
-            'click .outofNetworkUserReviews': 'showOutOfNetworkText'
-        });
+    onShow: function(){
 
         this.renderGallery();
 
