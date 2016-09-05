@@ -5,10 +5,6 @@ html {
     /*  --cmtyx_hover_color1: #3c7763;*/
 }
 
-body {
-    overflow-y: hidden;
-}
-
 .popup_container {
     // display: none;
 }
@@ -77,6 +73,7 @@ input[type="text"],textarea {
 }
 
 body {
+    overflow-y: hidden;
     padding: 0;
     -webkit-overflow-scrolling: touch; /*for smooth scrolling on ios*/
 }
@@ -208,7 +205,8 @@ button.ui-btn {
     z-index: 2;
 }
 
-.back_btn {
+.back_btn,
+.open_menu_btn {
     background-color: transparent!important;
     /*    border-color: #faa019 !important;*/
     border-width: 1px;
@@ -243,7 +241,8 @@ button.ui-btn.next_btn:focus, button.ui-btn.next_btn:active {
     box-shadow: none;
 }
 
-.ui-page-theme-a a.ui-btn {
+.ui-page-theme-a a.ui-btn,
+.common_footer a.ui-btn {
     background-color: transparent;
     /*    border-color: #faa019 !important;*/
     border-width: 1px;
@@ -258,8 +257,9 @@ button.ui-btn.next_btn:focus, button.ui-btn.next_btn:active {
     padding-top: 10px;
 }
 
-.ui-page-theme-a a.ui-btn:hover {
-    background-color: transparent;
+.ui-page-theme-a a.ui-btn:hover,
+.common_footer a.ui-btn:hover {
+    background-color: #464646;
     border-color: #faa019;
     border-width: 1px;
     border-style: solid;
@@ -269,7 +269,8 @@ button.ui-btn.next_btn:focus, button.ui-btn.next_btn:active {
     text-shadow: none;
 }
 
-.ui-page-theme-a a.ui-btn:focus {
+.ui-page-theme-a a.ui-btn:focus,
+.common_footer a.ui-btn:focus {
     box-shadow: none;
 }
 
@@ -2288,7 +2289,7 @@ margin-bottom: 15px;
     z-index: 999;
 }
 
-#cmytx_landingView.ui-page-theme-a a.ui-btn {
+.common_footer a.ui-btn {
     border-radius: 0;
     font: 400 11px Roboto !important;
     color: rgba(119, 119, 119, 0.7);
@@ -2297,7 +2298,7 @@ margin-bottom: 15px;
     border-bottom: solid 1px #464646 !important;
 }
 
-#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active {
+.common_footer a.ui-btn.ui-btn-active {
     color: var(--cmtyx_color1) !important;
     border: none;
     border-bottom: solid 1px var(--cmtyx_color1) !important;
@@ -2317,7 +2318,7 @@ margin-bottom: 15px;
     background: url(images/document.png) no-repeat;
 }
 
-#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active .document_img {
+.common_footer a.ui-btn.ui-btn-active .document_img {
     width: 17px;
     height: 21px;
     background: url(images/document_hover.png) no-repeat;
@@ -2329,7 +2330,7 @@ margin-bottom: 15px;
     background: url(images/calendar.png) no-repeat;
 }
 
-#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active .calendar_grey_img {
+.common_footer a.ui-btn.ui-btn-active .calendar_grey_img {
     width: 24px;
     height: 20px;
     background: url(images/calendar_hover.png) no-repeat;
@@ -2341,7 +2342,7 @@ margin-bottom: 15px;
     background: url(images/information.png) no-repeat;
 }
 
-#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active .information_button_img {
+.common_footer a.ui-btn.ui-btn-active .information_button_img {
     width: 24px;
     height: 24px;
     background: url(images/information_hover.png) no-repeat;
@@ -2353,7 +2354,7 @@ margin-bottom: 15px;
     background: url(images/user.png) no-repeat;
 }
 
-#cmytx_landingView.ui-page-theme-a a.ui-btn.ui-btn-active .user_img {
+.common_footer a.ui-btn.ui-btn-active .user_img {
     width: 16px;
     height: 22px;
     background: url(images/user_hover.png) no-repeat;
