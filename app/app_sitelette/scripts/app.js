@@ -264,8 +264,8 @@ App.prototype = {
         	 page switching. We may want to remove the old
         	 one. In this example we remove and re-add */
         /* done removing and adding */
-        $('#' + newPageId).remove();
         if($('body').find(content).length === 0) {
+            $('#' + newPageId).remove();
             //TODO temporary solution
             $('body').append(content);
         }
