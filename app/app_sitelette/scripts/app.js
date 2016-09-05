@@ -43,6 +43,10 @@ var App = function() {
             navbarView: this.navbarView
         });
     this.landingView = new LandingView();
+
+    if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
+        this.checkType(window.community.type);
+    }
 };
 
 App.prototype = {
@@ -91,6 +95,36 @@ App.prototype = {
         } else {
             return;
         }
+    },
+
+    checkType: function(type) {
+        var uuid = window.community.uuidURL;
+        delete community.type;
+        delete community.uuidURL;
+        debugger;
+        switch (type) {
+            case 'e':
+                this.goToPage('eventActive', {
+                    sasl: appCache.get('saslData'),
+                    id: uuid
+                });
+            break;
+            case 'h':
+                this.goToPage('photoContest', {
+                    sasl: appCache.get('saslData'),
+                    id: uuid
+                });
+            break;
+            case 'r':
+                this.goToPage('roster', {
+                    sasl: appCache.get('saslData'),
+                    id: uuid,
+                    backToRoster:false,
+                    rosterId: uuid,
+                    launchedViaURL: true
+                 }, { reverse: false });
+            break;
+        };
     },
 
     isEmbedded: function() {
