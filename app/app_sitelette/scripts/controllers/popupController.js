@@ -2,11 +2,21 @@
 
 'use strict';
 
-var SigninView = require('../views/panels/signinView.js');
+var viewFactory = require('../viewFactory');
 
 var PopupController = {
     signin: function(model) {
-        var view = new SigninView({model: model});
+        var view = viewFactory.create('signin', model, this);
+        this.show(view);
+    },
+
+    confirmation: function(model, options) {
+        var view = viewFactory.create('confirmationPopup', model, this, options);
+        this.show(view);
+    },
+
+    textPopup:  function(text, callback) {
+        var view = viewFactory.create('textPopup', text, this);
         this.show(view);
     },
 
