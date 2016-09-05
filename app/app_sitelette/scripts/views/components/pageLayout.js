@@ -130,7 +130,7 @@ _.extend(PageLayout.prototype, Backbone.View.prototype, {
 
     renderContent: function() {
         this.$el.append(this.contentView.render( this._data() ).el);
-        return this.contentView;
+        return this.contentView.$el;
     },
 
     renderToolbars: function() {
