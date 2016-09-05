@@ -71,17 +71,6 @@ var LandingView = Backbone.View.extend({
         */
         // Check if user launches event URL or photoContest URL
         // and open page with current event/photoContest
-        switch (community.type) {
-            case 'e':
-                this.triggerEventView();
-            break;
-            case 'h':
-                this.triggerPhotoContestView();
-            break;
-            case 'r':
-                this.triggerRosterViewFromURL();
-            break;
-        };
     },
     renderContent: function() {
         //this.$el.append(this.contentView.render( this._data() ).el);
@@ -124,6 +113,7 @@ var LandingView = Backbone.View.extend({
             launchedViaURL:true
          }, { reverse: false });
     },
+
     openHours: function() {
         loader.show('retrieving opening hours');
         saslActions.getOpeningHours(this.model.sa(), this.model.sl())
@@ -153,14 +143,7 @@ var LandingView = Backbone.View.extend({
 
     // Go to the clicked on mediascreen photoContest
     triggerPhotoContestView: function(e) {
-        var uuid;
-        if (community.type == 'h') {
-            uuid = community.uuidURL;
-            delete community.type;
-            delete community.uuidURL;
-        } else {
-            uuid = $(e.target).attr('uuid');
-        };
+        var uuid = $(e.target).attr('uuid');
         Vent.trigger('viewChange', 'photoContest', {
             sasl: this.model.id,
             id: uuid
@@ -168,14 +151,7 @@ var LandingView = Backbone.View.extend({
     },
 
     triggerEventView: function(e) {
-        var uuid;
-        if (community.type == 'e') {
-            uuid = community.uuidURL;
-            delete community.type;
-            delete community.uuidURL;
-        } else {
-            uuid = $(e.target).attr('href').split('=')[1];
-        }
+        var uuid = $(e.target).attr('href').split('=')[1];
         Vent.trigger('viewChange', 'eventActive', {
             sasl: this.model.id,
             id: uuid

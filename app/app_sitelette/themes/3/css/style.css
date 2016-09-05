@@ -1427,6 +1427,10 @@ border-right: solid 1px #e1e1e1;
     text-align: center;
 }
 
+#cmtyx_generatedView {
+    margin-top: 20px;
+}
+
 .navbutton_back {
     width: 40px;
     height: 40px;
