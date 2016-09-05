@@ -21,12 +21,14 @@ var PopUpView = function(options) {
         'data-position': 'window',
         'data-overlay-theme': 'b',
         'data-theme': 'b',
-        'class': 'popup'
+        'class': 'popup_container popup'
     });
 
 };
 
 _.extend(PopUpView.prototype, Backbone.View.prototype, {
+
+    el: '.popup_container',
 
     pageEvents: {
         'click .close_button': 'shut',

@@ -7,7 +7,8 @@ var Vent = require('../../Vent'),
     appCache = require('../../appCache.js'),
     sessionActions = require('../../actions/sessionActions'),
     userController = require('../../controllers/userController'),
-    promotionsController = require('../../controllers/promotionsController');
+    promotionsController = require('../../controllers/promotionsController'),
+    popupController = require('../../controllers/popupController.js');
 
 var NavbarView = Backbone.View.extend({
 
@@ -129,7 +130,8 @@ var NavbarView = Backbone.View.extend({
     },
 
     signin: function() {
-        this.page.openSubview('signin', this.model);
+        popupController.signin(this.model);
+        // this.page.openSubview('signin', this.model);
     },
 
     toggle: function () {
