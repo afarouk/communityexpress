@@ -39,7 +39,9 @@ var App = function() {
     //Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
     $.mobile.initializePage();
     this.navbarView = new NavbarView();
-		this.headerView = new HeaderView();
+		this.headerView = new HeaderView({
+            navbarView: this.navbarView
+        });
     this.landingView = new LandingView();
 };
 
@@ -227,8 +229,8 @@ App.prototype = {
         	 DOM first before jquery Mobile can manage the
         	 page switching. We may want to remove the old
         	 one. In this example we remove and re-add */
-        $('#' + newPageId).remove();
-        $('body').append(content);
+        // $('#' + newPageId).remove();
+        // $('body').append(content);
         /* done removing and adding */
 
         /* If this is not the landing view, we may want to replace

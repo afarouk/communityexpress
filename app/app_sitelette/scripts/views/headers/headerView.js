@@ -28,6 +28,7 @@ var HeaderView = Backbone.View.extend({
 
     triggerLandingView: function() {
         Vent.trigger('viewChange', 'restaurant', [this.sa, this.sl]);
+        this.options.navbarView.show();
     }
 
 
