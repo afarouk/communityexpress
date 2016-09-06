@@ -153,6 +153,7 @@ App.prototype = {
      * 'roster', options, {reverse:false}
      */
     goToPage: function(viewName, id, options) {
+        this.landingView.undelall();
         console.log("app.js:gotoPage: " + viewName);
         this.setGlobalConfigurations(options);
 
@@ -281,11 +282,16 @@ App.prototype = {
             $('body').append(content);
         }
 
+        if (newPageId === 'cmtyx_landingView') {
+            this.landingView = view;
+        }
+
         /* If this is not the landing view, we may want to replace
           the hamburger with a back button and set it up to
           switch to the landing view */
 
         $.mobile.pageContainer.pagecontainer('change', content, settings);
+        view.trigger('show');
 
         // $("#cmtyx_header_menu_button").toggle();
         // $("#cmtyx_header_back_button").toggle();
