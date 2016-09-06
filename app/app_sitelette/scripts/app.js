@@ -47,6 +47,11 @@ var App = function() {
     if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
         this.checkType(window.community.type);
     }
+
+    Backbone.View.prototype.addEvents = function(eventObj) {
+        var events = _.extend( {}, eventObj, this.pageEvents );
+        this.delegateEvents(events);
+    }
 };
 
 App.prototype = {
