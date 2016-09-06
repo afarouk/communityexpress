@@ -151,6 +151,12 @@ App.prototype = {
         console.log("app.js:gotoPage: " + viewName);
         this.setGlobalConfigurations(options);
 
+        if (viewName === 'restaurant') {
+            this.headerView.showMenuButton();
+        } else {
+            this.headerView.hideMenuButton({back: true});
+        }
+
         if (viewName === 'chat') { // redirect to restaurant view if user is not signed in
             viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
         }
@@ -276,8 +282,8 @@ App.prototype = {
 
         $.mobile.pageContainer.pagecontainer('change', content, settings);
 
-        $("#cmtyx_header_menu_button").toggle();
-        $("#cmtyx_header_back_button").toggle();
+        // $("#cmtyx_header_menu_button").toggle();
+        // $("#cmtyx_header_back_button").toggle();
 
 
 
