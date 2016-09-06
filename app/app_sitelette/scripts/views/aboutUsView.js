@@ -17,7 +17,7 @@ var AboutUs = Backbone.View.extend({
     },
     render: function(data){
         this.$el.html(template(data));
-        this.setElement(this.$('.ui-page'));
+        this.setElement(this.$el.children().eq(0));
         return this;
     },
 

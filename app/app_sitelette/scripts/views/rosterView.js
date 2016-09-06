@@ -5,6 +5,7 @@
 var Vent = require('../Vent'), //
     loader = require('../loader'), //
     appCache = require('../appCache.js'),
+    template = require('ejs!../templates/content/roster_content.ejs'),
     RosterBasketModel = require('../models/RosterBasketModel'), //
     RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),//
     CatalogBasketModel = require('../models/CatalogBasketModel'), //
@@ -14,9 +15,15 @@ var Vent = require('../Vent'), //
     RosterCatalogItemView = require('./partials/roster_catalog_item.js'), //
     ListView = require('./components/listView');
 
-var RosterView = PageLayout.extend({
+var RosterView = Backbone.View.extend({
 
     name: 'roster',
+    id: 'cmtyx_roster',
+
+    addEvents: function(eventObj) {
+        var events = _.extend( {}, eventObj, this.pageEvents );
+        this.delegateEvents(events);
+    },
 
     onShow: function() {
         this.addEvents({
@@ -24,6 +31,7 @@ var RosterView = PageLayout.extend({
             'click .order_button': 'triggerOrder',
             'click .edit_button': 'openEditPanel'
         });
+
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.navbarView.hide(); // $('#cmtyx_navbar').fadeOut('slow');
@@ -76,14 +84,26 @@ var RosterView = PageLayout.extend({
         this.rosterType = options.roster.data.rosterType.enumText;
         this.rosterDisplayText = options.roster.data.displayText;
         this.isOpenWarningMessage = options.roster.data.isOpenWarningMessage;
-        this.navbarView = options.navbarView;
+        this.navbarView = new options.navbarView(_.extend(options.navbarData, {
+            page: this
+        }));
         this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
-
+        this.render();
         // TODO check logic ,
         // I don't know why we listened change event twice
         // this.basket.on('change', this.updateBasket, this); 
 
+    },
+
+    render: function() {
+        this.$el.html(template(this.renderData()));
+        this.setElement(this.$el.children().eq(0));
+        return this;
+    },
+
+    renderContent: function() {
+        return this.$el;
     },
 
     /*used to initialie roster_content.ejs template */

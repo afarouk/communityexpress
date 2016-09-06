@@ -53,6 +53,10 @@ var LandingView = Backbone.View.extend({
         'click .outofNetworkUserReviews': 'showOutOfNetworkText'
     },
 
+    undelall: function() {
+        this.undelegateEvents();
+    },
+
     initialize: function(options) {
         options = options || {};
         this.sasl = options.sasl;
@@ -80,13 +84,13 @@ var LandingView = Backbone.View.extend({
 
     onShow: function(){
 
-        this.renderGallery();
+        // this.renderGallery();
 
-        try {
-            addToHomescreen().show();
-        } catch (e) {
-            console.log(' Desktop, not showing addToHomescreen');
-        }
+        // try {
+        //     addToHomescreen().show();
+        // } catch (e) {
+        //     console.log(' Desktop, not showing addToHomescreen');
+        // }
     },
 
 
