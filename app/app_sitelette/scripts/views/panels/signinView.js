@@ -70,9 +70,9 @@ var SigninView = PopupView.extend({
         return false;
     },
 
-    openSignin: function() {
-        this.openSubview('signin');
-    },
+    // openSignin: function() {
+    //     this.openSubview('signin');
+    // },
 
     showLoginError: function() {
         this.$el.find('.login_error').show();
