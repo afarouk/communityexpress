@@ -13,6 +13,7 @@ var Vent = require('../Vent'), //
     PageLayout = require('./components/pageLayout'), //
     RosterComboItemView = require('./partials/roster_combo_item.js'), //
     RosterCatalogItemView = require('./partials/roster_catalog_item.js'), //
+    popupController = require('../controllers/popupController'),
     ListView = require('./components/listView');
 
 var RosterView = Backbone.View.extend({
@@ -139,7 +140,8 @@ var RosterView = Backbone.View.extend({
 
     /* used for showing the flyout for combo items */
     openAddToBasketView: function(model, catalogId, catalogDisplayText,catalogType) {
-        this.openSubview('addToRosterBasket', model, {
+        debugger;
+        popupController.addToRosterBasket(model, {
             basket: this.basket,
             catalogId: catalogId,
             catalogDisplayText: catalogDisplayText,
@@ -154,7 +156,7 @@ var RosterView = Backbone.View.extend({
         var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
 
 
-        this.withLogIn(function() {
+        popupController.requireLogIn(function() {
             Vent.trigger('viewChange', 'roster_order', {
                 id: this.sasl.getUrlKey(),
                 rosterId: this.rosterId,
@@ -176,10 +178,8 @@ var RosterView = Backbone.View.extend({
     },
 
     openEditPanel: function() {
-
         var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
-
-        this.openSubview('editRosterView', editModel, {
+        popupController.editRosterView(editModel, {
             actions: {
                 removeItem: function(selected) {
                     _(selected).each(function(item) {

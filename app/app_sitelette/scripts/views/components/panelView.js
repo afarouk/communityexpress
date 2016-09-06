@@ -21,7 +21,8 @@ var PanelView = function(options) {
         'data-position-fixed': true,
         'data-dismissible': true,
         'data-swipe-close': false,
-        'class': 'panel'
+        //TODO hacked styles
+        'class': 'popup_container panel ui-panel ui-panel-position-left ui-panel-display-overlay ui-body-a ui-panel-fixed ui-panel-animate'
     });
 
     if ( this.parent ) {
@@ -32,6 +33,7 @@ var PanelView = function(options) {
 };
 
 _.extend(PanelView.prototype, Backbone.View.prototype, {
+    el: '.popup_container',
 
     pageEvents: {
         'panelclose':'_onClose',
