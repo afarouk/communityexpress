@@ -263,15 +263,16 @@ App.prototype = {
         	 DOM first before jquery Mobile can manage the
         	 page switching. We may want to remove the old
         	 one. In this example we remove and re-add */
-        // $('#' + newPageId).remove();
-        // $('body').append(content);
         /* done removing and adding */
+        if($('body').find(content).length === 0) {
+            $('#' + newPageId).remove();
+            //TODO temporary solution
+            $('body').append(content);
+        }
 
         /* If this is not the landing view, we may want to replace
           the hamburger with a back button and set it up to
           switch to the landing view */
-
-
 
         $.mobile.pageContainer.pagecontainer('change', content, settings);
 

@@ -57,14 +57,14 @@ var SigninView = PopupView.extend({
                 $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
                 this.shut();
                 this.$el.on('popupafterclose', function () {
-                    this.parent.openSubview('textPopup', { text: 'successfully signed in as ' + response.username }, this.callback);
+                    this.parent.textPopup({ text: 'successfully signed in as ' + response.username }, this.callback);
                 }.bind(this));
             }.bind(this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'Error signin in'),
                     callback = this.openSignin;
                 this.shut();
                 this.$el.on('popupafterclose', function () {
-                    this.parent.openSubview('textPopup', { text: text }, callback);
+                    this.parent.textPopup({ text: text }, callback);
                 }.bind(this));
             }.bind(this));
         return false;

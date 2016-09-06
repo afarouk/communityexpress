@@ -21,12 +21,14 @@ var PopUpView = function(options) {
         'data-position': 'window',
         'data-overlay-theme': 'b',
         'data-theme': 'b',
-        'class': 'popup'
+        'class': 'popup_container popup'
     });
 
 };
 
 _.extend(PopUpView.prototype, Backbone.View.prototype, {
+
+    el: '.popup_container',
 
     pageEvents: {
         'click .close_button': 'shut',
@@ -75,8 +77,9 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
     close: function() {
         this.trigger('closed');
         this.undelegateEvents();
-        this.$el.popup("destroy"); 
-        this.remove();
+        this.$el.popup('destroy');
+        this.$el.html('');
+        // this.remove();
     }
 
 });
