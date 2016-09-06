@@ -179,7 +179,7 @@ var RosterView = Backbone.View.extend({
 
     openEditPanel: function() {
         var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
-        popupController.editRosterView(editModel, {
+        popupController.editRosterView(this, editModel, {
             actions: {
                 removeItem: function(selected) {
                     _(selected).each(function(item) {
