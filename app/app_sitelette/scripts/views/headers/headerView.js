@@ -26,6 +26,25 @@ var HeaderView = Backbone.View.extend({
 
     },
 
+    showMenuButton: function() {
+        this.$el.find('.menu_btn').show();
+        this.hideBackButton();
+    },
+
+    showBackButton: function() {
+        this.$el.find('#cmtyx_header_back_button').show();
+    },
+
+    hideMenuButton: function(backOption) {
+        this.$el.find('.menu_btn').hide();
+        if (backOption.back === true) {
+            this.showBackButton();
+        }
+    },
+
+    hideBackButton: function() {
+        this.$el.find('#cmtyx_header_back_button').hide();
+    },
 
     triggerLandingView: function() {
         Vent.trigger('viewChange', 'restaurant', [this.sa, this.sl]);

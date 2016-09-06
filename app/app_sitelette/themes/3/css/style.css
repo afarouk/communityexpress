@@ -1395,11 +1395,13 @@ border-right: solid 1px #e1e1e1;
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 .common_header {
+    position: relative;
     padding: 0;
     text-align: center;
 }
 
 .common_header #cmtyx_header_back_button {
+    display: none;
     float: left;
     width: 50px;
     height: 45px;
@@ -1425,10 +1427,6 @@ border-right: solid 1px #e1e1e1;
     display: inline-block;
     width: 23%;
     text-align: center;
-}
-
-#cmtyx_generatedView {
-    margin-top: 20px;
 }
 
 .navbutton_back {
