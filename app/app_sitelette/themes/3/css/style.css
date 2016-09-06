@@ -1429,13 +1429,6 @@ border-right: solid 1px #e1e1e1;
     text-align: center;
 }
 
-.navbutton_back {
-    width: 40px;
-    height: 40px;
-    margin-top: 30px;
-    background-color: red;
-}
-
 /*HOME*/
 
 #cmytx_landingView > .header {

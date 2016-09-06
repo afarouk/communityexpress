@@ -5,14 +5,22 @@
 var Vent = require('../Vent'),
     viewFactory = require('../viewFactory'),
     loader = require('../loader'),
+    template = require('ejs!../templates/content/chat_content.ejs'),
     PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     MessageView = require('./partials/messageView'),
     communicationActions = require('../actions/communicationActions');
 
-var ChatView = PageLayout.extend({
+var ChatView = Backbone.View.extend({
 
     name: 'chat',
+
+    id: 'cmntyex_chat',
+
+    events: {
+        'click .back': 'triggerLandingView',
+        'click .navbutton_write_review': 'openNewMessage'
+    },
 
     initialize: function(options) {
         options = options || {};
@@ -22,13 +30,24 @@ var ChatView = PageLayout.extend({
 
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
+        this.render();
+    },
+
+    render: function() {
+        this.$el.html(template());
+        this.setElement(this.$el.children().eq(0));
+        return this;
+    },
+
+    renderContent: function() {
+        return this.$el;
     },
 
     onShow:  function() {
-        this.addEvents({
-            'click .back': 'triggerLandingView',
-            'click .navbutton_write_review': 'openNewMessage'
-        });
+        // this.addEvents({
+        //     'click .back': 'triggerLandingView',
+        //     'click .navbutton_write_review': 'openNewMessage'
+        // });
 
         this.renderMessages();
         this.listenTo( Vent, 'logout_success', this.triggerLandingView, this);
