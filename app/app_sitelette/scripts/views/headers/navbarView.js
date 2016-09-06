@@ -22,6 +22,7 @@ var NavbarView = Backbone.View.extend({
     },
 
     initialize: function(options) {
+        this.$el.navbar();
         this.options = options || {};
         //this.restaurant = options.restaurant;
         //this.page = options.page;

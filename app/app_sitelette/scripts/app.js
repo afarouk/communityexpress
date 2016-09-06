@@ -101,7 +101,7 @@ App.prototype = {
         var uuid = window.community.uuidURL;
         delete community.type;
         delete community.uuidURL;
-        debugger;
+
         switch (type) {
             case 'e':
                 this.goToPage('eventActive', {

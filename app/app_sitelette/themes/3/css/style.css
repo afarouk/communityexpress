@@ -1410,11 +1410,26 @@ border-right: solid 1px #e1e1e1;
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 .common_header {
-    padding-left: 10px;
+    padding: 0;
+    text-align: center;
+}
+
+.common_header #cmtyx_header_back_button {
+    float: left;
+    width: 50px;
+    height: 45px;
+    padding: 11px;
 }
 
 .common_header .menu_btn {
-    position: absolute;
+    float: left;
+    height: 45px;
+    width: 50px;
+    padding: 10px;
+}
+
+.common_header .logo_container {
+    padding: 5px;
 }
 
 .common_header .menu_btn:focus, #cmytx_landingView > .header .menu_btn:active {
@@ -2318,6 +2333,7 @@ margin-bottom: 15px;
 }
 
 .common_footer a.ui-btn.ui-btn-active {
+    background-color: #464646;
     color: var(--cmtyx_color1) !important;
     border: none;
     border-bottom: solid 1px var(--cmtyx_color1) !important;

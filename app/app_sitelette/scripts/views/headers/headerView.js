@@ -18,6 +18,7 @@ var HeaderView = Backbone.View.extend({
     },
 
     initialize: function(options) {
+        this.$el.toolbar();
         this.options = options || {};
 
         this.sa = community.serviceAccommodatorId;
