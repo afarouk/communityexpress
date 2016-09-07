@@ -9,10 +9,10 @@ var Vent = require('../Vent'),
 var AboutUs = Backbone.View.extend({
     name: 'about_us',
     id: 'cmtyx_aboutUs',
+    
     initialize: function(options) {
         options = options || {};
         this.sasl = options.sasl;
-        this.on('show', this.onShow, this);
         this.render(options);
     },
     render: function(data){
@@ -28,18 +28,9 @@ var AboutUs = Backbone.View.extend({
         return this.$el;
     },
 
-    onShow:  function() {
-        this.addEvents({
-            'click .back': 'triggerLandingView',
-        });
-    },
-
-    triggerLandingView: function() {
+    goBack: function() {
         Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey());
     }
-
-
-
 });
 
 module.exports = AboutUs;

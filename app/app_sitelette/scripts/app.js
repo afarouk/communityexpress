@@ -31,6 +31,7 @@ var App = function() {
         appCache.set('saslData', window.saslData);
     }
     Vent.on('viewChange', this.goToPage, this);
+    Vent.on('backToPrevious', this.backToPrevious, this);
     /*
 		We may need LandingView to manage landing view (home) interactions.
 	  But we no longer have to switch to it. It is visible by default.*/
@@ -43,6 +44,7 @@ var App = function() {
             navbarView: this.navbarView
         });
     this.landingView = new LandingView();
+    this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);
 
     if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
@@ -149,6 +151,7 @@ App.prototype = {
         }
     },
 
+    //save created view instances
     viewInstances: {},
     checkInstance: function(viewName) {
         return this.viewInstances[viewName];
@@ -158,11 +161,23 @@ App.prototype = {
         this.viewInstances[viewName] = view;
     },
 
+    //TODO use it in a future in case
+    // when we need update view each time for exaple
+    deleteInstance: function(viewName) {
+        delete this.viewInstances[viewName];
+    },
+
+    backToPrevious: function() {
+        //simple solution
+        //call goBack method in a current view
+        //for return to previous
+        this.currentView.goBack();
+    },
+
     /*
      * 'roster', options, {reverse:false}
      */
     goToPage: function(viewName, id, options) {
-        debugger;
         var exists;
         // this.landingView.undelall();
         console.log("app.js:gotoPage: " + viewName);
@@ -182,6 +197,7 @@ App.prototype = {
 
         loader.show('loading');
 
+        //check if view was created
         exists = this.checkInstance(viewName);
         if (exists) {
             this.changePage(exists, options);
@@ -257,7 +273,8 @@ App.prototype = {
           the hamburger with a back button and set it up to
           switch to the landing view */
         $.mobile.pageContainer.pagecontainer('change', content, settings);
-        view.trigger('show');
+        view.trigger('show');// <-- temporary solution
+        this.currentView = view;
 
         // $("#cmtyx_header_menu_button").toggle();
         // $("#cmtyx_header_back_button").toggle();

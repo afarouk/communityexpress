@@ -14,7 +14,7 @@ var HeaderView = Backbone.View.extend({
     el: '#cmtyx_header',
 
     events: {
-        'click #cmtyx_header_back_button': 'triggerLandingView'
+        'click #cmtyx_header_back_button': 'triggerPreviousView'
     },
 
     initialize: function(options) {
@@ -46,12 +46,11 @@ var HeaderView = Backbone.View.extend({
         this.$el.find('#cmtyx_header_back_button').hide();
     },
 
-    triggerLandingView: function() {
-        Vent.trigger('viewChange', 'restaurant', [this.sa, this.sl]);
-        this.options.navbarView.show();
+    triggerPreviousView: function() {
+        Vent.trigger('backToPrevious');
+        // Vent.trigger('viewChange', 'restaurant', [this.sa, this.sl]);
+        // this.options.navbarView.show();
     }
-
-
 
 });
 

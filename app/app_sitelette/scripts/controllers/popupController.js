@@ -19,7 +19,7 @@ var PopupController = {
     },
 
     textPopup:  function(text, callback) {
-        var view = viewFactory.create('textPopup', text, this);
+        var view = viewFactory.create('textPopup', text, this, {callback:callback});
         this.show(view);
     },
 

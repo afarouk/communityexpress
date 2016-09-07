@@ -58,7 +58,7 @@ var RosterView = Backbone.View.extend({
         }else{
           $('#roster_order_button').prop('disabled', false);
         };
-        this.checkIfOpened();
+        // this.checkIfOpened();
         //$('.select').select2();
     },
 
@@ -128,8 +128,7 @@ var RosterView = Backbone.View.extend({
     },
 
     goBack: function() {
-        // this.triggerRestaurantView();
-        // this.navbarView.show();
+        this.triggerRestaurantView();
     },
 
     triggerRestaurantView: function() {
