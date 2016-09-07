@@ -6,6 +6,7 @@ var Vent = require('../Vent'),
     viewFactory = require('../viewFactory'),
     loader = require('../loader'),
     template = require('ejs!../templates/content/chat_content.ejs'),
+    popupController = require('../controllers/popupController'),
     PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     MessageView = require('./partials/messageView'),
@@ -19,7 +20,7 @@ var ChatView = Backbone.View.extend({
 
     events: {
         'click .back': 'triggerLandingView',
-        'click .navbutton_write_review': 'openNewMessage',
+        // 'click .navbutton_write_review': 'openNewMessage',
         'click .send_message_button': 'sendMessage'
     },
 
@@ -72,18 +73,29 @@ var ChatView = Backbone.View.extend({
             }.bind(this));
     },
 
-    openNewMessage: function () {
-        this.withLogIn(function () {
-            this.openSubview('newMessage', this.restaurant, {
-                onSubmit: function (form) {
-                    return communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), form.messageBody);
-                }.bind(this)
-            });
-        }.bind(this));
-    },
+    // openNewMessage: function () {
+    //     this.withLogIn(function () {
+    //         this.openSubview('newMessage', this.restaurant, {
+    //             onSubmit: function (form) {
+    //                 return communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), form.messageBody);
+    //             }.bind(this)
+    //         });
+    //     }.bind(this));
+    // },
 
     sendMessage: function() {
-        debugger;
+        var val = this.$('.input_container input').val();
+        if (val.length <= 0) {
+            popupController.textPopup({ text: 'Please, type your message'});
+            return;
+        }
+        communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), val)
+            .then(function() {
+                popupController.textPopup({text: 'message sent'});
+            }, function(e) {
+                var text = h().getErrorMessage(e, 'Error sending message');
+                popupController.textPopup({text: text});
+            });
     },
 
     triggerLandingView: function() {

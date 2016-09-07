@@ -162,6 +162,7 @@ App.prototype = {
      * 'roster', options, {reverse:false}
      */
     goToPage: function(viewName, id, options) {
+        debugger;
         var exists;
         // this.landingView.undelall();
         console.log("app.js:gotoPage: " + viewName);
