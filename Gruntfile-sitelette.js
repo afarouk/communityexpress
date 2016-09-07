@@ -132,6 +132,12 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/styles/icons/'
                     },
                     {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/themes',
+                        src: '**',
+                        dest: '<%= yeoman.dist %>/themes'
+                    },
+                    {
                         src: '<%= yeoman.app %>/sitelette-production.php',
                         dest: '<%= yeoman.dist %>/sitelette.php'
                     },
