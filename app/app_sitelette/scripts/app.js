@@ -133,8 +133,7 @@ App.prototype = {
     },
 
     isEmbedded: function() {
-        var params = location.search.match(/embedded=true/);
-        return (params && params.length);
+        return window.community.isEmbedded;
     },
 
     setGlobalConfigurations: function(options) {
@@ -167,14 +166,6 @@ App.prototype = {
             viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
         }
 
-        // if ( viewName === 'catalog') { //
-        //if(typeof options==='undefined'){
-        //  var sa=window.community.serviceAccommodatorId;
-        //  var sl=window.community.serviceLocationId;
-        //}
-        // }
-
-
         loader.show('loading');
 
         this.initializePage(viewName, id, options).then(function(page) {
@@ -195,50 +186,6 @@ App.prototype = {
         }.bind(this));
     },
 
-    updateTitle: function(viewName, pageModel) {
-        var title;
-        title = pageModel.model.get('saslName');
-        switch (viewName) {
-            case 'restaurant':
-            case 'promotions':
-                title = pageModel.model.get('saslName');
-                break;
-            case 'chat':
-            case 'reviews':
-                title = pageModel.restaurant.get('saslName');
-                break;
-            case 'editable':
-                title = pageModel.restaurant.get('saslName');
-                break;
-            default:
-                title = 'chalkboardstoday.com';
-        }
-        document.title = title;
-    },
-
-    updateTouchIcon: function(viewName, pageModel) {
-        var icon;
-        switch (viewName) {
-            case 'restaurant':
-            case 'promotions':
-                icon = pageModel.model.get('appleTouchIcon60URL');
-                break;
-            case 'chat':
-                icon = pageModel.restaurant.get('appleTouchIcon60URL');
-                break;
-            case 'reviews':
-                icon = pageModel.restaurant.get('appleTouchIcon60URL');
-                break;
-            default:
-                icon = 'icon_57.png';
-        }
-        var links = document.getElementsByTagName('link');
-        _(links).each(function(link) {
-            if (link.getAttribute('rel') === 'apple-touch-icon') {
-                link.href = icon;
-            }
-        });
-    },
 
     changePage: function(view, jqmOptions) {
         var defaults = {
@@ -275,21 +222,20 @@ App.prototype = {
         	 DOM first before jquery Mobile can manage the
         	 page switching. We may want to remove the old
         	 one. In this example we remove and re-add */
-        /* done removing and adding */
         if($('body').find(content).length === 0) {
             $('#' + newPageId).remove();
-            //TODO temporary solution
             $('body').append(content);
         }
 
         if (newPageId === 'cmtyx_landingView') {
             this.landingView = view;
         }
+        /* done removing and adding */
+
 
         /* If this is not the landing view, we may want to replace
           the hamburger with a back button and set it up to
           switch to the landing view */
-
         $.mobile.pageContainer.pagecontainer('change', content, settings);
         view.trigger('show');
 
@@ -302,6 +248,53 @@ App.prototype = {
         $("[data-role='navbar']").navbar();
         $("[data-role='header'], [data-role='footer']").toolbar();
         $('.splash_screen').remove();
+    },
+
+    /* AF this function is not necessary anymore. We set title via PHP*/
+    updateTitle: function(viewName, pageModel) {
+        var title;
+        title = pageModel.model.get('saslName');
+        switch (viewName) {
+            case 'restaurant':
+            case 'promotions':
+                title = pageModel.model.get('saslName');
+                break;
+            case 'chat':
+            case 'reviews':
+                title = pageModel.restaurant.get('saslName');
+                break;
+            case 'editable':
+                title = pageModel.restaurant.get('saslName');
+                break;
+            default:
+                title = 'chalkboardstoday.com';
+        }
+        document.title = title;
+    },
+
+    /* AF this function is not necessary anymore. We set icon via PHP*/
+    updateTouchIcon: function(viewName, pageModel) {
+        var icon;
+        switch (viewName) {
+            case 'restaurant':
+            case 'promotions':
+                icon = pageModel.model.get('appleTouchIcon60URL');
+                break;
+            case 'chat':
+                icon = pageModel.restaurant.get('appleTouchIcon60URL');
+                break;
+            case 'reviews':
+                icon = pageModel.restaurant.get('appleTouchIcon60URL');
+                break;
+            default:
+                icon = 'icon_57.png';
+        }
+        var links = document.getElementsByTagName('link');
+        _(links).each(function(link) {
+            if (link.getAttribute('rel') === 'apple-touch-icon') {
+                link.href = icon;
+            }
+        });
     }
 
 };
