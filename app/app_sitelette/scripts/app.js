@@ -169,8 +169,10 @@ App.prototype = {
 
         if (viewName === 'restaurant') {
             this.headerView.showMenuButton();
+            this.navbarView.show();
         } else {
             this.headerView.hideMenuButton({back: true});
+            this.navbarView.hide();
         }
 
         if (viewName === 'chat') { // redirect to restaurant view if user is not signed in
