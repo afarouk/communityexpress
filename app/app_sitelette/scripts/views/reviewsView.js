@@ -5,35 +5,58 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
+    template = require('ejs!../templates/content/reviews_content.ejs'),
+    popupController = require('../controllers/popupController'),
     PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     ReviewView = require('./partials/reviewView'),
     reviewActions = require('../actions/reviewActions');
 
-var ReviewsView = PageLayout.extend({
+var ReviewsView = Backbone.View.extend({
 
     name: 'reviews',
+
+    id: 'cmntyex_reviews',
+
+    events: {
+        'click .navbutton_write_review': 'openNewReview',
+        'click .next': 'nextPage',
+        'click .prev': 'prevPage'
+    },
 
     initialize: function(options) {
         options = options || {};
         this.restaurant = options.restaurant;
         this.getReviews();
-        this.on('show', this.onShow, this);
         this.pagination = new Backbone.Model();
         this.pagination.set('hasNextReviews', false);
         this.pagination.set('hasPreviousReviews', false);
         this.hideTitle = true;
 
+        this.on('show', this.onShow, this);
+        this.on('hide', this.onHide, this);
+        this.render();
+
         this.listenTo(this.pagination, 'change', this.updateButtons, this);
     },
 
+    render: function() {
+        this.$el.html(template());
+        this.setElement(this.$el.children().eq(0));
+        return this;
+    },
+
+    renderContent: function() {
+        return this.$el;
+    },
+
     onShow: function(){
-        this.addEvents({
-            'click .back': 'triggerLandingView',
-            'click .navbutton_write_review': 'openNewReview',
-            'click .next': 'nextPage',
-            'click .prev': 'prevPage'
-        });
+        // this.addEvents({
+        //     'click .back': 'triggerLandingView',
+        //     'click .navbutton_write_review': 'openNewReview',
+        //     'click .next': 'nextPage',
+        //     'click .prev': 'prevPage'
+        // });
         this.renderReviews();
     },
 
@@ -93,8 +116,8 @@ var ReviewsView = PageLayout.extend({
     },
 
     openNewReview: function () {
-        this.withLogIn(function () {
-            this.openSubview('newReview', this.restaurant, {
+        popupController.requireLogIn(function () {
+            popupController.newReview(this, this.restaurant, {
                 action: function (sa, sl, file, title, message, rating) {
                     return reviewActions.addReview(sa, sl, file, title, message, rating)
                         .then(function (review) {

@@ -34,6 +34,11 @@ var PopupController = {
         this.show(view);
     },
 
+    newReview: function(self, sasl, options) {
+        var view = viewFactory.create('newReview', sasl, self, options);
+        this.show(view);
+    },
+
     show: function(view) {
         view.render();
         view.enhance();

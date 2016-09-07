@@ -19,7 +19,7 @@ var ChatView = Backbone.View.extend({
     id: 'cmntyex_chat',
 
     events: {
-        'click .back': 'triggerLandingView',
+        // 'click .back': 'triggerLandingView',
         // 'click .navbutton_write_review': 'openNewMessage',
         'click .send_message_button': 'sendMessage'
     },
@@ -89,10 +89,13 @@ var ChatView = Backbone.View.extend({
             popupController.textPopup({ text: 'Please, type your message'});
             return;
         }
+        loader.show('sending message');
         communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), val)
             .then(function() {
+                loader.hide();
                 popupController.textPopup({text: 'message sent'});
             }, function(e) {
+                loader.hide();
                 var text = h().getErrorMessage(e, 'Error sending message');
                 popupController.textPopup({text: text});
             });
