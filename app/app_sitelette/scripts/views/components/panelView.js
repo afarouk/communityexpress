@@ -86,11 +86,12 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
 
     _onClose: function() {
         this.trigger('close:all');
-        if(this.parent){
-            this.parent.trigger('subview:close');
-        }
+        // this.shut();
+        // if(this.parent){
+        //     // this.parent.trigger('subview:close');
+        // }
         this.undelegateEvents();
-        this.remove();
+        // this.remove();
     },
 
     openSettings: function() {

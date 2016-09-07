@@ -100,29 +100,32 @@ var EditRosterView = PanelView.extend({
     },
 
     addOrDeleteItem : function(e){
-        var count=e.target.selectedIndex;
+        var count=e.target.selectedIndex,
+            currentModel;
         if(count == 0){
             this.removeSelected(e);
         }
         else{
             // alert('order item picked');
-            console.log(e);
+            // console.log(e);
+            console.log(this.options.parent);
 
-            /*this.basket = this.options.parent.basket;
+            this.basket = this.options.parent.basket;
             var initialCnt=this.basket.getComboCount();
+        
             this.catalogId = e.target.attributes.catalogid.value; 
 
             console.log( this.catalogId);
 
             this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value; 
 
-
-            this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);
+            currentModel = this.model.findWhere({catalogId: this.catalogId});
+            this.basket.addCatalog(currentModel.toJSON(), count,  this.catalogId,this.catalogDisplayText);
             console.log(this);   
             this.listenTo(initialCnt, 'change:value', initialCnt+count, this);
 
             console.log(this.basket.getComboCount());
-            $('.cart_items_number').text(this.basket.getComboCount());*/
+            $('.cart_items_number').text(this.basket.getComboCount());
         }
     },
 

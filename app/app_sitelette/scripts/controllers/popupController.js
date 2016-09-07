@@ -30,7 +30,7 @@ var PopupController = {
 
     editRosterView: function(self, model, options) {
         // TODO doesn't work correct
-        var view = viewFactory.create('editRosterView', model, this , options);
+        var view = viewFactory.create('editRosterView', model, self , options);
         this.show(view);
     },
 

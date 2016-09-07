@@ -94,6 +94,15 @@ var RosterBasketModel = Backbone.Model.extend({
     this.trigger('change');
   },
 
+  getCatalog: function(catalog) {
+    return this.catalogs.get(catalog.catalogId);
+  },
+
+  getCatalogQuantity: function(catalog) {
+    var model = this.catalogs.get(catalog.catalogId);
+    return model.get('quantity');
+  },
+
   //removeCatalog: function(catalog) {
   //    this.remove(catalogs.get(catalog.catalogId));
   //},

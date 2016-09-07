@@ -31,15 +31,25 @@ var RosterComboItemView = Backbone.View.extend({
     },
 
     addToCart: function(e){
-        var count=e.target.selectedIndex;
+        var count=e.target.selectedIndex,
+            catalog;
         this.basket = this.options.parent.basket;
         var initialCnt=this.basket.getComboCount();
         this.catalogId = e.target.attributes.catalogid.value; 
         this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value; 
         this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);  
-        this.listenTo(initialCnt, 'change:value', initialCnt+count, this);
-         $('.cart_items_number').text(this.basket.getComboCount());
+        catalog = this.basket.getCatalog(this.model);
+        if (catalog) {
+            catalog.off('change').on('change', _.bind(this.changeCount, this));
+        }
+        
+        $('.cart_items_number').text(this.basket.getComboCount());
+    },
 
+    changeCount: function() {
+        //TODO temporary solution
+        var count = this.basket.getCatalogQuantity(this.model);
+        this.$el.find('select').val('num' + count);
     },
 
     render : function() {
