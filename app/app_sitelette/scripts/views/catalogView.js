@@ -70,7 +70,7 @@ var CatalogView = Backbone.View.extend({
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
         this.launchedViaURL=options.launchedViaURL;
-        this.navbarView = options.navbarView;
+        // this.navbarView = options.navbarView;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
         this.render();
