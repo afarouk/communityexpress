@@ -31,6 +31,7 @@ var App = function() {
         appCache.set('saslData', window.saslData);
     }
     Vent.on('viewChange', this.goToPage, this);
+    Vent.on('backToPrevious', this.backToPrevious, this);
     /*
 		We may need LandingView to manage landing view (home) interactions.
 	  But we no longer have to switch to it. It is visible by default.*/
@@ -43,6 +44,7 @@ var App = function() {
             navbarView: this.navbarView
         });
     this.landingView = new LandingView();
+    this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);
 
     if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
@@ -158,6 +160,15 @@ App.prototype = {
         this.viewInstances[viewName] = view;
     },
 
+    //TODO use it in a future
+    deleteInstance: function(viewName) {
+        delete this.viewInstances[viewName];
+    },
+
+    backToPrevious: function() {
+        this.currentView.goBack();
+    },
+
     /*
      * 'roster', options, {reverse:false}
      */
@@ -257,6 +268,7 @@ App.prototype = {
           switch to the landing view */
         $.mobile.pageContainer.pagecontainer('change', content, settings);
         view.trigger('show');
+        this.currentView = view;
 
         // $("#cmtyx_header_menu_button").toggle();
         // $("#cmtyx_header_back_button").toggle();
