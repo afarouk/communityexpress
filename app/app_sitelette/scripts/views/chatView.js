@@ -19,7 +19,8 @@ var ChatView = Backbone.View.extend({
 
     events: {
         'click .back': 'triggerLandingView',
-        'click .navbutton_write_review': 'openNewMessage'
+        'click .navbutton_write_review': 'openNewMessage',
+        'click .send_message_button': 'sendMessage'
     },
 
     initialize: function(options) {
@@ -79,6 +80,10 @@ var ChatView = Backbone.View.extend({
                 }.bind(this)
             });
         }.bind(this));
+    },
+
+    sendMessage: function() {
+        debugger;
     },
 
     triggerLandingView: function() {
