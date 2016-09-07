@@ -3,7 +3,7 @@
     <div class="float_right">
         <div class="select_container">
             <% if (quantity) { %>
-            <select data-role="none" class="select combo_select_item"> 
+            <select data-role="none" catalogId="<%= catalogId %>" catalogdisplaytext="<%= displayText %>" class="select combo_select_item"> 
                 <% for (var i = 0; i <= 10; i++) { %>
                 <% if(i == quantity) { %>
                 <option value="<%= i %>" selected="selected"><%= i %></option>

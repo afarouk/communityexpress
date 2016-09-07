@@ -28,14 +28,14 @@ var RosterView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            'click .back': 'goBack',
+            // 'click .back': 'goBack',
             'click .order_button': 'triggerOrder',
             'click .edit_button': 'openEditPanel'
         });
 
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        this.navbarView.hide(); // $('#cmtyx_navbar').fadeOut('slow');
+        // this.navbarView.hide(); // $('#cmtyx_navbar').fadeOut('slow');
         /* if launched from URL, hide back button*/
         if (typeof this.launchedViaURL !== 'undefined' && this.launchedViaURL === true) {
             $(this.el).find('.navbutton_back').hide();
@@ -85,9 +85,9 @@ var RosterView = Backbone.View.extend({
         this.rosterType = options.roster.data.rosterType.enumText;
         this.rosterDisplayText = options.roster.data.displayText;
         this.isOpenWarningMessage = options.roster.data.isOpenWarningMessage;
-        this.navbarView = new options.navbarView(_.extend(options.navbarData, {
-            page: this
-        }));
+        // this.navbarView = new options.navbarView(_.extend(options.navbarData, {
+        //     page: this
+        // }));
         this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
         this.render();
@@ -128,8 +128,8 @@ var RosterView = Backbone.View.extend({
     },
 
     goBack: function() {
-        this.triggerRestaurantView();
-        this.navbarView.show();
+        // this.triggerRestaurantView();
+        // this.navbarView.show();
     },
 
     triggerRestaurantView: function() {
