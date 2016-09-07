@@ -6,25 +6,35 @@ var Vent = require('../Vent'), //
 loader = require('../loader'), //
 CatalogBasketModel = require('../models/CatalogBasketModel'), //
 orderActions = require('../actions/orderActions'), //
+template = require('ejs!../templates/content/catalog_content.ejs'),
 PageLayout = require('./components/pageLayout'), //
 GroupView = require('./partials/groupView'), //
 ComboGroupView = require('./partials/comboGroupView'), //
 ListView = require('./components/listView');
 
-var CatalogView = PageLayout.extend({
+var CatalogView = Backbone.View.extend({
 
     name : 'catalog',
 
+    id: 'cmtyx_catalogView',
+
+    events: {
+        'click .back' : 'goBack',
+        'click .order_button' : 'triggerOrder',
+        'click .add_combo_button' : 'goBackAndSendCatalogInfo',
+        'click .edit_button' : 'openEditPanel'
+    },
+
     onShow : function() {
-        this.addEvents({
-            'click .back' : 'goBack',
-            'click .order_button' : 'triggerOrder',
-            'click .add_combo_button' : 'goBackAndSendCatalogInfo',
-            'click .edit_button' : 'openEditPanel'
-        });
+        // this.addEvents({
+        //     'click .back' : 'goBack',
+        //     'click .order_button' : 'triggerOrder',
+        //     'click .add_combo_button' : 'goBackAndSendCatalogInfo',
+        //     'click .edit_button' : 'openEditPanel'
+        // });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        this.navbarView.hide();
+        // this.navbarView.hide();
         if(this.backToRoster===true){
           /* hide the order button */
           this.$('.order_button').hide();
@@ -48,7 +58,6 @@ var CatalogView = PageLayout.extend({
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
-        this.on('show', this.onShow, this);
         this.basket = options.basket;
         this.backToCatalogs = options.backToCatalogs;
         this.backToRoster=options.backToRoster;
@@ -62,12 +71,25 @@ var CatalogView = PageLayout.extend({
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
         this.launchedViaURL=options.launchedViaURL;
         this.navbarView = options.navbarView;
+        this.on('show', this.onShow, this);
+        this.on('hide', this.onHide, this);
+        this.render();
     },
 
     renderData : function() {
         return {
             basket : this.basket
         };
+    },
+
+    render: function() {
+        this.$el.html(template(this.renderData()));
+        this.setElement(this.$el.children().eq(0));
+        return this;
+    },
+
+    renderContent: function() {
+        return this.$el;
     },
 
     goBack : function() {
@@ -80,9 +102,11 @@ var CatalogView = PageLayout.extend({
             this.navbarView.show();
         }
     },
+
     goBackAndSendCatalogInfo : function(){
         this.triggerRosterViewWithCatalog();
     },
+
     triggerRosterView : function() {
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
@@ -96,6 +120,7 @@ var CatalogView = PageLayout.extend({
           launchedViaURL:  this.launchedViaURL
        }, { reverse: true });
     },
+
     triggerRosterViewWithCatalog : function() {
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
@@ -110,6 +135,7 @@ var CatalogView = PageLayout.extend({
        }, { reverse: true });
 
     },
+
     triggerCatalogsView : function() {
         Vent.trigger('viewChange', 'catalogs', this.sasl.getUrlKey());
     },
