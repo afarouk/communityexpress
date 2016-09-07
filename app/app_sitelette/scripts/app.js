@@ -43,6 +43,7 @@ var App = function() {
             navbarView: this.navbarView
         });
     this.landingView = new LandingView();
+    this.saveInstance('restaurant', this.landingView);
 
     if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
         this.checkType(window.community.type);
@@ -148,11 +149,21 @@ App.prototype = {
         }
     },
 
+    viewInstances: {},
+    checkInstance: function(viewName) {
+        return this.viewInstances[viewName];
+    },
+
+    saveInstance: function(viewName, view) {
+        this.viewInstances[viewName] = view;
+    },
+
     /*
      * 'roster', options, {reverse:false}
      */
     goToPage: function(viewName, id, options) {
-        this.landingView.undelall();
+        var exists;
+        // this.landingView.undelall();
         console.log("app.js:gotoPage: " + viewName);
         this.setGlobalConfigurations(options);
 
@@ -168,13 +179,19 @@ App.prototype = {
 
         loader.show('loading');
 
-        this.initializePage(viewName, id, options).then(function(page) {
-            this.changePage(page, options);
+        exists = this.checkInstance(viewName);
+        if (exists) {
+            this.changePage(exists, options);
             loader.hide();
-        }.bind(this), function(e) {
-            loader.showErrorMessage(e, 'There was a problem loading this page');
-        });
-
+        } else {
+            this.initializePage(viewName, id, options).then(function(page) {
+                this.saveInstance(viewName, page);
+                this.changePage(page, options);
+                loader.hide();
+            }.bind(this), function(e) {
+                loader.showErrorMessage(e, 'There was a problem loading this page');
+            });
+        }
     },
 
     initializePage: function(viewName, options) {
@@ -227,9 +244,9 @@ App.prototype = {
             $('body').append(content);
         }
 
-        if (newPageId === 'cmtyx_landingView') {
-            this.landingView = view;
-        }
+        // if (newPageId === 'cmtyx_landingView') {
+        //     this.landingView = view;
+        // }
         /* done removing and adding */
 
 
