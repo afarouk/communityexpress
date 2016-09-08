@@ -95,13 +95,16 @@ var LandingView = Backbone.View.extend({
     },
 
     scrollToPromotions: function() {
-        // TODO make animation time depending on way
-        var parentOffset = this.$el.scrollTop(),
+        var time = 1000,
+            parentOffset = this.$el.scrollTop(),
             headerHeight = $('#cmtyx_header').height(),
-            offset = parentOffset + this.$el.find('.promotion_block').offset().top - headerHeight;
+            offset = parentOffset + this.$el.find('.promotion_block').offset().top - headerHeight,
+            flag = Math.abs(parentOffset - offset);
+        if (flag < 20) return;
+        time = flag * .3;
         this.$el.animate({
             scrollTop: offset 
-        }, 1000);
+        }, time);
     },
 
     triggerAboutUsView: function() {
