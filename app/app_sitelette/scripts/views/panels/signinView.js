@@ -46,7 +46,7 @@ var SigninView = PopupView.extend({
     openSignupView: function() {
         this.shut();
         this.$el.on('popupafterclose', function () {
-            this.parent.openSubview('signup', this.model, this.callback);
+            this.parent.signup(this.model, this.callback);
         }.bind(this));
     },
 

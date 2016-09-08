@@ -8,8 +8,13 @@ var sessionActions = require('../actions/sessionActions'),
     viewFactory = require('../viewFactory');
 
 var PopupController = {
-    signin: function(model) {
-        var view = viewFactory.create('signin', model, this);
+    signin: function(model, callback) {
+        var view = viewFactory.create('signin', model, this, {callback: callback});
+        this.show(view);
+    },
+
+    signup: function(model, callback) {
+        var view = viewFactory.create('signup', model, this, {callback: callback});
         this.show(view);
     },
 
@@ -49,7 +54,7 @@ var PopupController = {
         view.shut();
     },
 
-    requireLogIn: function(callback) {
+    requireLogIn: function(model, callback) {
         var conf = configurationActions.getConfigurations(),
             view;
         if(sessionActions.getCurrentUser().getUID()) {
@@ -59,12 +64,11 @@ var PopupController = {
         } else {
             view = new SigninView({
                 parent: this,
-                model: this.model || this.restaurant || this.sasl,
+                model: model,
                 title: 'Sign in Required',
                 callback: callback
             });
-            this.renderSubview(view);
-            view.open();
+            this.show(view);
         }
     }
 };

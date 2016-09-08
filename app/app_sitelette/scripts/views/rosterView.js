@@ -154,8 +154,7 @@ var RosterView = Backbone.View.extend({
 
         var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
 
-
-        popupController.requireLogIn(function() {
+        popupController.requireLogIn(this.sasl, function() {
             Vent.trigger('viewChange', 'roster_order', {
                 id: this.sasl.getUrlKey(),
                 rosterId: this.rosterId,
