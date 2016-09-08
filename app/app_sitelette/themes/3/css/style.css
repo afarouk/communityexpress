@@ -6,7 +6,7 @@ html {
 }
 
 .popup_container {
-    // display: none;
+    background-color: #363636;
 }
 
 .cmtyx_color1 {
@@ -825,6 +825,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #left-panel.cart {
+    height: 100%;
     background-color: #363636;
     padding: 20px 10px;
     text-shadow: none;
@@ -845,6 +846,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 #left-panel.cart .ui-panel-inner {
     padding: 0;
+}
+
+.ui-panel-inner {
+    /*temporary solution*/
+    padding: 0;
+    height:100%;
 }
 
 .cart_header {

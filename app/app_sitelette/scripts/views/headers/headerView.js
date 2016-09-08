@@ -7,6 +7,7 @@ var Vent = require('../../Vent'),
     appCache = require('../../appCache.js'),
     sessionActions = require('../../actions/sessionActions'),
     userController = require('../../controllers/userController'),
+    popupController = require('../../controllers/popupController'),
     promotionsController = require('../../controllers/promotionsController');
 
 var HeaderView = Backbone.View.extend({
@@ -14,7 +15,8 @@ var HeaderView = Backbone.View.extend({
     el: '#cmtyx_header',
 
     events: {
-        'click #cmtyx_header_back_button': 'triggerPreviousView'
+        'click #cmtyx_header_back_button': 'triggerPreviousView',
+        'click #cmtyx_header_menu_button': 'openLeftMenu'
     },
 
     initialize: function(options) {
@@ -48,8 +50,10 @@ var HeaderView = Backbone.View.extend({
 
     triggerPreviousView: function() {
         Vent.trigger('backToPrevious');
-        // Vent.trigger('viewChange', 'restaurant', [this.sa, this.sl]);
-        // this.options.navbarView.show();
+    },
+
+    openLeftMenu: function() {
+        popupController.openLeftMenu(this);
     }
 
 });

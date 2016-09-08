@@ -39,6 +39,11 @@ var PopupController = {
         this.show(view);
     },
 
+    openLeftMenu: function(){
+        var view = viewFactory.create('leftMenuView');
+        this.show(view);
+    },
+
     newReview: function(self, sasl, options) {
         var view = viewFactory.create('newReview', sasl, self, options);
         this.show(view);
@@ -47,6 +52,7 @@ var PopupController = {
     show: function(view) {
         view.render();
         view.enhance();
+        //TODO some error sometimes when signin
         setTimeout(view.open.bind(view),50);
     }, 
 

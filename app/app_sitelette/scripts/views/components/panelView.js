@@ -36,10 +36,10 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
     el: '.popup_container',
 
     pageEvents: {
-        'panelclose':'_onClose',
-        'panelopen':'_onOpen',
-        'click .close_button': 'shut',
-        'click .cmntyex-button-cancel': 'shut'
+        // 'panelclose':'_onClose',
+        // 'panelopen':'_onOpen',
+        // 'click .close_button': 'shut',
+        // 'click .cmntyex-button-cancel': 'shut'
     },
 
     addEvents: function(eventObj) {
@@ -54,7 +54,7 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
     },
 
     enhance: function(){
-        this.$el.panel(this.jqmOptions);
+        this.$el.panel();
         this.$('.outside').insertBefore('.ui-panel-inner');
         this.$el.trigger('create');
     },
