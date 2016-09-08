@@ -37,8 +37,6 @@ var App = function() {
 		We may need LandingView to manage landing view (home) interactions.
 	  But we no longer have to switch to it. It is visible by default.*/
 
-
-    //Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
     $.mobile.initializePage();
     this.navbarView = new NavbarView();
 		this.headerView = new HeaderView({
@@ -80,7 +78,6 @@ App.prototype = {
             conf.set('embedded', true);
         };
         if (this.params.UID) {
-            //localStorage.setItem("cmxUID", this.params.UID);
             Cookies.set("cmxUID", this.params.UID);
             sessionActions.authenticate(this.params.UID)
                 .always(function() {
@@ -88,7 +85,6 @@ App.prototype = {
                         pushState: true
                     });
                 });
-            //  } else if (localStorage.cmxUID) {
         } else if (Cookies.get('cmxUID')) {
             sessionActions.getSessionFromLocalStorage().then(function() {
                 Backbone.history.start({

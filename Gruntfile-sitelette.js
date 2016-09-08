@@ -44,7 +44,11 @@ module.exports = function (grunt) {
 
         webpack: {
             options: webpackConfig,
-            start: {
+            'prod': {
+                devtool: null // production
+            },
+            'build-dev': {
+                devtool: 'cheap-module-eval-source-map', // development
             }
         },
         clean: [
@@ -55,7 +59,8 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 compress: true,
-                mangle: true
+                mangle: true, // change to false if won't work
+                sourceMap: false
             },
             target: {
                 src: '<%= yeoman.dist %>/build/bundle.js',
@@ -178,10 +183,22 @@ module.exports = function (grunt) {
             }
         }
     });
+
     grunt.registerTask('default', function() {
         grunt.task.run([
             'clean',
-            'webpack',
+            'webpack:build-dev',
+            'copy',
+            'replace',
+            'uglify',
+            'cssmin',
+            'compress'
+        ]);
+    });
+    grunt.registerTask('prod', function() {
+        grunt.task.run([
+            'clean',
+            'webpack:prod',
             'copy',
             'replace',
             'uglify',
