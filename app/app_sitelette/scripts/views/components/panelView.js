@@ -36,10 +36,10 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
     el: '.popup_container',
 
     pageEvents: {
-        // 'panelclose':'_onClose',
-        // 'panelopen':'_onOpen',
-        // 'click .close_button': 'shut',
-        // 'click .cmntyex-button-cancel': 'shut'
+        'panelclose':'_onClose',
+        'panelopen':'_onOpen',
+        'click .close_button': 'shut',
+        'click .cmntyex-button-cancel': 'shut'
     },
 
     addEvents: function(eventObj) {
