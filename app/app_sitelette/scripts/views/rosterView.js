@@ -27,28 +27,17 @@ var RosterView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            // 'click .back': 'goBack',
             'click .order_button': 'triggerOrder',
             'click .edit_button': 'openEditPanel'
         });
 
-        this.renderItems();
-        this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        // this.navbarView.hide(); // $('#cmtyx_navbar').fadeOut('slow');
+        
         /* if launched from URL, hide back button*/
-        if (typeof this.launchedViaURL !== 'undefined' && this.launchedViaURL === true) {
-            $(this.el).find('.navbutton_back').hide();
-        } else {
-            $(this.el).find('.navbutton_back').show();
-        };
-
-        // Temporary hack to hide scroll on rosterPage
-        //setTimeout(_.bind(function() {
-        //    var landingWidth = $('#cmtyx_landingView').width();
-        //    this.$('.content').css('width', landingWidth)
-        //}, this), 3000)
-
-
+        // if (typeof this.launchedViaURL !== 'undefined' && this.launchedViaURL === true) {
+        //     $(this.el).find('.navbutton_back').hide();
+        // } else {
+        //     $(this.el).find('.navbutton_back').show();
+        // };
 
         var comboCount = this.basket.getComboCount();
         var nonComboCount = this.basket.getNonComboItemCount();
@@ -84,21 +73,17 @@ var RosterView = Backbone.View.extend({
         this.rosterType = options.roster.data.rosterType.enumText;
         this.rosterDisplayText = options.roster.data.displayText;
         this.isOpenWarningMessage = options.roster.data.isOpenWarningMessage;
-        // this.navbarView = new options.navbarView(_.extend(options.navbarData, {
-        //     page: this
-        // }));
         this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
         this.render();
-        // TODO check logic ,
-        // I don't know why we listened change event twice
-        // this.basket.on('change', this.updateBasket, this); 
-
     },
 
     render: function() {
         this.$el.html(template(this.renderData()));
         this.setElement(this.$el.children().eq(0));
+
+        this.renderItems();
+        this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         return this;
     },
 
