@@ -2879,7 +2879,7 @@ color: #acacac;
     display: inline-block;
 }
 
-.ui-popup .ui-grid-solo .ui-block-a {
+.ui-popup .ui-grid-a .ui-grid-solo .ui-block-a {
     background-color: transparent!important;
     border-color: #faa019 !important; 
     border-width: 1px;
@@ -2888,7 +2888,7 @@ color: #acacac;
     outline: none;
 }
 
-.ui-popup .ui-grid-solo .ui-block-a a {
+.ui-popup .ui-grid-a .ui-grid-solo .ui-block-a a {
     margin: 0;
     color: #faa019 !important; 
     text-transform: uppercase;
