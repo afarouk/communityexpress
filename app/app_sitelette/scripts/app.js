@@ -15,7 +15,8 @@ var userController = require('./controllers/userController'),
     Cookies = require('../../vendor/scripts/js.cookie'),
     LandingView = require('./views/landingView'),
     NavbarView = require('./views/headers/navbarView'),
-    HeaderView = require('./views/headers/headerView');
+    HeaderView = require('./views/headers/headerView'),
+    LoyaltyCardView = require('./views/loyaltyCardView');
 
 var hasUIDinQueryParams = function() {
     var params = location.search.match(/UID=/);
@@ -44,6 +45,8 @@ var App = function() {
             navbarView: this.navbarView
         });
     this.landingView = new LandingView();
+    this.LoyaltyCardView=new LoyaltyCardView();
+
     this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);
 
