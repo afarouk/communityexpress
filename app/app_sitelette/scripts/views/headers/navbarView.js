@@ -83,21 +83,22 @@ var NavbarView = Backbone.View.extend({
     },
 
     openPromotion: function(pid) {
-        loader.show('retrieving promotions');
-        promotionsController.fetchPromotionUUIDsBySasl(
-            this.sa,
-            this.sl,
-            this.user.getUID() //??? this.page.user.getUID()
-        ).then(function(promotions) {
-            if(promotions.length < 1) {
-                loader.showFlashMessage('No promotions were found');
-            } else {
-                debugger;
-                this.page.openSubview('promotions', promotions, {pid: pid, sasl: this.model});
-            }
-        }.bind(this), function () {
-            loader.showFlashMessage('error retrieving promotions');
-        });
+        // loader.show('retrieving promotions');
+        Vent.trigger('scrollToPromotions');
+        // promotionsController.fetchPromotionUUIDsBySasl(
+        //     this.sa,
+        //     this.sl,
+        //     this.user.getUID() //??? this.page.user.getUID()
+        // ).then(function(promotions) {
+        //     if(promotions.length < 1) {
+        //         loader.showFlashMessage('No promotions were found');
+        //     } else {
+        //         debugger;
+        //         this.page.openSubview('promotions', promotions, {pid: pid, sasl: this.model});
+        //     }
+        // }.bind(this), function () {
+        //     loader.showFlashMessage('error retrieving promotions');
+        // });
     },
 
     triggerContestsView: function() {

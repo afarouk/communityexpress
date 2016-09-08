@@ -67,6 +67,7 @@ var LandingView = Backbone.View.extend({
             'min-height': '0',
             'margin-bottom': '0px'
         });
+        Vent.on('scrollToPromotions', this.scrollToPromotions, this);
         /*
         _.extend( {}, this.model.attributes, {
             imagePath: config.imagePath,
@@ -93,6 +94,15 @@ var LandingView = Backbone.View.extend({
         // }
     },
 
+    scrollToPromotions: function() {
+        // TODO make animation time depending on way
+        var parentOffset = this.$el.scrollTop(),
+            headerHeight = $('#cmtyx_header').height(),
+            offset = parentOffset + this.$el.find('.promotion_block').offset().top - headerHeight;
+        this.$el.animate({
+            scrollTop: offset 
+        }, 1000);
+    },
 
     triggerAboutUsView: function() {
         Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
