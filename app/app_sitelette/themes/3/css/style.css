@@ -2855,6 +2855,60 @@ color: #acacac;
     box-shadow: none;
 }
 
+.ui-popup-screen {
+    background: white;
+}
+.ui-popup-screen.in {
+    opacity: .3;
+    filter: Alpha(Opacity=30);
+}
+.ui-popup .ui-controlgroup-controls .ui-input-text input {
+    background-color: white!important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.ui-popup .signin_alert_header {
+    background-color: #363636;
+    box-shadow: 0 0 20px #000;
+    border-bottom: none;
+    line-height: 12px;
+}
+.ui-popup .signin_alert_header .ui-title {
+    text-transform: uppercase;
+    font: 700 18px Roboto;
+    color: #ddd;
+    display: inline-block;
+}
+
+.ui-popup .ui-grid-solo .ui-block-a {
+    background-color: transparent!important;
+    border-color: #faa019 !important; 
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    outline: none;
+}
+
+.ui-popup .ui-grid-solo .ui-block-a a {
+    margin: 0;
+    color: #faa019 !important; 
+    text-transform: uppercase;
+    font: 700 18px / 19px Roboto !important;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-weight: 700;
+    font-stretch: normal;
+    font-size: 18px;
+    line-height: 19px;
+    font-family: Roboto;
+    text-shadow: none !important;
+}
+
+.ui-popup .signin_alert_header ~ .ui-content{
+    padding-top: 0;
+}
+
 
 /*temporary styles for write_review button*/
 .navbutton_write_review {
