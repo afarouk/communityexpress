@@ -10,7 +10,6 @@ var Vent = require('../Vent'), //
     RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),//
     CatalogBasketModel = require('../models/CatalogBasketModel'), //
     orderActions = require('../actions/orderActions'), //
-    PageLayout = require('./components/pageLayout'), //
     RosterComboItemView = require('./partials/roster_combo_item.js'), //
     RosterCatalogItemView = require('./partials/roster_catalog_item.js'), //
     popupController = require('../controllers/popupController'),

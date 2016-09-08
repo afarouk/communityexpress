@@ -16,7 +16,6 @@ var Vent = require('../Vent'),
     catalogActions = require('../actions/catalogActions'),
     mediaActions = require('../actions/mediaActions'),
     updateActions = require('../actions/updateActions'),
-    //PageLayout = require('./components/pageLayout'),
     h = require('../globalHelpers');
 
 var LandingView = Backbone.View.extend({

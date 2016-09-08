@@ -5,11 +5,10 @@
 var Vent = require('../Vent'),
     viewFactory = require('../viewFactory'),
     loader = require('../loader'),
-    PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     EditableView = require('./partials/editableView');
 
-var EditView = PageLayout.extend({
+var EditView = Backbone.View.extend({
 
     name: 'edit',
 

@@ -7,7 +7,6 @@ loader = require('../loader'), //
 CatalogBasketModel = require('../models/CatalogBasketModel'), //
 orderActions = require('../actions/orderActions'), //
 template = require('ejs!../templates/content/catalog_content.ejs'),
-PageLayout = require('./components/pageLayout'), //
 GroupView = require('./partials/groupView'), //
 ComboGroupView = require('./partials/comboGroupView'), //
 ListView = require('./components/listView');

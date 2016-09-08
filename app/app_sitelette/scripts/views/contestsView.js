@@ -5,11 +5,10 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
-    PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     ContestView = require('./partials/contestItemView');
 
-var ContestsView = PageLayout.extend({
+var ContestsView = Backbone.View.extend({
 
     name: 'contests',
 

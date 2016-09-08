@@ -7,7 +7,6 @@ var Vent = require('../Vent'),
     loader = require('../loader'),
     template = require('ejs!../templates/content/chat_content.ejs'),
     popupController = require('../controllers/popupController'),
-    PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     MessageView = require('./partials/messageView'),
     communicationActions = require('../actions/communicationActions');

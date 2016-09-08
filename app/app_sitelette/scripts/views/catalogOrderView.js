@@ -5,7 +5,6 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
-    PageLayout = require('./components/pageLayout'),
     orderActions = require('../actions/orderActions'),
     states = require('../states'),
     h = require('../globalHelpers');

@@ -5,13 +5,12 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
-    PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     PostView = require('./partials/postView'),
     postActions = require('../actions/postActions'),
     h = require('../globalHelpers');
 
-var PostsView = PageLayout.extend({
+var PostsView = Backbone.View.extend({
 
     name: 'posts',
 

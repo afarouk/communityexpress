@@ -4,14 +4,13 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
-    PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     PollOptionView = require('./partials/pollOptionView'),
     PrizeView = require('./partials/prizeView'),
     contestActions = require('../actions/contestActions'),
     h = require('../globalHelpers');
 
-module.exports = PageLayout.extend({
+module.exports = Backbone.View.extend({
 
     name: 'pollContest',
 

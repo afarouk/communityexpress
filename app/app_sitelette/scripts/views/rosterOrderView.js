@@ -5,7 +5,6 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
-    PageLayout = require('./components/pageLayout'),
     orderActions = require('../actions/orderActions'),
     template = require('ejs!../templates/content/roster_order_content.ejs'),
     states = require('../states'),

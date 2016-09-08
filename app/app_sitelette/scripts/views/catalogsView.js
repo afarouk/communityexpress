@@ -4,11 +4,10 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
-    PageLayout = require('./components/pageLayout'),
     CatalogItemView = require('./partials/catalogs_item'),
     ListView = require('./components/listView');
 
-var CatalogsView = PageLayout.extend({
+var CatalogsView = Backbone.View.extend({
 
     name: 'catalogs',
 

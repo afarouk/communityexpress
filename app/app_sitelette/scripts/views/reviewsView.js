@@ -7,7 +7,6 @@ var Vent = require('../Vent'),
     viewFactory = require('../viewFactory'),
     template = require('ejs!../templates/content/reviews_content.ejs'),
     popupController = require('../controllers/popupController'),
-    PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     ReviewView = require('./partials/reviewView'),
     reviewActions = require('../actions/reviewActions');

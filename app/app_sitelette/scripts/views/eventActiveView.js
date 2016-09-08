@@ -5,12 +5,11 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
-    PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     eventActions = require('../actions/eventActions'),
     h = require('../globalHelpers');
 
-module.exports = PageLayout.extend({
+module.exports = Backbone.View.extend({
 
     name: 'eventActive',
 
