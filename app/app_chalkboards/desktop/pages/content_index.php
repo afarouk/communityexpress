@@ -89,7 +89,7 @@
 <section id="dude" >
 	<div class="container-fluid">
 		<div class="row browse_chalkboards_block">
-			<div class="color_fade_block"></div>
+			<div class="color_fade_block wow fadeIn" data-wow-delay="1.0s"></div>
 			<div class="text_block">
 				<span class="title">BROWSE THE CHALKBOARDS ON YOUR MOBILE</span>
 	    		<br>
@@ -202,7 +202,7 @@
                         <textarea id="message" name="description" class="form-control m-b-40" placeholder="Message" rows="3" minlength="10" maxlength="120" required></textarea>
                         <br>
                         <div class="send_message_btn_container">
-                            <button id="contactSubmit" type="submit" class="send_message_btn">send message</button>
+                            <button id="contactSubmit" type="submit" class="send_message_btn wow fadeInUp" data-wow-delay=".3s">send message</button>
                         </div>
                     </form>
                 </div>

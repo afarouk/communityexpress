@@ -1373,6 +1373,10 @@ a.signup_btn:hover {
 /*Slider section
 =============================================================*/
 
+.gallery {
+	visibility: hidden;
+}
+
 .slick-dotted.slick-slider {
     margin-bottom: 0 !important;
 }
@@ -1549,7 +1553,7 @@ a.get_started_btn:active {
 	background-color: #EF7012;
     position: absolute;
     bottom: 0px;
-    opacity: 0.6;
+    /*opacity: 0.6;*/
 }
 
 .browse_chalkboards_block .text_block {
@@ -1823,11 +1827,11 @@ button.send_message_btn:focus {
     }
     .browse_chalkboards_block .title {
     	padding: 0 20px;
-    	font-size: 30px;
+    	font: 700 30px / 36px Roboto;
     }
     .browse_chalkboards_block .text {
     	padding: 0 20px;
-    	font-size: 18px;
+    	font: 300 18px / 24px Roboto
     }
     .how_works_block {
         padding: 20px 0;
