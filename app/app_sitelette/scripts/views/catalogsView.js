@@ -17,19 +17,23 @@ var CatalogsView = Backbone.View.extend({
         this.sasl = options.sasl;
         this.on('show', this.onShow, this);
         this.navbarView=options.navbarView;
+        this.render();
+    },
+
+    render: function() {
+        this.renderCatalogs();
+        return this;
     },
 
     onShow:  function () {
         this.addEvents({
             'click .back': 'triggerRestaurantView'
         });
-        this.renderCatalogs();
-        this.navbarView.hide();
+        debugger;
     },
 
     triggerRestaurantView: function() {
         Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true } );
-        this.navbarView.show();
     },
 
     renderCatalogs: function() {

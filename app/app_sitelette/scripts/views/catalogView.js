@@ -25,15 +25,8 @@ var CatalogView = Backbone.View.extend({
     },
 
     onShow : function() {
-        // this.addEvents({
-        //     'click .back' : 'goBack',
-        //     'click .order_button' : 'triggerOrder',
-        //     'click .add_combo_button' : 'goBackAndSendCatalogInfo',
-        //     'click .edit_button' : 'openEditPanel'
-        // });
-        this.renderItems();
+        //TODO --> check listenTo part after jquery.mobile will be fixed
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        // this.navbarView.hide();
         if(this.backToRoster===true){
           /* hide the order button */
           this.$('.order_button').hide();
@@ -69,7 +62,6 @@ var CatalogView = Backbone.View.extend({
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
         this.launchedViaURL=options.launchedViaURL;
-        // this.navbarView = options.navbarView;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
         this.render();
@@ -84,6 +76,7 @@ var CatalogView = Backbone.View.extend({
     render: function() {
         this.$el.html(template(this.renderData()));
         this.setElement(this.$el.children().eq(0));
+        this.renderItems();
         return this;
     },
 
