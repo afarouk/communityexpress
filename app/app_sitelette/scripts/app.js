@@ -237,10 +237,8 @@ App.prototype = {
             return;
         }
 
-
         this.lastPageId = $.mobile.pageContainer.pagecontainer('getActivePage').attr('id');
         console.log(" Last page =" + this.lastPageId);
-
 
         var newPageId = content.attr('id');
         if ((typeof this.lastPageId !== 'undefined') && newPageId == this.lastPageId) {
@@ -248,10 +246,7 @@ App.prototype = {
             return;
         }
 
-
         console.log("Switching to page : " + newPageId);
-
-
 
         /* AF: We have to put this content in the
         	 DOM first before jquery Mobile can manage the
@@ -261,12 +256,7 @@ App.prototype = {
             $('#' + newPageId).remove();
             $('body').append(content);
         }
-
-        // if (newPageId === 'cmtyx_landingView') {
-        //     this.landingView = view;
-        // }
         /* done removing and adding */
-
 
         /* If this is not the landing view, we may want to replace
           the hamburger with a back button and set it up to
@@ -274,11 +264,6 @@ App.prototype = {
         $.mobile.pageContainer.pagecontainer('change', content, settings);
         view.trigger('show');// <-- temporary solution
         this.currentView = view;
-
-        // $("#cmtyx_header_menu_button").toggle();
-        // $("#cmtyx_header_back_button").toggle();
-
-
 
         /* need to re-initialize the header and footer. Bug in jqm? */
         $("[data-role='navbar']").navbar();

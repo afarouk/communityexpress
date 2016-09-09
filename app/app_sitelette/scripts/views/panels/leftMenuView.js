@@ -8,7 +8,6 @@ PanelView = require('../components/panelView'),
 h = require('../../globalHelpers');
 
 var LeftMenuView = PanelView.extend({
-    el: '.popup_container',
 
     template : template,
 
@@ -17,10 +16,10 @@ var LeftMenuView = PanelView.extend({
         options = options || {};
     },
 
-    render : function() {
-        this.$el.html(this.template());
-        return this;
-    }
+    // render : function() {
+    //     this.$el.html(this.template());
+    //     return this;
+    // }
 
 });
 

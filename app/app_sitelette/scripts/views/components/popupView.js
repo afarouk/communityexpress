@@ -31,7 +31,7 @@ var PopUpView = function(options) {
 
 _.extend(PopUpView.prototype, Backbone.View.prototype, {
 
-    el: '.popup_container',
+    // el: '.popup_container',
 
     pageEvents: {
         'click .close_button': 'shut',
@@ -53,7 +53,6 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
     onShow: function(){},
 
     addEvents: function(eventObj) {
-        // this.inheritedEvents.push(eventObj);
         var events = _.extend( {}, eventObj, this.pageEvents );
         this.delegateEvents(events);
     },
@@ -61,7 +60,13 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
     render: function() {
         this.viewModel = this.model ? ( this.model.attributes || this.collection ) : this.collection;
         this.$el.html(this.template( _.extend( {}, this.viewModel, this.renderData ) ) );
+        this.afterRender();
         return this;
+    },
+
+    afterRender: function() {
+        $('.popup_container').html('');
+        this.$el.appendTo('.popup_container');
     },
 
     enhance: function() {
@@ -82,7 +87,7 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
         this.undelegateEvents();
         this.$el.popup('destroy');
         this.$el.html('');
-        // this.remove();
+        this.remove();
     }
 
 });

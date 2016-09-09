@@ -41,6 +41,7 @@ var PopupController = {
 
     openLeftMenu: function(){
         var view = viewFactory.create('leftMenuView');
+        // debugger;
         this.show(view);
     },
 
@@ -50,10 +51,12 @@ var PopupController = {
     },
 
     show: function(view) {
+        // debugger;
         view.render();
         view.enhance();
         //TODO some error sometimes when signin
-        setTimeout(view.open.bind(view),50);
+        view.open();
+        // setTimeout(view.open.bind(view),50);
     }, 
 
     hide: function(view) {

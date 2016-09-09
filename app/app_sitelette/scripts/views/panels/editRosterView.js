@@ -14,10 +14,6 @@ var EditRosterView = PanelView.extend({
     template : template,
 
     addedEvents : {
-        'click .back_button' : 'openSettings',
-        'click .cmntyex-button-edit' : 'toggleEditable',
-        'click .cmntyex-button-cancel' : 'toggleEditable',
-        //'click .cmntyex-button-done' : 'removeSelected',
         'change .combo_select_item': 'addOrDeleteItem'
     },
 
@@ -37,16 +33,12 @@ var EditRosterView = PanelView.extend({
     },
 
     render : function(update) {
-        // prevent jqm panel widget from breaking when updated
-        var container = update ? this.$('#left-panel') : this.$el;
-        //var container = update ? this.$('.ui-panel-inner') : this.$el;
-        //var editable = this.collection.length > 0 ? this.collection.at(0).get('editable') : false;
         var editable = true;
 
-        container.html(this.template({
+        this.$el.html(this.template({
             editable : editable
         }));
-        container.find('.cmntyex-list_container').html(new ListView({
+        this.$el.find('.cmntyex-list_container').html(new ListView({
             collection : this.collection,
             ListItemView : EditRosterViewItem,
             ListItemViewOptions : {
@@ -54,29 +46,8 @@ var EditRosterView = PanelView.extend({
             },
             parent : this
         }).render().el);
+        this.afterRender(); // call it for each panel if you replaced render
         return this;
-    },
-
-    toggleEditable : function() {
-        this.collection.each(function(model) {
-            var editable = true;
-            var combo = false;
-          /*
-            if (model.attributes){
-                if (model.attributes.itemType){
-                    if (model.attributes.itemType.enumText === 'COMBO') {
-                        editable = false;
-                        combo = true;
-                    }
-                }
-            }
-            ;
-            if (!combo) {
-                model.set('editable', !model.get('editable'));
-            }
-            */
-        });
-        this._update();
     },
 
     removeSelected : function(e) {

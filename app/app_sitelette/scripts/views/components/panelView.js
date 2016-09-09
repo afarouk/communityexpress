@@ -33,7 +33,7 @@ var PanelView = function(options) {
 };
 
 _.extend(PanelView.prototype, Backbone.View.prototype, {
-    el: '.popup_container',
+    // el: '.popup_container',
 
     pageEvents: {
         'panelclose':'_onClose',
@@ -47,9 +47,15 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
         this.delegateEvents(events);
     },
 
+    afterRender: function() {
+        $('.popup_container').html('');
+        this.$el.appendTo('.popup_container');
+    },
+
     render: function() {
         this.viewModel = this.model ? ( this.model.attributes || this.collection ) : this.collection;
         this.$el.html(this.template( _.extend( this.viewModel, this.renderData ) ) );
+        this.afterRender(); // call it by default for each panel
         return this;
     },
 
@@ -86,17 +92,9 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
 
     _onClose: function() {
         this.trigger('close:all');
-        // this.shut();
-        // if(this.parent){
-        //     // this.parent.trigger('subview:close');
-        // }
         this.undelegateEvents();
-        // this.remove();
-    },
-
-    openSettings: function() {
-        this.parent.openSubview('options', configurationActions.getConfigurations());
-    },
+        this.remove();
+    }
 
 });
 
