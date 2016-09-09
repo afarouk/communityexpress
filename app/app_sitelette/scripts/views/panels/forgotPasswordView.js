@@ -2,18 +2,17 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/signin.ejs'),
+var template = require('ejs!../../templates/forgotPassword.ejs'),
     loader = require('../../loader'),
     PopupView = require('../components/popupView'),
     sessionActions = require('../../actions/sessionActions'),
     h = require('../../globalHelpers');
 
-var SigninView = PopupView.extend({
+var ForgotPasswordView = PopupView.extend({
 
     template: template,
 
-    username: 'input[name="username"]',
-    password: 'input[name="password"]',
+    email: 'input[name="email"]',
 
     initialize: function(options){
 
@@ -28,9 +27,7 @@ var SigninView = PopupView.extend({
         this.$el.attr('id', 'cmntyex_signin_panel');
 
         this.addEvents({
-            'click .submit_button': 'submitForm',
-            'click .signup_button': 'openSignupView',
-            'click .forgot_password_button': 'forgotPassword'
+            'click .submit': 'checkForm'
         });
     },
 
@@ -44,33 +41,30 @@ var SigninView = PopupView.extend({
         });
     },
 
-    forgotPassword: function() {
-        this.shut();
-        this.$el.on('popupafterclose', function () {
-            this.parent.forgotPassword(this.model, this.callback);
-        }.bind(this));
+    checkForm: function() {
+        var email = this.val().email;
+        if (!email) {
+            this.showEmailError();
+            return;
+        }
+        this.hideEmailError();
+        this.submitForm(email);
     },
 
-    openSignupView: function() {
-        this.shut();
-        this.$el.on('popupafterclose', function () {
-            this.parent.signup(this.model, this.callback);
-        }.bind(this));
-    },
-
-    submitForm: function() {
+    submitForm: function(email) {
         loader.show();
-        sessionActions.startSession(this.val().username, this.val().password)
+        sessionActions.forgotPassword(email)
             .then(function(response){
-                $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
                 this.shut();
+                loader.hide();
                 this.$el.on('popupafterclose', function () {
-                    this.parent.textPopup({ text: 'successfully signed in as ' + response.username }, this.callback);
+                    this.parent.textPopup({ text: 'An email has been sent to let you change the password' }, this.callback);
                 }.bind(this));
             }.bind(this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'Error signin in'),
                     callback = this.openSignin;
                 this.shut();
+                loader.hide();
                 this.$el.on('popupafterclose', function () {
                     this.parent.textPopup({ text: text }, callback);
                 }.bind(this));
@@ -78,25 +72,20 @@ var SigninView = PopupView.extend({
         return false;
     },
 
-    // openSignin: function() {
-    //     this.openSubview('signin');
-    // },
-
-    showLoginError: function() {
-        this.$el.find('.login_error').show();
+    showEmailError: function() {
+        this.$el.find('.email_error').show().removeClass('hidden');
     },
 
-    hideLoginError: function() {
+    hideEmailError: function() {
         this.$el.find('.login_error').hide();
     },
 
     val: function () {
         return {
-            username: $(this.username).val(),
-            password: $(this.password).val()
+            email: $(this.email).val()
         };
     }
 
 });
 
-module.exports = SigninView;
+module.exports = ForgotPasswordView;

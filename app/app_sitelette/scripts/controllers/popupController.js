@@ -18,6 +18,11 @@ var PopupController = {
         this.show(view);
     },
 
+    forgotPassword: function(model, callback) {
+        var view = viewFactory.create('forgotPassword', model, this, {callback: callback});
+        this.show(view);
+    },
+
     confirmation: function(model, options) {
         var view = viewFactory.create('confirmationPopup', model, this, options);
         this.show(view);

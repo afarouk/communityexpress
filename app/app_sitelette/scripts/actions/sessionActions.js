@@ -147,6 +147,12 @@ module.exports = {
                 self.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
             }
         });
+    },
+
+    forgotPassword: function(email) {
+        return gateway.sendRequest('userForgotPassword', {
+            usernameOrEmail: email
+        });
     }
 
 };

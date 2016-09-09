@@ -2909,6 +2909,11 @@ color: #acacac;
     padding-top: 0;
 }
 
+.ui-popup .email_error {
+    margin:0;
+    color: red;
+}
+
 
 /*temporary styles for write_review button*/
 .navbutton_write_review {
