@@ -118,10 +118,10 @@ $(document).ready(
 				duration : 10000
 			});
       */
-      $.backstretch([ "desktop/images/bg/bg1.jpg"], {
-        fade : 950,
-        duration : 10000
-      });
+      // $.backstretch([ "desktop/images/bg/bg1.jpg"], {
+      //   fade : 950,
+      //   duration : 10000
+      // });
 
 			
 			/*
@@ -147,4 +147,80 @@ $(document).ready(
 
 			$('#back-top').tooltip('hide');
 
-		});
+			/*==============================================================================================================*/
+			/*==============================================================================================================*/
+
+			new WOW().init();
+	
+		    $('.gallery').slick({
+		        dots: true
+		        , arrows: false
+		        , infinite: true
+		        , speed: 700
+		        , slidesToShow: 1
+		        , autoplay: true
+		        , autoplaySpeed: 5000
+		    });
+
+		    function headerColorChange() {
+		    	if( $(window).width() > 768) {
+			    	if($("body").scrollTop() > 50) {
+						$("nav.navbar.navbar-default.navbar-fixed-top.top-nav-collapse").css("background-color","#363636");
+					}
+					if($("body").scrollTop() < 50) {
+						$("nav.navbar").css("background-color","transparent");
+					}
+				}
+				else {
+					$("nav.navbar").css("background-color","white");
+				}
+		    }
+
+		    function testBlockSize() {
+		        $(".color_fade_block").css("height", parseInt($(".browse_chalkboards_block").css("height").substring(0,$(".browse_chalkboards_block").css("height").length - 2)) + 1 + "px");
+		        $(".color_fade_block").css("width", $(".browse_chalkboards_block").css("width"));
+		    }
+
+		    testBlockSize();
+		    headerColorChange();
+
+
+		    $( window ).scroll(function() {
+		    	headerColorChange();
+			});
+			$( window ).resize(function() {
+		        headerColorChange();
+		        testBlockSize();
+			  	$( window ).scroll(function() {
+			    	headerColorChange();
+				});
+			});
+		    
+		    $.validator.addMethod(
+		        "regex_name",
+		        function(value, element, regexp) {
+		        var check = false;
+		        return this.optional(element) || regexp.test(value);
+		        },
+		        "Please enter valid symbols"
+		    );
+
+		    $("#contactUsForm").validate({
+		        rules: {
+		            name: {
+		                regex_name : /^[A-Za-z][A-Za-z ,.'-]+$/
+		            }
+		        },
+		        submitHandler: function () {
+		            alert("successful submit");
+		            $('#name').val('');
+		            $('#email').val('');
+		            $('#message').val('');
+		            return false;
+		        },
+		        errorPlacement: function(error, element) {         
+		            error.insertBefore(element);
+		        }
+		    });
+
+});
