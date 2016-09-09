@@ -63,6 +63,7 @@ var SigninView = PopupView.extend({
         sessionActions.startSession(this.val().username, this.val().password)
             .then(function(response){
                 $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
+                loader.hide();
                 this.shut();
                 this.$el.on('popupafterclose', function () {
                     this.parent.textPopup({ text: 'successfully signed in as ' + response.username }, this.callback);
@@ -70,6 +71,7 @@ var SigninView = PopupView.extend({
             }.bind(this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'Error signin in'),
                     callback = this.openSignin;
+                loader.hide();
                 this.shut();
                 this.$el.on('popupafterclose', function () {
                     this.parent.textPopup({ text: text }, callback);
@@ -77,10 +79,6 @@ var SigninView = PopupView.extend({
             }.bind(this));
         return false;
     },
-
-    // openSignin: function() {
-    //     this.openSubview('signin');
-    // },
 
     showLoginError: function() {
         this.$el.find('.login_error').show();
