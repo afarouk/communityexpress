@@ -1,5 +1,5 @@
 <div id="cmtyx_catalogView" data-role="page" class="page build_combo">
-    <div class="header">
+    <div class="sub_header">
         <a href="#left-panel"><span class="shopping_icon"></span></a> <span class="cart_items_number"><%=basket.getComboCount()%></span>
         <div class="total_price_order_block"><% if(basket.getComboCount()) { %> <span class="total_price">Total $35.00</span> <% } %> <a class="header_order_btn order_btn" id="roster_order_button">Order</a> </div>
     </div>
@@ -8,7 +8,7 @@
             <div class="build_combo_title"> <span class="build_combo_back_btn navbutton_back back"></span> <span>Build your own combo</span> </div>
             <div class="cmntyex-items_placeholder"></div>
             <div class="ui-grid-a back_next_btns">
-                <button class="ui-btn ui-corner-all next_btn add_to_cart_btn add_combo_button">Add to cart</button>
+                <button class="ui-btn ui-corner-all next_btn add_to_cart_btn add_combo_button cmtyx_background_color1">Add to cart</button>
             </div>
         </div>
     </div>
