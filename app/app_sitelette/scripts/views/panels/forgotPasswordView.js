@@ -42,8 +42,9 @@ var ForgotPasswordView = PopupView.extend({
     },
 
     checkForm: function() {
-        var email = this.val().email;
-        if (!email) {
+        var email = this.val().email,
+            regexp = /^[a-zA-Z\d\.@_]{3,30}$/; //light valider
+        if (!email.match(regexp)) {
             this.showEmailError();
             return;
         }
