@@ -37,7 +37,8 @@ var App = function() {
 		We may need LandingView to manage landing view (home) interactions.
 	  But we no longer have to switch to it. It is visible by default.*/
 
-    $.mobile.initializePage();
+    // $.mobile.initializePage();
+    // $.mobile.resetActivePageHeight();
     this.navbarView = new NavbarView();
 		this.headerView = new HeaderView({
             navbarView: this.navbarView

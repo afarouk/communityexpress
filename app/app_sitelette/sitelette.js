@@ -6,6 +6,16 @@ require('../vendor/styles/jquery.jqplot.min.css');
 require('../vendor/add-to-homescreen/style/addtohomescreen.css');
 require('../vendor/styles/owl.carousel.css');
 require('../vendor/styles/fullcalendar.min.css');
+
+require('../vendor/jquery-mobile/jquery.mobile-1.4.5.min.css');
+// require('../vendor/skeuocard-master/styles/skeuocard.reset.css');
+// require('../vendor/skeuocard-master/styles/skeuocard.css');
+// require('../vendor/skeuocard-master/styles/demo.css');
+require('../vendor/select2/select2.css');
+require('../vendor/star-rating-svg-master/src/css/star-rating-svg.css');
+// require('../vendor/slick/slick.css');
+// require('../vendor/slick/slick-theme.css');
+
 require('./styles/sitelette.css');
 
 require('../vendor/add-to-homescreen/src/addtohomescreen.min');
@@ -65,6 +75,6 @@ var App = require('./scripts/app.js'),
         }
     });
 
-
-new App().init();
-h().startLogger();
+window.App = App;
+// new App().init();
+// h().startLogger();
