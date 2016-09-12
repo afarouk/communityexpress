@@ -19,7 +19,7 @@ var themes = function() {
     var distStyle = {};
     for (var i = 1; i <= themeNumber; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
-            distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
+            distFile='<%= yeoman.dist %>/themes/'+ i +'/css/style.css',
             themeName='<%= yeoman.app %>/themes/'+ i +'/css/style.css';
         distStyle[distFile] = [styles, themeName];
     };
@@ -51,11 +51,16 @@ module.exports = function (grunt) {
                 devtool: 'cheap-module-eval-source-map', // development
             }
         },
-        clean: [
-            './dist.zip',
-            '<%= yeoman.dist %>',
-            '<%= yeoman.app %>/build'
-        ],
+        clean: {
+            dist: [
+                './dist.zip',
+                '<%= yeoman.dist %>',
+                '<%= yeoman.app %>/build'
+            ],
+            removeStyle: [
+                '<%= yeoman.dist %>/build/styles.css'
+            ]
+        },
         uglify: {
             options: {
                 compress: true,
@@ -90,10 +95,17 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
                         src: [
-                            '*.{ico,txt,png}',
-                            '.htaccess',
+                            '.htaccess'
                         ],
                         dest: '<%= yeoman.dist %>'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/build',
+                        src: [
+                            '*.{ico,txt,png,gif}'
+                        ],
+                        dest: '<%= yeoman.dist %>/themes/1/css'
                     },
                     // copy sitefiles
                     {
@@ -135,7 +147,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>/build',
-                        src: '{,*/}*',
+                        src: ['{,*/}*', '!*.{ico,txt,png,gif}'],
                         dest: '<%= yeoman.dist %>/build'
                     },
                     {
@@ -153,15 +165,15 @@ module.exports = function (grunt) {
                     {
                         src: '<%= yeoman.app %>/sitelette-production.php',
                         dest: '<%= yeoman.dist %>/sitelette.php'
-                    },
-                    {
-                        src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
-                        dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
-                    },
-                    {
-                        src: '<%= yeoman.app %>/styles/themes/theme2/sprite_buttons_theme9.png',
-                        dest: '<%= yeoman.dist %>/build/sprite_buttons_theme9.png'
                     }
+                    // {
+                    //     src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
+                    //     dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
+                    // },
+                    // {
+                    //     src: '<%= yeoman.app %>/styles/themes/theme2/sprite_buttons_theme9.png',
+                    //     dest: '<%= yeoman.dist %>/build/sprite_buttons_theme9.png'
+                    // }
                 ]
             }
         },
@@ -179,13 +191,10 @@ module.exports = function (grunt) {
         // Here will be replacements for production files
         replace: {
             dist: {
-                src: ['<%= yeoman.app %>/index.php'],
-                dest: '<%= yeoman.dist %>/',
+                src: ['<%= yeoman.dist %>/themes/1/index.html'],
+                dest: '<%= yeoman.dist %>/themes/1/index.html',
                 replacements: [{
-                    from: 'app_sitelette/',
-                    to: ''
-                },{
-                    from: 'dev-',
+                    from: '<link href="build/styles.css" rel="stylesheet">',
                     to: ''
                 }]
             }
@@ -205,12 +214,13 @@ module.exports = function (grunt) {
     });
     grunt.registerTask('prod', function() {
         grunt.task.run([
-            'clean',
+            'clean:dist',
             'webpack:prod',
             'copy',
             'replace',
             'uglify',
             'cssmin',
+            'clean:removeStyle',
             'compress'
         ]);
     });
