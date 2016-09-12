@@ -3136,5 +3136,14 @@ color: #acacac;
     background-color: red;
 }
 
+.hidden {
+    display: none;
+}
+
+
+.error {
+    color: #f00;
+}
+
 
 

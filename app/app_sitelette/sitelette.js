@@ -1,12 +1,13 @@
 'use strict';
 
-// require('../vendor/jquery-mobile/jquery.mobile-1.4.5.css');
-require('../app_sitelette/styles/sitelette_icons.css');
+require('../vendor/css/jquery.mobile-1.4.5.min.css');
+// require('../vendor/css/bootstrap.min.css');
+// require('../app_sitelette/styles/sitelette_icons.css');
 require('../vendor/styles/jquery.jqplot.min.css');
 require('../vendor/add-to-homescreen/style/addtohomescreen.css');
-require('../vendor/styles/owl.carousel.css');
-require('../vendor/styles/fullcalendar.min.css');
-require('./styles/sitelette.css');
+// require('../vendor/styles/owl.carousel.css');
+// require('../vendor/styles/fullcalendar.min.css');
+// require('./styles/sitelette.css');
 
 require('../vendor/add-to-homescreen/src/addtohomescreen.min');
 

@@ -7,7 +7,8 @@ var path = require('path'),
 
 module.exports = {
 	entry: {
-		'bundle': './app/app_sitelette/sitelette.js'
+		'bundle': './app/app_sitelette/sitelette.js',
+		'mobile': './app/app_sitelette/mobile.js'
 	},
 	output: {
 		path: './app/app_sitelette/build/',
