@@ -1,4 +1,5 @@
-<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+<!-- <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a> -->
+<a href="#" data-rel="back" class="close_btn"></a>
 <% if (title) { %>
     <div class="signin_alert_header" data-role="header" data-theme="a">
         <h1><%= title %></h1>
@@ -11,9 +12,9 @@
                 <fieldset class="auth_fieldset" data-role="controlgroup" data-corners="false" data-shadows="false" data-theme="c">
                     <p class="login_error hidden error">Incorrect username / email or password</p>
                     <label for="username">Username / Email:</label>
-                    <input autocapitalize="off" type="text" name="username" data-corners="false"/>
+                    <input autocapitalize="off" type="text" name="username" data-corners="false" placeholder="Username / Email" />
                     <label for="password">Password:</label>
-                    <input autocapitalize="off" type="password" name="password" data-corners="false"/>
+                    <input autocapitalize="off" type="password" name="password" data-corners="false" placeholder="Password" />
                 </fieldset>
             </div>
         </div>
@@ -31,11 +32,11 @@
     </form>
     <div class="ui-grid-a signin_links">
         <div class="ui-block-a">
-            <a class="signup_button" data-theme="c"  data-corners="false">Create Account</a>
+            <a class="signup_button cmtyx_color1" data-theme="c"  data-corners="false">Create Account</a>
         </div>
         <div class="ui-block-b">
             <!-- <a href="https://chalkboardstoday.com/support?svc=passwordChange"class="signup_button" data-theme="c"  data-corners="false">Forgot password ?</a> -->
-            <a href="" class="forgot_password_button" data-theme="c"  data-corners="false">Forgot password ?</a>
+            <a href="" class="forgot_password_button cmtyx_color1" data-theme="c"  data-corners="false">Forgot password ?</a>
         </div>
     </div>
 </div>

@@ -2862,47 +2862,101 @@ color: #acacac;
     opacity: .3;
     filter: Alpha(Opacity=30);
 }
+.ui-input-text.ui-body-inherit.ui-shadow-inset {
+    font-size: 16px;
+    color: rgba(250, 250, 250, 0.7);
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    outline: none;
+}
+
 .ui-popup .ui-controlgroup-controls .ui-input-text input {
-    background-color: white!important;
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    background-color: transparent;
+    -webkit-box-shadow: 0 0 0px 1000px #363636 inset;
+    border-bottom: 0.1rem solid rgba(250, 250, 250, 0.7);  
+    -webkit-text-fill-color: rgba(250, 250, 250, 0.7); 
+    text-shadow: none;
+    outline: none;
+}
+#cmntyex_signin_panel .close_btn,
+#signup_panel .close_btn {
+    display: inline-block;
+    background: url(images/close.png) no-repeat;
+    background-position: 50%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+}
+.signin_links a.forgot_password_button {
+    float: right;
+}
+.signin_links a {
+    display: inline-block;
+    margin-top: 5px;
+    font-weight: 400 !important;
+}
+.signin_links a:hover {
+    cursor: pointer;
 }
 .ui-popup .signin_alert_header {
     background-color: #363636;
-    box-shadow: 0 0 20px #000;
+    /*box-shadow: 0 0 20px #000;*/
     border-bottom: none;
     line-height: 12px;
+    text-align: center;
 }
 .ui-popup .signin_alert_header .ui-title {
     text-transform: uppercase;
     font: 700 18px Roboto;
     color: #ddd;
     display: inline-block;
+    margin: 0;
 }
 
-.ui-popup .ui-grid-a .ui-grid-solo .ui-block-a {
+.ui-popup .ui-grid-solo .ui-block-a a,
+.ui-popup .ui-grid-a .ui-block-a a.cancel,
+.ui-popup .ui-grid-a .ui-block-a a.close_button
+ {
     background-color: transparent!important;
-    border-color: #faa019 !important; 
-    border-width: 1px;
-    border-style: solid;
+    border: solid 1px #faa019 !important;
     border-radius: 5px;
     outline: none;
+    font: 300 18px Roboto !important;
+    color: #faa019 !important;
+    text-shadow: none !important;
+    text-transform: uppercase;
+    margin-bottom: 0;
 }
 
-.ui-popup .ui-grid-a .ui-grid-solo .ui-block-a a {
-    margin: 0;
-    color: #faa019 !important; 
-    text-transform: uppercase;
-    font: 700 18px / 19px Roboto !important;
-    font-style: normal;
-    font-variant-ligatures: normal;
-    font-variant-caps: normal;
-    font-variant-numeric: normal;
-    font-weight: 700;
-    font-stretch: normal;
-    font-size: 18px;
-    line-height: 19px;
-    font-family: Roboto;
+.ui-popup .ui-grid-solo .ui-block-a a:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.ui-popup .ui-grid-a .ui-block-b a.submit,
+.ui-popup .ui-grid-a .ui-block-b a.confirmation_button {
+    background-color: #faa019 !important;
+    border: solid 1px #faa019 !important;
+    border-radius: 5px;
+    outline: none;
+    font: 700 18px Roboto !important;
+    color: #fafafa !important;
     text-shadow: none !important;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.ui-popup .ui-block-a p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.ui-popup .ui-grid-a a:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 .ui-popup .signin_alert_header ~ .ui-content{
@@ -2914,6 +2968,18 @@ color: #acacac;
     color: red;
 }
 
+.ui-loader h1 {
+    color: #fff;
+}
+
+.ui-loader-textonly .ui-icon-loading {
+    display: block;
+}
+
+.ui-popup-container .fade .in .ui-popup-active {
+
+}
+
 
 /*temporary styles for write_review button*/
 .navbutton_write_review {
@@ -2921,3 +2987,6 @@ color: #acacac;
     height: 40px;
     background-color: red;
 }
+
+
+
