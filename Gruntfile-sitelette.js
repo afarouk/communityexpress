@@ -20,7 +20,7 @@ var themes = function() {
     for (var i = 1; i <= themeNumber; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
             distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
-            themeName='<%= yeoman.app %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
+            themeName='<%= yeoman.app %>/themes/'+ i +'/css/style.css';
         distStyle[distFile] = [styles, themeName];
     };
     return distStyle;
@@ -63,8 +63,16 @@ module.exports = function (grunt) {
                 sourceMap: false
             },
             target: {
-                src: '<%= yeoman.dist %>/build/bundle.js',
-                dest: '<%= yeoman.dist %>/build/bundle.js'
+                files: [
+                    {
+                        src: '<%= yeoman.dist %>/build/bundle.js',
+                        dest: '<%= yeoman.dist %>/build/bundle.js'
+                    },
+                    {
+                        src: '<%= yeoman.dist %>/build/mobile.js',
+                        dest: '<%= yeoman.dist %>/build/mobile.js'
+                    }
+                ]
             }
         },
         cssmin: {

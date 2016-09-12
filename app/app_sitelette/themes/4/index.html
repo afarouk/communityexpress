@@ -8,8 +8,7 @@
     <title>Sitelettes</title>
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
-
-    <link href="themes/3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="themes/3/css/bootstrap.min.css" rel="stylesheet">
     <link href="themes/3/css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
     <link href="themes/3/skeuocard-master/styles/skeuocard.reset.css" rel="stylesheet" />
     <link href="themes/3/skeuocard-master/styles/skeuocard.css" rel="stylesheet" />
@@ -18,19 +17,17 @@
     <link href="themes/3/star-rating-svg-master/src/css/star-rating-svg.css" rel="stylesheet">
     <link href="themes/3/css/style.css" rel="stylesheet">
     <link href="themes/3/slick/slick.css" rel="stylesheet">
-    <link href="themes/3/slick/slick-theme.css" rel="stylesheet">
+    <link href="themes/3/slick/slick-theme.css" rel="stylesheet"> -->
+    <link href="build/styles.css" rel="stylesheet">
+    <link href="themes/4/css/style.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="themes/3/js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="themes/3/js/bootstrap.min.js"></script>
+    <script src="build/mobile.js"></script>
+    <!-- <script src="themes/3/js/bootstrap.min.js"></script>
     <script src="themes/3/skeuocard-master/javascripts/skeuocard.js"></script>
     <script src="themes/3/select2/select2.full.js"></script>
     <script src="themes/3/star-rating-svg-master/src/jquery.star-rating-svg.js"></script>
-    <script src="themes/3/slick/slick.min.js"></script>
+    <script src="themes/3/slick/slick.min.js"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh4gSujXy7GSiABoUbJUIXLS6n8a0ac8o"></script>
-    <!-- <script src="themes/3/js/scripts.js"></script> -->
-
-
 
     <script>
         window.saslData = <?php
@@ -61,10 +58,6 @@
         window.community.canCreateAnonymousUser = <?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
     </script>
 
-
-
-
-
 </head>
 
 <body>
@@ -72,59 +65,12 @@
     <div class="popup_container"></div>
 
     <div id="cmtyx_header" data-role="header" class="header common_header">
-        <!--
-
-            <a href="#left-panel" class="menu_btn">
-                <div class="menu_btn_img"></div>
-            </a>
-            <div class="logo_container">
-                <div class="logo logo_img"></div>
-            </div>
-            <div data-role="panel" id="left-panel" class="cart" data-display="overlay">
-
-                <ul class="left_panel_menu">
-                    <li class="menu_item">
-                        <div class="menu_item_icon list_img"></div>
-                        <span class="menu_item_title">View/Edit catalogue</span>
-                        <a href="#" data-rel="close" class="close_cart_button">
-                            <div class="left_arr_icon left_arr_img"></div>
-                        </a>
-                    </li>
-                    <li class="menu_item chat_btn">
-                        <div class="menu_item_icon speech_bubble_img"></div>
-                        <span class="menu_item_title">Messanging/Chat</span></li>
-                    <li class="menu_item business_hours_btn">
-                        <div class="menu_item_icon clock_circular_img"></div>
-                        <span class="menu_item_title">Business hours</span></li>
-
-    <li class="menu_item">
-    <div class="menu_item_icon photo_camera_img"></div>><span class="menu_item_title">Upload photo</span></li>
-
-                    <li class="menu_item user_reviews_btn">
-                        <div class="menu_item_icon speaking_img"></div>
-                        <span class="menu_item_title">User reviews</span></li>
-                    <li class="menu_item appointments_btn">
-                        <div class="menu_item_icon calendar_img"></div>
-                        <span class="menu_item_title">Appointments</span></li>
-                    <li class="menu_item contact_us_btn">
-                        <div class="menu_item_icon edit_img"></div>
-                        <span class="menu_item_title">Contact us</span></li>
-                </ul>
-            </div>
-
-      -->
         <div id="cmtyx_header_menu_button" class="menu_btn">
             <div class="menu_btn_img"></div>
         </div>
-
         <div id="cmtyx_header_back_button" data-role="button" data-icon="back">
             <span class="back_arr_icon"></span>
         </div>
-
-
-
-
-
         <div class="logo_container">
             <div class="logo logo_img"></div>
         </div>
@@ -164,7 +110,7 @@
                 <ul>
                     <li class="welcome_block">
                         <div class="breaking_news">
-                            <span class="news_line">Theme 4</span>
+                            <span class="news_line">some breaking news are here</span>
                         </div>
                         <span class="title">Warm and cosy</span>
                         <span class="undertitle">A quite room perfect for conversation with soft music in background</span>
@@ -872,19 +818,10 @@ San jose CA 95112</span>
         </div>
     </div>
     <script>
-        $('.select').select2();
-        $(".select2-search, .select2-focusser").remove();
 
-        $(function() {
-            // $( "[data-role='navbar']" ).navbar();
-            // $( "[data-role='header'], [data-role='footer']" ).toolbar();
-            /* reset height */
-            $.mobile.resetActivePageHeight();
-        });
     </script>
 
     <script src="build/bundle.js"></script>
-
 </body>
 
 </html>
