@@ -3103,6 +3103,10 @@ color: #acacac;
     box-shadow: none;
 }
 
+#cmntyex_text_popup a {
+    margin-bottom: 10px;
+}
+
 .ui-popup .signin_alert_header ~ .ui-content{
     padding-top: 0;
 }
