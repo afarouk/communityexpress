@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sitelettes</title>
+
+    <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'> -->
+    <!-- <link href="themes/3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="themes/3/css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <link href="themes/3/skeuocard-master/styles/skeuocard.reset.css" rel="stylesheet" />
+    <link href="themes/3/skeuocard-master/styles/skeuocard.css" rel="stylesheet" />
+    <link href="themes/3/skeuocard-master/styles/demo.css" rel="stylesheet" />
+    <link href="themes/3/select2/select2.css" rel="stylesheet">
+    <link href="themes/3/star-rating-svg-master/src/css/star-rating-svg.css" rel="stylesheet">
+    <link href="themes/3/css/style.css" rel="stylesheet">
+    <link href="themes/3/slick/slick.css" rel="stylesheet">
+    <link href="themes/3/slick/slick-theme.css" rel="stylesheet"> -->
+    <link href="build/styles.css" rel="stylesheet">
+    <link href="themes/2/css/style.css" rel="stylesheet">
+
+    <script src="build/mobile.js"></script>
+    <!-- <script src="themes/3/js/bootstrap.min.js"></script>
+    <script src="themes/3/skeuocard-master/javascripts/skeuocard.js"></script>
+    <script src="themes/3/select2/select2.full.js"></script>
+    <script src="themes/3/star-rating-svg-master/src/jquery.star-rating-svg.js"></script>
+    <script src="themes/3/slick/slick.min.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh4gSujXy7GSiABoUbJUIXLS6n8a0ac8o"></script>
+
+    <script>
+        window.saslData = <?php
+            if (!is_null($saslJSON)) {
+                echo json_encode($saslJSON);
+            } else {
+                echo '{"error":"null sasl"}';
+            }
+            ?>;
+        window.community = {};
+        window.community.themeId = <?php echo $themeId ?>;
+        window.community.domain = '<?php echo $domain ?>';
+        window.community.protocol = '<?php echo $protocol?>';
+        window.community.UID = '<?php echo $UID ?>';
+        window.community.type = '<?php echo $type ?>';
+        window.community.uuidURL = '<?php echo $uuidURL ?>';
+        window.community.embedded = <?php echo  $embedded==TRUE?'true':'false'  ?>;
+        window.community.desktop = <?php echo  $desktopIFrame==TRUE?'true':'false' ?>;
+        window.community.publicAccess = <?php echo  $urlKeyAccess==TRUE?'true':'false'?>;
+        window.community.directAccess = <?php echo  $saslAccess==TRUE?'true':'false'?>;
+        window.community.demo = <?php echo  $demo==TRUE?'true':'false'?>;
+        window.community.server = '<?php echo $server ?>';
+        window.community.host = '<?php echo $serverName ?>';
+        window.community.friendlyURL = '<?php echo $friendlyURL ?>';
+        window.community.isPrivate = <?php echo  $isPrivate==TRUE?'true':'false'?>;
+        window.community.serviceAccommodatorId = '<?php echo $serviceAccommodatorId ?>';
+        window.community.serviceLocationId = '<?php echo $serviceLocationId ?>';
+        window.community.canCreateAnonymousUser = <?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
+    </script>
+
+</head>
+
+<body>
+
+    <div class="popup_container"></div>
+
+    <div id="cmtyx_header" data-role="header" class="header common_header">
+        <div id="cmtyx_header_menu_button" class="menu_btn">
+            <div class="menu_btn_img"></div>
+        </div>
+        <div id="cmtyx_header_back_button" data-role="button" data-icon="back">
+            <span class="back_arr_icon"></span>
+        </div>
+        <div class="logo_container">
+            <div class="logo logo_img"></div>
+        </div>
+    </div>
+
+    <div id="cmtyx_navbar" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup common_footer">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#" class="menu_button_3 ui-btn">
+                        <div class="navbar_btn_icon document_img"></div>
+                        <br>Menu</a>
+                </li>
+                <li>
+                    <a href="#" class="menu_button_2">
+                        <div class="navbar_btn_icon calendar_grey_img m-b-11"></div>
+                        <br>Deals</a>
+                </li>
+                <li>
+                    <a href="#" class="menu_button_4">
+                        <div class="navbar_btn_icon information_button_img m-b-7"></div>
+                        <br>About</a>
+                </li>
+                <li>
+                    <a href="#" class="menu_button_5">
+                        <div class="navbar_btn_icon user_img m-b-9"></div>
+                        <br>User</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- HOME-->
+    <div data-role="page" id="cmtyx_landingView">
+            <div class="home_body p-0">
+
+                <ul>
+                    <li class="welcome_block">
+                        <div class="breaking_news">
+                            <span class="news_line">some breaking news are here</span>
+                        </div>
+                        <span class="title">Warm and cosy</span>
+                        <span class="undertitle">A quite room perfect for conversation with soft music in background</span>
+                        <button class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_color1 menu_button_3">open menu</button>
+                        <span class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></span><span class="open_label">open now</span>
+                    </li>
+                </ul>
+                <ul class="home_tabs_list">
+                    <li class="events_block">
+                        <div class="header">
+                            <span class="title">events</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body">
+                            <div class="event_pic event_img"></div>
+                            <table>
+                                <tr>
+                                    <td class="event_date first">
+                                        <span class="event_day">28</span>
+                                        <span class="event_month">jun</span>
+                                    </td>
+                                    <td class="event_info first">
+                                        <span class="event_title">Live acoustic concert</span>
+                                        <span class="event_time">21:00-00:00</span>
+                                        <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
+                                    </td>
+                                    <td class="add_to_calendar_btn_container first">
+                                        <span class="add_to_calendar_btn"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="event_date">
+                                        <span class="event_day">29</span>
+                                        <span class="event_month">jun</span>
+                                    </td>
+                                    <td class="event_info">
+                                        <span class="event_title">Live acoustic concert</span>
+                                        <span class="event_time">21:00-00:00</span>
+                                        <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
+                                    </td>
+                                    <td class="add_to_calendar_btn_container">
+                                        <span class="add_to_calendar_btn"></span>
+                                    </td>
+                                </tr>
+                                <tr class="last">
+                                    <td class="event_date last">
+                                        <span class="event_day">30</span>
+                                        <span class="event_month">jun</span>
+                                    </td>
+                                    <td class="event_info last">
+                                        <span class="event_title">Live acoustic concert</span>
+                                        <span class="event_time">21:00-00:00</span>
+                                        <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
+                                    </td>
+                                    <td class="add_to_calendar_btn_container last">
+                                        <span class="add_to_calendar_btn"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </li>
+                    <li class="gallery_block">
+                        <div class="header">
+                            <span class="title">gallery</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body">
+                            <ul class="gallery">
+                                <li class="slide slide1">
+                                    <div class="slide_description">
+                                        <span class="slide_title">Incredible drinks</span>
+                                        <span class="slide_undertitle">A few words abouts this amazing photo and bar</span>
+                                    </div>
+                                </li>
+                                <li class="slide slide2">
+                                    <div class="slide_description">
+                                        <span class="slide_title">Greek salad</span>
+                                        <span class="slide_undertitle">Salad with fresh tomatoes...</span>
+                                    </div>
+                                </li>
+                                <li class="slide slide3">
+                                    <div class="slide_description">
+                                        <span class="slide_title">Pancakes</span>
+                                        <span class="slide_undertitle">The best pancakes you've ever...</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="questions_block">
+                        <div class="header">
+                            <span class="title">questions</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body">
+                            <div class="question_image"></div>
+                            <span class="question">Our coffee is awesome</span>
+                            <form class="question_ans_form">
+                                <label for="a_ans">YES <span class="answer_color_container answer_color_1"></span></label>
+                                <input type="radio" name="radio-choice-ans" id="a_ans" class="ansRadioChoice" checked='checked'>
+                                <label for="b_ans">NO <span class="answer_color_container answer_color_2"></span></label>
+                                <input type="radio" name="radio-choice-ans" id="b_ans" class="ansRadioChoice">
+                            </form>
+                            <div class="question_results">
+                                <div class="a_ans_result">
+                                    <div class="a_ans_graph answer_color_1"></div>
+                                    <span class="a_ans_percent_num">85%</span>
+                                </div>
+                                <div class="b_ans_result">
+                                    <div class="b_ans_graph answer_color_2"></div>
+                                    <span class="b_ans_percent_num">15%</span>
+                                </div>
+                            </div>
+                            <div class="prizes_title">There are some prizes you can get</div>
+                            <ul>
+                                <li>
+                                    <div class="discount_block">
+                                        <div class="ui-grid-a discount_container">
+                                            <div class="ui-block-a">
+                                                <div class="discount_text_block">
+                                                    <span class="discount_text">Discount</span>
+                                                    <span class="discount_condition">every second coffee</span>
+                                                    <span class="discount_date">till 30.07</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-block-b prize2_pic"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="last">
+                                    <div class="discount_block">
+                                        <div class="ui-grid-a discount_container">
+                                            <div class="ui-block-a">
+                                                <div class="discount_text_block">
+                                                    <span class="discount_text">Discount</span>
+                                                    <span class="discount_condition">every second salad</span>
+                                                    <span class="discount_date">till 30.07</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-block-b prize3_pic"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="about_us_block">
+                        <div class="header">
+                            <span class="title">about us</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body">
+                            <div class="text">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. Most of the people here have some advanced degree in Coffee Science. Bill is our new intern, but he is from Columbia
+                                and knows all about coffee without going to school.</div>
+                        </div>
+                    </li>
+                    <li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
+                        <div class="header">
+                            <span class="title">Loyalty program</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body">
+                            <div class="discount_block">
+                                <div class="ui-grid-a discount_container">
+                                    <div class="ui-block-a">
+                                        <div class="discount_text_block">
+                                            <span class="discount_text">Discount</span>
+                                            <span class="discount_condition">every second burger</span>
+                                            <span class="discount_date">till 30.07</span>
+                                        </div>
+                                    </div>
+                                    <div class="ui-block-b discount_pic_block"></div>
+                                </div>
+                                <div class="no_qr_code_block cmtyx_color1">
+                                    <button class="refresh_button_style1"> Refresh </button>
+                                </div>
+                                <div class="qr_code_block cmtyx_color1">
+                                    <span class="close_btn"></span>
+                                    <span class="qr_code_title cmtyx_color1">This is your personal discount QR-code</span>
+                                    <div class="qr_code_container">
+                                        <img src="images/getUserQRCode.png" alt="" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="reviews_block">
+                        <div class="header">
+                            <span class="title">user's reviews</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body">
+                            <div class="review">
+                                <table>
+                                    <tr>
+                                        <td class="user_avatar"></td>
+                                        <td class="review_section">
+                                            <div class="name_date_block">
+                                                <span class="user_name">Jacob Holiday</span><span class="date">Aug, 24, 2016</span>
+                                            </div>
+                                            <div class="rating_block">
+                                                <div class="my-rating"></div>
+                                                <div class="rating_number"><span class="current_rating"></span><span>/5</span></div>
+                                                <script>
+                                                </script>
+                                            </div>
+                                            <div class="text">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="show_more_block">
+                                <div class="show_more_avatars_container">
+                                    <span class="avatar avatar1"></span>
+                                    <span class="avatar avatar2"></span>
+                                    <span class="avatar avatar3"></span>
+                                    <span class="avatar avatar4"></span>
+                                    <span class="avatar avatar5"></span>
+                                </div>
+                                <span class="show_more_reviews_btn cmtyx_color1">show more reviews</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="promotion_block">
+                        <div class="header">
+                            <span class="title">Promotion</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body">
+                            <div class="promotion_item">
+                                <div class="promotion_item_img"></div>
+                                <div class="ui-grid-a promotion_item_buttons">
+                                    <div class="ui-block-a like_btn_block">
+                                        <span class="icon like_icon"></span>
+                                        <span class="text">Like</span>
+                                    </div>
+                                    <div class="ui-block-b share_btn_block">
+                                        <span class="icon share_icon"></span>
+                                        <span class="text">Share</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="photo_contest_block">
+                        <div class="header">
+                            <span class="title">Photo contest</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body">
+                            <div class="question_image"></div>
+                            <span class="contest_task">Here should be some text about this section</span>
+                            <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_color1">SEND A PHOTO</button>
+                            <div class="prizes_title">There are some prizes you can get</div>
+                            <ul>
+                                <li>
+                                    <div class="discount_block">
+                                        <div class="ui-grid-a discount_container">
+                                            <div class="ui-block-a">
+                                                <div class="discount_text_block">
+                                                    <span class="discount_text">Discount</span>
+                                                    <span class="discount_condition">every second burger</span>
+                                                    <span class="discount_date">till 30.07</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-block-b prize1_pic"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="discount_block">
+                                        <div class="ui-grid-a discount_container">
+                                            <div class="ui-block-a">
+                                                <div class="discount_text_block">
+                                                    <span class="discount_text">Discount</span>
+                                                    <span class="discount_condition">every second coffee</span>
+                                                    <span class="discount_date">till 30.07</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-block-b prize2_pic"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="last">
+                                    <div class="discount_block">
+                                        <div class="ui-grid-a discount_container">
+                                            <div class="ui-block-a">
+                                                <div class="discount_text_block">
+                                                    <span class="discount_text">Discount</span>
+                                                    <span class="discount_condition">every second salad</span>
+                                                    <span class="discount_date">till 30.07</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-block-b prize3_pic"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="video_block">
+                        <div class="header">
+                            <span class="title">video</span>
+                            <div class="collapse_btn"></div>
+                        </div>
+                        <div class="body last">
+                            <iframe width="100%" height="250" src="https://www.youtube.com/embed/Co1oj3o4tbE" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="share_block">
+                        <span class="title">
+                                    Share this site
+                                </span>
+                        <div class="ui-grid-c">
+                            <div class="ui-block-a text"><span class="share_icon sms_icon"></span>
+                                <br>SMS</div>
+                            <div class="ui-block-b text"><span class="share_icon email_icon"></span>
+                                <br>E-mail</div>
+                            <div class="ui-block-c text"><span class="share_icon facebook_icon"></span>
+                                <br>Facebook</div>
+                            <div class="ui-block-d text"><span class="share_icon twitter_icon"></span>
+                                <br>Twitter</div>
+                        </div>
+                    </li>
+                    <li class="contact_us_block">
+                        <span class="title">contact us</span>
+                        <!--
+<span class="address">1086 North 1st Street <br>
+San jose CA 95112</span>
+-->
+                        <div class="ui-grid-a btns_container">
+                            <div class="ui-block-a p-r-10">
+                                <button class="ui-btn ui-corner-all back_btn cmtyx_color1">Drive to us</button>
+                            </div>
+                            <div class="ui-block-b p-l-10">
+                                <button class="ui-btn ui-corner-all next_btn cmtyx_background_color1">Call us</button>
+                            </div>
+                        </div>
+                        <div id="home_map" class="map_container">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--    CONTACT US-->
+
+    <div data-role="page" id="contact_us">
+        <div class="header">
+            <span class="back_arr_icon"></span>
+            <span class="title">Contact us</span>
+        </div>
+        <div class="body">
+            <div class="title">keep in touch</div>
+            <div class="undertitle">Do you have some questions? Feel free to write us!</div>
+            <div class="input_container">
+                <div class="material-textfield yellow">
+                    <input type="text" required data-role="none" />
+                    <label data-content="Name">Name</label>
+                </div>
+                <div class="material-textfield yellow">
+                    <input type="text" required data-role="none" />
+                    <label data-content="Email">Email</label>
+                </div>
+                <div class="material-textfield yellow">
+                    <textarea required data-role="none" rows="3"></textarea>
+                    <label data-content="Message">City</label>
+                </div>
+            </div>
+            <div class="ui-grid-a back_next_btns">
+                <button class="ui-btn ui-corner-all back_btn send_btn cmtyx_color1">send</button>
+            </div>
+        </div>
+    </div>
+
+    <!--    BUSINESS HOURS-->
+
+    <div data-role="page" id="business_hours">
+        <div class="header">
+            <span class="back_arr_icon"></span>
+            <span class="title">Business hours</span>
+        </div>
+        <div class="body">
+            <table>
+                <tr>
+                    <td class="day cmtyx_color1">sun</td>
+                    <td>Closed</td>
+                </tr>
+                <tr>
+                    <td class="day cmtyx_color1">mon</td>
+                    <td>09 - 22</td>
+                </tr>
+                <tr>
+                    <td class="day cmtyx_color1">tue</td>
+                    <td>09 - 22</td>
+                </tr>
+                <tr>
+                    <td class="day cmtyx_color1">wed</td>
+                    <td>09 - 22</td>
+                </tr>
+                <tr>
+                    <td class="day cmtyx_color1">thu</td>
+                    <td>09 - 22</td>
+                </tr>
+                <tr>
+                    <td class="day cmtyx_color1">fri</td>
+                    <td>09 - 22</td>
+                </tr>
+                <tr>
+                    <td class="day cmtyx_color1">sat</td>
+                    <td>09 - 22</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <!--    CHAT-->
+
+    <div data-role="page" id="chat">
+        <div class="header">
+            <span class="back_arr_icon"></span>
+            <span class="title">Chat</span>
+        </div>
+        <div class="body">
+            <div class="date">Aug, 24, 2016</div>
+            <ul>
+                <li class="friend_message">
+                    <table>
+                        <tr>
+                            <td class="time">15:35</td>
+                            <td class="message">
+                                <div class="message_text">
+                                    We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy.</div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="my_message">
+                    <table>
+                        <tr>
+                            <td class="message">
+                                <div class="message_text">
+                                    We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy.
+                                </div>
+                            </td>
+                            <td class="time">15:35</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+            <div class="footer_panel">
+                <span class="smile_icon"></span>
+                <span class="send_message_icon"></span>
+            </div>
+        </div>
+    </div>
+
+    <!--    USER REVIEWS-->
+
+    <div data-role="page" id="user_reviews">
+        <div class="header">
+            <span class="back_arr_icon"></span>
+            <span class="title">User Reviews</span>
+        </div>
+        <div class="body">
+            <ul class="reviews_block">
+                <li class="review">
+                    <table>
+                        <tr>
+                            <td class="user_avatar"></td>
+                            <td class="review_section">
+                                <div class="name_date_block">
+                                    <span class="user_name">Jacob Holiday</span><span class="date">Aug, 24, 2016</span>
+                                </div>
+                                <div class="rating_block">
+                                    <div class="my-rating"></div>
+                                    <div class="rating_number"><span class="current_rating"></span><span>/5</span></div>
+                                    <script>
+                                    </script>
+                                </div>
+                                <div class="text">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="review">
+                    <table>
+                        <tr>
+                            <td class="user_avatar user_avatar2"></td>
+                            <td class="review_section">
+                                <div class="name_date_block">
+                                    <span class="user_name">John Johnson</span><span class="date">Aug, 24, 2016</span>
+                                </div>
+                                <div class="rating_block">
+                                    <div class="my-rating"></div>
+                                    <div class="rating_number"><span class="current_rating"></span><span>/5</span></div>
+                                    <script>
+                                    </script>
+                                </div>
+                                <div class="text">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="review">
+                    <table>
+                        <tr>
+                            <td class="user_avatar user_avatar3"></td>
+                            <td class="review_section">
+                                <div class="name_date_block">
+                                    <span class="user_name">Jessica Parker</span><span class="date">Aug, 24, 2016</span>
+                                </div>
+                                <div class="rating_block">
+                                    <div class="my-rating"></div>
+                                    <div class="rating_number"><span class="current_rating"></span><span>/5</span></div>
+                                    <script>
+                                    </script>
+                                </div>
+                                <div class="text">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="review">
+                    <table>
+                        <tr>
+                            <td class="user_avatar user_avatar4"></td>
+                            <td class="review_section">
+                                <div class="name_date_block">
+                                    <span class="user_name">Jane Smith</span><span class="date">Aug, 24, 2016</span>
+                                </div>
+                                <div class="rating_block">
+                                    <div class="my-rating"></div>
+                                    <div class="rating_number"><span class="current_rating"></span><span>/5</span></div>
+                                    <script>
+                                    </script>
+                                </div>
+                                <div class="text">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="review">
+                    <table>
+                        <tr>
+                            <td class="user_avatar"></td>
+                            <td class="review_section">
+                                <div class="name_date_block">
+                                    <span class="user_name">Jacob Holiday</span><span class="date">Aug, 24, 2016</span>
+                                </div>
+                                <div class="rating_block">
+                                    <div class="my-rating"></div>
+                                    <div class="rating_number"><span class="current_rating"></span><span>/5</span></div>
+                                    <script>
+                                    </script>
+                                </div>
+                                <div class="text">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--    APPOINTMENTS-->
+
+    <div data-role="page" id="appointments">
+        <div class="header">
+            <span class="back_arr_icon"></span>
+            <span class="title">Appointments</span>
+        </div>
+        <div class="body">
+            <div class="navigation_block">
+                <span class="arr back_arr">
+                        <span class="arr_icon back_arr_icon"></span>
+                </span>
+                <span class="date">Aug, 24, 2016</span>
+                <span class="arr next_arr">
+                        <span class="arr_icon next_arr_icon"></span>
+                </span>
+            </div>
+            <div class="schedule_block">
+                <table>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">10:00</td>
+                        <td rowspan="2" class="event">
+                            <div class="event_description">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--                        <td class="event"></td>-->
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">11:00</td>
+                        <td rowspan="2" class="event">
+                            <div class="event_description reserved">(Reserved)</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--                        <td class="event"></td>-->
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">12:00</td>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">13:00</td>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">14:00</td>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">15:00</td>
+                        <td rowspan="2" class="event">
+                            <div class="event_description">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--                        <td class="event"></td>-->
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">16:00</td>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">17:00</td>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="hour cmtyx_color1 right_border">18:00</td>
+                        <td class="event"></td>
+                    </tr>
+                    <tr>
+                        <td class="event"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--    UPLOAD PHOTO-->
+
+    <div data-role="page" id="upload_photo">
+        <div class="header">
+            <span class="back_arr_icon"></span>
+            <span class="title">Upload photo</span>
+        </div>
+        <div class="body">
+            <select data-role="none" class="select">
+                    <option value="select_type">Select a type</option>
+                    <option value="animals">Animals</option>
+                    <option value="food">Food</option>
+                </select>
+            <div class="title_input_container">
+                <label data-content="Title">Title</label>
+                <input type="text" required data-role="none" />
+            </div>
+            <div class="select_picture_container">
+                <label data-content="Title">Select a picture</label>
+                <div class="select_picture_gallery">
+                    <img src="css/images/pexels-photo-59523.png" alt="">
+                    <img src="css/images/6359862041401967861409225263_coffee.png" alt="">
+                    <img src="css/images/burger.png" alt="">
+                    <img src="css/images/special.png" alt="">
+                    <img src="css/images/Salad_platter.png" alt="">
+                </div>
+                <div class="btn_container">
+                    or
+                    <button class="ui-btn ui-corner-all back_btn add_new_btn cmtyx_color1">Add new</button>
+                </div>
+            </div>
+            <div class="description_input_container">
+                <label data-content="Title">Description</label>
+                <textarea type="text" required data-role="none" rows="4"></textarea>
+            </div>
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn cancel_btn cmtyx_color1">Cancel</button>
+                </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn save_btn cmtyx_background_color1">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+
+    <script src="build/bundle.js"></script>
+</body>
+
+</html>
