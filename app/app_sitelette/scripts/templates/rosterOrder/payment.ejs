@@ -5,9 +5,9 @@
         <div class="circle last"></div>
     </div>
     <div class="navigation">
-        <div class="left_arr_block nav_back_btn"><img src="images/arrow-point-to-right-copy.png" alt=""><span>Back</span></div>
+        <div class="left_arr_block nav_back_btn"><span>Back</span></div>
         <div class="page_title">Payment</div>
-        <div class="right_arr_block nav_next_btn"><span>Next</span><img src="images/arrow-point-to-right.png" alt=""></div>
+        <div class="right_arr_block nav_next_btn"><span>Next</span></div>
     </div>
 
     <div data-role="tabs" id="tabs">
@@ -36,13 +36,13 @@
         <div id="cash" class="ui-body-d ui-content">
             <p class="your_order_text">Your order</p>
             <ul class="order_list">
-                <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1">$9.75</span></li>
-                <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1">$3.50</span></li>
-                <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1">$9.75</span></li>
+                <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1"><%= cs %>9.75</span></li>
+                <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1"><%= cs %>3.50</span></li>
+                <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1"><%= cs %>9.75</span></li>
             </ul>
             <ul class="price_list">
-                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
-                <li ><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
+                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1"><%= cs %>30.00</span></li>
+                <li ><span class="order_name">Shipping</span><span class="order_price cmtyx_color1"><%= cs %>5.00</span></li>
                 <li class="tip_price"><span class="order_name">Tip</span>
                 <div class="float_right">
                    <div class="select_container">
@@ -54,9 +54,9 @@
                                 <option value="tip20">20%</option>
                             </select>
                     </div>  
-                    <span class="order_price cmtyx_color1">$0.00</span>
+                    <span class="order_price cmtyx_color1"><%= cs %>0.00</span>
                 </div></li>
-                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1"><%= totalAmount %></span></li>
+                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1"><%= cs %><%= totalAmount %></span></li>
             </ul>
             <div class="ui-grid-a back_next_btns">
                 <div class="ui-block-a p-r-10">

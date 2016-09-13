@@ -12,12 +12,12 @@ var PaymentView = Backbone.View.extend({
 	initialize: function(options) {
 		this.options = options || {};
         this.on('show', this.onShow, this);
-        console.log(this.model.toJSON());
         this.render();
 	},
 
 	render: function() {
-        this.$el.html(template(this.model.toJSON()));
+		console.log(this.renderData());
+        this.$el.html(template(this.renderData()));
         this.setElement(this.$el.children().eq(0));
         return this;
     },
@@ -30,6 +30,12 @@ var PaymentView = Backbone.View.extend({
 
     renderContent: function (options){
         return this.$el;
+    },
+
+    renderData: function() {
+    	return _.extend(this.model.toJSON(), {
+    		cs: this.model.additionalParams.symbol
+    	});
     }
 });
 
