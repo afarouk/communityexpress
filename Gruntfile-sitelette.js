@@ -28,7 +28,7 @@ var themes = function() {
             expand: true,
             cwd: '<%= yeoman.app %>/build',
             src: [
-                '*.{ico,txt,png,gif}'
+                '*.{ico,txt,png,gif,ttf,svg,woff,eot}'
             ],
             dest: '<%= yeoman.dist %>/themes/' + i + '/css'
         });
@@ -153,7 +153,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>/build',
-                        src: ['{,*/}*', '!*.{ico,txt,png,gif}'],
+                        src: ['{,*/}*', '!*.{ico,txt,png,gif,ttf,svg,woff,eot}'],
                         dest: '<%= yeoman.dist %>/build'
                     },
                     {
