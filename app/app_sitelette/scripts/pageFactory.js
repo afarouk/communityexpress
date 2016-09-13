@@ -18,6 +18,7 @@ var LandingView = require('./views/landingView'), //
     CatalogOrderView = require('./views/catalogOrderView'),//
     RosterOrderView = require('./views/rosterOrderView'),//
     EventActiveView = require('./views/eventActiveView'),//
+    RosterOrderModel = require('./models/RosterOrderModel'),
     AddressView = require('./views/rosterOrder/addressView'),
     PaymentView = require('./views/rosterOrder/paymentView'),
     NavbarView = require('./views/headers/navbarView');
@@ -173,13 +174,15 @@ module.exports = {
             }));
             break;
         case 'address':
-            view = new AddressView(_.extend(options, {
+            var orderModel = new RosterOrderModel({}, options);
+            view = new AddressView({
+                model: orderModel,
                 navbarView: NavbarView,
                 navbarData: {
                     sasl: options.sasl,
                     title: 'Order'
                 }
-            }));
+            });
             break;
         case 'payment':
             view = new PaymentView(_.extend(options, {

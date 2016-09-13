@@ -14,7 +14,6 @@ var AddressView = Backbone.View.extend({
         this.addresses = options.addresses;
         this.on('show', this.onShow, this);
         this.render();
-        // next_btn
     },
 
     onShow: function() {
@@ -45,7 +44,7 @@ var AddressView = Backbone.View.extend({
     },
 
     triggerPayment: function() {
-        Vent.trigger('viewChange', 'payment', this.options);
+        Vent.trigger('viewChange', 'payment', this.model);
     }
 });
 

@@ -514,8 +514,10 @@ module.exports = {
             });
     },
 
-    payment: function(options) {
-        return options;
+    payment: function(orderModel) {
+        return $.Deferred().resolve({
+            model: orderModel
+        }).promise();
     },
 
     roster_order: function(options) {
