@@ -5,14 +5,23 @@
 var Vent = require('../Vent'),
     viewFactory = require('../viewFactory'),
     loader = require('../loader'),
-    PageLayout = require('./components/pageLayout'),
+    template = require('ejs!../templates/content/chat_content.ejs'),
+    popupController = require('../controllers/popupController'),
     ListView = require('./components/listView'),
     MessageView = require('./partials/messageView'),
     communicationActions = require('../actions/communicationActions');
 
-var ChatView = PageLayout.extend({
+var ChatView = Backbone.View.extend({
 
     name: 'chat',
+
+    id: 'cmntyex_chat',
+
+    events: {
+        // 'click .back': 'triggerLandingView',
+        // 'click .navbutton_write_review': 'openNewMessage',
+        'click .send_message_button': 'sendMessage'
+    },
 
     initialize: function(options) {
         options = options || {};
@@ -22,13 +31,24 @@ var ChatView = PageLayout.extend({
 
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
+        this.render();
+    },
+
+    render: function() {
+        this.$el.html(template());
+        this.setElement(this.$el.children().eq(0));
+        return this;
+    },
+
+    renderContent: function() {
+        return this.$el;
     },
 
     onShow:  function() {
-        this.addEvents({
-            'click .back': 'triggerLandingView',
-            'click .navbutton_write_review': 'openNewMessage'
-        });
+        // this.addEvents({
+        //     'click .back': 'triggerLandingView',
+        //     'click .navbutton_write_review': 'openNewMessage'
+        // });
 
         this.renderMessages();
         this.listenTo( Vent, 'logout_success', this.triggerLandingView, this);
@@ -52,14 +72,32 @@ var ChatView = PageLayout.extend({
             }.bind(this));
     },
 
-    openNewMessage: function () {
-        this.withLogIn(function () {
-            this.openSubview('newMessage', this.restaurant, {
-                onSubmit: function (form) {
-                    return communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), form.messageBody);
-                }.bind(this)
+    // openNewMessage: function () {
+    //     this.withLogIn(function () {
+    //         this.openSubview('newMessage', this.restaurant, {
+    //             onSubmit: function (form) {
+    //                 return communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), form.messageBody);
+    //             }.bind(this)
+    //         });
+    //     }.bind(this));
+    // },
+
+    sendMessage: function() {
+        var val = this.$('.input_container input').val();
+        if (val.length <= 0) {
+            popupController.textPopup({ text: 'Please, type your message'});
+            return;
+        }
+        loader.show('sending message');
+        communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), val)
+            .then(function() {
+                loader.hide();
+                popupController.textPopup({text: 'message sent'});
+            }, function(e) {
+                loader.hide();
+                var text = h().getErrorMessage(e, 'Error sending message');
+                popupController.textPopup({text: text});
             });
-        }.bind(this));
     },
 
     triggerLandingView: function() {

@@ -16,7 +16,6 @@ var Vent = require('../Vent'),
     catalogActions = require('../actions/catalogActions'),
     mediaActions = require('../actions/mediaActions'),
     updateActions = require('../actions/updateActions'),
-    //PageLayout = require('./components/pageLayout'),
     h = require('../globalHelpers');
 
 var LandingView = Backbone.View.extend({
@@ -24,6 +23,38 @@ var LandingView = Backbone.View.extend({
     name: 'landing',
     el: '#cmtyx_landingView',
 
+    events: {
+        'click .openingHours': 'openHours',
+        'click .userMediaService': 'openUpload',
+        'click .userReviewsService': 'triggerReviewsView',
+        'click .messagingService': 'triggerChatView',
+        'click .catalog': 'triggerCatalogsView',
+        'click .appointmentService': 'triggerAppointmentView',
+        'click .wallService': 'triggerPostsView',
+        'click .lVphotoContestButton': 'triggerPhotoContestView',
+        'click .poll_submit_button': 'submitPollAction',
+        'click .embedded_video': 'activateVideoPlayer',
+        'click .theme2_generic_banner': 'triggerAboutUsView',
+        'click .theme2_event_entry_right_top_row_calendar a': 'triggerEventView',
+        'click #sms_button': 'openSMSInput',
+        'click #sms_send_button': 'sendSMSToMobile',
+
+        'click .promotionService': 'openPromotions',
+        'click .userPictures': 'openUserPictures',
+        'click .uploadPromtion': 'openUploadPromotion',
+        'click .uploadGallery': 'openUploadGallery',
+        'click .activatePromotion': 'triggerActivatePromotion',
+        'click .deActivatePromotion': 'triggerDeActivatePromotion',
+        'click .activateGallery': 'triggerActivateGallery',
+        'click .deActiveGallery': 'triggerDeActivateGallery',
+        'click .outofNetworkPromotions': 'showOutOfNetworkText',
+        'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
+        'click .outofNetworkUserReviews': 'showOutOfNetworkText'
+    },
+
+    undelall: function() {
+        this.undelegateEvents();
+    },
 
     initialize: function(options) {
         options = options || {};
@@ -35,6 +66,7 @@ var LandingView = Backbone.View.extend({
             'min-height': '0',
             'margin-bottom': '0px'
         });
+        Vent.on('scrollToPromotions', this.scrollToPromotions, this);
         /*
         _.extend( {}, this.model.attributes, {
             imagePath: config.imagePath,
@@ -43,62 +75,36 @@ var LandingView = Backbone.View.extend({
         */
         // Check if user launches event URL or photoContest URL
         // and open page with current event/photoContest
-        switch (community.type) {
-            case 'e':
-                this.triggerEventView();
-            break;
-            case 'h':
-                this.triggerPhotoContestView();
-            break;
-            case 'r':
-                this.triggerRosterViewFromURL();
-            break;
-        };
     },
     renderContent: function() {
         //this.$el.append(this.contentView.render( this._data() ).el);
         //return this.contentView;
         return this.$el;
     },
+
     onShow: function(){
-        this.addEvents({
-            'click .openingHours': 'openHours',
-            'click .userMediaService': 'openUpload',
-            'click .userReviewsService': 'triggerReviewsView',
-            'click .messagingService': 'triggerChatView',
-            'click .catalog': 'triggerCatalogsView',
-            'click .appointmentService': 'triggerAppointmentView',
-            'click .wallService': 'triggerPostsView',
-            'click .lVphotoContestButton': 'triggerPhotoContestView',
-            'click .poll_submit_button': 'submitPollAction',
-            'click .embedded_video': 'activateVideoPlayer',
-            'click .theme2_generic_banner': 'triggerAboutUsView',
-            'click .theme2_event_entry_right_top_row_calendar a': 'triggerEventView',
-            'click #sms_button': 'openSMSInput',
-            'click #sms_send_button': 'sendSMSToMobile',
 
-            'click .promotionService': 'openPromotions',
-            'click .userPictures': 'openUserPictures',
-            'click .uploadPromtion': 'openUploadPromotion',
-            'click .uploadGallery': 'openUploadGallery',
-            'click .activatePromotion': 'triggerActivatePromotion',
-            'click .deActivatePromotion': 'triggerDeActivatePromotion',
-            'click .activateGallery': 'triggerActivateGallery',
-            'click .deActiveGallery': 'triggerDeActivateGallery',
-            'click .outofNetworkPromotions': 'showOutOfNetworkText',
-            'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
-            'click .outofNetworkUserReviews': 'showOutOfNetworkText'
-        });
+        // this.renderGallery();
 
-        this.renderGallery();
-
-        try {
-            addToHomescreen().show();
-        } catch (e) {
-            console.log(' Desktop, not showing addToHomescreen');
-        }
+        // try {
+        //     addToHomescreen().show();
+        // } catch (e) {
+        //     console.log(' Desktop, not showing addToHomescreen');
+        // }
     },
 
+    scrollToPromotions: function() {
+        var time = 1000,
+            parentOffset = this.$el.scrollTop(),
+            headerHeight = $('#cmtyx_header').height(),
+            offset = parentOffset + this.$el.find('.promotion_block').offset().top - headerHeight,
+            flag = Math.abs(parentOffset - offset);
+        if (flag < 20) return;
+        time = flag * .3;
+        this.$el.animate({
+            scrollTop: offset 
+        }, time);
+    },
 
     triggerAboutUsView: function() {
         Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
@@ -123,6 +129,7 @@ var LandingView = Backbone.View.extend({
             launchedViaURL:true
          }, { reverse: false });
     },
+
     openHours: function() {
         loader.show('retrieving opening hours');
         saslActions.getOpeningHours(this.model.sa(), this.model.sl())
@@ -152,14 +159,7 @@ var LandingView = Backbone.View.extend({
 
     // Go to the clicked on mediascreen photoContest
     triggerPhotoContestView: function(e) {
-        var uuid;
-        if (community.type == 'h') {
-            uuid = community.uuidURL;
-            delete community.type;
-            delete community.uuidURL;
-        } else {
-            uuid = $(e.target).attr('uuid');
-        };
+        var uuid = $(e.target).attr('uuid');
         Vent.trigger('viewChange', 'photoContest', {
             sasl: this.model.id,
             id: uuid
@@ -167,14 +167,7 @@ var LandingView = Backbone.View.extend({
     },
 
     triggerEventView: function(e) {
-        var uuid;
-        if (community.type == 'e') {
-            uuid = community.uuidURL;
-            delete community.type;
-            delete community.uuidURL;
-        } else {
-            uuid = $(e.target).attr('href').split('=')[1];
-        }
+        var uuid = $(e.target).attr('href').split('=')[1];
         Vent.trigger('viewChange', 'eventActive', {
             sasl: this.model.id,
             id: uuid

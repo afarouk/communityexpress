@@ -15,7 +15,8 @@ var userController = require('./controllers/userController'),
     Cookies = require('../../vendor/scripts/js.cookie'),
     LandingView = require('./views/landingView'),
     NavbarView = require('./views/headers/navbarView'),
-    HeaderView = require('./views/headers/headerView');
+    HeaderView = require('./views/headers/headerView'),
+    LoyaltyCardView = require('./views/loyaltyCardView');
 
 var hasUIDinQueryParams = function() {
     var params = location.search.match(/UID=/);
@@ -31,16 +32,30 @@ var App = function() {
         appCache.set('saslData', window.saslData);
     }
     Vent.on('viewChange', this.goToPage, this);
+    Vent.on('backToPrevious', this.backToPrevious, this);
     /*
 		We may need LandingView to manage landing view (home) interactions.
 	  But we no longer have to switch to it. It is visible by default.*/
 
-
-    //Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
     $.mobile.initializePage();
     this.navbarView = new NavbarView();
-		this.headerView = new HeaderView();
+		this.headerView = new HeaderView({
+            navbarView: this.navbarView
+        });
     this.landingView = new LandingView();
+    this.LoyaltyCardView=new LoyaltyCardView();
+
+    this.currentView = this.landingView;
+    this.saveInstance('restaurant', this.landingView);
+
+    if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
+        this.checkType(window.community.type);
+    }
+
+    Backbone.View.prototype.addEvents = function(eventObj) {
+        var events = _.extend( {}, eventObj, this.pageEvents );
+        this.delegateEvents(events);
+    }
 };
 
 App.prototype = {
@@ -63,7 +78,6 @@ App.prototype = {
             conf.set('embedded', true);
         };
         if (this.params.UID) {
-            //localStorage.setItem("cmxUID", this.params.UID);
             Cookies.set("cmxUID", this.params.UID);
             sessionActions.authenticate(this.params.UID)
                 .always(function() {
@@ -71,7 +85,6 @@ App.prototype = {
                         pushState: true
                     });
                 });
-            //  } else if (localStorage.cmxUID) {
         } else if (Cookies.get('cmxUID')) {
             sessionActions.getSessionFromLocalStorage().then(function() {
                 Backbone.history.start({
@@ -91,9 +104,38 @@ App.prototype = {
         }
     },
 
+    checkType: function(type) {
+        var uuid = window.community.uuidURL;
+        delete community.type;
+        delete community.uuidURL;
+
+        switch (type) {
+            case 'e':
+                this.goToPage('eventActive', {
+                    sasl: appCache.get('saslData'),
+                    id: uuid
+                });
+            break;
+            case 'h':
+                this.goToPage('photoContest', {
+                    sasl: appCache.get('saslData'),
+                    id: uuid
+                });
+            break;
+            case 'r':
+                this.goToPage('roster', {
+                    sasl: appCache.get('saslData'),
+                    id: uuid,
+                    backToRoster:false,
+                    rosterId: uuid,
+                    launchedViaURL: true
+                 }, { reverse: false });
+            break;
+        };
+    },
+
     isEmbedded: function() {
-        var params = location.search.match(/embedded=true/);
-        return (params && params.length);
+        return window.community.isEmbedded;
     },
 
     setGlobalConfigurations: function(options) {
@@ -108,34 +150,66 @@ App.prototype = {
         }
     },
 
+    //save created view instances
+    viewInstances: {},
+    checkInstance: function(viewName) {
+        return this.viewInstances[viewName];
+    },
+
+    saveInstance: function(viewName, view) {
+        this.viewInstances[viewName] = view;
+    },
+
+    //TODO use it in a future in case
+    // when we need update view each time for exaple
+    deleteInstance: function(viewName) {
+        delete this.viewInstances[viewName];
+    },
+
+    backToPrevious: function() {
+        //simple solution
+        //call goBack method in a current view
+        //for return to previous
+        this.currentView.goBack();
+    },
+
     /*
      * 'roster', options, {reverse:false}
      */
     goToPage: function(viewName, id, options) {
+        var exists;
+        // this.landingView.undelall();
         console.log("app.js:gotoPage: " + viewName);
         this.setGlobalConfigurations(options);
+
+        if (viewName === 'restaurant') {
+            this.headerView.showMenuButton();
+            this.navbarView.show();
+        } else {
+            this.headerView.hideMenuButton({back: true});
+            this.navbarView.hide();
+        }
 
         if (viewName === 'chat') { // redirect to restaurant view if user is not signed in
             viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
         }
 
-        // if ( viewName === 'catalog') { //
-        //if(typeof options==='undefined'){
-        //  var sa=window.community.serviceAccommodatorId;
-        //  var sl=window.community.serviceLocationId;
-        //}
-        // }
-
-
         loader.show('loading');
 
-        this.initializePage(viewName, id, options).then(function(page) {
-            this.changePage(page, options);
+        //check if view was created
+        exists = this.checkInstance(viewName);
+        if (exists) {
+            this.changePage(exists, options);
             loader.hide();
-        }.bind(this), function(e) {
-            loader.showErrorMessage(e, 'There was a problem loading this page');
-        });
-
+        } else {
+            this.initializePage(viewName, id, options).then(function(page) {
+                this.saveInstance(viewName, page);
+                this.changePage(page, options);
+                loader.hide();
+            }.bind(this), function(e) {
+                loader.showErrorMessage(e, 'There was a problem loading this page');
+            });
+        }
     },
 
     initializePage: function(viewName, options) {
@@ -147,6 +221,57 @@ App.prototype = {
         }.bind(this));
     },
 
+
+    changePage: function(view, jqmOptions) {
+        var defaults = {
+            allowSinglePageTransition: true,
+            transition: 'none',
+            changeHash: false,
+            showLoader: false,
+        };
+        var settings = _.extend(defaults, jqmOptions);
+
+        var content = view.renderContent();
+        if (typeof content === 'undefined') {
+            console.log("ERROR: cannot switch page, null content");
+            return;
+        }
+
+        this.lastPageId = $.mobile.pageContainer.pagecontainer('getActivePage').attr('id');
+        console.log(" Last page =" + this.lastPageId);
+
+        var newPageId = content.attr('id');
+        if ((typeof this.lastPageId !== 'undefined') && newPageId == this.lastPageId) {
+            console.log("WARN: ignoring same page reload");
+            return;
+        }
+
+        console.log("Switching to page : " + newPageId);
+
+        /* AF: We have to put this content in the
+        	 DOM first before jquery Mobile can manage the
+        	 page switching. We may want to remove the old
+        	 one. In this example we remove and re-add */
+        if($('body').find(content).length === 0) {
+            $('#' + newPageId).remove();
+            $('body').append(content);
+        }
+        /* done removing and adding */
+
+        /* If this is not the landing view, we may want to replace
+          the hamburger with a back button and set it up to
+          switch to the landing view */
+        $.mobile.pageContainer.pagecontainer('change', content, settings);
+        view.trigger('show');// <-- temporary solution
+        this.currentView = view;
+
+        /* need to re-initialize the header and footer. Bug in jqm? */
+        $("[data-role='navbar']").navbar();
+        $("[data-role='header'], [data-role='footer']").toolbar();
+        $('.splash_screen').remove();
+    },
+
+    /* AF this function is not necessary anymore. We set title via PHP*/
     updateTitle: function(viewName, pageModel) {
         var title;
         title = pageModel.model.get('saslName');
@@ -168,6 +293,7 @@ App.prototype = {
         document.title = title;
     },
 
+    /* AF this function is not necessary anymore. We set icon via PHP*/
     updateTouchIcon: function(viewName, pageModel) {
         var icon;
         switch (viewName) {
@@ -190,64 +316,6 @@ App.prototype = {
                 link.href = icon;
             }
         });
-    },
-
-    changePage: function(view, jqmOptions) {
-        var defaults = {
-            allowSinglePageTransition: true,
-            transition: 'none',
-            changeHash: false,
-            showLoader: false,
-        };
-        var settings = _.extend(defaults, jqmOptions);
-
-        var content = view.renderContent();
-        if (typeof content === 'undefined') {
-            console.log("ERROR: cannot switch page, null content");
-            return;
-        }
-
-
-        this.lastPageId = $.mobile.pageContainer.pagecontainer('getActivePage').attr('id');
-        console.log(" Last page =" + this.lastPageId);
-
-
-        var newPageId = content.attr('id');
-        if ((typeof this.lastPageId !== 'undefined') && newPageId == this.lastPageId) {
-            console.log("WARN: ignoring same page reload");
-            return;
-        }
-
-
-        console.log("Switching to page : " + newPageId);
-
-
-
-        /* AF: We have to put this content in the
-        	 DOM first before jquery Mobile can manage the
-        	 page switching. We may want to remove the old
-        	 one. In this example we remove and re-add */
-        $('#' + newPageId).remove();
-        $('body').append(content);
-        /* done removing and adding */
-
-        /* If this is not the landing view, we may want to replace
-          the hamburger with a back button and set it up to
-          switch to the landing view */
-
-
-
-        $.mobile.pageContainer.pagecontainer('change', content, settings);
-
-        $("#cmtyx_header_menu_button").toggle();
-        $("#cmtyx_header_back_button").toggle();
-
-
-
-        /* need to re-initialize the header and footer. Bug in jqm? */
-        $("[data-role='navbar']").navbar();
-        $("[data-role='header'], [data-role='footer']").toolbar();
-        $('.splash_screen').remove();
     }
 
 };

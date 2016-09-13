@@ -28,9 +28,6 @@
     <script src="themes/3/star-rating-svg-master/src/jquery.star-rating-svg.js"></script>
     <script src="themes/3/slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh4gSujXy7GSiABoUbJUIXLS6n8a0ac8o"></script>
-    <!-- <script src="themes/3/js/scripts.js"></script> -->
-
-
 
     <script>
         window.saslData = <?php
@@ -61,68 +58,19 @@
         window.community.canCreateAnonymousUser = <?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
     </script>
 
-
-
-
-
 </head>
 
 <body>
 
+    <div class="popup_container"></div>
+
     <div id="cmtyx_header" data-role="header" class="header common_header">
-        <!--
-
-            <a href="#left-panel" class="menu_btn">
-                <div class="menu_btn_img"></div>
-            </a>
-            <div class="logo_container">
-                <div class="logo logo_img"></div>
-            </div>
-            <div data-role="panel" id="left-panel" class="cart" data-display="overlay">
-
-                <ul class="left_panel_menu">
-                    <li class="menu_item">
-                        <div class="menu_item_icon list_img"></div>
-                        <span class="menu_item_title">View/Edit catalogue</span>
-                        <a href="#" data-rel="close" class="close_cart_button">
-                            <div class="left_arr_icon left_arr_img"></div>
-                        </a>
-                    </li>
-                    <li class="menu_item chat_btn">
-                        <div class="menu_item_icon speech_bubble_img"></div>
-                        <span class="menu_item_title">Messanging/Chat</span></li>
-                    <li class="menu_item business_hours_btn">
-                        <div class="menu_item_icon clock_circular_img"></div>
-                        <span class="menu_item_title">Business hours</span></li>
-
-    <li class="menu_item">
-    <div class="menu_item_icon photo_camera_img"></div>><span class="menu_item_title">Upload photo</span></li>
-
-                    <li class="menu_item user_reviews_btn">
-                        <div class="menu_item_icon speaking_img"></div>
-                        <span class="menu_item_title">User reviews</span></li>
-                    <li class="menu_item appointments_btn">
-                        <div class="menu_item_icon calendar_img"></div>
-                        <span class="menu_item_title">Appointments</span></li>
-                    <li class="menu_item contact_us_btn">
-                        <div class="menu_item_icon edit_img"></div>
-                        <span class="menu_item_title">Contact us</span></li>
-                </ul>
-            </div>
-
-      -->
-        <button id="cmtyx_header_menu_button"   class="menu_btn">
+        <div id="cmtyx_header_menu_button" class="menu_btn">
             <div class="menu_btn_img"></div>
-        </button>
-
-        <button id="cmtyx_header_back_button"  style="display:none;" data-role="button" data-icon="back" data-iconpos="notext" data-theme="a" data-inline="true"
- data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"
- class="ui-btn ui-btn-inline ui-btn-icon-notext ui-btn-up-a ui-btn-right"></button>
-
-
-
-
-
+        </div>
+        <div id="cmtyx_header_back_button" data-role="button" data-icon="back">
+            <span class="back_arr_icon"></span>
+        </div>
         <div class="logo_container">
             <div class="logo logo_img"></div>
         </div>
@@ -132,23 +80,23 @@
         <div data-role="navbar">
             <ul>
                 <li>
-                    <a href="#" class="menu_button_3 ui-btn-active">
+                    <a href="#" class="menu_button_3 ui-btn">
                         <div class="navbar_btn_icon document_img"></div>
                         <br>Menu</a>
                 </li>
                 <li>
-                    <a href="#">
-                        <div class="menu_button_2 navbar_btn_icon calendar_grey_img m-b-11"></div>
+                    <a href="#" class="menu_button_2">
+                        <div class="navbar_btn_icon calendar_grey_img m-b-11"></div>
                         <br>Deals</a>
                 </li>
                 <li>
-                    <a href="#">
-                        <div class="menu_button_4 navbar_btn_icon information_button_img m-b-7"></div>
+                    <a href="#" class="menu_button_4">
+                        <div class="navbar_btn_icon information_button_img m-b-7"></div>
                         <br>About</a>
                 </li>
                 <li>
-                    <a href="#">
-                        <div class="menu_button_5 navbar_btn_icon user_img m-b-9"></div>
+                    <a href="#" class="menu_button_5">
+                        <div class="navbar_btn_icon user_img m-b-9"></div>
                         <br>User</a>
                 </li>
             </ul>
@@ -157,8 +105,6 @@
 
     <!-- HOME-->
     <div data-role="page" id="cmtyx_landingView">
-        <div id="cmtyx_staticView">
-
             <div class="home_body p-0">
 
                 <ul>
@@ -168,7 +114,7 @@
                         </div>
                         <span class="title">Warm and cosy</span>
                         <span class="undertitle">A quite room perfect for conversation with soft music in background</span>
-                        <button class="ui-btn ui-corner-all back_btn  open_menu_btn cmtyx_color1 menu_button_3">open menu</button>
+                        <button class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_color1 menu_button_3">open menu</button>
                         <span class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></span><span class="open_label">open now</span>
                     </li>
                 </ul>
@@ -321,7 +267,7 @@
                                 and knows all about coffee without going to school.</div>
                         </div>
                     </li>
-                    <li class="loyalty_program_block">
+                    <li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
                         <div class="header">
                             <span class="title">Loyalty program</span>
                             <div class="collapse_btn"></div>
@@ -337,6 +283,9 @@
                                         </div>
                                     </div>
                                     <div class="ui-block-b discount_pic_block"></div>
+                                </div>
+                                <div class="no_qr_code_block cmtyx_color1">
+                                    <button class="refresh_button_style1"> Refresh </button>
                                 </div>
                                 <div class="qr_code_block cmtyx_color1">
                                     <span class="close_btn"></span>
@@ -508,7 +457,6 @@ San jose CA 95112</span>
                 </ul>
             </div>
         </div>
-    </div>
     </div>
     <!--    CONTACT US-->
 
@@ -870,19 +818,13 @@ San jose CA 95112</span>
         </div>
     </div>
     <script>
-        $('.select').select2();
-        $(".select2-search, .select2-focusser").remove();
-
         $(function() {
-            $( "[data-role='navbar']" ).navbar();
-            $( "[data-role='header'], [data-role='footer']" ).toolbar();
             /* reset height */
             $.mobile.resetActivePageHeight();
         });
-    </script> -->
+    </script>
 
     <script src="build/bundle.js"></script>
-
 </body>
 
 </html>

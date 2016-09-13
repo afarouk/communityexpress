@@ -66,6 +66,7 @@ module.exports = {
             login: ['POST', '/authentication/login'],
             enterInvitationCode: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],
+            userForgotPassword: ['PUT', '/authentication/sendEmailForResetPassword'],
             registerNewMember: ['POST', '/authentication/registerNewMemberViaPostBody'],
             getAuthenticationStatus: ['GET', '/authentication/getAuthenticationStatus'],
             registerNewMemberWithInvitationCode: ['POST', '/authentication/registerNewMemberWithInvitationCode'],

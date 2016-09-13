@@ -5,42 +5,39 @@
 var Vent = require('../Vent'), //
     loader = require('../loader'), //
     appCache = require('../appCache.js'),
+    template = require('ejs!../templates/content/roster_content.ejs'),
     RosterBasketModel = require('../models/RosterBasketModel'), //
     RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),//
     CatalogBasketModel = require('../models/CatalogBasketModel'), //
     orderActions = require('../actions/orderActions'), //
-    PageLayout = require('./components/pageLayout'), //
     RosterComboItemView = require('./partials/roster_combo_item.js'), //
     RosterCatalogItemView = require('./partials/roster_catalog_item.js'), //
+    popupController = require('../controllers/popupController'),
     ListView = require('./components/listView');
 
-var RosterView = PageLayout.extend({
+var RosterView = Backbone.View.extend({
 
     name: 'roster',
+    id: 'cmtyx_roster',
+
+    addEvents: function(eventObj) {
+        var events = _.extend( {}, eventObj, this.pageEvents );
+        this.delegateEvents(events);
+    },
 
     onShow: function() {
         this.addEvents({
-            'click .back': 'goBack',
             'click .order_button': 'triggerOrder',
             'click .edit_button': 'openEditPanel'
         });
-        this.renderItems();
-        this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        this.navbarView.hide(); // $('#cmtyx_navbar').fadeOut('slow');
+
+        
         /* if launched from URL, hide back button*/
-        if (typeof this.launchedViaURL !== 'undefined' && this.launchedViaURL === true) {
-            $(this.el).find('.navbutton_back').hide();
-        } else {
-            $(this.el).find('.navbutton_back').show();
-        };
-
-        // Temporary hack to hide scroll on rosterPage
-        //setTimeout(_.bind(function() {
-        //    var landingWidth = $('#cmtyx_landingView').width();
-        //    this.$('.content').css('width', landingWidth)
-        //}, this), 3000)
-
-
+        // if (typeof this.launchedViaURL !== 'undefined' && this.launchedViaURL === true) {
+        //     $(this.el).find('.navbutton_back').hide();
+        // } else {
+        //     $(this.el).find('.navbutton_back').show();
+        // };
 
         var comboCount = this.basket.getComboCount();
         var nonComboCount = this.basket.getNonComboItemCount();
@@ -49,7 +46,7 @@ var RosterView = PageLayout.extend({
         }else{
           $('#roster_order_button').prop('disabled', false);
         };
-        this.checkIfOpened();
+        // this.checkIfOpened();
         //$('.select').select2();
     },
 
@@ -76,14 +73,22 @@ var RosterView = PageLayout.extend({
         this.rosterType = options.roster.data.rosterType.enumText;
         this.rosterDisplayText = options.roster.data.displayText;
         this.isOpenWarningMessage = options.roster.data.isOpenWarningMessage;
-        this.navbarView = options.navbarView;
         this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
+        this.render();
+    },
 
-        // TODO check logic ,
-        // I don't know why we listened change event twice
-        // this.basket.on('change', this.updateBasket, this); 
+    render: function() {
+        this.$el.html(template(this.renderData()));
+        this.setElement(this.$el.children().eq(0));
 
+        this.renderItems();
+        this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
+        return this;
+    },
+
+    renderContent: function() {
+        return this.$el;
     },
 
     /*used to initialie roster_content.ejs template */
@@ -108,7 +113,6 @@ var RosterView = PageLayout.extend({
 
     goBack: function() {
         this.triggerRestaurantView();
-        this.navbarView.show();
     },
 
     triggerRestaurantView: function() {
@@ -119,7 +123,8 @@ var RosterView = PageLayout.extend({
 
     /* used for showing the flyout for combo items */
     openAddToBasketView: function(model, catalogId, catalogDisplayText,catalogType) {
-        this.openSubview('addToRosterBasket', model, {
+        debugger;
+        popupController.addToRosterBasket(model, {
             basket: this.basket,
             catalogId: catalogId,
             catalogDisplayText: catalogDisplayText,
@@ -133,8 +138,7 @@ var RosterView = PageLayout.extend({
 
         var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
 
-
-        this.withLogIn(function() {
+        popupController.requireLogIn(this.sasl, function() {
             Vent.trigger('viewChange', 'roster_order', {
                 id: this.sasl.getUrlKey(),
                 rosterId: this.rosterId,
@@ -156,10 +160,8 @@ var RosterView = PageLayout.extend({
     },
 
     openEditPanel: function() {
-
         var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
-
-        this.openSubview('editRosterView', editModel, {
+        popupController.editRosterView(this, editModel, {
             actions: {
                 removeItem: function(selected) {
                     _(selected).each(function(item) {

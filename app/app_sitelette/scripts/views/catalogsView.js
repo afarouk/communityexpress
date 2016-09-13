@@ -4,11 +4,10 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
-    PageLayout = require('./components/pageLayout'),
     CatalogItemView = require('./partials/catalogs_item'),
     ListView = require('./components/listView');
 
-var CatalogsView = PageLayout.extend({
+var CatalogsView = Backbone.View.extend({
 
     name: 'catalogs',
 
@@ -18,19 +17,23 @@ var CatalogsView = PageLayout.extend({
         this.sasl = options.sasl;
         this.on('show', this.onShow, this);
         this.navbarView=options.navbarView;
+        this.render();
+    },
+
+    render: function() {
+        this.renderCatalogs();
+        return this;
     },
 
     onShow:  function () {
         this.addEvents({
             'click .back': 'triggerRestaurantView'
         });
-        this.renderCatalogs();
-        this.navbarView.hide();
+        debugger;
     },
 
     triggerRestaurantView: function() {
         Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true } );
-        this.navbarView.show();
     },
 
     renderCatalogs: function() {

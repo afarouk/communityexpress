@@ -7,6 +7,7 @@ var Vent = require('../../Vent'),
     appCache = require('../../appCache.js'),
     sessionActions = require('../../actions/sessionActions'),
     userController = require('../../controllers/userController'),
+    popupController = require('../../controllers/popupController'),
     promotionsController = require('../../controllers/promotionsController');
 
 var HeaderView = Backbone.View.extend({
@@ -14,10 +15,12 @@ var HeaderView = Backbone.View.extend({
     el: '#cmtyx_header',
 
     events: {
-        'click #cmtyx_header_back_button': 'triggerLandingView'
+        'click #cmtyx_header_back_button': 'triggerPreviousView',
+        'click #cmtyx_header_menu_button': 'openLeftMenu'
     },
 
     initialize: function(options) {
+        this.$el.toolbar();
         this.options = options || {};
 
         this.sa = community.serviceAccommodatorId;
@@ -25,12 +28,33 @@ var HeaderView = Backbone.View.extend({
 
     },
 
+    showMenuButton: function() {
+        this.$el.find('.menu_btn').show();
+        this.hideBackButton();
+    },
 
-    triggerLandingView: function() {
-        Vent.trigger('viewChange', 'restaurant', [this.sa, this.sl]);
+    showBackButton: function() {
+        this.$el.find('#cmtyx_header_back_button').show();
+    },
+
+    hideMenuButton: function(backOption) {
+        this.$el.find('.menu_btn').hide();
+        if (backOption.back === true) {
+            this.showBackButton();
+        }
+    },
+
+    hideBackButton: function() {
+        this.$el.find('#cmtyx_header_back_button').hide();
+    },
+
+    triggerPreviousView: function() {
+        Vent.trigger('backToPrevious');
+    },
+
+    openLeftMenu: function() {
+        popupController.openLeftMenu(this);
     }
-
-
 
 });
 

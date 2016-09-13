@@ -21,12 +21,17 @@ var PopUpView = function(options) {
         'data-position': 'window',
         'data-overlay-theme': 'b',
         'data-theme': 'b',
-        'class': 'popup'
+        // TODO temporary solution hard added 'ui-popup ui-body-b ui-overlay-shadow ui-corner-all'
+        // strange bug in jquery.mobile when switch to another view 
+        // after that 'popup' method works differante
+        'class': 'popup_container popup ui-popup ui-body-b ui-overlay-shadow ui-corner-all'
     });
 
 };
 
 _.extend(PopUpView.prototype, Backbone.View.prototype, {
+
+    // el: '.popup_container',
 
     pageEvents: {
         'click .close_button': 'shut',
@@ -48,7 +53,6 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
     onShow: function(){},
 
     addEvents: function(eventObj) {
-        // this.inheritedEvents.push(eventObj);
         var events = _.extend( {}, eventObj, this.pageEvents );
         this.delegateEvents(events);
     },
@@ -56,7 +60,13 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
     render: function() {
         this.viewModel = this.model ? ( this.model.attributes || this.collection ) : this.collection;
         this.$el.html(this.template( _.extend( {}, this.viewModel, this.renderData ) ) );
+        this.afterRender();
         return this;
+    },
+
+    afterRender: function() {
+        $('.popup_container').html('');
+        this.$el.appendTo('.popup_container');
     },
 
     enhance: function() {
@@ -75,7 +85,8 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
     close: function() {
         this.trigger('closed');
         this.undelegateEvents();
-        this.$el.popup("destroy"); 
+        this.$el.popup('destroy');
+        this.$el.html('');
         this.remove();
     }
 

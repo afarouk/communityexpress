@@ -3,15 +3,17 @@
     <div class="float_right">
         <div class="select_container">
             <% if (quantity) { %>
-            <select data-role="none" class="select combo_select_item"> 
-                <% for (var i = 0; i <= 10; i++) { %>
-                <% if(i == quantity) { %>
-                <option value="<%= i %>" selected="selected"><%= i %></option>
-                <% } else { %>
-                <option value="<%= i %>"><%= i %></option>
-                <% } %>
-                <% } %>
-            </select>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a quantity_minus">
+                        <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext"></a>
+                    </div>
+                    <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
+                         <span class="quantity" ><%= quantity %></span>
+                    </div>
+                    <div class="ui-block-c quantity_plus">
+                        <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"></a>
+                    </div>
+                </div>
             <% } %>
         </div>  
         <span class="order_price">$ <%= quantity * price %></span> 
@@ -27,15 +29,17 @@
     <div class="float_right">
         <div class="select_container">
             <% if (quantity) { %>
-            <select data-role="none" class="select combo_select_item"> 
-                <% for (var i = 0; i <= 10; i++) { %>
-                <% if(i == quantity) { %>
-                <option value="<%= i %>" selected="selected"><%= i %></option>
-                <% } else { %>
-                <option value="<%= i %>"><%= i %></option>
-                <% } %>
-                <% } %>
-            </select>
+               <div class="ui-grid-b">
+                    <div class="ui-block-a quantity_minus">
+                        <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext"></a>
+                    </div>
+                    <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
+                         <span class="quantity" ><%= quantity %></span>
+                    </div>
+                    <div class="ui-block-c quantity_plus">
+                        <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"></a>
+                    </div>
+                </div>
             <% } %>
         </div>  
         <span class="order_price">$ <%= quantity * price %></span> 

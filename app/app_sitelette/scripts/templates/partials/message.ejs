@@ -1,7 +1,7 @@
 <div class="chat_message_time_created">
     <%= timeStamp %>
 </div>
-<div class="chat_message_body">
+<!-- <div class="chat_message_body">
     <p><%= messageBody %></p>
 </div>
 <div class="chat_message_sender">
@@ -10,4 +10,21 @@
     <% }else{ %>
     <%= saslName %>
     <% } %>
-</div>
+</div> -->
+<table>
+	<tbody>
+		<tr>
+			<% if (fromUser === true) { %>
+				<td class="time"><%= userName + ' ' + toTimeString %></td>
+				<td class="message">
+					<div class="message_text"><%= messageBody %></div>
+				</td>
+			<% } else { %>
+				<td class="message">
+					<div class="message_text"><%= messageBody %></div>
+				</td>
+				<td class="time"><%= saslName + ' ' + toTimeString %></td>
+			<% } %>
+		</tr>     
+	</tbody>
+</table>

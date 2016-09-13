@@ -5,13 +5,12 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
-    PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     PrizeView = require('./partials/prizeView'),
     contestActions = require('../actions/contestActions'),
     h = require('../globalHelpers');
 
-module.exports = PageLayout.extend({
+module.exports = Backbone.View.extend({
 
     name: 'photoContest',
 

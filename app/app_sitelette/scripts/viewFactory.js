@@ -2,7 +2,8 @@
 
 'use strict';
 
-var OpeningHoursView = require('./views/popups/openingHoursView'),
+var LeftMenuView = require('./views/panels/leftMenuView'),
+    OpeningHoursView = require('./views/popups/openingHoursView'),
     PromotionsView = require('./views/popups/promotionsView'),
     NewMessageView = require('./views/popups/newMessageView'),
     RestaurantMenu = require('./views/panels/restaurantMenu'),
@@ -13,6 +14,7 @@ var OpeningHoursView = require('./views/popups/openingHoursView'),
     OptionsView = require('./views/panels/optionsView'),
     SigninView = require('./views/panels/signinView'),
     SignupView = require('./views/panels/signupView'),
+    ForgotPasswordView = require('./views/panels/forgotPasswordView'),
     EditFavoritesView = require('./views/panels/editFavoritesView'),
     EditRosterView = require('./views/panels/editRosterView'),
     MyMessagesView = require('./views/panels/myMessagesView'),
@@ -31,6 +33,7 @@ var OpeningHoursView = require('./views/popups/openingHoursView'),
     TextPopup = require('./views/popups/textPopup');
 
 var viewMap = {
+    leftMenuView: LeftMenuView,
     userPictures: UserPicturesView,
     openingHours: OpeningHoursView,
     restaurantList: RestaurantListView,
@@ -43,6 +46,7 @@ var viewMap = {
     options: OptionsView,
     signin: SigninView,
     signup: SignupView,
+    forgotPassword: ForgotPasswordView,
     editFavorites: EditFavoritesView,
     editRosterView:EditRosterView,
     myMessages: MyMessagesView,

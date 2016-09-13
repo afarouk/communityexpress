@@ -5,12 +5,11 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
-    PageLayout = require('./components/pageLayout'),
     orderActions = require('../actions/orderActions'),
     states = require('../states'),
     h = require('../globalHelpers');
 
-var CatalogOrderView = PageLayout.extend({
+var CatalogOrderView = Backbone.View.extend({
 
     name: 'catalog_order',
 
@@ -35,17 +34,25 @@ var CatalogOrderView = PageLayout.extend({
         this.navbarView=options.navbarView;
     },
 
-    onShow: function(){
-        this.addEvents({
-            'click .back': 'triggerCatalogView',
-            'click .cancel_button': 'triggerCatalogView',
-            'click .submit_button': 'onSubmitClick',
-            'click .showPaymentInfo': 'showPaymentInfo',
-            'click .hidePaymentInfo': 'hidePaymentInfo'
-        });
+    events: {
+        'click .back': 'triggerCatalogView',
+        'click .cancel_button': 'triggerCatalogView',
+        'click .submit_button': 'onSubmitClick',
+        'click .showPaymentInfo': 'showPaymentInfo',
+        'click .hidePaymentInfo': 'hidePaymentInfo'
     },
 
-    renderData: function () {
+    // onShow: function(){
+    //     this.addEvents({
+    //         'click .back': 'triggerCatalogView',
+    //         'click .cancel_button': 'triggerCatalogView',
+    //         'click .submit_button': 'onSubmitClick',
+    //         'click .showPaymentInfo': 'showPaymentInfo',
+    //         'click .hidePaymentInfo': 'hidePaymentInfo'
+    //     });
+    // },
+
+    renderData: function() {
 
         var tmpData = _.extend({},  this.catalogOptions, {
             username: this.user.userName,
@@ -61,6 +68,12 @@ var CatalogOrderView = PageLayout.extend({
         });
 
         return tmpData;
+    },
+
+    render: function() {
+        this.$el.html(template(this.renderData()));
+        this.setElement(this.$el.children().eq(0));
+        return this;
     },
 
     calculateTaxes: function() {

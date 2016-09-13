@@ -4,10 +4,13 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
-    appCache = require('../../appCache.js'),
+    h = require('../../globalHelpers'),
+    config = require('../../appConfig'),
+    appCache = require('../../appCache'),
     sessionActions = require('../../actions/sessionActions'),
     userController = require('../../controllers/userController'),
-    promotionsController = require('../../controllers/promotionsController');
+    promotionsController = require('../../controllers/promotionsController'),
+    popupController = require('../../controllers/popupController');
 
 var NavbarView = Backbone.View.extend({
 
@@ -22,6 +25,7 @@ var NavbarView = Backbone.View.extend({
     },
 
     initialize: function(options) {
+        this.$el.navbar();
         this.options = options || {};
         //this.restaurant = options.restaurant;
         //this.page = options.page;
@@ -79,23 +83,26 @@ var NavbarView = Backbone.View.extend({
     },
 
     openPromotion: function(pid) {
-        loader.show('retrieving promotions');
-        promotionsController.fetchPromotionUUIDsBySasl(
-            this.sa,
-            this.sl,
-            this.page.user.getUID()
-        ).then(function(promotions) {
-            if(promotions.length < 1) {
-                loader.showFlashMessage('No promotions were found');
-            } else {
-                this.page.openSubview('promotions', promotions, {pid: pid, sasl: this.model});
-            }
-        }.bind(this), function () {
-            loader.showFlashMessage('error retrieving promotions');
-        });
+        // loader.show('retrieving promotions');
+        Vent.trigger('scrollToPromotions');
+        // promotionsController.fetchPromotionUUIDsBySasl(
+        //     this.sa,
+        //     this.sl,
+        //     this.user.getUID() //??? this.page.user.getUID()
+        // ).then(function(promotions) {
+        //     if(promotions.length < 1) {
+        //         loader.showFlashMessage('No promotions were found');
+        //     } else {
+        //         debugger;
+        //         this.page.openSubview('promotions', promotions, {pid: pid, sasl: this.model});
+        //     }
+        // }.bind(this), function () {
+        //     loader.showFlashMessage('error retrieving promotions');
+        // });
     },
 
     triggerContestsView: function() {
+        debugger;
         this.page.withLogIn(function () {
             Vent.trigger('viewChange', 'contests', [this.sa, this.sl]);
         }.bind(this));
@@ -106,13 +113,13 @@ var NavbarView = Backbone.View.extend({
     },
 
     openMenu: function() {
-        if (this.restaurant) {
-            this.page.openSubview('restaurantMenu', {}, this.restaurant.get('services'));
-        }
+        // if (this.restaurant) {
+        //     this.page.openSubview('restaurantMenu', {}, this.restaurant.get('services'));
+        // }
     },
 
     confirmSignout: function () {
-        this.page.openSubview('confirmationPopup', {}, {
+        popupController.confirmation({}, {
             text: 'Are you sure you want to sign out?',
             action: this.signout.bind(this)
         });
@@ -129,7 +136,7 @@ var NavbarView = Backbone.View.extend({
     },
 
     signin: function() {
-        this.page.openSubview('signin', this.model);
+        popupController.signin(this.model);
     },
 
     toggle: function () {

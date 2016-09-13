@@ -21,7 +21,8 @@ var PanelView = function(options) {
         'data-position-fixed': true,
         'data-dismissible': true,
         'data-swipe-close': false,
-        'class': 'panel'
+        //TODO hacked styles
+        'class': 'popup_container panel ui-panel ui-panel-position-left ui-panel-display-overlay ui-body-a ui-panel-fixed ui-panel-animate'
     });
 
     if ( this.parent ) {
@@ -32,6 +33,7 @@ var PanelView = function(options) {
 };
 
 _.extend(PanelView.prototype, Backbone.View.prototype, {
+    // el: '.popup_container',
 
     pageEvents: {
         'panelclose':'_onClose',
@@ -45,14 +47,20 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
         this.delegateEvents(events);
     },
 
+    afterRender: function() {
+        $('.popup_container').html('');
+        this.$el.appendTo('.popup_container');
+    },
+
     render: function() {
         this.viewModel = this.model ? ( this.model.attributes || this.collection ) : this.collection;
         this.$el.html(this.template( _.extend( this.viewModel, this.renderData ) ) );
+        this.afterRender(); // call it by default for each panel
         return this;
     },
 
     enhance: function(){
-        this.$el.panel(this.jqmOptions);
+        this.$el.panel();
         this.$('.outside').insertBefore('.ui-panel-inner');
         this.$el.trigger('create');
     },
@@ -84,16 +92,9 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
 
     _onClose: function() {
         this.trigger('close:all');
-        if(this.parent){
-            this.parent.trigger('subview:close');
-        }
         this.undelegateEvents();
         this.remove();
-    },
-
-    openSettings: function() {
-        this.parent.openSubview('options', configurationActions.getConfigurations());
-    },
+    }
 
 });
 

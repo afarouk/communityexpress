@@ -7,16 +7,17 @@ var Vent = require('../Vent'),
     template= require('ejs!../templates/aboutUs.ejs');
 
 var AboutUs = Backbone.View.extend({
-
     name: 'about_us',
+    id: 'cmtyx_aboutUs',
+    
     initialize: function(options) {
         options = options || {};
-        this.render(options);
         this.sasl = options.sasl;
-        this.on('show', this.onShow, this);
+        this.render(options);
     },
     render: function(data){
-        this.setElement(template(data));
+        this.$el.html(template(data));
+        this.setElement(this.$el.children().eq(0));
         return this;
     },
 
@@ -27,18 +28,9 @@ var AboutUs = Backbone.View.extend({
         return this.$el;
     },
 
-    onShow:  function() {
-        this.addEvents({
-            'click .back': 'triggerLandingView',
-        });
-    },
-
-    triggerLandingView: function() {
+    goBack: function() {
         Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey());
     }
-
-
-
 });
 
 module.exports = AboutUs;

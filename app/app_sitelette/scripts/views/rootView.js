@@ -2,10 +2,9 @@
 
 'use strict';
 
-var PageLayout = require('./components/pageLayout');
 
-var RootView = PageLayout.extend({
-    name: 'root',
-});
+// var RootView = Backbone.View.extend({
+//     name: 'root',
+// });
 
-module.exports = RootView;
+// module.exports = RootView;
