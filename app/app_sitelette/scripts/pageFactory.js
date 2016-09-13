@@ -18,6 +18,8 @@ var LandingView = require('./views/landingView'), //
     CatalogOrderView = require('./views/catalogOrderView'),//
     RosterOrderView = require('./views/rosterOrderView'),//
     EventActiveView = require('./views/eventActiveView'),//
+    AddressView = require('./views/rosterOrder/addressView'),
+    PaymentView = require('./views/rosterOrder/paymentView'),
     NavbarView = require('./views/headers/navbarView');
 
 module.exports = {
@@ -167,6 +169,24 @@ module.exports = {
                 navbarData : {
                     sasl : options.sasl,
                     title : 'Order'
+                }
+            }));
+            break;
+        case 'address':
+            view = new AddressView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {
+                    sasl: options.sasl,
+                    title: 'Order'
+                }
+            }));
+            break;
+        case 'payment':
+            view = new PaymentView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {
+                    sasl: options.sasl,
+                    title: 'Payment'
                 }
             }));
             break;

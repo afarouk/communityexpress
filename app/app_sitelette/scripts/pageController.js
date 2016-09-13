@@ -470,6 +470,54 @@ module.exports = {
                 };
             });
     },
+
+    address: function(options) {
+        var sasl,
+            addresses,
+            fundsource,
+            rosterId = options.rosterId,
+            backToCatalog = true, // options.backToCatalogs;
+            backToRoster = true,
+            backToCatalogs = options.backToCatalogs,
+            editModel=options.editModel,
+            launchedViaURL=options.launchedViaURL;
+        return saslActions.getSasl(options.id)
+            .then(function(ret) {
+                sasl = ret;
+                return orderActions.getOrderPrefillInfo();
+            }).then(function(ret) {
+                addresses = ret.addresses;
+                fundsource = ret.fundsource;
+                var sa = sasl.get('serviceAccommodatorId'),
+                    sl = sasl.get('serviceLocationId');
+                return orderActions.getPriceAddons(sa, sl);
+            }).then(function(ret) {
+                /*
+                 * pull up the basket for this sasl
+                 */
+                var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + ':rosterbasket');
+                return {
+                    sasl: sasl,
+                    addresses: addresses,
+                    fundsource: fundsource,
+                    priceAddons: ret,
+                    user: sessionActions.getCurrentUser(),
+                    url: getUrl(sasl) + '/roster',
+                    basket: basket,
+                    editModel:editModel,
+                    rosterId: rosterId,
+                    backToRoster: true,
+                    backToCatalog: backToCatalog,
+                    backToCatalogs: backToCatalogs,
+                    launchedViaURL: launchedViaURL
+                };
+            });
+    },
+
+    payment: function(options) {
+        return options;
+    },
+
     roster_order: function(options) {
         var sasl,
             addresses,
