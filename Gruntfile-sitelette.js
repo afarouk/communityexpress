@@ -16,14 +16,26 @@ webpackConfig.keepalive = false;
 var themes = function() {
     // Number of themes
     var themeNumber = 4;
+    var themesConf = {};
     var distStyle = {};
+    var copyImages = [];
     for (var i = 1; i <= themeNumber; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
             distFile='<%= yeoman.dist %>/themes/'+ i +'/css/style.css',
             themeName='<%= yeoman.app %>/themes/'+ i +'/css/style.css';
         distStyle[distFile] = [styles, themeName];
+        copyImages.push({
+            expand: true,
+            cwd: '<%= yeoman.app %>/build',
+            src: [
+                '*.{ico,txt,png,gif}'
+            ],
+            dest: '<%= yeoman.dist %>/themes/' + i + '/css'
+        });
     };
-    return distStyle;
+    themesConf['distStyle'] = distStyle;
+    themesConf['copyImages'] = copyImages;
+    return themesConf;
 };
 
 module.exports = function (grunt) {
@@ -38,6 +50,8 @@ module.exports = function (grunt) {
         dist: 'dist',
         indexFile: 'prod-index.html'
     };
+
+    var themesConf = themes();
 
     grunt.initConfig({
         yeoman: yeomanConfig,
@@ -82,7 +96,7 @@ module.exports = function (grunt) {
         },
         cssmin: {
             target: {
-                files: themes()
+                files: themesConf.distStyle
             },
             options: {
                 report: 'min'
@@ -90,7 +104,7 @@ module.exports = function (grunt) {
         },
         copy: {
             dist: {
-                files: [
+                files: themesConf.copyImages.concat([
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
@@ -98,14 +112,6 @@ module.exports = function (grunt) {
                             '.htaccess'
                         ],
                         dest: '<%= yeoman.dist %>'
-                    },
-                    {
-                        expand: true,
-                        cwd: '<%= yeoman.app %>/build',
-                        src: [
-                            '*.{ico,txt,png,gif}'
-                        ],
-                        dest: '<%= yeoman.dist %>/themes/1/css'
                     },
                     // copy sitefiles
                     {
@@ -174,7 +180,21 @@ module.exports = function (grunt) {
                     //     src: '<%= yeoman.app %>/styles/themes/theme2/sprite_buttons_theme9.png',
                     //     dest: '<%= yeoman.dist %>/build/sprite_buttons_theme9.png'
                     // }
-                ]
+                ])
+            }
+        },
+        imagemin: {
+            dist: {
+              options: {
+                optimizationLevel: 7
+              },
+              files: [{
+                overwrite: true,
+                expand: true,
+                cwd: '<%= yeoman.dist %>',
+                src: ['**/*.{png,jpg,gif}'],
+                dest: '<%= yeoman.dist %>'
+              }]
             }
         },
         compress: {
@@ -191,8 +211,8 @@ module.exports = function (grunt) {
         // Here will be replacements for production files
         replace: {
             dist: {
-                src: ['<%= yeoman.dist %>/themes/1/index.html'],
-                dest: '<%= yeoman.dist %>/themes/1/index.html',
+                overwrite: true,
+                src: ['<%= yeoman.dist %>/themes/*/index.html'],
                 replacements: [{
                     from: '<link href="build/styles.css" rel="stylesheet">',
                     to: ''
@@ -203,12 +223,13 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', function() {
         grunt.task.run([
-            'clean',
+            'clean:dist',
             'webpack:build-dev',
             'copy',
             'replace',
             'uglify',
             'cssmin',
+            'clean:removeStyle',
             'compress'
         ]);
     });
@@ -221,6 +242,7 @@ module.exports = function (grunt) {
             'uglify',
             'cssmin',
             'clean:removeStyle',
+            'imagemin', // this task takes a very long time and save about 4.8MB
             'compress'
         ]);
     });
