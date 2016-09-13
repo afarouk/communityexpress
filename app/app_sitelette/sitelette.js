@@ -1,10 +1,14 @@
 'use strict';
 
+require('../vendor/css/fonts.css');
 require('../vendor/css/jquery.mobile-1.4.5.min.css');
 // require('../vendor/css/bootstrap.min.css');
 // require('../app_sitelette/styles/sitelette_icons.css');
 require('../vendor/styles/jquery.jqplot.min.css');
 require('../vendor/add-to-homescreen/style/addtohomescreen.css');
+require('../vendor/skeuocard-master/styles/skeuocard.reset.css');
+require('../vendor/skeuocard-master/styles/skeuocard.css');
+require('../vendor/star-rating-svg-master/src/css/star-rating-svg.css');
 // require('../vendor/styles/owl.carousel.css');
 // require('../vendor/styles/fullcalendar.min.css');
 // require('./styles/sitelette.css');
@@ -13,7 +17,9 @@ require('../vendor/add-to-homescreen/src/addtohomescreen.min');
 
 require('./scripts/jquerymobile_config');
 require('../vendor/jquery-mobile/jquery.mobile-1.4.5');
-require('../vendor/scripts/owl.carousel.min');
+require('../vendor/skeuocard-master/javascripts/skeuocard.min.js');
+require('../vendor/star-rating-svg-master/src/jquery.star-rating-svg.js');
+// require('../vendor/scripts/owl.carousel.min');
 require('../vendor/scripts/jquery.jqplot.min');
 require('../vendor/scripts/jqplot.barRenderer.min');
 require('../vendor/scripts/jqplot.categoryAxisRenderer.min');
@@ -23,7 +29,7 @@ require('../vendor/swipe/swipe');
 require('../vendor/canvasResize/canvasResize');
 require('jquery-mask-plugin');
 require('moment');
-require('fullcalendar');
+// require('fullcalendar');
 
 require('../vendor/styles/select2.css');
 require('../vendor/scripts/select2.full');

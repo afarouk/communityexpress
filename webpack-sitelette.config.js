@@ -40,6 +40,11 @@ module.exports = {
 				test: /vendor\/.+\.(jsx|js)$/,
 				loader: 'imports?jQuery=jquery,$=jquery,this=>window',
 				exclude: /node_modules/
+			},
+			{
+				test   : /vendor\/.+\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+				loader : 'file-loader',
+				exclude: /node_modules/
 			}
 		]
 	},

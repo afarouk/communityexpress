@@ -242,7 +242,7 @@ module.exports = function (grunt) {
             'uglify',
             'cssmin',
             'clean:removeStyle',
-            'imagemin', // this task takes a very long time and save about 4.8MB
+            // 'imagemin', // this task takes a very long time and save about 4.8MB
             'compress'
         ]);
     });
