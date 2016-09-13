@@ -162,6 +162,22 @@ body {
     bottom: 5px;
 }
 
+.left_arr_block {
+    background: url('images/arrow-point-to-right-copy.png') no-repeat top left;
+}
+
+.left_arr_block span {
+    padding-left: 15px;
+}
+
+.right_arr_block {
+    background: url('images/arrow-point-to-right.png') no-repeat top right;
+}
+
+.right_arr_block span {
+    padding-right: 15px;
+}
+
 .left_arr_block,
 .right_arr_block {
     float: left;
@@ -220,8 +236,8 @@ button.ui-btn {
 }
 
 .next_btn {
-    /*    background-color: #faa019 !important;*/
-    /*    border-color: #faa019 !important;*/
+    background-color: var(--cmtyx_color1) !important;
+    border-color: var(--cmtyx_color1) !important;
     border-width: 1px;
     border-style: solid;
     border-bottom-left-radius: 5px;
@@ -1974,8 +1990,7 @@ border-right: solid 1px #e1e1e1;
     margin: 0;
 }
 
-.questions_block .ui-radio label,
-.ui-radio label.ui-btn:hover {
+.questions_block .ui-radio label {
     padding: 6px 0 6px 18px;
     font: 700 16px Roboto;
     color: #ececec;

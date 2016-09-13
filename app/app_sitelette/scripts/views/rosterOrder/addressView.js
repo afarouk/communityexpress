@@ -38,7 +38,7 @@ var AddressView = Backbone.View.extend({
     },
 
     renderData: function() {
-        var tmpData = {};
+        var tmpData = _.extend({}, this.model.toJSON());
 
         return tmpData;
     },

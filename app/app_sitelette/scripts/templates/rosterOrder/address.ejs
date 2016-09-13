@@ -5,9 +5,13 @@
         <div class="circle last"></div>
     </div>
     <div class="navigation">
-        <div class="left_arr_block nav_back_btn"><img src="images/arrow-point-to-right-copy.png" alt=""><span>Back</span></div>
+        <div class="left_arr_block nav_back_btn">
+            <span>Back</span>
+        </div>
         <div class="page_title">Shipping details</div>
-        <div class="right_arr_block nav_next_btn"><span>Next</span><img src="images/arrow-point-to-right.png" alt=""></div>
+        <div class="right_arr_block nav_next_btn">
+            <span>Next</span>
+        </div>
     </div>
     <div data-role="tabs" id="tabs">
         <div data-role="navbar">
@@ -19,7 +23,7 @@
         <div id="delivery" class="ui-body-d ui-content">
             <p class="choose_card_text">Choose address:</p>
             <form>
-                <label for="saved_address">Some Street, 8, Random City</label>
+                <label for="saved_address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></label>
                 <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'>
                 <label for="add_another">Add another address</label>
                 <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice"> </form>
