@@ -1,0 +1,71 @@
+<div data-role="page" id="payment_page">
+    <div class="circles_block">
+        <div class="circle"></div>
+        <div class="circle cmtyx_bgcolor1 cmtyx_brdrcolor1"></div>
+        <div class="circle last"></div>
+    </div>
+    <div class="navigation">
+        <div class="left_arr_block nav_back_btn"><img src="images/arrow-point-to-right-copy.png" alt=""><span>Back</span></div>
+        <div class="page_title">Payment</div>
+        <div class="right_arr_block nav_next_btn"><span>Next</span><img src="images/arrow-point-to-right.png" alt=""></div>
+    </div>
+
+    <div data-role="tabs" id="tabs">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#credit" data-ajax="false" class="leftBtn cmtyx_color1 cmtyx_brdrcolor1 ui-btn-active">Credit</a></li>
+                <li><a href="#cash" data-ajax="false" class="rightBtn cmtyx_color1 cmtyx_brdrcolor1">Cash</a></li>
+            </ul>
+        </div>
+        <div id="credit" class="ui-body-d ui-content">
+            <p class="choose_card_text">Choose card:</p>
+            <form>
+                <label for="saved_card"><%= creditCard.cardNumber %></label>
+                <input type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice" checked='checked'>
+                <label for="use_another">Use another</label>
+                <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice"> </form>
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1 cmtyx_brdrcolor1">Back</button>
+                </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_bgcolor1 cmtyx_brdrcolor1">Next</button>
+                </div>
+            </div>
+        </div>
+        <div id="cash" class="ui-body-d ui-content">
+            <p class="your_order_text">Your order</p>
+            <ul class="order_list">
+                <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1">$9.75</span></li>
+                <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1">$3.50</span></li>
+                <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1">$9.75</span></li>
+            </ul>
+            <ul class="price_list">
+                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
+                <li ><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
+                <li class="tip_price"><span class="order_name">Tip</span>
+                <div class="float_right">
+                   <div class="select_container">
+                            <select data-role="none" class="select">
+                                <option value="tip0">0%</option>
+                                <option value="tip5">5%</option>
+                                <option value="tip10">10%</option>
+                                <option value="tip15">15%</option>
+                                <option value="tip20">20%</option>
+                            </select>
+                    </div>  
+                    <span class="order_price cmtyx_color1">$0.00</span>
+                </div></li>
+                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1"><%= totalAmount %></span></li>
+            </ul>
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1 cmtyx_brdrcolor1">Back</button>
+                </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn cmtyx_bgcolor1 cmtyx_brdrcolor1">Place order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
