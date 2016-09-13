@@ -11,7 +11,9 @@ var RosterComboItemView = Backbone.View.extend({
     className : 'cmtyx_roster_combo_item menuItem',
     events : {
         'click .roster_combo_item_add_button' : 'showAddToBusketView',
-        'change .combo_select_item': 'addToCart'
+        'click .plus_button': 'incrementQuantity',
+        'click .minus_button': 'decrementQuantity',
+        'click .combo_select_item': 'addToCart'
     },
 
     initialize : function(options) {
@@ -30,9 +32,16 @@ var RosterComboItemView = Backbone.View.extend({
         this.onClick();
     },
 
-    addToCart: function(e){
-        var count=e.target.selectedIndex,
+    addToCart: function(e, action){
+        var catalogId = e.target.attributes.catalogid.value; 
+        var catalog_quantity = parseInt($('#ComboItemCount_'+catalogId).text());
+        console.log(catalog_quantity);
+
+        var count = (action == 'add') ? catalog_quantity + 1 : catalog_quantity - 1,
             catalog;
+
+        console.log(count);
+
         this.basket = this.options.parent.basket;
         var initialCnt=this.basket.getComboCount();
         this.catalogId = e.target.attributes.catalogid.value; 
@@ -42,8 +51,20 @@ var RosterComboItemView = Backbone.View.extend({
         if (catalog) {
             catalog.off('change').on('change', _.bind(this.changeCount, this));
         }
-        
+
         $('.cart_items_number').text(this.basket.getComboCount());
+
+        $('#ComboItemCount_'+catalogId).text(count);
+
+        return;
+    },
+
+    incrementQuantity: function (e) {
+        this.addToCart(e, 'add');
+    },
+
+    decrementQuantity: function (e) {
+        this.addToCart(e, 'remove');
     },
 
     changeCount: function() {
