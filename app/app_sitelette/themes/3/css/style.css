@@ -805,6 +805,9 @@ label.checkbox_save_card {
     border-top-left-radius: 5px !important;
     -webkit-border-bottom-left-radius: 5px !important;
     border-bottom-left-radius: 5px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-width: 0 !important;
 }
 
 .quantity_minus.ui-icon-minus:after, a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
@@ -826,6 +829,9 @@ label.checkbox_save_card {
     border-top-right-radius: 5px !important;
     -webkit-border-bottom-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-width: 0 !important;
 }
 
 .quantity_plus.ui-icon-plus:after, a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after {
@@ -932,7 +938,9 @@ input[type=number]::-webkit-outer-spin-button {
 .ui-panel-inner {
     /*temporary solution*/
     padding: 0;
-    height:100%;
+    height: 100%;
+    position: absolute;
+    width: 100%;
 }
 
 .cart_header {
@@ -1496,13 +1504,14 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 
 .sub_header {
-    background-color: #252525;
+    background-color: #444;
     height: auto;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 4% 10px;
     position: fixed;
-    width: 100%;
+    width: 90%;
     z-index: 1000;
     margin-top: -3px;
+    left: 0;
 }
 
 .sub-radio-list{
@@ -1519,12 +1528,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 
 #cmtyx_rosterView .ui-content {
     padding-top: 60px;
-    padding-right: 0;
 }
 
 #cmtyx_catalogView .ui-content{
     padding-top: 40px;
-    padding-right: 0;
 }
 
 .ui-page{
@@ -1561,17 +1568,17 @@ border-right: solid 1px #e1e1e1;
 
 .common_header #cmtyx_header_back_button {
     display: none;
-    float: left;
     width: 50px;
-    height: 45px;
+    height: 26px;
     padding: 11px;
+    position: absolute;
 }
 
 .common_header .menu_btn {
-    float: left;
-    height: 45px;
+    height: 26px;
     width: 50px;
     padding: 10px;
+    position: absolute;
 }
 
 .common_header .logo_container {
@@ -1706,6 +1713,10 @@ border-right: solid 1px #e1e1e1;
     right: 10px;
 }
 
+.home_body.p-0 ul{
+    margin-top: 0 !important;
+}
+
 .home_body li {
     margin-bottom: 0px;
 }
@@ -1727,6 +1738,7 @@ border-right: solid 1px #e1e1e1;
     padding: 5px 10px;
     background-color: #ca1d1d;
     text-align: left;
+    line-height: 28px;
 }
 
 .welcome_block .breaking_news .news_line {

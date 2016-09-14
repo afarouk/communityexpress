@@ -3,6 +3,17 @@
 </span>
 <div class="float_right">
     <div class="select_container">
+        <div class="ui-grid-b">
+            <div class="ui-block-a quantity_minus decrementQuantity">
+                <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogId="<%=combo.catalogId%>" catalogDisplayText="<%=combo.displayText%>"></a>
+            </div>
+            <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
+                 <span class="quantity" id="ComboItemCount_<%=combo.catalogId%>" >0</span>
+            </div>
+            <div class="ui-block-c quantity_plus incrementQuantity">
+                <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"  catalogId="<%=combo.catalogId%>" catalogDisplayText="<%=combo.displayText%>"></a>
+            </div>
+        </div>
 
     </div> <span class="item_price">$<%=combo.price%></span> 
 </div>
