@@ -83,6 +83,8 @@ var EditRosterView = PanelView.extend({
         console.log(count);
         
         if(count === 0){
+            $('#itemCount_'+catalogId).text(count);
+            $('#ComboItemCount_'+catalogId).text(count);
             this.removeSelected(e);
         }
         else{

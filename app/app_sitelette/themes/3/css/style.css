@@ -1,3 +1,4 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900';
 html {
     --cmtyx_color1: #faa019;
     --cmtyx_hover_color1: #d07c00;
@@ -200,8 +201,8 @@ button.ui-btn {
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: 20px 10px;
-    width: 100%;
+    padding: 20px 5%;
+    width: 90%;
     z-index: 2;
 }
 
@@ -870,6 +871,12 @@ label.checkbox_save_card {
     margin-top: 65px;
 }
 
+.menu_body ul{
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    margin-top: 0;
+}
+
 .menu_body li {
     background-color: #464646;
     padding: 10px 10px 20px 10px;
@@ -1169,19 +1176,19 @@ li.choose_extras {
     background-color: transparent;
 }
 
-.color1 {
+.color1, .ui-page-theme-a .color1 a.ui-btn:focus, .ui-page-theme-a .color1 a.ui-btn:hover {
     background-color: #faa019;
 }
 
-.color2 {
+.color2, .ui-page-theme-a .color2 a.ui-btn:focus, .ui-page-theme-a .color2 a.ui-btn:hover{
     background-color: #ef7112;
 }
 
-.color3 {
+.color3, .ui-page-theme-a .color3 a.ui-btn:focus, .ui-page-theme-a .color3 a.ui-btn:hover {
     background-color: #f05d13;
 }
 
-.color4 {
+.color4, .ui-page-theme-a .color4 a.ui-btn:focus, .ui-page-theme-a .color4 a.ui-btn:hover{
     background-color: #e34a20;
 }
 
@@ -1506,7 +1513,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .sub_header {
     background-color: #444;
     height: auto;
-    padding: 10px 4% 10px;
+    padding: 10px 5% 10px;
     position: fixed;
     width: 90%;
     z-index: 1000;
@@ -1522,7 +1529,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 
 #cmtyx_catalogView, #cmtyx_rosterView{
-    padding: 15px 10px 100px 0px;
+    padding: 15px 0px 100px 0px;
     padding-top: 0; 
 }
 
@@ -1693,7 +1700,6 @@ border-right: solid 1px #e1e1e1;
 
 .logo_container {
     text-align: center;
-    width: 100%;
 }
 
 .logo {
