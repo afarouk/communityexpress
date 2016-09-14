@@ -18,7 +18,8 @@ var AddressView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            'click .next_btn': 'triggerPayment'
+            'click .next_btn': 'triggerPayment',
+            'click .rightBtn': 'showMap'
         });
     },
 
@@ -45,6 +46,30 @@ var AddressView = Backbone.View.extend({
 
     triggerPayment: function() {
         Vent.trigger('viewChange', 'payment', this.model);
+    },
+
+    showMap: function() {
+        var coords = this.model.get('coords'),
+            lat = coords.lat,
+            long = coords.long,
+            el = this.$('#shipping_map')[0],
+            options = {
+            center: new google.maps.LatLng(lat, long), 
+            zoom: 10,
+            disableDefaultUI:true
+        };
+        this.map = new google.maps.Map(el, options);
+        google.maps.event.addListener(this.map, 'click', _.bind(this.addMarker, this));
+    },
+
+    addMarker: function(location) {
+        if (this.marker) {
+            this.marker.setMap(null)
+        }
+        this.marker = new google.maps.Marker({
+            position: location.latLng, 
+            map: this.map
+        });
     }
 });
 

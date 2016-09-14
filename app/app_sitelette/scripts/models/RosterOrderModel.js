@@ -46,7 +46,15 @@ var RosterOrderModel = Backbone.Model.extend({
 			currencyCode: options.priceAddons.currencyCode,
 			saveCreditCardForFutureReference: options.fundsource.saveCardForReuse,
 			deliveryAddress: this.getAddress(options.addresses[0]),
-			creditCard: this.getCreditCard(options.fundsource)
+			creditCard: this.getCreditCard(options.fundsource),
+			coords: this.getCoords(options.sasl.attributes)
+		};
+	},
+
+	getCoords: function(attrs) {
+		return {
+			long: attrs.longitude,
+			lat: attrs.latitude
 		};
 	},
 
