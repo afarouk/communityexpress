@@ -49,9 +49,11 @@ var AddressView = Backbone.View.extend({
     },
 
     showMap: function() {
-        var coords = this.model.get('coords'),
-            lat = coords.lat,
-            long = coords.long,
+        this.coords = this.model.get('coords');
+        this.directionsDisplay = new google.maps.DirectionsRenderer(),
+        this.directionsService = new google.maps.DirectionsService();
+        var lat = this.coords.lat,
+            long = this.coords.long,
             el = this.$('#shipping_map')[0],
             options = {
             center: new google.maps.LatLng(lat, long), 
@@ -59,17 +61,33 @@ var AddressView = Backbone.View.extend({
             disableDefaultUI:true
         };
         this.map = new google.maps.Map(el, options);
-        google.maps.event.addListener(this.map, 'click', _.bind(this.addMarker, this));
-    },
-
-    addMarker: function(location) {
-        if (this.marker) {
-            this.marker.setMap(null)
-        }
-        this.marker = new google.maps.Marker({
-            position: location.latLng, 
+        this.restaurantMarker = new google.maps.Marker({
+            position: {lat: lat, lng: long},
             map: this.map
         });
+        google.maps.event.addListener(this.map, 'click', _.bind(this.calculateRoute, this));
+    },
+
+    calculateRoute: function(location) {
+        var start = location.latLng,
+            end = new google.maps.LatLng(this.coords.lat, this.coords.long),
+            bounds = new google.maps.LatLngBounds();
+        bounds.extend(start);
+        bounds.extend(end);
+        this.map.fitBounds(bounds);
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        this.directionsService.route(request, _.bind(function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                this.directionsDisplay.setDirections(response);
+                this.directionsDisplay.setMap(this.map);
+            } else {
+                alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+            }
+        }, this));
     }
 });
 
