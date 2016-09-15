@@ -1,0 +1,92 @@
+<div data-role="page" id="summary">
+    <div class="circles_block">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle last cmtyx_bgcolor1 cmtyx_brdrcolor1"></div>
+    </div>
+    <div class="navigation">
+        <div class="left_arr_block nav_back_btn"><span>Back</span></div>
+        <div class="page_title">Summary</div>
+        <div class="right_arr_block nav_next_btn placeOrderBtn"><span>Next</span></div>
+    </div>
+    <div data-role="tabs" id="tabs">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#credit" data-ajax="false" class="leftBtn cmtyx_color1 cmtyx_brdrcolor1 ui-btn-active">Credit</a></li>
+                <li><a href="#cash" data-ajax="false" class="rightBtn cmtyx_color1 cmtyx_brdrcolor1">Cash</a></li>
+            </ul>
+        </div>
+        <div id="credit" class="ui-body-d ui-content">
+            <p class="card_text">Card</p>
+            <p class="card_number"><%= creditCard.cardNumber %></p>
+            <p class="delivery_address_text">Delivery address</p>
+            <p class="address">Some Street, 8 Random City</p>
+            <p class="your_order_text">Your order</p>
+            <ul class="order_list">
+                <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1">$9.75</span></li>
+                <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1">$3.50</span></li>
+                <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1">$9.75</span></li>
+            </ul>
+            <ul class="price_list">
+                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
+                <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
+                <li class="tip_price"><span class="order_name">Tip</span>
+                <div class="float_right">
+                   <div class="select_container">
+                            <select data-role="none" class="select">
+                                <option value="tip0">0%</option>
+                                <option value="tip5">5%</option>
+                                <option value="tip10">10%</option>
+                                <option value="tip15">15%</option>
+                                <option value="tip20">20%</option>
+                            </select>
+                    </div>  
+                    <span class="order_price cmtyx_color1">$0.00</span>
+                </div></li>
+                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
+            </ul>
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1 cmtyx_brdrcolor1">Back</button>
+                </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn cmtyx_bgcolor1 cmtyx_brdrcolor1">Place order</button>
+                </div>
+            </div>
+        </div>
+        <div id="cash" class="ui-body-d ui-content">
+            <p class="your_order_text">Your order</p>
+            <ul class="order_list">
+                <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1">$9.75</span></li>
+                <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1">$3.50</span></li>
+                <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1">$9.75</span></li>
+            </ul>
+            <ul class="price_list">
+                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
+                <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
+                <li class="tip_price"><span class="order_name">Tip</span>
+                <div class="float_right">
+                   <div class="select_container">
+                            <select data-role="none" class="select">
+                                <option value="tip0">0%</option>
+                                <option value="tip5">5%</option>
+                                <option value="tip10">10%</option>
+                                <option value="tip15">15%</option>
+                                <option value="tip20">20%</option>
+                            </select>
+                    </div>  
+                    <span class="order_price cmtyx_color1">$0.00</span>
+                </div></li>
+                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
+            </ul>
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1 cmtyx_brdrcolor1">Back</button>
+                </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn cmtyx_bgcolor1 cmtyx_brdrcolor1">Place order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

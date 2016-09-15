@@ -23,8 +23,10 @@ var RosterOrderModel = Backbone.Model.extend({
 		_.extend(this.additionalParams, {
 			symbol: this.currencySymbols[options.priceAddons.currencyCode] || '$',
 			backToCatalog: options.backToCatalog,
-			ackToCatalogs: options.ackToCatalogs,
+			backToCatalogs: options.backToCatalogs,
 			backToRoster: options.backToRoster,
+			sasl: options.sasl,
+			launchedViaURL: options.launchedViaURL,
 			rosterId: options.rosterId // etc...
 		});
 	},

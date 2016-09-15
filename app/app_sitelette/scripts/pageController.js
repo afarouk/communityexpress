@@ -520,6 +520,12 @@ module.exports = {
         }).promise();
     },
 
+    summary: function(orderModel) {
+        return $.Deferred().resolve({
+            model: orderModel
+        }).promise();
+    },
+
     roster_order: function(options) {
         var sasl,
             addresses,

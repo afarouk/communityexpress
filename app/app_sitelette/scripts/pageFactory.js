@@ -21,6 +21,7 @@ var LandingView = require('./views/landingView'), //
     RosterOrderModel = require('./models/RosterOrderModel'),
     AddressView = require('./views/rosterOrder/addressView'),
     PaymentView = require('./views/rosterOrder/paymentView'),
+    SummaryView = require('./views/rosterOrder/summaryView'),
     NavbarView = require('./views/headers/navbarView');
 
 module.exports = {
@@ -176,22 +177,14 @@ module.exports = {
         case 'address':
             var orderModel = new RosterOrderModel({}, options);
             view = new AddressView({
-                model: orderModel,
-                navbarView: NavbarView,
-                navbarData: {
-                    sasl: options.sasl,
-                    title: 'Order'
-                }
+                model: orderModel
             });
             break;
         case 'payment':
-            view = new PaymentView(_.extend(options, {
-                navbarView: NavbarView,
-                navbarData: {
-                    sasl: options.sasl,
-                    title: 'Payment'
-                }
-            }));
+            view = new PaymentView(options);
+            break;
+        case 'summary':
+            view = new SummaryView(options);
             break;
         case 'eventActive':
             view = new EventActiveView(_.extend(options, {

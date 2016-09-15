@@ -18,7 +18,8 @@ var AddressView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            'click .next_btn': 'triggerPayment',
+            'click .nav_next_btn': 'triggerPayment',
+            'click .nav_back_btn': 'goBack',
             'click .rightBtn': 'showMap'
         });
     },
@@ -88,7 +89,37 @@ var AddressView = Backbone.View.extend({
                 alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
             }
         }, this));
-    }
+    },
+
+    goBack : function() {
+        var params = this.model.additionalParams;
+        if( params.backToRoster){
+          this.triggerRosterView(params);
+        }else if(params.backToCatalogs) {
+            this.triggerCatalogsView(params);
+        } else {
+            this.triggerRestaurantView(params);
+        }
+    },
+
+    triggerRosterView: function(params) {
+        Vent.trigger('viewChange', 'roster', {
+          sasl: params.sasl.id,
+          id: params.rosterId,
+          backToRoster:true,
+          rosterId:params.rosterId,
+          launchedViaURL:  params.launchedViaURL
+       }, { reverse: true });
+    },
+
+    //TODO
+    triggerCatalogsView: function() {
+        console.log('return to catalogs');
+    },
+
+    triggerRestaurantView: function() {
+        console.log('return to restaurant');
+    },
 });
 
 module.exports = AddressView;
