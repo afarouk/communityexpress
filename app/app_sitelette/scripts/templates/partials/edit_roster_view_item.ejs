@@ -4,19 +4,19 @@
         <div class="select_container">
             <% if (quantity) { %>
                 <div class="ui-grid-b">
-                    <div class="ui-block-a quantity_minus">
-                        <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext"></a>
+                    <div class="ui-block-a quantity_minus decrementQuantity">
+                        <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogId="<%=catalogId%>" catalogDisplayText="<%=displayText%>"></a>
                     </div>
                     <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
-                         <span class="quantity" ><%= quantity %></span>
+                         <span class="quantity" id="itemCount_<%=catalogId%>" ><%= quantity %></span>
                     </div>
-                    <div class="ui-block-c quantity_plus">
-                        <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"></a>
+                    <div class="ui-block-c quantity_plus incrementQuantity">
+                        <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"  catalogId="<%=catalogId%>" catalogDisplayText="<%=displayText%>"></a>
                     </div>
                 </div>
             <% } %>
         </div>  
-        <span class="order_price">$ <%= quantity * price %></span> 
+        <span class="order_price">$ <%= (quantity * price).toFixed(2) %></span> 
     </div>
     <span class="order_subitem_name"><%=  ownComboItemText %></span>
     <!--<a class="cmntyex-remove-list-item ui-btn ui-shadow ui-corner-all
@@ -30,14 +30,14 @@
         <div class="select_container">
             <% if (quantity) { %>
                <div class="ui-grid-b">
-                    <div class="ui-block-a quantity_minus">
-                        <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext"></a>
+                    <div class="ui-block-a quantity_minus decrementQuantity">
+                        <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext"  catalogId="<%=catalogId%>" catalogDisplayText="<%=displayText%>"></a>
                     </div>
                     <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
-                         <span class="quantity" ><%= quantity %></span>
+                         <span class="quantity" id="itemCount_<%=catalogId%>" ><%= quantity %></span>
                     </div>
-                    <div class="ui-block-c quantity_plus">
-                        <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"></a>
+                    <div class="ui-block-c quantity_plus incrementQuantity">
+                        <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"  catalogId="<%=catalogId%>" catalogDisplayText="<%=displayText%>"></a>
                     </div>
                 </div>
             <% } %>

@@ -3,18 +3,18 @@
 </span>
 <div class="float_right">
     <div class="select_container">
-        <select data-role="none" class="select combo_select_item" catalogId="<%=combo.catalogId%>" catalogDisplayText="<%=combo.displayText%>">
-            <option value="num0">0</option>
-            <option value="num1">1</option>
-            <option value="num2">2</option>
-            <option value="num3">3</option>
-            <option value="num4">4</option>
-            <option value="num5">5</option>
-            <option value="num6">6</option>
-            <option value="num7">7</option>
-            <option value="num8">8</option>
-            <option value="num9">9</option>
-        </select>
+        <div class="ui-grid-b">
+            <div class="ui-block-a quantity_minus decrementQuantity">
+                <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogId="<%=combo.catalogId%>" catalogDisplayText="<%=combo.displayText%>"></a>
+            </div>
+            <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
+                 <span class="quantity" id="ComboItemCount_<%=combo.catalogId%>" >0</span>
+            </div>
+            <div class="ui-block-c quantity_plus incrementQuantity">
+                <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"  catalogId="<%=combo.catalogId%>" catalogDisplayText="<%=combo.displayText%>"></a>
+            </div>
+        </div>
+
     </div> <span class="item_price">$<%=combo.price%></span> 
 </div>
 <div class="combo_items_list"><%=combo.description%></div>
