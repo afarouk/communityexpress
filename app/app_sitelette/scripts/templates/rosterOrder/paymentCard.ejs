@@ -1,0 +1,53 @@
+<div data-role="page" id="payment_card_page">
+    <div class="circles_block">
+        <div class="circle"></div>
+        <div class="circle cmtyx_bgcolor1 cmtyx_brdrcolor1"></div>
+        <div class="circle last"></div>
+    </div>
+    <div class="navigation">
+        <div class="left_arr_block nav_back_btn"><span>Back</span></div>
+        <div class="page_title">Payment</div>
+        <div class="right_arr_block nav_next_btn"><span>Next</span></div>
+    </div>
+    <div class="credit_card_container">
+        <div class="credit-card-input no-js credit_card" id="skeuocard">
+            <p class="no-support-warning"> Either you have Javascript disabled, or you're using an unsupported browser, amigo! That's why you're seeing this old-school credit card input form instead of a fancy new Skeuocard. On the other hand, at least you know it gracefully degrades... </p>
+            <label for="cc_type">Card Type</label>
+            <select name="cc_type" data-role="none">
+                <option value="" data-role="none">...</option>
+                <option value="visa" data-role="none">Visa</option>
+                <option value="discover" data-role="none">Discover</option>
+                <option value="mastercard" data-role="none">MasterCard</option>
+                <option value="maestro" data-role="none">Maestro</option>
+                <option value="jcb" data-role="none">JCB</option>
+                <option value="unionpay" data-role="none">China UnionPay</option>
+                <option value="amex" data-role="none">American Express</option>
+                <option value="dinersclubintl" data-role="none">Diners Club</option>
+            </select>
+            <label for="cc_number">Card Number</label>
+            <input type="text" name="cc_number" id="cc_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19">
+            <label for="cc_exp_month">Expiration Month</label>
+            <input type="text" name="cc_exp_month" id="cc_exp_month" placeholder="00">
+            <label for="cc_exp_year">Expiration Year</label>
+            <input type="text" name="cc_exp_year" id="cc_exp_year" placeholder="00">
+            <label for="cc_name">Cardholder's Name</label>
+            <input type="text" name="cc_name" id="cc_name" placeholder="John Doe">
+            <label for="cc_cvc">Card Validation Code</label>
+            <input type="text" name="cc_cvc" id="cc_cvc" placeholder="123" maxlength="3" size="3"> 
+        </div>
+    </div>
+    <div class="checkbox_save_card_container">
+        <form>
+            <label class="checkbox_save_card">
+                <input type="checkbox" name="checkbox_save_card" data-role="none">Save for future reference</label>
+        </form>
+    </div>
+    <div class="ui-grid-a back_next_btns">
+        <div class="ui-block-a p-r-10">
+            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1 cmtyx_brdrcolor1">Back</button>
+        </div>
+        <div class="ui-block-b p-l-10">
+            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_bgcolor1 cmtyx_brdrcolor1">Next</button>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,8 @@ var PaymentView = Backbone.View.extend({
 
     id: 'cmtyx_payment',
 
+    radio: '.ui-radio',
+
 	initialize: function(options) {
 		this.options = options || {};
         this.on('show', this.onShow, this);
@@ -24,7 +26,7 @@ var PaymentView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            'click .nav_next_btn': 'triggerSummary',
+            'click .nav_next_btn': 'triggerNext',
             'click .nav_back_btn': 'goBack'
         });
     },
@@ -42,12 +44,28 @@ var PaymentView = Backbone.View.extend({
     	});
     },
 
+    triggerNext: function() {
+        var checked = this.$(this.radio).find(':checked');
+        if (checked.attr('id') === 'use_another') {
+            this.triggerPaymentCard();
+        } else {
+            this.triggerSummary();
+        }
+    },
+
     triggerSummary: function() {
-        Vent.trigger('viewChange', 'summary', this.model);
+        Vent.trigger('viewChange', 'summary', {
+            model: this.model,
+            backTo: 'payment'
+        });
+    },
+
+    triggerPaymentCard: function() {
+        Vent.trigger('viewChange', 'payment_card', this.model);
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', 'address', this.model);
+        Vent.trigger('viewChange', this.options.backTo , this.model);
     }
 });
 

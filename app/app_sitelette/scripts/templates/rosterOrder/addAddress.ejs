@@ -1,0 +1,65 @@
+<div data-role="page" id="shipping_page">
+    <div class="circles_block">
+        <div class="circle cmtyx_bgcolor1 cmtyx_brdrcolor1"></div>
+        <div class="circle"></div>
+        <div class="circle last"></div>
+    </div>
+    <div class="navigation">
+        <div class="left_arr_block nav_back_btn"><span>Back</span></div>
+        <div class="page_title">Shipping details</div>
+        <div class="right_arr_block nav_next_btn"><span>Next</span></div>
+    </div>
+    <div data-role="tabs" id="tabs">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#delivery" data-ajax="false" class="leftBtn cmtyx_color1 cmtyx_brdrcolor1 ui-btn-active">Delivery</a></li>
+                <li class="pick_up_tab"><a href="#pick_up" data-ajax="false" class="rightBtn cmtyx_color1 cmtyx_brdrcolor1">Pick up</a></li>
+            </ul>
+        </div>
+        <div id="delivery" class="ui-body-d ui-content">
+            <div class="wrapper">
+                <div class="material-textfield yellow">
+                    <input type="text" required data-role="none" />
+                    <label data-content="Apt/Bldg">Apt/Bldg</label>
+                </div>
+                <div class="material-textfield yellow">
+                    <input type="text" required data-role="none" />
+                    <label data-content="Street">Street</label>
+                </div>
+                <div class="material-textfield yellow">
+                    <input type="text" required data-role="none" />
+                    <label data-content="City">City</label>
+                </div>
+                <div class="info-panel">
+                    <div class="origin_address"> 
+                       <div class="mini_circle_address_page cmtyx_bgcolor1 cmtyx_brdrcolor1"></div>
+                        <div class="origin_address_text">
+                            <p class="address_title">Origin</p>
+                            <p class="address_information">California, Some Address, Random Street</p>
+                        </div>
+                    </div>
+                    <div class="destination_address"> 
+                        <div class="mini_circle_address_page cmtyx_color1 cmtyx_brdrcolor1"></div>
+                        <div class="destination_address_text">
+                            <p class="address_title">Destination</p>
+                            <p class="address_information">California, Some Address, Random Street</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="pick_up" class="ui-body-d ui-content">
+            <p class="order_address">You can get your order at Random Street, 22</p> 
+            <div id="shipping_map2" class="map_container">
+            </div>
+            </div>
+    </div>
+    <div class="ui-grid-a back_next_btns">
+        <div class="ui-block-a p-r-10">
+            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1 cmtyx_brdrcolor1">Back</button>
+        </div>
+        <div class="ui-block-b p-l-10">
+            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_bgcolor1 cmtyx_brdrcolor1">Next</button>
+        </div>
+    </div>
+</div>

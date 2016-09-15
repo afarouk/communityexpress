@@ -20,7 +20,9 @@ var LandingView = require('./views/landingView'), //
     EventActiveView = require('./views/eventActiveView'),//
     RosterOrderModel = require('./models/RosterOrderModel'),
     AddressView = require('./views/rosterOrder/addressView'),
+    AddAddressView = require('./views/rosterOrder/addAddressView'),
     PaymentView = require('./views/rosterOrder/paymentView'),
+    PaymentCardView = require('./views/rosterOrder/paymentCardView'),
     SummaryView = require('./views/rosterOrder/summaryView'),
     NavbarView = require('./views/headers/navbarView');
 
@@ -180,8 +182,14 @@ module.exports = {
                 model: orderModel
             });
             break;
+        case 'add_address':
+            view = new AddAddressView(options);
+            break;
         case 'payment':
             view = new PaymentView(options);
+            break;
+        case 'payment_card':
+            view = new PaymentCardView(options);
             break;
         case 'summary':
             view = new SummaryView(options);

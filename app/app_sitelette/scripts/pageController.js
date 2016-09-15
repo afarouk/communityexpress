@@ -514,16 +514,24 @@ module.exports = {
             });
     },
 
-    payment: function(orderModel) {
+    add_address: function(orderModel) {
         return $.Deferred().resolve({
             model: orderModel
         }).promise();
     },
 
-    summary: function(orderModel) {
+    payment: function(options) {
+        return $.Deferred().resolve(options).promise();
+    },
+
+    payment_card: function(orderModel) {
         return $.Deferred().resolve({
             model: orderModel
         }).promise();
+    },
+
+    summary: function(options) {
+        return $.Deferred().resolve(options).promise();
     },
 
     roster_order: function(options) {

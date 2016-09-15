@@ -1,13 +1,13 @@
 'use strict';
 
 var Vent = require('../../Vent'),
-    template = require('ejs!../../templates/rosterOrder/summary.ejs');
+    template = require('ejs!../../templates/rosterOrder/addAddress.ejs');
 
-var SummaryView = Backbone.View.extend({
+var AddAddressView = Backbone.View.extend({
 
-	name: 'summary',
+	name: 'add_address',
 
-    id: 'cmtyx_summary',
+    id: 'cmtyx_add_address',
 
 	initialize: function(options) {
 		this.options = options || {};
@@ -24,8 +24,7 @@ var SummaryView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            'click .placeOrderBtn': 'triggerPlaceOrder',
-            'click .next_btn': 'triggerPlaceOrder',
+            'click .nav_next_btn': 'triggerPayment',
             'click .nav_back_btn': 'goBack'
         });
     },
@@ -40,13 +39,16 @@ var SummaryView = Backbone.View.extend({
     	});
     },
 
-    triggerPlaceOrder: function() {
-        console.log('place order');
+    triggerPayment: function() {
+        Vent.trigger('viewChange', 'payment', {
+            model: this.model, 
+            backTo: 'add_address'
+        });
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', this.options.backTo, this.model);
+        Vent.trigger('viewChange', 'address', this.model);
     }
 });
 
-module.exports = SummaryView;
+module.exports = AddAddressView;
