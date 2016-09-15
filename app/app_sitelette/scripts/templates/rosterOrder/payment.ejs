@@ -36,13 +36,19 @@
         <div id="cash" class="ui-body-d ui-content">
             <p class="your_order_text">Your order</p>
             <ul class="order_list">
-                <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1"><%= cs %>9.75</span></li>
+                <% _.each(combinedItems, function(item) { %>
+                    <li>
+                        <span class="order_name"><%= item.quantity %>X <%= item.displayText %></span>
+                        <span class="order_price cmtyx_color1"><%= cs + item.price %></span>
+                    </li>
+                <% }) %>
+                <!-- <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1"><%= cs %>9.75</span></li>
                 <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1"><%= cs %>3.50</span></li>
-                <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1"><%= cs %>9.75</span></li>
+                <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1"><%= cs %>9.75</span></li> -->
             </ul>
             <ul class="price_list">
-                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1"><%= cs %>30.00</span></li>
-                <li ><span class="order_name">Shipping</span><span class="order_price cmtyx_color1"><%= cs %>5.00</span></li>
+                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1"><%= cs + subTotal %></span></li>
+                <li ><span class="order_name">Tax (<%= taxState %>%)</span><span class="order_price cmtyx_color1"><%= cs + taxAmount %></span></li>
                 <li class="tip_price"><span class="order_name">Tip</span>
                 <div class="float_right">
                    <div class="select_container">

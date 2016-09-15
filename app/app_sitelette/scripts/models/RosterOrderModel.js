@@ -27,7 +27,10 @@ var RosterOrderModel = Backbone.Model.extend({
 			backToRoster: options.backToRoster,
 			sasl: options.sasl,
 			launchedViaURL: options.launchedViaURL,
-			rosterId: options.rosterId // etc...
+			rosterId: options.rosterId,
+			combinedItems: this.getCombinedItems(options.editModel),
+			taxState: options.priceAddons.taxState,
+			subTotal: this.getPriceWithoutTaxes(options) // etc...
 		});
 	},
 
@@ -83,13 +86,29 @@ var RosterOrderModel = Backbone.Model.extend({
 		return options.basket.getItems(options.sasl);
 	},
 
+	getPriceWithoutTaxes: function(options) {
+		return parseFloat(options.basket.getTotalPrice().toFixed(2));
+	},
+
 	getTotalPriceWithTax: function(options) {
-        var priceWithoutTaxes = parseFloat(options.basket.getTotalPrice().toFixed(2));
+        var priceWithoutTaxes = this.getPriceWithoutTaxes(options);
         return parseFloat((this.calculateTaxes(options) + priceWithoutTaxes).toFixed(2));
     },
 
     calculateTaxes: function(options) {
         return parseInt(options.basket.getTotalPrice() * options.priceAddons.taxState) / 100;
+    },
+
+    getCombinedItems: function(editModel) {
+    	var combinedItems = [];
+    	editModel.each(function(item, index) {
+    		combinedItems.push({
+    			quantity: item.get('quantity'),
+    			displayText: item.get('displayText'),
+    			price: (item.get('quantity') * item.get('price')).toFixed(2)
+    		});
+    	});
+    	return combinedItems;
     }
 });
 
