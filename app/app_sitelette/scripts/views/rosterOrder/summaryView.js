@@ -36,7 +36,10 @@ var SummaryView = Backbone.View.extend({
 
     renderData: function() {
     	return _.extend(this.model.toJSON(), {
-    		cs: this.model.additionalParams.symbol
+    		cs: this.model.additionalParams.symbol,
+            combinedItems: this.model.additionalParams.combinedItems,
+            taxState: this.model.additionalParams.taxState,
+            subTotal: this.model.additionalParams.subTotal
     	});
     },
 

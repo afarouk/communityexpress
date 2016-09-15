@@ -20,17 +20,20 @@
             <p class="card_text">Card</p>
             <p class="card_number"><%= creditCard.cardNumber %></p>
             <p class="delivery_address_text">Delivery address</p>
-            <p class="address">Some Street, 8 Random City</p>
+            <p class="address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></p>
             <p class="your_order_text">Your order</p>
             <ul class="order_list">
-                <li><span class="order_name">Combo 1</span><span class="order_price cmtyx_color1">$9.75</span></li>
-                <li><span class="order_name">Ginger beer</span><span class="order_price cmtyx_color1">$3.50</span></li>
-                <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1">$9.75</span></li>
+                <% _.each(combinedItems, function(item) { %>
+                    <li>
+                        <span class="order_name"><%= item.quantity %>X <%= item.displayText %></span>
+                        <span class="order_price cmtyx_color1"><%= cs + item.price %></span>
+                    </li>
+                <% }) %>
             </ul>
             <ul class="price_list">
-                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1">$30.00</span></li>
-                <li><span class="order_name">Shipping</span><span class="order_price cmtyx_color1">$5.00</span></li>
-                <li class="tip_price"><span class="order_name">Tip</span>
+                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1"><%= cs + subTotal %></span></li>
+                <li ><span class="order_name">Tax (<%= taxState %>%)</span><span class="order_price cmtyx_color1"><%= cs + taxAmount %></span></li>
+                <!-- <li class="tip_price"><span class="order_name">Tip</span>
                 <div class="float_right">
                    <div class="select_container">
                             <select data-role="none" class="select">
@@ -41,9 +44,9 @@
                                 <option value="tip20">20%</option>
                             </select>
                     </div>  
-                    <span class="order_price cmtyx_color1">$0.00</span>
-                </div></li>
-                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1">$35.00</span></li>
+                    <span class="order_price cmtyx_color1"><%= cs %>0.00</span>
+                </div></li> -->
+                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1"><%= cs %><%= totalAmount %></span></li>
             </ul>
             <div class="ui-grid-a back_next_btns">
                 <div class="ui-block-a p-r-10">
