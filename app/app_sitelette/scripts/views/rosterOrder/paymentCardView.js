@@ -20,9 +20,23 @@ var PaymentCardView = Backbone.View.extend({
         this.$el.html(template(this.renderData()));
         this.setElement(this.$el.children().eq(0));
 
-        this.card = new Skeuocard(this.$('#skeuocard'));
+        this.prefillCard();
 
         return this;
+    },
+
+    prefillCard: function() {
+        //TODO this
+        var cardData = this.model.get('creditCard'); 
+        this.card = new Skeuocard(this.$('#skeuocard'), {
+            initialValues: {
+                number: cardData.cardNumber,
+                expMonth: '' + cardData.expirationMonth,
+                expYear: '' + cardData.expirationYear,
+                name: cardData.firstName + ' ' + cardData.lastName,
+                cvc: cardData.cvv
+            }
+        });
     },
 
     onShow: function() {
