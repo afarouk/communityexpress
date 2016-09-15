@@ -1,15 +1,13 @@
 'use strict';
 
 var Vent = require('../../Vent'),
-    template = require('ejs!../../templates/rosterOrder/payment.ejs');
+    template = require('ejs!../../templates/rosterOrder/paymentCard.ejs');
 
-var PaymentView = Backbone.View.extend({
+var PaymentCardView = Backbone.View.extend({
 
-	name: 'payment',
+	name: 'payment_card',
 
-    id: 'cmtyx_payment',
-
-    radio: '.ui-radio',
+    id: 'cmtyx_payment_card',
 
 	initialize: function(options) {
 		this.options = options || {};
@@ -21,12 +19,15 @@ var PaymentView = Backbone.View.extend({
 		console.log(this.renderData());
         this.$el.html(template(this.renderData()));
         this.setElement(this.$el.children().eq(0));
+
+        this.card = new Skeuocard(this.$('#skeuocard'));
+
         return this;
     },
 
     onShow: function() {
         this.addEvents({
-            'click .nav_next_btn': 'triggerNext',
+            'click .nav_next_btn': 'triggerSummary',
             'click .nav_back_btn': 'goBack'
         });
     },
@@ -41,26 +42,13 @@ var PaymentView = Backbone.View.extend({
     	});
     },
 
-    triggerNext: function() {
-        var checked = this.$(this.radio).find(':checked');
-        if (checked.attr('id') === 'use_another') {
-            this.triggerPaymentCard();
-        } else {
-            this.triggerSummary();
-        }
-    },
-
     triggerSummary: function() {
         Vent.trigger('viewChange', 'summary', this.model);
     },
 
-    triggerPaymentCard: function() {
-        Vent.trigger('viewChange', 'payment_card', this.model);
-    },
-
     goBack : function() {
-        Vent.trigger('viewChange', 'address', this.model);
+        Vent.trigger('viewChange', 'payment', this.model);
     }
 });
 
-module.exports = PaymentView;
+module.exports = PaymentCardView;

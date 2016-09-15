@@ -514,7 +514,19 @@ module.exports = {
             });
     },
 
+    add_address: function(orderModel) {
+        return $.Deferred().resolve({
+            model: orderModel
+        }).promise();
+    },
+
     payment: function(orderModel) {
+        return $.Deferred().resolve({
+            model: orderModel
+        }).promise();
+    },
+
+    payment_card: function(orderModel) {
         return $.Deferred().resolve({
             model: orderModel
         }).promise();

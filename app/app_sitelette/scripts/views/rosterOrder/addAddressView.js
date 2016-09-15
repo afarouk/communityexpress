@@ -1,15 +1,13 @@
 'use strict';
 
 var Vent = require('../../Vent'),
-    template = require('ejs!../../templates/rosterOrder/payment.ejs');
+    template = require('ejs!../../templates/rosterOrder/addAddress.ejs');
 
-var PaymentView = Backbone.View.extend({
+var AddAddressView = Backbone.View.extend({
 
-	name: 'payment',
+	name: 'add_address',
 
-    id: 'cmtyx_payment',
-
-    radio: '.ui-radio',
+    id: 'cmtyx_add_address',
 
 	initialize: function(options) {
 		this.options = options || {};
@@ -26,7 +24,7 @@ var PaymentView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            'click .nav_next_btn': 'triggerNext',
+            'click .nav_next_btn': 'triggerPayment',
             'click .nav_back_btn': 'goBack'
         });
     },
@@ -41,21 +39,8 @@ var PaymentView = Backbone.View.extend({
     	});
     },
 
-    triggerNext: function() {
-        var checked = this.$(this.radio).find(':checked');
-        if (checked.attr('id') === 'use_another') {
-            this.triggerPaymentCard();
-        } else {
-            this.triggerSummary();
-        }
-    },
-
-    triggerSummary: function() {
-        Vent.trigger('viewChange', 'summary', this.model);
-    },
-
-    triggerPaymentCard: function() {
-        Vent.trigger('viewChange', 'payment_card', this.model);
+    triggerPayment: function() {
+        Vent.trigger('viewChange', 'payment', this.model);
     },
 
     goBack : function() {
@@ -63,4 +48,4 @@ var PaymentView = Backbone.View.extend({
     }
 });
 
-module.exports = PaymentView;
+module.exports = AddAddressView;
