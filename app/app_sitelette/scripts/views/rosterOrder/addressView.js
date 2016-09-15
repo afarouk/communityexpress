@@ -9,6 +9,10 @@ var AddressView = Backbone.View.extend({
 
     id: 'cmtyx_address',
 
+    radio: '.ui-radio',
+
+    active: '.ui-navbar .ui-btn-active',
+
     initialize: function(options) {
         this.options = options || {};
         this.addresses = options.addresses;
@@ -18,7 +22,7 @@ var AddressView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            'click .nav_next_btn': 'triggerPayment',
+            'click .nav_next_btn': 'triggerNext',
             'click .nav_back_btn': 'goBack',
             'click .rightBtn': 'showMap'
         });
@@ -45,8 +49,25 @@ var AddressView = Backbone.View.extend({
         return tmpData;
     },
 
+    triggerNext: function() {
+        var checked = this.$(this.radio).find(':checked'),
+            active = this.$(this.active).data('id');
+        if (checked.attr('id') === 'add_another' && active !== 'pick_up') {
+            this.triggerAddAddress();
+        } else {
+            this.triggerPayment();
+        }
+    },
+
+    triggerAddAddress: function() {
+        Vent.trigger('viewChange', 'add_address', this.model);
+    },
+
     triggerPayment: function() {
-        Vent.trigger('viewChange', 'payment', this.model);
+        Vent.trigger('viewChange', 'payment', {
+            model: this.model,
+            backTo: 'address'
+        });
     },
 
     showMap: function() {
