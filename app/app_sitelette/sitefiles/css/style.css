@@ -1663,6 +1663,7 @@ a.get_started_btn:active {
     font: 700 18px Roboto;
     color: #ffffff;
     box-shadow: 0px 5px 8.73px 0.27px rgba(0, 0, 0, 0.3);
+    margin-top: 30px;
 }
 
 .send_message_btn:hover {
@@ -1689,9 +1690,9 @@ button.send_message_btn:focus {
 }
 
 .contact_us_block .form-control {
-    display: inline-block;
+    display: block;
     max-width: 370px;
-    margin-bottom: 30px;
+    margin-top: 30px;
     padding: 10px 0;
     font: 300 14px Roboto;
     color: rgba(119, 119, 119, 0.8);
@@ -1701,10 +1702,27 @@ button.send_message_btn:focus {
     border-bottom: solid 1px rgba(204, 204, 204, 0.87);
 }
 
+.contact_us_block .form-control.first {
+	margin-top: 0;
+}
+
 .contact_us_block .form-control:focus {
     border: none;
     box-shadow: none;
     border-bottom: solid 1px rgba(204, 204, 204, 0.87);
+}
+
+.form-control {
+	padding-right: 20px !important;
+}
+
+#contactUsForm .form-control-feedback {
+	width: 15px;
+	height: 15px;
+}
+
+.glyphicon-asterisk {
+	color: grey;
 }
 
 

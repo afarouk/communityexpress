@@ -9,10 +9,10 @@ include 'sitefiles/includes/stylesheets.html';
 <style type="text/css">
      .form-control-feedback
     {
-        top:38px !important;
+        /*top:38px !important;*/
     }
     .form-control{
-        color:#fff;
+        color:red;
     }
     .help-block
     {
@@ -45,13 +45,13 @@ include 'sitefiles/includes/scriptfiles.html';
   <script>
 	new WOW().init();
   </script>
-  <script>
+<!--   <script>
 	$.backstretch(["sitefiles/images/bg/bg1.jpg", "sitefiles/images/bg/bg2.jpg", "sitefiles/images/bg/bg3.jpg"], {
 		fade : 950,
 		duration : 10000
 	});
 
-  </script>
+  </script> -->
   <script>
 	$('.counter').counterUp({
 		delay : 100,

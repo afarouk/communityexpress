@@ -193,32 +193,32 @@ $(document).ready(
 				});
 			});
 		    
-		    $.validator.addMethod(
-		        "regex_name",
-		        function(value, element, regexp) {
-		        var check = false;
-		        return this.optional(element) || regexp.test(value);
-		        },
-		        "Please enter valid symbols"
-		    );
+		    // $.validator.addMethod(
+		    //     "regex_name",
+		    //     function(value, element, regexp) {
+		    //     var check = false;
+		    //     return this.optional(element) || regexp.test(value);
+		    //     },
+		    //     "Please enter valid symbols"
+		    // );
 
-		    $("#contactUsForm").validate({
-		        rules: {
-		            name: {
-		                regex_name : /^[A-Za-z][A-Za-z ,.'-]+$/
-		            }
-		        },
-		        submitHandler: function () {
-		            alert("successful submit");
-		            $('#name').val('');
-		            $('#email').val('');
-		            $('#message').val('');
-		            return false;
-		        },
-		        errorPlacement: function(error, element) {         
-		            error.insertBefore(element);
-		        }
-		    });
+		    // $("#contactUsForm").validate({
+		    //     rules: {
+		    //         name: {
+		    //             regex_name : /^[A-Za-z][A-Za-z ,.'-]+$/
+		    //         }
+		    //     },
+		    //     submitHandler: function () {
+		    //         alert("successful submit");
+		    //         $('#name').val('');
+		    //         $('#email').val('');
+		    //         $('#message').val('');
+		    //         return false;
+		    //     },
+		    //     errorPlacement: function(error, element) {         
+		    //         error.insertBefore(element);
+		    //     }
+		    // });
 
 		});
 
