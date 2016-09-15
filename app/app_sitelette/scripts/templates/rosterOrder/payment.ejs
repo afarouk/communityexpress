@@ -50,18 +50,18 @@
                 <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1"><%= cs + subTotal %></span></li>
                 <li ><span class="order_name">Tax (<%= taxState %>%)</span><span class="order_price cmtyx_color1"><%= cs + taxAmount %></span></li>
                 <li class="tip_price"><span class="order_name">Tip</span>
-                <div class="float_right">
-                   <div class="select_container">
-                            <select data-role="none" class="select">
-                                <option value="tip0">0%</option>
-                                <option value="tip5">5%</option>
-                                <option value="tip10">10%</option>
-                                <option value="tip15">15%</option>
-                                <option value="tip20">20%</option>
-                            </select>
-                    </div>  
-                    <span class="order_price cmtyx_color1"><%= cs %>0.00</span>
-                </div></li>
+                    <div class="float_right">
+                       <div class="select_container">
+                                <select data-role="none" class="select">
+                                    <option value="tip0">0%</option>
+                                    <option value="tip5">5%</option>
+                                    <option value="tip10">10%</option>
+                                    <option value="tip15">15%</option>
+                                    <option value="tip20">20%</option>
+                                </select>
+                        </div>  
+                        <span class="order_price cmtyx_color1"><%= cs %>0.00</span>
+                    </div></li>
                 <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1"><%= cs %><%= totalAmount %></span></li>
             </ul>
             <div class="ui-grid-a back_next_btns">
