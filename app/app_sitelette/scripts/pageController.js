@@ -520,10 +520,8 @@ module.exports = {
         }).promise();
     },
 
-    payment: function(orderModel) {
-        return $.Deferred().resolve({
-            model: orderModel
-        }).promise();
+    payment: function(options) {
+        return $.Deferred().resolve(options).promise();
     },
 
     payment_card: function(orderModel) {
@@ -532,10 +530,8 @@ module.exports = {
         }).promise();
     },
 
-    summary: function(orderModel) {
-        return $.Deferred().resolve({
-            model: orderModel
-        }).promise();
+    summary: function(options) {
+        return $.Deferred().resolve(options).promise();
     },
 
     roster_order: function(options) {

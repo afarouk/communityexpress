@@ -45,7 +45,7 @@ var SummaryView = Backbone.View.extend({
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', 'payment', this.model);
+        Vent.trigger('viewChange', this.options.backTo, this.model);
     }
 });
 

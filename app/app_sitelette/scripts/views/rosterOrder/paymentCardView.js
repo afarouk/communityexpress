@@ -43,7 +43,10 @@ var PaymentCardView = Backbone.View.extend({
     },
 
     triggerSummary: function() {
-        Vent.trigger('viewChange', 'summary', this.model);
+        Vent.trigger('viewChange', 'summary', {
+            model: this.model,
+            backTo: 'payment_card'
+        });
     },
 
     goBack : function() {

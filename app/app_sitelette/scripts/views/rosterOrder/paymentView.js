@@ -51,7 +51,10 @@ var PaymentView = Backbone.View.extend({
     },
 
     triggerSummary: function() {
-        Vent.trigger('viewChange', 'summary', this.model);
+        Vent.trigger('viewChange', 'summary', {
+            model: this.model,
+            backTo: 'payment'
+        });
     },
 
     triggerPaymentCard: function() {
@@ -59,7 +62,7 @@ var PaymentView = Backbone.View.extend({
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', 'address', this.model);
+        Vent.trigger('viewChange', this.options.backTo , this.model);
     }
 });
 

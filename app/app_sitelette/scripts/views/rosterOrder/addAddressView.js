@@ -40,7 +40,10 @@ var AddAddressView = Backbone.View.extend({
     },
 
     triggerPayment: function() {
-        Vent.trigger('viewChange', 'payment', this.model);
+        Vent.trigger('viewChange', 'payment', {
+            model: this.model, 
+            backTo: 'add_address'
+        });
     },
 
     goBack : function() {

@@ -61,7 +61,10 @@ var AddressView = Backbone.View.extend({
     },
 
     triggerPayment: function() {
-        Vent.trigger('viewChange', 'payment', this.model);
+        Vent.trigger('viewChange', 'payment', {
+            model: this.model,
+            backTo: 'address'
+        });
     },
 
     showMap: function() {
