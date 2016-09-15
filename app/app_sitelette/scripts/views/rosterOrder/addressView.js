@@ -11,6 +11,8 @@ var AddressView = Backbone.View.extend({
 
     radio: '.ui-radio',
 
+    active: '.ui-navbar .ui-btn-active',
+
     initialize: function(options) {
         this.options = options || {};
         this.addresses = options.addresses;
@@ -48,8 +50,9 @@ var AddressView = Backbone.View.extend({
     },
 
     triggerNext: function() {
-        var checked = this.$(this.radio).find(':checked');
-        if (checked.attr('id') === 'add_another') {
+        var checked = this.$(this.radio).find(':checked'),
+            active = this.$(this.active).data('id');
+        if (checked.attr('id') === 'add_another' && active !== 'pick_up') {
             this.triggerAddAddress();
         } else {
             this.triggerPayment();

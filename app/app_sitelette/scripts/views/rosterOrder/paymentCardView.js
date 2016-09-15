@@ -30,7 +30,7 @@ var PaymentCardView = Backbone.View.extend({
         var cardData = this.model.get('creditCard'); 
         this.card = new Skeuocard(this.$('#skeuocard'), {
             initialValues: {
-                number: cardData.cardNumber,
+                number: '',//cardData.cardNumber,
                 expMonth: '' + cardData.expirationMonth,
                 expYear: '' + cardData.expirationYear,
                 name: cardData.firstName + ' ' + cardData.lastName,
