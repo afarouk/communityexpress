@@ -25,7 +25,10 @@ var AddAddressView = Backbone.View.extend({
     onShow: function() {
         this.addEvents({
             'click .nav_next_btn': 'triggerPayment',
-            'click .nav_back_btn': 'goBack'
+            'click .nav_back_btn': 'goBack',
+            'change #aptBldgInput': 'onAptBldgChanged',
+            'change #streetInput': 'onStreetChanged',
+            'change #cityInput': 'onCityChanged',
         });
     },
 
@@ -40,15 +43,44 @@ var AddAddressView = Backbone.View.extend({
     },
 
     triggerPayment: function() {
-        Vent.trigger('viewChange', 'payment', {
-            model: this.model, 
-            backTo: 'add_address'
-        });
+        if (this.validate()) {
+            Vent.trigger('viewChange', 'payment', {
+                model: this.model, 
+                backTo: 'add_address'
+            });
+        } else {
+            //TODO show errors
+        }
+    },
+
+    validate: function() {
+        return true;
     },
 
     goBack : function() {
         Vent.trigger('viewChange', 'address', this.model);
+    },
+
+    onAptBldgChanged: function(e) {
+        var value = this.getValue(e);
+        this.model.get('deliveryAddress').number = value;
+    },
+
+    onStreetChanged: function(e) {
+        var value = this.getValue(e);
+        this.model.get('deliveryAddress').street = value;
+    },
+
+    onCityChanged: function(e) {
+        var value = this.getValue(e);
+        this.model.get('deliveryAddress').city = value;
+    },
+
+    getValue: function(e) {
+        var target = $(e.currentTarget);
+        return target.val();
     }
+
 });
 
 module.exports = AddAddressView;
