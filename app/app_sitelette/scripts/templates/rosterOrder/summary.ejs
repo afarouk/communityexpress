@@ -11,10 +11,14 @@
     </div>
     <div data-role="tabs" id="tabs">
         <div id="summary_info" class="ui-body-d ui-content">
-            <p class="card_text">Card</p>
-            <p class="card_number"><%= cardNumber %></p>
-            <p class="delivery_address_text">Delivery address</p>
-            <p class="address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></p>
+            <% if (cardNumber) { %>
+                <p class="card_text">Card</p>
+                <p class="card_number"><%= cardNumber %></p>
+            <% } %>
+            <% if (!addrIsEmpty) { %>
+                <p class="delivery_address_text">Delivery address</p>
+                <p class="address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></p>
+            <% } %>
             <p class="your_order_text">Your order</p>
             <ul class="order_list">
                 <% _.each(combinedItems, function(item) { %>

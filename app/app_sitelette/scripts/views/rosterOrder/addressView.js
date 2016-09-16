@@ -25,7 +25,8 @@ var AddressView = Backbone.View.extend({
         this.addEvents({
             'click .nav_next_btn': 'triggerNext',
             'click .nav_back_btn': 'goBack',
-            'click .rightBtn': 'showMap'
+            'click .rightBtn': 'showMap',
+            'click .leftBtn': 'onDelivery'
         });
     },
 
@@ -41,11 +42,13 @@ var AddressView = Backbone.View.extend({
     },
 
     updateAddress: function() {
+        if (this.model.additionalParams.addrIsEmpty) return;
         var $label = this.$('label[for="saved_address"]'),
             address = this.model.get('deliveryAddress'),
             tpl = address.street + ' ,' + address.number + ' ,' + address.city;
 
-        
+        $label.removeClass('hidden');
+        $label.siblings().first().removeClass('hidden').click();
         $label.html(tpl);
     },
 
@@ -58,7 +61,8 @@ var AddressView = Backbone.View.extend({
         var restModel = this.model.additionalParams.userModel.favorites.first(),
             address = restModel.get('address'),
             tmpData = _.extend({
-                address: address
+                address: address,
+                addrIsEmpty: this.model.additionalParams.addrIsEmpty
             }, this.model.toJSON());
 
         return tmpData;
@@ -85,7 +89,15 @@ var AddressView = Backbone.View.extend({
         });
     },
 
+    onDelivery: function() {
+        this.model.set('pickupSelected', false);
+        this.model.set('deliverySelected', true);
+    },
+
     showMap: function() {
+        this.model.set('pickupSelected', true);
+        this.model.set('deliverySelected', false);
+
         this.coords = this.model.additionalParams.coords;
         this.directionsDisplay = new google.maps.DirectionsRenderer(),
         this.directionsService = new google.maps.DirectionsService();

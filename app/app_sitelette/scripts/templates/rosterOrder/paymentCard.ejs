@@ -39,7 +39,7 @@
     <div class="checkbox_save_card_container">
         <form>
             <label class="checkbox_save_card">
-                <input type="checkbox" name="checkbox_save_card" data-role="none">Save for future reference</label>
+                <input id="save_reference" type="checkbox" name="checkbox_save_card" data-role="none" <% if (saveCreditCardForFutureReference) { %>checked="checked" <% } %> >Save for future reference</label>
         </form>
     </div>
     <div class="ui-grid-a back_next_btns">
