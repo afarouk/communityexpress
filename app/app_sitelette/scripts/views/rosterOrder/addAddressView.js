@@ -117,7 +117,7 @@ var AddAddressView = Backbone.View.extend({
 
     onChangeAddress: function() {
         var address = this.model.get('deliveryAddress'),
-            tpl = 'You can get your order at ' + address.street + ' ,' + address.number + ' ,' + address.city;
+            tpl = 'Your address is ' + address.street + ' ,' + address.number + ' ,' + address.city;
         this.$(this.order_address).html(tpl);
     },
 

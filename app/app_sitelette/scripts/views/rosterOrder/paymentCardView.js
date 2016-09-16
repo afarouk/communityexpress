@@ -89,6 +89,7 @@ var PaymentCardView = Backbone.View.extend({
         cardData.firstName = names[0];
         cardData.lastName = names[1];
         cardData.cvv = cvc;
+        this.model.trigger('change');
     },
 
     triggerSummary: function() {

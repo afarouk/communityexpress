@@ -17,6 +17,7 @@ var AddressView = Backbone.View.extend({
         this.options = options || {};
         this.addresses = options.addresses;
         this.on('show', this.onShow, this);
+        this.model.on('change', _.bind(this.updateAddress, this));
         this.render();
     },
 
@@ -39,12 +40,26 @@ var AddressView = Backbone.View.extend({
         return this;
     },
 
+    updateAddress: function() {
+        var $label = this.$('label[for="saved_address"]'),
+            address = this.model.get('deliveryAddress'),
+            tpl = address.street + ' ,' + address.number + ' ,' + address.city;
+
+        
+        $label.html(tpl);
+    },
+
     renderContent: function (options){
         return this.$el;
     },
 
     renderData: function() {
-        var tmpData = _.extend({}, this.model.toJSON());
+        //TODO check if it will work in all cases
+        var restModel = this.model.additionalParams.userModel.favorites.first(),
+            address = restModel.get('address'),
+            tmpData = _.extend({
+                address: address
+            }, this.model.toJSON());
 
         return tmpData;
     },
