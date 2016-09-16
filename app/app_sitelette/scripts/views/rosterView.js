@@ -25,13 +25,12 @@ var RosterView = Backbone.View.extend({
         this.delegateEvents(events);
     },
 
-    onShow: function() {
+    onShow: function(options) {
         this.addEvents({
             'click .order_button': 'triggerOrder',
             'click .edit_button': 'openEditPanel'
         });
 
-        
         /* if launched from URL, hide back button*/
         // if (typeof this.launchedViaURL !== 'undefined' && this.launchedViaURL === true) {
         //     $(this.el).find('.navbutton_back').hide();
@@ -241,7 +240,7 @@ var RosterView = Backbone.View.extend({
             case 'UNDEFINED':
             default:
         }
-        
+
         //$('.select').select2();
     },
 

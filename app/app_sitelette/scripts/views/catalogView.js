@@ -114,17 +114,17 @@ var CatalogView = Backbone.View.extend({
     },
 
     triggerRosterViewWithCatalog : function() {
-      Vent.trigger('viewChange', 'roster', {
-          sasl: this.sasl.id,
-          id: this.rosterId,
-          backToRoster:true, /* bad design: should be using reverse true */
-          rosterId:this.rosterId,
-          cloneCatalogAndAdd:true,
-          catalogId:this.catalogId,
-          catalogType:this.catalogType.enumText,
-          catalogDisplayText:this.catalogDisplayText,
-          launchedViaURL:this.launchedViaURL
-       }, { reverse: true });
+        Vent.trigger('viewChange', 'roster', {
+            sasl: this.sasl.id,
+            id: this.rosterId,
+            backToRoster:true, /* bad design: should be using reverse true */
+            rosterId:this.rosterId,
+            cloneCatalogAndAdd:true,
+            catalogId:this.catalogId,
+            catalogType:this.catalogType.enumText,
+            catalogDisplayText:this.catalogDisplayText,
+            launchedViaURL:this.launchedViaURL
+        }, { reverse: true });
 
     },
 

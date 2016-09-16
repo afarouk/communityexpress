@@ -290,8 +290,8 @@ module.exports = {
                     if ((!itemizedCatalogAlreadyAdded) || catalogType === 'COMBO') {
                         /*clone and push */
                         var catalogClone = new CatalogBasketModel();
-                          catalog.each(function(catalogEntry) {
-                          catalogClone.add(new CatalogBasketItem(catalogEntry.toJSON()));
+                        catalog.each(function(catalogEntry) {
+                            catalogClone.add(new CatalogBasketItem(catalogEntry.toJSON()));
                         });
                         var catalogDetails = {
                             catalogUUID: catalogId,
