@@ -16,6 +16,7 @@ var PaymentView = Backbone.View.extend({
 	initialize: function(options) {
 		this.options = options || {};
         this.on('show', this.onShow, this);
+        this.model.on('change', _.bind(this.reRender, this));
         this.render();
 	},
 
@@ -24,6 +25,17 @@ var PaymentView = Backbone.View.extend({
         this.$el.html(template(this.renderData()));
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    reRender: function() {
+        var number = this.model.get('creditCard').cardNumber,
+            $label = this.$('#credit label[for="saved_card"]'),
+            $cash = this.$('#cash'),
+            html = $.parseHTML(template(this.renderData())),
+            tpl = $(html).find('#cash').html();
+        
+        $label.html('XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length));
+        $cash.html(tpl);
     },
 
     onShow: function() {
