@@ -198,7 +198,7 @@ App.prototype = {
 
         //check if view was created
         exists = this.checkInstance(viewName);
-        if (exists && viewName !== 'catalog') { //should we retriveCatalog each time?
+        if (exists && viewName !== 'catalog' && viewName !== 'roster') { //should we retriveCatalog each time?
             if (id && id.backTo) exists.options.backTo = id.backTo;
             this.changePage(exists, options);
             loader.hide();
