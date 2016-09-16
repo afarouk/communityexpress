@@ -141,7 +141,6 @@ var CatalogView = Backbone.View.extend({
     openAddToBasketView : function(model, groupId, groupDisplayText, catalogId, catalogDisplayText) {
         // console.log("CatalogView:openAddToBasketView
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
-
         this.openSubview('addToCatalogBasket', model, {
             basket : this.basket,
             groupId : groupId,

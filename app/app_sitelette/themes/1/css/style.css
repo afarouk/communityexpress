@@ -591,6 +591,12 @@ li {
     float: right;
 }
 
+.order_price {
+    float: right;
+    width: 60px;
+    vertical-align: top;
+}
+
 .price_list {
     padding-top: 10px;
 }
@@ -904,6 +910,7 @@ label.checkbox_save_card {
 }
 
 .menu_body li .item_name {
+    padding: 8px;
     text-transform: uppercase;
     font: 700 18px Roboto;
     color: #ddd;
@@ -1186,6 +1193,10 @@ li.choose_extras {
     border: none !important;
 }
 
+.build_combo.ui-page-theme-a .catalog_item_counter a.ui-btn {
+    padding: 0;
+}
+
 .build_combo.ui-page-theme-a a.ui-btn.ui-btn-active,
 #sides_extras.ui-page-theme-a a.ui-btn.ui-btn-active {
     background-color: transparent;
@@ -1264,7 +1275,7 @@ li.choose_extras {
 
 .sides_extras_color {
     background-color: #D38B1F !important;
-    min-height: 72px;
+    /*min-height: 72px;*/
 }
 
 .sides_extras_item_details {
@@ -1278,7 +1289,7 @@ li.choose_extras {
     font: 300 18px Roboto;
     color: #ffffff;
     display: inline-block;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 
 .sides_extras_item_details .item_price {
@@ -3197,4 +3208,13 @@ a.cancel {
 
 .order_subitem_name {
     padding: 10px 0;
+}
+
+.cmntyex-list_placeholder {
+    padding-top: 8px;
+}
+
+.menu_body li.cmntyex-catalog-item {
+    box-shadow: none;
+    margin-top: 3px;
 }
