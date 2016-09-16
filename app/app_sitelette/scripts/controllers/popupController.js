@@ -62,7 +62,7 @@ var PopupController = {
         //TODO some error sometimes when signin
         view.open();
         // setTimeout(view.open.bind(view),50);
-    }, 
+    },
 
     hide: function(view) {
         view.shut();

@@ -10,12 +10,12 @@ var CatalogItemView = Backbone.View.extend({
 
     tagName: 'li',
 
-    className: 'cmntyex-catalog-item',
+    className: 'cmntyex-catalog-item sides_extras_container color1 sides_extras_color',
 
     template: template,
 
     events: {
-        'click': 'showAddToBusketView'
+        // 'click': 'showAddToBusketView'
     },
 
     showAddToBusketView: function() {
