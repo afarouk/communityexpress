@@ -830,7 +830,7 @@ label.checkbox_save_card {
     background-size: 14px 14px !important;
     height: 19px !important;
     width: 19px !important;
-    top: 14px !important;   
+    top: 14px !important;
     background: url(../images/minus.png) no-repeat  center center !important;
 }
 
@@ -855,7 +855,7 @@ label.checkbox_save_card {
     height: 19px !important;
     width: 22px !important;
     left: 13px !important;
-    top: 14px !important; 
+    top: 14px !important;
     background: url(../images/plus.png) no-repeat center center !important;
 }
 
@@ -1516,13 +1516,13 @@ span.delete_btn {
     background-color: #363636;
 }
 span.select2.select2-container.select2-container--default,
-span.select2.select2-container.select2-container--default.select2-container--above.select2-container--focus, 
+span.select2.select2-container.select2-container--default.select2-container--above.select2-container--focus,
 span.select2.select2-container.select2-container--default.select2-container--open.select2-container--above.select2-container--focus{
     width: 62px !importantl;
 }
 
 .NoLeftPadding{
-    padding-left:0px !importnat; 
+    padding-left:0px !importnat;
 }
 
 .sub_header {
@@ -1545,7 +1545,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 
 #cmtyx_catalogView, #cmtyx_rosterView{
     padding: 15px 0px 100px 0px;
-    padding-top: 0; 
+    padding-top: 0;
 }
 
 #cmtyx_rosterView .ui-content {
@@ -3058,8 +3058,8 @@ color: #acacac;
 .ui-popup .ui-controlgroup-controls .ui-input-text input {
     background-color: transparent;
     -webkit-box-shadow: 0 0 0px 1000px #363636 inset;
-    border-bottom: 0.1rem solid rgba(250, 250, 250, 0.7);  
-    -webkit-text-fill-color: rgba(250, 250, 250, 0.7); 
+    border-bottom: 0.1rem solid rgba(250, 250, 250, 0.7);
+    -webkit-text-fill-color: rgba(250, 250, 250, 0.7);
     text-shadow: none;
     outline: none;
 }
@@ -3113,6 +3113,11 @@ color: #acacac;
     text-shadow: none !important;
     text-transform: uppercase;
     margin-bottom: 0;
+}
+
+a.cancel {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .ui-popup .ui-grid-solo .ui-block-a a:focus {
@@ -3170,20 +3175,22 @@ color: #acacac;
 
 
 /*temporary styles for write_review button*/
-.navbutton_write_review {
+/*.navbutton_write_review {
     width: 40px;
     height: 40px;
     background-color: red;
-}
+}*/
 
 .hidden {
     display: none;
 }
 
-
 .error {
     color: #f00;
 }
 
-
-
+.signup_button,
+.forgot_password_button {
+    padding: 8px;
+    font-size: 14px;
+}
