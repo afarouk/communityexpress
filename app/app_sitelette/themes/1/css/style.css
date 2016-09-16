@@ -1735,9 +1735,9 @@ border-right: solid 1px #e1e1e1;
     background-repeat: no-repeat;
 }
 
-.logo_img {
+/* .logo_img {
     background: url(../images/ZAZA-Grill.png);
-}
+}*/
 
 #roster .header .logo {
     position: relative;
