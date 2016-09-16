@@ -196,8 +196,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
     $saslJSON = json_decode($siteletteJSON['saslJSON'], TRUE);
     //
     $themeId = $saslJSON['themeId'];
-    $domain = $saslJSON['domainEnum'];
-    $themeCSS = 'styles.css';
+    $domain = $saslJSON['domainEnum']; 
 
     $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
     $serviceLocationId = $saslJSON['serviceLocationId'];
@@ -237,7 +236,6 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
    $siteletteJSON = makeApiCall($apiURL);
    $themeId = '2';
    $domain = 'UNDEFINED';
-   $themeCSS = 'styles.css';
 
    include_once ('chalkboards.php');
    //

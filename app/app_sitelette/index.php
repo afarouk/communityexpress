@@ -178,7 +178,6 @@ if ($saslAccess || $urlKeyAccess) {
         $saslJSON = json_decode($siteletteJSON['saslJSON'], true);
         $themeId = $saslJSON['themeId'];
         $domain = $saslJSON['domainEnum'];
-        $themeCSS = 'styles.css';
         $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
         $serviceLocationId = $saslJSON['serviceLocationId'];
         $saslName = $saslJSON['saslName'];
@@ -199,10 +198,10 @@ if ($saslAccess || $urlKeyAccess) {
         //$evalscript='<script> window.community={};  window.community.themeId='.$themeId.'; window.community.embedded=\'';//.($embedded==TRUE?"true":"false").'\';';
 
 
-       //echo $siteletteJSON['landingViewHTML'];
+       echo $siteletteJSON['landingViewHTML'];
 
-       
-       include_once 'themes/1/index.html';
+
+       //include_once 'themes/1/index.html';
       } /*end valid sitelette*/
     } /*end can reach server */
   }

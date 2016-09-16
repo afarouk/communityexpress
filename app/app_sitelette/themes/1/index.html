@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sitelettes</title>
 
+    <!-- combined common css -->
     <link href="build/styles.css" rel="stylesheet">
+    <!-- themes specific css -->
     <link href="themes/1/css/style.css" rel="stylesheet">
 
     <script src="build/mobile.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh4gSujXy7GSiABoUbJUIXLS6n8a0ac8o"></script>
-
     <script>
         window.saslData = <?php
             if (!is_null($saslJSON)) {
@@ -41,7 +41,7 @@
         window.community.serviceLocationId = '<?php echo $serviceLocationId ?>';
         window.community.canCreateAnonymousUser = <?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
     </script>
-
+<title>Sitelettes</title>
 </head>
 
 <body>
