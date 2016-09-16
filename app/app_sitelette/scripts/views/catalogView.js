@@ -216,7 +216,7 @@ var CatalogView = Backbone.View.extend({
 
     generateColor : function(index) {
         // var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
-         var colors = [ 'color1', 'color2', 'color3', 'color4' ];
+        var colors = [ 'color1', 'color2', 'color3', 'color4' ];
         return this.colors[index % this.colors.length];
     },
 

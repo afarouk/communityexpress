@@ -3194,3 +3194,7 @@ a.cancel {
     padding: 8px;
     font-size: 14px;
 }
+
+.order_subitem_name {
+    padding: 10px 0;
+}

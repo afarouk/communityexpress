@@ -122,7 +122,6 @@ var RosterView = Backbone.View.extend({
 
     /* used for showing the flyout for combo items */
     openAddToBasketView: function(model, catalogId, catalogDisplayText,catalogType) {
-        debugger;
         popupController.addToRosterBasket(model, {
             basket: this.basket,
             catalogId: catalogId,
