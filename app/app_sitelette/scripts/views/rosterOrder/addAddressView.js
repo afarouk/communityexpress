@@ -62,8 +62,20 @@ var AddAddressView = Backbone.View.extend({
     },
 
     mapResultEmpty: function() {
-        //TODO empty map error
-        debugger;
+        //TODO empty map 
+        this.$(this.order_address).html('');
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(_.bind(function(position) {
+            this.showMap(position.coords.latitude, position.coords.longitude);
+          }, this), function() {
+            //TODO location error
+            debugger;
+          });
+        } else {
+            debugger;
+          // Browser doesn't support Geolocation
+        }
     },
 
     showMap: function(lat, lng) {

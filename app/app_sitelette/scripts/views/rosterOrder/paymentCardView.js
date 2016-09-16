@@ -25,15 +25,24 @@ var PaymentCardView = Backbone.View.extend({
 
     prefillCard: function() {
         var cardData = this.model.get('creditCard');
-        if (this.model.additionalParams.cardExists) {
+        // if (this.model.additionalParams.cardExists) {
+        //     this.card = new Skeuocard(this.$('#skeuocard'), {
+        //         initialValues: {
+        //             number: cardData.cardNumber,
+        //             expMonth: '' + cardData.expirationMonth,
+        //             expYear: '' + cardData.expirationYear,
+        //             name: cardData.firstName + ' ' + cardData.lastName,
+        //             cvc: cardData.cvv
+        //         },
+        //         validationState: {
+        //             number: true,
+        //             exp: true,
+        //             name: true,
+        //             cvc: true
+        //         }
+        //     });
+        // } else {
             this.card = new Skeuocard(this.$('#skeuocard'), {
-                initialValues: {
-                    number: cardData.cardNumber,
-                    expMonth: '' + cardData.expirationMonth,
-                    expYear: '' + cardData.expirationYear,
-                    name: cardData.firstName + ' ' + cardData.lastName,
-                    cvc: cardData.cvv
-                },
                 validationState: {
                     number: true,
                     exp: true,
@@ -41,16 +50,7 @@ var PaymentCardView = Backbone.View.extend({
                     cvc: true
                 }
             });
-        } else {
-            this.card = new Skeuocard(this.$('#skeuocard'), {
-                validationState: {
-                    number: true,
-                    exp: true,
-                    name: true,
-                    cvc: true
-                }
-            });
-        }
+        // }
     },
 
     onShow: function() {
