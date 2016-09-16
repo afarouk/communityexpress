@@ -79,22 +79,51 @@ var AddAddressView = Backbone.View.extend({
     },
 
     showMap: function(lat, lng) {
-        this.directionsDisplay = new google.maps.DirectionsRenderer(),
-        this.directionsService = new google.maps.DirectionsService();
         var el = this.$('#shipping_map2')[0],
             options = {
             center: new google.maps.LatLng(lat, lng), 
-            zoom: 10,
+            zoom: 17,
             disableDefaultUI:true
         };
         this.map = new google.maps.Map(el, options);
-        var marker = new google.maps.Marker({
+        this.marker = new google.maps.Marker({
           position: new google.maps.LatLng(lat, lng),
           map: this.map,
-          title: 'Click to zoom'
+          title: 'Your address',
+          draggable: true,
+          raiseOnDrag: true
         });
-        //TODO get coordinates from marker
-        google.maps.event.addListener(this.map, 'click', function(){});
+
+        google.maps.event.addListener(this.marker, 'dragend', _.bind(this.dragendMarker,this));
+    },
+
+    dragendMarker: function(event) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+            location: this.marker.getPosition()
+        }, _.bind(function(results) {
+            if (results.length > 0) {
+                var address = results[0].formatted_address;
+                this.map.setCenter(results[0].geometry.location);
+                this.setNewAddress(address);
+            } else {
+                //TODO error
+            }
+        }, this));
+    },
+
+    setNewAddress: function(address) {
+        console.log(address);
+        var addressComp = address.split(','),
+            addr = this.model.get('deliveryAddress');
+
+        if (addressComp.length >=3) {
+            addr.street = addressComp[0];
+            addr.number = addressComp[1];
+            addr.city = addressComp[2];
+            this.model.trigger('change');
+            //TODO update each address fields
+        }
     },
 
     triggerPayment: function() {
