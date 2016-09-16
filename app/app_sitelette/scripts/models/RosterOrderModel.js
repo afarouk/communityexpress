@@ -30,6 +30,7 @@ var RosterOrderModel = Backbone.Model.extend({
 			rosterId: options.rosterId,
 			combinedItems: this.getCombinedItems(options.editModel),
 			taxState: options.priceAddons.taxState,
+			userModel: options.user,
 			subTotal: this.getPriceWithoutTaxes(options) // etc...
 		});
 	},

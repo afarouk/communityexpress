@@ -43,11 +43,14 @@ var SummaryView = Backbone.View.extend({
     },
 
     renderData: function() {
+        var number = this.model.get('creditCard').cardNumber;
+
     	return _.extend(this.model.toJSON(), {
     		cs: this.model.additionalParams.symbol,
             combinedItems: this.model.additionalParams.combinedItems,
             taxState: this.model.additionalParams.taxState,
-            subTotal: this.model.additionalParams.subTotal
+            subTotal: this.model.additionalParams.subTotal,
+            cardNumber: 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length),
     	});
     },
 

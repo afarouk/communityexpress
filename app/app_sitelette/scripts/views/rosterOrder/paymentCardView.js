@@ -31,7 +31,7 @@ var PaymentCardView = Backbone.View.extend({
         this.card = new Skeuocard(this.$('#skeuocard'), {
             //TODO doesn't work without number
             initialValues: {
-                number: '4111111111111111',//cardData.cardNumber,
+                number: '4556827021013160',//cardData.cardNumber,
                 expMonth: '' + cardData.expirationMonth,
                 expYear: '' + cardData.expirationYear,
                 name: cardData.firstName + ' ' + cardData.lastName,
@@ -46,7 +46,7 @@ var PaymentCardView = Backbone.View.extend({
             debug: true
         });
         // TODO try to set undefined when number was removed
-        this.$('[name="cc_number"]').val(undefined).trigger('change')
+        // this.$('[name="cc_number"]').val(undefined).trigger('change')
     },
 
     onShow: function() {
@@ -69,6 +69,9 @@ var PaymentCardView = Backbone.View.extend({
 
     validateCard: function() {
         var valid = this.card.isValid();
+        //valid
+        // Visa: 4556 8270 2101 3160
+        // American Express: 3708 338922 79668
         if (valid) {
             this.setNewCardToModel();
         }
@@ -89,6 +92,7 @@ var PaymentCardView = Backbone.View.extend({
         cardData.firstName = names[0];
         cardData.lastName = names[1];
         cardData.cvv = cvc;
+        this.model.trigger('change');
     },
 
     triggerSummary: function() {
