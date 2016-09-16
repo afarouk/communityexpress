@@ -198,7 +198,7 @@ App.prototype = {
 
         //check if view was created
         exists = this.checkInstance(viewName);
-        if (exists && viewName !== 'catalog' && viewName !== 'roster') { //should we retriveCatalog each time?
+        if (this.shouldBeLoadedFromCache(viewName, exists)) { //should we retriveCatalog each time?
             if (id && id.backTo) exists.options.backTo = id.backTo;
             this.changePage(exists, options);
             loader.hide();
@@ -211,6 +211,30 @@ App.prototype = {
                 loader.showErrorMessage(e, 'There was a problem loading this page');
             });
         }
+        this.previousViewName = viewName;
+    },
+
+    shouldBeLoadedFromCache: function(viewName, exists) {
+        if (exists) {
+            if (viewName === 'catalog' ||
+                viewName === 'roster' ||
+               (viewName === 'address' && this.previousViewName === 'roster' ) ) {
+                    if (viewName === 'address') {
+                        this.removeCashedViews(['add_address', 'payment','payment_card', 'summary']);
+                    }
+                    return false;
+                } else {
+                    return true;
+                }
+        } else {
+            return false;
+        }
+    },
+
+    removeCashedViews: function(list) {
+        list.forEach(_.bind(function(name) {
+            this.deleteInstance(name);
+        }, this));
     },
 
     initializePage: function(viewName, options) {

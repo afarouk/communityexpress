@@ -57,6 +57,12 @@ var RosterOrderModel = Backbone.Model.extend({
 		};
 	},
 
+	// update: function(editModel) {
+	// 	if (!editModel) return;
+	// 	this.additionalParams.combinedItems = this.getCombinedItems(editModel);
+	// 	this.trigger('change');
+	// },
+
 	getCoords: function(attrs) {
 		return {
 			long: attrs.longitude,
