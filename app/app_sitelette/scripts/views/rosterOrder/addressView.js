@@ -58,8 +58,8 @@ var AddressView = Backbone.View.extend({
 
     renderData: function() {
         //TODO check if it will work in all cases
-        var restModel = this.model.additionalParams.userModel.favorites.first(),
-            address = restModel.get('address'),
+        var favorites = this.model.additionalParams.userModel.favorites,
+            address = favorites.length !== 0 ? favorites.first().get('address') : undefined,
             tmpData = _.extend({
                 address: address,
                 addrIsEmpty: this.model.additionalParams.addrIsEmpty
