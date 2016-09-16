@@ -33,15 +33,21 @@ var PaymentView = Backbone.View.extend({
             $cash = this.$('#cash'),
             html = $.parseHTML(template(this.renderData())),
             tpl = $(html).find('#cash').html();
-        
-        $label.html('XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length));
+            
+        if (number) {
+            $label.removeClass('hidden');
+            $label.siblings().first().removeClass('hidden').click();
+            $label.html('XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length));
+        }
         $cash.html(tpl);
     },
 
     onShow: function() {
         this.addEvents({
             'click .nav_next_btn': 'triggerNext',
-            'click .nav_back_btn': 'goBack'
+            'click .nav_back_btn': 'goBack',
+            'click .rightBtn': 'onCashSelected',
+            'click .leftBtn': 'onCreditSelected'
         });
     },
 
@@ -54,7 +60,8 @@ var PaymentView = Backbone.View.extend({
     		cs: this.model.additionalParams.symbol,
             combinedItems: this.model.additionalParams.combinedItems,
             taxState: this.model.additionalParams.taxState,
-            subTotal: this.model.additionalParams.subTotal
+            subTotal: this.model.additionalParams.subTotal,
+            cardNumber: this.model.get('creditCard').cardNumber
     	});
     },
 
@@ -68,11 +75,36 @@ var PaymentView = Backbone.View.extend({
         }
     },
 
+    onCashSelected: function() {
+        this.model.set('cashSelected', true);
+        this.model.set('creditCardSelected', false);
+    },
+
+    onCreditSelected: function() {
+        this.model.set('cashSelected', false);
+        this.model.set('creditCardSelected', true);
+    },
+
     triggerSummary: function() {
-        Vent.trigger('viewChange', 'summary', {
-            model: this.model,
-            backTo: 'payment'
-        });
+        if (this.validateInfo()) {
+            Vent.trigger('viewChange', 'summary', {
+                model: this.model,
+                backTo: 'payment'
+            });
+        } else {
+            debugger;
+            //TODO some error
+        }
+    },
+
+    validateInfo: function() {
+        var delivery = this.model.get('deliverySelected'),
+            credit = this.model.get('creditCardSelected'),
+            number = this.model.get('creditCard').cardNumber,
+            addressExists = !this.model.additionalParams.addrIsEmpty;
+        if (!number && credit) return false;
+        if (!addressExists && delivery) return false;
+        return true;
     },
 
     triggerPaymentCard: function() {

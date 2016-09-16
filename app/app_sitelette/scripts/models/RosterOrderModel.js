@@ -38,23 +38,24 @@ var RosterOrderModel = Backbone.Model.extend({
 	},
 
 	getDefaults: function(options) {
+		var fundsource = options.fundsource || {};
 		return {
 			serviceAccommodatorId: options.sasl.get('serviceAccommodatorId'),
 			serviceLocationId: options.sasl.get('serviceLocationId'),
 			// deliveryEmail: '',
 			// deliveryPhone: '',
-			pickupSelected: true,
-			deliverySelected: false,
-			cashSelected: true,
-			creditCardSelected: false,
-			fundSourceId: options.fundsource.fundSourceId,
+			pickupSelected: false,
+			deliverySelected: true,
+			cashSelected: false,
+			creditCardSelected: true,
+			fundSourceId: fundsource.fundSourceId || null,
 			items: this.getItems(options),
 			taxAmount: this.calculateTaxes(options),
 			totalAmount: this.getTotalPriceWithTax(options),
 			currencyCode: options.priceAddons.currencyCode,
-			saveCreditCardForFutureReference: options.fundsource.saveCardForReuse,
-			deliveryAddress: this.getAddress(options.addresses[0]),
-			creditCard: this.getCreditCard(options.fundsource),
+			saveCreditCardForFutureReference: fundsource.saveCardForReuse || false,
+			deliveryAddress: this.getAddress(options.addresses[0] || {}),
+			creditCard: this.getCreditCard(fundsource),
 			userName: options.user.getUserName()
 		};
 	},
@@ -67,14 +68,20 @@ var RosterOrderModel = Backbone.Model.extend({
 	},
 
 	getAddress: function(address) {
-		return {
-			street: address.street,
-			city: address.city,
-			number: address.number
-		};
+		var addr = {
+				street: address.street,
+				city: address.city,
+				number: address.number
+			};
+
+		    this.additionalParams.addrIsEmpty = _.isMatch(addr, {street: undefined, city: undefined, number: undefined});
+		return addr;
 	},
 
 	getCreditCard: function(fundsource) {
+		if (fundsource.creditCardNumber) {
+			this.additionalParams.cardExists = true;
+		}
 		return {
 			firstName: fundsource.firstName,
 			lastName: fundsource.lastName,

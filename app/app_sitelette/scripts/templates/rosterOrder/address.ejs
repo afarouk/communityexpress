@@ -27,10 +27,18 @@
         <div id="delivery" class="ui-body-d ui-content">
             <p class="choose_card_text">Choose address:</p>
             <form>
-                <label for="saved_address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></label>
-                <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'>
-                <label for="add_another">Add another address</label>
-                <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice"> </form>
+                <% if (!addrIsEmpty) { %>
+                    <label for="saved_address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></label>
+                    <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'>
+                    <label for="add_another">Add another address</label>
+                    <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice">
+                <% } else { %>
+                    <label for="saved_address" class="hidden"></label>
+                    <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice hidden">
+                    <label for="add_another">Add another address</label>
+                    <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked='checked'>
+                <% } %>
+            </form>
             <div class="ui-grid-a back_next_btns">
                 <div class="ui-block-a p-r-10">
                     <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1 cmtyx_brdrcolor1">Back</button>

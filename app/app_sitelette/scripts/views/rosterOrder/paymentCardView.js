@@ -20,40 +20,45 @@ var PaymentCardView = Backbone.View.extend({
         this.$el.html(template(this.renderData()));
         this.setElement(this.$el.children().eq(0));
 
-        // this.prefillCard();
-
         return this;
     },
 
     prefillCard: function() {
-        //TODO this
         var cardData = this.model.get('creditCard');
-        this.card = new Skeuocard(this.$('#skeuocard'), {
-            //TODO doesn't work without number
-            initialValues: {
-                number: '4556827021013160',//cardData.cardNumber,
-                expMonth: '' + cardData.expirationMonth,
-                expYear: '' + cardData.expirationYear,
-                name: cardData.firstName + ' ' + cardData.lastName,
-                cvc: cardData.cvv
-            },
-            validationState: {
-                // number: true,
-                // exp: true,
-                // name: true,
-                // cvc: true
-            },
-            debug: true
-        });
-        // TODO try to set undefined when number was removed
-        // this.$('[name="cc_number"]').val(undefined).trigger('change')
+        if (this.model.additionalParams.cardExists) {
+            this.card = new Skeuocard(this.$('#skeuocard'), {
+                initialValues: {
+                    number: cardData.cardNumber,
+                    expMonth: '' + cardData.expirationMonth,
+                    expYear: '' + cardData.expirationYear,
+                    name: cardData.firstName + ' ' + cardData.lastName,
+                    cvc: cardData.cvv
+                },
+                validationState: {
+                    number: true,
+                    exp: true,
+                    name: true,
+                    cvc: true
+                }
+            });
+        } else {
+            this.card = new Skeuocard(this.$('#skeuocard'), {
+                validationState: {
+                    number: true,
+                    exp: true,
+                    name: true,
+                    cvc: true
+                }
+            });
+        }
     },
 
     onShow: function() {
         this.prefillCard();
         this.addEvents({
             'click .nav_next_btn': 'validateCard',
-            'click .nav_back_btn': 'goBack'
+            'click .nav_back_btn': 'goBack',
+            'change #save_reference': 'changeCardReference'
         });
     },
 
@@ -74,8 +79,17 @@ var PaymentCardView = Backbone.View.extend({
         // American Express: 3708 338922 79668
         if (valid) {
             this.setNewCardToModel();
+            this.triggerSummary();
+        } else {
+            //TODO error
         }
-        this.triggerSummary();
+    },
+
+    changeCardReference: function(e) {
+        var ref = $(e.currentTarget),
+            checked = ref.is(':checked');
+
+        this.model.set('saveCreditCardForFutureReference', checked);
     },
 
     setNewCardToModel: function() {
@@ -96,11 +110,22 @@ var PaymentCardView = Backbone.View.extend({
     },
 
     triggerSummary: function() {
+        if (this.validateInfo()) {
+            Vent.trigger('viewChange', 'summary', {
+                model: this.model,
+                backTo: 'payment_card'
+            });
+        } else {
+            debugger;
+            //TODO some error
+        }
+    },
 
-        Vent.trigger('viewChange', 'summary', {
-            model: this.model,
-            backTo: 'payment_card'
-        });
+    validateInfo: function() {
+        var delivery = this.model.get('deliverySelected'),
+            addressExists = !this.model.additionalParams.addrIsEmpty;
+        if (!addressExists && delivery) return false;
+        return true;
     },
 
     goBack : function() {

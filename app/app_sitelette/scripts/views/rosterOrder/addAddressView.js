@@ -52,9 +52,18 @@ var AddAddressView = Backbone.View.extend({
         geocoder.geocode({
             "address": address.city + ' ' + address.street + ' ' + address.number
         }, _.bind(function(results) {
+            if (results.length === 0) {
+                this.mapResultEmpty();
+                return;
+            }
             location = results[0].geometry.location;
             this.showMap(location.lat(), location.lng());
         }, this));
+    },
+
+    mapResultEmpty: function() {
+        //TODO empty map error
+        debugger;
     },
 
     showMap: function(lat, lng) {
@@ -89,7 +98,16 @@ var AddAddressView = Backbone.View.extend({
     },
 
     validate: function() {
-        return true;
+        var address = this.model.get('deliveryAddress');
+        if (address.number && 
+            address.street && 
+            address.city) {
+            this.model.additionalParams.addrIsEmpty = false;
+            return true;
+        } else {
+            this.model.additionalParams.addrIsEmpty = true;
+            return false;
+        }
     },
 
     goBack : function() {
