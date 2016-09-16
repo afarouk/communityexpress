@@ -9,6 +9,8 @@ var AddAddressView = Backbone.View.extend({
 
     id: 'cmtyx_add_address',
 
+    order_address: '.order_address',
+
 	initialize: function(options) {
 		this.options = options || {};
         this.on('show', this.onShow, this);
@@ -77,6 +79,7 @@ var AddAddressView = Backbone.View.extend({
 
     triggerPayment: function() {
         if (this.validate()) {
+            this.model.trigger('change');
             Vent.trigger('viewChange', 'payment', {
                 model: this.model, 
                 backTo: 'add_address'
@@ -97,16 +100,25 @@ var AddAddressView = Backbone.View.extend({
     onAptBldgChanged: function(e) {
         var value = this.getValue(e);
         this.model.get('deliveryAddress').number = value;
+        this.onChangeAddress();
     },
 
     onStreetChanged: function(e) {
         var value = this.getValue(e);
         this.model.get('deliveryAddress').street = value;
+        this.onChangeAddress();
     },
 
     onCityChanged: function(e) {
         var value = this.getValue(e);
         this.model.get('deliveryAddress').city = value;
+        this.onChangeAddress();
+    },
+
+    onChangeAddress: function() {
+        var address = this.model.get('deliveryAddress'),
+            tpl = 'You can get your order at ' + address.street + ' ,' + address.number + ' ,' + address.city;
+        this.$(this.order_address).html(tpl);
     },
 
     getValue: function(e) {
