@@ -31,16 +31,18 @@ var RosterOrderModel = Backbone.Model.extend({
 			combinedItems: this.getCombinedItems(options.editModel),
 			taxState: options.priceAddons.taxState,
 			userModel: options.user,
+			coords: this.getCoords(options.sasl.attributes),
+			basket: options.basket,
 			subTotal: this.getPriceWithoutTaxes(options) // etc...
 		});
 	},
 
 	getDefaults: function(options) {
 		return {
-			serviceAccommodatorId: '',
-			serviceLocationId: '',
-			deliveryEmail: '',
-			deliveryPhone: '',
+			serviceAccommodatorId: options.sasl.get('serviceAccommodatorId'),
+			serviceLocationId: options.sasl.get('serviceLocationId'),
+			// deliveryEmail: '',
+			// deliveryPhone: '',
 			pickupSelected: true,
 			deliverySelected: false,
 			cashSelected: true,
@@ -53,15 +55,9 @@ var RosterOrderModel = Backbone.Model.extend({
 			saveCreditCardForFutureReference: options.fundsource.saveCardForReuse,
 			deliveryAddress: this.getAddress(options.addresses[0]),
 			creditCard: this.getCreditCard(options.fundsource),
-			coords: this.getCoords(options.sasl.attributes)
+			userName: options.user.getUserName()
 		};
 	},
-
-	// update: function(editModel) {
-	// 	if (!editModel) return;
-	// 	this.additionalParams.combinedItems = this.getCombinedItems(editModel);
-	// 	this.trigger('change');
-	// },
 
 	getCoords: function(attrs) {
 		return {

@@ -86,7 +86,7 @@ var AddressView = Backbone.View.extend({
     },
 
     showMap: function() {
-        this.coords = this.model.get('coords');
+        this.coords = this.model.additionalParams.coords;
         this.directionsDisplay = new google.maps.DirectionsRenderer(),
         this.directionsService = new google.maps.DirectionsService();
         var lat = this.coords.lat,

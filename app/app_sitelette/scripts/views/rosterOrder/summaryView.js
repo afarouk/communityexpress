@@ -1,6 +1,10 @@
 'use strict';
 
 var Vent = require('../../Vent'),
+    orderActions = require('../../actions/orderActions'),
+    loader = require('../../loader'),
+    popupController = require('../../controllers/popupController'),
+    h = require('../../globalHelpers'),
     template = require('ejs!../../templates/rosterOrder/summary.ejs');
 
 var SummaryView = Backbone.View.extend({
@@ -32,8 +36,8 @@ var SummaryView = Backbone.View.extend({
 
     onShow: function() {
         this.addEvents({
-            'click .placeOrderBtn': 'triggerPlaceOrder',
-            'click .next_btn': 'triggerPlaceOrder',
+            'click .placeOrderBtn': 'onPlaceOrder',
+            'click .next_btn': 'onPlaceOrder',
             'click .nav_back_btn': 'goBack'
         });
     },
@@ -54,8 +58,42 @@ var SummaryView = Backbone.View.extend({
     	});
     },
 
-    triggerPlaceOrder: function() {
-        console.log('place order');
+    onPlaceOrder: function() {
+        var params = this.model.additionalParams;
+        loader.show('placing your order');
+
+        return orderActions.placeOrder(
+            params.sasl.sa(),
+            params.sasl.sl(),
+            this.model.toJSON()
+        ).then(function(e) {
+            loader.hide();
+            params.basket.reset();
+            params.backToRoster = false;
+            var callback = _.bind(this.triggerRosterView, this);
+            popupController.textPopup({
+                text: 'order successful'
+            }, callback);
+        }.bind(this), function(e) {
+            loader.hide();
+            var text = h().getErrorMessage(e, 'Error placing your order');
+            popupController.textPopup({
+                text: text
+            });
+        }.bind(this));
+    },
+
+    triggerRosterView: function() {
+        var params = this.model.additionalParams;
+        Vent.trigger('viewChange', 'roster', {
+            sasl: params.sasl.id,
+            id: params.rosterId,
+            backToRoster: params.backToRoster === false ? false : true,
+            rosterId: params.rosterId,
+            launchedViaURL: params.launchedViaURL,
+        }, {
+            reverse: false
+        });
     },
 
     goBack : function() {

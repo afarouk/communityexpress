@@ -58,7 +58,6 @@ var AddAddressView = Backbone.View.extend({
     },
 
     showMap: function(lat, lng) {
-        this.coords = this.model.get('coords');
         this.directionsDisplay = new google.maps.DirectionsRenderer(),
         this.directionsService = new google.maps.DirectionsService();
         var el = this.$('#shipping_map2')[0],
