@@ -60,6 +60,8 @@ var LandingView = Backbone.View.extend({
         options = options || {};
         this.sasl = options.sasl;
         this.contests = options.contests;
+        this.sa = community.serviceAccommodatorId;
+        this.sl = community.serviceLocationId;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
         $('#landing').css({
@@ -102,7 +104,7 @@ var LandingView = Backbone.View.extend({
         if (flag < 20) return;
         time = flag * .3;
         this.$el.animate({
-            scrollTop: offset 
+            scrollTop: offset
         }, time);
     },
 
@@ -207,7 +209,7 @@ var LandingView = Backbone.View.extend({
       if (showRoster) {
           this.triggerRosterView();
       } else {
-          Vent.trigger('viewChange', 'catalogs', this.model.getUrlKey() );
+          Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl] );
       }
 
     },
