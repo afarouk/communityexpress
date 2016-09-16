@@ -12,6 +12,7 @@ var SummaryView = Backbone.View.extend({
 	initialize: function(options) {
 		this.options = options || {};
         this.on('show', this.onShow, this);
+        this.model.on('change', _.bind(this.reRender, this));
         this.render();
 	},
 
@@ -20,6 +21,13 @@ var SummaryView = Backbone.View.extend({
         this.$el.html(template(this.renderData()));
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    reRender: function() {
+        var html = $.parseHTML(template(this.renderData())),
+            tpl = $(html).html();
+        
+        this.$el.html(tpl);
     },
 
     onShow: function() {
