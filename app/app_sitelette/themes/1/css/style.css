@@ -29,29 +29,6 @@ button.ui-btn.next_btn.cmtyx_background_color1:focus, button.ui-btn.next_btn.cmt
     background-color: var(--cmtyx_hover_color1) !important;
 }
 
-
-/*
-.cmtyx_color1 {
-border-color: #faa019 !important;
-color: #faa019 !important;
-}
-
-.cmtyx_background_color1 {
-border-color: #faa019 !important;
-background-color: #faa019 !important;
-}
-
-button.ui-btn.back_btn.cmtyx_color1:focus, button.ui-btn.back_btn.cmtyx_color1:active {
-border-color: #d07c00 !important;
-color: #d07c00 !important;
-}
-
-button.ui-btn.next_btn.cmtyx_background_color1:focus, button.ui-btn.next_btn.cmtyx_background_color1:active {
-border-color: #d07c00 !important;
-background-color: #d07c00 !important;
-}
-*/
-
 [data-role=page] {
     height: 100% !important;
     position: relative !important;
@@ -292,18 +269,6 @@ button.ui-btn.next_btn:focus, button.ui-btn.next_btn:active {
     outline: none;
 }
 
-
-/*
-.ui-page-theme-a a.ui-btn.ui-btn-active {
-background-color: #faa019;
-border-color: #faa019;
-border-width: 1px;
-border-style: solid;
-color: #fafafa !important;
-text-shadow: none;
-outline: none;
-}
-*/
 
 a.ui-btn.ui-btn-active:focus {
     box-shadow: none;
@@ -1786,11 +1751,6 @@ border-right: solid 1px #e1e1e1;
     background-repeat: no-repeat;
 }
 
-
-/* .logo_img {
-    background: url(../images/ZAZA-Grill.png);
-}*/
-
 #roster .header .logo {
     position: relative;
     bottom: 5px;
@@ -1806,8 +1766,6 @@ border-right: solid 1px #e1e1e1;
 }
 
 .welcome_block {
-    /*background: url(../images/welocome_img.png) no-repeat;
-    background-size: cover; */
     position: absolute;
     text-align: center;
     top: 0;
@@ -1923,13 +1881,6 @@ border-right: solid 1px #e1e1e1;
     background-size: 100% 100%;
     margin-bottom: 20px;
 }
-
-
-/*
-.events_block .event_img {
-    background-image: url(../images/red-hot-band.png);
-}
-*/
 
 .events_block table {
     border-collapse: collapse;
@@ -2192,13 +2143,6 @@ border-right: solid 1px #e1e1e1;
     background-color: #fff;
 }
 
-/*
-.poll_block .body .prize_block .prize_pic_block, .loyalty_program_block .body .prize_block .prize_pic_block, .photo_contest_block .body .prize_block .prize_pic_block {
-    height: 112px;
-    background: url(images/burger.png) no-repeat;
-    background-size: cover;
-}
-*/
 
 .poll_block .body .prize_block .prize_text_block, .loyalty_program_block .body .prize_block .prize_text_block, .photo_contest_block .body .prize_block .prize_text_block {
     text-align: left;
@@ -2341,7 +2285,7 @@ border-right: solid 1px #e1e1e1;
 li.promotion_block .body {
     padding: 0px;
 }
- 
+
 .promotion_block img {
     padding:0;
     width: 100%;
@@ -2383,6 +2327,11 @@ li.promotion_block .body {
     background-color: #ca1d2b;
 }
 
+.photo_contest_block img {
+   padding:0;
+   width: 100%;
+}
+
 .poll_block .body li, .photo_contest_block .body li {
     margin-bottom: 15px;
 }
@@ -2414,25 +2363,7 @@ li.promotion_block .body {
     text-transform: uppercase;
     margin-bottom: 15px;
 }
-/*
-.poll_block .body li .prize1_pic, .photo_contest_block .body li .prize1_pic {
-    height: 112px;
-    background: url(images/burger.png) no-repeat;
-    background-size: cover;
-}
 
-.poll_block .body li .prize2_pic, .photo_contest_block .body li .prize2_pic {
-    height: 112px;
-    background: url(images/6359862041401967861409225263_coffee.png) no-repeat;
-    background-size: cover;
-}
-
-.poll_block .body li .prize3_pic, .photo_contest_block .body li .prize3_pic {
-    height: 112px;
-    background: url(images/Salad_platter.png) no-repeat;
-    background-size: cover;
-}
-*/
 .video_block .header {
     background-color: #ca1d3a;
 }
