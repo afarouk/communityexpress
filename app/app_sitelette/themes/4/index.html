@@ -56,7 +56,7 @@
             <span class="back_arr_icon"></span>
         </div>
         <div class="logo_container">
-            <img src="themes/4/images/ZAZA-Grill.png" />
+            <img src="themes/4/placeholder_images/ZAZA-Grill.png" />
         </div>
     </div>
 
@@ -88,11 +88,11 @@
     </div>
 
     <!-- HOME-->
-    <div data-role="page" id="cmtyx_landingView">
+    <div id="cmtyx_landingView" data-role="page" >
         <div class="home_body p-0">
             <ul>
                 <li id="cmtyx_welcome_block">
-                    <img src="themes/4/images/welocome_img.png"></img>
+                    <img src="themes/4/placeholder_images/welocome_img.png"></img>
                     <div class="welcome_block">
                         <div class="breaking_news">
                             <span class="news_line">Breaking news : our chef is back</span>
@@ -110,7 +110,7 @@
                         <span class="title">events</span>
                         <div class="collapse_btn"></div>
                     </div>
-                    <img src="themes/4/images/red-hot-band.png"></img>
+                    <img src="themes/4/placeholder_images/red-hot-band.png"></img>
                     <div class="body">
 
                         <table class="event_block_overlay">
@@ -166,25 +166,25 @@
                     </div>
                     <div class="body">
                         <ul class="gallery">
-                            <li class="slide  ">
-                              <img src="themes/4/images/pic.png"></img>
-                                <div class="slide_description">
-                                    <span class="slide_title">Incredible drinks</span>
-                                    <span class="slide_undertitle">A few words abouts this amazing photo and bar</span>
+                            <li class="gallery_item  ">
+                                <img src="themes/4/placeholder_images/pic.png"></img>
+                                <div class="gallery_item_description">
+                                    <span class="gallery_item_title">Incredible drinks</span>
+                                    <span class="gallery_item_undertitle">A few words abouts this amazing photo and bar</span>
                                 </div>
                             </li>
-                            <li class="slide ">
-                                <img src="themes/4/images/pic.png"></img>
-                                <div class="slide_description">
-                                    <span class="slide_title">Greek salad</span>
-                                    <span class="slide_undertitle">Salad with fresh tomatoes...</span>
+                            <li class="gallery_item ">
+                                <img src="themes/4/placeholder_images/pic.png"></img>
+                                <div class="gallery_item_description">
+                                    <span class="gallery_item_title">Greek salad</span>
+                                    <span class="gallery_item_undertitle">Salad with fresh tomatoes...</span>
                                 </div>
                             </li>
-                            <li class="slide  ">
-                                <img src="themes/4/images/pic.png"></img>
-                                <div class="slide_description">
-                                    <span class="slide_title">Pancakes</span>
-                                    <span class="slide_undertitle">The best pancakes you've ever...</span>
+                            <li class="gallery_item  ">
+                                <img src="themes/4/placeholder_images/pic.png"></img>
+                                <div class="gallery_item_description">
+                                    <span class="gallery_item_title">Pancakes</span>
+                                    <span class="gallery_item_undertitle">The best pancakes you've ever...</span>
                                 </div>
                             </li>
                         </ul>
@@ -196,15 +196,18 @@
                         <div class="collapse_btn"></div>
                     </div>
                     <div class="body">
-                        <div class="poll_image"></div>
-                        <span class="question">Our coffee is awesome</span>
-                        <form class="poll_ans_form">
+                        <img class="poll_image" src="themes/4/placeholder_images/6359862041401967861409225263_coffee.png"></img>
+                        <span class="poll_displaytext">Our coffee is awesome</span>
+
+                        <!-- BEGIN place holder, will have to be removed. It must be geenrated dynamically -->
+                        <div class="poll_ans_form">
                             <label for="a_ans">YES <span class="answer_color_container answer_color_1"></span></label>
                             <input type="radio" name="radio-choice-ans" id="a_ans" class="ansRadioChoice" checked='checked'>
                             <label for="b_ans">NO <span class="answer_color_container answer_color_2"></span></label>
                             <input type="radio" name="radio-choice-ans" id="b_ans" class="ansRadioChoice">
-                        </form>
+                        </div>
                         <div class="poll_results">
+
                             <div class="a_ans_result">
                                 <div class="a_ans_graph answer_color_1"></div>
                                 <span class="a_ans_percent_num">85%</span>
@@ -214,33 +217,39 @@
                                 <span class="b_ans_percent_num">15%</span>
                             </div>
                         </div>
-                        <div class="prizes_title">There are some prizes you can get</div>
+                        <!-- END place holder, will have to be removed. It must be geenrated dynamically -->
+
+                        <div class="prizes_title">All entries are entered into our mini sweepstakes!</div>
                         <ul>
                             <li>
-                                <div class="discount_block">
-                                    <div class="ui-grid-a discount_container">
+                                <div class="prize_block">
+                                    <div class="ui-grid-a prize_container">
                                         <div class="ui-block-a">
-                                            <div class="discount_text_block">
-                                                <span class="discount_text">Discount</span>
-                                                <span class="discount_condition">every second coffee</span>
-                                                <span class="discount_date">till 30.07</span>
+                                            <div class="prize_text_block">
+                                                <span class="prize_text">First Prize</span>
+                                                <span class="prize_condition">A free burger. All toppings.</span>
+                                                <span class="prize_date">till 30.07</span>
                                             </div>
                                         </div>
-                                        <div class="ui-block-b prize2_pic"></div>
+                                        <div class="ui-block-b ">
+                                            <img src="themes/4/placeholder_images/burger.png"></img>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
                             <li class="last">
-                                <div class="discount_block">
-                                    <div class="ui-grid-a discount_container">
+                                <div class="prize_block">
+                                    <div class="ui-grid-a prize_container">
                                         <div class="ui-block-a">
-                                            <div class="discount_text_block">
-                                                <span class="discount_text">Discount</span>
-                                                <span class="discount_condition">every second salad</span>
-                                                <span class="discount_date">till 30.07</span>
+                                            <div class="prize_text_block">
+                                                <span class="prize_text">Second Prize</span>
+                                                <span class="prize_condition">A free burger, toppings extra</span>
+                                                <span class="prize_date">till 30.07</span>
                                             </div>
                                         </div>
-                                        <div class="ui-block-b prize3_pic"></div>
+                                        <div class="ui-block-b ">
+                                            <img src="themes/4/placeholder_images/burger.png"></img>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -259,31 +268,37 @@
                 </li>
                 <li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
                     <div class="header">
-                        <span class="title">Loyalty program</span>
+                        <span class="title">Loyalty Card</span>
                         <div class="collapse_btn"></div>
                     </div>
                     <div class="body">
-                        <div class="discount_block">
-                            <div class="ui-grid-a discount_container">
+                        <div class="prize_block">
+                            <div class="ui-grid-a prize_container">
                                 <div class="ui-block-a">
-                                    <div class="discount_text_block">
-                                        <span class="discount_text">Discount</span>
-                                        <span class="discount_condition">every second burger</span>
-                                        <span class="discount_date">till 30.07</span>
+                                    <div class="prize_text_block">
+                                        <span class="prize_text">Free Burger</span>
+                                        <span class="prize_condition">Buy 10, get one on us</span>
+                                        <span class="prize_date">till 30.07</span>
                                     </div>
                                 </div>
-                                <div class="ui-block-b discount_pic_block"></div>
+                                <div class="ui-block-b ">
+                                    <img src="themes/4/placeholder_images/burger.png"></img>
+                                </div>
                             </div>
                             <div class="no_qr_code_block cmtyx_color1">
                                 <button class="refresh_button_style1"> Refresh </button>
                             </div>
+                            <div class="loyalty_status">
+                              You have made 3 of 10 purchases.
+                            </div>
                             <div class="qr_code_block cmtyx_color1">
                                 <span class="close_btn"></span>
-                                <span class="qr_code_title cmtyx_color1">This is your personal discount QR-code</span>
+                                <span class="qr_code_title cmtyx_color1">This is your personal QR-code</span>
                                 <div class="qr_code_container">
-                                    <img src="images/getUserQRCode.png" alt="" style="width:100%">
+                                    <img src="themes/4/placeholder_images/getUserQRCode.png" alt="" style="width:100%">
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </li>
@@ -331,7 +346,15 @@
                     </div>
                     <div class="body">
                         <div class="promotion_item">
-                            <div class="promotion_item_img"></div>
+                            <div class="promotion_type">
+                              DISCOUNT
+                            </div>
+                            <img src="themes/4/placeholder_images/special.png"></img>
+                            <div class="promotion_description">
+                              For a limited time, get a coffee if you bring in your dog.
+                              Your dog. Don't borrow someone eles's dog!
+
+                            </div>
                             <div class="ui-grid-a promotion_item_buttons">
                                 <div class="ui-block-a like_btn_block">
                                     <span class="icon like_icon"></span>
@@ -351,50 +374,56 @@
                         <div class="collapse_btn"></div>
                     </div>
                     <div class="body">
-                        <div class="poll_image"></div>
-                        <span class="contest_task">Here should be some text about this section</span>
+                        <img src="themes/4/placeholder_images/special.png"></img>
+                        <span class="contest_task">Send us a picture of your dog, running!</span>
                         <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_color1">SEND A PHOTO</button>
-                        <div class="prizes_title">There are some prizes you can get</div>
+                        <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
                         <ul>
                             <li>
-                                <div class="discount_block">
-                                    <div class="ui-grid-a discount_container">
+                                <div class="prize_block">
+                                    <div class="ui-grid-a prize_container">
                                         <div class="ui-block-a">
-                                            <div class="discount_text_block">
-                                                <span class="discount_text">Discount</span>
-                                                <span class="discount_condition">every second burger</span>
-                                                <span class="discount_date">till 30.07</span>
+                                            <div class="prize_text_block">
+                                                <span class="prize_text">prize</span>
+                                                <span class="prize_condition">every second burger</span>
+                                                <span class="prize_date">till 30.07</span>
                                             </div>
                                         </div>
-                                        <div class="ui-block-b prize1_pic"></div>
+                                        <div class="ui-block-b ">
+                                        <img src="themes/4/placeholder_images/burger.png"></img>
+                                      </div>
                                     </div>
                                 </div>
                             </li>
                             <li>
-                                <div class="discount_block">
-                                    <div class="ui-grid-a discount_container">
+                                <div class="prize_block">
+                                    <div class="ui-grid-a prize_container">
                                         <div class="ui-block-a">
-                                            <div class="discount_text_block">
-                                                <span class="discount_text">Discount</span>
-                                                <span class="discount_condition">every second coffee</span>
-                                                <span class="discount_date">till 30.07</span>
+                                            <div class="prize_text_block">
+                                                <span class="prize_text">prize</span>
+                                                <span class="prize_condition">every second coffee</span>
+                                                <span class="prize_date">till 30.07</span>
                                             </div>
                                         </div>
-                                        <div class="ui-block-b prize2_pic"></div>
+                                        <div class="ui-block-b ">
+                                        <img src="themes/4/placeholder_images/burger.png"></img>
+                                      </div>
                                     </div>
                                 </div>
                             </li>
                             <li class="last">
-                                <div class="discount_block">
-                                    <div class="ui-grid-a discount_container">
+                                <div class="prize_block">
+                                    <div class="ui-grid-a prize_container">
                                         <div class="ui-block-a">
-                                            <div class="discount_text_block">
-                                                <span class="discount_text">Discount</span>
-                                                <span class="discount_condition">every second salad</span>
-                                                <span class="discount_date">till 30.07</span>
+                                            <div class="prize_text_block">
+                                                <span class="prize_text">prize</span>
+                                                <span class="prize_condition">every second salad</span>
+                                                <span class="prize_date">till 30.07</span>
                                             </div>
                                         </div>
-                                        <div class="ui-block-b prize3_pic"></div>
+                                        <div class="ui-block-b ">
+                                        <img src="themes/4/placeholder_images/burger.png"></img>
+                                      </div>
                                     </div>
                                 </div>
                             </li>
@@ -427,12 +456,8 @@
                             <br>Twitter</div>
                     </div>
                 </li>
-                <li  class="driving_directions_block">
+                <li id="cmtyx_driving_directions_block" class="driving_directions_block">
                     <span class="title">contact us</span>
-                    <!--
-<span class="address">1086 North 1st Street <br>
-San jose CA 95112</span>
--->
                     <div class="ui-grid-a btns_container">
                         <div class="ui-block-a p-r-10">
                             <button class="ui-btn ui-corner-all back_btn cmtyx_color1">Drive to us</button>
@@ -449,7 +474,7 @@ San jose CA 95112</span>
     </div>
     <!--    CONTACT US-->
 
-    <div id="cmtyx_conctact_us_block" data-role="page" class="contact_us_block">
+    <div id="cmtyx_contact_us_block" data-role="page" class="contact_us_block">
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Contact us</span>
@@ -479,7 +504,7 @@ San jose CA 95112</span>
 
     <!--    BUSINESS HOURS-->
 
-    <div data-role="page" id="business_hours">
+    <div id="cmtyx_business_hours" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Business hours</span>
@@ -521,7 +546,7 @@ San jose CA 95112</span>
 
     <!--    CHAT-->
 
-    <div data-role="page" id="chat">
+    <div id="cmtyx_chat_block" class="chat_block" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Chat</span>
@@ -562,7 +587,7 @@ San jose CA 95112</span>
 
     <!--    USER REVIEWS-->
 
-    <div data-role="page" id="user_reviews">
+    <div id="cmtyx_user_reviews" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">User Reviews</span>
@@ -670,7 +695,7 @@ San jose CA 95112</span>
 
     <!--    APPOINTMENTS-->
 
-    <div data-role="page" id="appointments">
+    <div id="cmtyx_appointments" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Appointments</span>
@@ -763,7 +788,7 @@ San jose CA 95112</span>
 
     <!--    UPLOAD PHOTO-->
 
-    <div data-role="page" id="upload_photo">
+    <div id="upload_photo" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Upload photo</span>
@@ -806,8 +831,6 @@ San jose CA 95112</span>
             </div>
         </div>
     </div>
-    <script>
-    </script>
 
     <script src="build/bundle.js"></script>
 </body>

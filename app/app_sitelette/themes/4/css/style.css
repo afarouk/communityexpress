@@ -29,29 +29,6 @@ button.ui-btn.next_btn.cmtyx_background_color1:focus, button.ui-btn.next_btn.cmt
     background-color: var(--cmtyx_hover_color1) !important;
 }
 
-
-/*
-.cmtyx_color1 {
-border-color: #faa019 !important;
-color: #faa019 !important;
-}
-
-.cmtyx_background_color1 {
-border-color: #faa019 !important;
-background-color: #faa019 !important;
-}
-
-button.ui-btn.back_btn.cmtyx_color1:focus, button.ui-btn.back_btn.cmtyx_color1:active {
-border-color: #d07c00 !important;
-color: #d07c00 !important;
-}
-
-button.ui-btn.next_btn.cmtyx_background_color1:focus, button.ui-btn.next_btn.cmtyx_background_color1:active {
-border-color: #d07c00 !important;
-background-color: #d07c00 !important;
-}
-*/
-
 [data-role=page] {
     height: 100% !important;
     position: relative !important;
@@ -228,6 +205,7 @@ button.ui-btn {
     /*    color: #faa019 !important;*/
     font: 300 18px Roboto !important;
     text-shadow: none !important;
+
 }
 
 .next_btn {
@@ -292,18 +270,6 @@ button.ui-btn.next_btn:focus, button.ui-btn.next_btn:active {
     outline: none;
 }
 
-
-/*
-.ui-page-theme-a a.ui-btn.ui-btn-active {
-background-color: #faa019;
-border-color: #faa019;
-border-width: 1px;
-border-style: solid;
-color: #fafafa !important;
-text-shadow: none;
-outline: none;
-}
-*/
 
 a.ui-btn.ui-btn-active:focus {
     box-shadow: none;
@@ -655,7 +621,7 @@ label.checkbox_save_card {
 
 /*ROSTER*/
 
-.common_header, #cmytx_landingView>.header, #roster .header, #build_combo>.header, #sides_extras>.header, .contact_us_block>.header, #user_reviews>.header, #business_hours>.header, #chat>.header, #appointments>.header, #upload_photo>.header {
+.common_header, #cmytx_landingView>.header, #roster .header, #build_combo>.header, #sides_extras>.header, .contact_us_block>.header, #user_reviews>.header, #business_hours>.header, .chat_block>.header, #cmtyx_appointments>.header, #upload_photo>.header {
     background-color: #252525;
     height: 45px;
     padding: 10px 10px 10px 20px;
@@ -695,12 +661,12 @@ label.checkbox_save_card {
 .headers_container .header.main_header .back_arr_icon {
     display: inline-block;
     float: left;
-    background: url(images/right-arrow-copy.png);
+    background: url(css/images/right-arrow-copy.png);
     width: 21px;
     height: 21px;
 }
 
-.ui-page#roster, .ui-page#build_combo, .ui-page#sides_extras, .ui-page#cmytx_landingView, .ui-page.contact_us_block, .ui-page#user_reviews, .ui-page#business_hours, .ui-page#chat, .ui-page#appointments, .ui-page#upload_photo {
+.ui-page#roster, .ui-page#build_combo, .ui-page#sides_extras, .ui-page#cmytx_landingView, .ui-page.contact_us_block, .ui-page#user_reviews, .ui-page#business_hours, .ui-page.chat_block, .ui-page#cmtyx_appointments, .ui-page#upload_photo {
     padding: 0;
 }
 
@@ -714,7 +680,7 @@ label.checkbox_save_card {
 }
 
 #roster .cart_img {
-    background: url(images/shopping-cart.png) no-repeat;
+    background: url('images/shopping-cart.png') no-repeat;
     background-size: contain;
 }
 
@@ -797,7 +763,7 @@ label.checkbox_save_card {
     height: 19px !important;
     width: 19px !important;
     top: 14px !important;
-    background: url(../images/minus.png) no-repeat center center !important;
+    background: url('images/minus.png') no-repeat center center !important;
 }
 
 .quantity_plus a {
@@ -822,7 +788,7 @@ label.checkbox_save_card {
     width: 22px !important;
     left: 13px !important;
     top: 14px !important;
-    background: url(../images/plus.png) no-repeat center center !important;
+    background: url('images/plus.png') no-repeat center center !important;
 }
 
 .quantity_field {
@@ -1111,14 +1077,14 @@ li.build_combo, li.choose_extras {
 }
 
 .ui-icon-plus:after {
-    background: url(../images/down-arrow.png) no-repeat;
+    background: url('images/down-arrow.png') no-repeat;
     background-size: 27px 27px;
     height: 27px;
     width: 27px;
 }
 
 .ui-icon-minus:after {
-    background: url(../images/up-arrow.png) no-repeat;
+    background: url('images/up-arrow.png') no-repeat;
     background-size: 27px 27px;
     height: 27px;
     width: 27px;
@@ -1270,7 +1236,7 @@ li.build_combo, li.choose_extras {
 }
 
 .tick_img {
-    background: url(../images/checked.png) no-repeat;
+    background: url('images/checked.png') no-repeat;
     background-size: 21px 16px;
     height: 16px;
     width: 21px;
@@ -1446,7 +1412,7 @@ span.select2-container--default .select2-selection--single:focus {
 }
 
 .shopping_icon {
-    background: url(../images/shopping-cart.png) no-repeat;
+    background: url('images/shopping-cart.png') no-repeat;
     background-size: 21px 21px;
     height: 21px;
     width: 21px;
@@ -1454,7 +1420,7 @@ span.select2-container--default .select2-selection--single:focus {
 }
 
 .left_arrow_icon, span.build_combo_back_btn {
-    background: url(../images/left-arrow.png) no-repeat;
+    background: url('images/left-arrow.png') no-repeat;
     background-size: 21px 21px;
     height: 21px;
     width: 21px;
@@ -1463,7 +1429,7 @@ span.select2-container--default .select2-selection--single:focus {
 }
 
 span.delete_btn {
-    background: url(../images/close.png) no-repeat;
+    background: url('images/close.png') no-repeat;
     background-size: 9px 9px;
     height: 9px;
     width: 9px;
@@ -1694,7 +1660,7 @@ border-right: solid 1px #e1e1e1;
 
 .menu_btn_img {
     display: inline-block;
-    background: url(../images/bars.png);
+    background: url('images/bars.png');
     width: 28px;
     height: 21px;
 }
@@ -1732,31 +1698,31 @@ border-right: solid 1px #e1e1e1;
 }
 
 .list_img {
-    background-image: url(../images/list.png);
+    background-image: url('images/list.png');
 }
 
 .speech_bubble_img {
-    background-image: url(../images/speech-bubble.png);
+    background-image: url('images/speech-bubble.png');
 }
 
 .clock_circular_img {
-    background-image: url(../images/clock-circular-outline.png);
+    background-image: url('images/clock-circular-outline.png');
 }
 
 .photo_camera_img {
-    background-image: url(../images/photo-camera.png);
+    background-image: url('images/photo-camera.png');
 }
 
 .speaking_img {
-    background-image: url(../images/speaking.png);
+    background-image: url('images/speaking.png');
 }
 
 .calendar_img {
-    background-image: url(../images/calendar.png);
+    background-image: url('images/calendar.png');
 }
 
 .edit_img {
-    background-image: url(../images/edit.png);
+    background-image: url('images/edit.png');
 }
 
 .left_panel_menu .left_arr_icon {
@@ -1772,7 +1738,7 @@ border-right: solid 1px #e1e1e1;
 }
 
 .left_arr_img {
-    background-image: url(../images/left-arrow.png);
+    background-image: url('images/left-arrow.png');
 }
 
 .logo_container {
@@ -1785,11 +1751,6 @@ border-right: solid 1px #e1e1e1;
     width: 100px;
     background-repeat: no-repeat;
 }
-
-
-/* .logo_img {
-    background: url(../images/ZAZA-Grill.png);
-}*/
 
 #roster .header .logo {
     position: relative;
@@ -1806,8 +1767,6 @@ border-right: solid 1px #e1e1e1;
 }
 
 .welcome_block {
-    /*background: url(../images/welocome_img.png) no-repeat;
-    background-size: cover; */
     position: absolute;
     text-align: center;
     top: 0;
@@ -1865,6 +1824,12 @@ border-right: solid 1px #e1e1e1;
     bottom: 3px;
 }
 
+.welcome_block .open_menu_btn{
+  margin-left:auto;
+  margin-right:auto;
+  width:80%;
+}
+
 .home_tabs_list {
     padding: 20px 10px 0 10px;
     background-color: #363636;
@@ -1896,7 +1861,7 @@ border-right: solid 1px #e1e1e1;
 
 .home_tabs_list>li .header .collapse_btn {
     display: inline-block;
-    background: url(images/arrow-point-to-right-copy-4.png) no-repeat;
+    background: url('images/arrow-point-to-right-copy-4.png') no-repeat;
     width: 8px;
     height: 5px;
     float: right;
@@ -1923,13 +1888,6 @@ border-right: solid 1px #e1e1e1;
     background-size: 100% 100%;
     margin-bottom: 20px;
 }
-
-
-/*
-.events_block .event_img {
-    background-image: url(../images/red-hot-band.png);
-}
-*/
 
 .events_block table {
     border-collapse: collapse;
@@ -2006,7 +1964,7 @@ border-right: solid 1px #e1e1e1;
     display: block;
     width: 40px;
     height: 40px;
-    background: url(images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png);
+    background: url('images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png');
 }
 
 .gallery_block .header {
@@ -2017,12 +1975,12 @@ border-right: solid 1px #e1e1e1;
     padding: 0;
 }
 
-.gallery li.slide {
+.gallery li.gallery_item {
     position:relative;
     display: inline-block;
     height: 300px;
 }
-.slide_description {
+.gallery_item_description {
     position:absolute;
     display: block;
     bottom: 0;
@@ -2031,14 +1989,14 @@ border-right: solid 1px #e1e1e1;
     background-color: rgba(54, 54, 54, 0.8);
 }
 
-.slide_title {
+.gallery_item_title {
     display: block;
     font: 400 18px Roboto;
     color: #fff;
     margin-bottom: 10px;
 }
 
-.slide_undertitle {
+.gallery_item_undertitle {
     display: block;
     font: 300 12px Roboto;
     color: #fff;
@@ -2047,16 +2005,11 @@ border-right: solid 1px #e1e1e1;
 .poll_block .header {
     background-color: #f05d13;
 }
-
-.photo_contest_block .poll_image, .poll_block .poll_image {
-    background: url(images/1a5043a09636bc9ddfa9e5fbb78d1c41.png) no-repeat;
-    background-size: cover;
-    height: 255px;
-    margin-bottom: 25px;
-    box-shadow: 0 0 20px #000;
+.poll_block  img {
+  padding:0;
+  width:100%;
 }
-
-.poll_block .question {
+.poll_block .poll_displaytext {
     display: block;
     margin-bottom: 20px;
     font: 400 18px Roboto;
@@ -2116,6 +2069,15 @@ border-right: solid 1px #e1e1e1;
     margin-right: 10px;
 }
 
+.photo_contest_block .poll_image, .poll_block .poll_image {
+    background: url(images/1a5043a09636bc9ddfa9e5fbb78d1c41.png) no-repeat;
+    background-size: cover;
+    height: 255px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 20px #000;
+}
+
+
 .a_ans_percent_num {
     display: inline-block;
     font: 400 18px Roboto;
@@ -2148,7 +2110,10 @@ border-right: solid 1px #e1e1e1;
 .loyalty_program_block .body {
     text-align: center;
 }
-
+.loyalty_program_block img {
+    padding: 0;
+    width: 100%;
+}
 .loyalty_program_block .qr_code_block {
     position: relative;
     border-left: solid 5px;
@@ -2156,12 +2121,11 @@ border-right: solid 1px #e1e1e1;
     padding: 15px 25px 25px 25px;
     margin-top: 20px;
     text-align: left;
-    display: none;
 }
 
 .loyalty_program_block .qr_code_block .close_btn {
     display: inline-block;
-    background: url(images/close.png) no-repeat;
+    background: url('images/close.png') no-repeat;
     width: 9px;
     height: 9px;
     position: absolute;
@@ -2175,29 +2139,27 @@ border-right: solid 1px #e1e1e1;
     letter-spacing: 1px;
     margin-bottom: 10px;
 }
+.loyalty_program_block .loyalty_status{
+    font-weight:700;
+    padding:10px;
+}
 
-
-.poll_block .body .discount_block, .loyalty_program_block .body .discount_block, .photo_contest_block .body .discount_block {
+.poll_block .body .prize_block, .loyalty_program_block .body .prize_block, .photo_contest_block .body .prize_block {
     width: 100%;
     min-height: 112px;
 }
 
-.poll_block .body .discount_container, .loyalty_program_block .body .discount_container, .photo_contest_block .body .discount_container {
+.poll_block .body .prize_container, .loyalty_program_block .body .prize_container, .photo_contest_block .body .prize_container {
     background-color: #fff;
 }
 
-.poll_block .body .discount_block .discount_pic_block, .loyalty_program_block .body .discount_block .discount_pic_block, .photo_contest_block .body .discount_block .discount_pic_block {
-    height: 112px;
-    background: url(images/burger.png) no-repeat;
-    background-size: cover;
-}
 
-.poll_block .body .discount_block .discount_text_block, .loyalty_program_block .body .discount_block .discount_text_block, .photo_contest_block .body .discount_block .discount_text_block {
+.poll_block .body .prize_block .prize_text_block, .loyalty_program_block .body .prize_block .prize_text_block, .photo_contest_block .body .prize_block .prize_text_block {
     text-align: left;
     padding: 25px 0 25px 25px;
 }
 
-.discount_text {
+.prize_text {
     display: block;
     font: 500 14px Roboto;
     color: #e34a20;
@@ -2205,14 +2167,14 @@ border-right: solid 1px #e1e1e1;
     margin-bottom: 10px;
 }
 
-.discount_condition {
+.prize_condition {
     display: block;
     font: 500 14px Roboto;
     color: #414141;
     margin-bottom: 8px;
 }
 
-.discount_date {
+.prize_date {
     display: block;
     font: 500 11px Roboto;
     color: rgba(65, 65, 65, 0.7);
@@ -2311,7 +2273,7 @@ border-right: solid 1px #e1e1e1;
 }
 
 .reviews_block .show_more_block .show_more_avatars_container .avatar4 {
-    background: url(images/images.png) no-repeat;
+    background: url(images/girl2.png) no-repeat;
     background-size: cover;
 }
 
@@ -2334,10 +2296,8 @@ li.promotion_block .body {
     padding: 0px;
 }
 
-.promotion_block .promotion_item_img {
-    background: url(images/special.png);
-    background-size: cover;
-    height: 243px;
+.promotion_block img {
+    padding:0;
     width: 100%;
 }
 
@@ -2359,12 +2319,12 @@ li.promotion_block .body {
 }
 
 .promotion_block .promotion_item_buttons .like_icon {
-    background: url(images/thumbs-up-hand-symbol.png) no-repeat;
+    background: url('images/thumbs-up-hand-symbol.png') no-repeat;
     background-size: cover;
 }
 
 .promotion_block .promotion_item_buttons .share_icon {
-    background: url(images/share-option.png) no-repeat;
+    background: url('images/share-option.png') no-repeat;
     background-size: cover;
 }
 
@@ -2373,8 +2333,24 @@ li.promotion_block .body {
     color: #fff;
 }
 
+.promotion_block .promotion_description {
+  font-weight:300;
+  padding:10px;
+}
+
+.promotion_block .promotion_type{
+    color:red;
+    text-align:left;
+
+}
+
 .photo_contest_block .header {
     background-color: #ca1d2b;
+}
+
+.photo_contest_block img {
+   padding:0;
+   width: 100%;
 }
 
 .poll_block .body li, .photo_contest_block .body li {
@@ -2407,24 +2383,6 @@ li.promotion_block .body {
     color: #ececec;
     text-transform: uppercase;
     margin-bottom: 15px;
-}
-
-.poll_block .body li .prize1_pic, .photo_contest_block .body li .prize1_pic {
-    height: 112px;
-    background: url(images/burger.png) no-repeat;
-    background-size: cover;
-}
-
-.poll_block .body li .prize2_pic, .photo_contest_block .body li .prize2_pic {
-    height: 112px;
-    background: url(images/6359862041401967861409225263_coffee.png) no-repeat;
-    background-size: cover;
-}
-
-.poll_block .body li .prize3_pic, .photo_contest_block .body li .prize3_pic {
-    height: 112px;
-    background: url(images/Salad_platter.png) no-repeat;
-    background-size: cover;
 }
 
 .video_block .header {
@@ -2465,19 +2423,19 @@ li.video_block .body {
 }
 
 .sms_icon {
-    background: url(../images/sms.png);
+    background: url('images/sms.png');
 }
 
 .email_icon {
-    background: url(../images/email.png);
+    background: url('images/email.png');
 }
 
 .facebook_icon {
-    background: url(../images/fb.png);
+    background: url('images/fb.png');
 }
 
 .twitter_icon {
-    background: url(../images/tw.png);
+    background: url('images/tw.png');
 }
 
 .driving_directions_block {
@@ -2559,49 +2517,49 @@ margin-bottom: 15px;
 .document_img {
     width: 17px;
     height: 21px;
-    background: url(images/document.png) no-repeat;
+    background: url('images/document.png') no-repeat;
 }
 
 .common_footer a.ui-btn.ui-btn-active .document_img {
     width: 17px;
     height: 21px;
-    background: url(images/document_hover.png) no-repeat;
+    background: url('images/document_hover.png') no-repeat;
 }
 
 .calendar_grey_img {
     width: 24px;
     height: 20px;
-    background: url(images/calendar.png) no-repeat;
+    background: url('images/calendar.png') no-repeat;
 }
 
 .common_footer a.ui-btn.ui-btn-active .calendar_grey_img {
     width: 24px;
     height: 20px;
-    background: url(images/calendar_hover.png) no-repeat;
+    background: url('images/calendar_hover.png') no-repeat;
 }
 
 .information_button_img {
     width: 24px;
     height: 24px;
-    background: url(images/information.png) no-repeat;
+    background: url('images/information.png') no-repeat;
 }
 
 .common_footer a.ui-btn.ui-btn-active .information_button_img {
     width: 24px;
     height: 24px;
-    background: url(images/information_hover.png) no-repeat;
+    background: url('images/information_hover.png') no-repeat;
 }
 
 .user_img {
     width: 16px;
     height: 22px;
-    background: url(images/user.png) no-repeat;
+    background: url('images/user.png') no-repeat;
 }
 
 .common_footer a.ui-btn.ui-btn-active .user_img {
     width: 16px;
     height: 22px;
-    background: url(images/user_hover.png) no-repeat;
+    background: url('images/user_hover.png') no-repeat;
 }
 
 .m-b-7 {
@@ -2619,12 +2577,12 @@ margin-bottom: 15px;
 
 /*CONTACT US*/
 
-.contact_us_block .header, #user_reviews .header, #business_hours .header, #chat .header, #appointments .header, #upload_photo .header {
+.contact_us_block .header, #user_reviews .header, #business_hours .header, .chat_block .header, #cmtyx_appointments .header, #upload_photo .header {
     padding: 15px 0;
     text-align: center;
 }
 
-.contact_us_block .header .title, #user_reviews .header .title, #business_hours .header .title, #chat .header .title, #appointments .header .title, #upload_photo .header .title {
+.contact_us_block .header .title, #user_reviews .header .title, #business_hours .header .title, .chat_block .header .title, #cmtyx_appointments .header .title, #upload_photo .header .title {
     font: 400 16px Roboto;
     color: #e9e9e9;
     position: relative;
@@ -2636,7 +2594,7 @@ margin-bottom: 15px;
     float: left;
     position: relative;
     left: 0;
-    background: url(images/right-arrow.png);
+    background: url('images/right-arrow.png');
     width: 22px;
     height: 16px;
 }
@@ -2729,7 +2687,7 @@ margin-bottom: 15px;
 }
 
 .reviews_block .user_avatar4 {
-    background: url(images/images.png) no-repeat;
+    background: url(images/drinks_image.png) no-repeat;
 }
 
 
@@ -2739,7 +2697,7 @@ margin-bottom: 15px;
     padding-top: 110px;
 }
 
-#business_hours td {
+#cmtyx_business_hours td {
     padding: 10px 22px;
     border-bottom: none;
     font: 300 18px Roboto;
@@ -2783,7 +2741,7 @@ margin-bottom: 15px;
     text-align: center;
 }
 
-#chat .body {
+.chat_block .body {
     padding: 60px 10px 100px 10px;
     text-align: center;
 }
@@ -2800,7 +2758,7 @@ margin-bottom: 15px;
     display: inline-block;
     height: 25px;
     width: 25px;
-    background: url(images/smile.png);
+    background: url('images/smile.png');
     background-size: cover;
     position: relative;
     top: 2px;
@@ -2810,7 +2768,7 @@ margin-bottom: 15px;
     display: inline-block;
     height: 19px;
     width: 22px;
-    background: url(images/send-button.png);
+    background: url('images/send-button.png');
     background-size: cover;
     position: relative;
     bottom: 1px;
@@ -2818,42 +2776,42 @@ margin-bottom: 15px;
     margin-left: 5px;
 }
 
-#chat .date {
+.chat_block .date {
     font: 300 12px Roboto;
     color: rgba(236, 236, 236, 0.5);
 }
 
-#chat td {
+.chat_block td {
     border: none;
 }
 
-#chat .friend_message td {
+.chat_block .friend_message td {
     padding: 15px 0 15px 10px;
 }
 
-#chat .my_message td {
+.chat_block .my_message td {
     padding: 15px 10px 15px 0;
 }
 
-#chat td.time {
+.chat_block td.time {
     vertical-align: middle;
     font: italic 12px Roboto;
     color: rgba(236, 236, 236, 0.7);
 }
 
-#chat .friend_message td.time {
+.chat_block .friend_message td.time {
     text-align: right;
 }
 
-#chat .my_message td.time {
+.chat_block .my_message td.time {
     text-align: left;
 }
 
-#chat li, #chat table {
+.chat_block li, .chat_block table {
     margin-bottom: 0;
 }
 
-#chat td.message {
+.chat_block td.message {
     vertical-align: middle;
     width: 65%;
 }
@@ -2875,20 +2833,20 @@ li .message_text {
 }
 
 
-/*APPOINTMENTS*/
+/*appointments*/
 
-#appointments .body {
+#cmtyx_appointments .body {
     padding: 45px 10px 0 10px;
 }
 
-#appointments .navigation_block {
+#cmtyx_appointments .navigation_block {
     padding: 10px 0;
     text-align: center;
     font: 300 12px / 30px Roboto;
     color: #ececec;
 }
 
-#appointments .navigation_block .arr {
+#cmtyx_appointments .navigation_block .arr {
     display: inline-block;
     padding-top: 3px;
     padding-left: 1px;
@@ -2898,37 +2856,37 @@ li .message_text {
     border-radius: 3px;
 }
 
-#appointments .navigation_block .arr.back_arr {
+#cmtyx_appointments .navigation_block .arr.back_arr {
     float: left;
 }
 
-#appointments .navigation_block .arr.next_arr {
+#cmtyx_appointments .navigation_block .arr.next_arr {
     float: right;
 }
 
-#appointments .navigation_block .arr .arr_icon {
+#cmtyx_appointments .navigation_block .arr .arr_icon {
     display: inline-block;
     height: 15px;
     width: 8px;
 }
 
-#appointments .navigation_block .arr .back_arr_icon {
-    background: url(images/arrow-point-to-right-copy.png) no-repeat;
+#cmtyx_appointments .navigation_block .arr .back_arr_icon {
+    background: url('images/arrow-point-to-right-copy.png') no-repeat;
 }
 
-#appointments .navigation_block .arr .next_arr_icon {
-    background: url(images/arrow-point-to-right.png) no-repeat;
+#cmtyx_appointments .navigation_block .arr .next_arr_icon {
+    background: url('images/arrow-point-to-right.png') no-repeat;
 }
 
-#appointments .schedule_block {
+#cmtyx_appointments .schedule_block {
     padding: 20px 0 0 10px;
 }
 
-#appointments td {
+#cmtyx_appointments td {
     height: 40px;
 }
 
-#appointments td.hour {
+#cmtyx_appointments td.hour {
     width: 20%;
     vertical-align: top;
     font: 400 12px Roboto;
@@ -2936,16 +2894,16 @@ li .message_text {
     padding-top: 0;
 }
 
-#appointments td.hour.right_border {
+#cmtyx_appointments td.hour.right_border {
     border-right: solid 1px #959595 !important;
 }
 
-#appointments td.event {
+#cmtyx_appointments td.event {
     padding: 5px 10px 5px 10px;
     border-bottom: solid 1px #959595;
 }
 
-#appointments td.event .event_description {
+#cmtyx_appointments td.event .event_description {
     padding: 10px;
     background-color: #ffffff;
     border-radius: 3px;
@@ -2954,7 +2912,7 @@ li .message_text {
     min-height: 70px;
 }
 
-#appointments td.event .event_description.reserved {
+#cmtyx_appointments td.event .event_description.reserved {
     text-align: center;
     vertical-align: middle;
     font: 300 12px/50px Roboto;
@@ -3052,7 +3010,7 @@ color: #acacac;
     position: relative;
     left: 24px;
     top: 4px;
-    background: url(images/left_gallery_arr.png) no-repeat;
+    background: url('images/left_gallery_arr.png') no-repeat;
     color: transparent;
 }
 
@@ -3060,7 +3018,7 @@ color: #acacac;
     position: relative;
     right: 9px;
     top: 4px;
-    background: url(images/right_gallery_arr.png) no-repeat;
+    background: url('images/right_gallery_arr.png') no-repeat;
     color: transparent;
 }
 
@@ -3101,7 +3059,7 @@ color: #acacac;
 
 #cmntyex_signin_panel .close_btn, #signup_panel .close_btn {
     display: inline-block;
-    background: url(images/close.png) no-repeat;
+    background: url('images/close.png') no-repeat;
     background-position: 50%;
     width: 30px;
     height: 30px;
