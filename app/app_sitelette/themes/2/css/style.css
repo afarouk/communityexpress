@@ -2069,15 +2069,6 @@ border-right: solid 1px #e1e1e1;
     margin-right: 10px;
 }
 
-.photo_contest_block .poll_image, .poll_block .poll_image {
-    background: url(images/1a5043a09636bc9ddfa9e5fbb78d1c41.png) no-repeat;
-    background-size: cover;
-    height: 255px;
-    margin-bottom: 25px;
-    box-shadow: 0 0 20px #000;
-}
-
-
 .a_ans_percent_num {
     display: inline-block;
     font: 400 18px Roboto;
@@ -2195,7 +2186,6 @@ border-right: solid 1px #e1e1e1;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: url(images/guy-912229_960_720.png) no-repeat;
     vertical-align: top;
 }
 
@@ -2255,33 +2245,7 @@ border-right: solid 1px #e1e1e1;
     border-radius: 50%;
     margin-left: -20px;
 }
-
-.reviews_block .show_more_block .show_more_avatars_container .avatar1 {
-    background: url(images/landscape_nrm_1416942794-chris-prat-cover.png) no-repeat;
-    background-size: cover;
-    margin-left: 0;
-}
-
-.reviews_block .show_more_block .show_more_avatars_container .avatar2 {
-    background: url(images/guy-912229_960_720-copy.png) no-repeat;
-    background-size: cover;
-}
-
-.reviews_block .show_more_block .show_more_avatars_container .avatar3 {
-    background: url(images/girl-03.png) no-repeat;
-    background-size: cover;
-}
-
-.reviews_block .show_more_block .show_more_avatars_container .avatar4 {
-    background: url(images/girl2.png) no-repeat;
-    background-size: cover;
-}
-
-.reviews_block .show_more_block .show_more_avatars_container .avatar5 {
-    background: url(images/guy-912229_960_720-copy.png) no-repeat;
-    background-size: cover;
-}
-
+   
 .reviews_block .show_more_block .show_more_reviews_btn {
     display: inline-block;
     font: 400 10px Roboto;
