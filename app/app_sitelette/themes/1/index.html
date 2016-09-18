@@ -88,7 +88,7 @@
     </div>
 
     <!-- HOME-->
-    <div data-role="page" id="cmtyx_landingView">
+    <div id="cmtyx_landingView" data-role="page" >
         <div class="home_body p-0">
             <ul>
                 <li id="cmtyx_welcome_block">
@@ -268,7 +268,7 @@
                 </li>
                 <li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
                     <div class="header">
-                        <span class="title">Loyalty program</span>
+                        <span class="title">Loyalty Card</span>
                         <div class="collapse_btn"></div>
                     </div>
                     <div class="body">
@@ -288,6 +288,9 @@
                             <div class="no_qr_code_block cmtyx_color1">
                                 <button class="refresh_button_style1"> Refresh </button>
                             </div>
+                            <div class="loyalty_status">
+                              You have made 3 of 10 purchases.
+                            </div>
                             <div class="qr_code_block cmtyx_color1">
                                 <span class="close_btn"></span>
                                 <span class="qr_code_title cmtyx_color1">This is your personal QR-code</span>
@@ -295,6 +298,7 @@
                                     <img src="themes/1/placeholder_images/getUserQRCode.png" alt="" style="width:100%">
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </li>
@@ -342,7 +346,15 @@
                     </div>
                     <div class="body">
                         <div class="promotion_item">
+                            <div class="promotion_type">
+                              DISCOUNT
+                            </div>
                             <img src="themes/1/placeholder_images/special.png"></img>
+                            <div class="promotion_description">
+                              For a limited time, get a coffee if you bring in your dog.
+                              Your dog. Don't borrow someone eles's dog!
+
+                            </div>
                             <div class="ui-grid-a promotion_item_buttons">
                                 <div class="ui-block-a like_btn_block">
                                     <span class="icon like_icon"></span>
@@ -365,7 +377,7 @@
                         <img src="themes/1/placeholder_images/special.png"></img>
                         <span class="contest_task">Send us a picture of your dog, running!</span>
                         <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_color1">SEND A PHOTO</button>
-                        <div class="prizes_title">There are some prizes you can get</div>
+                        <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
                         <ul>
                             <li>
                                 <div class="prize_block">
@@ -444,12 +456,8 @@
                             <br>Twitter</div>
                     </div>
                 </li>
-                <li class="driving_directions_block">
+                <li id="cmtyx_driving_directions_block" class="driving_directions_block">
                     <span class="title">contact us</span>
-                    <!--
-<span class="address">1086 North 1st Street <br>
-San jose CA 95112</span>
--->
                     <div class="ui-grid-a btns_container">
                         <div class="ui-block-a p-r-10">
                             <button class="ui-btn ui-corner-all back_btn cmtyx_color1">Drive to us</button>
@@ -466,7 +474,7 @@ San jose CA 95112</span>
     </div>
     <!--    CONTACT US-->
 
-    <div id="cmtyx_conctact_us_block" data-role="page" class="contact_us_block">
+    <div id="cmtyx_contact_us_block" data-role="page" class="contact_us_block">
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Contact us</span>
@@ -496,7 +504,7 @@ San jose CA 95112</span>
 
     <!--    BUSINESS HOURS-->
 
-    <div data-role="page" id="business_hours">
+    <div id="cmtyx_business_hours" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Business hours</span>
@@ -538,7 +546,7 @@ San jose CA 95112</span>
 
     <!--    CHAT-->
 
-    <div data-role="page" id="chat">
+    <div id="cmtyx_chat_block" class="chat_block" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Chat</span>
@@ -579,7 +587,7 @@ San jose CA 95112</span>
 
     <!--    USER REVIEWS-->
 
-    <div data-role="page" id="user_reviews">
+    <div id="cmtyx_user_reviews" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">User Reviews</span>
@@ -687,7 +695,7 @@ San jose CA 95112</span>
 
     <!--    APPOINTMENTS-->
 
-    <div data-role="page" id="appointments">
+    <div id="cmtyx_appointments" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Appointments</span>
@@ -780,7 +788,7 @@ San jose CA 95112</span>
 
     <!--    UPLOAD PHOTO-->
 
-    <div data-role="page" id="upload_photo">
+    <div id="upload_photo" data-role="page" >
         <div class="header">
             <span class="back_arr_icon"></span>
             <span class="title">Upload photo</span>
@@ -823,8 +831,6 @@ San jose CA 95112</span>
             </div>
         </div>
     </div>
-    <script>
-    </script>
 
     <script src="build/bundle.js"></script>
 </body>
