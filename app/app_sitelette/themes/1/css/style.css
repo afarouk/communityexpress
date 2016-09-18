@@ -2017,12 +2017,12 @@ border-right: solid 1px #e1e1e1;
     padding: 0;
 }
 
-.gallery li.slide {
+.gallery li.gallery_item {
     position:relative;
     display: inline-block;
     height: 300px;
 }
-.slide_description {
+.gallery_item_description {
     position:absolute;
     display: block;
     bottom: 0;
@@ -2031,14 +2031,14 @@ border-right: solid 1px #e1e1e1;
     background-color: rgba(54, 54, 54, 0.8);
 }
 
-.slide_title {
+.gallery_item_title {
     display: block;
     font: 400 18px Roboto;
     color: #fff;
     margin-bottom: 10px;
 }
 
-.slide_undertitle {
+.gallery_item_undertitle {
     display: block;
     font: 300 12px Roboto;
     color: #fff;
@@ -2047,16 +2047,11 @@ border-right: solid 1px #e1e1e1;
 .poll_block .header {
     background-color: #f05d13;
 }
-
-.photo_contest_block .poll_image, .poll_block .poll_image {
-    background: url(images/1a5043a09636bc9ddfa9e5fbb78d1c41.png) no-repeat;
-    background-size: cover;
-    height: 255px;
-    margin-bottom: 25px;
-    box-shadow: 0 0 20px #000;
+.poll_block  img {
+  padding:0;
+  width:100%;
 }
-
-.poll_block .question {
+.poll_block .poll_displaytext {
     display: block;
     margin-bottom: 20px;
     font: 400 18px Roboto;
@@ -2116,6 +2111,15 @@ border-right: solid 1px #e1e1e1;
     margin-right: 10px;
 }
 
+.photo_contest_block .poll_image, .poll_block .poll_image {
+    background: url(images/1a5043a09636bc9ddfa9e5fbb78d1c41.png) no-repeat;
+    background-size: cover;
+    height: 255px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 20px #000;
+}
+
+
 .a_ans_percent_num {
     display: inline-block;
     font: 400 18px Roboto;
@@ -2148,7 +2152,10 @@ border-right: solid 1px #e1e1e1;
 .loyalty_program_block .body {
     text-align: center;
 }
-
+.loyalty_program_block img {
+    padding: 0;
+    width: 100%;
+}
 .loyalty_program_block .qr_code_block {
     position: relative;
     border-left: solid 5px;
@@ -2156,7 +2163,6 @@ border-right: solid 1px #e1e1e1;
     padding: 15px 25px 25px 25px;
     margin-top: 20px;
     text-align: left;
-    display: none;
 }
 
 .loyalty_program_block .qr_code_block .close_btn {
@@ -2177,27 +2183,29 @@ border-right: solid 1px #e1e1e1;
 }
 
 
-.poll_block .body .discount_block, .loyalty_program_block .body .discount_block, .photo_contest_block .body .discount_block {
+.poll_block .body .prize_block, .loyalty_program_block .body .prize_block, .photo_contest_block .body .prize_block {
     width: 100%;
     min-height: 112px;
 }
 
-.poll_block .body .discount_container, .loyalty_program_block .body .discount_container, .photo_contest_block .body .discount_container {
+.poll_block .body .prize_container, .loyalty_program_block .body .prize_container, .photo_contest_block .body .prize_container {
     background-color: #fff;
 }
 
-.poll_block .body .discount_block .discount_pic_block, .loyalty_program_block .body .discount_block .discount_pic_block, .photo_contest_block .body .discount_block .discount_pic_block {
+/*
+.poll_block .body .prize_block .prize_pic_block, .loyalty_program_block .body .prize_block .prize_pic_block, .photo_contest_block .body .prize_block .prize_pic_block {
     height: 112px;
     background: url(images/burger.png) no-repeat;
     background-size: cover;
 }
+*/
 
-.poll_block .body .discount_block .discount_text_block, .loyalty_program_block .body .discount_block .discount_text_block, .photo_contest_block .body .discount_block .discount_text_block {
+.poll_block .body .prize_block .prize_text_block, .loyalty_program_block .body .prize_block .prize_text_block, .photo_contest_block .body .prize_block .prize_text_block {
     text-align: left;
     padding: 25px 0 25px 25px;
 }
 
-.discount_text {
+.prize_text {
     display: block;
     font: 500 14px Roboto;
     color: #e34a20;
@@ -2205,14 +2213,14 @@ border-right: solid 1px #e1e1e1;
     margin-bottom: 10px;
 }
 
-.discount_condition {
+.prize_condition {
     display: block;
     font: 500 14px Roboto;
     color: #414141;
     margin-bottom: 8px;
 }
 
-.discount_date {
+.prize_date {
     display: block;
     font: 500 11px Roboto;
     color: rgba(65, 65, 65, 0.7);
@@ -2333,11 +2341,9 @@ border-right: solid 1px #e1e1e1;
 li.promotion_block .body {
     padding: 0px;
 }
-
-.promotion_block .promotion_item_img {
-    background: url(images/special.png);
-    background-size: cover;
-    height: 243px;
+ 
+.promotion_block img {
+    padding:0;
     width: 100%;
 }
 
@@ -2408,7 +2414,7 @@ li.promotion_block .body {
     text-transform: uppercase;
     margin-bottom: 15px;
 }
-
+/*
 .poll_block .body li .prize1_pic, .photo_contest_block .body li .prize1_pic {
     height: 112px;
     background: url(images/burger.png) no-repeat;
@@ -2426,7 +2432,7 @@ li.promotion_block .body {
     background: url(images/Salad_platter.png) no-repeat;
     background-size: cover;
 }
-
+*/
 .video_block .header {
     background-color: #ca1d3a;
 }
@@ -2729,7 +2735,7 @@ margin-bottom: 15px;
 }
 
 .reviews_block .user_avatar4 {
-    background: url(images/images.png) no-repeat;
+    background: url(images/drinks_image.png) no-repeat;
 }
 
 
