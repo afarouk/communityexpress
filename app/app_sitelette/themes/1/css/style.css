@@ -160,7 +160,7 @@ body {
 }
 
 .left_arr_block {
-    background: url('images/arrow-point-to-right-copy.png') no-repeat top left;
+    background: url('css/images/arrow-point-to-right-copy.png') no-repeat top left;
 }
 
 .left_arr_block span {
@@ -168,7 +168,7 @@ body {
 }
 
 .right_arr_block {
-    background: url('images/arrow-point-to-right.png') no-repeat top right;
+    background: url('css/images/arrow-point-to-right.png') no-repeat top right;
 }
 
 .right_arr_block span {
@@ -695,7 +695,7 @@ label.checkbox_save_card {
 .headers_container .header.main_header .back_arr_icon {
     display: inline-block;
     float: left;
-    background: url(images/right-arrow-copy.png);
+    background: url(css/images/right-arrow-copy.png);
     width: 21px;
     height: 21px;
 }
@@ -714,7 +714,7 @@ label.checkbox_save_card {
 }
 
 #roster .cart_img {
-    background: url(images/shopping-cart.png) no-repeat;
+    background: url('css/images/shopping-cart.png') no-repeat;
     background-size: contain;
 }
 
@@ -797,7 +797,7 @@ label.checkbox_save_card {
     height: 19px !important;
     width: 19px !important;
     top: 14px !important;
-    background: url(../images/minus.png) no-repeat center center !important;
+    background: url('css/images/minus.png') no-repeat center center !important;
 }
 
 .quantity_plus a {
@@ -822,7 +822,7 @@ label.checkbox_save_card {
     width: 22px !important;
     left: 13px !important;
     top: 14px !important;
-    background: url(../images/plus.png) no-repeat center center !important;
+    background: url('css/images/plus.png') no-repeat center center !important;
 }
 
 .quantity_field {
@@ -1111,14 +1111,14 @@ li.build_combo, li.choose_extras {
 }
 
 .ui-icon-plus:after {
-    background: url(../images/down-arrow.png) no-repeat;
+    background: url('css/images/down-arrow.png') no-repeat;
     background-size: 27px 27px;
     height: 27px;
     width: 27px;
 }
 
 .ui-icon-minus:after {
-    background: url(../images/up-arrow.png) no-repeat;
+    background: url('css/images/up-arrow.png') no-repeat;
     background-size: 27px 27px;
     height: 27px;
     width: 27px;
@@ -1270,7 +1270,7 @@ li.build_combo, li.choose_extras {
 }
 
 .tick_img {
-    background: url(../images/checked.png) no-repeat;
+    background: url('css/images/checked.png') no-repeat;
     background-size: 21px 16px;
     height: 16px;
     width: 21px;
@@ -1446,7 +1446,7 @@ span.select2-container--default .select2-selection--single:focus {
 }
 
 .shopping_icon {
-    background: url(../images/shopping-cart.png) no-repeat;
+    background: url('css/images/shopping-cart.png') no-repeat;
     background-size: 21px 21px;
     height: 21px;
     width: 21px;
@@ -1454,7 +1454,7 @@ span.select2-container--default .select2-selection--single:focus {
 }
 
 .left_arrow_icon, span.build_combo_back_btn {
-    background: url(../images/left-arrow.png) no-repeat;
+    background: url('css/images/left-arrow.png') no-repeat;
     background-size: 21px 21px;
     height: 21px;
     width: 21px;
@@ -1463,7 +1463,7 @@ span.select2-container--default .select2-selection--single:focus {
 }
 
 span.delete_btn {
-    background: url(../images/close.png) no-repeat;
+    background: url('css/images/close.png') no-repeat;
     background-size: 9px 9px;
     height: 9px;
     width: 9px;
@@ -1694,7 +1694,7 @@ border-right: solid 1px #e1e1e1;
 
 .menu_btn_img {
     display: inline-block;
-    background: url(../images/bars.png);
+    background: url('css/images/bars.png');
     width: 28px;
     height: 21px;
 }
@@ -1732,31 +1732,31 @@ border-right: solid 1px #e1e1e1;
 }
 
 .list_img {
-    background-image: url(../images/list.png);
+    background-image: url('css/images/list.png');
 }
 
 .speech_bubble_img {
-    background-image: url(../images/speech-bubble.png);
+    background-image: url('css/images/speech-bubble.png');
 }
 
 .clock_circular_img {
-    background-image: url(../images/clock-circular-outline.png);
+    background-image: url('css/images/clock-circular-outline.png');
 }
 
 .photo_camera_img {
-    background-image: url(../images/photo-camera.png);
+    background-image: url('css/images/photo-camera.png');
 }
 
 .speaking_img {
-    background-image: url(../images/speaking.png);
+    background-image: url('css/images/speaking.png');
 }
 
 .calendar_img {
-    background-image: url(../images/calendar.png);
+    background-image: url('css/images/calendar.png');
 }
 
 .edit_img {
-    background-image: url(../images/edit.png);
+    background-image: url('css/images/edit.png');
 }
 
 .left_panel_menu .left_arr_icon {
@@ -1772,7 +1772,7 @@ border-right: solid 1px #e1e1e1;
 }
 
 .left_arr_img {
-    background-image: url(../images/left-arrow.png);
+    background-image: url('css/images/left-arrow.png');
 }
 
 .logo_container {
@@ -1896,7 +1896,7 @@ border-right: solid 1px #e1e1e1;
 
 .home_tabs_list>li .header .collapse_btn {
     display: inline-block;
-    background: url(images/arrow-point-to-right-copy-4.png) no-repeat;
+    background: url('css/images/arrow-point-to-right-copy-4.png') no-repeat;
     width: 8px;
     height: 5px;
     float: right;
@@ -2006,7 +2006,7 @@ border-right: solid 1px #e1e1e1;
     display: block;
     width: 40px;
     height: 40px;
-    background: url(images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png);
+    background: url('css/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png');
 }
 
 .gallery_block .header {
@@ -2161,7 +2161,7 @@ border-right: solid 1px #e1e1e1;
 
 .loyalty_program_block .qr_code_block .close_btn {
     display: inline-block;
-    background: url(images/close.png) no-repeat;
+    background: url('css/images/close.png') no-repeat;
     width: 9px;
     height: 9px;
     position: absolute;
@@ -2311,7 +2311,7 @@ border-right: solid 1px #e1e1e1;
 }
 
 .reviews_block .show_more_block .show_more_avatars_container .avatar4 {
-    background: url(images/images.png) no-repeat;
+    background: url(images/girl2.png) no-repeat;
     background-size: cover;
 }
 
@@ -2359,12 +2359,12 @@ li.promotion_block .body {
 }
 
 .promotion_block .promotion_item_buttons .like_icon {
-    background: url(images/thumbs-up-hand-symbol.png) no-repeat;
+    background: url('css/images/thumbs-up-hand-symbol.png') no-repeat;
     background-size: cover;
 }
 
 .promotion_block .promotion_item_buttons .share_icon {
-    background: url(images/share-option.png) no-repeat;
+    background: url('css/images/share-option.png') no-repeat;
     background-size: cover;
 }
 
@@ -2465,19 +2465,19 @@ li.video_block .body {
 }
 
 .sms_icon {
-    background: url(../images/sms.png);
+    background: url('css/images/sms.png');
 }
 
 .email_icon {
-    background: url(../images/email.png);
+    background: url('css/images/email.png');
 }
 
 .facebook_icon {
-    background: url(../images/fb.png);
+    background: url('css/images/fb.png');
 }
 
 .twitter_icon {
-    background: url(../images/tw.png);
+    background: url('css/images/tw.png');
 }
 
 .driving_directions_block {
@@ -2559,49 +2559,49 @@ margin-bottom: 15px;
 .document_img {
     width: 17px;
     height: 21px;
-    background: url(images/document.png) no-repeat;
+    background: url('css/images/document.png') no-repeat;
 }
 
 .common_footer a.ui-btn.ui-btn-active .document_img {
     width: 17px;
     height: 21px;
-    background: url(images/document_hover.png) no-repeat;
+    background: url('css/images/document_hover.png') no-repeat;
 }
 
 .calendar_grey_img {
     width: 24px;
     height: 20px;
-    background: url(images/calendar.png) no-repeat;
+    background: url('css/images/calendar.png') no-repeat;
 }
 
 .common_footer a.ui-btn.ui-btn-active .calendar_grey_img {
     width: 24px;
     height: 20px;
-    background: url(images/calendar_hover.png) no-repeat;
+    background: url('css/images/calendar_hover.png') no-repeat;
 }
 
 .information_button_img {
     width: 24px;
     height: 24px;
-    background: url(images/information.png) no-repeat;
+    background: url('css/images/information.png') no-repeat;
 }
 
 .common_footer a.ui-btn.ui-btn-active .information_button_img {
     width: 24px;
     height: 24px;
-    background: url(images/information_hover.png) no-repeat;
+    background: url('css/images/information_hover.png') no-repeat;
 }
 
 .user_img {
     width: 16px;
     height: 22px;
-    background: url(images/user.png) no-repeat;
+    background: url('css/images/user.png') no-repeat;
 }
 
 .common_footer a.ui-btn.ui-btn-active .user_img {
     width: 16px;
     height: 22px;
-    background: url(images/user_hover.png) no-repeat;
+    background: url('css/images/user_hover.png') no-repeat;
 }
 
 .m-b-7 {
@@ -2636,7 +2636,7 @@ margin-bottom: 15px;
     float: left;
     position: relative;
     left: 0;
-    background: url(images/right-arrow.png);
+    background: url('css/images/right-arrow.png');
     width: 22px;
     height: 16px;
 }
@@ -2800,7 +2800,7 @@ margin-bottom: 15px;
     display: inline-block;
     height: 25px;
     width: 25px;
-    background: url(images/smile.png);
+    background: url('images/smile.png');
     background-size: cover;
     position: relative;
     top: 2px;
@@ -2810,7 +2810,7 @@ margin-bottom: 15px;
     display: inline-block;
     height: 19px;
     width: 22px;
-    background: url(images/send-button.png);
+    background: url('css/images/send-button.png');
     background-size: cover;
     position: relative;
     bottom: 1px;
@@ -2913,11 +2913,11 @@ li .message_text {
 }
 
 #appointments .navigation_block .arr .back_arr_icon {
-    background: url(images/arrow-point-to-right-copy.png) no-repeat;
+    background: url('css/images/arrow-point-to-right-copy.png') no-repeat;
 }
 
 #appointments .navigation_block .arr .next_arr_icon {
-    background: url(images/arrow-point-to-right.png) no-repeat;
+    background: url('css/images/arrow-point-to-right.png') no-repeat;
 }
 
 #appointments .schedule_block {
@@ -3052,7 +3052,7 @@ color: #acacac;
     position: relative;
     left: 24px;
     top: 4px;
-    background: url(images/left_gallery_arr.png) no-repeat;
+    background: url('css/images/left_gallery_arr.png') no-repeat;
     color: transparent;
 }
 
@@ -3060,7 +3060,7 @@ color: #acacac;
     position: relative;
     right: 9px;
     top: 4px;
-    background: url(images/right_gallery_arr.png) no-repeat;
+    background: url('css/images/right_gallery_arr.png') no-repeat;
     color: transparent;
 }
 
@@ -3101,7 +3101,7 @@ color: #acacac;
 
 #cmntyex_signin_panel .close_btn, #signup_panel .close_btn {
     display: inline-block;
-    background: url(images/close.png) no-repeat;
+    background: url('css/images/close.png') no-repeat;
     background-position: 50%;
     width: 30px;
     height: 30px;
