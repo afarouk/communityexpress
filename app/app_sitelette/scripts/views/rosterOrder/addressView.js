@@ -105,10 +105,10 @@ var AddressView = Backbone.View.extend({
             long = this.coords.long,
             el = this.$('#shipping_map')[0],
             options = {
-            center: new google.maps.LatLng(lat, long),
-            zoom: 10,
-            disableDefaultUI:true
-        };
+                center: new google.maps.LatLng(lat, long),
+                zoom: 10,
+                disableDefaultUI:true
+            };
         this.map = new google.maps.Map(el, options);
         this.restaurantMarker = new google.maps.Marker({
             position: {lat: lat, lng: long},
