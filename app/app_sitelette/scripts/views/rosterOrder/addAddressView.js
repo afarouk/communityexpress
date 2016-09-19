@@ -9,7 +9,9 @@ var AddAddressView = Backbone.View.extend({
 
     id: 'cmtyx_add_address',
 
-    order_address: '.order_address',
+    number: '#aptBldgInput',
+    street: '#streetInput',
+    city: '#cityInput',
 
 	initialize: function(options) {
 		this.options = options || {};
@@ -33,6 +35,7 @@ var AddAddressView = Backbone.View.extend({
             'change #streetInput': 'onStreetChanged',
             'change #cityInput': 'onCityChanged',
         });
+        this.getMapCoordinates();
     },
 
     renderContent: function (options){
@@ -52,28 +55,41 @@ var AddAddressView = Backbone.View.extend({
         geocoder.geocode({
             "address": address.city + ' ' + address.street + ' ' + address.number
         }, _.bind(function(results) {
-            if (results.length === 0) {
+            if (results.length === 0 && !this.map) {
                 this.mapResultEmpty();
                 return;
             }
+            if (results.lenght === 0) return;
             location = results[0].geometry.location;
-            this.showMap(location.lat(), location.lng());
+            if (this.map) {
+                this.changeMapCenter(location.lat(), location.lng());
+            } else {
+                this.showMap(location.lat(), location.lng());
+            }
         }, this));
+    },
+
+    changeMapCenter: function(lat, lng) {
+        var position = {
+            lat : lat,
+            lng : lng
+        };
+        this.map.setCenter(position);
+        this.marker.setPosition(position);
     },
 
     mapResultEmpty: function() {
         //TODO empty map 
-        this.$(this.order_address).html('');
+        // this.$(this.order_address).html('');
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(_.bind(function(position) {
             this.showMap(position.coords.latitude, position.coords.longitude);
           }, this), function() {
             //TODO location error
-            debugger;
+            console.warn('!!!Can\'t get current user location');
           });
         } else {
-            debugger;
           // Browser doesn't support Geolocation
         }
     },
@@ -103,27 +119,53 @@ var AddAddressView = Backbone.View.extend({
             location: this.marker.getPosition()
         }, _.bind(function(results) {
             if (results.length > 0) {
-                var address = results[0].formatted_address;
                 this.map.setCenter(results[0].geometry.location);
-                this.setNewAddress(address);
+                this.setNewAddress(this.parseAddress(results[0]));
             } else {
                 //TODO error
             }
         }, this));
     },
 
+    parseAddress: function(result) {
+        var address = {},
+            cNumber = 0,
+            formatted = result.formatted_address,
+            components = result.address_components;
+
+        components.forEach(function(component){
+            var type = component.types[0];
+            switch (type) {
+                case 'street_number':
+                address.number = component.short_name;
+                cNumber++;
+                break;
+                case 'route':
+                address.street = component.short_name;
+                cNumber++;
+                break;
+                case 'locality':
+                address.city = component.short_name;
+                cNumber++;
+                break;
+            }
+        });
+        if (cNumber !== 3) {
+            components = formatted.split(',');
+            address.street = components[0];
+            address.number = components[1].replace(' ', '');
+            address.city = components[2];
+        }
+        return address;
+    },
+
     setNewAddress: function(address) {
         console.log(address);
-        var addressComp = address.split(','),
-            addr = this.model.get('deliveryAddress');
+        this.model.set('deliveryAddress', address);
 
-        if (addressComp.length >=3) {
-            addr.street = addressComp[0];
-            addr.number = addressComp[1];
-            addr.city = addressComp[2];
-            this.model.trigger('change');
-            //TODO update each address fields
-        }
+        this.$(this.number).val(address.number);
+        this.$(this.street).val(address.street);
+        this.$(this.city).val(address.city);
     },
 
     triggerPayment: function() {
@@ -176,7 +218,8 @@ var AddAddressView = Backbone.View.extend({
     onChangeAddress: function() {
         var address = this.model.get('deliveryAddress'),
             tpl = 'Your address is ' + address.street + ' ,' + address.number + ' ,' + address.city;
-        this.$(this.order_address).html(tpl);
+        // this.$(this.order_address).html(tpl);
+        this.getMapCoordinates();
     },
 
     getValue: function(e) {
