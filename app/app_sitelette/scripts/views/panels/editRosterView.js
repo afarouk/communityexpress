@@ -73,15 +73,15 @@ var EditRosterView = PanelView.extend({
     },
 
     addOrDeleteItem : function(e, action){
-        var catalogId = e.target.attributes.catalogid.value; 
+        var catalogId = e.target.attributes.catalogid.value;
         var catalog_quantity = parseInt($('#itemCount_'+catalogId).text());
         console.log(catalog_quantity);
 
         var count = (action == 'add') ? catalog_quantity + 1 : catalog_quantity - 1,
             currentModel;
-        
+
         console.log(count);
-        
+
         if(count === 0){
             $('#itemCount_'+catalogId).text(count);
             $('#ComboItemCount_'+catalogId).text(count);
@@ -93,11 +93,11 @@ var EditRosterView = PanelView.extend({
             this.basket = this.options.parent.basket;
             var initialCnt=this.basket.getComboCount();
 
-            this.catalogId = e.target.attributes.catalogid.value; 
+            this.catalogId = e.target.attributes.catalogid.value;
 
             console.log( this.catalogId);
 
-            this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value; 
+            this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value;
 
             currentModel = this.model.findWhere({catalogId: this.catalogId});
             this.basket.addCatalog(currentModel.toJSON(), count,  this.catalogId,this.catalogDisplayText);
@@ -107,14 +107,14 @@ var EditRosterView = PanelView.extend({
             console.log(this.basket.getComboCount());
 
             $('.cart_items_number').text(this.basket.getComboCount());
-            
+
             $('#itemCount_'+catalogId).text(count);
             $('#ComboItemCount_'+catalogId).text(count);
-            
+
             return;
         }
     },
-    
+
     incrementQuantity: function (e) {
         this.addOrDeleteItem(e, 'add');
     },

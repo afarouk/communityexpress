@@ -13,6 +13,7 @@ var EditRosterViewItem = Backbone.View.extend({
     },
 
     initialize: function (options) {
+        debugger;
         this.parent = options.parent;
         this.template = options.template || template;
 

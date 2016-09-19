@@ -208,6 +208,7 @@ var CatalogView = Backbone.View.extend({
             $('.total-price').text(this.basket.getNonComboPrice());
         } else {
             $('.num-of-items').text(this.basket.count());
+            this.$('.cart_items_number').text(this.basket.count());
             $('.total-price').text(this.basket.getTotalPrice());
         }
 
@@ -305,7 +306,8 @@ var CatalogView = Backbone.View.extend({
                     }.bind(this),
                     color : this.generateColor(i),
                     model : group,
-                    parent : this
+                    parent : this,
+                    basket: this.basket
                 }).render().el;
 
                 this.$('.cmntyex-items_placeholder').append(el);
