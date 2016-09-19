@@ -8,28 +8,6 @@ module.exports = {
             UID: UID,
             serviceAccommodatorId: window.saslData.serviceAccommodatorId,
             serviceLocationId: window.saslData.serviceLocationId
-        }).then(function(resp) {
-            if (resp.hasLoyaltyProgram) {
-                $("#loyaltyLine1").text(resp.loyaltyBlockLine1);
-                $("#loyaltyLine2").text(resp.loyaltyBlockLine2);
-                $("#loyaltyLine3").text(resp.loyaltyBlockLine3);
-            } else {
-            /*
-            * nothing to do. Loyalty block is not visible
-            */
-            }
-            /*
-            * regardless of loyalty program, update the qr code block since we may use
-            * this for other things.
-            */
-            $("#qrCodePlaceholder").hide();
-            $("#qrCodeBlock").show();
-            $("#qrCodeImage").empty();
-            $("#qrCodeImage").prepend(
-            '<img id="theQRCodeImage" src=' + resp.qrcodeURL + ' />');
-            $("#qrCodeBlockLine1").text(resp.qrCodeBlockLine1);
-            $("#qrCodeBlockLine2").text(resp.qrCodeBlockLine2);
-            $("#qrCodeBlockLine3").text(resp.qrCodeBlockLine3);
         });
     },
 
