@@ -106,6 +106,10 @@ App.prototype = {
         }
     },
 
+    createViewsDependOnUser: function() {
+        
+    },
+
     checkType: function(type) {
         var uuid = window.community.uuidURL;
         delete community.type;

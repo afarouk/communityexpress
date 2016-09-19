@@ -54,6 +54,8 @@ var NavbarView = Backbone.View.extend({
         //if (!this.page) {
         //    throw new Error('MapHeader::Expected a page');
         //}
+
+        Vent.on('forceSignin', this.signin ,this);
     },
 
     triggerCatalogsView: function() {

@@ -2121,6 +2121,7 @@ border-right: solid 1px #e1e1e1;
     padding: 15px 25px 25px 25px;
     margin-top: 20px;
     text-align: left;
+    display: none;
 }
 
 .loyalty_program_block .qr_code_block .close_btn {
@@ -2147,6 +2148,10 @@ border-right: solid 1px #e1e1e1;
 .poll_block .body .prize_block, .loyalty_program_block .body .prize_block, .photo_contest_block .body .prize_block {
     width: 100%;
     min-height: 112px;
+}
+
+.loyalty_program_block .body .prize_block {
+    min-height: 52px;
 }
 
 .poll_block .body .prize_container, .loyalty_program_block .body .prize_container, .photo_contest_block .body .prize_container {
