@@ -18,7 +18,11 @@
         </div>
         <span class="order_price">$ <%= (quantity * price).toFixed(2) %></span>
     </div>
-    <div class="order_subitem_name"><%=  ownComboItemText %></div>
+    <div class="order_subitem_name">
+		<% if (catalogId !== "SIDES") { %>
+			<%=  ownComboItemText %>
+		<% } %>
+	</div>
     <!--<a class="cmntyex-remove-list-item ui-btn ui-shadow ui-corner-all
         <% if (selected) { %>ui-icon-delete<%} else {%>ui-icon-none<% } %>
         ui-btn-icon-left">
@@ -44,7 +48,11 @@
         </div>
         <span class="order_price">$ <%= quantity * price %></span>
     </div>
-    <div class="order_subitem_name"><%=  ownComboItemText %></div>
+    <div class="order_subitem_name">
+		<% if (catalogId !== "SIDES") { %>
+			<%=  ownComboItemText %>
+		<% } %>
+	</div>
     <!--<li class="cmntyex-remove-list-item">
   <span>     <%=  quantity %> x </span> <span style="padding-left:100px;" > <%=  displayText %>  </span>
     </li>-->

@@ -29,7 +29,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
         this.catalogDisplayText = catalogDetails.catalogDisplayText;
         this.catalogType = catalogDetails.catalogType;
         this.price=catalogDetails.price;
-        this.quantity=catalogDetails.quantity; 
+        this.quantity=catalogDetails.quantity;
     },
 
     changeItemInCombo : function(item, groupId, groupDisplayText,catalogId,catalogDisplayText) {

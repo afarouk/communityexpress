@@ -12,6 +12,11 @@ var GroupView = Backbone.View.extend({
     template: template,
 
     initialize: function (options) {
+        this.groupId = options.model.groupId;
+        this.groupDisplayText = options.model.groupDisplayText;
+        this.catalogId = options.parent.catalogId;
+        this.catalogDisplayText = options.parent.catalogDisplayText;
+        this.basket = options.basket;
         this.color = options.color;
         this.onClick = options.onClick;
         this.listenTo(options.parent, 'close:all', this.onClose, this);
@@ -33,7 +38,12 @@ var GroupView = Backbone.View.extend({
                 onClick: function (model) {
                     this.onClick(model);
                 }.bind(this),
-                color: this.color
+                color: this.color,
+                basket: this.basket,
+                groupId: this.groupId,
+                groupDisplayText: this.groupDisplayText,
+                catalogId: this.catalogId,
+                catalogDisplayText: this.catalogDisplayText
             },
             className: 'ui-listview cmntyex-catalog',
             collection: new Backbone.Collection(this.model.unSubgroupedItems),
