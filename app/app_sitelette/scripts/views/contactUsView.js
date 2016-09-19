@@ -15,6 +15,20 @@ var ContactUsView = Backbone.View.extend({
     this.options = options || {};
     this.$el.unbind();
     this.showMap();
+    this.fillLinks();
+  },
+
+  //TODO temporary, should be set on server side
+  fillLinks: function() {
+    var $drive = this.$('#driveToUs'),
+        $call = this.$('#callUs'),
+        driveHref = 'https://maps.apple.com/?daddr=' + 
+          saslData.number + '+' + saslData.street + '+' + 
+          saslData.city + '+&saddr=current%20location',
+        callHref = 'tel:4084772914';
+    driveHref = driveHref.replace(/ /g,'+');
+    $drive.attr('href', driveHref);
+    $call.attr('href', callHref);
   },
 
   showMap: function() {
