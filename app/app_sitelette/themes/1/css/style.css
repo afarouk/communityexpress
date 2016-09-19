@@ -845,7 +845,7 @@ font-family: 'Open Sans', sans-serif;
 .menu_body li .item_name {
     padding: 8px;
     text-transform: uppercase;
-    font: 700 18px 'Open Sans', sans-serif;
+    font: 700 16px 'Open Sans', sans-serif;
     color: #ddd;
     display: inline-block;
     max-width: 120px;
@@ -936,7 +936,7 @@ li.build_combo, li.choose_extras {
 
 .menu_body li.build_combo .item_name, .menu_body li.choose_extras .item_name {
     text-transform: uppercase;
-    font: 700 18px 'Open Sans', sans-serif;
+    font: 700 16px 'Open Sans', sans-serif;
     color: #dddddd;
     display: inline-block;
     max-width: 240px;
@@ -1201,7 +1201,7 @@ font-family: 'Open Sans', sans-serif;
 }
 
 .sides_extras_item_details .item_name {
-    font: 300 18px 'Open Sans', sans-serif;
+    font: 300 16px 'Open Sans', sans-serif;
     color: #ffffff;
     display: inline-block;
     /*margin-bottom: 10px;*/
@@ -3178,4 +3178,8 @@ a.cancel {
 .menu_body li.cmntyex-catalog-item {
     box-shadow: none;
     margin-top: 3px;
+}
+
+.ui-listview > li.sides_extras_container {
+    padding: 10px 5px;
 }

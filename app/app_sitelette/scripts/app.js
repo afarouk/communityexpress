@@ -16,7 +16,7 @@ var userController = require('./controllers/userController'),
     LandingView = require('./views/landingView'),
     NavbarView = require('./views/headers/navbarView'),
     HeaderView = require('./views/headers/headerView'),
-    ContactUsVIew = require('./views/ContactUsView'),
+    ContactUsVIew = require('./views/contactUsView'),
     LoyaltyCardView = require('./views/loyaltyCardView');
 
 var hasUIDinQueryParams = function() {

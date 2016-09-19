@@ -154,7 +154,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
     getTotalPrice : function() {
         return this.reduce(function(sum, item, id) {
             return sum += item.get('quantity') * item.get('price');
-        }.bind(this), 0).toFixed(2);
+        }.bind(this), 0);
     },
 
     count : function() {
@@ -275,6 +275,38 @@ var CatalogBasketModel = Backbone.Collection.extend({
         });
         return nonComboItems;
     },
+
+    getItems: function(sasl) {
+        var orderItems = [];
+
+        if (this.hasCombo()) {
+            _(this.getComboCatalogs()).each(function(item) {
+                orderItems.push(item);
+            });
+            _(this.getNonComboItems()).each(function (item) {
+                orderItems.push(item);
+            });
+        } else {
+            var intraOrderAssociationIndex = 0;
+            this.models.map(function (item) {
+                intraOrderAssociationIndex ++;
+                var orderItem = {
+                    serviceAccommodatorId: sasl.sa(),
+                    serviceLocationId: sasl.sl(),
+                    priceId: item.get('priceId'),
+                    itemId: item.get('itemId'),
+                    groupId: item.get('groupId'),
+                    catalogId: item.get('catalogId'),
+                    itemVersion: item.get('itemVersion'),
+                    quantity: item.get('quantity'),
+                    intraOrderAssociationTag: item.get('catalogId') + intraOrderAssociationIndex
+                };
+                orderItems.push(orderItem);
+            });
+        }
+
+        return orderItems;
+    }
 
 });
 

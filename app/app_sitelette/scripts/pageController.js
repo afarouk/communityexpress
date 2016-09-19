@@ -473,14 +473,16 @@ module.exports = {
 
     address: function(options) {
         var sasl,
+            basketType,
             addresses,
             fundsource,
-            rosterId = options.rosterId,
+            rosterId = options.rosterId || options.catalogId,
             backToCatalog = true, // options.backToCatalogs;
             backToRoster = true,
             backToCatalogs = options.backToCatalogs,
             editModel=options.editModel,
             launchedViaURL=options.launchedViaURL;
+        options.rosterId ? basketType = ':rosterbasket' : basketType = ':catalogbasket';
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
@@ -495,7 +497,7 @@ module.exports = {
                 /*
                  * pull up the basket for this sasl
                  */
-                var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + ':rosterbasket');
+                var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + basketType);
                 return {
                     sasl: sasl,
                     addresses: addresses,

@@ -3,11 +3,11 @@
 var RosterOrderModel = Backbone.Model.extend({
 
 	currencySymbols: {
-	    'USD': '$', 
-	    'EUR': '€', 
-	    'GBP': '£', 
-	    'INR': '₹', 
-	    'JPY': '¥', 
+	    'USD': '$',
+	    'EUR': '€',
+	    'GBP': '£',
+	    'INR': '₹',
+	    'JPY': '¥',
 	    'PLN': 'zł',
 	    'UAH': '₴'
 	},
@@ -111,13 +111,15 @@ var RosterOrderModel = Backbone.Model.extend({
 
     getCombinedItems: function(editModel) {
     	var combinedItems = [];
-    	editModel.each(function(item, index) {
-    		combinedItems.push({
-    			quantity: item.get('quantity'),
-    			displayText: item.get('displayText'),
-    			price: (item.get('quantity') * item.get('price')).toFixed(2)
-    		});
-    	});
+		if (editModel) {
+	    	editModel.each(function(item, index) {
+	    		combinedItems.push({
+	    			quantity: item.get('quantity'),
+	    			displayText: item.get('displayText'),
+	    			price: (item.get('quantity') * item.get('price')).toFixed(2)
+	    		});
+	    	});
+		}
     	return combinedItems;
     }
 });

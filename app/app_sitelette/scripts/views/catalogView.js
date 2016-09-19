@@ -9,6 +9,7 @@ orderActions = require('../actions/orderActions'), //
 template = require('ejs!../templates/content/catalog_content.ejs'),
 GroupView = require('./partials/groupView'), //
 ComboGroupView = require('./partials/comboGroupView'), //
+popupController = require('../controllers/popupController'),
 ListView = require('./components/listView');
 
 var CatalogView = Backbone.View.extend({
@@ -158,8 +159,8 @@ var CatalogView = Backbone.View.extend({
     },
 
     triggerOrder : function() {
-        this.withLogIn(function() {
-            Vent.trigger('viewChange', 'catalog_order', {
+        popupController.requireLogIn(this.sasl, function() {
+            Vent.trigger('viewChange', 'address', {
                 id : this.sasl.getUrlKey(),
                 catalogId : this.catalogId,
                 backToCatalog : true,// /* This will always be true */
