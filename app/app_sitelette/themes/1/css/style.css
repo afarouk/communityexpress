@@ -298,7 +298,7 @@ a.rightBtn.ui-btn {
 .material-textfield {
     display: inline-block;
     height: 4rem;
-    padding-top: 2rem;
+    padding-top: 0.5rem;
 }
 
 .material-textfield input {
