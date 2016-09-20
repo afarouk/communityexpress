@@ -1876,6 +1876,10 @@ border-right: solid 1px #e1e1e1;
     position: relative;
     top: 7px;
 }
+.home_tabs_list>li .header .collapse_btn.down {
+    background: url('images/arrow-point-to-right-copy-5.png') no-repeat;
+}
+
 .events_block {
   position: relative;
 }
