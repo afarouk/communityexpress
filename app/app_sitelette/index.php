@@ -32,7 +32,7 @@ $completeURL = full_url($_SERVER, true);
 $serverName = $_SERVER['SERVER_NAME'];
 /* determine the http host */
 
-if (strpos($serverName, 'localhost') !== false) {
+if (strpos($server, 'localhost') !== false) {
   $protocol = 'http://';
 } else {
   $protocol = 'https://';
@@ -135,7 +135,7 @@ if (validateParams('debug')) {
   echo '$UID=' . $UID . '</br>';
   echo '$saslAccess=' . ($saslAccess ? 'true' : 'false') . '</br>';
   echo '$urlKeyAccess=' . ($urlKeyAccess ? 'true' : 'false') . '</br>';
-  echo '$desktopIFrame=' . $desktopIFrame . '</br>';
+  echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false')  . '</br>';
   if (!is_null($friendlyURL)) {
     echo '$friendlyURL is ' . $friendlyURL . '</br>';
   }  elseif ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
@@ -166,12 +166,11 @@ if ($saslAccess || $urlKeyAccess) {
 
     $siteletteJSON = makeApiCall($apiURL);
     if ($siteletteJSON['curl_error']) {
-      $errorMessage = $siteletteJSON['curl_error'];
-      $errorMessage = 'Service unavailable.';
+      $errorMessage = 'Service unavailable: '.$siteletteJSON['curl_error'];
       include_once 'error_page/index.php';
     } else {
       if (isset($siteletteJSON['error'])) {
-        $errorMessage = $siteletteJSON['error']['message'];
+        $errorMessage = 'Service unavailable: '.$siteletteJSON['error']['message'];
         include_once 'error_page/index.php';
 
       } else {
