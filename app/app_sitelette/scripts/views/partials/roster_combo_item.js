@@ -2,7 +2,9 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/roster_combo_item.ejs'), Vent = require('../../Vent'), h = require('../../globalHelpers');
+var template = require('ejs!../../templates/partials/roster_combo_item.ejs'), 
+    Vent = require('../../Vent'), 
+    h = require('../../globalHelpers');
 
 var RosterComboItemView = Backbone.View.extend({
 

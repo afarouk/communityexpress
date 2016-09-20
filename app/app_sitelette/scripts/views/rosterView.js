@@ -215,6 +215,7 @@ var RosterView = Backbone.View.extend({
                                             this.triggerCatalogView(catalog, catalogId, catalogDisplayText,catalogType);
                                         }.bind(this),
                                         model: catalog,
+                                        basket: this.basket,
                                         parent: this
                                     }).render().el;
                                     $ul.append(li);
