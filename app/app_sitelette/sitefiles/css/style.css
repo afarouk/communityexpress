@@ -1725,6 +1725,32 @@ button.send_message_btn:focus {
 	color: grey;
 }
 
+input#subject {
+	display: none;
+}
+
+#contactUsSuccessRow {
+	text-align: center;
+	display: none;
+}
+
+.glyphicon-ok {
+	color: #EF6E12;
+}
+
+#contactUsSuccessRow {
+	margin: 40px 0;
+}
+
+span.icon-size {
+	font-size: 140px;
+}
+
+#contactUsSuccessDiv {
+	color: #EF6E12;
+	margin: 0;
+}
+ 
 
 /*Footer section
 =============================================================*/

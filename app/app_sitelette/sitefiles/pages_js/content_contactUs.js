@@ -6,7 +6,8 @@ function showEmailResultMessage(success, messageToShow) {
  if (success) {
   $('#contactUsFormRow').hide();
   $('#contactUsSuccessDiv').empty().text(messageToShow);
-  $('#contactUsSuccessDiv').fadeIn();
+  $('#contactUsSuccessRow').fadeIn();
+  // $('#contactUsSuccessDiv').css("display","block");
  } else {
   console.log("error :"+messageToShow);
  }

@@ -70,8 +70,8 @@
           <div class="col-sm-4 col-md-4">
             <ul>
               <a href="#"><li>Chalkboards.today</li></a>
-              <a href="common_about.php"><li>About Us</li></a>
-              <a href="desktop_index.php#contact"><li>Contact Us</li></a>
+              <a href="/common_about.php"><li>About Us</li></a>
+              <a href="/index.php#contact"><li>Contact Us</li></a>
             </ul>
           </div>
           <div class="col-sm-4 col-md-4">
