@@ -48,7 +48,7 @@ var RosterCatalogItemView = Backbone.View.extend({
         });
         if (ownCombosList.length > 0) {
             this.$('.combo_items_container').html(ownComboItemsTpl({list:ownCombosList}));
-            debugger;
+            // debugger;
         }
     },
 
@@ -69,6 +69,10 @@ var RosterCatalogItemView = Backbone.View.extend({
 
         this.$('#ownCombo_'+comboIndex).text(count);
         ownCombosList[comboIndex].quantity = count;
+        
+
+        //TODO listen quantity change !!!
+
         
         // catalog = this.basket.getCatalog(this.model);
         // catalog = this.basket.getCatalog(this.model);
