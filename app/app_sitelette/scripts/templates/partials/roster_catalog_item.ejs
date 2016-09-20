@@ -2,48 +2,6 @@
     <span class="item_name"><%=catalog.displayText%></span>
     <span class="item_price"></span>
     <span class="under_item_name_text"><%=catalog.description%></span>
-    <div class="combo_items_container"> <span class="combo_items"></span>
-        <div class="select_container float_right">
-            <select data-role="none" class="select">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-            </select>
-        </div>
-    </div>
+    <div class="combo_items_container"></div>
 </div>
 <button class="ui-btn ui-corner-all back_btn build_btn roster_catalog_item_add_button cmtyx_color1" catalogId="<%=catalog.catalogId%>"><%=catalog.displayText%></button>
-
-
-<!--<div class="cmtyx_roster_catalog_item" style="text-align:center; ">
-    <table style=" border-collapse: collapse; ">
-        <tr style="font-weight: 700; text-align: left; font-style: italic; font-size: 18px;">
-            <td  ><%=catalog.displayText%></td>
-            <td style="text-align: right; padding-right: 25px;" colspan="4">
-            <% if(catalog.price>0){ %>
-                 <%=catalog.price%>
-            <% }else{ %>
-
-            <% } %>
-            </td>
-        </tr>
-        <tr  catalogId="<%=catalog.catalogId%>" class="roster_catalog_item_add_button"  >
-            <td><img width="100%" src="<%=catalog.url%>"></td>
-            <td>
-                <button class="ui-btn ui-btn-b ui-btn-inline ui-shadow ui-corner-all ui-btn  "  >Add</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="font-size:12px;  border-bottom:1pt solid gray;" >  <%=catalog.description%>
-            </td>
-        </tr>
-
-    </table>
-</div>-->

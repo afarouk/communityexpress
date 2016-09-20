@@ -306,7 +306,7 @@ module.exports = {
 
                         //var catalogClone = $.extend({}, catalog);
                         //var catalogClone = JSON.parse(JSON.stringify(catalog));
-                        this.checkCatalogsIdentity(catalogClone, rosterBasket.catalogs.models);
+                        this.checkCatalogsIdentity(catalogClone, rosterBasket);
                     } else {
                         console.log("Roster already has catalog: " + catalogId );
                     }
@@ -343,17 +343,19 @@ module.exports = {
     },
 
     // for equal 'build your combo'
-    checkCatalogsIdentity: function(catalogClone, models) {
-        var ownCombos = _.where(models, {'id': 'BUILDYOURCOMBO'});
+    checkCatalogsIdentity: function(catalogClone, basket) {
+        // TODO check why model order is different second time
+        var models = basket.catalogs.models,
+            ownCombos = _.where(models, {'id': 'BUILDYOURCOMBO'});
         if (ownCombos.length > 0) {
-            if (!_.every(ownCombos, function(catalog){
+            if (_.filter(ownCombos, function(catalog){
                 if (_.every(catalog.models, function(model, index){
                     return catalogClone.models[index].id === model.id;
                 })){
                     catalog.quantity ++;
                     return true;
                 }
-            })) {
+            }).length === 0) {
                 models.push(catalogClone);
             }
         } else {
