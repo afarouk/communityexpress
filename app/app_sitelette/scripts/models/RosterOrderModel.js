@@ -28,7 +28,7 @@ var RosterOrderModel = Backbone.Model.extend({
 			sasl: options.sasl,
 			launchedViaURL: options.launchedViaURL,
 			rosterId: options.rosterId,
-			combinedItems: this.getCombinedItems(options.editModel),
+			combinedItems: this.getCombinedItems(options),
 			taxState: options.priceAddons.taxState,
 			userModel: options.user,
 			coords: this.getCoords(options.sasl.attributes),
@@ -109,16 +109,24 @@ var RosterOrderModel = Backbone.Model.extend({
         return parseInt(options.basket.getTotalPrice() * options.priceAddons.taxState) / 100;
     },
 
-    getCombinedItems: function(editModel) {
+    getCombinedItems: function(options) {
     	var combinedItems = [];
-		if (editModel) {
-	    	editModel.each(function(item, index) {
+		if (options.editModel) {
+	    	options.editModel.each(function(item, index) {
 	    		combinedItems.push({
 	    			quantity: item.get('quantity'),
 	    			displayText: item.get('displayText'),
 	    			price: (item.get('quantity') * item.get('price')).toFixed(2)
 	    		});
 	    	});
+		} else if (options.catalogId) {
+			options.basket.each(function(item, index) {
+				combinedItems.push({
+	    			quantity: item.get('quantity'),
+	    			displayText: item.get('itemName'),
+	    			price: (item.get('quantity') * item.get('price')).toFixed(2)
+	    		});
+			});
 		}
     	return combinedItems;
     }

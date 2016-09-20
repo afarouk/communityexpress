@@ -498,6 +498,7 @@ module.exports = {
                  * pull up the basket for this sasl
                  */
                 var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + basketType);
+                options.rosterId ? backToRoster = true : backToRoster = false;
                 return {
                     sasl: sasl,
                     addresses: addresses,
@@ -507,9 +508,10 @@ module.exports = {
                     url: getUrl(sasl) + '/roster',
                     basket: basket,
                     editModel:editModel,
-                    rosterId: rosterId,
-                    backToRoster: true,
-                    backToCatalog: backToCatalog,
+                    rosterId: backToRoster ? rosterId : backToRoster,
+                    catalogId: backToRoster ? backToRoster : rosterId,
+                    backToRoster: backToRoster,
+                    backToCatalog: backToRoster? false : backToCatalog,
                     backToCatalogs: backToCatalogs,
                     launchedViaURL: launchedViaURL
                 };
