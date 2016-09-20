@@ -33,6 +33,12 @@ var CatalogItemView = Backbone.View.extend({
         }.bind(this);
         this.color = options.color;
         this.basket = options.basket;
+        var itemId = this.model.get('itemId');
+        this.basket.each(_.bind(function(item) {
+            if (item.get('itemId') === itemId) {
+                this.quantity.set('value', item.get('quantity'));
+            }
+        }, this));
         this.catalogId = options.catalogId;
         this.groupId = options.groupId;
         this.groupDisplayText=options.groupDisplayText;
