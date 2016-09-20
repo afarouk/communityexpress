@@ -109,7 +109,7 @@ App.prototype = {
     },
 
     createViewsDependOnUser: function() {
-        
+
     },
 
     checkType: function(type) {

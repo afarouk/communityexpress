@@ -228,12 +228,14 @@ module.exports = {
                 return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
             }).then(function(options) {
                 if (options.data.length === 1) {
-                    Vent.trigger('viewChange', 'catalog', {
+                    return Vent.trigger('viewChange', 'catalog', {
                         id: id,
                         catalogId: options.data.catalogId,
                         backToCatalogs: false,
                         backToRoster: false
                     });
+                } else if (options.data.length === 0) {
+                    return Vent.trigger('viewChange', 'restaurant', sasl.getUrlKey(), { reverse: true });
                 } else {
                     return {
                         sasl: sasl,
