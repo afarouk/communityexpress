@@ -30,7 +30,7 @@ var SummaryView = Backbone.View.extend({
     reRender: function() {
         var html = $.parseHTML(template(this.renderData())),
             tpl = $(html).html();
-        
+
         this.$el.html(tpl);
     },
 
@@ -71,7 +71,9 @@ var SummaryView = Backbone.View.extend({
             loader.hide();
             params.basket.reset();
             params.backToRoster = false;
-            var callback = _.bind(this.triggerRosterView, this);
+            var callback = params.backToCatalog
+            ? _.bind(this.triggerCatalogView, this)
+            : _.bind(this.triggerRosterView, this);
             popupController.textPopup({
                 text: 'order successful'
             }, callback);
@@ -82,6 +84,19 @@ var SummaryView = Backbone.View.extend({
                 text: text
             });
         }.bind(this));
+    },
+
+    triggerCatalogView: function() {
+        var params = this.model.additionalParams;
+        Vent.trigger('viewChange', 'catalog', {
+            sasl: params.sasl.id,
+            id: params.catalogId,
+            backToCatalog: params.backToCatalog === false ? false : true,
+            catalogId: params.catalogId,
+            launchedViaURL: params.launchedViaURL
+        }, {
+            reverse: false
+        });
     },
 
     triggerRosterView: function() {
