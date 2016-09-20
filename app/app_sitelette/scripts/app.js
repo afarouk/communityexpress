@@ -16,7 +16,8 @@ var userController = require('./controllers/userController'),
     LandingView = require('./views/landingView'),
     NavbarView = require('./views/headers/navbarView'),
     HeaderView = require('./views/headers/headerView'),
-    ContactUsVIew = require('./views/contactUsView'),
+    ContactUsView = require('./views/contactUsView'),
+    EventsView = require('./views/eventsView'),
     LoyaltyCardView = require('./views/loyaltyCardView');
 
 var hasUIDinQueryParams = function() {
@@ -44,8 +45,9 @@ var App = function() {
             navbarView: this.navbarView
         });
     this.landingView = new LandingView();
-    this.LoyaltyCardView = new LoyaltyCardView();
-    this.contactUsView = new ContactUsVIew();
+    this.loyaltyCardView = new LoyaltyCardView();
+    this.eventsView = new EventsView();
+    this.contactUsView = new ContactUsView();
 
     this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);

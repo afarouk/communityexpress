@@ -5,8 +5,7 @@
 var Vent = require('../Vent'),
   sessionActions = require('../actions/sessionActions.js'),
   loyaltyActions = require('../actions/loyaltyActions.js'),
-  template = require('ejs!../templates/loyaltyCardView.ejs'),
-  loader = require('../loader');
+  template = require('ejs!../templates/loyaltyCardView.ejs');
 
 var LoyaltyCardView = Backbone.View.extend({
   name: 'loyalty_card',
