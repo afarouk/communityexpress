@@ -69,11 +69,11 @@
             <li>
               <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","features") ?>>Features</a>
             </li>
-            <!-- <li><a href="#">demo</a></li> -->
+            <li><a href="common_signup.php">demo</a></li>
             <li>
               <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
             </li>
-            <!-- <li><a href="#" class="signup_btn">sign up/log in</a></li> -->
+            <li><a href="common_signup.php" class="signup_btn">sign up/log in</a></li>
           </ul>
         </div>
       </div>

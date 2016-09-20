@@ -1338,6 +1338,10 @@ input:-webkit-autofill:focus {
 /*Navbar
 =============================================================*/
 
+.top-nav-collapse {
+	padding: 5px 0;
+}
+
 nav.navbar {
     margin-bottom: 0;
     border: none;
