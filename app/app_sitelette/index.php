@@ -32,11 +32,7 @@ $completeURL = full_url($_SERVER, true);
 $serverName = $_SERVER['SERVER_NAME'];
 /* determine the http host */
 
-if (strpos($server, 'localhost') !== false) {
-  $protocol = 'http://';
-} else {
-  $protocol = 'https://';
-}
+
 
 /* is API server specified? */
 
@@ -51,6 +47,12 @@ if (validateParams('server')) {
   } else {
     $server = 'communitylive.ws';
   }
+}
+
+if (strpos($server, 'localhost') !== false) {
+  $protocol = 'http://';
+} else {
+  $protocol = 'https://';
 }
 
 /* is IOS embedded specified?*/
