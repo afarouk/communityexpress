@@ -7,6 +7,7 @@ include_once ('sitefiles/php/parser_api_utility.php');
 include_once ('sitefiles/php/detecturl.php');
 
 $tileViewDetails = false;
+$useTemplate=false;
 /*is demo=true */
 
 if (validateParams('demo')) {
@@ -196,13 +197,13 @@ if ($saslAccess || $urlKeyAccess) {
             $friendlyURL = null;
           }
         }
-        //$evalscript='<script> window.community={};  window.community.themeId='.$themeId.'; window.community.embedded=\'';//.($embedded==TRUE?"true":"false").'\';';
-
-
-       //echo $siteletteJSON['landingViewHTML'];
-
-
-       include_once 'themes/1/index.html';
+       if($useTemplate){
+         include_once 'themes/1/head.html';
+         echo $siteletteJSON['landingViewHTML'];
+         echo '</html>';
+       }else{
+         include_once 'themes/1/index.html';
+       }
       } /*end valid sitelette*/
     } /*end can reach server */
   }
