@@ -26,24 +26,25 @@ var CatalogView = Backbone.View.extend({
     },
 
     onShow : function() {
+        $(this.$('.firstItem a')[0]).trigger('click');
         //TODO --> check listenTo part after jquery.mobile will be fixed
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        if(this.backToRoster===true){
+        if(this.backToRoster === true){
           /* hide the order button */
+          this.$('.basket_icon_container').hide();
           this.$('.order_button').hide();
           this.$('.edit_button').hide();
-          if(this.catalogType.enumText==='COMBO'||this.catalogType==='COMBO'){
+          if (this.catalogType.enumText === 'COMBO' || this.catalogType === 'COMBO') {
             this.$('.add_combo_button').show();
             $("#catalog_items_row").css("visibility", "hidden");
             $("#catalog_extras_row").css("visibility", "hidden");
-          }else{
+          } else {
             this.$('.add_combo_button').hide();
           }
-        }else{
+        } else {
           this.$('.order_button').show();
           this.$('.add_combo_button').hide();
         }
-
     },
 
     initialize : function(options) {
@@ -96,7 +97,7 @@ var CatalogView = Backbone.View.extend({
         }
     },
 
-    goBackAndSendCatalogInfo : function(){
+    goBackAndSendCatalogInfo: function(){
         this.triggerRosterViewWithCatalog();
     },
 
@@ -104,13 +105,13 @@ var CatalogView = Backbone.View.extend({
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
           id: this.rosterId,
-          backToRoster:true, /* bad design: should be using reverse true */
-          rosterId:this.rosterId,
-          cloneCatalogAndAdd:false,
-          catalogId:this.catalogId,
-          catalogType:this.catalogType.enumText,
-          catalogDisplayText:this.catalogDisplayText,
-          launchedViaURL:  this.launchedViaURL
+          backToRoster: true, /* bad design: should be using reverse true */
+          rosterId: this.rosterId,
+          cloneCatalogAndAdd: false,
+          catalogId: this.catalogId,
+          catalogType: this.catalogType.enumText,
+          catalogDisplayText: this.catalogDisplayText,
+          launchedViaURL: this.launchedViaURL
        }, { reverse: true });
     },
 
@@ -118,13 +119,13 @@ var CatalogView = Backbone.View.extend({
         Vent.trigger('viewChange', 'roster', {
             sasl: this.sasl.id,
             id: this.rosterId,
-            backToRoster:true, /* bad design: should be using reverse true */
-            rosterId:this.rosterId,
-            cloneCatalogAndAdd:true,
-            catalogId:this.catalogId,
-            catalogType:this.catalogType.enumText,
-            catalogDisplayText:this.catalogDisplayText,
-            launchedViaURL:this.launchedViaURL
+            backToRoster: true, /* bad design: should be using reverse true */
+            rosterId: this.rosterId,
+            cloneCatalogAndAdd: true,
+            catalogId: this.catalogId,
+            catalogType: this.catalogType.enumText,
+            catalogDisplayText: this.catalogDisplayText,
+            launchedViaURL: this.launchedViaURL
         }, { reverse: true });
 
     },
@@ -191,6 +192,9 @@ var CatalogView = Backbone.View.extend({
     },
 
     updateBasket : function() {
+        this.$('.cart_items_number').text(this.basket.count());
+        this.$('.total_price').text('$ ' + this.basket.getTotalPrice());
+
         if (this.basket.hasCombo()) {
             /* update combo count */
             $('#catalog_combo_count_div').show();
@@ -209,7 +213,6 @@ var CatalogView = Backbone.View.extend({
             $('.total-price').text(this.basket.getNonComboPrice());
         } else {
             $('.num-of-items').text(this.basket.count());
-            this.$('.cart_items_number').text(this.basket.count());
             $('.total-price').text(this.basket.getTotalPrice());
         }
 

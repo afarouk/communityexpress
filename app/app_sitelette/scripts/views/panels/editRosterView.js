@@ -66,7 +66,7 @@ var EditRosterView = PanelView.extend({
 
         this.basket = this.options.parent.basket;
         console.log(this.basket.getComboCount());
-        $('.cart_items_number').text(this.basket.getComboCount());
+        // $('.cart_items_number').text(this.basket.getComboCount());
 
         this.shut();
 
@@ -106,7 +106,7 @@ var EditRosterView = PanelView.extend({
 
             console.log(this.basket.getComboCount());
 
-            $('.cart_items_number').text(this.basket.getComboCount());
+            // $('.cart_items_number').text(this.basket.getComboCount());
 
             $('#itemCount_'+catalogId).text(count);
             $('#ComboItemCount_'+catalogId).text(count);

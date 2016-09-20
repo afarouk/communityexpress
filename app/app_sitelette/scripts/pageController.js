@@ -228,12 +228,14 @@ module.exports = {
                 return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
             }).then(function(options) {
                 if (options.data.length === 1) {
-                    Vent.trigger('viewChange', 'catalog', {
+                    return Vent.trigger('viewChange', 'catalog', {
                         id: id,
                         catalogId: options.data.catalogId,
                         backToCatalogs: false,
                         backToRoster: false
                     });
+                } else if (options.data.length === 0) {
+                    return Vent.trigger('viewChange', 'restaurant', sasl.getUrlKey(), { reverse: true });
                 } else {
                     return {
                         sasl: sasl,
@@ -252,13 +254,13 @@ module.exports = {
         var cloneCatalogAndAdd = options.cloneCatalogAndAdd;
         var catalogId = options.catalogId;
         var catalogType = options.catalogType;
-        var catalogDisplayText=options.catalogDisplayText;
+        var catalogDisplayText = options.catalogDisplayText;
 
         return saslActions.getSasl(id)
             .then(function(ret) {
                 sasl = ret;
                 return catalogActions.getRoster(sasl.sa(), sasl.sl(), rosterId);
-            }).then(function(roster) {
+            }).then(_.bind(function(roster) {
 
                 var rosterBasket;
                 var rosterDetails = {
@@ -301,9 +303,10 @@ module.exports = {
                             quantity:1// can only add one at a time
                         };
                         catalogClone.setCatalogDetails(catalogDetails);
+
                         //var catalogClone = $.extend({}, catalog);
                         //var catalogClone = JSON.parse(JSON.stringify(catalog));
-                        rosterBasket.catalogs.models.push(catalogClone);
+                        this.checkCatalogsIdentity(catalogClone, rosterBasket);
                     } else {
                         console.log("Roster already has catalog: " + catalogId );
                     }
@@ -336,8 +339,30 @@ module.exports = {
                     launchedViaURL: launchedViaURL
                 };
 
-            });
+            }, this));
     },
+
+    // for equal 'build your combo'
+    checkCatalogsIdentity: function(catalogClone, basket) {
+        // TODO check why model order is different second time
+        var models = basket.catalogs.models,
+            ownCombos = _.where(models, {'id': 'BUILDYOURCOMBO'});
+        if (ownCombos.length > 0) {
+            if (_.filter(ownCombos, function(catalog){
+                if (_.every(catalog.models, function(model, index){
+                    return catalogClone.models[index].id === model.id;
+                })){
+                    catalog.quantity ++;
+                    return true;
+                }
+            }).length === 0) {
+                models.push(catalogClone);
+            }
+        } else {
+            models.push(catalogClone);
+        }
+    },
+
     posts: function(options) { // options is an array with either sasl or
         // urlKey
         return saslActions.getSasl(options)
@@ -498,6 +523,7 @@ module.exports = {
                  * pull up the basket for this sasl
                  */
                 var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + basketType);
+                options.rosterId ? backToRoster = true : backToRoster = false;
                 return {
                     sasl: sasl,
                     addresses: addresses,
@@ -507,9 +533,10 @@ module.exports = {
                     url: getUrl(sasl) + '/roster',
                     basket: basket,
                     editModel:editModel,
-                    rosterId: rosterId,
-                    backToRoster: true,
-                    backToCatalog: backToCatalog,
+                    rosterId: backToRoster ? rosterId : backToRoster,
+                    catalogId: backToRoster ? backToRoster : rosterId,
+                    backToRoster: backToRoster,
+                    backToCatalog: backToRoster? false : backToCatalog,
                     backToCatalogs: backToCatalogs,
                     launchedViaURL: launchedViaURL
                 };

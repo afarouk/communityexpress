@@ -40,11 +40,12 @@ var RosterView = Backbone.View.extend({
 
         var comboCount = this.basket.getComboCount();
         var nonComboCount = this.basket.getNonComboItemCount();
-        if(comboCount===0 && nonComboCount===0){
-          $('#roster_order_button').prop('disabled', true);
-        }else{
-          $('#roster_order_button').prop('disabled', false);
+        if (comboCount === 0 && nonComboCount === 0) {
+            $('#roster_order_button').prop('disabled', true);
+        } else {
+            $('#roster_order_button').prop('disabled', false);
         };
+        this.updateBasket();
         // this.checkIfOpened();
         //$('.select').select2();
     },
@@ -99,12 +100,14 @@ var RosterView = Backbone.View.extend({
 
     /* used to update the roster view created originally */
     updateBasket: function() {
+        this.$('.cart_items_number').text(this.basket.getItemsNumber());
+        this.$('.total_price').text('$ ' + this.basket.getTotalPrice());
         var comboCount = this.basket.getComboCount();
         var nonComboCount = this.basket.getNonComboItemCount();
-        if(comboCount===0 && nonComboCount===0){
+        if (comboCount === 0 && nonComboCount === 0) {
           $('#roster_order_button').prop('disabled', true);
-        }else{
-          $('#roster_order_button').prop('disabled', false);
+        } else {
+            $('#roster_order_button').prop('disabled', false);
         }
         this.$('#cmtyx_roster_cart_comboCount').text(comboCount + " x");
         this.$('#cmtyx_roster_cart_nonComboCount').text(nonComboCount + " x");
@@ -212,6 +215,7 @@ var RosterView = Backbone.View.extend({
                                             this.triggerCatalogView(catalog, catalogId, catalogDisplayText,catalogType);
                                         }.bind(this),
                                         model: catalog,
+                                        basket: this.basket,
                                         parent: this
                                     }).render().el;
                                     $ul.append(li);
