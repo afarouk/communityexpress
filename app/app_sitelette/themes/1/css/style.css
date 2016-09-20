@@ -3198,3 +3198,7 @@ a.cancel {
 .ui-listview > li.sides_extras_container {
     padding: 10px 5px;
 }
+
+.basket_icon_container {
+    display: inline-block;
+}
