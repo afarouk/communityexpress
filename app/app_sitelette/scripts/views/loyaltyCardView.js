@@ -14,6 +14,7 @@ var LoyaltyCardView = Backbone.View.extend({
   qrCode: '.qr_code_block',
   no_qrCode: '.no_qr_code_block',
   prize: '.prize_container',
+  status: '.loyalty_status',
 
   events: {
     'click .refresh_button_style1': 'refresh',
@@ -57,6 +58,7 @@ var LoyaltyCardView = Backbone.View.extend({
   onLogout: function() {
     this.$(this.qrCode).slideUp('slow');
     this.$(this.no_qrCode).slideDown('slow');
+    this.$(this.status).text('');
   },
 
   retrieveLoyaltyStatus: function(uid) {
@@ -65,11 +67,17 @@ var LoyaltyCardView = Backbone.View.extend({
         * regardless of loyalty program, update the qr code block since we may use
         * this for other things.
         */
+        if (resp.hasLoyaltyProgram) {
+          var content = '<div>'+ resp.loyaltyBlockLine1 +'</div><div>'+ 
+            resp.loyaltyBlockLine2 +'</div><div>' + resp.loyaltyBlockLine3 + '</div>';
+          this.$(this.status).html(content);
+        }
         this.$(this.qrCode).find('.qr_code_container').html('<img src="' + 
           resp.qrcodeURL + '" alt="" style="width:100%">');
         this.$(this.qrCode).slideDown('slow');
         this.$(this.no_qrCode).slideUp('slow');
-        this.$(this.qrCode).find('.qr_code_title').text(resp.qrCodeBlockLine1);
+        this.$(this.qrCode).find('.qr_code_title.title').text(resp.qrCodeBlockLine1);
+        this.$(this.qrCode).find('.qr_code_title.info').text(resp.qrCodeBlockLine2);
     }, this));
 
   },
