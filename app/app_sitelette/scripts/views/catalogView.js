@@ -45,11 +45,6 @@ var CatalogView = Backbone.View.extend({
           this.$('.order_button').show();
           this.$('.add_combo_button').hide();
         }
-
-        // this.basket.each(function(item) {
-        //     // debugger;
-        //     $('#'+item.itemId).text(item.get('quantity'));
-        // })
     },
 
     initialize : function(options) {
@@ -102,7 +97,7 @@ var CatalogView = Backbone.View.extend({
         }
     },
 
-    goBackAndSendCatalogInfo : function(){
+    goBackAndSendCatalogInfo: function(){
         this.triggerRosterViewWithCatalog();
     },
 
@@ -110,13 +105,13 @@ var CatalogView = Backbone.View.extend({
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
           id: this.rosterId,
-          backToRoster:true, /* bad design: should be using reverse true */
-          rosterId:this.rosterId,
-          cloneCatalogAndAdd:false,
-          catalogId:this.catalogId,
-          catalogType:this.catalogType.enumText,
-          catalogDisplayText:this.catalogDisplayText,
-          launchedViaURL:  this.launchedViaURL
+          backToRoster: true, /* bad design: should be using reverse true */
+          rosterId: this.rosterId,
+          cloneCatalogAndAdd: false,
+          catalogId: this.catalogId,
+          catalogType: this.catalogType.enumText,
+          catalogDisplayText: this.catalogDisplayText,
+          launchedViaURL: this.launchedViaURL
        }, { reverse: true });
     },
 
@@ -124,13 +119,13 @@ var CatalogView = Backbone.View.extend({
         Vent.trigger('viewChange', 'roster', {
             sasl: this.sasl.id,
             id: this.rosterId,
-            backToRoster:true, /* bad design: should be using reverse true */
-            rosterId:this.rosterId,
-            cloneCatalogAndAdd:true,
-            catalogId:this.catalogId,
-            catalogType:this.catalogType.enumText,
-            catalogDisplayText:this.catalogDisplayText,
-            launchedViaURL:this.launchedViaURL
+            backToRoster: true, /* bad design: should be using reverse true */
+            rosterId: this.rosterId,
+            cloneCatalogAndAdd: true,
+            catalogId: this.catalogId,
+            catalogType: this.catalogType.enumText,
+            catalogDisplayText: this.catalogDisplayText,
+            launchedViaURL: this.launchedViaURL
         }, { reverse: true });
 
     },

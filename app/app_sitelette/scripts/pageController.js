@@ -254,7 +254,7 @@ module.exports = {
         var cloneCatalogAndAdd = options.cloneCatalogAndAdd;
         var catalogId = options.catalogId;
         var catalogType = options.catalogType;
-        var catalogDisplayText=options.catalogDisplayText;
+        var catalogDisplayText = options.catalogDisplayText;
 
         return saslActions.getSasl(id)
             .then(function(ret) {

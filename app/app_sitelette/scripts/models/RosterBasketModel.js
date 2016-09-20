@@ -116,6 +116,9 @@ var RosterBasketModel = Backbone.Model.extend({
     }
   },
 
+  getItemsNumber: function() {
+      return 0;
+  },
 
   count: function() {
     /* we return the sum of combos and ala-la-care items */

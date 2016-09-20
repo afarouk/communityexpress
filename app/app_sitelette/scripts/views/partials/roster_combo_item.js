@@ -33,7 +33,7 @@ var RosterComboItemView = Backbone.View.extend({
     },
 
     addToCart: function(e, action){
-        var catalogId = e.target.attributes.catalogid.value; 
+        var catalogId = e.target.attributes.catalogid.value;
         var catalog_quantity = parseInt($('#ComboItemCount_'+catalogId).text());
         console.log(catalog_quantity);
 
@@ -44,15 +44,15 @@ var RosterComboItemView = Backbone.View.extend({
 
         this.basket = this.options.parent.basket;
         var initialCnt=this.basket.getComboCount();
-        this.catalogId = e.target.attributes.catalogid.value; 
-        this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value; 
-        this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);  
+        this.catalogId = e.target.attributes.catalogid.value;
+        this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value;
+        this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);
         catalog = this.basket.getCatalog(this.model);
         if (catalog) {
             catalog.off('change').on('change', _.bind(this.changeCount, this));
         }
 
-        $('.cart_items_number').text(this.basket.getComboCount());
+        // $('.cart_items_number').text(this.basket.getComboCount());
 
         $('#ComboItemCount_'+catalogId).text(count);
 
