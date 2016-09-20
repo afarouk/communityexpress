@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-  
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +13,36 @@
 
     <script src="build/mobile.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
+
+    <link rel="apple-touch-startup-image" href="themes/1/splash/Default-portrait@2x~iphone5.jpg">
+
+    <!-- for IOS web app-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+     content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+
+    <link rel="apple-touch-icon"  href="<?php
+    if (!is_null($appleTouchIcon60URL)) {
+        echo $appleTouchIcon60URL;
+    } else {
+        echo 'someicon';
+    }
+    ?>">
+
+    <link rel="icon" sizes="192x192" href="<?php
+    if (!is_null($androidHomeScreenIconURL)) {
+        echo $androidHomeScreenIconURL;
+
+    } else {
+        echo 'someicon';
+    }
+    ?>">
+
+    <link rel="icon" href="themes/1/favicon.ico?v=1.1"> 
+
     <script>
         window.saslData = <?php
             if (!is_null($saslJSON)) {
