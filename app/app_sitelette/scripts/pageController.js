@@ -260,7 +260,7 @@ module.exports = {
             .then(function(ret) {
                 sasl = ret;
                 return catalogActions.getRoster(sasl.sa(), sasl.sl(), rosterId);
-            }).then(function(roster) {
+            }).then(_.bind(function(roster) {
 
                 var rosterBasket;
                 var rosterDetails = {
@@ -303,9 +303,10 @@ module.exports = {
                             quantity:1// can only add one at a time
                         };
                         catalogClone.setCatalogDetails(catalogDetails);
+
                         //var catalogClone = $.extend({}, catalog);
                         //var catalogClone = JSON.parse(JSON.stringify(catalog));
-                        rosterBasket.catalogs.models.push(catalogClone);
+                        this.checkCatalogsIdentity(catalogClone, rosterBasket.catalogs.models);
                     } else {
                         console.log("Roster already has catalog: " + catalogId );
                     }
@@ -338,8 +339,28 @@ module.exports = {
                     launchedViaURL: launchedViaURL
                 };
 
-            });
+            }, this));
     },
+
+    // for equal 'build your combo'
+    checkCatalogsIdentity: function(catalogClone, models) {
+        var ownCombos = _.where(models, {'id': 'BUILDYOURCOMBO'});
+        if (ownCombos.length > 0) {
+            if (!_.every(ownCombos, function(catalog){
+                if (_.every(catalog.models, function(model, index){
+                    return catalogClone.models[index].id === model.id;
+                })){
+                    catalog.quantity ++;
+                    return true;
+                }
+            })) {
+                models.push(catalogClone);
+            }
+        } else {
+            models.push(catalogClone);
+        }
+    },
+
     posts: function(options) { // options is an array with either sasl or
         // urlKey
         return saslActions.getSasl(options)

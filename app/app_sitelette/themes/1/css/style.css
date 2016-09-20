@@ -2546,6 +2546,12 @@ margin-bottom: 15px;
     background: url('images/user_hover.png') no-repeat;
 }
 
+.common_footer a.ui-btn.navbutton_sign_out .user_img {
+    width: 16px;
+    height: 22px;
+    background: url('images/user_signed_in.png') no-repeat;
+}
+
 .m-b-7 {
     margin-bottom: 7px;
 }
