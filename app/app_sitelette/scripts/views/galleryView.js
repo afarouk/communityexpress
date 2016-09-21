@@ -4,9 +4,9 @@
 
 var Vent = require('../Vent');
 
-var EventsView = Backbone.View.extend({
-  name: 'events',
-  el: '#cmtyx_events_block',
+var GalleryView = Backbone.View.extend({
+  name: 'gallery',
+  el: '#cmtyx_gallery_block',
 
   events: {
     'click .header': 'toggleCollapse'
@@ -14,6 +14,19 @@ var EventsView = Backbone.View.extend({
 
   initialize: function(options) {
     this.options = options || {};
+
+    //slick init
+    this.$el.find('.gallery').slick({
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 700,
+        fade: true,
+        cssEase: 'linear',
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 3000
+    });
   },
 
   toggleCollapse: function() {
@@ -30,4 +43,4 @@ var EventsView = Backbone.View.extend({
 
 });
 
-module.exports = EventsView;
+module.exports = GalleryView;

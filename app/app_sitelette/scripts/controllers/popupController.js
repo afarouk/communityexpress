@@ -68,6 +68,11 @@ var PopupController = {
         view.shut();
     },
 
+    upload: function(model, options) {
+        var view = viewFactory.create('upload', model, this, options);
+        this.show(view);
+    },
+
     requireLogIn: function(model, callback) {
         var conf = configurationActions.getConfigurations(),
             view;

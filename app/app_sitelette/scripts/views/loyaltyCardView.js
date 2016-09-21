@@ -37,17 +37,14 @@ var LoyaltyCardView = Backbone.View.extend({
 
   toggleCollapse: function() {
     var $el = this.$('.body');
-    if (this.collapsed) {
-      $el.slideDown('slow', _.bind(function(){
-        this.$('.collapse_btn').removeClass('down');
-        this.collapsed = false;
-      }, this));
-    } else {
-      $el.slideUp('slow', _.bind(function(){
-        this.$('.collapse_btn').addClass('down');
-        this.collapsed = true;
-      }, this));
-    }
+    $el.slideToggle('slow', function(){
+        var visible = $(this).is(':visible');
+        if (visible) {
+            $(this).parent().find('.collapse_btn').removeClass('down');
+        } else {
+            $(this).parent().find('.collapse_btn').addClass('down');
+        }
+    });
   },
 
   onLogin: function() {

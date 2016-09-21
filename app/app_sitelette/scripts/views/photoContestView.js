@@ -4,21 +4,29 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
+    appCache = require('../appCache.js'),
     viewFactory = require('../viewFactory'),
     ListView = require('./components/listView'),
     PrizeView = require('./partials/prizeView'),
     contestActions = require('../actions/contestActions'),
+    popupController = require('../controllers/popupController'),
+    userController = require('../controllers/userController'),
     h = require('../globalHelpers');
 
 module.exports = Backbone.View.extend({
-
     name: 'photoContest',
+    el: '#cmtyx_photo_contest_block',
 
-    renderData: function () {
-        return $.extend(this.model, {
-            activationDate: h().toPrettyTime(this.model.activationDate),
-            expirationDate: h().toPrettyTime(this.model.expirationDate)
-        });
+    // renderData: function () {
+    //     return $.extend(this.model, {
+    //         activationDate: h().toPrettyTime(this.model.activationDate),
+    //         expirationDate: h().toPrettyTime(this.model.expirationDate)
+    //     });
+    // },
+
+    events: {
+        'click .header': 'toggleCollapse',
+        'click .send_photo_btn': 'onSendPhoto'
     },
 
     initialize: function(options) {
@@ -26,39 +34,60 @@ module.exports = Backbone.View.extend({
         this.sasl = options.sasl;
         this.hideTitle = true;
         this.uploadPlaceHolder = 'Caption';
-        this.on('show', this.onShow, this);
+        // this.on('show', this.onShow, this);
     },
 
-    onShow: function(){
-        this.addEvents({
-            'click .back': 'triggerLandingView',
-            'click .enter_button': 'enterContest'
+    toggleCollapse: function() {
+        var $el = this.$('.body');
+        $el.slideToggle('slow', function(){
+            var visible = $(this).is(':visible');
+            if (visible) {
+                $(this).parent().find('.collapse_btn').removeClass('down');
+            } else {
+                $(this).parent().find('.collapse_btn').addClass('down');
+            }
         });
-        this.renderPrizes();
     },
 
-    triggerLandingView: function() {
-        Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true });
+    onSendPhoto: function() {
+        //TODO send photo 
+        this.enterContest();
     },
 
-    renderPrizes: function () {
-        this.$('.cmntyex_prizes_placeholder').html(
-            new ListView({
-                ListItemView: PrizeView,
-                collection: new Backbone.Collection(this.model.prizes),
-                update: false,
-                dataRole: 'none',
-                parent: this
-            }).render().el
-        );
-    },
+    // onShow: function(){
+    //     this.addEvents({
+    //         'click .back': 'triggerLandingView',
+    //         'click .enter_button': 'enterContest'
+    //     });
+    //     this.renderPrizes();
+    // },
 
+    // triggerLandingView: function() {
+    //     Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true });
+    // },
+
+    // renderPrizes: function () {
+    //     this.$('.cmntyex_prizes_placeholder').html(
+    //         new ListView({
+    //             ListItemView: PrizeView,
+    //             collection: new Backbone.Collection(this.model.prizes),
+    //             update: false,
+    //             dataRole: 'none',
+    //             parent: this
+    //         }).render().el
+    //     );
+    // },
+
+    //TODO
     enterContest: function () {
-        this.withLogIn(function () {
-            this.openSubview('upload', this.sasl, {
+        var user = userController.getCurrentUser(),
+            sasl = user.favorites.at(0);
+        popupController.requireLogIn(sasl, function() {
+            popupController.upload(sasl, {
                 action: function (sa, sl, file, message) {
                     loader.show('');
-                    return contestActions.enterPhotoContest(sa, sl, this.model.contestUUID, file, message)
+                    // this.model.contestUUID null because we should get contests
+                    return contestActions.enterPhotoContest(sa, sl, null, file, message)
                         .then(function () {
                             loader.showFlashMessage('contest entered');
                         }, function (e) {
