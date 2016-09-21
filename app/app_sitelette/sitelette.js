@@ -4,6 +4,7 @@ require('../vendor/css/fonts.css');
 require('../vendor/css/jquery.mobile-1.4.5.min.css');
 // require('../vendor/css/bootstrap.min.css');
 // require('../app_sitelette/styles/sitelette_icons.css');
+require('../vendor/css/slick.css');
 require('../vendor/styles/jquery.jqplot.min.css');
 require('../vendor/add-to-homescreen/style/addtohomescreen.css');
 require('../vendor/skeuocard-master/styles/skeuocard.reset.css');
@@ -17,6 +18,7 @@ require('../vendor/add-to-homescreen/src/addtohomescreen.min');
 
 require('./scripts/jquerymobile_config');
 require('../vendor/jquery-mobile/jquery.mobile-1.4.5');
+require('../vendor/slick/slick.min');
 require('../vendor/skeuocard-master/javascripts/skeuocard.min.js');
 require('../vendor/star-rating-svg-master/src/jquery.star-rating-svg.js');
 require('../vendor/scripts/owl.carousel.min');

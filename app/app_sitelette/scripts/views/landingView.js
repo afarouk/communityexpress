@@ -69,6 +69,7 @@ var LandingView = Backbone.View.extend({
             'margin-bottom': '0px'
         });
         Vent.on('scrollToPromotions', this.scrollToPromotions, this);
+
         /*
         _.extend( {}, this.model.attributes, {
             imagePath: config.imagePath,
@@ -77,22 +78,25 @@ var LandingView = Backbone.View.extend({
         */
         // Check if user launches event URL or photoContest URL
         // and open page with current event/photoContest
+
+        this.headerToggle();
     },
+
+    headerToggle: function() {
+        this.$el.find('.about_us_block .header, .video_block .header').click(function(){
+            $(this).parent().find('.body').slideToggle('slow', function(){
+                var visible = $(this).is(':visible');
+                if (visible) {
+                    $(this).parent().find('.collapse_btn').removeClass('down');
+                } else {
+                    $(this).parent().find('.collapse_btn').addClass('down');
+                }
+            });
+        });
+    },
+
     renderContent: function() {
-        //this.$el.append(this.contentView.render( this._data() ).el);
-        //return this.contentView;
         return this.$el;
-    },
-
-    onShow: function(){
-
-        // this.renderGallery();
-
-        // try {
-        //     addToHomescreen().show();
-        // } catch (e) {
-        //     console.log(' Desktop, not showing addToHomescreen');
-        // }
     },
 
     scrollToPromotions: function() {

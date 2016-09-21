@@ -14,57 +14,64 @@ module.exports = Backbone.View.extend({
 
     name: 'pollContest',
 
-    renderData: function () {
-        return $.extend(this.model, {
-            activationDate: h().toPrettyTime(this.model.activationDate),
-            expirationDate: h().toPrettyTime(this.model.expirationDate)
+    el: '#cmtyx_poll_block',
+
+    events: {
+        'click .header': 'toggleCollapse'
+    },
+
+    // renderData: function () {
+    //     return $.extend(this.model, {
+    //         activationDate: h().toPrettyTime(this.model.activationDate),
+    //         expirationDate: h().toPrettyTime(this.model.expirationDate)
+    //     });
+    // },
+
+    toggleCollapse: function() {
+        var $el = this.$('.body');
+        $el.slideToggle('slow', function(){
+            var visible = $(this).is(':visible');
+            if (visible) {
+                $(this).parent().find('.collapse_btn').removeClass('down');
+            } else {
+                $(this).parent().find('.collapse_btn').addClass('down');
+            }
         });
     },
+
+    //TODO functionality!!!
 
     initialize: function(options) {
         options = options || {};
         this.sasl = options.sasl;
-        this.on('show', this.onShow, this);
     },
 
-    onShow: function(){
-        this.addEvents({
-            'click .back': 'triggerLandingView',
-        });
-        this.renderOptions();
-        this.renderPrizes();
-    },
+    // renderPrizes: function () {
+    //     this.$('.cmntyex_prizes_placeholder').html(
+    //         new ListView({
+    //             ListItemView: PrizeView,
+    //             collection: new Backbone.Collection(this.model.prizes),
+    //             update: false,
+    //             dataRole: 'none',
+    //             parent: this
+    //         }).render().el
+    //     );
+    // },
 
-    triggerLandingView: function() {
-        Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true });
-    },
-
-    renderPrizes: function () {
-        this.$('.cmntyex_prizes_placeholder').html(
-            new ListView({
-                ListItemView: PrizeView,
-                collection: new Backbone.Collection(this.model.prizes),
-                update: false,
-                dataRole: 'none',
-                parent: this
-            }).render().el
-        );
-    },
-
-    renderOptions: function () {
-        this.$('.cmntyex_options_placeholder').html(
-            new ListView({
-                ListItemView: PollOptionView,
-                ListItemViewOptions: {
-                    onClick: this.onPollClick.bind(this)
-                },
-                collection: new Backbone.Collection(this.model.choices),
-                update: false,
-                dataRole: 'none',
-                parent: this
-            }).render().el
-        );
-    },
+    // renderOptions: function () {
+    //     this.$('.cmntyex_options_placeholder').html(
+    //         new ListView({
+    //             ListItemView: PollOptionView,
+    //             ListItemViewOptions: {
+    //                 onClick: this.onPollClick.bind(this)
+    //             },
+    //             collection: new Backbone.Collection(this.model.choices),
+    //             update: false,
+    //             dataRole: 'none',
+    //             parent: this
+    //         }).render().el
+    //     );
+    // },
 
     onPollClick: function(model) {
         this.withLogIn(function () {

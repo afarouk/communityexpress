@@ -13,11 +13,17 @@ var userController = require('./controllers/userController'),
     Geolocation = require('./Geolocation.js'),
     appCache = require('./appCache.js'),
     Cookies = require('../../vendor/scripts/js.cookie'),
+
     LandingView = require('./views/landingView'),
     NavbarView = require('./views/headers/navbarView'),
     HeaderView = require('./views/headers/headerView'),
     ContactUsView = require('./views/contactUsView'),
     EventsView = require('./views/eventsView'),
+    GalleryView = require('./views/galleryView'),
+    PollContestView = require('./views/pollContestView'),
+    LandingReviewsView = require('./views/landingReviewsView'),
+    PromotionView = require('./views/promotionView'),
+    PhotoContestView = require('./views/photoContestView'),
     LoyaltyCardView = require('./views/loyaltyCardView');
 
 var hasUIDinQueryParams = function() {
@@ -44,9 +50,15 @@ var App = function() {
 		this.headerView = new HeaderView({
             navbarView: this.navbarView
         });
+
     this.landingView = new LandingView();
     this.loyaltyCardView = new LoyaltyCardView();
     this.eventsView = new EventsView();
+    this.galleryView = new GalleryView();
+    this.pollContestView = new PollContestView();
+    this.landingReviewsView = new LandingReviewsView();
+    this.promotionView = new PromotionView();
+    this.PhotoContestView = new PhotoContestView();
     this.contactUsView = new ContactUsView();
 
     this.currentView = this.landingView;
