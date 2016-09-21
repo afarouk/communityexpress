@@ -16,6 +16,13 @@ var EditRosterViewItem = Backbone.View.extend({
         this.parent = options.parent;
         this.template = options.template || template;
 
+        if (this.model.get('catalogId') === 'SIDES') {
+            this.$el.css({
+                'border': 'none',
+                'height': ''
+            });
+        }
+
         this.listenTo(this.model, 'change:selected', this._update, this);
         this.listenTo(this.parent, 'close:all', this.remove, this);
     },
