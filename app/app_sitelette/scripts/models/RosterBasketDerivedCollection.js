@@ -11,7 +11,7 @@ var RosterBasketDerivedCollection = Backbone.Collection.extend({
 
     initialize: function(models, options) {
         var self = this;
-        var ownComboItemText;        
+        var ownComboItemText;
         this.basket = options.basket; /* real roster model */
         _(this.basket.catalogs.models).each(function(catalog, ii, ll) {
             /*if COMBO, one entry per combo */
@@ -42,7 +42,7 @@ var RosterBasketDerivedCollection = Backbone.Collection.extend({
                     $.each(ll[ii].models, function(key,val) {
                         if(val.itemName){
                             ownComboItemArray.push(val.itemName);
-                        }                          
+                        }
                     });
                     ownComboItemText = ownComboItemArray.toString();
                 }
@@ -90,6 +90,22 @@ var RosterBasketDerivedCollection = Backbone.Collection.extend({
                 }
             }
         });
+        var sides = [];
+        var combos = [];
+        this.each(function(model, index) {
+            if (model && model.get('catalogId') === 'SIDES') {
+                sides.push(model);
+            } else {
+                combos.push(model);
+            }
+        });
+        if (combos.length !== 0) {
+            this.set(combos);
+        }
+        if (sides.length !== 0) {
+            sides[0].set('title', 'SIDES/EXTRAS');
+            this.add(sides);
+        }
         console.log("model entries: " + self.size());
     },
 
