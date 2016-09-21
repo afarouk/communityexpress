@@ -90,17 +90,24 @@ var RosterBasketDerivedCollection = Backbone.Collection.extend({
                 }
             }
         });
-        var sides = [];
-        var combos = [];
+        var sides = [],
+            combos = [],
+            ownCombos = [];
         this.each(function(model, index) {
-            if (model && model.get('catalogId') === 'SIDES') {
+            var catalogId = model.get('catalogId');
+            if (catalogId === 'SIDES') {
                 sides.push(model);
+            } else if (catalogId === 'BUILDYOURCOMBO'){
+                ownCombos.push(model);
             } else {
                 combos.push(model);
             }
         });
         if (combos.length !== 0) {
             this.set(combos);
+        }
+        if (ownCombos.length !== 0) {
+            this.add(ownCombos);
         }
         if (sides.length !== 0) {
             sides[0].set('title', 'SIDES/EXTRAS');

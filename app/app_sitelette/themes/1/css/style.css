@@ -587,9 +587,9 @@ li {
 }
 
 .order_list li span.order_name, .cart .cmntyex-list_container ul li span.order_name {
-
     font: 300 14px 'Open Sans', sans-serif;
     color: #fafafa;
+    line-height: 30px;
 }
 
 .order_list li span.order_price, .cart .cmntyex-list_container ul li span.order_price {
@@ -612,7 +612,7 @@ li {
 
 .order_price {
     float: right;
-    width: 50px;
+    width: 60px;
     /*vertical-align: top;*/
 }
 
@@ -1081,7 +1081,7 @@ font-family: 'Open Sans', sans-serif;
 
 .cart .order_list li, .cart .cmntyex-list_container ul li {
     margin-bottom: 0;
-    padding: 20px 0;
+    padding: 10px 0;
     border-bottom: solid 1px #636363;
     background: transparent;
 }
@@ -1100,9 +1100,9 @@ font-family: 'Open Sans', sans-serif;
     font: 300 14px 'Open Sans', sans-serif;
 }
 
-.cart li span.order_price {
+/*.cart li span.order_price {
     margin-left: 20px;
-}
+}*/
 
 .cart li input {
     position: relative;
@@ -3281,15 +3281,18 @@ a.cancel {
 
 .order_subitem_name {
     /*padding: 10px 0;*/
-    display: inline-block;
-    width: 60%;
+    /*display: inline-block;*/
+    clear: both;
+    width: 100%;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #dddddd;
     font-weight: 400;
 }
 
-
+.ui-li-static.ui-body-inherit .order_subitem_name p {
+    white-space: normal;
+}
 
 .cmntyex-list_placeholder {
     /*padding-top: 8px;*/
