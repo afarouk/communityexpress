@@ -54,6 +54,11 @@ module.exports = Backbone.View.extend({
         this.enterContest();
     },
 
+    //TODO start with new data in landing subviews
+    updateModel: function(model) {
+        this.model = model;
+    },
+
     // onShow: function(){
     //     this.addEvents({
     //         'click .back': 'triggerLandingView',
