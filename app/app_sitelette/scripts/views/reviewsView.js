@@ -49,6 +49,12 @@ var ReviewsView = Backbone.View.extend({
         return this.$el;
     },
 
+    goBack: function() {
+        Vent.trigger('viewChange', 'restaurant', this.restaurant.getUrlKey(), {
+            reverse: true
+        });
+    },
+
     onShow: function(){
         // this.addEvents({
         //     'click .back': 'triggerLandingView',

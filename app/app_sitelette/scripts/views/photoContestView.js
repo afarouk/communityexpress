@@ -4,10 +4,13 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
+    appCache = require('../appCache.js'),
     viewFactory = require('../viewFactory'),
     ListView = require('./components/listView'),
     PrizeView = require('./partials/prizeView'),
     contestActions = require('../actions/contestActions'),
+    popupController = require('../controllers/popupController'),
+    userController = require('../controllers/userController'),
     h = require('../globalHelpers');
 
 module.exports = Backbone.View.extend({
@@ -48,6 +51,7 @@ module.exports = Backbone.View.extend({
 
     onSendPhoto: function() {
         //TODO send photo 
+        this.enterContest();
     },
 
     // onShow: function(){
@@ -74,20 +78,24 @@ module.exports = Backbone.View.extend({
     //     );
     // },
 
-    // enterContest: function () {
-    //     this.withLogIn(function () {
-    //         this.openSubview('upload', this.sasl, {
-    //             action: function (sa, sl, file, message) {
-    //                 loader.show('');
-    //                 return contestActions.enterPhotoContest(sa, sl, this.model.contestUUID, file, message)
-    //                     .then(function () {
-    //                         loader.showFlashMessage('contest entered');
-    //                     }, function (e) {
-    //                         loader.showErrorMessage(e, 'error uploading photo');
-    //                     });
-    //             }.bind(this)
-    //         });
-    //     }.bind(this));
-    // }
+    //TODO
+    enterContest: function () {
+        var user = userController.getCurrentUser(),
+            sasl = user.favorites.at(0);
+        popupController.requireLogIn(sasl, function() {
+            popupController.upload(sasl, {
+                action: function (sa, sl, file, message) {
+                    loader.show('');
+                    // this.model.contestUUID null because we should get contests
+                    return contestActions.enterPhotoContest(sa, sl, null, file, message)
+                        .then(function () {
+                            loader.showFlashMessage('contest entered');
+                        }, function (e) {
+                            loader.showErrorMessage(e, 'error uploading photo');
+                        });
+                }.bind(this)
+            });
+        }.bind(this));
+    }
 
 });

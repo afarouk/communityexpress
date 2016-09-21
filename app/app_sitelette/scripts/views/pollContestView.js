@@ -44,6 +44,38 @@ module.exports = Backbone.View.extend({
     initialize: function(options) {
         options = options || {};
         this.sasl = options.sasl;
+        this.sa = community.serviceAccommodatorId;
+        this.sl = community.serviceLocationId;
+        Vent.on('login_success', this.onLogin, this);
+        Vent.on('logout_success', this.onLogout, this);
+        // Temporary
+        this.$el.find('.poll_results').hide()
+            .before('<button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all">submit</button>');
+        this.$el.find('.submit_poll_button').click(_.bind(this.submitPoll, this));
+    },
+
+    onLogin: function() {
+        this.getContests();
+    },
+
+    onLogout: function() {
+    
+    },
+
+    submitPoll: function() {
+        this.$el.find('.submit_poll_button').slideUp('slow');
+        this.$el.find('.poll_results').slideDown('slow');
+        var choise = this.$el.find('input.ansRadioChoice:checked').attr('id');
+        console.log(choise);
+
+        // this.onPollClick();
+    },
+
+    getContests: function() {
+        contestActions.getContests(this.sa,this.sl)
+            .then(function(contests) {
+                console.log('contests', contests);
+            });
     },
 
     // renderPrizes: function () {

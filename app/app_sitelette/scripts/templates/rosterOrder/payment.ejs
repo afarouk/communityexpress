@@ -55,22 +55,32 @@
                 <li><span class="order_name">Fresh fruits</span><span class="order_price cmtyx_color1"><%= cs %>9.75</span></li> -->
             </ul>
             <ul class="price_list">
-                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1"><%= cs + subTotal %></span></li>
-                <li ><span class="order_name">Tax (<%= taxState %>%)</span><span class="order_price cmtyx_color1"><%= cs + taxAmount %></span></li>
+                <li>
+                    <span class="order_name">Subtotal</span>
+                    <span class="order_price cmtyx_color1"><%= cs + subTotal %></span>
+                </li>
+                <li >
+                    <span class="order_name">Tax (<%= taxState %>%)</span>
+                    <span class="order_price cmtyx_color1"><%= cs + taxAmount %></span>
+                </li>
                 <li class="tip_price"><span class="order_name">Tip</span>
                     <div class="float_right">
                        <div class="select_container">
-                                <select data-role="none" class="select">
-                                    <option value="tip0">0%</option>
-                                    <option value="tip5">5%</option>
-                                    <option value="tip10">10%</option>
-                                    <option value="tip15">15%</option>
-                                    <option value="tip20">20%</option>
-                                </select>
-                        </div>  
-                        <span class="order_price cmtyx_color1"><%= cs %>0.00</span>
-                    </div></li>
-                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1"><%= cs %><%= totalAmount %></span></li>
+                            <select data-role="none" class="select select_tip">
+                                <option value="0">0%</option>
+                                <option value="5">5%</option>
+                                <option value="10">10%</option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                            </select>
+                        </div>
+                        <span class="order_price tip_price_value cmtyx_color1"><%= cs + tip %></span>
+                    </div>
+                </li>
+                <li class="total_price">
+                    <span class="order_name">Total</span>
+                    <span class="order_price cmtyx_color1"><%= cs %><%= totalAmount %></span>
+                </li>
             </ul>
             <div class="ui-grid-a back_next_btns">
                 <div class="ui-block-a p-r-10">
