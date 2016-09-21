@@ -117,7 +117,21 @@ var RosterBasketModel = Backbone.Model.extend({
   },
 
   getItemsNumber: function() {
-      return 0;
+    var count = 0;
+    this.catalogs.each(function(catalog) {
+        if (typeof catalog.quantity !== 'undefined') {
+            if (catalog.catalogType === 'COMBO') {
+            count = count + 1;
+            } else if (catalog.catalogType === 'UNDEFINED' || catalog.catalogType==='ITEMIZED') {
+                count = count + catalog.length;
+            }
+        } else {
+            if (catalog.get('catalogType') === 'COMBO') {
+                count = count + 1;
+            }
+        }
+    });
+    return count;
   },
 
   count: function() {
