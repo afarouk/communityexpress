@@ -197,13 +197,14 @@ if ($saslAccess || $urlKeyAccess) {
             $friendlyURL = null;
           }
         }
+
+       include_once 'themes/1/head.php';
        if($useTemplate){
-         include_once 'themes/1/head.html';
          echo $siteletteJSON['landingViewHTML'];
-         echo '</html>';
        }else{
-         include_once 'themes/1/index.html';
+         include_once 'themes/1/body.html';
        }
+       echo '</html>';
       } /*end valid sitelette*/
     } /*end can reach server */
   }
