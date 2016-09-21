@@ -6,6 +6,7 @@ var template = require('ejs!../../templates/partials/roster_catalog_item.ejs'), 
     ownComboItemsTpl = require('ejs!../../templates/partials/own_combo_items.ejs'),
     sidesItemsTpl = require('ejs!../../templates/partials/sides_items.ejs'),
     Vent = require('../../Vent'),//
+    popupController = require('../../controllers/popupController'),
     h = require('../../globalHelpers');
 
 var RosterCatalogItemView = Backbone.View.extend({
@@ -48,7 +49,8 @@ var RosterCatalogItemView = Backbone.View.extend({
         });
         if (ownCombosList.length > 0) {
             this.$('.combo_items_container').html(ownComboItemsTpl({list:ownCombosList}));
-            // debugger;
+        } else {
+            this.$('.combo_items_container').html('');
         }
     },
 
@@ -77,16 +79,25 @@ var RosterCatalogItemView = Backbone.View.extend({
             combo = ownCombosList[comboIndex],
             count = (action == 'add') ? combo_quantity + 1 : combo_quantity - 1;
 
-        this.$('#ownCombo_'+comboIndex).text(count);
-        combo.quantity = count;
-
         if (count === 0) {
-            // this.basket.trigger('remove');
-            debugger;
-            // this.basket.removeModelFromCatalogs(this.basket.catalogs.models.indexOf(combo));
+            this.showConfirmPopup(this.basket.catalogs.models.indexOf(combo));
+        } else {
+            this.$('#ownCombo_'+comboIndex).text(count);
+            combo.quantity = count;
         }
+    },
 
-        // $('.cart_items_number').text(this.basket.getComboCount());
+    showConfirmPopup: function(index) {
+        popupController.confirmation({}, {
+            text: 'Are you sure you want to remove this combo?',
+            action: this.removeCombo.bind(this, index)
+        });
+    },
+
+    removeCombo: function(index) {
+        this.basket.removeModelFromCatalogs(index);
+        this.renderOwnComboItems();
+        $('.cart_items_number').text(this.basket.getComboCount());
     },
 
     incrementQuantity: function (e) {
