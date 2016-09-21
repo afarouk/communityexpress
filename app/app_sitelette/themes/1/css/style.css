@@ -1856,11 +1856,85 @@ border-right: solid 1px #e1e1e1;
     margin-bottom: 0px;
 }
 
-#cmtyx_welcome_block img {
-    width: 100%;
-    min-height: 370px;
+#cmtyx_welcome_block {
+    position: relative;
 }
 
+#cmtyx_welcome_block img {
+    width: 100%;
+    /*min-height: 370px;*/
+}
+
+.welcome_block {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+}
+
+.breaking_news {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    background-color: #ca1d1d;
+    text-align: center;
+    line-height: 28px;
+}
+
+.breaking_news .news_line {
+    font: 400 12px 'Open Sans', sans-serif;
+    color: #dddddd;
+    text-transform: uppercase;
+}
+
+.welcome_block {
+    margin-bottom: 5%;
+}
+
+.welcome_block .title {
+    /*padding-top: 150px;*/
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font: 700 18px 'Open Sans', sans-serif;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.welcome_block .undertitle {
+    font: 300 12px / 19px 'Open Sans', sans-serif;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.welcome_block .business_hours {
+    display: inline-block;
+    font: 400 14px 'Open Sans', sans-serif;
+    color: #e7e7e7;
+    margin-top: 20px;
+}
+
+.welcome_block .open_label {
+    display: inline-block;
+    font: 400 8px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    padding: 4px 7px;
+    background-color: #00a651;
+    margin-left: 10px;
+    position: relative;
+    bottom: 3px;
+}
+
+.welcome_block .open_menu_btn{
+  margin-left:auto;
+  margin-right:auto;
+  width:80%;
+}
+
+/*
 .welcome_block {
     position: absolute;
     text-align: center;
@@ -1873,7 +1947,6 @@ border-right: solid 1px #e1e1e1;
 .welcome_block .breaking_news {
     height: 30px;
     width: 100%;
-    /*padding: 5px 10px;*/
     background-color: #ca1d1d;
     text-align: center;
     line-height: 28px;
@@ -1925,6 +1998,7 @@ border-right: solid 1px #e1e1e1;
   margin-right:auto;
   width:80%;
 }
+*/
 
 .home_tabs_list {
     padding: 20px 10px 0 10px;
