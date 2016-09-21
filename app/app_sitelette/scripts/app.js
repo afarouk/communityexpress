@@ -13,11 +13,17 @@ var userController = require('./controllers/userController'),
     Geolocation = require('./Geolocation.js'),
     appCache = require('./appCache.js'),
     Cookies = require('../../vendor/scripts/js.cookie'),
+
     LandingView = require('./views/landingView'),
     NavbarView = require('./views/headers/navbarView'),
     HeaderView = require('./views/headers/headerView'),
     ContactUsView = require('./views/contactUsView'),
     EventsView = require('./views/eventsView'),
+    GalleryView = require('./views/galleryView'),
+    PollContestView = require('./views/pollContestView'),
+    LandingReviewsView = require('./views/landingReviewsView'),
+    PromotionView = require('./views/promotionView'),
+    PhotoContestView = require('./views/photoContestView'),
     LoyaltyCardView = require('./views/loyaltyCardView');
 
 var hasUIDinQueryParams = function() {
@@ -44,10 +50,18 @@ var App = function() {
 		this.headerView = new HeaderView({
             navbarView: this.navbarView
         });
+
     this.landingView = new LandingView();
-    this.loyaltyCardView = new LoyaltyCardView();
-    this.eventsView = new EventsView();
-    this.contactUsView = new ContactUsView();
+    this.viewsInLanding = {
+        loyaltyCard: new LoyaltyCardView(),
+        events: new EventsView(),
+        gallery: new GalleryView(),
+        pollContest: new PollContestView(),
+        landingReviews: new LandingReviewsView(),
+        promotion: new PromotionView(),
+        PhotoContest: new PhotoContestView(),
+        contactUs: new ContactUsView()
+    };
 
     this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);
@@ -60,6 +74,8 @@ var App = function() {
         var events = _.extend( {}, eventObj, this.pageEvents );
         this.delegateEvents(events);
     }
+
+    Vent.on('login_success', this.onLogin, this);
 };
 
 App.prototype = {
@@ -73,7 +89,6 @@ App.prototype = {
 
         //Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
-
 
         if (this.params.demo) {
             configurationActions.toggleSimulate(true);
@@ -106,6 +121,17 @@ App.prototype = {
         } else {
             return;
         }
+    },
+
+    onLogin: function() {
+        //TODO start with new data in landing subviews
+        var user = userController.getCurrentUser(),
+            model = user.favorites.at(0);
+        _.each(this.viewsInLanding, function(view) {
+            if (typeof view.updateModel === 'function') {
+                view.updateModel(model);
+            }
+        });
     },
 
     createViewsDependOnUser: function() {

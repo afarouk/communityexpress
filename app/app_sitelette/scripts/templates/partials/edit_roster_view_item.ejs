@@ -1,4 +1,9 @@
 <% if (editable) { %>
+	<% if (catalogId === 'SIDES' && typeof title !== 'undefined') { %>
+		<div class="sides_title cmtyx_text_color_1">
+			<%= title %>
+		</div>
+	<% } %>
 	<span class="order_name"><%=  displayText %></span>
     <div class="float_right">
         <div class="select_container">

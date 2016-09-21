@@ -4,13 +4,15 @@
 
 var Vent = require('../Vent');
 
-var EventsView = Backbone.View.extend({
-  name: 'events',
-  el: '#cmtyx_events_block',
+var PromotionView = Backbone.View.extend({
+  name: 'promotion',
+  el: '#cmtyx_promotion_block',
 
   events: {
     'click .header': 'toggleCollapse'
   },
+
+  //TODO functionality
 
   initialize: function(options) {
     this.options = options || {};
@@ -30,4 +32,4 @@ var EventsView = Backbone.View.extend({
 
 });
 
-module.exports = EventsView;
+module.exports = PromotionView;

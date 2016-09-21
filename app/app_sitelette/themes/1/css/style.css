@@ -120,6 +120,17 @@ body {
     box-shadow: none !important;
 }
 
+.ui-page-theme-a .ui-btn {
+    background-color: transparent;
+    text-shadow: none;
+    color: #fafafa;
+}
+
+.ui-page-theme-a .ui-btn:active, .ui-page-theme-a .ui-btn:focus, .ui-page-theme-a .ui-btn:hover {
+    background-color: transparent;
+    text-shadow: none;
+}
+
 .p-0 {
     padding: 0 !important;
 }
@@ -256,7 +267,7 @@ button.ui-btn {
 }
 
 .back_btn, .open_menu_btn {
-    background-color: transparent!important;
+    /*background-color: transparent;*/
     /*    border-color: #faa019 !important;*/
     border-width: 1px;
     border-style: solid;
@@ -265,7 +276,7 @@ button.ui-btn {
     outline: none;
     /*    color: #faa019 !important;*/
     font: 300 18px  'Open Sans', sans-serif !important;
-    text-shadow: none !important;
+    /*text-shadow: none !important;*/
 
 }
 
@@ -307,7 +318,7 @@ button.ui-btn.next_btn:focus, button.ui-btn.next_btn:active {
 }
 
 .ui-page-theme-a a.ui-btn:hover, .common_footer a.ui-btn:hover {
-    background-color: #464646;
+    /*background-color: #464646;*/
     /*border-color: #faa019;*/
     border-width: 1px;
     border-style: solid;
@@ -601,8 +612,8 @@ li {
 
 .order_price {
     float: right;
-    width: 60px;
-    vertical-align: top;
+    width: 50px;
+    /*vertical-align: top;*/
 }
 
 .price_list {
@@ -761,7 +772,7 @@ font-family: 'Open Sans', sans-serif;
 
 .header .total_price, .sub_header .total_price {
     font: 400 14px 'Open Sans', sans-serif;
-    color: #ff9900;
+    /*color: #ff9900;*/
 }
 
 #roster .header>.total_price, .sub_header>.total_price {
@@ -901,7 +912,7 @@ font-family: 'Open Sans', sans-serif;
 }
 
 .menu_body li .item_name {
-    padding: 8px;
+    /*padding: 8px;*/
     text-transform: uppercase;
     font: 700 16px 'Open Sans', sans-serif;
     color: #ddd;
@@ -909,9 +920,13 @@ font-family: 'Open Sans', sans-serif;
     max-width: 120px;
 }
 
+.menu_body li.cmntyex-catalog-item .item_name {
+    line-height: 37px;
+}
+
 .menu_body li .item_price {
     font: 700 18px / 19px 'Open Sans', sans-serif;
-    color: #ff9900;
+    /*color: #ff9900;*/
     margin-left: 10px;
     vertical-align: top;
 }
@@ -1066,7 +1081,7 @@ font-family: 'Open Sans', sans-serif;
 
 .cart .order_list li, .cart .cmntyex-list_container ul li {
     margin-bottom: 0;
-    padding: 25px 0;
+    padding: 20px 0;
     border-bottom: solid 1px #636363;
     background: transparent;
 }
@@ -1229,12 +1244,17 @@ font-family: 'Open Sans', sans-serif;
     background-color: rgba(227, 74, 32, 0.5);
     padding: 4px 20px 4px 20px;
     margin: 5px 0;
-    min-height: 60px;
+    /*min-height: 60px;*/
 }
 
 .sides_extras_container {
     padding: 10px 20px;
     margin: 5px;
+}
+
+.sides_extras_container .float_right {
+    position: relative;
+    top: 8px;
 }
 
 .combo_item_container label {
@@ -1283,8 +1303,12 @@ font-family: 'Open Sans', sans-serif;
     margin-right: 10px;
 }
 
+.ui-content .ui-listview {
+    margin: 0;
+}
+
 .combo_item_container .input_container {
-    margin-top: 14px;
+    /*margin-top: 14px;*/
 }
 
 .build_combo_collapse .ui-collapsible-content.ui-body-inherit {
@@ -1504,12 +1528,12 @@ span.delete_btn {
 
 .catalog_sub_item_img {
     background: url(../images/sub_item.png) no-repeat;
-    background-size: 52px 52px;
-    height: 52px;
-    width: 52px;
+    background-size: contain;
+    height: 38px;
+    width: 38px;
     display: inline-block;
     float: left;
-    margin-right: 10px !important;
+    margin-right: 10px;
 }
 
 .catalog_sub_item_name {
@@ -2068,6 +2092,7 @@ border-right: solid 1px #e1e1e1;
 }
 
 .events_block .event_date {
+    padding-left: 0;
     vertical-align: top;
 }
 
@@ -2109,6 +2134,7 @@ border-right: solid 1px #e1e1e1;
 
 .events_block .add_to_calendar_btn_container {
     vertical-align: top;
+    padding-right: 0;
 }
 
 .events_block .add_to_calendar_btn {
@@ -2151,6 +2177,10 @@ border-right: solid 1px #e1e1e1;
     display: block;
     font: 300 12px 'Open Sans', sans-serif;
     color: #fff;
+}
+
+.gallery img {
+    width: 100%;
 }
 
 .poll_block .header {
@@ -3324,22 +3354,61 @@ a.cancel {
 }
 
 .order_subitem_name {
-    padding: 10px 0;
+    /*padding: 10px 0;*/
+    display: inline-block;
+    width: 60%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #dddddd;
+    font-weight: 400;
 }
 
+
+
 .cmntyex-list_placeholder {
-    padding-top: 8px;
+    /*padding-top: 8px;*/
+}
+
+.cmntyex-catalog.ui-listview,
+.items_list.ui-listview {
+    padding-bottom: 0;
+}
+
+.ui-collapsible-content {
+    padding: 0;
 }
 
 .menu_body li.cmntyex-catalog-item {
     box-shadow: none;
-    margin-top: 3px;
+    /*margin-top: 3px;*/
+    margin-bottom: 5px;
 }
 
 .ui-listview > li.sides_extras_container {
-    padding: 10px 5px;
+    /*padding: 10px 5px;*/
 }
 
 .basket_icon_container {
     display: inline-block;
 }
+
+.catalog_sub_item_img {
+    display: none;
+}
+
+.combo_items_container li {
+    padding: 0;
+}
+
+.combo_items_container ul {
+    padding-bottom: 0;
+}
+
+.combo_items_container div {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #dddddd;
+    font-weight: 400;
+}
+
+.sides_title { margin-bottom:20px; }

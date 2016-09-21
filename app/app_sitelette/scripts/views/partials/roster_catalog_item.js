@@ -6,6 +6,7 @@ var template = require('ejs!../../templates/partials/roster_catalog_item.ejs'), 
     ownComboItemsTpl = require('ejs!../../templates/partials/own_combo_items.ejs'),
     sidesItemsTpl = require('ejs!../../templates/partials/sides_items.ejs'),
     Vent = require('../../Vent'),//
+    popupController = require('../../controllers/popupController'),
     h = require('../../globalHelpers');
 
 var RosterCatalogItemView = Backbone.View.extend({
@@ -24,8 +25,8 @@ var RosterCatalogItemView = Backbone.View.extend({
         this.sasl = options.parent.sasl;
         this.listenTo(this.model, 'destroy', this.remove, this);
         this.showCatalog = options.showCatalog;
-        //this.catalogId=options.catalogId;
-        //this.catalogDisplayText=options.catalogDisplayText;
+        
+        this.listenTo(this.basket, 'reset change add remove', this.onBasketUpdate, this);
     },
 
     render : function() {
@@ -48,12 +49,22 @@ var RosterCatalogItemView = Backbone.View.extend({
         });
         if (ownCombosList.length > 0) {
             this.$('.combo_items_container').html(ownComboItemsTpl({list:ownCombosList}));
-            // debugger;
+        } else {
+            this.$('.combo_items_container').html('');
         }
     },
 
     renderSidesItems: function() {
-
+        var sidesList = _.where(this.basket.catalogs.models, 
+            {'id': 'SIDES'});
+        _.each(sidesList, function(item){
+            item.itemsList = _.map(item.models, function(model){
+                return model.itemName + ' ' + model.get('quantity');
+            });
+        });
+        if (sidesList.length > 0) {
+            this.$('.combo_items_container').html(sidesItemsTpl(sidesList[0]));
+        }
     },
 
     showCatalogLocal : function() {
@@ -65,26 +76,28 @@ var RosterCatalogItemView = Backbone.View.extend({
             {'id': 'BUILDYOURCOMBO'}),
             comboIndex = $(e.target).data('owncombo'),
             combo_quantity = parseInt(this.$('#ownCombo_'+comboIndex).text()),
+            combo = ownCombosList[comboIndex],
             count = (action == 'add') ? combo_quantity + 1 : combo_quantity - 1;
 
-        this.$('#ownCombo_'+comboIndex).text(count);
-        ownCombosList[comboIndex].quantity = count;
-        
+        if (count === 0) {
+            this.showConfirmPopup(this.basket.catalogs.models.indexOf(combo));
+        } else {
+            this.$('#ownCombo_'+comboIndex).text(count);
+            combo.quantity = count;
+        }
+    },
 
-        //TODO listen quantity change !!!
+    showConfirmPopup: function(index) {
+        popupController.confirmation({}, {
+            text: 'Are you sure you want to remove this combo?',
+            action: this.removeCombo.bind(this, index)
+        });
+    },
 
-        
-        // catalog = this.basket.getCatalog(this.model);
-        // catalog = this.basket.getCatalog(this.model);
-        // if (catalog) {
-        //     catalog.off('change').on('change', _.bind(this.changeCount, this));
-        // }
-
+    removeCombo: function(index) {
+        this.basket.removeModelFromCatalogs(index);
+        this.renderOwnComboItems();
         $('.cart_items_number').text(this.basket.getComboCount());
-
-        $('#ComboItemCount_'+catalogId).text(count);
-
-        return;
     },
 
     incrementQuantity: function (e) {
@@ -95,12 +108,9 @@ var RosterCatalogItemView = Backbone.View.extend({
         this.addToCart(e, 'remove');
     },
 
-    changeCount: function() {
-        //TODO temporary solution
-        var count = this.basket.getCatalogQuantity(this.model);
-        this.$el.find('select').val('num' + count);
-    },
-
+    onBasketUpdate: function() {
+        // debugger;
+    }
 });
 
 module.exports = RosterCatalogItemView;

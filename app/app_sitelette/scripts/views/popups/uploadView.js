@@ -23,7 +23,7 @@ var UploadView = PopupView.extend({
             'click .submit_button':'submitForm',
             'change .file-selector':'resize'
         });
-
+debugger;
         this.action = options.action;
 
         this.renderData = {
