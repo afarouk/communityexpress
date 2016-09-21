@@ -86,7 +86,6 @@ App.prototype = {
         //Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
 
-
         if (this.params.demo) {
             configurationActions.toggleSimulate(true);
         };

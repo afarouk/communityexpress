@@ -2,7 +2,8 @@
 
 'use strict';
 
-var Vent = require('../Vent');
+var Vent = require('../Vent'),
+    userController = require('../controllers/userController');
 
 var LandingReviewsView = Backbone.View.extend({
   name: 'landing_reviews',
@@ -40,7 +41,11 @@ var LandingReviewsView = Backbone.View.extend({
   },
 
   showMoreReviews: function() {
-    // more reviews
+    // show more reviews
+    var user = userController.getCurrentUser(),
+        sasl = user.favorites.at(0);
+    Vent.trigger('viewChange', 'reviews', sasl.getUrlKey() );
+    // exists for http://localhost/cmt2_lefoodtruck?demo=true&desktopIframe=true
   }
 
 });
