@@ -626,8 +626,12 @@ li {
 
 .order_price {
     float: right;
-    width: 60px;
+    /* width: 60px; */
     /*vertical-align: top;*/
+}
+
+#cmtyx_catalogView .order_price, #left-panel .order_price {
+    width: 60px;
 }
 
 .price_list {
@@ -650,24 +654,120 @@ li {
     text-transform: uppercase;
 }
 
+#cash, 
+#summary_info {
+    margin-bottom: 50%;
+}
+
 
 /*CREDIT CARD*/
 
-.credit_card_container {
-    text-align: center;
+.credit_card_container { text-align: center; }
+
+.credit_card { display: inline-block; }
+
+.skeuocard.js {
+    max-width: 370px;
+    max-height: 233px;
 }
 
-.credit_card {
-    display: inline-block;
-}
-
-.skeuocard.js .flip-tab.front {
-    right: -8px;
-}
-
-.skeuocard.product-visa .face.front {
+.skeuocard.js .card-body  .face.front,
+.skeuocard.js .card-body .face.back {
+    max-width: 370px;
+    max-height: 233px;
     background-size: 100% 100%;
 }
+
+.skeuocard.js .card-body  .face.front { position: relative; }
+
+.skeuocard.js .cc-number input.group19 { width: 14em; }
+
+.skeuocard.js .cc-number {
+    left: 1em;
+    top: 7em;
+}
+
+.skeuocard.js .cc-exp {
+    left: 10em;
+    top: 10.1em;
+}
+
+.skeuocard.js .cc-name {
+    left: 1em;
+    top: 12em;
+}
+
+.skeuocard.js .cc-cvc {
+    left: 16.8em;
+    top: 7em;
+}
+
+.skeuocard.product-amex .cc-cvc {
+    left: 19em;
+    top: 5em;
+    width: 3em;
+}
+
+.skeuocard.js .flip-tab.front { right: -8px; }
+.skeuocard.js .flip-tab.back { left: -10px; }
+
+@media screen and (max-width: 390px) {
+    .skeuocard.js {
+        max-width: 300px;
+        max-height: 190px;
+    }
+    .skeuocard.js .card-body  .face.front,
+    .skeuocard.js .card-body .face.back {
+        max-width: 300px;
+        max-height: 190px;
+        background-size: 100% 100%;
+    }
+    .skeuocard.js .card-body  .face.front{
+        position: relative;
+    }
+    .skeuocard.js .cc-number input.group19 { width: 12em; }
+
+    .skeuocard.js .cc-number {
+        left: 0.3em;
+        top: 5em;
+    }
+    .skeuocard.js .cc-number input.group4 {
+        width: 2.9em;
+    }
+    .skeuocard.js .cc-number input+input {
+        margin-left: 0.1em;
+    }
+    .skeuocard.js .cc-exp {
+        left: 8em;
+        top: 8em;
+    }
+
+    .skeuocard.js .cc-name {
+        left: 0.8em;
+        top: 9.7em;
+        width: 12em;
+    }
+
+    .skeuocard.js .cc-cvc {
+        left: 13.5em;
+        top: 5.5em;
+    }
+
+    .skeuocard.product-amex .cc-cvc {
+        left: 14.7em;
+        top: 3em;
+        width: 3em;
+    }
+
+    .skeuocard.js .flip-tab.front {     
+        right: -5px;
+        top: 5px; 
+    }
+    .skeuocard.js .flip-tab.back {     
+        left: -5px;
+        top: 5px; 
+    }
+} 
 
 .checkbox_save_card_container {
     margin-top: 30px;
@@ -680,38 +780,18 @@ li {
 }
 
 label.checkbox_save_card {
-font-family: 'Open Sans', sans-serif;
+    font-family: Roboto;
     font-size: 12px;
     color: #fafafa;
     font-weight: 300;
     padding-left: 10px;
 }
 
-@media screen and (max-width: 370px) {
-    .skeuocard.js .card-body .face {
-        max-width: 300px;
-    }
-    input.group19 {
-        max-width: 250px;
-    }
-    .skeuocard.product-visa .cc-number {
-        left: 0;
-    }
-    .skeuocard.product-visa .cc-exp {
-        left: 150px;
-        top: 155px;
-    }
-    .skeuocard.product-visa .cc-name {
-        left: 10px;
-        top: 180px;
-    }
-}
-
 
 /*ROSTER*/
 
 .common_header, #cmytx_landingView>.header, #roster .header, #build_combo>.header, #sides_extras>.header, .contact_us_block>.header, #user_reviews>.header, #business_hours>.header, .chat_block>.header, #cmtyx_appointments>.header, #upload_photo>.header {
-    background-color: #252525;
+    background-color: #000;
     height: 45px;
     padding: 10px 10px 10px 20px;
     position: fixed;
@@ -1056,6 +1136,16 @@ font-family: 'Open Sans', sans-serif;
 
 .float_right {
     float: right;
+}
+
+#left-panel .float-right {
+    position: relative;
+    top: 5px;
+}
+
+#left-panel .float-right .order_price {
+    position: relative;
+    top: 2px;
 }
 
 .float_left {
@@ -1603,6 +1693,10 @@ span.select2.select2-container.select2-container--default, span.select2.select2-
     padding-top: 40px;
 }
 
+#cmtyx_catalogView .content {
+    margin-bottom: 10%;
+}
+
 /* .ui-page {
     padding: 0 0 100px 0;
 } */
@@ -1733,8 +1827,8 @@ border-right: solid 1px #e1e1e1;
     position: absolute;
 }
 
-.common_header .logo_container {
-    padding: 5px;
+.logo_container img {
+    height: 45px;
 }
 
 .common_header .menu_btn:focus, #cmytx_landingView>.header .menu_btn:active {
@@ -2044,13 +2138,8 @@ border-right: solid 1px #e1e1e1;
 }
 
 .home_tabs_list>li .header .collapse_btn {
-    display: inline-block;
-    background: url('images/arrow-point-to-right-copy-4.png') no-repeat;
-    width: 8px;
-    height: 5px;
+    /* background: url('images/arrow-point-to-right-copy-4.png') no-repeat; */
     float: right;
-    position: relative;
-    top: 7px;
 }
 .home_tabs_list>li .header .collapse_btn.down {
     background: url('images/arrow-point-to-right-copy-5.png') no-repeat;
@@ -2243,6 +2332,10 @@ border-right: solid 1px #e1e1e1;
 
 .poll_block .answer_color_2 {
     /*background-color: #ef7112;*/
+}
+
+.poll_block .submit_poll_button {
+    margin-bottom: 25px;
 }
 
 .poll_block .poll_results {

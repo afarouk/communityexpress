@@ -34,9 +34,9 @@ var GalleryView = Backbone.View.extend({
     $el.slideToggle('slow', function(){
         var visible = $(this).is(':visible');
         if (visible) {
-            $(this).parent().find('.collapse_btn').removeClass('down');
+            $(this).parent().find('.collapse_btn').html('&#9650;');
         } else {
-            $(this).parent().find('.collapse_btn').addClass('down');
+            $(this).parent().find('.collapse_btn').html('&#9660;');
         }
     });
   }
