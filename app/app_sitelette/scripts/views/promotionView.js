@@ -9,13 +9,19 @@ var PromotionView = Backbone.View.extend({
   el: '#cmtyx_promotion_block',
 
   events: {
-    'click .header': 'toggleCollapse'
+    'click .header': 'toggleCollapse',
+    'click .share_btn_block': 'showShareBlock'
   },
 
   //TODO functionality
 
   initialize: function(options) {
     this.options = options || {};
+  },
+
+  showShareBlock: function() {
+    var $el = this.$('.promotion-share-block');
+    $el.slideToggle('slow');
   },
 
   toggleCollapse: function() {
