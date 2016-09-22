@@ -7,7 +7,7 @@ include_once ('sitefiles/php/parser_api_utility.php');
 include_once ('sitefiles/php/detecturl.php');
 
 $tileViewDetails = false;
-$useTemplate=false;
+$useTemplate=true;
 /*is demo=true */
 
 if (validateParams('demo')) {
