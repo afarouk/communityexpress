@@ -2197,6 +2197,11 @@ border-right: solid 1px #e1e1e1;
     color: #ececec;
 }
 
+.poll_block .submit_poll_button {
+    width: 60%;
+    margin: 10px auto;
+}
+
 .poll_block .poll_ans_form {
     display: block;
     margin-bottom: 20px;
@@ -2223,6 +2228,10 @@ border-right: solid 1px #e1e1e1;
     bottom: 3px;
 }
 
+.poll_block .ansRadioChoice {
+    float: left;
+}
+
 .poll_block .answer_color_1 {
     /*background-color: #faa019;*/
 }
@@ -2233,6 +2242,7 @@ border-right: solid 1px #e1e1e1;
 
 .poll_block .poll_results {
     margin-bottom: 30px;
+    display: none;
 }
 
 .poll_block .a_ans_graph {
@@ -2335,6 +2345,10 @@ border-right: solid 1px #e1e1e1;
 .poll_block .body .prize_block .prize_text_block, .loyalty_program_block .body .prize_block .prize_text_block, .photo_contest_block .body .prize_block .prize_text_block {
     text-align: left;
     padding: 25px 0 25px 25px;
+}
+
+.poll_block .prize_block {
+    display: none;
 }
 
 .prize_text {
@@ -2455,10 +2469,12 @@ li.promotion_block .body {
 .promotion_block .like_btn_block {
     text-align: right;
     padding: 15px 15px 15px 0;
+    display:none;
 }
 
 .promotion_block .share_btn_block {
-    text-align: left;
+    text-align: center;
+    width: 90%;
     padding: 15px 0 15px 10px;
 }
 
@@ -2571,6 +2587,24 @@ li.video_block .body {
     width: 38px;
     height: 38px;
     border-radius: 50%;
+}
+
+.promotion_block .promotion-share-block {
+    padding: 10px 0;
+    display: none;
+}
+.promotion_block .promotion-share-block .share_icon {
+    display: inline-block;
+    margin-bottom: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+}
+.promotion_block .promotion-share-block .text {
+    font: 400 12px 'Open Sans', sans-serif;
+    color: #cbcbcb;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .sms_icon {

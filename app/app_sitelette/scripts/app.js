@@ -18,13 +18,14 @@ var userController = require('./controllers/userController'),
     NavbarView = require('./views/headers/navbarView'),
     HeaderView = require('./views/headers/headerView'),
     ContactUsView = require('./views/contactUsView'),
-    EventsView = require('./views/eventsView'),
-    GalleryView = require('./views/galleryView'),
-    PollContestView = require('./views/pollContestView'),
-    LandingReviewsView = require('./views/landingReviewsView'),
-    PromotionView = require('./views/promotionView'),
-    PhotoContestView = require('./views/photoContestView'),
-    LoyaltyCardView = require('./views/loyaltyCardView');
+
+    EventsView = require('./views/landingSubviews/eventsView'),
+    GalleryView = require('./views/landingSubviews/galleryView'),
+    PollContestView = require('./views/landingSubviews/pollContestView'),
+    LandingReviewsView = require('./views/landingSubviews/landingReviewsView'),
+    PromotionView = require('./views/landingSubviews/promotionView'),
+    PhotoContestView = require('./views/landingSubviews/photoContestView'),
+    LoyaltyCardView = require('./views/landingSubviews/loyaltyCardView');
 
 var hasUIDinQueryParams = function() {
     var params = location.search.match(/UID=/);
@@ -52,16 +53,8 @@ var App = function() {
         });
 
     this.landingView = new LandingView();
-    this.viewsInLanding = {
-        loyaltyCard: new LoyaltyCardView(),
-        events: new EventsView(),
-        gallery: new GalleryView(),
-        pollContest: new PollContestView(),
-        landingReviews: new LandingReviewsView(),
-        promotion: new PromotionView(),
-        PhotoContest: new PhotoContestView(),
-        contactUs: new ContactUsView()
-    };
+
+    this.initSubviews();
 
     this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);
@@ -120,6 +113,27 @@ App.prototype = {
             });
         } else {
             return;
+        }
+    },
+
+    initSubviews: function(){
+        this.viewsInLanding = {
+            loyaltyCard: this.createSubview( LoyaltyCardView ),
+            events: this.createSubview( EventsView ),
+            gallery: this.createSubview( GalleryView ),
+            pollContest: this.createSubview( PollContestView ),
+            landingReviews: this.createSubview( LandingReviewsView ),
+            promotion: this.createSubview( PromotionView ),
+            PhotoContest: this.createSubview( PhotoContestView ),
+            contactUs: this.createSubview( ContactUsView )
+        };
+    },
+
+    //when we don't have subview el in DOM don't create subview
+    createSubview: function(view) {
+        var inDOM = $(view.prototype.el);
+        if (inDOM.length > 0) {
+            return new view()
         }
     },
 
