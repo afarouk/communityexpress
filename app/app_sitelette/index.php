@@ -112,6 +112,30 @@ if (validateParams('u')) {
   $uuidURL = null;
 }
 
+if (validateParams('street')) {
+  $street = $_REQUEST['street'];
+} else {
+  $street = null;
+}
+
+if (validateParams('city')) {
+  $city = $_REQUEST['city'];
+} else {
+  $city = null;
+}
+
+if (validateParams('number')) {
+  $number = $_REQUEST['number'];
+} else {
+  $number = null;
+}
+
+if ((!is_null($city)) || (!is_null($street)) || (!is_null($number))) {
+    $hasAddress = true;
+} else {
+    $hasAddress = false;
+}
+
 if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
   $saslAccess = true;
 } else {
@@ -139,6 +163,9 @@ if (validateParams('debug')) {
   echo '$saslAccess=' . ($saslAccess ? 'true' : 'false') . '</br>';
   echo '$urlKeyAccess=' . ($urlKeyAccess ? 'true' : 'false') . '</br>';
   echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false')  . '</br>';
+  echo '$city=' . $city . '</br>';
+  echo '$street=' . $street . '</br>';
+  echo '$number=' . $number . '</br>';
   if (!is_null($friendlyURL)) {
     echo '$friendlyURL is ' . $friendlyURL . '</br>';
   }  elseif ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
