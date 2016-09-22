@@ -22,10 +22,10 @@ var ContactUsView = Backbone.View.extend({
   fillLinks: function() {
     var $drive = this.$('#driveToUs'),
         $call = this.$('#callUs'),
-        driveHref = 'https://maps.apple.com/?daddr=' + 
-          saslData.number + '+' + saslData.street + '+' + 
+        driveHref = 'https://maps.apple.com/?daddr=' +
+          saslData.number + '+' + saslData.street + '+' +
           saslData.city + '+&saddr=current%20location',
-        callHref = 'tel:4084772914';
+        callHref = 'tel:'+saslData.telephoneNumber;
     driveHref = driveHref.replace(/ /g,'+');
     $drive.attr('href', driveHref);
     $call.attr('href', callHref);
@@ -37,7 +37,7 @@ var ContactUsView = Backbone.View.extend({
         address = saslData.street + ' ' + saslData.number + ', ' + saslData.city;
     var $map = this.$(this.map);
     var mapOptions = {
-        center: new google.maps.LatLng(lat, lng), 
+        center: new google.maps.LatLng(lat, lng),
         zoom: 10,
         disableDefaultUI:true
     };
@@ -49,7 +49,7 @@ var ContactUsView = Backbone.View.extend({
     });
 
     marker.setMap(map);
-    
+
     var infowindow = new google.maps.InfoWindow({
       content: address
     });

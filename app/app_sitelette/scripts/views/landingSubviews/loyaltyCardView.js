@@ -2,10 +2,10 @@
 
 'use strict';
 
-var Vent = require('../Vent'),
-  sessionActions = require('../actions/sessionActions.js'),
-  loyaltyActions = require('../actions/loyaltyActions.js'),
-  template = require('ejs!../templates/loyaltyCardView.ejs');
+var Vent = require('../../Vent'),
+  sessionActions = require('../../actions/sessionActions.js'),
+  loyaltyActions = require('../../actions/loyaltyActions.js'),
+  template = require('ejs!../../templates/landingSubviews/loyaltyCardView.ejs');
 
 var LoyaltyCardView = Backbone.View.extend({
   name: 'loyalty_card',

@@ -13,6 +13,12 @@ var PaymentCardView = Backbone.View.extend({
 		this.options = options || {};
         this.on('show', this.onShow, this);
         this.render();
+
+        //Fix for AMEX card (bug in skeuocard)
+        Skeuocard.prototype.isValid = function() {
+          return !this.el.front.hasClass('invalid') 
+            && (!this.el.back.hasClass('invalid') || !this._inputViewsByFace['back'].length);
+        };
 	},
 
 	render: function() {
@@ -24,33 +30,24 @@ var PaymentCardView = Backbone.View.extend({
     },
 
     prefillCard: function() {
+        if (this.card) return;
         var cardData = this.model.get('creditCard');
-        // if (this.model.additionalParams.cardExists) {
-        //     this.card = new Skeuocard(this.$('#skeuocard'), {
-        //         initialValues: {
-        //             number: cardData.cardNumber,
-        //             expMonth: '' + cardData.expirationMonth,
-        //             expYear: '' + cardData.expirationYear,
-        //             name: cardData.firstName + ' ' + cardData.lastName,
-        //             cvc: cardData.cvv
-        //         },
-        //         validationState: {
-        //             number: true,
-        //             exp: true,
-        //             name: true,
-        //             cvc: true
-        //         }
-        //     });
-        // } else {
-            this.card = new Skeuocard(this.$('#skeuocard'), {
-                validationState: {
-                    number: true,
-                    exp: true,
-                    name: true,
-                    cvc: true
-                }
-            });
-        // }
+        this.card = new Skeuocard(this.$('#skeuocard'), {
+            validationState: {
+                number: true,
+                exp: true,
+                name: true,
+                cvc: true
+              }
+        });
+
+        //tweak for skeuocard
+        this.$('#skeuocard')
+            .on('fieldValidationStateDidChange.skeuocard', function(evt, card, validationState){
+            if (validationState === 'number') {
+                this.resetCVC();
+            }
+        }.bind(this));
     },
 
     onShow: function() {
@@ -72,13 +69,28 @@ var PaymentCardView = Backbone.View.extend({
     	});
     },
 
+    resetCVC: function() {
+        //tweak for skeuocard
+        if (this.card.product && this.card.product.attrs.companyShortname !== 'amex') {
+            this.card.flip();
+            this.$el.find('.cc-cvc').val('').trigger('keyup')
+                .trigger('valueChanged', this.card._inputViews.cvc);
+                this.card._state.cvcFilled = false;
+                this.card._state.cvcValid = false;
+            this.card.flip();
+        } else {
+
+        }
+    },
+
     validateCard: function() {
         var valid = this.card.isValid();
         //valid
         // Visa: 4556 8270 2101 3160
-        // American Express: 3708 338922 79668
+        // American Express: 3466 255570 30027
         if (valid) {
             this.setNewCardToModel();
+            // this.resetCVC();
             this.triggerSummary();
         } else {
             //TODO error

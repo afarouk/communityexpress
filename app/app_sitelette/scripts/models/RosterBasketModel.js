@@ -49,7 +49,6 @@ var RosterBasketModel = Backbone.Model.extend({
 
 
   addCatalog: function(catalog, count, catalogId, catalogDisplayText) {
-      debugger;
     // console.log("BasketModel:addItem::"+item.get('itemName')+",
     // "+groupId+", "+catalogId);
     //var xxx=
@@ -62,50 +61,64 @@ var RosterBasketModel = Backbone.Model.extend({
             return item.id === 'SIDES';
         });
         catalogModel = catalogModels.find(function(item) {
-            return item.itemName === catalogDisplayText;
+            return item.itemName === catalog.displayText;
         });
+        if (count === 0) {
+            catalogModels.models.splice(catalogModels.models.indexOf(catalogModel), 1);
+        }
+        if (catalogModels.models.length === 0) {
+            this.catalogs.models.splice(this.catalogs.models.indexOf(catalogModels), 1);
+        }
         catalogModel.set('quantity', count);
     } else  if (catalogId === 'BUILDYOURCOMBO') {
-        // catalogModel = this.catalogs.models.find(function(item) {
-        //     return item.itemsList === catalog.ownComboItemText;
-        // });
-        // catalogModel.quantity = count;
-        catalog.quantity = count;
+        catalogModel = this.catalogs.models.find(function(item) {
+            return item.itemsList === catalog.ownComboItemText;
+        });
+        if (count === 0) {
+            this.catalogs.models.splice(this.catalogs.models.indexOf(catalogModel), 1);
+        } else {
+            catalogModel.quantity = count;
+            catalog.quantity = count;
+        }
     } else {
         catalogModel = this.catalogs.get(catalog.catalogId);
-        if (catalogModel) {
-          var quantity = catalogModel.get('quantity');
-          //quantity = quantity + count;
-          quantity = count;
-          catalogModel.set('quantity', quantity);
+        if (count === 0) {
+            this.catalogs.remove(catalogModel);
         } else {
-          /*
-          * create item options, pass groupId, catalogId
-          */
-          var catalogDetails = _.extend({}, {
-            catalogUUID: catalog.catalogId,
-            catalogDisplayText: catalog.displayText,
-            catalogType: catalog.catalogType.enumText,
-            quantity: count || 1,
-            price: catalog.price,
-            catalog: catalog,
-            itemName: "",
-            itemType: 'COMBO'
-          });
+            if (catalogModel) {
+              var quantity = catalogModel.get('quantity');
+              //quantity = quantity + count;
+              quantity = count;
+              catalogModel.set('quantity', quantity);
+            } else {
+              /*
+              * create item options, pass groupId, catalogId
+              */
+              var catalogDetails = _.extend({}, {
+                catalogUUID: catalog.catalogId,
+                catalogDisplayText: catalog.displayText,
+                catalogType: catalog.catalogType.enumText,
+                quantity: count || 1,
+                price: catalog.price,
+                catalog: catalog,
+                itemName: "",
+                itemType: 'COMBO'
+              });
 
-          /*
-          * create basketItem model
-          * REMEMBER: This is a collection, so no arguments. set them later.
-          */
+              /*
+              * create basketItem model
+              * REMEMBER: This is a collection, so no arguments. set them later.
+              */
 
-          var catalogModel = new CatalogBasketModel();
-          catalogModel.setCatalogDetails(catalogDetails);
-          catalogModel.groups = catalog.groups;
+              var catalogModel = new CatalogBasketModel();
+              catalogModel.setCatalogDetails(catalogDetails);
+              catalogModel.groups = catalog.groups;
 
-          /*
-          * add the itemModel to the collection
-          */
-          this.catalogs.add(catalogModel);
+              /*
+              * add the itemModel to the collection
+              */
+              this.catalogs.add(catalogModel);
+            }
         }
     }
     this.dumpCartToConsole();
@@ -141,7 +154,7 @@ var RosterBasketModel = Backbone.Model.extend({
             if (catalog.catalogType === 'COMBO') {
             count = count + 1;
             } else if (catalog.catalogType === 'UNDEFINED' || catalog.catalogType==='ITEMIZED') {
-                count = count + catalog.length;
+                count = count + catalog.models.length;
             }
         } else {
             if (catalog.get('catalogType') === 'COMBO') {

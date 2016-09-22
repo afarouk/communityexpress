@@ -2,16 +2,16 @@
 
 'use strict';
 
-var Vent = require('../Vent'),
-    loader = require('../loader'),
-    appCache = require('../appCache.js'),
-    viewFactory = require('../viewFactory'),
-    ListView = require('./components/listView'),
-    PrizeView = require('./partials/prizeView'),
-    contestActions = require('../actions/contestActions'),
-    popupController = require('../controllers/popupController'),
-    userController = require('../controllers/userController'),
-    h = require('../globalHelpers');
+var Vent = require('../../Vent'),
+    loader = require('../../loader'),
+    appCache = require('../../appCache.js'),
+    viewFactory = require('../../viewFactory'),
+    ListView = require('../components/listView'),
+    PrizeView = require('../partials/prizeView'),
+    contestActions = require('../../actions/contestActions'),
+    popupController = require('../../controllers/popupController'),
+    userController = require('../../controllers/userController'),
+    h = require('../../globalHelpers');
 
 module.exports = Backbone.View.extend({
     name: 'photoContest',

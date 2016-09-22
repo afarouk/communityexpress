@@ -45,6 +45,7 @@ var RosterView = Backbone.View.extend({
         } else {
             $('#roster_order_button').prop('disabled', false);
         };
+        this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.updateBasket();
         // this.checkIfOpened();
         //$('.select').select2();
@@ -83,7 +84,6 @@ var RosterView = Backbone.View.extend({
         this.setElement(this.$el.children().eq(0));
 
         this.renderItems();
-        this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         return this;
     },
 
@@ -104,10 +104,11 @@ var RosterView = Backbone.View.extend({
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice());
         var comboCount = this.basket.getComboCount();
         var nonComboCount = this.basket.getNonComboItemCount();
+        var itemsNumber = this.basket.getItemsNumber();
         if (comboCount === 0 && nonComboCount === 0) {
-          $('#roster_order_button').prop('disabled', true);
+          this.$('#roster_order_button').prop('disabled', true);
         } else {
-            $('#roster_order_button').prop('disabled', false);
+            this.$('#roster_order_button').prop('disabled', false);
         }
         this.$('#cmtyx_roster_cart_comboCount').text(comboCount + " x");
         this.$('#cmtyx_roster_cart_nonComboCount').text(nonComboCount + " x");
