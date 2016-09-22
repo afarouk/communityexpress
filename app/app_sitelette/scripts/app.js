@@ -52,16 +52,8 @@ var App = function() {
         });
 
     this.landingView = new LandingView();
-    this.viewsInLanding = {
-        loyaltyCard: new LoyaltyCardView(),
-        events: new EventsView(),
-        gallery: new GalleryView(),
-        pollContest: new PollContestView(),
-        landingReviews: new LandingReviewsView(),
-        promotion: new PromotionView(),
-        PhotoContest: new PhotoContestView(),
-        contactUs: new ContactUsView()
-    };
+
+    this.initSubviews();
 
     this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);
@@ -120,6 +112,27 @@ App.prototype = {
             });
         } else {
             return;
+        }
+    },
+
+    initSubviews: function(){
+        this.viewsInLanding = {
+            loyaltyCard: this.createSubview( LoyaltyCardView ),
+            events: this.createSubview( EventsView ),
+            gallery: this.createSubview( GalleryView ),
+            pollContest: this.createSubview( PollContestView ),
+            landingReviews: this.createSubview( LandingReviewsView ),
+            promotion: this.createSubview( PromotionView ),
+            PhotoContest: this.createSubview( PhotoContestView ),
+            contactUs: this.createSubview( ContactUsView )
+        };
+    },
+
+    //when we don't have subview el in DOM don't create subview
+    createSubview: function(view) {
+        var inDOM = $(view.prototype.el);
+        if (inDOM.length > 0) {
+            return new view()
         }
     },
 
