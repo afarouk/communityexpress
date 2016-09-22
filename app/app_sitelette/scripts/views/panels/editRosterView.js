@@ -72,7 +72,8 @@ var EditRosterView = PanelView.extend({
 
     },
 
-    addOrDeleteItem : function(e, action){
+    addOrDeleteItem: function(e, action) {
+        debugger;
         var catalogId = e.target.attributes.catalogid.value;
         var catalog_quantity = parseInt($('#itemCount_'+catalogId).text());
         console.log(catalog_quantity);

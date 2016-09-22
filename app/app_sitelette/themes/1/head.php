@@ -70,6 +70,13 @@
         window.community.serviceAccommodatorId = '<?php echo $serviceAccommodatorId ?>';
         window.community.serviceLocationId = '<?php echo $serviceLocationId ?>';
         window.community.canCreateAnonymousUser = <?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
+        window.community.hasAddress = <?php echo $hasAddress==TRUE?'true':'false' ?>;
+        if (window.community.hasAddress) {
+            window.community.deliveryAddress = {};
+            window.community.deliveryAddress.city = '<?php echo $city ?>';
+            window.community.deliveryAddress.street = '<?php echo $street ?>';
+            window.community.deliveryAddress.number = '<?php echo $number ?>';
+        }
     </script>
     <title><?php echo $saslName?></title>
 </head>
