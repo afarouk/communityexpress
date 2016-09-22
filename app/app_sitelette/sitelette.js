@@ -19,7 +19,7 @@ require('../vendor/add-to-homescreen/src/addtohomescreen.min');
 require('./scripts/jquerymobile_config');
 require('../vendor/jquery-mobile/jquery.mobile-1.4.5');
 require('../vendor/slick/slick.min');
-require('../vendor/skeuocard-master/javascripts/skeuocard.min.js');
+require('../vendor/skeuocard-master/javascripts/skeuocard.js');
 require('../vendor/star-rating-svg-master/src/jquery.star-rating-svg.js');
 require('../vendor/scripts/owl.carousel.min');
 require('../vendor/scripts/jquery.jqplot.min');
