@@ -14,14 +14,15 @@ var EditRosterView = PanelView.extend({
     template : template,
 
     addedEvents : {
-        'click .plus_button': 'incrementQuantity',
-        'click .minus_button': 'decrementQuantity',
+        // 'click .plus_button': 'incrementQuantity',
+        // 'click .minus_button': 'decrementQuantity',
         'click .cart_add_delete_item': 'addOrDeleteItem'
     },
 
     initialize : function(options) {
         this.options = options;
         options = options || {};
+        this.basket = this.model.basket;
 
         this.itemTemplate = options.template;
 
@@ -73,7 +74,6 @@ var EditRosterView = PanelView.extend({
     },
 
     addOrDeleteItem: function(e, action) {
-        debugger;
         var catalogId = e.target.attributes.catalogid.value;
         var catalog_quantity = parseInt($('#itemCount_'+catalogId).text());
         console.log(catalog_quantity);

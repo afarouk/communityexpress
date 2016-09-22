@@ -3415,3 +3415,7 @@ a.cancel {
 }
 
 .sides_title { margin-bottom:20px; }
+
+.cart .cmntyex-list_container .ui-listview li.without_border {
+    border: none;
+}
