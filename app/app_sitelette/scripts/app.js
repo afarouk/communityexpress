@@ -18,13 +18,14 @@ var userController = require('./controllers/userController'),
     NavbarView = require('./views/headers/navbarView'),
     HeaderView = require('./views/headers/headerView'),
     ContactUsView = require('./views/contactUsView'),
-    EventsView = require('./views/eventsView'),
-    GalleryView = require('./views/galleryView'),
-    PollContestView = require('./views/pollContestView'),
-    LandingReviewsView = require('./views/landingReviewsView'),
-    PromotionView = require('./views/promotionView'),
-    PhotoContestView = require('./views/photoContestView'),
-    LoyaltyCardView = require('./views/loyaltyCardView');
+
+    EventsView = require('./views/landingSubviews/eventsView'),
+    GalleryView = require('./views/landingSubviews/galleryView'),
+    PollContestView = require('./views/landingSubviews/pollContestView'),
+    LandingReviewsView = require('./views/landingSubviews/landingReviewsView'),
+    PromotionView = require('./views/landingSubviews/promotionView'),
+    PhotoContestView = require('./views/landingSubviews/photoContestView'),
+    LoyaltyCardView = require('./views/landingSubviews/loyaltyCardView');
 
 var hasUIDinQueryParams = function() {
     var params = location.search.match(/UID=/);

@@ -2,18 +2,26 @@
 
 'use strict';
 
-var Vent = require('../Vent');
+var Vent = require('../../Vent');
 
-var EventsView = Backbone.View.extend({
-  name: 'events',
-  el: '#cmtyx_events_block',
+var PromotionView = Backbone.View.extend({
+  name: 'promotion',
+  el: '#cmtyx_promotion_block',
 
   events: {
-    'click .header': 'toggleCollapse'
+    'click .header': 'toggleCollapse',
+    'click .share_btn_block': 'showShareBlock'
   },
+
+  //TODO functionality
 
   initialize: function(options) {
     this.options = options || {};
+  },
+
+  showShareBlock: function() {
+    var $el = this.$('.promotion-share-block');
+    $el.slideToggle('slow');
   },
 
   toggleCollapse: function() {
@@ -30,4 +38,4 @@ var EventsView = Backbone.View.extend({
 
 });
 
-module.exports = EventsView;
+module.exports = PromotionView;

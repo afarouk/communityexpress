@@ -2,26 +2,31 @@
 
 'use strict';
 
-var Vent = require('../Vent');
+var Vent = require('../../Vent');
 
-var PromotionView = Backbone.View.extend({
-  name: 'promotion',
-  el: '#cmtyx_promotion_block',
+var GalleryView = Backbone.View.extend({
+  name: 'gallery',
+  el: '#cmtyx_gallery_block',
 
   events: {
-    'click .header': 'toggleCollapse',
-    'click .share_btn_block': 'showShareBlock'
+    'click .header': 'toggleCollapse'
   },
-
-  //TODO functionality
 
   initialize: function(options) {
     this.options = options || {};
-  },
 
-  showShareBlock: function() {
-    var $el = this.$('.promotion-share-block');
-    $el.slideToggle('slow');
+    //slick init
+    this.$el.find('.gallery').slick({
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 700,
+        fade: true,
+        cssEase: 'linear',
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 3000
+    });
   },
 
   toggleCollapse: function() {
@@ -38,4 +43,4 @@ var PromotionView = Backbone.View.extend({
 
 });
 
-module.exports = PromotionView;
+module.exports = GalleryView;
