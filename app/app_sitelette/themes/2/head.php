@@ -9,16 +9,15 @@
     <!-- combined common css -->
     <link href="build/styles.css" rel="stylesheet">
     <!-- themes specific css -->
-    <link href="themes/1/css/style.css" rel="stylesheet">
+    <link href="themes/2/css/style.css" rel="stylesheet">
 
     <script src="build/mobile.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
 
-    <link rel="apple-touch-startup-image" href="themes/1/splash/Default-portrait@2x~iphone5.jpg">
+    <link rel="apple-touch-startup-image" href="themes/2/splash/Default-portrait@2x~iphone5.jpg">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-
 
     <link rel="apple-touch-icon"  href="<?php
     if (!is_null($appleTouchIcon60URL)) {
@@ -37,7 +36,7 @@
     }
     ?>">
 
-    <link rel="icon" href="themes/1/favicon.ico?v=1.1">
+    <link rel="icon" href="themes/2/favicon.ico?v=1.1">
 
     <script>
         window.saslData = <?php

@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- combined common css -->
-    <link href="build/styles.css" rel="stylesheet">
-    <!-- themes specific css -->
-    <link href="themes/3/css/style.css" rel="stylesheet">
-
-    <script src="build/mobile.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
-    <script>
-        window.saslData = <?php
-            if (!is_null($saslJSON)) {
-                echo json_encode($saslJSON);
-            } else {
-                echo '{"error":"null sasl"}';
-            }
-            ?>;
-        window.community = {};
-        window.community.themeId = <?php echo $themeId ?>;
-        window.community.domain = '<?php echo $domain ?>';
-        window.community.protocol = '<?php echo $protocol?>';
-        window.community.UID = '<?php echo $UID ?>';
-        window.community.type = '<?php echo $type ?>';
-        window.community.uuidURL = '<?php echo $uuidURL ?>';
-        window.community.embedded = <?php echo  $embedded==TRUE?'true':'false'  ?>;
-        window.community.desktop = <?php echo  $desktopIFrame==TRUE?'true':'false' ?>;
-        window.community.publicAccess = <?php echo  $urlKeyAccess==TRUE?'true':'false'?>;
-        window.community.directAccess = <?php echo  $saslAccess==TRUE?'true':'false'?>;
-        window.community.demo = <?php echo  $demo==TRUE?'true':'false'?>;
-        window.community.server = '<?php echo $server ?>';
-        window.community.host = '<?php echo $serverName ?>';
-        window.community.friendlyURL = '<?php echo $friendlyURL ?>';
-        window.community.isPrivate = <?php echo  $isPrivate==TRUE?'true':'false'?>;
-        window.community.serviceAccommodatorId = '<?php echo $serviceAccommodatorId ?>';
-        window.community.serviceLocationId = '<?php echo $serviceLocationId ?>';
-        window.community.canCreateAnonymousUser = <?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
-    </script>
-    <title>Sitelettes</title>
-</head>
-
-<body>
+ <body>
 
     <div class="popup_container"></div>
 
@@ -56,7 +10,7 @@
             <span class="back_arr_icon"></span>
         </div>
         <div class="logo_container">
-            <img src="themes/3/placeholder_images/ZAZA-Grill.png" />
+            <img src="themes/1/placeholder_images/ZAZA-Grill.png" />
         </div>
     </div>
 
@@ -92,13 +46,15 @@
         <div class="home_body p-0">
             <ul>
                 <li id="cmtyx_welcome_block">
-                    <img src="themes/3/placeholder_images/welocome_img.png"></img>
+                    <img src="themes/1/placeholder_images/welocome_img.png"></img>
+                    <!-- <img src="themes/1/placeholder_images/placeholder_320x240.jpg"></img> -->
+                    <!-- <img src="themes/1/placeholder_images/placeholder_320x568.jpg"></img> -->
+                    <div class="breaking_news">
+                        <span class="news_line">Breaking news : our chef is back</span>
+                    </div>
                     <div class="welcome_block">
-                        <div class="breaking_news">
-                            <span class="news_line">Breaking news : our chef is back</span>
-                        </div>
-                        <span class="title">Warm and cosy</span>
-                        <span class="undertitle">A quite room perfect for conversation with soft music in background</span>
+                        <div class="title">Warm and cosy</div>
+                        <div class="undertitle">A quite room perfect for conversation with soft music in background</div>
                         <button class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 menu_button_3">open menu</button>
                         <span class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></span><span class="open_label">open now</span>
                     </div>
@@ -106,12 +62,12 @@
             </ul>
             <ul class="home_tabs_list">
                 <li id="cmtyx_events_block" class="events_block">
-                    <div class="header">
+                    <div class="header cmtyx_color_1">
                         <span class="title">events</span>
-                        <div class="collapse_btn"></div>
+                        <span class="collapse_btn">&#9650;</span>
                     </div>
                     <div class="body">
-                        <img src="themes/3/placeholder_images/red-hot-band.png"></img>
+                        <img src="themes/1/placeholder_images/red-hot-band.png"></img>
                         <table class="event_block_overlay">
                             <tr>
                                 <td class="event_date first">
@@ -159,28 +115,28 @@
                     </div>
                 </li>
                 <li id="cmtyx_gallery_block" class="gallery_block">
-                    <div class="header">
+                    <div class="header cmtyx_color_2">
                         <span class="title">gallery</span>
-                        <div class="collapse_btn"></div>
+                        <span class="collapse_btn">&#9650;</span>
                     </div>
                     <div class="body">
                         <ul class="gallery">
                             <li class="gallery_item  ">
-                                <img src="themes/3/placeholder_images/pic.png"></img>
+                                <img src="themes/1/placeholder_images/pic.png"></img>
                                 <div class="gallery_item_description">
                                     <span class="gallery_item_title">Incredible drinks</span>
                                     <span class="gallery_item_undertitle">A few words abouts this amazing photo and bar</span>
                                 </div>
                             </li>
                             <li class="gallery_item ">
-                                <img src="themes/3/placeholder_images/pic.png"></img>
+                                <img src="themes/1/placeholder_images/pic.png"></img>
                                 <div class="gallery_item_description">
                                     <span class="gallery_item_title">Greek salad</span>
                                     <span class="gallery_item_undertitle">Salad with fresh tomatoes...</span>
                                 </div>
                             </li>
                             <li class="gallery_item  ">
-                                <img src="themes/3/placeholder_images/pic.png"></img>
+                                <img src="themes/1/placeholder_images/pic.png"></img>
                                 <div class="gallery_item_description">
                                     <span class="gallery_item_title">Pancakes</span>
                                     <span class="gallery_item_undertitle">The best pancakes you've ever...</span>
@@ -190,29 +146,30 @@
                     </div>
                 </li>
                 <li id="cmtyx_poll_block" class="poll_block">
-                    <div class="header">
+                    <div class="header cmtyx_color_3">
                         <span class="title">Poll</span>
-                        <div class="collapse_btn"></div>
+                        <span class="collapse_btn">&#9650;</span>
                     </div>
                     <div class="body">
-                        <img class="poll_image" src="themes/3/placeholder_images/6359862041401967861409225263_coffee.png"></img>
+                        <img class="poll_image" src="themes/1/placeholder_images/6359862041401967861409225263_coffee.png"></img>
                         <span class="poll_displaytext">Our coffee is awesome</span>
 
                         <!-- BEGIN place holder, will have to be removed. It must be geenrated dynamically -->
                         <div class="poll_ans_form">
-                            <label for="a_ans">YES <span class="answer_color_container answer_color_1"></span></label>
+                            <label for="a_ans">YES <span class="answer_color_container cmtyx_color_1"></span></label>
                             <input type="radio" name="radio-choice-ans" id="a_ans" class="ansRadioChoice" checked='checked'>
-                            <label for="b_ans">NO <span class="answer_color_container answer_color_2"></span></label>
+                            <label for="b_ans">NO <span class="answer_color_container cmtyx_color_2"></span></label>
                             <input type="radio" name="radio-choice-ans" id="b_ans" class="ansRadioChoice">
                         </div>
+                        <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all">submit</button>
                         <div class="poll_results">
 
                             <div class="a_ans_result">
-                                <div class="a_ans_graph answer_color_1"></div>
+                                <div class="a_ans_graph cmtyx_color_1"></div>
                                 <span class="a_ans_percent_num">85%</span>
                             </div>
                             <div class="b_ans_result">
-                                <div class="b_ans_graph answer_color_2"></div>
+                                <div class="b_ans_graph cmtyx_color_2"></div>
                                 <span class="b_ans_percent_num">15%</span>
                             </div>
                         </div>
@@ -231,7 +188,7 @@
                                             </div>
                                         </div>
                                         <div class="ui-block-b ">
-                                            <img src="themes/3/placeholder_images/burger.png"></img>
+                                            <img src="themes/1/placeholder_images/burger.png"></img>
                                         </div>
                                     </div>
                                 </div>
@@ -247,7 +204,7 @@
                                             </div>
                                         </div>
                                         <div class="ui-block-b ">
-                                            <img src="themes/3/placeholder_images/burger.png"></img>
+                                            <img src="themes/1/placeholder_images/burger.png"></img>
                                         </div>
                                     </div>
                                 </div>
@@ -256,9 +213,9 @@
                     </div>
                 </li>
                 <li id="cmtyx_about_us_block" class="about_us_block">
-                    <div class="header">
+                    <div class="header cmtyx_color_4">
                         <span class="title">about us</span>
-                        <div class="collapse_btn"></div>
+                        <span class="collapse_btn">&#9650;</span>
                     </div>
                     <div class="body">
                         <div class="text">We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. Most of the people here have some advanced degree in Coffee Science. Bill is our new intern, but he is from Columbia
@@ -268,9 +225,9 @@
                 <li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
                 </li>
                 <li id="cmtyx_reviews_block" class="reviews_block">
-                    <div class="header">
+                    <div class="header cmtyx_color_2">
                         <span class="title">user's reviews</span>
-                        <div class="collapse_btn"></div>
+                        <span class="collapse_btn">&#9650;</span>
                     </div>
                     <div class="body">
                         <div class="review">
@@ -305,16 +262,16 @@
                     </div>
                 </li>
                 <li id="cmtyx_promotion_block" class="promotion_block">
-                    <div class="header">
+                    <div class="header cmtyx_color_3">
                         <span class="title">Promotion</span>
-                        <div class="collapse_btn"></div>
+                        <span class="collapse_btn">&#9650;</span>
                     </div>
                     <div class="body">
                         <div class="promotion_item">
                             <div class="promotion_type">
                               DISCOUNT
                             </div>
-                            <img src="themes/3/placeholder_images/special.png"></img>
+                            <img src="themes/1/placeholder_images/special.png"></img>
                             <div class="promotion_description">
                               For a limited time, get a coffee if you bring in your dog.
                               Your dog. Don't borrow someone eles's dog!
@@ -330,16 +287,26 @@
                                     <span class="text">Share</span>
                                 </div>
                             </div>
+                            <div class="ui-grid-c promotion-share-block">
+                                <div class="ui-block-a text"><span class="share_icon sms_icon"></span>
+                                    <br>SMS</div>
+                                <div class="ui-block-b text"><span class="share_icon email_icon"></span>
+                                    <br>E-mail</div>
+                                <div class="ui-block-c text"><span class="share_icon facebook_icon"></span>
+                                    <br>Facebook</div>
+                                <div class="ui-block-d text"><span class="share_icon twitter_icon"></span>
+                                    <br>Twitter</div>
+                            </div>
                         </div>
                     </div>
                 </li>
                 <li id="cmtyx_photo_contest_block" class="photo_contest_block">
-                    <div class="header">
+                    <div class="header cmtyx_color_4">
                         <span class="title">Photo contest</span>
-                        <div class="collapse_btn"></div>
+                        <span class="collapse_btn">&#9650;</span>
                     </div>
                     <div class="body">
-                        <img src="themes/3/placeholder_images/special.png"></img>
+                        <img src="themes/1/placeholder_images/special.png"></img>
                         <span class="contest_task">Send us a picture of your dog, running!</span>
                         <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
                         <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
@@ -355,7 +322,7 @@
                                             </div>
                                         </div>
                                         <div class="ui-block-b ">
-                                        <img src="themes/3/placeholder_images/burger.png"></img>
+                                        <img src="themes/1/placeholder_images/burger.png"></img>
                                       </div>
                                     </div>
                                 </div>
@@ -371,7 +338,7 @@
                                             </div>
                                         </div>
                                         <div class="ui-block-b ">
-                                        <img src="themes/3/placeholder_images/burger.png"></img>
+                                        <img src="themes/1/placeholder_images/burger.png"></img>
                                       </div>
                                     </div>
                                 </div>
@@ -387,7 +354,7 @@
                                             </div>
                                         </div>
                                         <div class="ui-block-b ">
-                                        <img src="themes/3/placeholder_images/burger.png"></img>
+                                        <img src="themes/1/placeholder_images/burger.png"></img>
                                       </div>
                                     </div>
                                 </div>
@@ -396,9 +363,9 @@
                     </div>
                 </li>
                 <li id="cmtyx_video_block" class="video_block">
-                    <div class="header">
+                    <div class="header cmtyx_color_1">
                         <span class="title">video</span>
-                        <div class="collapse_btn"></div>
+                        <span class="collapse_btn">&#9650;</span>
                     </div>
                     <div class="body last">
                         <iframe width="100%" height="250" src="https://www.youtube.com/embed/Co1oj3o4tbE" frameborder="0" allowfullscreen></iframe>
@@ -771,11 +738,11 @@
             <div class="select_picture_container">
                 <label data-content="Title">Select a picture</label>
                 <div class="select_picture_gallery">
-                    <img src="themes/3/placeholder_images/pexels-photo-59523.png" alt="">
-                    <img src="themes/3/placeholder_images/6359862041401967861409225263_coffee.png" alt="">
-                    <img src="themes/3/placeholder_images/burger.png" alt="">
-                    <img src="themes/3/placeholder_images/special.png" alt="">
-                    <img src="themes/3/placeholder_images/Salad_platter.png" alt="">
+                    <img src="themes/1/placeholder_images/pexels-photo-59523.png" alt="">
+                    <img src="themes/1/placeholder_images/6359862041401967861409225263_coffee.png" alt="">
+                    <img src="themes/1/placeholder_images/burger.png" alt="">
+                    <img src="themes/1/placeholder_images/special.png" alt="">
+                    <img src="themes/1/placeholder_images/Salad_platter.png" alt="">
                 </div>
                 <div class="btn_container">
                     or
@@ -798,6 +765,4 @@
     </div>
 
     <script src="build/bundle.js"></script>
-</body>
-
-</html>
+</body> 
