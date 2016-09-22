@@ -68,13 +68,18 @@ var RosterOrderModel = Backbone.Model.extend({
 	},
 
 	getAddress: function(address) {
-		var addr = {
-				street: address.street,
-				city: address.city,
-				number: address.number
-			};
+		var addr;
+		if (typeof window.community.deliveryAddress !== 'undefined') {
+			addr = window.community.deliveryAddress;
+		} else {
+			addr = {
+					street: address.street,
+					city: address.city,
+					number: address.number
+				};
+		}
 
-		    this.additionalParams.addrIsEmpty = _.isMatch(addr, {street: undefined, city: undefined, number: undefined});
+		this.additionalParams.addrIsEmpty = _.isMatch(addr, {street: undefined, city: undefined, number: undefined});
 		return addr;
 	},
 

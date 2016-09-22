@@ -49,46 +49,64 @@ var RosterBasketModel = Backbone.Model.extend({
 
 
   addCatalog: function(catalog, count, catalogId, catalogDisplayText) {
+      debugger;
     // console.log("BasketModel:addItem::"+item.get('itemName')+",
     // "+groupId+", "+catalogId);
     //var xxx=
     //this.catalogs.add(catalog);
     //his.catalogs.remove(catalogId);
-
-    var catalogModel = this.catalogs.get(catalog.catalogId);
-    if (catalogModel) {
-      var quantity = catalogModel.get('quantity');
-      //quantity = quantity + count;
-      quantity = count;
-      catalogModel.set('quantity', quantity);
+    var catalogModel,
+        catalogModels;
+    if (catalogId === 'SIDES') {
+        catalogModels = this.catalogs.models.find(function(item) {
+            return item.id === 'SIDES';
+        });
+        catalogModel = catalogModels.find(function(item) {
+            return item.itemName === catalogDisplayText;
+        });
+        catalogModel.set('quantity', count);
+    } else  if (catalogId === 'BUILDYOURCOMBO') {
+        // catalogModel = this.catalogs.models.find(function(item) {
+        //     return item.itemsList === catalog.ownComboItemText;
+        // });
+        // catalogModel.quantity = count;
+        catalog.quantity = count;
     } else {
-      /*
-      * create item options, pass groupId, catalogId
-      */
-      var catalogDetails = _.extend({}, {
-        catalogUUID: catalog.catalogId,
-        catalogDisplayText: catalog.displayText,
-        catalogType: catalog.catalogType.enumText,
-        quantity: count || 1,
-        price: catalog.price,
-        catalog: catalog,
-        itemName: "",
-        itemType: 'COMBO'
-      });
+        catalogModel = this.catalogs.get(catalog.catalogId);
+        if (catalogModel) {
+          var quantity = catalogModel.get('quantity');
+          //quantity = quantity + count;
+          quantity = count;
+          catalogModel.set('quantity', quantity);
+        } else {
+          /*
+          * create item options, pass groupId, catalogId
+          */
+          var catalogDetails = _.extend({}, {
+            catalogUUID: catalog.catalogId,
+            catalogDisplayText: catalog.displayText,
+            catalogType: catalog.catalogType.enumText,
+            quantity: count || 1,
+            price: catalog.price,
+            catalog: catalog,
+            itemName: "",
+            itemType: 'COMBO'
+          });
 
-      /*
-      * create basketItem model
-      * REMEMBER: This is a collection, so no arguments. set them later.
-      */
+          /*
+          * create basketItem model
+          * REMEMBER: This is a collection, so no arguments. set them later.
+          */
 
-      var catalogModel = new CatalogBasketModel();
-      catalogModel.setCatalogDetails(catalogDetails);
-      catalogModel.groups = catalog.groups;
+          var catalogModel = new CatalogBasketModel();
+          catalogModel.setCatalogDetails(catalogDetails);
+          catalogModel.groups = catalog.groups;
 
-      /*
-      * add the itemModel to the collection
-      */
-      this.catalogs.add(catalogModel);
+          /*
+          * add the itemModel to the collection
+          */
+          this.catalogs.add(catalogModel);
+        }
     }
     this.dumpCartToConsole();
     this.trigger('change');
