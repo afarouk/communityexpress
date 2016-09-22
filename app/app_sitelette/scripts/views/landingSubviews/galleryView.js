@@ -2,7 +2,7 @@
 
 'use strict';
 
-var Vent = require('../Vent');
+var Vent = require('../../Vent');
 
 var GalleryView = Backbone.View.extend({
   name: 'gallery',

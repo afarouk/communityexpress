@@ -2,8 +2,8 @@
 
 'use strict';
 
-var Vent = require('../Vent'),
-    userController = require('../controllers/userController');
+var Vent = require('../../Vent'),
+    userController = require('../../controllers/userController');
 
 var LandingReviewsView = Backbone.View.extend({
   name: 'landing_reviews',

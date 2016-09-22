@@ -2,8 +2,8 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/roster_combo_item.ejs'), 
-    Vent = require('../../Vent'), 
+var template = require('ejs!../../templates/partials/roster_combo_item.ejs'),
+    Vent = require('../../Vent'),
     h = require('../../globalHelpers');
 
 var RosterComboItemView = Backbone.View.extend({
@@ -34,7 +34,7 @@ var RosterComboItemView = Backbone.View.extend({
         this.onClick();
     },
 
-    addToCart: function(e, action){
+    addToCart: function(e, action) {
         var catalogId = e.target.attributes.catalogid.value;
         var catalog_quantity = parseInt($('#ComboItemCount_'+catalogId).text());
         console.log(catalog_quantity);
@@ -45,7 +45,7 @@ var RosterComboItemView = Backbone.View.extend({
         console.log(count);
 
         this.basket = this.options.parent.basket;
-        var initialCnt=this.basket.getComboCount();
+        var initialCnt = this.basket.getComboCount();
         this.catalogId = e.target.attributes.catalogid.value;
         this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value;
         this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);
