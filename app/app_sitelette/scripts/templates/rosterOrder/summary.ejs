@@ -2,7 +2,7 @@
     <div class="circles_block">
         <div class="circle"></div>
         <div class="circle"></div>
-        <div class="circle last cmtyx_bgcolor1 cmtyx_brdrcolor1"></div>
+        <div class="circle last cmtyx_border_color_1 cmtyx_color_1"></div>
     </div>
     <div class="navigation">
         <div class="left_arr_block nav_back_btn"><span>Back</span></div>
@@ -24,13 +24,13 @@
                 <% _.each(combinedItems, function(item) { %>
                     <li>
                         <span class="order_name"><%= item.quantity %>X <%= item.displayText %></span>
-                        <span class="order_price cmtyx_color1"><%= cs + item.price %></span>
+                        <span class="order_price cmtyx_text_color_1"><%= cs + item.price %></span>
                     </li>
                 <% }) %>
             </ul>
             <ul class="price_list">
-                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_color1"><%= cs + subTotal %></span></li>
-                <li ><span class="order_name">Tax (<%= taxState %>%)</span><span class="order_price cmtyx_color1"><%= cs + taxAmount %></span></li>
+                <li><span class="order_name">Subtotal</span><span class="order_price cmtyx_text_color_1"><%= cs + subTotal %></span></li>
+                <li ><span class="order_name">Tax (<%= taxState %>%)</span><span class="order_price cmtyx_text_color_1"><%= cs + taxAmount %></span></li>
                 <!-- <li class="tip_price"><span class="order_name">Tip</span>
                 <div class="float_right">
                    <div class="select_container">
@@ -42,16 +42,16 @@
                                 <option value="tip20">20%</option>
                             </select>
                     </div>  
-                    <span class="order_price cmtyx_color1"><%= cs %>0.00</span>
+                    <span class="order_price cmtyx_text_color_1"><%= cs %>0.00</span>
                 </div></li> -->
-                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_color1"><%= cs %><%= totalAmount %></span></li>
+                <li class="total_price"><span class="order_name">Total</span><span class="order_price cmtyx_text_color_1"><%= cs %><%= totalAmount %></span></li>
             </ul>
             <div class="ui-grid-a back_next_btns">
                 <div class="ui-block-a p-r-10">
-                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_color1 cmtyx_brdrcolor1">Back</button>
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
                 </div>
                 <div class="ui-block-b p-l-10">
-                    <button class="ui-btn ui-corner-all next_btn cmtyx_bgcolor1 cmtyx_brdrcolor1">Place order</button>
+                    <button class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Place order</button>
                 </div>
             </div>
         </div>

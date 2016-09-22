@@ -109,9 +109,18 @@ body {
 
 .ui-page {
     background-color: #363636;
-    padding: 15px 10px 100px 10px;
+    padding: 0 0 100px 0;
     text-shadow: none;
     color: #fafafa;
+}
+
+#address.ui-page,
+#shipping_page.ui-page,
+#payment_page.ui-page,
+#payment_card_page.ui-page,
+#summary.ui-page
+{
+    padding: 15px 10px 100px 10px;
 }
 
 .ui-focus {
@@ -129,6 +138,10 @@ body {
 .ui-page-theme-a .ui-btn:active, .ui-page-theme-a .ui-btn:focus, .ui-page-theme-a .ui-btn:hover {
     background-color: transparent;
     text-shadow: none;
+}
+
+.ui-mobile [data-role=page], .ui-page {
+    width: auto;
 }
 
 .p-0 {
@@ -261,8 +274,8 @@ button.ui-btn {
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: 20px 5%;
-    width: 90%;
+    padding: 20px 2%;
+    width: 96%;
     z-index: 2;
 }
 
@@ -434,11 +447,12 @@ a.rightBtn.ui-btn {
 }
 
 .material-textfield.yellow input[required]:focus~label::before, .material-textfield.yellow textarea[required]:focus~label::before {
-    color: var(--cmtyx_color1);
+    /* color: var(--cmtyx_color1); */
 }
 
 .material-textfield.yellow input:focus, .material-textfield.yellow textarea:focus {
-    border-bottom: 0.1rem solid var(--cmtyx_color1);
+    border-bottom: 0.1rem solid;
+    /* border-bottom-color:  var(--cmtyx_color1); */
 }
 
 
@@ -1589,9 +1603,9 @@ span.select2.select2-container.select2-container--default, span.select2.select2-
     padding-top: 40px;
 }
 
-.ui-page {
+/* .ui-page {
     padding: 0 0 100px 0;
-}
+} */
 
 
 /**/
@@ -2291,7 +2305,7 @@ border-right: solid 1px #e1e1e1;
     position: relative;
     border-left: solid 5px;
     background-color: #555555;
-    padding: 15px 25px 25px 25px;
+    padding: 15px 5px;
     margin-top: 20px;
     text-align: left;
     display: none;
@@ -2657,7 +2671,8 @@ margin-bottom: 15px;
     background-color: #464646;
     /*color: var(--cmtyx_color1) !important;*/
     border: none;
-    border-bottom: solid 1px var(--cmtyx_color1) !important;
+    border-bottom: solid 1px;
+    /* border-bottom-color: var(--cmtyx_color1) !important; */
 }
 
 .navbar_btn_icon {
