@@ -654,7 +654,7 @@ li {
     text-transform: uppercase;
 }
 
-#cash, 
+#cash,
 #summary_info {
     margin-bottom: 50%;
 }
@@ -759,15 +759,15 @@ li {
         width: 3em;
     }
 
-    .skeuocard.js .flip-tab.front {     
+    .skeuocard.js .flip-tab.front {
         right: -5px;
-        top: 5px; 
+        top: 5px;
     }
-    .skeuocard.js .flip-tab.back {     
+    .skeuocard.js .flip-tab.back {
         left: -5px;
-        top: 5px; 
+        top: 5px;
     }
-} 
+}
 
 .checkbox_save_card_container {
     margin-top: 30px;
@@ -1667,7 +1667,7 @@ span.select2.select2-container.select2-container--default, span.select2.select2-
     height: auto;
     padding: 10px 5% 10px;
     position: fixed;
-    width: 90%;
+    width: 100%;
     z-index: 1000;
     margin-top: -3px;
     left: 0;
@@ -2667,17 +2667,17 @@ li.promotion_block .body {
     height: 100px!important;
     transition: .8s;
 }
-.photo_contest_block .photo_contest_upload_image .dropzone:before {    
+.photo_contest_block .photo_contest_upload_image .dropzone:before {
     font-size: 60px;
     top: 7px;
 }
-.photo_contest_block .photo_contest_upload_image .dropzone:after {    
+.photo_contest_block .photo_contest_upload_image .dropzone:after {
     bottom: 10%;
 }
-.photo_contest_block .photo_contest_upload_image .dropzone.added {    
+.photo_contest_block .photo_contest_upload_image .dropzone.added {
     height: 568px!important;
 }
-.photo_contest_block .photo_contest_upload_image .dropzone.loading:after {    
+.photo_contest_block .photo_contest_upload_image .dropzone.loading:after {
     visibility: hidden;
 }
 
