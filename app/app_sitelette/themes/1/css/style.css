@@ -7,7 +7,6 @@ html {
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans);
 
-
 .popup_container {
     background-color: #363636;
 }
@@ -567,9 +566,21 @@ font-family: 'Open Sans', sans-serif;
     padding-left: 25px;
 }
 
+.order_list {
+    margin-top: 0;
+}
+
+.order_list li {
+    margin-bottom: 5px;
+}
+
+.price_list li {
+    margin-bottom: 10px;
+}
+
 p.your_order_text, p.card_text, p.delivery_address_text {
-    margin: 30px 0 15px 0;
-font-family: 'Open Sans', sans-serif;
+    margin: 15px 0 5px 0;
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     color: #969696;
     font-weight: 400;
@@ -577,12 +588,17 @@ font-family: 'Open Sans', sans-serif;
     letter-spacing: 1px;
 }
 
+p.card_text {
+    margin-top: 0;
+}
+
 p.card_number, p.address {
-font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #fafafa;
     font-weight: 300;
     letter-spacing: 1px;
+    margin: 0;
 }
 
 ul {
@@ -657,6 +673,11 @@ li {
 #cash, 
 #summary_info {
     margin-bottom: 50%;
+}
+
+#summary_info .order_price {
+    position: relative;
+    top: 6px;
 }
 
 
@@ -1047,6 +1068,11 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     -webkit-box-shadow: 10px 10px 20px -6px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: 10px 10px 20px -6px rgba(0, 0, 0, 0.6);
     box-shadow: 10px 10px 20px -6px rgba(0, 0, 0, 0.6);
+    overflow: scroll;
+}
+
+#left-panel .cmntyex-list_container ul {
+    margin-bottom: 20px;
 }
 
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay {
@@ -1073,7 +1099,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 .cart_header {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .cart_header_title {
@@ -1138,12 +1164,12 @@ font-family: 'Open Sans', sans-serif;
     float: right;
 }
 
-#left-panel .float-right {
+#left-panel .float_right {
     position: relative;
     top: 5px;
 }
 
-#left-panel .float-right .order_price {
+#left-panel .float_right .order_price {
     position: relative;
     top: 2px;
 }
@@ -1613,13 +1639,13 @@ span.select2-container--default .select2-selection--single:focus {
     display: inline-block;
 }
 
-.left_arrow_icon, span.build_combo_back_btn {
+.left_arrow_icon {
     background: url('images/left-arrow.png') no-repeat;
     background-size: 21px 21px;
-    height: 21px;
-    width: 21px;
+    height: 30px;
+    width: 30px;
     display: inline-block;
-    margin: -6px 21px -6px 2px;
+    margin: -4px -8px -6px 0;
 }
 
 span.delete_btn {
