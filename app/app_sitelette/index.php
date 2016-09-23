@@ -224,6 +224,16 @@ if ($saslAccess || $urlKeyAccess) {
             $friendlyURL = null;
           }
         }
+        $og_title="Some Title ";
+        $og_description="Some Description";
+        $og_image="Some image url";
+
+        $twitter_card="Some Twitter card";
+        $twitter_site="Some twitter site url";
+        $twitter_title=" Some title";
+        $twitter_description="Some description";
+        $twitter_image="Some image url";
+             
 
        include_once 'themes/1/head.php';
        if($useTemplate){

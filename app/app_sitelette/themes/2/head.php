@@ -73,5 +73,28 @@
             window.community.deliveryAddress.number = '<?php echo $number ?>';
         }
     </script>
+
+
+
+        <!-- Sharing meta data -->
+        <meta name="description" content="A Chalkboards App">
+        <meta name="keywords" content="Chalkboardstoday">
+        <meta name="author" content="chalkboardstoday.com">
+
+
+        <meta property="og:type"               content="article" />
+        <meta property="og:title"              content="<?PHP echo $og_title?>"/>
+        <meta property="og:description"        content="<?PHP echo $og_description?>"/>
+        <meta property="og:image"              content="<?PHP echo $og_image?>"/>
+
+        <meta name="twitter:card"              content="<?PHP echo $twitter_card?>"/>
+        <meta name="twitter:site"              content="<?PHP echo $twitter_site?>"/>
+        <meta name="twitter:creator"           content="@chalkboardstoday"/>
+        <meta name="twitter:title"             content="<?PHP echo $twitter_title?>"/>
+        <meta name="twitter:description"       content="<?PHP echo $twitter_description?>"/>
+        <meta name="twitter:image"             content="<?PHP echo $twitter_image?>"/>
+
+        <!--  End sharing meta data -->
+        
     <title><?php echo $saslName?></title>
 </head>
