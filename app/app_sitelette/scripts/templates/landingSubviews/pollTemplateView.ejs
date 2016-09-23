@@ -9,8 +9,17 @@
     <ul class="poll_ans_form">
         <% _.each(choices, function(choice, index){ %>
             <li>
-                <input type="radio" name="radio-choice-ans" id="ans_<%= index %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (index === 0) { %>checked='checked'<% } %>>
-                <label for="ans_<%= index %>"><%= choice.displayText %> <span class="answer_color_container cmtyx_color_<%= (index % 4) + 1 %>"></span></label>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <input type="radio" name="radio-choice-ans" id="ans_<%= index %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (index === 0) { %>checked='checked'<% } %>>
+                        <label for="ans_<%= index %>"><%= choice.displayText %> </label>
+                    </div>
+                    <div class="ui-block-b">
+                        <span class="answer_color_container cmtyx_color_<%= (index % 4) + 1 %>"></span>
+                    </div>
+                </div>
+                <!-- <input type="radio" name="radio-choice-ans" id="ans_<%= index %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (index === 0) { %>checked='checked'<% } %>>
+                <label for="ans_<%= index %>"><%= choice.displayText %> <span class="answer_color_container cmtyx_color_<%= (index % 4) + 1 %>"></span></label> -->
             </li>
         <% }) %>
     </ul>

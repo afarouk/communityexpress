@@ -83,14 +83,18 @@ var PaymentView = Backbone.View.extend({
 
     onCashSelected: function() {
         this.$('.rightBtn').addClass('cmtyx_color_1');
+        this.$('.rightBtn').removeClass('cmtyx_text_color_1');
         this.$('.leftBtn').removeClass('cmtyx_color_1');
+        this.$('.leftBtn').addClass('cmtyx_text_color_1');
         this.model.set('cashSelected', true);
         this.model.set('creditCardSelected', false);
     },
 
     onCreditSelected: function() {
         this.$('.leftBtn').addClass('cmtyx_color_1');
+        this.$('.leftBtn').removeClass('cmtyx_text_color_1');
         this.$('.rightBtn').removeClass('cmtyx_color_1');
+        this.$('.rightBtn').addClass('cmtyx_text_color_1');
         this.model.set('cashSelected', false);
         this.model.set('creditCardSelected', true);
     },
