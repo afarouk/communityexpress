@@ -27,8 +27,7 @@ module.exports = Backbone.View.extend({
     // },
 
     events: {
-        'click .header': 'toggleCollapse',
-        'click .send_photo_btn': 'onSendPhoto'
+        'click .header': 'toggleCollapse'
     },
 
     initialize: function(options) {
@@ -45,7 +44,25 @@ module.exports = Backbone.View.extend({
         // this.$el.html(photoContestTemplate(contest));
 
         this.$el.html(photoContestTemplate());
+        this.initUploader();
         return this;
+    },
+
+    initUploader: function() {
+        this.$el.find('.send_photo_btn').hide();
+        this.$el.find('.dropzone').html5imageupload({
+            save: false,  // use custom method
+            canvas: true, // should be true for handle
+            data: {},
+            resize: false, // doesn't work correct when true, should be chacked
+            onSave: this.onSaveImage.bind(this),
+            onAfterSelectImage: function(){
+                $(this.element).addClass('added');
+            },
+            onAfterCancel: function() {
+                $(this.element).removeClass('added');
+            }
+        });
     },
 
     toggleCollapse: function() {
@@ -71,24 +88,6 @@ module.exports = Backbone.View.extend({
                 //TODO manage error
                 this.render();
             }.bind(this));
-    },
-
-    onSendPhoto: function(e) {
-        $(e.currentTarget).slideUp();
-        this.$el.find('.photo_contest_upload_image').show();
-        this.$el.find('.dropzone').html5imageupload({
-            save: false,  // use custom method
-            canvas: true, // should be true for handle
-            data: {},
-            resize: false, // doesn't work correct when true, should be chacked
-            onSave: this.onSaveImage.bind(this),
-            onAfterSelectImage: function(){
-                $(this.element).addClass('added');
-            },
-            onAfterCancel: function() {
-                $(this.element).removeClass('added');
-            }
-        });
     },
 
     dataURLtoBlob: function(data) {
