@@ -97,13 +97,13 @@ module.exports = {
                         userName: response.userName
                     });
                 } else {
-                    //localStorage.removeItem('cmxUID');
-                    Cookies.remove('cmxUID');
+                    console.log("not removing cookie, getAuthentication status call failed?");
+                    //Cookies.remove('cmxUID');
                 }
                 dfd.resolve();
             }, function onRequestError () {
-                //localStorage.removeItem('cmxUID');
-                Cookies.remove('cmxUID');
+                console.log("not removing cookie, onRequestError ?");
+                //Cookies.remove('cmxUID');
                 dfd.resolve();
             });
         } else {
