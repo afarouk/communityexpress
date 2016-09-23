@@ -11,6 +11,8 @@ var Vent = require('../../Vent'),
     contestActions = require('../../actions/contestActions'),
     popupController = require('../../controllers/popupController'),
     userController = require('../../controllers/userController'),
+    contestActions = require('../../actions/contestActions'),
+    photoContestTemplate = require('ejs!../../templates/landingSubviews/photoContestView.ejs'),
     h = require('../../globalHelpers');
 
 module.exports = Backbone.View.extend({
@@ -31,10 +33,19 @@ module.exports = Backbone.View.extend({
 
     initialize: function(options) {
         options = options || {};
-        this.sasl = options.sasl;
-        this.hideTitle = true;
-        this.uploadPlaceHolder = 'Caption';
-        // this.on('show', this.onShow, this);
+        this.sasl = window.saslData;
+        this.sa = community.serviceAccommodatorId;
+        this.sl = community.serviceLocationId;
+        this.getPhotoContest();
+    },
+
+    render: function(contest) {
+        console.log('contest', contest);
+        this.contest = contest;
+        // this.$el.html(photoContestTemplate(contest));
+
+        this.$el.html(photoContestTemplate());
+        return this;
     },
 
     toggleCollapse: function() {
@@ -49,9 +60,74 @@ module.exports = Backbone.View.extend({
         });
     },
 
-    onSendPhoto: function() {
-        //TODO send photo 
-        this.enterContest();
+    getPhotoContest: function() {
+        contestActions.photoBySASL(this.sa,this.sl)
+            .then(function(contest) {
+                if (contest) {
+                    this.render(contest);
+                }
+            }.bind(this))
+            .fail(function(err){
+                //TODO manage error
+                this.render();
+            }.bind(this));
+    },
+
+    onSendPhoto: function(e) {
+        $(e.currentTarget).slideUp();
+        this.$el.find('.photo_contest_upload_image').show();
+        this.$el.find('.dropzone').html5imageupload({
+            save: false,  // use custom method
+            canvas: true, // should be true for handle
+            data: {},
+            resize: false, // doesn't work correct when true, should be chacked
+            onSave: this.onSaveImage.bind(this),
+            onAfterSelectImage: function(){
+                $(this.element).addClass('added');
+            },
+            onAfterCancel: function() {
+                $(this.element).removeClass('added');
+            }
+        });
+    },
+
+    dataURLtoBlob: function(data) {
+        var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
+        var byteString = atob(data.split(',')[1]);
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        var bb = (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder);
+        if (bb) {
+            bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)();
+            bb.append(ab);
+            return bb.getBlob(mimeString);
+        } else {
+            bb = new Blob([ab], {
+                'type': (mimeString)
+            });
+            return bb;
+        }
+    },
+
+    onSaveImage: function(image) {
+        var message = this.$el.find('.comntyex-upload_message_input').val(),
+            //temporary commennted
+            contestUUID = this.contest ? this.contest.contestUUID : '8Moo4I68SMKk1B6bkhbvTQ',
+            file = this.dataURLtoBlob(image.data);
+
+        contestActions.enterPhotoContest(this.sa, this.sl, 
+            contestUUID, file, message)
+            .then(function(result) {
+                debugger;
+            }.bind(this))
+            .fail(function(err){
+                //TODO manage error
+                debugger;
+            }.bind(this));
+        //TODO render prises, etc...
     },
 
     //TODO start with new data in landing subviews
