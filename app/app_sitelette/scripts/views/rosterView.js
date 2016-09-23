@@ -46,6 +46,7 @@ var RosterView = Backbone.View.extend({
             $('#roster_order_button').prop('disabled', false);
         };
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
+        this.listenTo(this, 'basketChanged', _.bind(this.basketChanged, this));
         this.updateBasket();
         // this.checkIfOpened();
         //$('.select').select2();
@@ -98,13 +99,16 @@ var RosterView = Backbone.View.extend({
         };
     },
 
+    basketChanged: function() {
+
+    },
+
     /* used to update the roster view created originally */
     updateBasket: function() {
         this.$('.cart_items_number').text(this.basket.getItemsNumber());
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice());
         var comboCount = this.basket.getComboCount();
         var nonComboCount = this.basket.getNonComboItemCount();
-        var itemsNumber = this.basket.getItemsNumber();
         if (comboCount === 0 && nonComboCount === 0) {
           this.$('#roster_order_button').prop('disabled', true);
         } else {

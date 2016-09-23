@@ -8,7 +8,7 @@
                 <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogId="<%=combo.catalogId%>" catalogDisplayText="<%=combo.displayText%>"></a>
             </div>
             <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
-                 <span class="quantity" id="ComboItemCount_<%=combo.catalogId%>" >0</span>
+                 <span class="quantity" id="ComboItemCount_<%=combo.catalogId%>" ><%= combo.quantity %></span>
             </div>
             <div class="ui-block-c quantity_plus incrementQuantity">
                 <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"  catalogId="<%=combo.catalogId%>" catalogDisplayText="<%=combo.displayText%>"></a>

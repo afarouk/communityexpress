@@ -20,12 +20,15 @@ var RosterComboItemView = Backbone.View.extend({
 
     initialize : function(options) {
         this.options = options;
+        this.basket = this.options.parent.basket;
         this.sasl = options.parent.sasl;
         this.listenTo(this.model, 'destroy', this.remove, this);
         this.onClick = function () {
             options.onClick(this.model);
         }.bind(this);
         this.color = options.color;
+
+        // this.listenTo(this.basket, 'reset change add remove', _.bind(this.updateBasket, this));
 
     },
 
@@ -34,29 +37,35 @@ var RosterComboItemView = Backbone.View.extend({
         this.onClick();
     },
 
-    addToCart: function(e, action) {
-        var catalogId = e.target.attributes.catalogid.value;
-        var catalog_quantity = parseInt($('#ComboItemCount_'+catalogId).text());
-        console.log(catalog_quantity);
+    // updateBasket: function() {
+    //     this.$('.quantity').text(this.model.quantity);
+    // },
 
-        var count = (action == 'add') ? catalog_quantity + 1 : catalog_quantity - 1,
+    addToCart: function(e, action) {
+        // var catalogId = e.target.attributes.catalogid.value;
+        // var catalog_quantity = parseInt($('#ComboItemCount_'+catalogId).text());
+        var catalogId = this.model.catalogId,
+            // quantity = parseInt(this.$('.quantity').text()),
+            quantity = this.model.quantity,
+            catalogDisplayText = this.model.displayText,
+            count = (action == 'add') ? quantity + 1 : quantity - 1,
             catalog;
 
         console.log(count);
-
-        this.basket = this.options.parent.basket;
-        var initialCnt = this.basket.getComboCount();
-        this.catalogId = e.target.attributes.catalogid.value;
-        this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value;
-        this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);
+        this.model.quantity = count;
+        // var initialCnt = this.basket.getComboCount();
+        // this.catalogId = e.target.attributes.catalogid.value;
+        // this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value;
+        this.basket.addCatalog(this.model, count, catalogId, catalogDisplayText);
         catalog = this.basket.getCatalog(this.model);
         if (catalog) {
-            catalog.off('change').on('change', _.bind(this.changeCount, this));
+            catalog.off('change remove').on('change remove', _.bind(this.changeCount, this));
         }
 
-        // $('.cart_items_number').text(this.basket.getComboCount());
+        this.$('.quantity').text(this.model.quantity);
 
-        $('#ComboItemCount_'+catalogId).text(count);
+        // $('.cart_items_number').text(this.basket.getComboCount());
+        // $('#ComboItemCount_'+catalogId).text(count);
 
         return;
     },
@@ -66,13 +75,14 @@ var RosterComboItemView = Backbone.View.extend({
     },
 
     decrementQuantity: function (e) {
+        if (this.model.quantity === 0) return;
         this.addToCart(e, 'remove');
     },
 
     changeCount: function() {
-        //TODO temporary solution
         var count = this.basket.getCatalogQuantity(this.model);
-        this.$el.find('select').val('num' + count);
+        this.model.quantity = count;
+        this.$('.quantity').text(count);
     },
 
     render : function() {

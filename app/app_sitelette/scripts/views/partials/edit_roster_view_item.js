@@ -17,6 +17,7 @@ var EditRosterViewItem = Backbone.View.extend({
     initialize: function (options) {
         this.parent = options.parent;
         this.quantity = this.model.get('quantity');
+        this.changedCatalogs = this.parent.parent.changedCatalogs;
         this.basket = options.parent.parent.basket;
         this.template = options.template || template;
 
@@ -52,10 +53,18 @@ var EditRosterViewItem = Backbone.View.extend({
         var catalog = this.model.toJSON(),
             quantity = this.model.get('quantity'),
             catalogId = this.model.get('catalogId');
-        if (quantity === 0) {
-            this.$el.remove();
+        var changedCatalog = {
+            catalog: catalog,
+            quantity: quantity,
+            catalogId: catalogId
         };
-        this.basket.addCatalog(catalog, quantity, catalogId);
+        if (catalogId === 'BUILDYOURCOMBO') {
+            this.changedCatalogs[catalog.ownComboItemText] = changedCatalog;
+        } else if (catalogId === 'SIDES') {
+            this.changedCatalogs[catalog.displayText] = changedCatalog;
+        } else {
+            this.changedCatalogs[catalogId] = changedCatalog;
+        }
     },
 
     toggleSelected: function () {
