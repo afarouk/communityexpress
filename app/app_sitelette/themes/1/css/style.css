@@ -61,6 +61,10 @@ body {
     color: #fafafa;
 }
 
+#cmtyx_landingView.ui-page {
+    padding-bottom: 0;
+}
+
 #address.ui-page,
 #shipping_page.ui-page,
 #payment_page.ui-page,
