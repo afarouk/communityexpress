@@ -90,7 +90,7 @@ App.prototype = {
             conf.set('embedded', true);
         };
         if (this.params.UID) {
-            Cookies.set("cmxUID", this.params.UID);
+            Cookies.set("cmxUID", this.params.UID, {expires:365});
             sessionActions.authenticate(this.params.UID)
                 .always(function() {
                     Backbone.history.start({

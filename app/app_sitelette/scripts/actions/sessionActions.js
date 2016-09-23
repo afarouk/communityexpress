@@ -23,7 +23,7 @@ var onLoginSuccess = function (response) {
 
     if (response.localStorage !== false) {
         //localStorage.setItem('cmxUID', response.uid);
-        Cookies.set('cmxUID',response.uid);
+        Cookies.set('cmxUID',response.uid , {expires : 365});
     };
     Vent.trigger('login_success');
 
@@ -143,7 +143,7 @@ module.exports = {
                 console.log(" saving to local storage cmxUID:"
                 + userRegistrationDetails.uid);
                 //localStorage.setItem("cmxUID", userRegistrationDetails.uid);
-                Cookies.set('cmxUID',userRegistrationDetails.uid);
+                Cookies.set('cmxUID',userRegistrationDetails.uid , {expires:365});
                 self.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
             }
         });
