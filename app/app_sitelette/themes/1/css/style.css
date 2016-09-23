@@ -2651,6 +2651,36 @@ li.promotion_block .body {
     margin-bottom: 25px;
 }
 
+.photo_contest_block .photo_contest_upload_image {
+        max-width:320px;
+        max-height: 568px;
+        margin-bottom: 20px;
+}
+
+.photo_contest_block .photo_contest_upload_image {
+    /*display: none;*/
+    /*width: 320px;*/
+    /*height: 568px;*/
+}
+.photo_contest_block .photo_contest_upload_image .dropzone {
+    border-radius: 4px;
+    height: 100px!important;
+    transition: .8s;
+}
+.photo_contest_block .photo_contest_upload_image .dropzone:before {    
+    font-size: 60px;
+    top: 7px;
+}
+.photo_contest_block .photo_contest_upload_image .dropzone:after {    
+    bottom: 10%;
+}
+.photo_contest_block .photo_contest_upload_image .dropzone.added {    
+    height: 568px!important;
+}
+.photo_contest_block .photo_contest_upload_image .dropzone.loading:after {    
+    visibility: hidden;
+}
+
 .poll_block .prizes_title, .photo_contest_block .prizes_title {
     text-align: center;
     font: 400 12px 'Open Sans', sans-serif;
