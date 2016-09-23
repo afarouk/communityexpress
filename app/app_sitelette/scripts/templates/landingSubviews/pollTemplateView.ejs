@@ -6,32 +6,17 @@
     <img class="poll_image" src="<%= imageURL %>"></img>
     <span class="poll_displaytext"><%= displayText %>?</span>
 
-    <!-- BEGIN place holder, will have to be removed. It must be geenrated dynamically -->
     <ul class="poll_ans_form">
         <% _.each(choices, function(choice, index){ %>
             <li>
-                <input type="radio" name="radio-choice-ans" id="ans_<%= index %>" data-choice="<%= index %>" class="ansRadioChoice" <% if (index === 0) { %>checked='checked'<% } %>>
-                <label for="ans_<%= index %>"><%= choice.displayText %> <span class="answer_color_container cmtyx_color_1"></span></label>
+                <input type="radio" name="radio-choice-ans" id="ans_<%= index %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (index === 0) { %>checked='checked'<% } %>>
+                <label for="ans_<%= index %>"><%= choice.displayText %> <span class="answer_color_container cmtyx_color_<%= (index % 4) + 1 %>"></span></label>
             </li>
         <% }) %>
-        <!-- <label for="a_ans">YES <span class="answer_color_container cmtyx_color_1"></span></label>
-        <input type="radio" name="radio-choice-ans" id="a_ans" class="ansRadioChoice" checked='checked'>
-        <label for="b_ans">NO <span class="answer_color_container cmtyx_color_2"></span></label>
-        <input type="radio" name="radio-choice-ans" id="b_ans" class="ansRadioChoice"> -->
     </ul>
     <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all">submit</button>
-    <div class="poll_results">
-
-        <div class="a_ans_result">
-            <div class="a_ans_graph cmtyx_color_1"></div>
-            <span class="a_ans_percent_num">85%</span>
-        </div>
-        <div class="b_ans_result">
-            <div class="b_ans_graph cmtyx_color_2"></div>
-            <span class="b_ans_percent_num">15%</span>
-        </div>
-    </div>
-    <!-- END place holder, will have to be removed. It must be geenrated dynamically -->
+    
+    <div class="poll_results answerBar jqplot-target" id="pollBar"></div>
 
     <div class="prizes_title">All entries are entered into our mini sweepstakes!</div>
     <ul>
@@ -53,21 +38,5 @@
                 </div>
             </li>
         <% }) %>
-        <!-- <li class="last">
-            <div class="prize_block">
-                <div class="ui-grid-a prize_container">
-                    <div class="ui-block-a">
-                        <div class="prize_text_block">
-                            <span class="prize_text">Second Prize</span>
-                            <span class="prize_condition">A free burger, toppings extra</span>
-                            <span class="prize_date">till 30.07</span>
-                        </div>
-                    </div>
-                    <div class="ui-block-b ">
-                        <img src="themes/1/placeholder_images/burger.png"></img>
-                    </div>
-                </div>
-            </div>
-        </li> -->
     </ul>
 </div>

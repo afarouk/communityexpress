@@ -37,6 +37,20 @@ module.exports = {
         }).then(handleResponse);
     },
 
+    photoBySASL: function (sa, sl) {
+        return gateway.sendRequest('retrievePhotoContestBySASL', {
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl
+        }).then(handleResponse);
+    },
+
+    pollBySASL: function (sa, sl) {
+        return gateway.sendRequest('retrievePollContestBySASL', {
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl
+        }).then(handleResponse);
+    },
+
     checkin: function (id) {
         return gateway.sendRequest('retrieveCheckinContest', {
             contestUUID: id,
