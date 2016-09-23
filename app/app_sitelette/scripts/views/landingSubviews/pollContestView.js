@@ -54,7 +54,7 @@ module.exports = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
 
-        this.getContests();
+        this.getPollContest();
     },
 
     render: function(poll) {
@@ -98,7 +98,7 @@ module.exports = Backbone.View.extend({
         var res = result || this.poll;
         this.$el.find('.poll_results').show();
         var options = jqPlotOptions.options,
-            colorChoices = jqPlotOptions.colorChoices;
+            colorChoices = jqPlotOptions.colorChoices; //We need to get colors array
 
             var array = [], a = [], b = [];
             _.each(res.choices, function(choice) {
@@ -120,7 +120,7 @@ module.exports = Backbone.View.extend({
             $.jqplot('pollBar', dataArray, options);
     },
 
-    getContests: function() {
+    getPollContest: function() {
         contestActions.pollBySASL(this.sa,this.sl)
             .then(function(poll) {
                 if (poll) {
@@ -128,6 +128,9 @@ module.exports = Backbone.View.extend({
                 } else {
                     this.render(this.getHardcodedJSON());
                 }
+            }.bind(this))
+            .fail(function(err){
+                //TODO manage error
             }.bind(this));
     },
 
