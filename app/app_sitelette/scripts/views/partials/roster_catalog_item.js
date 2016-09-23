@@ -25,7 +25,7 @@ var RosterCatalogItemView = Backbone.View.extend({
         this.sasl = options.parent.sasl;
         this.listenTo(this.model, 'destroy', this.remove, this);
         this.showCatalog = options.showCatalog;
-        
+
         this.listenTo(this.basket, 'reset change add remove', this.onBasketUpdate, this);
     },
 
@@ -42,7 +42,7 @@ var RosterCatalogItemView = Backbone.View.extend({
     },
 
     renderOwnComboItems: function() {
-        var ownCombosList = _.where(this.basket.catalogs.models, 
+        var ownCombosList = _.where(this.basket.catalogs.models,
             {'id': 'BUILDYOURCOMBO'});
         _.each(ownCombosList, function(item){
             item.itemsList = _.pluck(item.models, 'itemName').join(',');
@@ -55,7 +55,7 @@ var RosterCatalogItemView = Backbone.View.extend({
     },
 
     renderSidesItems: function() {
-        var sidesList = _.where(this.basket.catalogs.models, 
+        var sidesList = _.where(this.basket.catalogs.models,
             {'id': 'SIDES'});
         _.each(sidesList, function(item){
             item.itemsList = _.map(item.models, function(model){
@@ -72,7 +72,7 @@ var RosterCatalogItemView = Backbone.View.extend({
     },
 
     addToCart: function(e, action){
-        var ownCombosList = _.where(this.basket.catalogs.models, 
+        var ownCombosList = _.where(this.basket.catalogs.models,
             {'id': 'BUILDYOURCOMBO'}),
             comboIndex = $(e.target).data('owncombo'),
             combo_quantity = parseInt(this.$('#ownCombo_'+comboIndex).text()),
@@ -109,7 +109,19 @@ var RosterCatalogItemView = Backbone.View.extend({
     },
 
     onBasketUpdate: function() {
-        // debugger;
+        var catalogId = this.model.catalogId;
+        switch (catalogId) {
+            case 'BUILDYOURCOMBO':
+                this.$('.combo_items_container').html('');
+                this.renderOwnComboItems();
+                break;
+            case 'SIDES':
+                this.$('.combo_items_container').html('');
+                this.renderSidesItems();
+                break;
+            default:
+
+        }
     }
 });
 

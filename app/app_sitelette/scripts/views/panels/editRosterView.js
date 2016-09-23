@@ -16,12 +16,14 @@ var EditRosterView = PanelView.extend({
     addedEvents : {
         // 'click .plus_button': 'incrementQuantity',
         // 'click .minus_button': 'decrementQuantity',
-        'click .cart_add_delete_item': 'addOrDeleteItem'
+        'click .cart_add_delete_item': 'addOrDeleteItem',
+        'click .close_roster_basket_panel_button': 'saveBasket'
     },
 
     initialize : function(options) {
         this.options = options;
         options = options || {};
+        this.changedCatalogs = {};
         this.basket = this.model.basket;
 
         this.itemTemplate = options.template;
@@ -51,6 +53,14 @@ var EditRosterView = PanelView.extend({
         }).render().el);
         this.afterRender(); // call it for each panel if you replaced render
         return this;
+    },
+
+    saveBasket: function() {
+        if (this.changedCatalogs.length === 0) return;
+        _.each(this.changedCatalogs, _.bind(function(catalog){
+            this.basket.addCatalog(catalog.catalog, catalog.quantity, catalog.catalogId);
+        }, this));
+        // this.parent.trigger('basketChanged');
     },
 
     removeSelected : function(e) {
