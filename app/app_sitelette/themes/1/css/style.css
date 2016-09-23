@@ -2506,7 +2506,7 @@ li.promotion_block .body {
 }
 
 .photo_contest_block .photo_contest_upload_image {
-    display: none;
+    /*display: none;*/
     /*width: 320px;*/
     /*height: 568px;*/
 }
