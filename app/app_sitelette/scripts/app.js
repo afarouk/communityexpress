@@ -74,6 +74,16 @@ var App = function() {
 App.prototype = {
 
     init: function() {
+        /* AF bind the video scripts to any video elements */
+        $( document ).ready(function() {
+          $('.embedded_videos').on('click', function () {
+          var vid=$(this).attr("idVideo");
+          //console.log(vid);
+          $(this).html('<iframe width="320"height="240" src="https://www.youtube.com/embed/'+vid+'?playsinline=1" frameborder="0"allowfullscreen></iframe>').css('background','none');});
+        });
+
+
+
 
         if (window.saslData.error) {
             loader.showFlashMessage(window.saslData.error.message);
