@@ -2082,7 +2082,7 @@ li.promotion_block .body {
 }
 .photo_contest_block .photo_contest_upload_image .dropzone {
     border-radius: 4px;
-    height: 100px!important;
+    min-height: 100px!important;
     transition: .8s;
     border-color: #757373;
 }
