@@ -16,12 +16,12 @@ var CatalogsView = Backbone.View.extend({
 
     initialize: function (options) {
         this.sasl = options.sasl;
-        // TODO if catalogs.collection is empty
-        this.catalogs = options.catalogs.collection;
-        this.sasl = options.sasl;
+        this.options = options || {};
+        if (options.catalogs.collection.length !== 0) {
+            this.catalogs = options.catalogs.collection;
+            this.render();
+        }
         this.on('show', this.onShow, this);
-        this.navbarView = options.navbarView;
-        this.render();
     },
 
     render: function() {
@@ -36,9 +36,19 @@ var CatalogsView = Backbone.View.extend({
     },
 
     onShow:  function () {
+        if (this.options.catalogs.collection.length === 0 && !this.options.catalog) {
+            this.goBack();
+            return;
+        } else if (this.options.catalog) {
+            this.triggerCatalogView();
+        }
         this.addEvents({
             'click .back': 'goBack'
         });
+    },
+
+    triggerCatalogView: function() {
+        Vent.trigger('changePage', 'catalog', this.options.catalog);
     },
 
     goBack: function() {

@@ -60,7 +60,6 @@ var EditRosterView = PanelView.extend({
         _.each(this.changedCatalogs, _.bind(function(catalog){
             this.basket.addCatalog(catalog.catalog, catalog.quantity, catalog.catalogId);
         }, this));
-        // this.parent.trigger('basketChanged');
     },
 
     removeSelected : function(e) {

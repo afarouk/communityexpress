@@ -1,10 +1,16 @@
 <div id="cmtyx_catalogView" data-role="page" class="page build_combo">
     <div class="sub_header">
         <div class="basket_icon_container">
-            <a href="#left-panel">
+            <a href="#left-panel edit_button">
                 <span class="shopping_icon"></span>
             </a>
-            <span class="cart_items_number"><%=basket.getComboCount()%></span>
+            <span class="cart_items_number">
+                <% if (rosterBasket) { %>
+                    <%= rosterBasket.getItemsNumber() %>
+                <% } else { %>
+                    <%= basket.getComboCount() %>
+                <% } %>
+            </span>
         </div>
         <div class="total_price_order_block">
             <span class="total_price cmtyx_text_color_1">0</span>

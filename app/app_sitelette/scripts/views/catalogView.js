@@ -10,6 +10,7 @@ template = require('ejs!../templates/content/catalog_content.ejs'),
 GroupView = require('./partials/groupView'), //
 ComboGroupView = require('./partials/comboGroupView'), //
 popupController = require('../controllers/popupController'),
+RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),
 ListView = require('./components/listView');
 
 var CatalogView = Backbone.View.extend({
@@ -22,7 +23,7 @@ var CatalogView = Backbone.View.extend({
         'click .back' : 'goBack',
         'click .order_button' : 'triggerOrder',
         'click .add_combo_button' : 'goBackAndSendCatalogInfo',
-        'click .edit_button' : 'openEditPanel'
+        'click .shopping_icon' : 'openEditPanel'
     },
 
     onShow : function() {
@@ -31,7 +32,7 @@ var CatalogView = Backbone.View.extend({
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         if(this.backToRoster === true){
           /* hide the order button */
-          this.$('.basket_icon_container').hide();
+        //   this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
           this.$('.order_button').hide();
           this.$('.edit_button').hide();
           if (this.catalogType.enumText === 'COMBO' || this.catalogType === 'COMBO') {
@@ -48,14 +49,15 @@ var CatalogView = Backbone.View.extend({
     },
 
     initialize : function(options) {
-        var colors = [ 'color1', 'color2', 'color3', 'color4' ];
+        var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color_4' ];
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
         this.basket = options.basket;
+        this.rosterBasket = options.rosterBasket;
         this.backToCatalogs = options.backToCatalogs;
-        this.backToRoster=options.backToRoster;
-        this.rosterId=options.rosterId;
+        this.backToRoster = options.backToRoster;
+        this.rosterId = options.rosterId;
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
         this.catalogDisplayText = options.catalog.data.displayText;
@@ -63,7 +65,7 @@ var CatalogView = Backbone.View.extend({
         this.colors = colors;
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
-        this.launchedViaURL=options.launchedViaURL;
+        this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
         this.render();
@@ -71,7 +73,8 @@ var CatalogView = Backbone.View.extend({
 
     renderData : function() {
         return {
-            basket : this.basket
+            basket : this.basket,
+            rosterBasket: this.rosterBasket
         };
     },
 
@@ -179,22 +182,49 @@ var CatalogView = Backbone.View.extend({
     },
 
     openEditPanel : function() {
-        this.openSubview('editFavorites', this.basket, {
-            actions : {
-                removeItem : function(selected) {
+        if (this.rosterBasket) {
+            this.openRosterEditPanel();
+        } else {
+            this.openBasketEditPanel();
+        }
+        // this.openSubview('editFavorites', this.basket, {
+        //     actions : {
+        //         removeItem : function(selected) {
+        //             _(selected).each(function(item) {
+        //                 this.basket.removeItem(item);
+        //             }.bind(this));
+        //         }.bind(this)
+        //     },
+        //     template : require('ejs!../templates/partials/edit_basket_item.ejs')
+        // });
+    },
+
+    openRosterEditPanel: function() {
+        var editModel= new RosterBasketDerivedCollection ([], {basket:this.rosterBasket});
+        popupController.editRosterView(this, editModel, {
+            actions: {
+                removeItem: function(selected) {
                     _(selected).each(function(item) {
                         this.basket.removeItem(item);
                     }.bind(this));
                 }.bind(this)
             },
-            template : require('ejs!../templates/partials/edit_basket_item.ejs')
+            template: require('ejs!../templates/partials/edit_roster_view_item.ejs')
         });
+    },
+
+    openBasketEditPanel: function() {
+        // TODO
     },
 
     updateBasket : function() {
         this.$('.cart_items_number').text(this.basket.count());
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
 
+        if (this.rosterBasket) {
+            this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
+            this.$('.total_price').text('$' + this.rosterBasket.getTotalPrice());
+        }
         if (this.basket.hasCombo()) {
             /* update combo count */
             $('#catalog_combo_count_div').show();
@@ -220,7 +250,7 @@ var CatalogView = Backbone.View.extend({
 
     generateColor : function(index) {
         // var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
-        var colors = [ 'color1', 'color2', 'color3', 'color4' ];
+        var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color1' ];
         return this.colors[index % this.colors.length];
     },
 
@@ -282,7 +312,7 @@ var CatalogView = Backbone.View.extend({
                      * TODO: Convert these to check boxes.
                      */
                     var el = new GroupView({
-                        onClick : function(model) {
+                        onClick: function(model) {
                             this.openAddToBasketView(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
                         }.bind(this),
                         color : this.generateColor(i),
@@ -311,7 +341,8 @@ var CatalogView = Backbone.View.extend({
                     color : this.generateColor(i),
                     model : group,
                     parent : this,
-                    basket: this.basket
+                    basket: this.basket,
+                    rosterBasket: this.rosterBasket
                 }).render().el;
 
                 this.$('.cmntyex-items_placeholder').append(el);

@@ -34,6 +34,7 @@ var CatalogItemView = Backbone.View.extend({
         }.bind(this);
         this.color = options.color;
         this.basket = options.basket;
+        this.rosterBasket = options.rosterBasket;
         var itemId = this.model.get('itemId');
         if (typeof this.basket !== 'undefined') {
             this.basket.each(_.bind(function(item) {
@@ -59,7 +60,7 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     openItemDetails: function() {
-        debugger;
+        // TODO how should we show item details (accordion or left panel)
     },
 
     incrementQuantity: function () {
@@ -88,6 +89,11 @@ var CatalogItemView = Backbone.View.extend({
     	var count;
         this.addItem ? count = 1 : count = -1;
         this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+        if (!this.rosterBasket) {
+            // this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+        } else {
+            // TODO add item to rosterBasket
+        }
     }
 });
 

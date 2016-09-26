@@ -282,6 +282,7 @@ var RosterView = Backbone.View.extend({
             backToCatalogs: false,
             backToRoster: true,
             rosterId: this.rosterId,
+            rosterBasket: this.basket,
             launchedViaURL: this.launchedViaURL,
             navbarView: this.navbarView
         }, {

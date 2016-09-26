@@ -160,7 +160,7 @@ module.exports = {
     catalog: function(options) { // options is an array with either sasl or
         // urlKey
         var sasl;
-
+        var rosterBasket = options.rosterBasket || false;
         var catalogId = options.catalogId;
         var backToRoster = options.backToRoster;
         var rosterId = options.rosterId;
@@ -211,6 +211,7 @@ module.exports = {
                     backToRoster: backToRoster,
                     basket: basket, // catalogActions.getBasket(sasl.sa(),
                     // sasl.sl()),
+                    rosterBasket: rosterBasket,
                     backToCatalogs: backToCatalogs,
                     catalogId: catalogId,
                     navbarView: navbarView,
@@ -228,14 +229,17 @@ module.exports = {
                 return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
             }).then(function(options) {
                 if (options.data.length === 1) {
-                    return Vent.trigger('viewChange', 'catalog', {
-                        id: id,
-                        catalogId: options.data.catalogId,
-                        backToCatalogs: false,
-                        backToRoster: false
-                    });
-                } else if (options.data.length === 0) {
-                    return Vent.trigger('viewChange', 'restaurant', sasl.getUrlKey(), { reverse: true });
+                    return {
+                        catalog: {
+                            id: id,
+                            catalogId: options.data.catalogId,
+                            backToCatalogs: false,
+                            backToRoster: false
+                        },
+                        sasl: sasl,
+                        catalogs: options
+                    };
+
                 } else {
                     return {
                         sasl: sasl,

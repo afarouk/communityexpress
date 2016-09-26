@@ -17,6 +17,7 @@ var GroupView = Backbone.View.extend({
         this.catalogId = options.parent.catalogId;
         this.catalogDisplayText = options.parent.catalogDisplayText;
         this.basket = options.basket;
+        this.rosterBasket = options.rosterBasket;
         this.color = options.color;
         this.onClick = options.onClick;
         this.listenTo(options.parent, 'close:all', this.onClose, this);
@@ -40,6 +41,7 @@ var GroupView = Backbone.View.extend({
                 }.bind(this),
                 color: this.color,
                 basket: this.basket,
+                rosterBasket: this.rosterBasket,
                 groupId: this.groupId,
                 groupDisplayText: this.groupDisplayText,
                 catalogId: this.catalogId,
