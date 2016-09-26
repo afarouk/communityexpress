@@ -42,8 +42,7 @@ module.exports = Backbone.View.extend({
         console.log('contest', contest);
         this.contest = contest;
         this.$el.html(photoContestTemplate(contest));
-
-        // this.initUploader();
+        
         return this;
     },
 
@@ -69,6 +68,12 @@ module.exports = Backbone.View.extend({
             onSave: this.onSaveImage.bind(this),
             onAfterSelectImage: function(){
                 $(this.element).addClass('added');
+            },
+            onToolsInitialized: function(){
+                $(this.element).find('.btn').addClass('cmtyx_text_color_1');
+            },
+            onAfterProcessImage: function(){
+                $(this.element).find('.btn').addClass('cmtyx_text_color_1');
             },
             onAfterCancel: function() {
                 $(this.element).removeClass('added');
@@ -96,8 +101,6 @@ module.exports = Backbone.View.extend({
                 }
             }.bind(this))
             .fail(function(err){
-                //TODO manage error
-                // this.render();
                 this.$el.hide();
             }.bind(this));
     },
@@ -129,39 +132,21 @@ module.exports = Backbone.View.extend({
 
     onSaveImage: function(image) {
         var message = this.$el.find('.comntyex-upload_message_input').val(),
-            //temporary commennted
-            contestUUID = this.contest ? this.contest.contestUUID : '8Moo4I68SMKk1B6bkhbvTQ',
+            contestUUID = this.contest.contestUUID,
             file = this.dataURLtoBlob(image.data);
 
         contestActions.enterPhotoContest(this.sa, this.sl, 
             contestUUID, file, message)
             .then(function(result) {
+                this.$el.find('.photo_contest_upload_image').slideUp('slow');
                 this.showPrizes();
+                loader.showFlashMessage('contest entered');
             }.bind(this))
             .fail(function(err){
                 //TODO manage error
-                debugger;
-                this.showPrizes();//temporary for testing
+                loader.showErrorMessage(e, 'error uploading photo');
             }.bind(this));
-        //TODO render prises, etc...
     },
-
-    //TODO start with new data in landing subviews
-    updateModel: function(model) {
-        this.model = model;
-    },
-
-    // onShow: function(){
-    //     this.addEvents({
-    //         'click .back': 'triggerLandingView',
-    //         'click .enter_button': 'enterContest'
-    //     });
-    //     this.renderPrizes();
-    // },
-
-    // triggerLandingView: function() {
-    //     Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true });
-    // },
 
     // renderPrizes: function () {
     //     this.$('.cmntyex_prizes_placeholder').html(
@@ -175,7 +160,6 @@ module.exports = Backbone.View.extend({
     //     );
     // },
 
-    //TODO
     enterContest: function () {
         var user = userController.getCurrentUser(),
             sasl = user.favorites.at(0);

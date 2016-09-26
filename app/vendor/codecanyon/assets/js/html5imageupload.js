@@ -76,6 +76,7 @@
 		onAfterCancel:		null,
 		onAfterRemoveImage:	null,
 		onAfterSelectImage:	null,
+		onToolsInitialized:	null,
 		
 	}
 		
@@ -947,6 +948,7 @@
 			}
 			
 			$(element).append($(tools));
+			if (_self.options.onToolsInitialized) _self.options.onToolsInitialized.call(_self);
 			
 		},
 		_clearTimers: function() {

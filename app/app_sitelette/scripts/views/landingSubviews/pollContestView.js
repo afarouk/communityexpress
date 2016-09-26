@@ -45,9 +45,6 @@ module.exports = Backbone.View.extend({
         });
     },
 
-
-    //TODO functionality!!!
-
     initialize: function(options) {
         options = options || {};
         this.sasl = window.saslData;
@@ -75,7 +72,6 @@ module.exports = Backbone.View.extend({
                     this.displayResults(result);
                 }.bind(this))
                 .fail(function(err){
-                    //TODO manage error
                     popupController.textPopup({ text: 'You already answered this question.'});
                 }.bind(this));
             this.$el.find('.submit_poll_button').slideUp('slow');
@@ -83,29 +79,34 @@ module.exports = Backbone.View.extend({
         }.bind(this));
     },
 
+    getColors: function() {
+        var $elements = this.$el.find('.answer_color_container'),
+            colors = [];
+        $elements.each(function(){
+            colors.push($(this).css('background-color'));
+        });
+
+        return colors;
+    },
+
     displayResults: function(result) {
-        var res = result || this.poll;
         this.$el.find('.poll_results').show();
-        var options = jqPlotOptions.options,
-            colorChoices = jqPlotOptions.colorChoices; //We need to get colors array
+        var choices = result.choices,
+            options = jqPlotOptions.options,
+            colorChoices = this.getColors();
 
             var array = [], a = [], b = [];
-            _.each(res.choices, function(choice) {
-                a.push(choice.choiceId);
-                b.push(choice.entryCountForThisChoice);
+            _.each(choices, function(choice, index) {
+                var reversedIndex = choices.length - index;
+                options.axes.yaxis.ticks[reversedIndex - 1] = Math.round(choice.percentOfTotalResponses) + '%';
+                options.seriesColors[index] = colorChoices[index];
+                array.push([choice.entryCountForThisChoice, reversedIndex]);
             });
-            b.reverse();
-            for (var i = 0; i < a.length; i++) {
-                options.axes.yaxis.ticks[i] = a.length - i;
-                array.push([b[i], a[i]]);
-                options.seriesColors[i] = colorChoices[i];
-            }
-            var dataArray = [array];
 
             options.seriesDefaults.renderer = $.jqplot.BarRenderer;
             options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
             options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;
-            $.jqplot('pollBar', dataArray, options);
+            $.jqplot('pollBar', [array], options);
     },
 
     getPollContest: function() {
