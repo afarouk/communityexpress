@@ -45,9 +45,6 @@ module.exports = Backbone.View.extend({
         });
     },
 
-
-    //TODO functionality!!!
-
     initialize: function(options) {
         options = options || {};
         this.sasl = window.saslData;
@@ -75,7 +72,6 @@ module.exports = Backbone.View.extend({
                     this.displayResults(result);
                 }.bind(this))
                 .fail(function(err){
-                    //TODO manage error
                     popupController.textPopup({ text: 'You already answered this question.'});
                 }.bind(this));
             this.$el.find('.submit_poll_button').slideUp('slow');
