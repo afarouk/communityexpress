@@ -169,7 +169,7 @@ var AddressView = Backbone.View.extend({
     },
 
     //TODO
-    triggerCatalogView: function() {
+    triggerCatalogView: function(params) {
         Vent.trigger('viewChange', 'catalog', {
           sasl: params.sasl.id,
           id: params.catalogId,

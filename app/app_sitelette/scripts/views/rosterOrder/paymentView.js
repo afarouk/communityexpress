@@ -131,6 +131,7 @@ var PaymentView = Backbone.View.extend({
             tip = parseFloat((this.totalAmount*tipPortion).toFixed(2)),
             totalAmountWithTip = parseFloat((this.totalAmount + tip).toFixed(2));
         this.tip = tip;
+        this.model.additionalParams.tip = tip;
         this.model.set('totalAmount', totalAmountWithTip);
     },
 
