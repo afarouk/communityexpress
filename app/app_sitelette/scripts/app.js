@@ -69,6 +69,7 @@ var App = function() {
     }
 
     Vent.on('login_success', this.afterTriedToLogin, this);
+    Vent.on('logout_success', this.afterTriedToLogin, this);
 };
 
 App.prototype = {

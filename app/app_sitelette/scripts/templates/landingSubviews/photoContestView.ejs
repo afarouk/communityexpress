@@ -5,7 +5,7 @@
 <div class="body">
     <img src="<%= imageURL %>"></img>
     <span class="contest_task"><%= displayText %></span>
-    <!-- <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button> -->
+    <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
 
     <div class="photo_contest_upload_image">
         <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
@@ -14,25 +14,27 @@
         </div>
     </div>
 
-    <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
-    <ul>
-        <% _.each(prizes, function(prize, index){ %>
-            <li>
-                <div class="prize_block">
-                    <div class="ui-grid-a prize_container">
-                        <div class="ui-block-a">
-                            <div class="prize_text_block">
-                                <span class="prize_text"><%= prize.contestPrizeName %></span>
-                                <span class="prize_condition"><%= prize.displayText %></span>
-                                <span class="prize_date"><%= prize.quantity %></span>
+    <div class="prizes_container">
+        <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
+        <ul>
+            <% _.each(prizes, function(prize, index){ %>
+                <li>
+                    <div class="prize_block">
+                        <div class="ui-grid-a prize_container">
+                            <div class="ui-block-a">
+                                <div class="prize_text_block">
+                                    <span class="prize_text"><%= prize.contestPrizeName %></span>
+                                    <span class="prize_condition"><%= prize.displayText %></span>
+                                    <span class="prize_date"><%= prize.quantity %></span>
+                                </div>
+                            </div>
+                            <div class="ui-block-b ">
+                                <img src="<%= prize.imageUrl %>"></img>
                             </div>
                         </div>
-                        <div class="ui-block-b ">
-                            <img src="<%= prize.imageUrl %>"></img>
-                        </div>
                     </div>
-                </div>
-            </li>
-        <% }) %>
-    </ul>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
 </div>

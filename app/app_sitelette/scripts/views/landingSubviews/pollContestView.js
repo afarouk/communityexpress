@@ -79,10 +79,8 @@ module.exports = Backbone.View.extend({
                     popupController.textPopup({ text: 'You already answered this question.'});
                 }.bind(this));
             this.$el.find('.submit_poll_button').slideUp('slow');
-            // this.$el.find('.poll_results').slideDown('slow');
             this.$el.find('.prize_block').slideDown('slow');
         }.bind(this));
-        // this.onPollClick();
     },
 
     displayResults: function(result) {
@@ -121,6 +119,7 @@ module.exports = Backbone.View.extend({
             }.bind(this))
             .fail(function(err){
                 //TODO manage error
+                this.$el.hide();
             }.bind(this));
     },
 

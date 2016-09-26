@@ -27,7 +27,8 @@ module.exports = Backbone.View.extend({
     // },
 
     events: {
-        'click .header': 'toggleCollapse'
+        'click .header': 'toggleCollapse',
+        'click .send_photo_btn': 'onClickSendPhoto'
     },
 
     initialize: function(options) {
@@ -42,7 +43,7 @@ module.exports = Backbone.View.extend({
         this.contest = contest;
         this.$el.html(photoContestTemplate(contest));
 
-        this.initUploader();
+        // this.initUploader();
         return this;
     },
 
@@ -50,13 +51,21 @@ module.exports = Backbone.View.extend({
         this.getPhotoContest();
     },
 
+    onClickSendPhoto: function(e) {
+        var btn = $(e.currentTarget);
+        popupController.requireLogIn(this.sasl, function() {
+            btn.slideUp('slow');
+            this.$el.find('.photo_contest_upload_image').show();
+            this.initUploader();
+        }.bind(this));
+    },
+
     initUploader: function() {
-        this.$el.find('.send_photo_btn').hide();
         this.$el.find('.dropzone').html5imageupload({
             save: false,  // use custom method
             canvas: true, // should be true for handle
             data: {},
-            resize: false, // doesn't work correct when true, should be chacked
+            resize: false, // doesn't work correct when true, should be checked
             onSave: this.onSaveImage.bind(this),
             onAfterSelectImage: function(){
                 $(this.element).addClass('added');
@@ -114,6 +123,10 @@ module.exports = Backbone.View.extend({
         }
     },
 
+    showPrizes: function() {
+        this.$el.find('.prizes_container').slideDown('slow');
+    },
+
     onSaveImage: function(image) {
         var message = this.$el.find('.comntyex-upload_message_input').val(),
             //temporary commennted
@@ -123,11 +136,12 @@ module.exports = Backbone.View.extend({
         contestActions.enterPhotoContest(this.sa, this.sl, 
             contestUUID, file, message)
             .then(function(result) {
-                debugger;
+                this.showPrizes();
             }.bind(this))
             .fail(function(err){
                 //TODO manage error
                 debugger;
+                this.showPrizes();//temporary for testing
             }.bind(this));
         //TODO render prises, etc...
     },
