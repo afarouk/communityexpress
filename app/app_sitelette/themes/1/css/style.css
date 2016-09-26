@@ -348,13 +348,13 @@ p.choose_card_text {
 .ui-radio label.ui-btn {
     background-color: transparent;
     font-family: 'Open Sans', sans-serif;
-    font-family: ;
     font-size: 14px;
     color: #fafafa;
     font-weight: 300;
     border: none;
     text-shadow: none;
     letter-spacing: 2px;
+    max-width: 90%;
 }
 .ui-radio label.ui-btn:hover, .ui-radio label.ui-btn:active {
     background-color: transparent;
@@ -774,10 +774,14 @@ label.checkbox_save_card {
     font: 700 16px 'Open Sans', sans-serif;
     color: #ddd;
     display: inline-block;
-    max-width: 120px;
+    white-space: normal;
+    /* max-width: 120px; */
 }
 .menu_body li.cmntyex-catalog-item .item_name {
-    line-height: 37px;
+    /* line-height: 37px; */
+    position: relative;
+    top: 8px;
+    margin-bottom: 10px;
 }
 .menu_body li .item_price {
     font: 700 18px / 19px 'Open Sans', sans-serif;
