@@ -3,8 +3,8 @@
     <span class="collapse_btn">&#9650;</span>
 </div>
 <div class="body">
-    <img src="themes/1/placeholder_images/special.png"></img>
-    <span class="contest_task">Send us a picture of your dog, running!</span>
+    <img src="<%= imageURL %>"></img>
+    <span class="contest_task"><%= displayText %></span>
     <!-- <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button> -->
 
     <div class="photo_contest_upload_image">
@@ -16,53 +16,23 @@
 
     <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
     <ul>
-        <li>
-            <div class="prize_block">
-                <div class="ui-grid-a prize_container">
-                    <div class="ui-block-a">
-                        <div class="prize_text_block">
-                            <span class="prize_text">prize</span>
-                            <span class="prize_condition">every second burger</span>
-                            <span class="prize_date">till 30.07</span>
+        <% _.each(prizes, function(prize, index){ %>
+            <li>
+                <div class="prize_block">
+                    <div class="ui-grid-a prize_container">
+                        <div class="ui-block-a">
+                            <div class="prize_text_block">
+                                <span class="prize_text"><%= prize.contestPrizeName %></span>
+                                <span class="prize_condition"><%= prize.displayText %></span>
+                                <span class="prize_date"><%= prize.quantity %></span>
+                            </div>
+                        </div>
+                        <div class="ui-block-b ">
+                            <img src="<%= prize.imageUrl %>"></img>
                         </div>
                     </div>
-                    <div class="ui-block-b ">
-                        <img src="themes/1/placeholder_images/burger.png"></img>
-                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="prize_block">
-                <div class="ui-grid-a prize_container">
-                    <div class="ui-block-a">
-                        <div class="prize_text_block">
-                            <span class="prize_text">prize</span>
-                            <span class="prize_condition">every second coffee</span>
-                            <span class="prize_date">till 30.07</span>
-                        </div>
-                    </div>
-                    <div class="ui-block-b ">
-                        <img src="themes/1/placeholder_images/burger.png"></img>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="last">
-            <div class="prize_block">
-                <div class="ui-grid-a prize_container">
-                    <div class="ui-block-a">
-                        <div class="prize_text_block">
-                            <span class="prize_text">prize</span>
-                            <span class="prize_condition">every second salad</span>
-                            <span class="prize_date">till 30.07</span>
-                        </div>
-                    </div>
-                    <div class="ui-block-b ">
-                        <img src="themes/1/placeholder_images/burger.png"></img>
-                    </div>
-                </div>
-            </div>
-        </li>
+            </li>
+        <% }) %>
     </ul>
 </div>

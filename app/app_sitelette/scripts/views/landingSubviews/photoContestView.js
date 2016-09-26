@@ -35,17 +35,19 @@ module.exports = Backbone.View.extend({
         this.sasl = window.saslData;
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
-        this.getPhotoContest();
     },
 
     render: function(contest) {
         console.log('contest', contest);
         this.contest = contest;
-        // this.$el.html(photoContestTemplate(contest));
+        this.$el.html(photoContestTemplate(contest));
 
-        this.$el.html(photoContestTemplate());
         this.initUploader();
         return this;
+    },
+
+    afterTriedToLogin: function() {
+        this.getPhotoContest();
     },
 
     initUploader: function() {
@@ -86,7 +88,8 @@ module.exports = Backbone.View.extend({
             }.bind(this))
             .fail(function(err){
                 //TODO manage error
-                this.render();
+                // this.render();
+                this.$el.hide();
             }.bind(this));
     },
 
