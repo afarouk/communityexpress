@@ -68,7 +68,8 @@ var App = function() {
         this.delegateEvents(events);
     }
 
-    Vent.on('login_success', this.onLogin, this);
+    Vent.on('login_success', this.afterTriedToLogin, this);
+    Vent.on('logout_success', this.afterTriedToLogin, this);
 };
 
 App.prototype = {
@@ -122,6 +123,7 @@ App.prototype = {
                 });
             });
         } else {
+            this.afterTriedToLogin();
             return;
         }
     },
@@ -131,35 +133,34 @@ App.prototype = {
             loyaltyCard: this.createSubview( LoyaltyCardView ),
             events: this.createSubview( EventsView ),
             gallery: this.createSubview( GalleryView ),
-            pollContest: this.createSubview( PollContestView ),
+            pollContest: this.createSubview( PollContestView, !saslData.hasPollContest ),
             landingReviews: this.createSubview( LandingReviewsView ),
             promotion: this.createSubview( PromotionView ),
-            PhotoContest: this.createSubview( PhotoContestView ),
+            PhotoContest: this.createSubview( PhotoContestView, !saslData.hasPhotoContest ),
             contactUs: this.createSubview( ContactUsView )
         };
     },
 
     //when we don't have subview el in DOM don't create subview
-    createSubview: function(view) {
+    createSubview: function(view, hideContest) {
         var inDOM = $(view.prototype.el);
         if (inDOM.length > 0) {
-            return new view()
+            if (hideContest) {
+                inDOM.hide();
+            } else {
+                return new view();
+            }
+        } else {
+            inDOM.hide();
         }
     },
 
-    onLogin: function() {
-        //TODO start with new data in landing subviews
-        var user = userController.getCurrentUser(),
-            model = user.favorites.at(0);
+    afterTriedToLogin: function() {
         _.each(this.viewsInLanding, function(view) {
-            if (typeof view.updateModel === 'function') {
-                view.updateModel(model);
+            if (view && typeof view.afterTriedToLogin === 'function') {
+                view.afterTriedToLogin();
             }
         });
-    },
-
-    createViewsDependOnUser: function() {
-
     },
 
     checkType: function(type) {

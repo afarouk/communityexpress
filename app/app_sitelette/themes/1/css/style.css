@@ -189,7 +189,7 @@ button.ui-btn {
     bottom: 0;
     left: 0;
     padding: 20px 2%;
-    width: 96%;
+    width: 100%;
     z-index: 2;
 }
 .back_btn, .open_menu_btn {
@@ -260,6 +260,7 @@ a.rightBtn.ui-btn {
     display: inline-block;
     height: 4rem;
     padding-top: 0.5rem;
+    margin-bottom:  5px;
 }
 .material-textfield input {
     background: none;
@@ -270,6 +271,7 @@ a.rightBtn.ui-btn {
     font-size: 18px;
     padding: 0.25rem 0.1rem;
     width: 100%;
+    padding-bottom: 0;
 }
 .material-textfield textarea {
     border: none;
@@ -296,7 +298,7 @@ a.rightBtn.ui-btn {
 }
 .material-textfield label::before, .material-textfield input[required]:focus~label::before {
     font-size: 14px;
-    top: -3.25rem;
+    top: -4.25rem;
 }
 .material-textfield input:focus~label::after {
     left: 0%;
@@ -304,7 +306,7 @@ a.rightBtn.ui-btn {
 }
 .material-textfield input:invalid~label::before {
     font-size: 18px;
-    top: -2rem;
+    top: -2.5rem;
 }
 .material-textfield.yellow input, .material-textfield.yellow textarea {
     border-bottom: 0.1rem solid rgba(250, 250, 250, 0.7);
@@ -368,12 +370,13 @@ p.choose_card_text {
 .ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after {
     display: none;
 }
-.ui-radio input {
-    margin-left: -10px;
-}
-.ui-radio label {
-    padding-left: 25px;
-}
+
+.ui-radio input { margin-left: -10px; }
+
+.ui-radio label { padding-left: 25px; }
+
+.ui-radio input { margin: -10px 0 0 -5px; }
+
 .order_list, p.card_text {
     margin-top: 0;
 }
@@ -461,12 +464,16 @@ li {
 
 /*************************** SKEUOCARD CARD ***************************/
 
-.credit_card_container {
-    text-align: center;
+.credit_card_container { text-align: center; }
+
+.credit_card { display: inline-block; }
+
+#skeuocard .cc-exp input,
+#skeuocard input.cc-name,
+#skeuocard input.cc-cvc {
+    font-size: 16px;
 }
-.credit_card {
-    display: inline-block;
-}
+
 .skeuocard.js {
     max-width: 370px;
     max-height: 233px;
@@ -483,20 +490,23 @@ li {
     width: 14em;
 }
 .skeuocard.js .cc-number {
-    left: 1em;
+    left: 1.6em;
     top: 7em;
 }
 .skeuocard.js .cc-exp {
-    left: 10em;
-    top: 10.1em;
+    left: 10.5em;
+    top: 10.7em;
+    width: 6em;
 }
 .skeuocard.js .cc-name {
-    left: 1em;
-    top: 12em;
+    left: 0.5em;
+    top: 11.2em;
+    color: #000;
 }
 .skeuocard.js .cc-cvc {
-    left: 16.8em;
-    top: 7em;
+    left: 15.7em;
+    top: 6.5em;
+    color: #000;
 }
 .skeuocard.product-amex .cc-cvc {
     left: 19em;
@@ -519,25 +529,21 @@ li {
         max-height: 190px;
         background-size: 100% 100%;
     }
-    .skeuocard.js .card-body .face.front {
-        position: relative;
-    }
-    .skeuocard.js .cc-number input.group19 {
-        width: 12em;
-    }
+    
+    .skeuocard.js .card-body  .face.front{ position: relative; }
+    .skeuocard.js .cc-number input.group19 { width: 13em; }
+
     .skeuocard.js .cc-number {
-        left: 0.3em;
-        top: 5em;
+        left: 0.8em;
+        top: 6em;
     }
-    .skeuocard.js .cc-number input.group4 {
-        width: 2.9em;
-    }
-    .skeuocard.js .cc-number input+input {
-        margin-left: 0.1em;
-    }
+    .skeuocard.js .cc-number input.group4 { width: 2.9em; }
+
+    .skeuocard.js .cc-number input+input { margin-left: 0.4em; }
+   
     .skeuocard.js .cc-exp {
-        left: 8em;
-        top: 8em;
+        left: 9em;
+        top: 9em;
     }
     .skeuocard.js .cc-name {
         left: 0.8em;
@@ -562,9 +568,9 @@ li {
         top: 5px;
     }
 }
-.checkbox_save_card_container {
-    margin-top: 30px;
-}
+
+.checkbox_save_card_container { margin-top: 30px; }
+
 .checkbox_save_card_container input {
     position: relative;
     right: 10px;
@@ -2053,6 +2059,7 @@ li.promotion_block .body {
     max-width: 320px;
     max-height: 568px;
     margin-bottom: 20px;
+    display: none;
 }
 .photo_contest_block .photo_contest_upload_image {
     /*display: none;*/
@@ -2076,6 +2083,10 @@ li.promotion_block .body {
 }
 .photo_contest_block .photo_contest_upload_image .dropzone.loading:after {
     visibility: hidden;
+}
+
+.photo_contest_block .prizes_container {
+    display: none;
 }
 .poll_block .prizes_title, .photo_contest_block .prizes_title {
     text-align: center;

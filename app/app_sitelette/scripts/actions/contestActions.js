@@ -40,14 +40,18 @@ module.exports = {
     photoBySASL: function (sa, sl) {
         return gateway.sendRequest('retrievePhotoContestBySASL', {
             serviceAccommodatorId: sa,
-            serviceLocationId: sl
+            serviceLocationId: sl,
+            UID: getUID(),
+            simulate:true
         }).then(handleResponse);
     },
 
     pollBySASL: function (sa, sl) {
         return gateway.sendRequest('retrievePollContestBySASL', {
             serviceAccommodatorId: sa,
-            serviceLocationId: sl
+            serviceLocationId: sl,
+            UID: getUID(),
+            simulate:true
         }).then(handleResponse);
     },
 
@@ -60,13 +64,10 @@ module.exports = {
 
     enterPoll: function (sa, sl, contestUUID, choiseId) {
         return gateway.sendRequest('enterPoll', {
-            payload: {
-                serviceAccommodatorId: sa,
-                serviceLocationId: sl,
-                contestUUID: contestUUID,
-                choiceId: choiseId
-            },
-            UID: getUID()
+            choice: choiseId,
+            uuid: contestUUID,
+            UID: getUID(),
+            simulate:true
         });
     },
 
