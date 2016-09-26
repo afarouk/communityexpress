@@ -193,7 +193,7 @@ var CatalogView = Backbone.View.extend({
 
     updateBasket : function() {
         this.$('.cart_items_number').text(this.basket.count());
-        this.$('.total_price').text('$ ' + this.basket.getTotalPrice());
+        this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
 
         if (this.basket.hasCombo()) {
             /* update combo count */

@@ -17,7 +17,8 @@ var CatalogItemView = Backbone.View.extend({
     events: {
         // 'click': 'showAddToBusketView'
         'click .plus_button': 'incrementQuantity',
-        'click .minus_button': 'decrementQuantity'
+        'click .minus_button': 'decrementQuantity',
+        'click .item_name': 'openItemDetails'
     },
 
     showAddToBusketView: function() {
@@ -55,6 +56,10 @@ var CatalogItemView = Backbone.View.extend({
             quantity: this.quantity.get('value')
         })));
         return this;
+    },
+
+    openItemDetails: function() {
+        debugger;
     },
 
     incrementQuantity: function () {

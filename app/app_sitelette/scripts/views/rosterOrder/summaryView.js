@@ -54,6 +54,7 @@ var SummaryView = Backbone.View.extend({
             combinedItems: this.model.additionalParams.combinedItems,
             taxState: this.model.additionalParams.taxState,
             subTotal: this.model.additionalParams.subTotal,
+            tip: this.model.additionalParams.tip,
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty
         });

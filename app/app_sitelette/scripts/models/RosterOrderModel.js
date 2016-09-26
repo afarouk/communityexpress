@@ -33,7 +33,9 @@ var RosterOrderModel = Backbone.Model.extend({
 			userModel: options.user,
 			coords: this.getCoords(options.sasl.attributes),
 			basket: options.basket,
-			subTotal: this.getPriceWithoutTaxes(options) // etc...
+			subTotal: this.getPriceWithoutTaxes(options),
+			tip: 0
+			 // etc...
 		});
 	},
 
