@@ -5,6 +5,10 @@ module.exports = {
 		"animate":true,
 		"captureRightClick":true,
 		"grid":{  
+			drawGridLines: false, 
+		    background: 'transparent',     
+		    borderColor: 'transparent',     
+		    borderWidth: 0,          
 			"shadow":false
 		},
 		"seriesColors":[],
@@ -44,17 +48,21 @@ module.exports = {
 	},
 
     colorChoices: [
-        '#85802b',
-        '#00749F',
-        '#73C774',
-        '#C7754C',
-        '#17BDB8',
-        '#C157C8',
-        '#639E44',
-        '#C14D3B',
-        '#51878A',
-        '#AF527A',
-        '#7476BB',
-        '#A67C33'
+        // '#85802b',
+        // '#00749F',
+        // '#73C774',
+        // '#C7754C',
+        // '#17BDB8',
+        // '#C157C8',
+        // '#639E44',
+        // '#C14D3B',
+        // '#51878A',
+        // '#AF527A',
+        // '#7476BB',
+        // '#A67C33'
+        '#faa019',
+        '#ef7112',
+        '#f05d13',
+        '#e34a20'
     ]
 };

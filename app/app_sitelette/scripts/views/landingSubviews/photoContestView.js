@@ -59,6 +59,12 @@ module.exports = Backbone.View.extend({
             onAfterSelectImage: function(){
                 $(this.element).addClass('added');
             },
+            onToolsInitialized: function(){
+                $(this.element).find('.btn').addClass('cmtyx_text_color_1');
+            },
+            onAfterProcessImage: function(){
+                $(this.element).find('.btn').addClass('cmtyx_text_color_1');
+            },
             onAfterCancel: function() {
                 $(this.element).removeClass('added');
             }
