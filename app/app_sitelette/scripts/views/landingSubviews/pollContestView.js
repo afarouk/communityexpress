@@ -98,7 +98,7 @@ module.exports = Backbone.View.extend({
             var array = [], a = [], b = [];
             _.each(choices, function(choice, index) {
                 var reversedIndex = choices.length - index;
-                options.axes.yaxis.ticks[reversedIndex - 1] = choice.percentOfTotalResponses + '%';
+                options.axes.yaxis.ticks[reversedIndex - 1] = Math.round(choice.percentOfTotalResponses) + '%';
                 options.seriesColors[index] = colorChoices[index];
                 array.push([choice.entryCountForThisChoice, reversedIndex]);
             });
