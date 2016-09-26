@@ -141,7 +141,6 @@ module.exports = Backbone.View.extend({
             .fail(function(err){
                 //TODO manage error
                 debugger;
-                this.showPrizes();//temporary for testing
             }.bind(this));
         //TODO render prises, etc...
     },
