@@ -2094,7 +2094,7 @@ li.promotion_block .body {
     bottom: 10%;
 }
 .photo_contest_block .photo_contest_upload_image .dropzone.added {
-    height: 568px!important;
+    height: 495px!important;
 }
 .photo_contest_block .photo_contest_upload_image .dropzone.loading:after {
     visibility: hidden;
