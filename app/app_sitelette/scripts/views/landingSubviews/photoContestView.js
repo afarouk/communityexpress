@@ -42,7 +42,7 @@ module.exports = Backbone.View.extend({
         console.log('contest', contest);
         this.contest = contest;
         this.$el.html(photoContestTemplate(contest));
-
+        
         return this;
     },
 
