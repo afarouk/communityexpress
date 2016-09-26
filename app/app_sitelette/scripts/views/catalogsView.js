@@ -16,6 +16,7 @@ var CatalogsView = Backbone.View.extend({
 
     initialize: function (options) {
         this.sasl = options.sasl;
+        // TODO if catalogs.collection is empty
         this.catalogs = options.catalogs.collection;
         this.sasl = options.sasl;
         this.on('show', this.onShow, this);

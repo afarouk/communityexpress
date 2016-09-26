@@ -27,7 +27,8 @@ module.exports = Backbone.View.extend({
     // },
 
     events: {
-        'click .header': 'toggleCollapse'
+        'click .header': 'toggleCollapse',
+        'click .send_photo_btn': 'onClickSendPhoto'
     },
 
     initialize: function(options) {
@@ -35,26 +36,35 @@ module.exports = Backbone.View.extend({
         this.sasl = window.saslData;
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
-        this.getPhotoContest();
     },
 
     render: function(contest) {
         console.log('contest', contest);
         this.contest = contest;
-        // this.$el.html(photoContestTemplate(contest));
+        this.$el.html(photoContestTemplate(contest));
 
-        this.$el.html(photoContestTemplate());
-        this.initUploader();
         return this;
     },
 
+    afterTriedToLogin: function() {
+        this.getPhotoContest();
+    },
+
+    onClickSendPhoto: function(e) {
+        var btn = $(e.currentTarget);
+        popupController.requireLogIn(this.sasl, function() {
+            btn.slideUp('slow');
+            this.$el.find('.photo_contest_upload_image').show();
+            this.initUploader();
+        }.bind(this));
+    },
+
     initUploader: function() {
-        this.$el.find('.send_photo_btn').hide();
         this.$el.find('.dropzone').html5imageupload({
             save: false,  // use custom method
             canvas: true, // should be true for handle
             data: {},
-            resize: false, // doesn't work correct when true, should be chacked
+            resize: false, // doesn't work correct when true, should be checked
             onSave: this.onSaveImage.bind(this),
             onAfterSelectImage: function(){
                 $(this.element).addClass('added');
@@ -91,8 +101,7 @@ module.exports = Backbone.View.extend({
                 }
             }.bind(this))
             .fail(function(err){
-                //TODO manage error
-                this.render();
+                this.$el.hide();
             }.bind(this));
     },
 
@@ -117,40 +126,27 @@ module.exports = Backbone.View.extend({
         }
     },
 
+    showPrizes: function() {
+        this.$el.find('.prizes_container').slideDown('slow');
+    },
+
     onSaveImage: function(image) {
         var message = this.$el.find('.comntyex-upload_message_input').val(),
-            //temporary commennted
-            contestUUID = this.contest ? this.contest.contestUUID : '8Moo4I68SMKk1B6bkhbvTQ',
+            contestUUID = this.contest.contestUUID,
             file = this.dataURLtoBlob(image.data);
 
         contestActions.enterPhotoContest(this.sa, this.sl, 
             contestUUID, file, message)
             .then(function(result) {
-                debugger;
+                this.$el.find('.photo_contest_upload_image').slideUp('slow');
+                this.showPrizes();
+                loader.showFlashMessage('contest entered');
             }.bind(this))
             .fail(function(err){
                 //TODO manage error
-                debugger;
+                loader.showErrorMessage(e, 'error uploading photo');
             }.bind(this));
-        //TODO render prises, etc...
     },
-
-    //TODO start with new data in landing subviews
-    updateModel: function(model) {
-        this.model = model;
-    },
-
-    // onShow: function(){
-    //     this.addEvents({
-    //         'click .back': 'triggerLandingView',
-    //         'click .enter_button': 'enterContest'
-    //     });
-    //     this.renderPrizes();
-    // },
-
-    // triggerLandingView: function() {
-    //     Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true });
-    // },
 
     // renderPrizes: function () {
     //     this.$('.cmntyex_prizes_placeholder').html(
@@ -164,7 +160,6 @@ module.exports = Backbone.View.extend({
     //     );
     // },
 
-    //TODO
     enterContest: function () {
         var user = userController.getCurrentUser(),
             sasl = user.favorites.at(0);

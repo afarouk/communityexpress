@@ -2066,6 +2066,7 @@ li.promotion_block .body {
     /* max-width: 320px; */
     max-height: 568px;
     margin-bottom: 20px;
+    display: none;
 }
 .photo_contest_block .photo_contest_upload_image {
     /*display: none;*/
@@ -2090,6 +2091,10 @@ li.promotion_block .body {
 }
 .photo_contest_block .photo_contest_upload_image .dropzone.loading:after {
     visibility: hidden;
+}
+
+.photo_contest_block .prizes_container {
+    display: none;
 }
 .poll_block .prizes_title, .photo_contest_block .prizes_title {
     text-align: center;
