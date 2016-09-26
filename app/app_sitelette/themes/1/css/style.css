@@ -1767,15 +1767,16 @@ span.select2.select2-container.select2-container--default, span.select2.select2-
     display: block;
     margin-bottom: 20px;
 }
+.poll_block .poll_ans_form input:focus {
+    outline: none;
+}
 .poll_block .ui-radio {
     margin: 0;
 }
-.poll_block .ui-radio label {
-    padding: 6px 0 6px 18px;
-    font: 700 16px 'Open Sans', sans-serif;
-    color: #ececec;
-    position: relative;
-    top: 1px;
+.poll_block .ansRadioChoice + label {
+    font: 400 15px 'Open Sans', sans-serif;
+    padding-left: 20px;
+    line-height: 18px;
 }
 .poll_block .answer_color_container {
     display: inline-block;
@@ -1897,10 +1898,11 @@ span.select2.select2-container.select2-container--default, span.select2.select2-
 }
 .poll_block .body .prize_container, .loyalty_program_block .body .prize_container, .photo_contest_block .body .prize_container {
     background-color: #fff;
+    max-height: 180px;
 }
 .poll_block .body .prize_block .prize_text_block, .loyalty_program_block .body .prize_block .prize_text_block, .photo_contest_block .body .prize_block .prize_text_block {
     text-align: left;
-    padding: 25px 0 25px 25px;
+    padding: 10px;
 }
 .poll_block .prize_block {
     display: none;
@@ -2040,6 +2042,7 @@ li.promotion_block .body {
     /*background-color: #ca1d2b;*/
 }
 .photo_contest_block img {
+    max-height: 230px;
     padding: 0;
     width: 100%;
 }
