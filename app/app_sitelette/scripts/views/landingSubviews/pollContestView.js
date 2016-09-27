@@ -85,14 +85,14 @@ module.exports = Backbone.View.extend({
         $elements.each(function(){
             colors.push($(this).css('background-color'));
         });
-
-        return colors;
+        //TODO now we have different colours in sasl then themes 
+        return this.sasl.themeColors ? this.sasl.themeColors.cmtyx_color : colors;
     },
 
     displayResults: function(result) {
         this.$el.find('.poll_results').show();
         var choices = result.choices,
-            options = jqPlotOptions.options,
+            options = _.extend(jqPlotOptions.options, {height: choices.length * 35}),
             colorChoices = this.getColors();
 
             var array = [], a = [], b = [];

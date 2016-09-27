@@ -12,8 +12,6 @@ var CatalogItemView = Backbone.View.extend({
 
     className: 'cmntyex-catalog-item sides_extras_container color1 sides_extras_color',
 
-    template: template,
-
     events: {
         // 'click': 'showAddToBusketView'
         'click .plus_button': 'incrementQuantity',
@@ -52,7 +50,11 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(this.template(_.extend({}, this.model.attributes, {
+        var template;
+        this.rosterBasket ?
+        template = require('ejs!../../templates/partials/catalog_item_from_roster.ejs') :
+        template = require('ejs!../../templates/partials/catalog-item.ejs');
+        this.$el.html(template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity.get('value')
         })));
@@ -85,15 +87,21 @@ var CatalogItemView = Backbone.View.extend({
         this.addToBasket();
     },
 
+    setQuantity: function() {
+        var quantity = 0;
+        _(this.basket.models).each(_.bind(function(model) {
+            if (model.get('itemName') === this.model.get('itemName') && model.get('quantity') !== null) {
+                this.quantity.set('value', model.get('quantity'));
+            } else {
+                this.quantity.set('value', 0);
+            }
+        }, this));
+    },
+
     addToBasket: function () {
     	var count;
         this.addItem ? count = 1 : count = -1;
-        this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
-        if (!this.rosterBasket) {
-            // this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
-        } else {
-            // TODO add item to rosterBasket
-        }
+            this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     }
 });
 

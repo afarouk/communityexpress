@@ -6,6 +6,7 @@ module.exports = {
 		"captureRightClick":true,
 		"grid":{  
 			"drawGridLines": false, 
+			"gridLineColor": '#bbb',
 		    "background": 'transparent',     
 		    "borderColor": 'transparent',     
 		    "borderWidth": 0,          
@@ -26,7 +27,7 @@ module.exports = {
 					 "fontSize":14
 				}
 			},
-			"ticks":[]
+			"ticks":[],
 			}
 		},
 		"seriesDefaults":{

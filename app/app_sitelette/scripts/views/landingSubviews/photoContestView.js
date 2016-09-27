@@ -61,10 +61,11 @@ module.exports = Backbone.View.extend({
 
     initUploader: function() {
         this.$el.find('.dropzone').html5imageupload({
-            save: false,  // use custom method
-            canvas: true, // should be true for handle
+            ghost: false,
+            save: false,
+            canvas: true,
             data: {},
-            resize: false, // doesn't work correct when true, should be checked
+            resize: false,
             onSave: this.onSaveImage.bind(this),
             onAfterSelectImage: function(){
                 $(this.element).addClass('added');

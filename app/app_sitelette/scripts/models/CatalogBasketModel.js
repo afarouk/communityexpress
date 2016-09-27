@@ -81,7 +81,9 @@ var CatalogBasketModel = Backbone.Collection.extend({
     addItem : function(item, count, groupId, groupDisplayText,catalogId,catalogDisplayText) {
         // console.log("BasketModel:addItem::"+item.get('itemName')+",
         // "+groupId+", "+catalogId);
-
+        if (count === 0) {
+            this.removeItem(item);
+        }
         var itemModel = this.get(item.get('uUID'));
         if (itemModel) {
             itemModel.add(count);
