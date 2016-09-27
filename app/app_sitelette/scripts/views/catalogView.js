@@ -29,7 +29,12 @@ var CatalogView = Backbone.View.extend({
     onShow : function() {
         $(this.$('.firstItem a')[0]).trigger('click');
         //TODO --> check listenTo part after jquery.mobile will be fixed
-        this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
+        if (this.rosterBasket) {
+            // this.listenTo(this.rosterBasket, 'reset change add remove', this.setQuantity, this);
+            this.listenTo(this.basket, 'reset change add remove', this.updateRosterBasket, this);
+        } else {
+            this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
+        }
         if(this.backToRoster === true){
           /* hide the order button */
         //   this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
@@ -217,14 +222,20 @@ var CatalogView = Backbone.View.extend({
         // TODO
     },
 
+    updateRosterBasket: function() {
+        this.rosterBasket.addItems(this.basket);
+        this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
+        this.$('.total_price').text('$' + this.rosterBasket.getTotalPrice());
+    },
+
     updateBasket : function() {
         this.$('.cart_items_number').text(this.basket.count());
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
 
-        if (this.rosterBasket) {
-            this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
-            this.$('.total_price').text('$' + this.rosterBasket.getTotalPrice());
-        }
+        // if (this.rosterBasket) {
+        //     this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
+        //     this.$('.total_price').text('$' + this.rosterBasket.getTotalPrice());
+        // }
         if (this.basket.hasCombo()) {
             /* update combo count */
             $('#catalog_combo_count_div').show();

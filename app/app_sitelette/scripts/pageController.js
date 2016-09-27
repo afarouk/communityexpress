@@ -314,7 +314,7 @@ module.exports = {
                     } else {
                         console.log("Roster already has catalog: " + catalogId );
                     }
-                }else if(typeof cloneCatalogAndAdd !== 'undefined' && cloneCatalogAndAdd === false){
+                } else if (typeof cloneCatalogAndAdd !== 'undefined' && cloneCatalogAndAdd === false){
 
                   var itemizedCatalogAlreadyAdded = false;
                   _(rosterBasket.catalogs.models).each(function(model, index, list) {
