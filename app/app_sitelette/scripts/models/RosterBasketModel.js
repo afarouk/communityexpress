@@ -86,6 +86,7 @@ var RosterBasketModel = Backbone.Model.extend({
     var catalogModel,
         catalogModels;
     if (catalogId === 'SIDES') {
+        debugger;
         catalogModels = this.catalogs.models.find(function(item) {
             return item.id === 'SIDES';
         });

@@ -160,6 +160,7 @@ module.exports = {
     catalog: function(options) { // options is an array with either sasl or
         // urlKey
         var sasl;
+        debugger;
         var rosterBasket = options.rosterBasket || false;
         var catalogId = options.catalogId;
         var backToRoster = options.backToRoster;
@@ -201,6 +202,9 @@ module.exports = {
                     var group = item.groupId;
                     console.log("retrieved catalog from cache ### " + itemName + ":[" + quantity + "] from Group:" + group);
                 });
+                if (catalogId === 'SIDES') {
+                    basket = rosterBasket;
+                }
 
                 return {
                     sasl: sasl,
@@ -209,9 +213,8 @@ module.exports = {
                     url: getUrl(sasl) + '/catalog',
                     rosterId: rosterId,
                     backToRoster: backToRoster,
-                    basket: rosterBasket || basket, // catalogActions.getBasket(sasl.sa(),
+                    basket: basket, // catalogActions.getBasket(sasl.sa(),
                     // sasl.sl()),
-                    rosterBasket: rosterBasket,
                     backToCatalogs: backToCatalogs,
                     catalogId: catalogId,
                     navbarView: navbarView,
