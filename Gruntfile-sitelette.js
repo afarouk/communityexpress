@@ -212,7 +212,7 @@ module.exports = function (grunt) {
         replace: {
             dist: {
                 overwrite: true,
-                src: ['<%= yeoman.dist %>/themes/*/index.html'],
+                src: ['<%= yeoman.dist %>/themes/*/head.php'],
                 replacements: [{
                     from: '<link href="build/styles.css" rel="stylesheet">',
                     to: ''
