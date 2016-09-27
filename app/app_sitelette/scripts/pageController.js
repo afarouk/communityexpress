@@ -209,7 +209,7 @@ module.exports = {
                     url: getUrl(sasl) + '/catalog',
                     rosterId: rosterId,
                     backToRoster: backToRoster,
-                    basket: basket, // catalogActions.getBasket(sasl.sa(),
+                    basket: rosterBasket || basket, // catalogActions.getBasket(sasl.sa(),
                     // sasl.sl()),
                     rosterBasket: rosterBasket,
                     backToCatalogs: backToCatalogs,

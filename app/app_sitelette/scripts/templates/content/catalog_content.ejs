@@ -4,13 +4,7 @@
             <a href="#left-panel edit_button">
                 <span class="shopping_icon"></span>
             </a>
-            <span class="cart_items_number">
-                <% if (rosterBasket) { %>
-                    <%= rosterBasket.getItemsNumber() %>
-                <% } else { %>
-                    <%= basket.getComboCount() %>
-                <% } %>
-            </span>
+            <span class="cart_items_number"></span>
         </div>
         <div class="total_price_order_block">
             <span class="total_price cmtyx_text_color_1">0</span>
@@ -27,35 +21,3 @@
         </div>
     </div>
 </div>
-
-<!--<div id="cmtyx_generatedView" data-role="page" class="page">
-    <div class="sprite_navbar navbutton_back back"></div>
-    <div data-role="content" class="content">
-        <div  class="ui-grid-c cmntyex-basket">
-        <div style="padding-top:20px; text-align: center;"><%=basket.catalogDisplayText%></div>
-            <div style="padding-top:10px;text-align: center;  <% if(! basket.hasCombo()) { %> visibility:none;<% } %> " id="catalog_combo_count_div">
-                Combo: <span class="num-of-combo-items"><%= basket.getComboCount() %></span> : $<span class="combo-total-price"><%= basket.getComboPrice() %></span>
-            </div>
-            <div class="ui-block-a">
-                <div class="edit_button sprite_navbar sub_edit"></div>
-            </div>
-        <% if (basket.hasCombo()) { %>
-            <div id="catalog_extras_row" class="ui-block-b">
-                <p>Extra: <span class="num-of-items"><%= basket.nonComboItemCount() %></span>  $<span class="total-price"><%= basket.getNonComboPrice() %></span></p>
-            </div>
-        <% } else { %>
-            <div id="catalog_items_row" class="ui-block-b">
-                <p>Items <span class="num-of-items"><%= basket.count() %></span> - $<span class="total-price"><%= basket.getTotalPrice() %></span></p>
-            </div>
-        <% } %>
-          <div  class="ui-block-d">
-             <button class="add_combo_button cmntyex-basket_add_button" style="width: 70px;">Add</button>
-          </div>
-           <div class="ui-block-d">
-               <button class="order_button cmntyex-basket_order_button" style="width: 70px;">Order</button>
-           </div>
-        </div>
-        <div class="cmntyex-items_placeholder">
-        </div>
-    </div>
-</div>-->

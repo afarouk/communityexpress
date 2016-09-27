@@ -4,7 +4,7 @@
 
 var template = require('ejs!../../templates/partials/group.ejs'),
     Vent = require('../../Vent'),
-    CatalogItemView = require('./catalog_item'),
+    // CatalogItemView = require('./catalog_item'),
     ListView = require('../components/listView');
 
 var GroupView = Backbone.View.extend({
@@ -17,7 +17,7 @@ var GroupView = Backbone.View.extend({
         this.catalogId = options.parent.catalogId;
         this.catalogDisplayText = options.parent.catalogDisplayText;
         this.basket = options.basket;
-        this.rosterBasket = options.rosterBasket;
+        this.itemView = options.itemView;
         this.color = options.color;
         this.onClick = options.onClick;
         this.listenTo(options.parent, 'close:all', this.onClose, this);
@@ -34,14 +34,13 @@ var GroupView = Backbone.View.extend({
 
     renderItems: function (el) {
         $(el).find('.cmntyex-list_placeholder').html(new ListView({
-            ListItemView: CatalogItemView,
+            ListItemView: this.itemView,
             ListItemViewOptions: {
                 onClick: function (model) {
                     this.onClick(model);
                 }.bind(this),
                 color: this.color,
                 basket: this.basket,
-                rosterBasket: this.rosterBasket,
                 groupId: this.groupId,
                 groupDisplayText: this.groupDisplayText,
                 catalogId: this.catalogId,

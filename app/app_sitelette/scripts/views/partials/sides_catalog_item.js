@@ -2,11 +2,11 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/catalog-item.ejs'),
+var template = require('ejs!../../templates/partials/catalog_item_from_roster.ejs'),
     h = require('../../globalHelpers'),
     Vent = require('../../Vent');
 
-var CatalogItemView = Backbone.View.extend({
+var SidesCatalogItemView = Backbone.View.extend({
 
     template: template,
 
@@ -35,8 +35,8 @@ var CatalogItemView = Backbone.View.extend({
         this.color = options.color;
         this.basket = options.basket;
         var itemId = this.model.get('itemId');
-        if (typeof this.basket !== 'undefined') {
-            this.basket.each(_.bind(function(item) {
+        if (typeof this.basket.SIDES !== 'undefined') {
+            this.basket.SIDES.each(_.bind(function(item) {
                 if (item.get('itemId') === itemId) {
                     this.quantity.set('value', item.get('quantity'));
                 }
@@ -53,7 +53,7 @@ var CatalogItemView = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template(_.extend({}, this.model.attributes, {
             color: this.color,
-            quantity: this.quantity.get('value')
+            quantity: this.quantity.get('value') || 0
         })));
         return this;
     },
@@ -87,8 +87,9 @@ var CatalogItemView = Backbone.View.extend({
     addToBasket: function () {
     	var count;
         this.addItem ? count = 1 : count = -1;
-            this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+        this.model.set('quantity', this.model.get('quantity') + count);
+        this.basket.addSidesItem(this.model, count, this.groupId, this.groupDisplayText, this.catalogId, this.catalogDisplayText);
     }
 });
 
-module.exports = CatalogItemView;
+module.exports = SidesCatalogItemView;

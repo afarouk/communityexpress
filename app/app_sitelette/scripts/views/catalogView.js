@@ -9,6 +9,8 @@ orderActions = require('../actions/orderActions'), //
 template = require('ejs!../templates/content/catalog_content.ejs'),
 GroupView = require('./partials/groupView'), //
 ComboGroupView = require('./partials/comboGroupView'), //
+CatalogItemView = require('./partials/catalog_item'),
+SidesCatalogItemView = require('./partials/sides_catalog_item'),
 popupController = require('../controllers/popupController'),
 RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),
 ListView = require('./components/listView');
@@ -29,12 +31,7 @@ var CatalogView = Backbone.View.extend({
     onShow : function() {
         $(this.$('.firstItem a')[0]).trigger('click');
         //TODO --> check listenTo part after jquery.mobile will be fixed
-        if (this.rosterBasket) {
-            // this.listenTo(this.rosterBasket, 'reset change add remove', this.setQuantity, this);
-            this.listenTo(this.basket, 'reset change add remove', this.updateRosterBasket, this);
-        } else {
-            this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        }
+        this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         if(this.backToRoster === true){
           /* hide the order button */
         //   this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
@@ -59,7 +56,6 @@ var CatalogView = Backbone.View.extend({
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
         this.basket = options.basket;
-        this.rosterBasket = options.rosterBasket;
         this.backToCatalogs = options.backToCatalogs;
         this.backToRoster = options.backToRoster;
         this.rosterId = options.rosterId;
@@ -78,8 +74,7 @@ var CatalogView = Backbone.View.extend({
 
     renderData : function() {
         return {
-            basket : this.basket,
-            rosterBasket: this.rosterBasket
+            basket : this.basket
         };
     },
 
@@ -187,21 +182,6 @@ var CatalogView = Backbone.View.extend({
     },
 
     openEditPanel : function() {
-        if (this.rosterBasket) {
-            this.openRosterEditPanel();
-        } else {
-            this.openBasketEditPanel();
-        }
-        // this.openSubview('editFavorites', this.basket, {
-        //     actions : {
-        //         removeItem : function(selected) {
-        //             _(selected).each(function(item) {
-        //                 this.basket.removeItem(item);
-        //             }.bind(this));
-        //         }.bind(this)
-        //     },
-        //     template : require('ejs!../templates/partials/edit_basket_item.ejs')
-        // });
     },
 
     openRosterEditPanel: function() {
@@ -222,40 +202,30 @@ var CatalogView = Backbone.View.extend({
         // TODO
     },
 
-    updateRosterBasket: function() {
-        this.rosterBasket.addItems(this.basket);
-        this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
-        this.$('.total_price').text('$' + this.rosterBasket.getTotalPrice());
-    },
-
     updateBasket : function() {
-        this.$('.cart_items_number').text(this.basket.count());
-        this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
-
-        // if (this.rosterBasket) {
-        //     this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
-        //     this.$('.total_price').text('$' + this.rosterBasket.getTotalPrice());
+        // this.$('.cart_items_number').text(this.basket.count());
+        // this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
+        //
+        // if (this.basket.hasCombo()) {
+        //     /* update combo count */
+        //     $('#catalog_combo_count_div').show();
+        //     $('.num-of-combo-items').text(this.basket.getComboCount());
+        //     $('.combo-total-price').text(this.basket.getComboPrice());
+        // } else {
+        //     /* hide the combo line */
+        //     $('#catalog_combo_count_div').hide();
         // }
-        if (this.basket.hasCombo()) {
-            /* update combo count */
-            $('#catalog_combo_count_div').show();
-            $('.num-of-combo-items').text(this.basket.getComboCount());
-            $('.combo-total-price').text(this.basket.getComboPrice());
-        } else {
-            /* hide the combo line */
-            $('#catalog_combo_count_div').hide();
-        }
-
-        /*
-         * update the items
-         */
-        if (this.basket.hasCombo()) {
-            $('.num-of-items').text(this.basket.nonComboItemCount());
-            $('.total-price').text(this.basket.getNonComboPrice());
-        } else {
-            $('.num-of-items').text(this.basket.count());
-            $('.total-price').text(this.basket.getTotalPrice());
-        }
+        //
+        // /*
+        //  * update the items
+        //  */
+        // if (this.basket.hasCombo()) {
+        //     $('.num-of-items').text(this.basket.nonComboItemCount());
+        //     $('.total-price').text(this.basket.getNonComboPrice());
+        // } else {
+        //     $('.num-of-items').text(this.basket.count());
+        //     $('.total-price').text(this.basket.getTotalPrice());
+        // }
 
     },
 
@@ -268,6 +238,8 @@ var CatalogView = Backbone.View.extend({
     renderItems : function() {
 
         this.updateBasket();
+
+        var ItemView = this.backToRoster ? SidesCatalogItemView : CatalogItemView;
 
         var catalogType = this.catalogType.enumText;
         var catalogId = this.catalogId;
@@ -353,7 +325,7 @@ var CatalogView = Backbone.View.extend({
                     model : group,
                     parent : this,
                     basket: this.basket,
-                    rosterBasket: this.rosterBasket
+                    itemView: ItemView
                 }).render().el;
 
                 this.$('.cmntyex-items_placeholder').append(el);

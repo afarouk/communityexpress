@@ -2,6 +2,7 @@
 
 'use strict';
 var CatalogBasketModel = require('../models/CatalogBasketModel'); //
+var CatalogBasketItem = require('../models/CatalogBasketItem');
 
 var RosterBasketModel = Backbone.Model.extend({
 
@@ -45,18 +46,35 @@ var RosterBasketModel = Backbone.Model.extend({
     this.rosterType = rosterDetails.rosterType;
   },
 
-  addItems: function(catalogBasket) {
-      var catalogId = catalogBasket.id;
+  addSidesItem: function(item, count, groupId, groupDisplayText, catalogId, catalogDisplayText) {
       var alreadyAdded = false;
       _(this.catalogs.models).each(function(model) {
           if (model.id === catalogId) {
               alreadyAdded = true;
           }
       });
+      var catalog;
+      this.SIDES.add(item);
       if (!alreadyAdded) {
-          this.catalogs.models.push(catalogBasket);
+          this.catalogs.models.push(this.SIDES);
       }
-    //   this.trigger('add');
+      this.addCatalog(this.SIDES, count, catalogId, catalogDisplayText);
+    //   if (!alreadyAdded) {
+    //     //   var catalogOptions = _.extend({}, item.attributes, {
+    //     //       quantity: count || 1,
+    //     //       groupId: groupId,
+    //     //       groupDisplayText: groupDisplayText,
+    //     //       catalogId: catalogId,
+    //     //       catalogDisplayText: catalogDisplayText
+    //     //   });
+    //     //   catalog = new CatalogBasketItem(catalogOptions);
+    //       this.SIDES.add(item);
+    //       this.catalogs.models.push(this.SIDES);
+    //     //   this.addCatalog(this.SIDES, count, catalogId, catalogDisplayText);
+    // } else {
+    //     this.addCatalog(this.SIDES, count, catalogId, catalogDisplayText);
+    // }
+
   },
 
   addCatalog: function(catalog, count, catalogId, catalogDisplayText) {

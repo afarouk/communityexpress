@@ -24,7 +24,7 @@
         <span class="order_price cmtyx_text_color_1">$ <%= (quantity * price).toFixed(2) %></span>
     </div>
     <div class="order_subitem_name">
-		<% if (catalogId !== "SIDES") { %>
+		<% if (rosterEntryType !== "ITEMIZED") { %>
 			<p><%=  ownComboItemText %></p>
 		<% } %>
 	</div>
