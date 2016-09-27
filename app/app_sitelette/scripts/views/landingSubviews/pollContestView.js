@@ -92,7 +92,7 @@ module.exports = Backbone.View.extend({
     displayResults: function(result) {
         this.$el.find('.poll_results').show();
         var choices = result.choices,
-            options = _.extend(jqPlotOptions.options, {}),
+            options = _.extend(jqPlotOptions.options, {height: choices.length * 35}),
             colorChoices = this.getColors();
 
             var array = [], a = [], b = [];

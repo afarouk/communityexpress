@@ -6,6 +6,7 @@ module.exports = {
 		"captureRightClick":true,
 		"grid":{  
 			"drawGridLines": false, 
+			"gridLineColor": '#bbb',
 		    "background": 'transparent',     
 		    "borderColor": 'transparent',     
 		    "borderWidth": 0,          
@@ -27,9 +28,6 @@ module.exports = {
 				}
 			},
 			"ticks":[],
-			 tickOptions: {
-	                // showGridline: false
-	            }
 			}
 		},
 		"seriesDefaults":{
@@ -38,7 +36,7 @@ module.exports = {
 				"varyBarColor":true,
 				"barDirection":"horizontal",
 				"barPadding":0,
-				"barMargin":-50,
+				"barMargin":0,
 				"barWidth":22,
 				"highlightMouseDown":true
 			},
