@@ -178,7 +178,9 @@ if (validateParams('debug')) {
   echo '$saslAccess=' . ($saslAccess ? 'true' : 'false') . '</br>';
   echo '$urlKeyAccess=' . ($urlKeyAccess ? 'true' : 'false') . '</br>';
   echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false')  . '</br>';
-  echo '$IOSversion=' . $IOSversion . '</br>';
+  if(isset($IOSversion)){
+    echo '$IOSversion=' . $IOSversion . '</br>';
+  }
   echo '$videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false')  . '</br>';
   echo '$city=' . $city . '</br>';
   echo '$street=' . $street . '</br>';
