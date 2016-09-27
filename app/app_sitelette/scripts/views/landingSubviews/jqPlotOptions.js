@@ -26,7 +26,10 @@ module.exports = {
 					 "fontSize":14
 				}
 			},
-			"ticks":[]
+			"ticks":[],
+			 tickOptions: {
+	                // showGridline: false
+	            }
 			}
 		},
 		"seriesDefaults":{
@@ -35,7 +38,7 @@ module.exports = {
 				"varyBarColor":true,
 				"barDirection":"horizontal",
 				"barPadding":0,
-				"barMargin":0,
+				"barMargin":-50,
 				"barWidth":22,
 				"highlightMouseDown":true
 			},
