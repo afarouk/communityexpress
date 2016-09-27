@@ -99,6 +99,7 @@ module.exports = {
                 } else {
                     console.log("not removing cookie, getAuthentication status call failed?");
                     //Cookies.remove('cmxUID');
+                    Vent.trigger('force_logout');//temporary
                 }
                 dfd.resolve();
             }, function onRequestError () {
