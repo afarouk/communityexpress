@@ -45,8 +45,19 @@ var RosterBasketModel = Backbone.Model.extend({
     this.rosterType = rosterDetails.rosterType;
   },
 
-
-
+  addItems: function(catalogBasket) {
+      var catalogId = catalogBasket.id;
+      var alreadyAdded = false;
+      _(this.catalogs.models).each(function(model) {
+          if (model.id === catalogId) {
+              alreadyAdded = true;
+          }
+      });
+      if (!alreadyAdded) {
+          this.catalogs.models.push(catalogBasket);
+      }
+    //   this.trigger('add');
+  },
 
   addCatalog: function(catalog, count, catalogId, catalogDisplayText) {
     // console.log("BasketModel:addItem::"+item.get('itemName')+",
