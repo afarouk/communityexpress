@@ -10,13 +10,28 @@ $tileViewDetails = false;
 $useTemplate=true;
 /*is demo=true */
 
+
+$detect = new Mobile_Detect;
+$iPhoneVersion=$detect->version('iPhone'); // 3.1 (float)
+if ($iPhoneVersion){
+  $IOSversion= intval( substr($iPhoneVersion, 0, strpos($iPhoneVersion, '_')));
+  if($IOSversion >= 10){
+    $videoNeedsPlaceholder=false;
+  }else{
+    $videoNeedsPlaceholder=true;
+  }
+}
+else {
+  $videoNeedsPlaceholder=false;
+}
+
+
 if (validateParams('demo')) {
   $demo = true;
 } else {
   $demo = false;
 }
 
-$detect = new Mobile_Detect();
 /* is desktopiframe=true
 *
 * if this is true, we load normally even when we detect
@@ -163,6 +178,8 @@ if (validateParams('debug')) {
   echo '$saslAccess=' . ($saslAccess ? 'true' : 'false') . '</br>';
   echo '$urlKeyAccess=' . ($urlKeyAccess ? 'true' : 'false') . '</br>';
   echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false')  . '</br>';
+  echo '$IOSversion=' . $IOSversion . '</br>';
+  echo '$videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false')  . '</br>';
   echo '$city=' . $city . '</br>';
   echo '$street=' . $street . '</br>';
   echo '$number=' . $number . '</br>';
@@ -233,7 +250,7 @@ if ($saslAccess || $urlKeyAccess) {
         $twitter_title=" Some title";
         $twitter_description="Some description";
         $twitter_image="Some image url";
-             
+
 
        include_once 'themes/1/head.php';
        if($useTemplate){
