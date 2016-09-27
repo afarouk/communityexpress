@@ -35,7 +35,6 @@ var CatalogItemView = Backbone.View.extend({
         this.rosterBasket = options.rosterBasket;
         var itemId = this.model.get('itemId');
         if (typeof this.basket !== 'undefined') {
-            debugger;
             this.basket.each(_.bind(function(item) {
                 if (item.get('itemId') === itemId) {
                     this.quantity.set('value', item.get('quantity'));

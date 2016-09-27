@@ -1943,7 +1943,6 @@ li.promotion_block .body {
 .photo_contest_block .photo_contest_upload_image .dropzone {
     border-radius: 4px;
     min-height: 100px!important;
-    transition: .8s;
     border-color: #757373;
     background-color: transparent;
 }
