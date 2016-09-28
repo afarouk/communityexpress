@@ -26,9 +26,10 @@ var SidesCatalogItemView = Backbone.View.extend({
     },
 
     initialize: function (options) {
-        this.quantity = new Backbone.Model({
-            value: 0
-        });
+        // this.quantity = new Backbone.Model({
+        //     value: 0
+        // });
+        this.quantity = 0;
         this.onClick = function () {
             options.onClick(this.model);
         }.bind(this);
@@ -38,7 +39,8 @@ var SidesCatalogItemView = Backbone.View.extend({
         if (typeof this.basket.SIDES !== 'undefined') {
             this.basket.SIDES.each(_.bind(function(item) {
                 if (item.get('itemId') === itemId) {
-                    this.quantity.set('value', item.get('quantity'));
+                    // this.quantity.set('value', item.get('quantity'));
+                    this.quantity = item.get('quantity');
                 }
             }, this));
         }
@@ -47,13 +49,13 @@ var SidesCatalogItemView = Backbone.View.extend({
         this.groupDisplayText=options.groupDisplayText;
         this.catalogDisplayText=options.catalogDisplayText;
 
-        this.listenTo(this.quantity, 'change:value', this.updateQuantity, this);
+        this.listenTo(this.basket, 'reset change add remove', this.setQuantity, this);
     },
 
     render: function() {
         this.$el.html(this.template(_.extend({}, this.model.attributes, {
             color: this.color,
-            quantity: this.quantity.get('value') || 0
+            quantity: this.quantity || 0
         })));
         return this;
     },
@@ -64,25 +66,49 @@ var SidesCatalogItemView = Backbone.View.extend({
 
     incrementQuantity: function () {
         this.addItem = true;
-        this.quantity.set('value', this.quantity.get('value') + 1);
+        this.quantity = this.quantity + 1;
+        this.addToBasket();
     },
 
     decrementQuantity: function () {
         this.addItem = false;
-        var qty = this.quantity.get('value');
+        var qty = this.quantity;
 
         if (qty === 0) return;
 
-        this.quantity.set('value', this.quantity.get('value') - 1);
-    },
-
-    updateQuantity: function () {
-        this.$('.quantity').text(this.quantity.get('value'));
-        this.quantity.get('value') === 0
-        ? this.$('.order_price').text('$' + this.model.get('price'))
-        : this.$('.order_price').text('$' + this.model.get('price')*this.quantity.get('value'));
+        this.quantity = this.quantity - 1;
         this.addToBasket();
     },
+
+    setQuantity: function() {
+        this.$('.quantity').text(this.model.get('quantity') || 0);
+        var itemId = this.model.get('itemId');
+        if (typeof this.basket.SIDES !== 'undefined') {
+            if (this.basket.SIDES.length === 0) {
+                this.$('.quantity').text(0);
+                this.quantity = 0;
+            } else {
+                var modelChanged = this.basket.SIDES.find(_.bind(function(item) {
+                    return item.get('itemId') === this.model.get('itemId');
+                }, this));
+                if (modelChanged) {
+                    this.quantity = modelChanged.get('quantity');
+                } else {
+                    this.quantity = 0;
+                }
+            }
+        }
+        this.model.set('quantity', this.quantity);
+        this.$('.quantity').text(this.quantity);
+    },
+
+    // updateQuantity: function () {
+    //     // this.$('.quantity').text(this.quantity);
+    //     // this.quantity === 0
+    //     // ? this.$('.order_price').text('$' + this.model.get('price'))
+    //     // : this.$('.order_price').text('$' + this.model.get('price')*this.quantity);
+    //     this.addToBasket();
+    // },
 
     addToBasket: function () {
     	var count;

@@ -83,26 +83,7 @@ var RosterBasketModel = Backbone.Model.extend({
           }
       }
 
-    //   this.SIDES.add(item);
-    //   if (!alreadyAdded) {
-    //       this.catalogs.models.push(this.SIDES);
-    //   }
-    //   this.addCatalog(this.SIDES, count, catalogId, catalogDisplayText);
-    //   if (!alreadyAdded) {
-    //     //   var catalogOptions = _.extend({}, item.attributes, {
-    //     //       quantity: count || 1,
-    //     //       groupId: groupId,
-    //     //       groupDisplayText: groupDisplayText,
-    //     //       catalogId: catalogId,
-    //     //       catalogDisplayText: catalogDisplayText
-    //     //   });
-    //     //   catalog = new CatalogBasketItem(catalogOptions);
-    //       this.SIDES.add(item);
-    //       this.catalogs.models.push(this.SIDES);
-    //     //   this.addCatalog(this.SIDES, count, catalogId, catalogDisplayText);
-    // } else {
-    //     this.addCatalog(this.SIDES, count, catalogId, catalogDisplayText);
-    // }
+      this.trigger('change');
 
   },
 

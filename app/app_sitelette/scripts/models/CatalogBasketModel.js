@@ -81,12 +81,12 @@ var CatalogBasketModel = Backbone.Collection.extend({
     addItem : function(item, count, groupId, groupDisplayText,catalogId,catalogDisplayText) {
         // console.log("BasketModel:addItem::"+item.get('itemName')+",
         // "+groupId+", "+catalogId);
-        if (count === 0) {
-            this.removeItem(item);
-        }
         var itemModel = this.get(item.get('uUID'));
         if (itemModel) {
             itemModel.add(count);
+            if (!itemModel.get('quantity') || itemModel.get('quantity') === 0) {
+                this.removeItem(itemModel);
+            }
         } else {
             /*
              * create item options, pass groupId, catalogId
@@ -112,6 +112,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
         }
         this.dumpCartToConsole();
     },
+    
     addItemRaw : function(itemRaw, count, groupId,groupDisplayText, catalogId,catalogDisplayText) {
 
         /*
@@ -163,6 +164,10 @@ var CatalogBasketModel = Backbone.Collection.extend({
         return this.reduce(function(sum, item) {
             return sum += item.get('quantity');
         }.bind(this), 0);
+    },
+
+    getItemsNumber: function() {
+        return this.length;
     },
 
     dumpCartToConsole : function() {

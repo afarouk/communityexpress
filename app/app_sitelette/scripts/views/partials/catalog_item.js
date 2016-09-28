@@ -87,7 +87,7 @@ var CatalogItemView = Backbone.View.extend({
     addToBasket: function () {
     	var count;
         this.addItem ? count = 1 : count = -1;
-            this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+        this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     }
 });
 

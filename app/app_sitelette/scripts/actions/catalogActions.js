@@ -35,12 +35,12 @@ module.exports = {
             };
         });
     },
-    
+
     getRoster: function(sa, sl, rosterId) {
         return gateway.sendRequest('getRoster', {
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
-            UID: getUID(), 
+            UID: getUID(),
             rosterId:rosterId
         }).then(function(response) {
             return {

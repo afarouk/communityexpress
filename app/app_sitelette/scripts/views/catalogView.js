@@ -56,6 +56,7 @@ var CatalogView = Backbone.View.extend({
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
         this.basket = options.basket;
+        this.rosterBasket = options.rosterBasket;
         this.backToCatalogs = options.backToCatalogs;
         this.backToRoster = options.backToRoster;
         this.rosterId = options.rosterId;
@@ -90,9 +91,9 @@ var CatalogView = Backbone.View.extend({
     },
 
     goBack : function() {
-        if( this.backToRoster){
+        if ( this.backToRoster) {
           this.triggerRosterView( );
-        }else if(this.backToCatalogs) {
+        } else if(this.backToCatalogs) {
             this.triggerCatalogsView();
         } else {
             this.triggerRestaurantView();
@@ -182,9 +183,14 @@ var CatalogView = Backbone.View.extend({
     },
 
     openEditPanel : function() {
+        if (this.rosterBasket) {
+            this.openRosterBasketEditPanel();
+        } else {
+            this.openBasketEditPanel();
+        }
     },
 
-    openRosterEditPanel: function() {
+    openRosterBasketEditPanel: function() {
         var editModel= new RosterBasketDerivedCollection ([], {basket:this.rosterBasket});
         popupController.editRosterView(this, editModel, {
             actions: {
@@ -199,12 +205,26 @@ var CatalogView = Backbone.View.extend({
     },
 
     openBasketEditPanel: function() {
-        // TODO
+        popupController.editCatalogBasketView(this, this.basket, {
+            actions: {
+                removeItem: function(selected) {
+                    _(selected).each(function(item) {
+                        this.basket.removeItem(item);
+                    }.bind(this));
+                }.bind(this)
+            },
+            template: require('ejs!../templates/partials/edit_catalog_basket_item.ejs')
+        });
     },
 
     updateBasket : function() {
-        this.$('.cart_items_number').text(this.basket.getItemsNumber());
-        this.$('.total_price').text('$ ' + this.basket.getTotalPrice());
+        if (this.rosterBasket && this.catalogId === 'BUILDYOURCOMBO') {
+            this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
+            this.$('.total_price').text('$ ' + this.rosterBasket.getTotalPrice().toFixed(2));
+        } else {
+            this.$('.cart_items_number').text(this.basket.getItemsNumber());
+            this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
+        }
         //
         // if (this.basket.hasCombo()) {
         //     /* update combo count */

@@ -44,6 +44,11 @@ var PopupController = {
         this.show(view);
     },
 
+    editCatalogBasketView: function(self, basket, options) {
+        var view = viewFactory.create('editCatalogBasketView', basket, self, options);
+        this.show(view);
+    },
+
     openLeftMenu: function(){
         var view = viewFactory.create('leftMenuView');
         // debugger;

@@ -204,18 +204,25 @@ var LandingView = Backbone.View.extend({
     },
 
     triggerCatalogsView: function() {
-      var saslData = appCache.get('saslData');
-      var showRoster=false;
-      if (saslData && saslData.services.catalog.catalogAggregationType==='ROSTERIZED') {
-        showRoster=true;
-      }
-
-      if (showRoster) {
-          this.triggerRosterView();
-      } else {
-          Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl] );
-      }
-
+        var saslData = appCache.get('saslData');
+        if (saslData) {
+            switch (saslData.retailViewType) {
+                case 'ROSTER':
+                    this.triggerRosterView();
+                    break;
+                case 'CATALOGS':
+                    Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl]);
+                    break;
+                case 'CATALOG':
+                    Vent.trigger('viewChange', 'catalog', {
+                        backToRoster: false,
+                        backToCatalogs: false,
+                        backToCatalog: true
+                    });
+                    break;
+            default:
+            }
+        }
     },
 
     triggerRosterView: function() {
@@ -226,9 +233,9 @@ var LandingView = Backbone.View.extend({
         Vent.trigger('viewChange', 'roster', {
             //sasl: modelId,
             id: uuid,
-            backToRoster:false,
-            rosterId:uuid,
-            launchedViaURL:false
+            backToRoster: false,
+            rosterId: uuid,
+            launchedViaURL: false
          }, { reverse: false });
     },
 
