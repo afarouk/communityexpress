@@ -53,12 +53,41 @@ var RosterBasketModel = Backbone.Model.extend({
               alreadyAdded = true;
           }
       });
-      var catalog;
-      this.SIDES.add(item);
       if (!alreadyAdded) {
           this.catalogs.models.push(this.SIDES);
       }
-      this.addCatalog(this.SIDES, count, catalogId, catalogDisplayText);
+      var itemModel;
+      var basketSides = this.catalogs.models.find(function(sidesItem) {
+          return sidesItem.id === 'SIDES';
+      });
+      if (basketSides) {
+          itemModel = basketSides.find(function(sidesItem) {
+              return sidesItem.get('uUID') === item.get('uUID');
+          });
+          if (itemModel) {
+              itemModel.add(count);
+              if (itemModel.get('quantity') === 0) {
+                  basketSides.remove(itemModel.id);
+              }
+          } else {
+              var itemOptions = _.extend({}, item.attributes, {
+                  quantity : count || 1,
+                  groupId : groupId,
+                  groupDisplayText:groupDisplayText,
+                  catalogId : catalogId,
+                  catalogDisplayText:catalogDisplayText
+              });
+              var itemModel = new CatalogBasketItem(itemOptions);
+
+              basketSides.add(itemModel);
+          }
+      }
+
+    //   this.SIDES.add(item);
+    //   if (!alreadyAdded) {
+    //       this.catalogs.models.push(this.SIDES);
+    //   }
+    //   this.addCatalog(this.SIDES, count, catalogId, catalogDisplayText);
     //   if (!alreadyAdded) {
     //     //   var catalogOptions = _.extend({}, item.attributes, {
     //     //       quantity: count || 1,
@@ -86,7 +115,6 @@ var RosterBasketModel = Backbone.Model.extend({
     var catalogModel,
         catalogModels;
     if (catalogId === 'SIDES') {
-        debugger;
         catalogModels = this.catalogs.models.find(function(item) {
             return item.id === 'SIDES';
         });
@@ -94,7 +122,7 @@ var RosterBasketModel = Backbone.Model.extend({
             return item.itemName === catalog.displayText;
         });
         if (count === 0) {
-            catalogModels.models.splice(catalogModels.models.indexOf(catalogModel), 1);
+            catalogModels.remove(catalogModel.id);
         }
         if (catalogModels.models.length === 0) {
             this.catalogs.models.splice(this.catalogs.models.indexOf(catalogModels), 1);

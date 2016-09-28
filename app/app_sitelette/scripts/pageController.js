@@ -160,7 +160,6 @@ module.exports = {
     catalog: function(options) { // options is an array with either sasl or
         // urlKey
         var sasl;
-        debugger;
         var rosterBasket = options.rosterBasket || false;
         var catalogId = options.catalogId;
         var backToRoster = options.backToRoster;

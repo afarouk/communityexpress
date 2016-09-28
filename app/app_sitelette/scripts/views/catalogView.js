@@ -203,8 +203,8 @@ var CatalogView = Backbone.View.extend({
     },
 
     updateBasket : function() {
-        // this.$('.cart_items_number').text(this.basket.count());
-        // this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
+        this.$('.cart_items_number').text(this.basket.getItemsNumber());
+        this.$('.total_price').text('$ ' + this.basket.getTotalPrice());
         //
         // if (this.basket.hasCombo()) {
         //     /* update combo count */
