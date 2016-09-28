@@ -10,13 +10,28 @@ $tileViewDetails = false;
 $useTemplate=true;
 /*is demo=true */
 
+
+$detect = new Mobile_Detect;
+$iPhoneVersion=$detect->version('iPhone'); // 3.1 (float)
+if ($iPhoneVersion){
+  $IOSversion= intval( substr($iPhoneVersion, 0, strpos($iPhoneVersion, '_')));
+  if($IOSversion >= 10){
+    $videoNeedsPlaceholder=false;
+  }else{
+    $videoNeedsPlaceholder=true;
+  }
+}
+else {
+  $videoNeedsPlaceholder=false;
+}
+
+
 if (validateParams('demo')) {
   $demo = true;
 } else {
   $demo = false;
 }
 
-$detect = new Mobile_Detect();
 /* is desktopiframe=true
 *
 * if this is true, we load normally even when we detect
@@ -163,6 +178,10 @@ if (validateParams('debug')) {
   echo '$saslAccess=' . ($saslAccess ? 'true' : 'false') . '</br>';
   echo '$urlKeyAccess=' . ($urlKeyAccess ? 'true' : 'false') . '</br>';
   echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false')  . '</br>';
+  if(isset($IOSversion)){
+    echo '$IOSversion=' . $IOSversion . '</br>';
+  }
+  echo '$videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false')  . '</br>';
   echo '$city=' . $city . '</br>';
   echo '$street=' . $street . '</br>';
   echo '$number=' . $number . '</br>';
@@ -189,9 +208,9 @@ if ($saslAccess || $urlKeyAccess) {
     $isPrivate = false;
     $canCreateAnonymousUser = false;
     if ($urlKeyAccess) {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false');
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false');
     } else {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false');
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false');
     }
 
     $siteletteJSON = makeApiCall($apiURL);
@@ -233,7 +252,7 @@ if ($saslAccess || $urlKeyAccess) {
         $twitter_title=" Some title";
         $twitter_description="Some description";
         $twitter_image="Some image url";
-             
+
 
        include_once 'themes/1/head.php';
        if($useTemplate){
