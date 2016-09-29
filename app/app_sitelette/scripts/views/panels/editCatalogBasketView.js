@@ -15,14 +15,14 @@ var EditCatalogBasketView = PanelView.extend({
 
     addedEvents : {
         'click .cart_add_delete_item': 'addOrDeleteItem',
-        'click .close_roster_basket_panel_button': 'saveBasket'
+        'click .close_roster_basket_panel_button': 'saveBasket',
+        'close:all': 'saveBasket'
     },
 
     initialize : function(options) {
-        debugger;
         this.options = options;
         options = options || {};
-        this.changedCatalogs = {};
+        this.changedItems = {};
         this.basket = this.model;
 
         this.itemTemplate = options.template;
@@ -55,10 +55,10 @@ var EditCatalogBasketView = PanelView.extend({
     },
 
     saveBasket: function() {
-        // if (this.changedCatalogs.length === 0) return;
-        // _.each(this.changedCatalogs, _.bind(function(catalog){
-        //     this.basket.addCatalog(catalog.catalog, catalog.quantity, catalog.catalogId);
-        // }, this));
+        if (this.changedItems.length === 0) return;
+        _.each(this.changedItems, _.bind(function(item) {
+            this.basket.changeItem(item.model, item.count);
+        }, this));
     },
 
     // removeSelected : function(e) {

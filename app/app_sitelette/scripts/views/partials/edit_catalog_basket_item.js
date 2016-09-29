@@ -15,20 +15,16 @@ var EditCatalogBasketItem = Backbone.View.extend({
     },
 
     initialize: function (options) {
-        debugger;
+        // debugger;
         this.parent = options.parent;
         this.quantity = this.model.get('quantity');
-        this.changedCatalogs = this.parent.parent.changedCatalogs;
+        this.changedItems = this.parent.parent.changedItems;
         this.basket = options.parent.parent.basket;
         this.template = options.template || template;
         this.editable = this.basket.catalogType === 'COMBO' ? false : true;
-
-        if (this.model.get('catalogId') === 'SIDES') {
-            this.$el.addClass('without_border');
-        }
         this.listenTo(this.model, 'change:quantity', this.updateQuantity, this);
-        this.listenTo(this.model, 'change:selected', this._update, this);
-        this.listenTo(this.parent, 'close:all', this.remove, this);
+        // this.listenTo(this.model, 'change:selected', this._update, this);
+        // this.listenTo(this.parent, 'close:all', this.remove, this);
     },
 
     render: function() {
@@ -39,21 +35,35 @@ var EditCatalogBasketItem = Backbone.View.extend({
     },
 
     incrementQuantity: function() {
-        this.model.set('quantity', this.model.get('quantity') + 1);
+        this.quantity = this.quantity + 1;
+        this.count = 1;
+        this.updateQuantity();
+        // this.model.set('quantity', this.model.get('quantity') + 1);
     },
 
     decrementQuantity: function() {
-        var quantity = this.model.get('quantity');
-        if (quantity === 0) return;
-        this.model.set('quantity', this.model.get('quantity') - 1);
+        // var quantity = this.model.get('quantity');
+        if (this.quantity === 0) return;
+        this.quantity = this.quantity - 1;
+        this.count = -1;
+        this.updateQuantity();
+        // this.model.set('quantity', this.model.get('quantity') - 1);
     },
 
     updateQuantity: function() {
-        this.$('.quantity').text(this.model.get('quantity'));
+        this.$('.order_price').text('$' + (this.quantity * this.model.get('price')).toFixed(2));
+        this.$('.quantity').text(this.quantity);
         this.addToBasket();
     },
 
     addToBasket: function() {
+        var changedItem = {
+            model: this.model,
+            count: this.quantity
+        }
+        if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED') {
+            this.changedItems[this.model.get('uUID')] = changedItem;
+        }
         // var catalog = this.model.toJSON(),
         //     quantity = this.model.get('quantity'),
         //     catalogId = this.model.get('catalogId');
@@ -71,13 +81,13 @@ var EditCatalogBasketItem = Backbone.View.extend({
         // }
     },
 
-    toggleSelected: function () {
-        this.model.set('selected', !this.model.get('selected'));
-    },
+    // toggleSelected: function () {
+    //     this.model.set('selected', !this.model.get('selected'));
+    // },
 
-    _update: function () {
-        this.$('a').toggleClass('ui-icon-delete', 'ui-icon-none');
-    },
+    // _update: function () {
+    //     this.$('a').toggleClass('ui-icon-delete', 'ui-icon-none');
+    // },
 
 });
 

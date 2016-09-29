@@ -26,34 +26,25 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     initialize: function (options) {
-        this.quantity = new Backbone.Model({
-            value: 0
-        });
-        this.onClick = function () {
-            options.onClick(this.model);
-        }.bind(this);
+        this.quantity = 0;
+        // this.onClick = function () {
+        //     options.onClick(this.model);
+        // }.bind(this);
         this.color = options.color;
         this.basket = options.basket;
-        var itemId = this.model.get('itemId');
-        if (typeof this.basket !== 'undefined') {
-            this.basket.each(_.bind(function(item) {
-                if (item.get('itemId') === itemId) {
-                    this.quantity.set('value', item.get('quantity'));
-                }
-            }, this));
-        }
+        this.updateQuantity();
         this.catalogId = options.catalogId;
         this.groupId = options.groupId;
         this.groupDisplayText=options.groupDisplayText;
         this.catalogDisplayText=options.catalogDisplayText;
 
-        this.listenTo(this.quantity, 'change:value', this.updateQuantity, this);
+        this.listenTo(this.basket, 'reset change add remove', this.updateQuantity, this);
     },
 
     render: function() {
         this.$el.html(this.template(_.extend({}, this.model.attributes, {
             color: this.color,
-            quantity: this.quantity.get('value')
+            quantity: this.quantity || 0
         })));
         return this;
     },
@@ -64,29 +55,42 @@ var CatalogItemView = Backbone.View.extend({
 
     incrementQuantity: function () {
         this.addItem = true;
-        this.quantity.set('value', this.quantity.get('value') + 1);
+        this.quantity = this.quantity + 1;
+        this.addToBasket();
     },
 
     decrementQuantity: function () {
         this.addItem = false;
-        var qty = this.quantity.get('value');
+        var qty = this.quantity;
 
         if (qty === 0) return;
 
-        this.quantity.set('value', this.quantity.get('value') - 1);
+        this.quantity = this.quantity - 1;
+        this.addToBasket();
     },
 
     updateQuantity: function () {
-        this.$('.quantity').text(this.quantity.get('value'));
-        this.quantity.get('value') === 0
-        ? this.$('.order_price').text('$' + this.model.get('price'))
-        : this.$('.order_price').text('$' + this.model.get('price')*this.quantity.get('value'));
-        this.addToBasket();
+        if (this.basket.length === 0) {
+            this.$('.quantity').text(0);
+            this.quantity = 0;
+        } else {
+            var modelChanged = this.basket.get(this.model.get('uUID'));
+            if (modelChanged) {
+                this.quantity = modelChanged.get('quantity');
+                this.$('.order_price').text('$' + (this.model.get('price') * this.quantity).toFixed(2));
+            } else {
+                this.quantity = 0;
+                this.$('.order_price').text('$' + this.model.get('price'));
+            }
+        }
+        this.model.set('quantity', this.quantity);
+        this.$('.quantity').text(this.quantity);
     },
 
     addToBasket: function () {
     	var count;
         this.addItem ? count = 1 : count = -1;
+        this.model.set('quantity', this.model.get('quantity') + count);
         this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     }
 });
