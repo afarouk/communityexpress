@@ -72,9 +72,8 @@ var PaymentView = Backbone.View.extend({
     },
 
     triggerNext: function() {
-        var checked = this.$(this.radio).find(':checked'),
-            active = this.$(this.active).data('id');
-        if (checked.attr('id') === 'use_another' && active !== 'cash') {
+        var checked = this.$(this.radio).find(':checked');
+        if (checked.attr('id') === 'use_another' && !this.cashSelected) {
             this.triggerPaymentCard();
         } else {
             this.triggerSummary();
@@ -86,6 +85,7 @@ var PaymentView = Backbone.View.extend({
         this.$('.rightBtn').removeClass('cmtyx_text_color_1');
         this.$('.leftBtn').removeClass('cmtyx_color_1');
         this.$('.leftBtn').addClass('cmtyx_text_color_1');
+        this.cashSelected = true;
         this.model.set('cashSelected', true);
         this.model.set('creditCardSelected', false);
     },
@@ -95,6 +95,7 @@ var PaymentView = Backbone.View.extend({
         this.$('.leftBtn').removeClass('cmtyx_text_color_1');
         this.$('.rightBtn').removeClass('cmtyx_color_1');
         this.$('.rightBtn').addClass('cmtyx_text_color_1');
+        this.cashSelected = false;
         this.model.set('cashSelected', false);
         this.model.set('creditCardSelected', true);
     },
