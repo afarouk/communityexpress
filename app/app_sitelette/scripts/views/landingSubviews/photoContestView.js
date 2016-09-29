@@ -28,7 +28,8 @@ module.exports = Backbone.View.extend({
 
     events: {
         'click .header': 'toggleCollapse',
-        'click .send_photo_btn': 'onClickSendPhoto'
+        'click .send_photo_btn': 'onClickSendPhoto',
+        'click .body>img': 'checkIfAnswered'
     },
 
     initialize: function(options) {
@@ -44,6 +45,13 @@ module.exports = Backbone.View.extend({
         this.$el.html(photoContestTemplate(contest));
         
         return this;
+    },
+
+    checkIfAnswered: function() {
+        var status = this.contest.responseStatus;
+        if (status.enumText === 'ANSWERED') {
+            this.showPrizes();
+        }
     },
 
     afterTriedToLogin: function() {
@@ -123,7 +131,7 @@ module.exports = Backbone.View.extend({
             bb = new Blob([ab], {
                 'type': (mimeString)
             });
-            return bb;
+            return bb;this.showPrizes();
         }
     },
 

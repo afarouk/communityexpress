@@ -80,6 +80,8 @@ var LandingView = Backbone.View.extend({
         // and open page with current event/photoContest
 
         this.headerToggle();
+
+        this.setShareLinks();
     },
 
     headerToggle: function() {
@@ -92,6 +94,30 @@ var LandingView = Backbone.View.extend({
                     $(this).parent().find('.collapse_btn').html('&#9660;');
                 }
             });
+        });
+    },
+
+    //TODO
+    getLinks: function() {
+        var links = [
+                //add user phone number here
+                'sms:' + saslData.telephoneNumber + ';body=' + window.encodeURIComponent(window.location.href),
+                'mailto:?subject=&body=' + window.encodeURIComponent(window.location.href),
+                'https://www.facebook.com/sharer/sharer.php?u=' + window.encodeURIComponent(window.location.href),
+                'https://twitter.com/intent/tweet?text=' + window.encodeURIComponent(window.location.href)
+            ];
+        return links;
+    },
+
+    setShareLinks: function() {
+        var links = this.getLinks(),
+            $block = this.$el.find('#cmtyx_share_block .ui-grid-c'),
+            $els = $block.find('div');
+
+        $els.each(function(index){
+            var shareBtn = $(this),
+                link = $('<a href="'+ links[index] +'">').append(shareBtn.html());
+            shareBtn.html(link);
         });
     },
 

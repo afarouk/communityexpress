@@ -958,7 +958,7 @@ li.build_combo, li.choose_extras {
 .build_combo .menu_body, 
 #sides_extras .menu_body {
     padding: 0;
-    padding-bottom: 100px;
+    padding-bottom: 20px;
 }
 .menu_body .ui-collapsible-inset, 
 .ui-collapsible-set {
@@ -1385,10 +1385,13 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .left_panel_menu .left_arr_icon {
     display: inline-block;
-    min-width: 21px;
-    min-height: 21px;
+    min-width: 35px;
+    min-height: 35px;
     background-repeat: no-repeat;
     float: right;
+    position: absolute;
+    right: -5px;
+    margin-top: -7px;
 }
 .left_panel_menu .left_arr_icon:focus, 
 .left_panel_menu .left_arr_icon:active {
@@ -1396,6 +1399,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .left_arr_img {
     background-image: url('images/left-arrow.png');
+    background-position: 5px 5px;
 }
 .logo_container {
     text-align: center;
@@ -1646,6 +1650,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .poll_block .poll_ans_form {
     display: block;
     margin-bottom: 20px;
+}
+
+.poll_block .poll_ans_form.answered>li {
+    pointer-events: none;
 }
 .poll_block .poll_ans_form input:focus {
     outline: none;
@@ -1903,6 +1911,26 @@ li.promotion_block .body {
     color: #cbcbcb;
     text-transform: uppercase;
     text-align: center;
+}
+.promotion_block .slick-arrow {
+    background-color: transparent;
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent; 
+}
+.promotion_block .slick-prev {
+    left: 0;
+    border-right:20px solid transparent; 
+    border-left: 0;
+}
+.promotion_block .slick-next {
+    right: 0;
+    border-left:20px solid transparent; 
+    border-right: 0;
 }
 
 /********************** PHOTO CONTEST BLOCK ***********************/
