@@ -71,7 +71,7 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
     },
 
     shut: function() {
-        if(this.$el.hasClass('ui-panel')){
+        if (this.$el.hasClass('ui-panel')) {
             this.$el.panel('close');
             return this;
         } else {

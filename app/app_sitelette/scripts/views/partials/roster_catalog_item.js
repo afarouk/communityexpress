@@ -85,6 +85,7 @@ var RosterCatalogItemView = Backbone.View.extend({
             this.$('#ownCombo_'+comboIndex).text(count);
             combo.quantity = count;
         }
+        this.basket.trigger('change');
     },
 
     showConfirmPopup: function(index) {
