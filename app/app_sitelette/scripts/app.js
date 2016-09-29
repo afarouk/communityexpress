@@ -233,6 +233,22 @@ App.prototype = {
         this.currentView.goBack();
     },
 
+    visibilityOnSwitchPage: function(viewName) {
+        if (viewName === 'restaurant') {
+            this.headerView.showMenuButton();
+            this.navbarView.show();
+        } else {
+            this.headerView.hideMenuButton({back: true});
+            this.navbarView.hide();
+        }
+
+        if (viewName === 'roster' || viewName === 'catalog') {
+            this.headerView.headerShow();
+        } else if (viewName === 'address'){
+            this.headerView.headerHide();
+        }
+    },
+
     /*
      * 'roster', options, {reverse:false}
      */
@@ -242,13 +258,7 @@ App.prototype = {
         console.log("app.js:gotoPage: " + viewName);
         this.setGlobalConfigurations(options);
 
-        if (viewName === 'restaurant') {
-            this.headerView.showMenuButton();
-            this.navbarView.show();
-        } else {
-            this.headerView.hideMenuButton({back: true});
-            this.navbarView.hide();
-        }
+        this.visibilityOnSwitchPage(viewName);
 
         if (viewName === 'chat') { // redirect to restaurant view if user is not signed in
             viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';

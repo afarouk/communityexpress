@@ -45,6 +45,7 @@ var EditRosterViewItem = Backbone.View.extend({
     },
 
     updateQuantity: function() {
+        this.$('.order_price').text('$' + (this.model.get('quantity') * this.model.get('price')).toFixed(2));
         this.$('.quantity').text(this.model.get('quantity'));
         this.addToBasket();
     },

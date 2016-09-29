@@ -2,7 +2,7 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/promotion.ejs'),
+var template = require('ejs!../../templates/landingSubviews/promotion.ejs'),
     h = require('../../globalHelpers'),
     promotionActions = require('../../actions/promotionActions'),
     loader = require('../../loader');

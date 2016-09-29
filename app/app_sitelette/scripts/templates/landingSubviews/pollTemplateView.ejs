@@ -6,12 +6,14 @@
     <img class="poll_image" src="<%= imageURL %>"></img>
     <span class="poll_displaytext"><%= displayText %>?</span>
 
-    <ul class="poll_ans_form">
+    <ul class="poll_ans_form <% if (answerStatus.enumText === 'ANSWERED') { %>answered<% } %>">
         <% _.each(choices, function(choice, index){ %>
             <li>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
-                        <input type="radio" name="radio-choice-ans" id="ans_<%= index %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (index === 0) { %>checked='checked'<% } %>>
+                        <input type="radio" name="radio-choice-ans" id="ans_<%= index %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (answerStatus.enumText === 'ANSWERED') {
+                                if (answerStatus.id === index + 1) {%> checked='checked'<% } %>
+                            <% } else if ( index === 0 ) { %>checked='checked'<% } %>>
                         <label for="ans_<%= index %>"><%= choice.displayText %> </label>
                     </div>
                     <div class="ui-block-b">
@@ -21,8 +23,13 @@
             </li>
         <% }) %>
     </ul>
-    <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all">submit</button>
-    
+    <% if (answerStatus.enumText !== 'ANSWERED') { %>
+        <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all">submit</button>
+    <% } else { %>
+        <div class="poll-answered">
+            ANSWERED
+        </div>
+    <% } %>
     <div class="poll_results answerBar jqplot-target" id="pollBar"></div>
 
     <div class="prizes_title">All entries are entered into our mini sweepstakes!</div>

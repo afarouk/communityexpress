@@ -412,13 +412,15 @@ var RosterBasketModel = Backbone.Model.extend({
     var totalPrice = 0;
 
     this.catalogs.each(function(catalog, index, list) {
-      if (typeof catalog.quantity !== 'undefined') {
+      if (typeof catalog.quantity !== 'undefined' && catalog.quantity === 0) {
         /* A la carte (ITEMZIED) catalog items */
         _(catalog.models).each(function(model, index, list) {
           console.log(model.itemName + " : " + model.get('quantity') + ' at $ ' + model.get('price'));
           totalPrice = totalPrice + (model.get('quantity') * model.get('price'));
         });
-      } else {
+    } else if (typeof catalog.quantity !== 'undefined' && catalog.quantity !== 0) {
+        totalPrice = totalPrice + (catalog.quantity * catalog.price);
+    } else {
         /* COMBO orders, just get the catalog price */
         totalPrice = totalPrice + (catalog.get('price') * catalog.get('quantity'));
       }

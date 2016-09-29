@@ -25,7 +25,14 @@ var HeaderView = Backbone.View.extend({
 
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
+    },
 
+    headerHide: function() {
+        this.$el.slideUp('slow');
+    },
+
+    headerShow: function() {
+        this.$el.slideDown('slow');
     },
 
     showMenuButton: function() {

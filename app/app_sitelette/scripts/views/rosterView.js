@@ -46,7 +46,6 @@ var RosterView = Backbone.View.extend({
             $('#roster_order_button').prop('disabled', false);
         };
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        this.listenTo(this, 'basketChanged', _.bind(this.basketChanged, this));
         this.updateBasket();
         // this.checkIfOpened();
         //$('.select').select2();
@@ -97,10 +96,6 @@ var RosterView = Backbone.View.extend({
         return {
             basket: this.basket
         };
-    },
-
-    basketChanged: function() {
-
     },
 
     /* used to update the roster view created originally */

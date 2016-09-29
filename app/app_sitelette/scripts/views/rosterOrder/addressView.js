@@ -69,9 +69,8 @@ var AddressView = Backbone.View.extend({
     },
 
     triggerNext: function() {
-        var checked = this.$(this.radio).find(':checked'),
-            active = this.$(this.active).data('id');
-        if (checked.attr('id') === 'add_another' && active !== 'pick_up') {
+        var checked = this.$(this.radio).find(':checked');
+        if (checked.attr('id') === 'add_another' && !this.pickUp) {
             this.triggerAddAddress();
         } else {
             this.triggerPayment();
@@ -94,6 +93,7 @@ var AddressView = Backbone.View.extend({
         this.$('.leftBtn').removeClass('cmtyx_text_color_1');
         this.$('.rightBtn').removeClass('cmtyx_color_1');
         this.$('.rightBtn').addClass('cmtyx_text_color_1');
+        this.pickUp = false;
         this.model.set('pickupSelected', false);
         this.model.set('deliverySelected', true);
     },
@@ -103,6 +103,7 @@ var AddressView = Backbone.View.extend({
         this.$('.rightBtn').removeClass('cmtyx_text_color_1');
         this.$('.leftBtn').removeClass('cmtyx_color_1');
         this.$('.leftBtn').addClass('cmtyx_text_color_1');
+        this.pickUp = true;
         this.model.set('pickupSelected', true);
         this.model.set('deliverySelected', false);
 

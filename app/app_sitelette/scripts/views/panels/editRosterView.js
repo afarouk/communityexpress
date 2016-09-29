@@ -16,8 +16,7 @@ var EditRosterView = PanelView.extend({
     addedEvents : {
         // 'click .plus_button': 'incrementQuantity',
         // 'click .minus_button': 'decrementQuantity',
-        'click .cart_add_delete_item': 'addOrDeleteItem',
-        'click .close_roster_basket_panel_button': 'saveBasket'
+        'click .cart_add_delete_item': 'addOrDeleteItem'
     },
 
     initialize : function(options) {
@@ -35,6 +34,7 @@ var EditRosterView = PanelView.extend({
         });
 
         this.addEvents(this.addedEvents);
+        this.listenTo(this, 'close:all', this.saveBasket, this);
     },
 
     render : function(update) {
