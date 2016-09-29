@@ -23,7 +23,8 @@ module.exports = Backbone.View.extend({
 
     events: {
         'click .header': 'toggleCollapse',
-        'click .submit_poll_button': 'submitPoll'
+        'click .submit_poll_button': 'submitPoll',
+        'click .poll_ans_form': 'checkIfAnswered'
     },
 
     // renderData: function () {
@@ -59,6 +60,14 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
+    checkIfAnswered: function() {
+        var status = this.poll.answerStatus;
+        if (status.enumText === 'ANSWERED') {
+            this.displayResults(this.poll);
+            this.$el.find('.prize_block').slideDown('slow');
+        }
+    },
+
     afterTriedToLogin: function() {
         this.getPollContest();
     },
@@ -90,6 +99,7 @@ module.exports = Backbone.View.extend({
     },
 
     displayResults: function(result) {
+        this.$el.find('.poll_ans_form').addClass('answered');
         this.$el.find('.poll_results').show();
         var choices = result.choices,
             options = _.extend(jqPlotOptions.options, {height: choices.length * 35}),
