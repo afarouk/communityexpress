@@ -19,8 +19,9 @@ var PromotionView = Backbone.View.extend({
     this.options = options || {};
   },
 
-  showShareBlock: function() {
-    var $el = this.$('.promotion-share-block');
+  showShareBlock: function(e) {
+    var $target = $(e.currentTarget),
+        $el = $target.parent().parent().next();
     $el.slideToggle('slow');
   },
 
