@@ -108,6 +108,8 @@ var PaymentView = Backbone.View.extend({
         } else {
             debugger;
             //TODO some error
+            //We should decide how to display
+            //errors when some field is empty.
         }
     },
 
