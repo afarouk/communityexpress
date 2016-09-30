@@ -44,16 +44,12 @@ var NavbarView = Backbone.View.extend({
 
         // Check if user launches promotion URL
         // and open promotions
-        if (community.type == 'p') {
-            delete community.type;
-            var u = community.uuidURL;
-            delete community.uuidURL;
-            this.openPromotion(u);
-        };
-
-        //if (!this.page) {
-        //    throw new Error('MapHeader::Expected a page');
-        //}
+        // if (community.type == 'p') {
+        //     delete community.type;
+        //     var u = community.uuidURL;
+        //     delete community.uuidURL;
+        //     this.openPromotion(u);
+        // };
 
         Vent.on('forceSignin', this.signin ,this);
     },

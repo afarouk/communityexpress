@@ -177,10 +177,23 @@ App.prototype = {
                 });
             break;
             case 'h':
-                this.goToPage('photoContest', {
-                    sasl: appCache.get('saslData'),
-                    id: uuid
+                //Photo contest
+                // this.goToPage('photoContest', {
+                //     sasl: appCache.get('saslData'),
+                //     id: uuid
+                // });
+            break;
+            case 'l':
+                //Poll contest
+            break;
+            case 'p':
+                //Promotions
+                $(document).ready(function(){
+                    setTimeout(function () {
+                        Vent.trigger('openPromotionByShareUrl', uuid);
+                    }, 1500);
                 });
+                //&t=p&u=RorazeUAS5eH9grwf2o4Qw
             break;
             case 'r':
                 this.goToPage('roster', {

@@ -258,7 +258,7 @@
 					<div class="body">
 						<ul>
 							<#list promotions as promotion>
-							<li>
+							<li class="promotions-item" data-uuid="${promotion.uuid}">
 								<div class="promotion_item">
 									<div class="promotion_type">
 										${promotion.promoType.displayText}</div>
@@ -276,18 +276,30 @@
 										</div>
 									</div>
 								</div>
-								<div class="ui-grid-c promotion-share-block">
-									<div class="ui-block-a text">
-										<span class="share_icon sms_icon"></span> <br>SMS
+								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
+									<div class="sms_input_block">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<span class="sms_send_button">Send</span>
 									</div>
-									<div class="ui-block-b text">
-										<span class="share_icon email_icon"></span> <br>E-mail
+									<div class="ui-block-a text sms_block">
+										<a href="" class="share_sms">
+											<span class="share_icon sms_icon"></span> <br>SMS
+										</a>
 									</div>
-									<div class="ui-block-c text">
-										<span class="share_icon facebook_icon"></span> <br>Facebook
+									<div class="ui-block-b text email_block">
+										<a href="" class="share_email">
+											<span class="share_icon email_icon"></span> <br>E-mail
+										</a>
 									</div>
-									<div class="ui-block-d text">
-										<span class="share_icon twitter_icon"></span> <br>Twitter
+									<div class="ui-block-c text facebook_block">
+										<a href="" class="share_facebook">
+											<span class="share_icon facebook_icon"></span> <br>Facebook
+										</a>	
+									</div>
+									<div class="ui-block-d text twitter_block">
+										<a href="" class="share_twitter">
+											<span class="share_icon twitter_icon"></span> <br>Twitter
+										</a>	
 									</div>
 								</div>
 							</li> </#list>
