@@ -1787,6 +1787,10 @@ border-right: solid 1px #e1e1e1;
     background-image: url('images/calendar.png');
 }
 
+.deals_img {
+    background-image: url('images/deals2.png');
+}
+
 .edit_img {
     background-image: url('images/edit.png');
 }
