@@ -1944,6 +1944,41 @@ li.promotion_block .body {
     border-left:20px solid transparent; 
     border-right: 0;
 }
+.promotion-share-block {
+    text-align: center;
+}
+.promotion-share-block a:focus {
+    outline: none;
+    text-decoration: none;
+}
+.promotion-share-block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
+    display: inline-block;
+    width: 50%;
+    text-align: left;  
+    background-color: transparent;  
+}
+.promotion-share-block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset input {
+    font: 300 16px 'Open Sans', sans-serif;
+    color: #bbbbbb;
+    background-color: #464646;
+    border: 1px solid #757373;
+    border-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 36px;
+}
+.promotion-share-block .sms_input_block .sms_send_button {
+    display: inline-block;
+    line-height: 34px;
+    position: relative;
+    right: 5px;
+    padding: 0 5px;
+    border: solid 1px #faa019;
+    background-color: #faa019;
+    text-transform: uppercase;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
 
 /********************** PHOTO CONTEST BLOCK ***********************/
 .photo_contest_block img {
