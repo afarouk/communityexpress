@@ -163,6 +163,15 @@ if (!is_null($friendlyURL)) {
   $urlKeyAccess = false;
 }
 
+if (validateParams('ftl')) {
+  $ftlfile = $_REQUEST['ftl'];
+}else {
+  $ftlfile = null;
+}
+
+
+
+
 /* NOTE: if debug=true then PHP will echo variables and exit */
 
 if (validateParams('debug')) {
@@ -208,9 +217,9 @@ if ($saslAccess || $urlKeyAccess) {
     $isPrivate = false;
     $canCreateAnonymousUser = false;
     if ($urlKeyAccess) {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false');
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false').'&ftl='.$ftlfile;
     } else {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false');
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false').'&ftl='.$ftlfile;
     }
 
     $siteletteJSON = makeApiCall($apiURL);

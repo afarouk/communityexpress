@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Croppic Test</title>
+	<link href="resources/plugins/croppic/croppic.css" rel="stylesheet">
+	
+	<script src="resources/plugins/croppic/croppic.js"></script>
+
+</head>
+<body>
+<form id="create_media_frm" style="overflow:hidden;position:relative;">
+	
+	<div style="float:left;"><div id="cropContainerModal" style="margin: 0 auto 0;"></div></div>
+	<div style="float:right;width:292px;padding-left:20px;">
+		<div class="modal-main" style="color: #747474;font-weight: bold;">
+			<!--<span style="display: inline-block;width: 25%;">View Mode:</span>-->
+            <div style="line-height:30px;"><input type="radio" name="service_status_options" class="view_options" value="landscape" required checked/>&nbsp;Landscape</div>
+            <div style="line-height:30px;"><input type="radio" name="service_status_options" class="view_options" value="portrait"  />&nbsp;Portrait</div>
+			<!--<div style="line-height:30px;"><input type="radio" name="service_status_options" class="view_options" value="square" />&nbsp;Square</div>-->
+		</div>
+
+		<!--<div id="cropContainerModal" style="margin: 0 auto 20px;"></div>-->
+		
+		<div style="position: absolute;width: 270px;bottom: 0;">
+			<button class="modal-main-btn" style="float: right;" id="create_media_btn">Use Image</button>
+			<button class="modal-main-btn" id="cancel_btn">Cancel</button>
+		</div>
+	</div>
+</form>
+</body>
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {						
+		
+		//com.faralam.getCropPicURLs();
+
+		var croppicContainerModalOptions = {
+			//uploadUrl : com.faralam.uploadURL+'ext/croppicupload',
+			//cropUrl : com.faralam.uploadURL+'ext/croppicupcrop',
+			uploadUrl : sessionStorage.uploadURL,
+			cropUrl : sessionStorage.cropURL,
+			modal : true,
+			/*imgEyecandyOpacity : 0.4,*/
+			loaderHtml : '<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+
+			onBeforeImgUpload: function(){
+
+				var view_mode = $('.view_options:checked').val();
+                if(view_mode == 'landscape'){
+                    this.objW = 320;
+                    this.objH = 240;
+                }else if(view_mode == 'portrait'){
+					this.objH = 568;
+					this.objW = 320;
+				}else{
+					this.objW = 240;
+					this.objH = 240;
+				}
+				var name = 'service_status_options';
+				//$('form#create_media_frm').find(':first-child').first().find(':radio[name=' + name + ']').attr('disabled', 'disabled');
+				$('form#create_media_frm').children().eq(1).children().eq(0).find(':radio[name=' + name + ']').attr('disabled', 'disabled');
+			},
+			onAfterImgUpload: function(){
+				
+				
+				var view_mode = $('.view_options:checked').val();
+                if(view_mode == 'landscape'){
+                    //$('#croppicModalObj').css({'margin': '24% 0 0 18%'});
+                    $('#croppicModalObj').css({'left':'50%', 'margin-left':'-306px','top':'50%','margin-top':'-120px'});
+                }else if(view_mode == 'portrait'){
+					//$('#croppicModalObj').css({'margin': '7% 0 0 18%'});
+					$('#croppicModalObj').css({'left':'50%', 'margin-left':'-306px','top':'50%','margin-top':'-284px'});
+                }else{
+					//$('#croppicModalObj').css({'margin': '24% 0 0 22.25%'});
+					$('#croppicModalObj').css({'left':'50%', 'margin-left':'-266px','top':'50%','margin-top':'-120px'});
+				}
+				$('#cropContainerModal').css({'z-index': '19005'});
+				$('#croppicModal').css({'z-index': '19005'});
+				$('#croppicModalObj').css({'z-index': '19005'});
+			}
+		}
+		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
+		
+		//$('#content').attr('class', 'pop_portrait_rt');
+		$('#cropContainerModal').css({'width': '320px', 'height': '240px'});
+		$('#modal').css({'margin-top': '-120px', 'margin-left': '-334px'});
+	});
+
+	$('.view_options').on('click', function(){
+		
+		var view_mode = $(this).val();
+		if(view_mode == 'portrait'){
+			//$('#content').attr('class', 'pop_portrait_rt');
+			$('#cropContainerModal').css({'width': '320px', 'height': '568px'});
+			$('#modal').css({'margin-top': '-312px', 'margin-left': '-334px'});			
+		}else if(view_mode == 'landscape'){
+			//$('#content').attr('class', 'pop_landscape_rt');
+			$('#cropContainerModal').css({'width': '320px', 'height': '240px'});
+			$('#modal').css({'margin-top': '-148px', 'margin-left': '-334px'});
+		}else{
+			//$('#content').attr('class', 'pop_square_rt');
+			$('#cropContainerModal').css({'width': '240px', 'height': '240px'});
+			$('#modal').css({'margin-top': '-148px', 'margin-left': '-294px'});
+		}
+	});
+
+	$('#cancel_btn').on('click', function(e){
+		modal.close();
+		e.preventDefault();
+	});
+
+	$('#create_media_frm').on('submit', function(e){
+
+		//if(!window.croppedImageUrl_hack){
+		if($('img.croppedImg').length == 0){
+			com.faralam.registration.showPopup('Error', 'Please, upload & crop image before submit the form.');
+			return false;
+		}
+		e.preventDefault();
+
+		//Ext.getCmp('thumb_img').setSrc(window.croppedImageUrl_hack);
+		//Ext.getCmp('catalog_big_img').setSrc(window.croppedImageUrl_hack);
+		Ext.getCmp('pollAnswer_img').setSrc(window.croppedImageUrl_hack);
+		
+		modal.close();
+		return false;
+	});
+</script>
+</html>

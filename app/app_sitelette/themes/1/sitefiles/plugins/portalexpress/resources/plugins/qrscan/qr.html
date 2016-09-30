@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="description" content="QR Code scanner" />
+	<meta name="keywords" content="qrcode,qr code,scanner,barcode,javascript" />
+	<meta name="language" content="English" />
+	<meta name="copyright" content="Lazar Laszlo (c) 2011" />
+	<meta name="Revisit-After" content="1 Days" />
+	<meta name="robots" content="index, follow" />
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Web QR</title>
+
+	<style type="text/css">
+		body {
+			width: 100%;
+			text-align: center;
+		}
+		
+		img {
+			border: 0;
+		}
+		
+		#main {
+			margin: 15px auto;
+			background: white;
+			overflow: auto;
+			width: 100%;
+		}
+		
+		#header {
+			background: white;
+			margin-bottom: 15px;
+		}
+		
+		#mainbody {
+			background: white;
+			width: 100%;
+			display: none;
+		}
+		
+		#footer {
+			background: white;
+		}
+		
+		#v {
+			width: 329px;
+            height: 83%;
+			
+		}
+		
+		#qr-canvas {
+			display: none;
+		}
+		
+		#qrfile {
+			width: 320px;
+			height: 240px;
+		}
+		
+		#mp1 {
+			text-align: center;
+			font-size: 35px;
+		}
+		
+		#imghelp {
+			position: relative;
+			left: 0px;
+			top: -160px;
+			z-index: 100;
+			font: 18px arial, sans-serif;
+			background: #f0f0f0;
+			margin-left: 35px;
+			margin-right: 35px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			border-radius: 20px;
+		}
+		
+		.selector {
+			margin: 0;
+			padding: 0;
+			cursor: pointer;
+			margin-bottom: -5px;
+		}
+		
+		#outdiv {
+			width: 330px;
+			
+			border: 2px solid black;
+			
+		}
+		
+		#result {
+			border: solid;
+			border-width: 1px 1px 1px 1px;
+			padding: 6px;
+			width: 320px;
+            margin-top: 10px;
+		}
+		
+		ul {
+			margin-bottom: 0;
+			margin-right: 40px;
+		}
+		
+		li {
+			display: inline;
+			padding-right: 0.5em;
+			padding-left: 0.5em;
+			font-weight: bold;
+			border-right: 1px solid #333333;
+		}
+		
+		li a {
+			text-decoration: none;
+			color: black;
+		}
+		
+		#footer a {
+			color: black;
+		}
+		
+		.tsel {
+			padding: 0;
+		}
+
+	</style>
+
+	<script type="text/javascript" src="llqrcode.js"></script>
+	<!--<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>-->
+	<script type="text/javascript" src="webqr.js"></script>
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-24451557-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+
+</head>
+
+<body style="width:97%">
+    <div id="mainbody">
+            <div id="outdiv"></div>
+            <div style="" id="result"></div>
+                </div>
+	<span id="webcamimg"></span><span id="qrimg"></span>
+	<canvas id="qr-canvas" width="280" height="350"></canvas>
+	<script type="text/javascript">
+		load();
+
+	</script>
+</body>
+
+</html>

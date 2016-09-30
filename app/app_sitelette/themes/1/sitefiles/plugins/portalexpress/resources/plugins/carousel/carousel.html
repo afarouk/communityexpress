@@ -1,0 +1,44 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	
+    	<link href="resources/plugins/carousel/carousel.css" rel="stylesheet" />
+    	<script src="resources/plugins/carousel/ext-core-debug.js"></script>
+        <script src="resources/plugins/carousel/carousel.js"></script>
+        
+        <script>
+            Ext.onReady(function() {
+                new Ext.ux.Carousel('full-example', {
+                    itemSelector: 'img',
+                    interval: 3,
+                    autoPlay: true,
+                    showPlayButton: true,
+                    pauseOnNavigate: true,
+                    freezeOnHover: true,
+                    transitionType: 'fade',
+                    navigationOnHover: true       
+                });
+            })
+        </script>
+        
+        <style>
+            div.item {
+                padding: 20px;
+            }            
+        </style>
+    </head>
+
+    <body>
+        <div id="full-example" style="padding: 5px; height: 500px; width:283px; background-color: #E6E6E0">
+		    <img src="resources/Image/carousel/carousel_1.jpg" >
+            <img src="resources/Image/carousel/carousel_2.jpg" >
+            <img src="resources/Image/carousel/carousel_3.jpg" >
+            <img src="resources/Image/carousel/carousel_4.jpg" >
+            <img src="resources/Image/carousel/carousel_5.jpg" >
+            <img src="resources/Image/carousel/carousel_6.jpg" >
+        </div>
+        
+    </body>
+</html>

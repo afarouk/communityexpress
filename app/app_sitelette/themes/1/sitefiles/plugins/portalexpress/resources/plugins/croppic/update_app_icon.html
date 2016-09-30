@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Croppic Test</title>
+	<link href="resources/plugins/croppic/croppic.css" rel="stylesheet">
+	
+	<script src="resources/plugins/croppic/croppic.js"></script>
+
+</head>
+<body>
+<form id="create_media_frm" style="overflow:hidden;position:relative;">
+	
+	<div style="float:left;"><div id="cropContainerModal" style="margin: 0 auto 0;"></div></div>
+	<div style="float:right;width:292px;padding-left:20px;">
+		<div class="modal-main" style="color: #747474;font-weight: bold;">
+			<!--<span style="display: inline-block;width: 25%;">View Mode:</span>-->
+			<input type="radio" name="service_status_options" class="view_options" value="square" checked />&nbsp;Square
+		</div>
+
+		<!--<div id="cropContainerModal" style="margin: 0 auto 20px;"></div>-->
+		
+		<div style="position: absolute;width: 270px;bottom: 0;">
+			<button class="modal-main-btn" style="float: right;" id="create_media_btn">Use Image</button>
+			<button class="modal-main-btn" id="cancel_btn">Cancel</button>
+		</div>
+	</div>
+</form>
+</body>
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {						
+		
+		//com.faralam.getCropPicURLs();
+
+		var croppicContainerModalOptions = {
+			//uploadUrl : com.faralam.uploadURL+'ext/croppicupload',
+			//cropUrl : com.faralam.uploadURL+'ext/croppicupcrop',
+			uploadUrl : sessionStorage.uploadURL,
+			cropUrl : sessionStorage.cropURL,
+			modal : true,
+			/*imgEyecandyOpacity : 0.4,*/
+			loaderHtml : '<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+
+			onBeforeImgUpload: function(){
+				this.objW = 240;
+				this.objH = 240;
+			},
+			onAfterImgUpload: function(){
+				//$('#croppicModalObj').css({'margin': '24% 0 0 22.25%'});
+				$('#croppicModalObj').css({'left':'50%', 'margin-left':'-266px','top':'50%','margin-top':'-120px'});
+			}
+		}
+		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
+		
+		//$('#content').attr('class', 'pop_square_rt1');
+		$('#cropContainerModal').css({'width': '240px', 'height': '240px'});
+		$('#modal').css({'margin-top': '-148px', 'margin-left': '-294px'});
+	});
+
+	$('#cancel_btn').on('click', function(e){
+		modal.close();
+		e.preventDefault();
+	});
+
+	$('#create_media_frm').on('submit', function(e){
+		
+		// if(!window.croppedImageUrl_hack){
+		if($('img.croppedImg').length == 0){
+			com.faralam.registration.showPopup('Error', 'Please, upload & crop image before submit the form.');
+			return false;
+		}
+		e.preventDefault();
+
+		$('#create_media_btn').html('Uploading...');
+		var url = window.croppedImageUrl_hack;
+		var sa = sessionStorage.SA;
+		var sl = sessionStorage.SL;
+
+		var mediaMetaData = {
+			"serviceAccommodatorId" : sa,
+			"serviceLocationId" : sl,
+			"url" : url
+		}
+
+		$.ajax({
+			url : com.faralam.serverURL+'sasl/setSASLAppIconByURL?UID='+sessionStorage.UID,
+			type : 'POST',
+			dataType : 'json',
+			data : JSON.stringify(mediaMetaData),
+			contentType: "application/json",
+			success : function(jqXHR, textStatus ) {console.log(jqXHR);
+				$('#create_media_btn').html('Done');
+				Ext.MessageBox.alert('Success', 'You have successfully updated the App Icon', function(){
+					var timestamp = new Date().getTime();
+					Ext.getCmp('UpdateAppIcon_preview').setSrc(com.faralam.serverURL + 'sasl/retrieveATC60bySASL?serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&ver=' + timestamp);
+					modal.close();
+					
+				});
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				$('#create_media_btn').html('Use Image');
+				com.faralam.common.ErrorHandling(jqXHR.responseText);
+			}					
+		});
+
+		return false;
+	});
+</script>
+</html>

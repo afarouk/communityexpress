@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>portalexpress</title>
+<link rel="stylesheet" href="resources/portalexpress-all.css"/>
+<script type="text/javascript" src="app.js"></script>
+
+	<script type="text/javascript">
+		var count = 0;
+		Ext.get(Ext.query('html')).on('click', function (e) {			
+			if (e.getTarget().id == 'click_zone') {
+				count++;
+			} else {
+				count=0;
+			}
+			if(count == 5){
+				com.faralam.ShowServerOption();
+				//var count = 0;
+			}
+		});
+	</script>
+</head>
+<body class="x-body">
+	<!--<div id="company_logo"></div>-->
+	<div id="main_div">
+		<div id="loading" class="loading"></div>
+	</div>
+
+	<!--<div id="click_zone"></div>-->
+</body>
+</html>
