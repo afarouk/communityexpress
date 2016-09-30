@@ -1777,6 +1777,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     text-align: left;
     padding: 10px;
 }
+.poll_block .poll-answered {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
 .poll_block .prize_block {
     display: none;
 }
