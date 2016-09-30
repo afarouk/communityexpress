@@ -163,6 +163,50 @@ if (!is_null($friendlyURL)) {
   $urlKeyAccess = false;
 }
 
+if (validateParams('ftl')) {
+  $ftlfile = $_REQUEST['ftl'];
+}else {
+  $ftlfile = null;
+}
+
+  $og_type="article";
+  $og_title="Chalkboards Title";
+  $og_description="Chalkboards Description";
+  $og_image=null;//$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/pree/default.jpg";
+  /* Twitter related */
+  $twitter_card="summary_large_image";
+  $twitter_site="@Chalkboards";
+  $twitter_title=  $og_title;
+  $twitter_description=$og_description;
+  $twitter_image=$og_image;
+
+  $detectedShare=false;
+
+  if( $detectedShare ){
+    /* depending on the type, make the api call, get the details
+       and update the og tags */
+
+    $apiURL = $protocol . $server . "/apptsvc/rest/pree/retrieveQuestion?contestUUID=".$uuidURL;
+    $questionJSON = makeApiCall($apiURL);
+    if ($questionJSON['curl_error']) {
+     $errorMessage = $siteletteJSON['curl_error'];
+     $errorMessage = 'Service unavailable.';
+    } else if (isset($questionJSON['error'])) {
+      $errorMessage = $questionJSON['error']['message'];
+    } else {
+      /* change meta data based on question */
+
+      $og_title=$questionJSON['ogTitle'];
+      $og_description=$questionJSON['ogDescription'];
+      $og_image =$questionJSON['ogImage'];
+
+      $twitter_title=  $og_title;
+      $twitter_description=$og_description;
+      $twitter_image=$og_image;
+    }
+  }
+
+
 /* NOTE: if debug=true then PHP will echo variables and exit */
 
 if (validateParams('debug')) {
@@ -208,9 +252,9 @@ if ($saslAccess || $urlKeyAccess) {
     $isPrivate = false;
     $canCreateAnonymousUser = false;
     if ($urlKeyAccess) {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false');
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false').'&ftl='.$ftlfile;
     } else {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false');
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false').'&ftl='.$ftlfile;
     }
 
     $siteletteJSON = makeApiCall($apiURL);

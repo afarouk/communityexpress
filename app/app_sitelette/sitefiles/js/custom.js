@@ -1,11 +1,11 @@
 /*
  * @package Droplet
  * @subpackage Droplet HTML
- * 
+ *
  * Template Scripts
  * Created by Themeturn
 
-  
+
  */
 
 $(window).load(function() { // makes sure the whole site is loaded
@@ -32,8 +32,10 @@ $(window).load(function() { // makes sure the whole site is loaded
 });
 
 function colorFadeBlockSize() {
-    $(".color_fade_block").css("height", parseInt($(".browse_chalkboards_block").css("height").substring(0,$(".browse_chalkboards_block").css("height").length - 2)) + 1 + "px");
-    $(".color_fade_block").css("width", $(".browse_chalkboards_block").css("width"));
+	  if( $(".color_fade_block").length >0 ){
+      $(".color_fade_block").css("height", parseInt($(".browse_chalkboards_block").css("height").substring(0,$(".browse_chalkboards_block").css("height").length - 2)) + 1 + "px");
+      $(".color_fade_block").css("width", $(".browse_chalkboards_block").css("width"));
+		}
 }
 
 $(document).ready(
@@ -150,7 +152,7 @@ $(document).ready(
 			/*==============================================================================================================*/
 
 			new WOW().init();
-	
+
 		    $('.gallery').slick({
 		        dots: true
 		        , arrows: false
@@ -179,7 +181,7 @@ $(document).ready(
 				}
 		    }
 
-		    
+
 		    headerColorChange();
 
 		    $( window ).scroll(function() {
@@ -192,7 +194,7 @@ $(document).ready(
 			    	headerColorChange();
 				});
 			});
-		    
+
 		    // $.validator.addMethod(
 		    //     "regex_name",
 		    //     function(value, element, regexp) {
@@ -215,7 +217,7 @@ $(document).ready(
 		    //         $('#message').val('');
 		    //         return false;
 		    //     },
-		    //     errorPlacement: function(error, element) {         
+		    //     errorPlacement: function(error, element) {
 		    //         error.insertBefore(element);
 		    //     }
 		    // });
