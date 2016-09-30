@@ -180,6 +180,8 @@ if (validateParams('ftl')) {
   $twitter_description=$og_description;
   $twitter_image=$og_image;
 
+  $detectedShare=false;
+
   if( $detectedShare ){
     /* depending on the type, make the api call, get the details
        and update the og tags */
