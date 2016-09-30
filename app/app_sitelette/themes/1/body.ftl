@@ -258,7 +258,7 @@
 					<div class="body">
 						<ul>
 							<#list promotions as promotion>
-							<li>
+							<li class="promotions-item" data-uuid="${promotion.uuid}">
 								<div class="promotion_item">
 									<div class="promotion_type">
 										${promotion.promoType.displayText}</div>

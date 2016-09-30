@@ -34,7 +34,18 @@ var PromotionView = Backbone.View.extend({
     });
     this.$el.find('button.slick-arrow').css("top", $('#cmtyx_promotion_block .body ul').height() / 2 - 24 + "px");
     this.$el.find('button.slick-prev.slick-arrow').text('').css("border-right-color", $('.cmtyx_color_3').css('background-color'));
-    this.$el.find('button.slick-next.slick-arrow').text('').css("border-left-color", $('.cmtyx_color_3').css('background-color'));;
+    this.$el.find('button.slick-next.slick-arrow').text('').css("border-left-color", $('.cmtyx_color_3').css('background-color'));
+    Vent.on('openPromotionByShareUrl', this.openPromotionByShareUrl, this);
+    this.setLinksForEachPromotion();
+  },
+
+  openPromotionByShareUrl: function(uuid) {
+    var list = this.$el.find('ul li'),
+        el = list.parent().find('li[data-uuid="' + uuid + '"]'),
+        index = list.index(el);
+
+    this.$el.find('.body ul').slick('slickGoTo', index);
+    Vent.trigger('scrollToPromotions');
   },
 
   showShareBlock: function(e) {
@@ -48,7 +59,39 @@ var PromotionView = Backbone.View.extend({
     $el.slideToggle('slow');
   },
 
+  getLinks: function(uuid) {
+      var shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + '?t=p&u=' + uuid),
+          links = [
+              '',
+              'mailto:?subject=&body=' + shareUrl,
+              'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl,
+              'https://twitter.com/intent/tweet?text=' + shareUrl
+          ];
+      return links;
+  },
+
+  setShareLinks: function($promotion) {
+      var $block = $promotion.find('.promotion-share-block'),
+          uuid = $block.data('uuid'),
+          links = this.getLinks(uuid),
+          $links = $block.find('a');
+
+      $links.each(function(index){
+          var link = $(this);
+          link.attr('href', links[index]);
+      });
+  },
+
+  setLinksForEachPromotion: function() {
+      var $promotions = this.$el.find('.promotions-item');
+      $promotions.each(function(index, el){
+        var $promotion = $(el);
+        this.setShareLinks($promotion);
+      }.bind(this));
+  },
+
   onSendSMS: function(e) {
+    //TODO shere promotion
     var $el = this.$el.find('.sms_input_block'),
         $target = $(e.currentTarget),
         val = $target.prev().find('.sms_input').val();
