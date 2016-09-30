@@ -730,6 +730,18 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
     line-height: 22px;
     width: 28px !important;
 }
+.tip_quantity_field {
+    background: #2b2b2b;
+    margin-top: 8px;
+    padding: 3px 2px;
+    vertical-align: middle;
+    text-align: center;
+    color: #f7f5f3;
+    font-weight: bold;
+    height: 28px;
+    line-height: 22px;
+    width: 33px !important;
+}
 .quantity_field span {
     font-size: 14px;
     display: block;
@@ -1117,7 +1129,9 @@ li.build_combo, li.choose_extras {
     color: #dddddd;
     clear: both;
 }
-#credit .select_container, #cash .select_container {
+#credit .select_container,
+#cash .select_container,
+#summary .select_container {
     margin-right: 25px;
     position: relative;
     bottom: 5px;
@@ -1923,19 +1937,19 @@ li.promotion_block .body {
     z-index: 1;
     position: absolute;
     right: 0;
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent; 
+    border-bottom: 20px solid transparent;
 }
 .promotion_block .slick-prev {
     left: 0;
-    border-right:20px solid transparent; 
+    border-right:20px solid transparent;
     border-left: 0;
 }
 .promotion_block .slick-next {
     right: 0;
-    border-left:20px solid transparent; 
+    border-left:20px solid transparent;
     border-right: 0;
 }
 

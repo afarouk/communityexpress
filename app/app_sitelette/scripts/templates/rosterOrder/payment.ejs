@@ -42,6 +42,10 @@
             </div>
         </div>
         <div id="cash" class="ui-body-d ui-content">
+            <% if (!addrIsEmpty) { %>
+                <p class="delivery_address_text">Delivery address</p>
+                <p class="address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></p>
+            <% } %>
             <p class="your_order_text">Your order</p>
             <ul class="order_list">
                 <% _.each(combinedItems, function(item) { %>
@@ -63,18 +67,23 @@
                     <span class="order_name">Tax (<%= taxState %>%)</span>
                     <span class="order_price cmtyx_text_color_1"><%= cs + taxAmount %></span>
                 </li>
-                <li class="tip_price"><span class="order_name">Tip</span>
+                <li class="tip_price">
+                    <span class="order_name">Tip</span>
                     <div class="float_right">
-                       <div class="select_container">
-                            <select data-role="none" class="select select_tip">
-                                <option value="0">0%</option>
-                                <option value="5">5%</option>
-                                <option value="10">10%</option>
-                                <option value="15">15%</option>
-                                <option value="20">20%</option>
-                            </select>
+                        <div class="select_container tip_counter">
+                            <div class="ui-grid-b">
+                                <div class="ui-block-a quantity_minus decrementQuantity">
+                                    <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext"></a>
+                                </div>
+                                <div class="ui-block-b cmntyex-add_to_basket_quantity tip_quantity_field">
+                                     <span class="tip_quantity"><%= tip %>%</span>
+                                </div>
+                                <div class="ui-block-c quantity_plus incrementQuantity">
+                                    <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"></a>
+                                </div>
+                            </div>
                         </div>
-                        <span class="order_price tip_price_value cmtyx_text_color_1"><%= cs + tip %></span>
+                        <span class="order_price tip_price_value cmtyx_text_color_1"><%= cs + tipSum %></span>
                     </div>
                 </li>
                 <li class="total_price">
