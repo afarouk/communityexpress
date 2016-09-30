@@ -10,7 +10,9 @@ var PromotionView = Backbone.View.extend({
 
   events: {
     'click .header': 'toggleCollapse',
-    'click .share_btn_block': 'showShareBlock'
+    'click .share_btn_block': 'showShareBlock',
+    'click .sms_block': 'showSMSInput',
+    'click .sms_send_button': 'onSendSMS'
   },
 
   //TODO functionality
@@ -37,6 +39,15 @@ var PromotionView = Backbone.View.extend({
     var $target = $(e.currentTarget),
         $el = $target.parent().parent().next();
     $el.slideToggle('slow');
+  },
+
+  showSMSInput: function() {
+    var $el = this.$el.find('.sms_input_block');
+    $el.slideToggle('slow');
+  },
+
+  onSendSMS: function() {
+    console.log('send sms');
   },
 
   toggleCollapse: function() {
