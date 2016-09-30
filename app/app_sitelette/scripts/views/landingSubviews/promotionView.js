@@ -40,9 +40,8 @@ var PromotionView = Backbone.View.extend({
   },
 
   openPromotionByShareUrl: function(uuid) {
-    var list = this.$el.find('ul li'),
-        el = list.parent().find('li[data-uuid="' + uuid + '"]'),
-        index = list.index(el);
+    var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
+        index = el.data('slick-index');
 
     this.$el.find('.body ul').slick('slickGoTo', index);
     Vent.trigger('scrollToPromotions');
@@ -94,11 +93,12 @@ var PromotionView = Backbone.View.extend({
     //TODO shere promotion
     var $el = this.$el.find('.sms_input_block'),
         $target = $(e.currentTarget),
+        uuid = $target.parent().parent().data('uuid'),
         val = $target.prev().find('.sms_input').val();
 
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
-    contactActions.sendAppURLForSASLToMobileviaSMS(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, val)
+    contactActions.sendAppURLForSASLToMobileviaSMS(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, val, uuid)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');
       }.bind(this))

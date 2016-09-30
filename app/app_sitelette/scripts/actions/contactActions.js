@@ -42,12 +42,13 @@ module.exports = {
         });
     },
 
-    sendAppURLForSASLToMobileviaSMS: function(sa, sl, phone) {
+    sendAppURLForSASLToMobileviaSMS: function(sa, sl, phone, contestUUID) {
         return gateway.sendRequest('sendAppURLForSASLToMobileviaSMS', {
             UID: getUID(),
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
-            toTelephoneNumber: phone
+            toTelephoneNumber: phone,
+            contestUUID: contestUUID
         });
     }
 };
