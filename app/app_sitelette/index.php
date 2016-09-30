@@ -169,7 +169,7 @@ if (validateParams('ftl')) {
   $ftlfile = null;
 }
 
-$og_type="article";
+  $og_type="article";
   $og_title="Chalkboards Title";
   $og_description="Chalkboards Description";
   $og_image=null;//$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/pree/default.jpg";
@@ -203,8 +203,6 @@ $og_type="article";
       $twitter_image=$og_image;
     }
   }
- }
-}
 
 
 /* NOTE: if debug=true then PHP will echo variables and exit */
