@@ -306,7 +306,7 @@ var CatalogView = Backbone.View.extend({
                         var firstItem = group.unSubgroupedItems[0];
                         this.basket.addItemRaw(firstItem, 1, groupId, groupDisplayText, catalogId, catalogDisplayText);
                         this.updateBasket();
-                    }else{
+                    } else {
                         /*
                          * highlight that radio button then
                          */

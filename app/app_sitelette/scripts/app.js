@@ -288,7 +288,8 @@ App.prototype = {
         if (exists) {
             if (viewName === 'catalog' ||
                 viewName === 'roster' ||
-               (viewName === 'address' && this.previousViewName === 'roster' ) ) {
+                (viewName === 'address' && this.previousViewName === 'roster' ) ||
+                (viewName === 'address' && this.previousViewName === 'catalog' )) {
                     if (viewName === 'address') {
                         this.removeCashedViews(['add_address', 'payment','payment_card', 'summary']);
                     }

@@ -150,9 +150,9 @@ var AddressView = Backbone.View.extend({
 
     goBack : function() {
         var params = this.model.additionalParams;
-        if( params.backToRoster){
+        if ( params.backToRoster){
           this.triggerRosterView(params);
-        }else if(params.backToCatalog) {
+        } else if (params.backToCatalog) {
             this.triggerCatalogView(params);
         } else {
             this.triggerRestaurantView(params);
@@ -164,8 +164,8 @@ var AddressView = Backbone.View.extend({
           sasl: params.sasl.id,
           id: params.rosterId,
           backToRoster:true,
-          rosterId:params.rosterId,
-          launchedViaURL:  params.launchedViaURL
+          rosterId: params.rosterId,
+          launchedViaURL: params.launchedViaURL
        }, { reverse: true });
     },
 
@@ -174,9 +174,9 @@ var AddressView = Backbone.View.extend({
         Vent.trigger('viewChange', 'catalog', {
           sasl: params.sasl.id,
           id: params.catalogId,
-          backToCatalog: true,
-          catalogId: params.catalogId,
-          launchedViaURL:  params.launchedViaURL
+          backToRoster: false,
+          backToCatalogs: false,
+          backToCatalog: true
        }, { reverse: true });
     },
 
