@@ -253,7 +253,7 @@ include ('sitefiles/includes/stylesheets.html');
 		}).done(function(data, textStatus, jqXHR) {
 			console.log(" apply template executed ");
 			$('#applyTemplateError').fadeOut();
-			$('#applyTemplateSuccessMessage').text('Please check your email.');
+			$('#applyTemplateSuccessMessage').text(jqXHR.responseText);
 			$('#applyTemplateSuccess').fadeIn();
 			/*
 			 * reset the input fields
