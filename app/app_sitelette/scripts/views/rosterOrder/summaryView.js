@@ -15,6 +15,7 @@ var SummaryView = Backbone.View.extend({
 
 	initialize: function(options) {
 		this.options = options || {};
+        this.getTipInfo();
         this.on('show', this.onShow, this);
         this.model.on('change', _.bind(this.reRender, this));
         this.render();
@@ -35,11 +36,22 @@ var SummaryView = Backbone.View.extend({
     },
 
     onShow: function() {
+        this.getTipInfo();
         this.addEvents({
             'click .placeOrderBtn': 'onPlaceOrder',
             'click .next_btn': 'onPlaceOrder',
-            'click .nav_back_btn': 'goBack'
+            'click .nav_back_btn': 'goBack',
+            'click .plus_button': 'incrementTip',
+            'click .minus_button': 'decrementTip'
         });
+    },
+
+    getTipInfo: function() {
+        this.totalAmount = this.model.additionalParams.cachedTotalAmount;
+        this.tip = this.model.additionalParams.tip;
+        this.tipSum = this.model.additionalParams.tipSum;
+        this.$('.tip_quantity').text(this.tip + '%');
+        this.$('.tip_price_value').text(this.tipSum);
     },
 
     renderContent: function (options){
@@ -54,10 +66,34 @@ var SummaryView = Backbone.View.extend({
             combinedItems: this.model.additionalParams.combinedItems,
             taxState: this.model.additionalParams.taxState,
             subTotal: this.model.additionalParams.subTotal,
-            tip: this.model.additionalParams.tip,
+            tip: this.tip,
+            tipSum: this.tipSum,
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty
         });
+    },
+
+    incrementTip: function() {
+        if (this.tip === 20) return;
+        this.tip = this.tip + 5;
+        this.setTotalPticeWithTip();
+    },
+
+    decrementTip: function() {
+        if (this.tip === 0) return;
+        this.tip = this.tip - 5;
+        this.setTotalPticeWithTip();
+    },
+
+    setTotalPticeWithTip: function() {
+        var tipPortion = this.tip/100;
+        this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
+        var totalAmountWithTip = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
+        this.$('.tip_quantity').text(this.tip + '%');
+        this.$('.tip_price_value').text(this.tipSum);
+        this.model.additionalParams.tipSum = this.tipSum;
+        this.model.additionalParams.tip = this.tip;
+        this.model.set('totalAmount', totalAmountWithTip);
     },
 
     onPlaceOrder: function() {

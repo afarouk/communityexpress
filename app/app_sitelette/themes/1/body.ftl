@@ -258,7 +258,7 @@
 					<div class="body">
 						<ul>
 							<#list promotions as promotion>
-							<li>
+							<li class="promotions-item" data-uuid="${promotion.uuid}">
 								<div class="promotion_item">
 									<div class="promotion_type">
 										${promotion.promoType.displayText}</div>
@@ -279,25 +279,25 @@
 								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
 									<div class="sms_input_block">
 										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-										<span class="sms_send_button">Send</span>
+										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 									</div>
 									<div class="ui-block-a text sms_block">
-										<a href="" class="share_sms">
+										<a href="" class="share_sms cmtyx_text_color_1">
 											<span class="share_icon sms_icon"></span> <br>SMS
 										</a>
 									</div>
 									<div class="ui-block-b text email_block">
-										<a href="" class="share_email">
+										<a href="" class="share_email cmtyx_text_color_1">
 											<span class="share_icon email_icon"></span> <br>E-mail
 										</a>
 									</div>
 									<div class="ui-block-c text facebook_block">
-										<a href="" class="share_facebook">
+										<a href="" class="share_facebook cmtyx_text_color_1">
 											<span class="share_icon facebook_icon"></span> <br>Facebook
 										</a>	
 									</div>
 									<div class="ui-block-d text twitter_block">
-										<a href="" class="share_twitter">
+										<a href="" class="share_twitter cmtyx_text_color_1">
 											<span class="share_icon twitter_icon"></span> <br>Twitter
 										</a>	
 									</div>

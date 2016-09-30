@@ -1,6 +1,10 @@
 'use strict';
 
 var Vent = require('../../Vent'),
+    orderActions = require('../../actions/orderActions'),
+    loader = require('../../loader'),
+    popupController = require('../../controllers/popupController'),
+    h = require('../../globalHelpers'),
     template = require('ejs!../../templates/rosterOrder/payment.ejs');
 
 var PaymentView = Backbone.View.extend({
@@ -15,9 +19,7 @@ var PaymentView = Backbone.View.extend({
 
 	initialize: function(options) {
 		this.options = options || {};
-        this.totalAmount = this.model.get('totalAmount');
-        this.tip = 0;
-        this.selectTipValue = 0;
+        this.getTipInfo();
         this.on('show', this.onShow, this);
         this.model.on('change', _.bind(this.reRender, this));
         this.render();
@@ -43,17 +45,28 @@ var PaymentView = Backbone.View.extend({
             $label.html('XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length));
         }
         $cash.html(tpl);
-        this.$('.select_tip option[value=' + this.selectTipValue + ']').attr('selected','selected');
+        this.checkCashCreditSelection();
     },
 
     onShow: function() {
+        this.checkCashCreditSelection();
+        this.getTipInfo();
         this.addEvents({
             'click .nav_next_btn': 'triggerNext',
             'click .nav_back_btn': 'goBack',
             'click .rightBtn': 'onCashSelected',
             'click .leftBtn': 'onCreditSelected',
-            'change .select_tip': 'setTotalPticeWithTip'
+            'click .plus_button': 'incrementTip',
+            'click .minus_button': 'decrementTip'
         });
+    },
+
+    getTipInfo: function() {
+        this.totalAmount = this.model.additionalParams.cachedTotalAmount;
+        this.tip = this.model.additionalParams.tip;
+        this.tipSum = this.model.additionalParams.tipSum;
+        this.$('.tip_quantity').text(this.tip + '%');
+        this.$('.tip_price_value').text(this.tipSum);
     },
 
     renderContent: function (options){
@@ -67,17 +80,26 @@ var PaymentView = Backbone.View.extend({
             taxState: this.model.additionalParams.taxState,
             subTotal: this.model.additionalParams.subTotal,
             cardNumber: this.model.get('creditCard').cardNumber,
-            tip: this.tip
+            tip: this.tip,
+            tipSum: this.tipSum,
+            addrIsEmpty: this.model.additionalParams.addrIsEmpty
     	});
     },
 
     triggerNext: function() {
         var checked = this.$(this.radio).find(':checked');
-        if (checked.attr('id') === 'use_another' && !this.cashSelected) {
+        if (this.cashSelected) {
+            this.onPlaceOrder();
+        } else if (checked.attr('id') === 'use_another') {
             this.triggerPaymentCard();
         } else {
             this.triggerSummary();
         }
+        // if (checked.attr('id') === 'use_another' && !this.cashSelected) {
+        //     this.triggerPaymentCard();
+        // } else {
+        //     this.onPlaceOrder();
+        // }
     },
 
     onCashSelected: function() {
@@ -88,6 +110,7 @@ var PaymentView = Backbone.View.extend({
         this.cashSelected = true;
         this.model.set('cashSelected', true);
         this.model.set('creditCardSelected', false);
+        this.checkCashCreditSelection();
     },
 
     onCreditSelected: function() {
@@ -98,6 +121,13 @@ var PaymentView = Backbone.View.extend({
         this.cashSelected = false;
         this.model.set('cashSelected', false);
         this.model.set('creditCardSelected', true);
+        this.checkCashCreditSelection();
+    },
+
+    checkCashCreditSelection: function() {
+        this.cashSelected ?
+        this.$('.next_btn').text('Place order') :
+        this.$('.next_btn').text('Next');
     },
 
     triggerSummary: function() {
@@ -128,14 +158,54 @@ var PaymentView = Backbone.View.extend({
         Vent.trigger('viewChange', 'payment_card', this.model);
     },
 
+    incrementTip: function() {
+        if (this.tip === 20) return;
+        this.tip = this.tip + 5;
+        this.setTotalPticeWithTip();
+    },
+
+    decrementTip: function() {
+        if (this.tip === 0) return;
+        this.tip = this.tip - 5;
+        this.setTotalPticeWithTip();
+    },
+
     setTotalPticeWithTip: function() {
-        this.selectTipValue = this.$('.select_tip').val();
-        var tipPortion = this.selectTipValue/100,
-            tip = parseFloat((this.totalAmount*tipPortion).toFixed(2)),
-            totalAmountWithTip = parseFloat((this.totalAmount + tip).toFixed(2));
-        this.tip = tip;
-        this.model.additionalParams.tip = tip;
+        var tipPortion = this.tip/100;
+        this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
+        var totalAmountWithTip = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
+        this.$('.tip_quantity').text(this.tip + '%');
+        this.$('.tip_price_value').text(this.tipSum);
+        this.model.additionalParams.tipSum = this.tipSum;
+        this.model.additionalParams.tip = this.tip;
         this.model.set('totalAmount', totalAmountWithTip);
+    },
+
+    onPlaceOrder: function() {
+        var params = this.model.additionalParams;
+        loader.show('placing your order');
+
+        return orderActions.placeOrder(
+            params.sasl.sa(),
+            params.sasl.sl(),
+            this.model.toJSON()
+        ).then(function(e) {
+            loader.hide();
+            params.basket.reset();
+            params.backToRoster = false;
+            var callback = params.backToCatalog
+            ? _.bind(this.triggerCatalogView, this)
+            : _.bind(this.triggerRosterView, this);
+            popupController.textPopup({
+                text: 'order successful'
+            }, callback);
+        }.bind(this), function(e) {
+            loader.hide();
+            var text = h().getErrorMessage(e, 'Error placing your order');
+            popupController.textPopup({
+                text: text
+            });
+        }.bind(this));
     },
 
     goBack : function() {

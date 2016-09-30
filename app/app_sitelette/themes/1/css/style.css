@@ -730,6 +730,18 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
     line-height: 22px;
     width: 28px !important;
 }
+.tip_quantity_field {
+    background: #2b2b2b;
+    margin-top: 8px;
+    padding: 3px 2px;
+    vertical-align: middle;
+    text-align: center;
+    color: #f7f5f3;
+    font-weight: bold;
+    height: 28px;
+    line-height: 22px;
+    width: 33px !important;
+}
 .quantity_field span {
     font-size: 14px;
     display: block;
@@ -1117,7 +1129,9 @@ li.build_combo, li.choose_extras {
     color: #dddddd;
     clear: both;
 }
-#credit .select_container, #cash .select_container {
+#credit .select_container,
+#cash .select_container,
+#summary .select_container {
     margin-right: 25px;
     position: relative;
     bottom: 5px;
@@ -1927,8 +1941,8 @@ li.promotion_block .body {
     z-index: 1;
     position: absolute;
     right: 0;
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent; 
     padding-top: 0;
@@ -1936,12 +1950,12 @@ li.promotion_block .body {
 }
 .promotion_block .slick-prev {
     left: 0;
-    border-right:20px solid transparent; 
+    border-right:20px solid transparent;
     border-left: 0;
 }
 .promotion_block .slick-next {
     right: 0;
-    border-left:20px solid transparent; 
+    border-left:20px solid transparent;
     border-right: 0;
 }
 .promotion-share-block {
@@ -1957,7 +1971,10 @@ li.promotion_block .body {
     text-align: left;  
     background-color: transparent;  
 }
-.promotion-share-block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset input {
+.promotion_block .promotion-share-block .sms_input_block {
+    margin-bottom: 20px;
+}
+.promotion-share-block .sms_input_block input {
     font: 300 16px 'Open Sans', sans-serif;
     color: #bbbbbb;
     background-color: #464646;
@@ -1975,8 +1992,6 @@ li.promotion_block .body {
     padding: 0 5px;
     border-style: solid;
     border-width: 1px;
-    /* border-color: #faa019; */
-    /* background-color: #faa019; */
     text-transform: uppercase;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
