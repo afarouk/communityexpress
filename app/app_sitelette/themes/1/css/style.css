@@ -1915,6 +1915,10 @@ li.promotion_block .body {
     text-transform: uppercase;
     text-align: center;
 }
+.promotion_block .slick-slide:focus,
+.promotion_block .slick-arrow:focus {
+    outline: none;
+}
 .promotion_block .slick-arrow {
     background-color: transparent;
     z-index: 1;
@@ -1924,6 +1928,8 @@ li.promotion_block .body {
     height: 0; 
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent; 
+    padding-top: 0;
+    padding-bottom: 0;
 }
 .promotion_block .slick-prev {
     left: 0;
