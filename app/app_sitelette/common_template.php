@@ -120,6 +120,7 @@ include ('sitefiles/includes/stylesheets.html');
 			uploadAsync : true,
 			uploadUrl : window.server + "/apptsvc/rest/test/template_html_upload",
 			showUpload : true,
+      showRemove : false,
 			showCaption : true,
 			showPreview : false,
 			elErrorContainer : '#htmlErrorBlock',
@@ -129,6 +130,7 @@ include ('sitefiles/includes/stylesheets.html');
 			uploadAsync : true,
 			uploadUrl : window.server + "/apptsvc/rest/test/template_html_upload",
 			showUpload : true,
+      showRemove: false,
 			showCaption : true,
 			showPreview : false,
 			elErrorContainer : '#cssErrorBlock',
@@ -259,8 +261,8 @@ include ('sitefiles/includes/stylesheets.html');
 			 * reset the input fields
 			 *
 			 */
-			$('#html_input').fileinput('refresh');
-			$('#css_input').fileinput('refresh');
+			$('#html_input').fileinput('reset');
+			$('#css_input').fileinput('reset');
 
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			var extractedErrorMessage = processAjaxError(jqXHR);
