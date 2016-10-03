@@ -622,6 +622,8 @@ label.checkbox_save_card {
     float: right;
     position: relative;
     top: 2px;
+    padding: 10px;
+    padding-right: 5%;
 }
 .right_block {
     float: right;
@@ -1271,7 +1273,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .sub_header {
     background-color: #444;
     height: auto;
-    padding: 10px 5% 10px;
+    /*padding: 10px 5% 10px;*/
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -2868,6 +2870,8 @@ a.cancel {
 }
 .basket_icon_container {
     display: inline-block;
+    padding: 10px;
+    padding-left: 5%;
 }
 .catalog_sub_item_img {
     display: none;

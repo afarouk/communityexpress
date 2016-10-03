@@ -28,7 +28,7 @@ var RosterView = Backbone.View.extend({
     onShow: function(options) {
         this.addEvents({
             'click .order_button': 'triggerOrder',
-            'click .edit_button': 'openEditPanel'
+            'click .basket_icon_container': 'openEditPanel'
         });
 
         /* if launched from URL, hide back button*/

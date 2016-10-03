@@ -57,11 +57,13 @@ var CatalogItemView = Backbone.View.extend({
 
     expandDetails: function() {
         this.$('.sides_extras_detailed').slideDown();
+        this.$('.sides_extras_expand_icon').text('▲');
         this.withExpandedDetails = true;
     },
 
     collapseDetails: function() {
         this.$('.sides_extras_detailed').slideUp();
+        this.$('.sides_extras_expand_icon').text('▼');
         this.withExpandedDetails = false;
     },
 
@@ -91,7 +93,7 @@ var CatalogItemView = Backbone.View.extend({
             var modelChanged = this.basket.get(this.model.get('uUID'));
             if (modelChanged) {
                 this.quantity = modelChanged.get('quantity');
-                this.$('.order_price').text('$' + (this.model.get('price') * this.quantity).toFixed(2));
+                this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
             } else {
                 this.quantity = 0;
                 this.$('.order_price').text('$' + this.model.get('price'));

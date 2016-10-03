@@ -25,7 +25,7 @@ var CatalogView = Backbone.View.extend({
         'click .back' : 'goBack',
         'click .order_button' : 'triggerOrder',
         'click .add_combo_button' : 'goBackAndSendCatalogInfo',
-        'click .shopping_icon' : 'openEditPanel'
+        'click .basket_icon_container' : 'openEditPanel'
     },
 
     onShow : function() {
