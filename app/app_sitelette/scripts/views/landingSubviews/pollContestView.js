@@ -79,7 +79,8 @@ module.exports = Backbone.View.extend({
     getLinks: function() {
         var demo = window.community.demo ? 'demo=true&' : '',
           uuid = this.poll.contestUUID,
-          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + '?' + demo + 't=l&u=' + uuid),
+          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+            '?' + demo + 't=l&u=' + uuid),
           links = [
               '',
               'mailto:?subject=&body=' + shareUrl,

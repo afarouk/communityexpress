@@ -2093,6 +2093,21 @@ li.promotion_block .body {
     border: 0.1rem solid #757373;
 }
 
+.photo_contest_block .share_btn_block {
+    text-align: center;
+    width: 90%;
+}
+.photo_contest_block .share_btn_block .share_icon {
+    background: url('images/share-option.png') no-repeat;
+    background-size: cover;
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+}
+.photo_contest_block .share_block {
+    display: none;
+}
+
 /********************** VIDEO BLOCK ***********************/
 li.video_block .body {
     -webkit-overflow-scrolling: touch;
