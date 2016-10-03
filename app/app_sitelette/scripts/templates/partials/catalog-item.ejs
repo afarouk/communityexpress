@@ -3,9 +3,11 @@
     <span class="right">$<%= price %></span>
 </a> -->
 <div class="catalog_item_main_view">
-    <div style="display: inline-block; vertical-align: top;" class="sides_item_image_small">
-        <img style="width: 40px; margin: 0;" src="<%= mediaURLs[0] %>" alt="" />
-    </div>
+    <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
+        <div style="display: inline-block; vertical-align: top;" class="sides_item_image_small">
+            <img style="width: 40px; margin: 0;" src="<%= mediaURLs[0] %>" alt="" />
+        </div>
+    <% } %>
     <div class="sides_extras_item_details">
         <span class="item_name"><%= itemName %></span>
         <div class="order_price">$<%= price %></div>
@@ -28,7 +30,9 @@
     </div>
 </div>
 <div style="display: none;" class="sides_extras_detailed">
-    <img src="<%= mediaURLs[0] %>" alt="" />
+    <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
+        <img src="<%= mediaURLs[0] %>" alt="" />
+    <% } %>
     <div class="catalog_item_attributes">
         <% _.each(attributes, function(status, attr) { %>
             <div class="catalog_item_attribute <%= status ? 'true_attr' : 'false_attr' %>"><%= attr %></div>
