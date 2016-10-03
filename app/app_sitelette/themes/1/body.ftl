@@ -82,7 +82,7 @@
 			<ul class="home_tabs_list">
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
-						<span class="title">events2</span> <span class="collapse_btn">&#9650;</span>
+						<span class="title">events</span> <span class="collapse_btn">&#9650;</span>
 					</div> <#if (eventsSummary.events)?has_content >
 					<div class="body">
 						<table class="event_block_overlay">
@@ -210,7 +210,7 @@
 				</li>
 				<li id="cmtyx_reviews_block" class="reviews_block">
 					<div class="header cmtyx_color_2">
-						<span class="title">user's reviews</span> <span
+						<span class="title">reviews</span> <span
 							class="collapse_btn">&#9650;</span>
 					</div>
 					<div class="body">
@@ -220,7 +220,7 @@
 									<td class="user_avatar"></td>
 									<td class="review_section">
 										<div class="name_date_block">
-											<span class="user_name">Jacob Holiday</span><span
+											<span class="user_name">[Sample user]</span><span
 												class="date">Aug, 24, 2016</span>
 										</div>
 										<div class="rating_block">
@@ -228,13 +228,8 @@
 											<div class="rating_number">
 												<span class="current_rating"></span><span>/5</span>
 											</div>
-											<script>
-												
-											</script>
 										</div>
-										<div class="text">We are passionate about coffee. Our
-											founder has a PhD in Coffiology, from the Columbian Beverage
-											Science Academy.</div>
+						                   <div class="text">(This is a sample review)</div> 
 									</td>
 								</tr>
 							</table>
