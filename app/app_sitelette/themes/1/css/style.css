@@ -429,7 +429,7 @@ li {
     float: right;
 }
 .order_price {
-    float: right;
+    /*float: right;*/
 }
 #cmtyx_catalogView .order_price,
 #left-panel .order_price {
@@ -776,8 +776,8 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
 }
 .menu_body li.cmntyex-catalog-item .item_name {
     position: relative;
-    top: 8px;
-    margin-bottom: 10px;
+    /*top: 8px;*/
+    /*margin-bottom: 10px;*/
 }
 .menu_body li .item_price {
     font: 700 18px / 19px 'Open Sans', sans-serif;
@@ -1061,7 +1061,8 @@ li.build_combo, li.choose_extras {
     display: inline-block;
     text-shadow: none;
     background-color: transparent;
-    float: left;
+    margin-left: 10px;
+    /*float: left;*/
 }
 .sides_extras_item_details .item_name {
     font: 300 16px 'Open Sans', sans-serif;
@@ -2853,6 +2854,11 @@ a.cancel {
 .menu_body li.cmntyex-catalog-item {
     box-shadow: none;
     margin-bottom: 5px;
+    padding: 0;
+}
+
+.menu_body li.cmntyex-catalog-item .catalog_item_main_view {
+    padding: .7em;
 }
 .basket_icon_container {
     display: inline-block;
@@ -2895,4 +2901,43 @@ a.cancel {
     margin-left:-25px;
     width: 50px;
     height: 50px;
+}
+
+.sides_extras_expand_icon {
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.sides_extras_detailed {
+    padding-top: 5px;
+    background-color: #363636;
+    white-space: initial;
+}
+
+.sides_extras_container .sides_extras_detailed img {
+    margin: 0;
+}
+
+.catalog_item_attribute {
+    color: #fff;
+    padding: 6px;
+    display: inline-block;
+    width: 45%;
+}
+
+.catalog_item_attribute.true_attr::before {
+    content: '';
+    background: url('images/check.png') no-repeat top left;
+    width: 15px;
+    height: 15px;
+    padding-right: 20px;
+}
+
+.catalog_item_attribute.false_attr::before {
+    content: '';
+    background: url('images/cross.png') no-repeat top left;
+    width: 15px;
+    height: 15px;
+    padding-right: 20px;
 }

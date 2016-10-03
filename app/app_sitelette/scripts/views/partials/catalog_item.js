@@ -16,6 +16,7 @@ var CatalogItemView = Backbone.View.extend({
 
     events: {
         // 'click': 'showAddToBusketView'
+        'click': 'onClick',
         'click .plus_button': 'incrementQuantity',
         'click .minus_button': 'decrementQuantity',
         'click .item_name': 'openItemDetails'
@@ -27,9 +28,9 @@ var CatalogItemView = Backbone.View.extend({
 
     initialize: function (options) {
         this.quantity = 0;
-        // this.onClick = function () {
-        //     options.onClick(this.model);
-        // }.bind(this);
+        this.onClick = function () {
+            options.onClick(this);
+        }.bind(this);
         this.color = options.color;
         this.basket = options.basket;
         this.updateQuantity();
@@ -37,6 +38,7 @@ var CatalogItemView = Backbone.View.extend({
         this.groupId = options.groupId;
         this.groupDisplayText=options.groupDisplayText;
         this.catalogDisplayText=options.catalogDisplayText;
+        this.withExpandedDetails = false;
 
         this.listenTo(this.basket, 'reset change add remove', this.updateQuantity, this);
     },
@@ -49,24 +51,36 @@ var CatalogItemView = Backbone.View.extend({
         return this;
     },
 
-    openItemDetails: function() {
-        // TODO how should we show item details (accordion or left panel)
+    onClick: function() {
+        this.onClick();
+    },
+
+    expandDetails: function() {
+        this.$('.sides_extras_detailed').slideDown();
+        this.withExpandedDetails = true;
+    },
+
+    collapseDetails: function() {
+        this.$('.sides_extras_detailed').slideUp();
+        this.withExpandedDetails = false;
     },
 
     incrementQuantity: function () {
         this.addItem = true;
         this.quantity = this.quantity + 1;
         this.addToBasket();
+        return false;
     },
 
     decrementQuantity: function () {
         this.addItem = false;
         var qty = this.quantity;
 
-        if (qty === 0) return;
+        if (qty === 0) return false;
 
         this.quantity = this.quantity - 1;
         this.addToBasket();
+        return false;
     },
 
     updateQuantity: function () {

@@ -253,6 +253,19 @@ var CatalogView = Backbone.View.extend({
 
     },
 
+    expandCollapseDetails: function(view) {
+        if (!view.withExpandedDetails) {
+            view.expandDetails();
+            if (this.viewWithExpandedDetails) {
+                this.viewWithExpandedDetails.collapseDetails();
+            }
+            this.viewWithExpandedDetails = view;
+        } else {
+            view.collapseDetails();
+            this.viewWithExpandedDetails = false;
+        }
+    },
+
     generateColor : function(index) {
         // var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
         var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color1' ];
@@ -342,8 +355,11 @@ var CatalogView = Backbone.View.extend({
                 var groupId = group.groupId;
 
                 var el = new GroupView({
-                    onClick : function(model) {
-                        this.openAddToBasketView(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
+                    // onClick : function(model) {
+                    //     this.openAddToBasketView(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
+                    // }.bind(this),
+                    onClick : function(view) {
+                        this.expandCollapseDetails(view);
                     }.bind(this),
                     color : this.generateColor(i),
                     model : group,
