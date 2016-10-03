@@ -52,7 +52,8 @@ var LandingView = Backbone.View.extend({
         // 'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
         // 'click .outofNetworkUserReviews': 'showOutOfNetworkText',
         'click #cmtyx_share_block .sms_block': 'showSMSInput',
-        'click #cmtyx_share_block .sms_send_button': 'onSendSMS'
+        'click #cmtyx_share_block .sms_send_button': 'onSendSMS',
+        'click .login_with_facebook': 'loginWithFacebook'
     },
 
     undelall: function() {
@@ -71,7 +72,7 @@ var LandingView = Backbone.View.extend({
             'min-height': '0',
             'margin-bottom': '0px'
         });
-        Vent.on('scrollToPromotions', this.scrollToPromotions, this);
+        Vent.on('scrollToBlock', this.scrollToBlock, this);
 
         /*
         _.extend( {}, this.model.attributes, {
@@ -85,6 +86,42 @@ var LandingView = Backbone.View.extend({
         this.headerToggle();
 
         this.setShareLinks();
+
+        // gallery doesn't work if I load facebook sdk before (TODO check reason)
+        setTimeout(this.facebookInit.bind(this), 100);
+    },
+
+    facebookInit: function() {
+        // Load the SDK asynchronously
+          (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1691237561196865',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.5'
+          });
+        }
+    },
+
+    loginWithFacebook: function() {
+        FB.login(function(response) {
+            if (response.authResponse) {
+             console.log('Welcome!  Fetching your information.... ');
+             FB.api('/me', function(response) {
+               console.log('Good to see you, ' + response.name + '.');
+             });
+            } else {
+             console.log('User cancelled login or did not fully authorize.');
+            }
+        });
     },
 
     headerToggle: function() {
@@ -152,11 +189,11 @@ var LandingView = Backbone.View.extend({
         return this.$el;
     },
 
-    scrollToPromotions: function() {
+    scrollToBlock: function(selector) {
         var time = 1000,
             parentOffset = this.$el.scrollTop(),
             headerHeight = $('#cmtyx_header').height(),
-            offset = parentOffset + this.$el.find('.promotion_block').offset().top - headerHeight,
+            offset = parentOffset + this.$el.find(selector).offset().top - headerHeight,
             flag = Math.abs(parentOffset - offset);
         if (flag < 20) return;
         time = flag * .3;
