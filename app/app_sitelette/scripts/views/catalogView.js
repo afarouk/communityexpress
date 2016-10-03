@@ -97,7 +97,6 @@ var CatalogView = Backbone.View.extend({
             this.triggerCatalogsView();
         } else {
             this.triggerRestaurantView();
-            this.navbarView.show();
         }
     },
 

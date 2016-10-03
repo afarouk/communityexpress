@@ -1650,7 +1650,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .poll_block img {
     padding: 0;
     width: 100%;
-    max-height: 230px;
+/* AF  max-height: 230px; */
 }
 .poll_block .poll_displaytext {
     display: block;
@@ -1711,6 +1711,21 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .poll_block .body .prize_container {
     max-height: 180px;
+}
+
+.poll_block .share_btn_block {
+    text-align: center;
+    width: 90%;
+}
+.poll_block .share_btn_block .share_icon {
+    background: url('images/share-option.png') no-repeat;
+    background-size: cover;
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+}
+.poll_block .share_block {
+    display: none;
 }
 
 /********************** ABOUT US BLOCK ***********************/
@@ -1949,7 +1964,7 @@ li.promotion_block .body {
     width: 0;
     height: 0;
     border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent; 
+    border-bottom: 20px solid transparent;
     padding-top: 0;
     padding-bottom: 0;
 }
@@ -1973,8 +1988,8 @@ li.promotion_block .body {
 .promotion-share-block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
     display: inline-block;
     width: 50%;
-    text-align: left;  
-    background-color: transparent;  
+    text-align: left;
+    background-color: transparent;
 }
 .promotion_block .promotion-share-block .sms_input_block {
     margin-bottom: 20px;
@@ -2083,6 +2098,21 @@ li.promotion_block .body {
     border: 0.1rem solid #757373;
 }
 
+.photo_contest_block .share_btn_block {
+    text-align: center;
+    width: 90%;
+}
+.photo_contest_block .share_btn_block .share_icon {
+    background: url('images/share-option.png') no-repeat;
+    background-size: cover;
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+}
+.photo_contest_block .share_block {
+    display: none;
+}
+
 /********************** VIDEO BLOCK ***********************/
 li.video_block .body {
     -webkit-overflow-scrolling: touch;
@@ -2095,6 +2125,43 @@ li.video_block .body {
     text-align: center;
     padding: 35px 0 25px 0;
 }
+
+.share_block .sms_input_block {
+    display: none;
+}
+
+.share_block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
+    display: inline-block;
+    width: 50%;
+    text-align: left;
+    background-color: transparent;
+}
+.share_block .promotion-share-block .sms_input_block {
+    margin-bottom: 20px;
+}
+.share_block .sms_input_block input {
+    font: 300 16px 'Open Sans', sans-serif;
+    color: #bbbbbb;
+    background-color: #464646;
+    border: 1px solid #757373;
+    border-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 36px;
+}
+.share_block .sms_input_block .sms_send_button {
+    display: inline-block;
+    line-height: 34px;
+    position: relative;
+    right: 5px;
+    padding: 0 5px;
+    border-style: solid;
+    border-width: 1px;
+    text-transform: uppercase;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 .share_block .title {
     display: inline-block;
     font: 400 12px 'Open Sans', sans-serif;

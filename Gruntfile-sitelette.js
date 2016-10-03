@@ -203,9 +203,10 @@ module.exports = function (grunt) {
                     archive: './dist.zip',
                     mode: 'zip'
                 },
-                files: [
-                    { src: './dist/**' }
-                ]
+                files: [{
+                    dot: true,
+                    src: ['./dist/**']
+                }]
             }
         },
         // Here will be replacements for production files

@@ -4,6 +4,7 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
+    contactActions = require('../../actions/contactActions'),
     appCache = require('../../appCache.js'),
     viewFactory = require('../../viewFactory'),
     ListView = require('../components/listView'),
@@ -29,7 +30,10 @@ module.exports = Backbone.View.extend({
     events: {
         'click .header': 'toggleCollapse',
         'click .send_photo_btn': 'onClickSendPhoto',
-        'click .body>img': 'checkIfAnswered'
+        'click .body>img': 'checkIfAnswered',
+        'click .share_btn_block': 'showShareBlock',
+        'click .sms_block': 'showSMSInput',
+        'click .sms_send_button': 'onSendSMS'
     },
 
     initialize: function(options) {
@@ -43,8 +47,63 @@ module.exports = Backbone.View.extend({
         console.log('contest', contest);
         this.contest = contest;
         this.$el.html(photoContestTemplate(contest));
-        
+        this.setShareLinks();
         return this;
+    },
+
+    showShareBlock: function() {
+        var $el = this.$el.find('.share_block');
+        $el.slideToggle('slow');
+    },
+
+    showSMSInput: function() {
+        var $el = this.$el.find('.sms_input_block');
+        $el.slideToggle('slow');
+        $el.find('input').mask('(000) 000-0000');
+    },
+
+    getLinks: function() {
+        var demo = window.community.demo ? 'demo=true&' : '',
+          uuid = this.contest.contestUUID,
+          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+            '?' + demo + 't=h&u=' + uuid),
+          links = [
+              '',
+              'mailto:?subject=&body=' + shareUrl,
+              'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl,
+              'https://twitter.com/intent/tweet?text=' + shareUrl
+          ];
+        return links;
+    },
+
+    setShareLinks: function() {
+        var $block = this.$el.find('.share_block'),
+          links = this.getLinks(),
+          $links = $block.find('a');
+
+        $links.each(function(index){
+          var link = $(this);
+          link.attr('href', links[index]);
+        });
+    },
+
+    onSendSMS: function(e) {
+        var $el = this.$el.find('.sms_input_block'),
+            $target = $(e.currentTarget),
+            uuid = this.contest.contestUUID,
+            val = $target.prev().val(); //(650) 617-3439
+
+        loader.showFlashMessage('Sending message to... ' + val);
+        $el.slideUp('slow');
+        contactActions.sendAppURLForSASLToMobileviaSMS(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, val, uuid)
+          .then(function(res){
+            loader.showFlashMessage('Sending message success.');
+          }.bind(this))
+          .fail(function(res){
+            if (res.responseJSON && res.responseJSON.error) {
+              loader.showFlashMessage(res.responseJSON.error.message);
+            }
+          }.bind(this));
     },
 
     checkIfAnswered: function() {
