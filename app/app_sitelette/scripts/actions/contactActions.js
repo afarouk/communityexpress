@@ -43,12 +43,15 @@ module.exports = {
     },
 
     sendAppURLForSASLToMobileviaSMS: function(sa, sl, phone, contestUUID) {
-        return gateway.sendRequest('sendAppURLForSASLToMobileviaSMS', {
+        var params = {
             UID: getUID(),
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
-            toTelephoneNumber: phone,
-            contestUUID: contestUUID
-        });
+            toTelephoneNumber: phone
+        };
+        if (contestUUID) {
+            params.contestUUID = contestUUID;
+        }
+        return gateway.sendRequest('sendAppURLForSASLToMobileviaSMS', params);
     }
 };

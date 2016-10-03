@@ -2090,6 +2090,43 @@ li.video_block .body {
     text-align: center;
     padding: 35px 0 25px 0;
 }
+
+.share_block .sms_input_block {
+    display: none;
+}
+
+.share_block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
+    display: inline-block;
+    width: 50%;
+    text-align: left;
+    background-color: transparent;
+}
+.share_block .promotion-share-block .sms_input_block {
+    margin-bottom: 20px;
+}
+.share_block .sms_input_block input {
+    font: 300 16px 'Open Sans', sans-serif;
+    color: #bbbbbb;
+    background-color: #464646;
+    border: 1px solid #757373;
+    border-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 36px;
+}
+.share_block .sms_input_block .sms_send_button {
+    display: inline-block;
+    line-height: 34px;
+    position: relative;
+    right: 5px;
+    padding: 0 5px;
+    border-style: solid;
+    border-width: 1px;
+    text-transform: uppercase;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 .share_block .title {
     display: inline-block;
     font: 400 12px 'Open Sans', sans-serif;

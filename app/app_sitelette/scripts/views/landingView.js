@@ -6,6 +6,7 @@ var Vent = require('../Vent'),
     appCache = require('../appCache.js'),
     config = require('../appConfig'),
     loader = require('../loader'),
+    contactActions = require('../actions/contactActions'),
     viewFactory = require('../viewFactory'),
     saslActions = require('../actions/saslActions'),
     contactActions = require('../actions/contactActions'),
@@ -24,32 +25,34 @@ var LandingView = Backbone.View.extend({
     el: '#cmtyx_landingView',
 
     events: {
-        'click .openingHours': 'openHours',
-        'click .userMediaService': 'openUpload',
-        'click .userReviewsService': 'triggerReviewsView',
-        'click .messagingService': 'triggerChatView',
+        // 'click .openingHours': 'openHours',
+        // 'click .userMediaService': 'openUpload',
+        // 'click .userReviewsService': 'triggerReviewsView',
+        // 'click .messagingService': 'triggerChatView',
         'click .catalog': 'triggerCatalogsView',
         'click .appointmentService': 'triggerAppointmentView',
-        'click .wallService': 'triggerPostsView',
-        'click .lVphotoContestButton': 'triggerPhotoContestView',
-        'click .poll_submit_button': 'submitPollAction',
-        'click .embedded_video': 'activateVideoPlayer',
-        'click .theme2_generic_banner': 'triggerAboutUsView',
-        'click .theme2_event_entry_right_top_row_calendar a': 'triggerEventView',
-        'click #sms_button': 'openSMSInput',
-        'click #sms_send_button': 'sendSMSToMobile',
+        // 'click .wallService': 'triggerPostsView',
+        // 'click .lVphotoContestButton': 'triggerPhotoContestView',
+        // 'click .poll_submit_button': 'submitPollAction',
+        // 'click .embedded_video': 'activateVideoPlayer',
+        // 'click .theme2_generic_banner': 'triggerAboutUsView',
+        // 'click .theme2_event_entry_right_top_row_calendar a': 'triggerEventView',
+        // 'click #sms_button': 'openSMSInput',
+        // 'click #sms_send_button': 'sendSMSToMobile',
 
-        'click .promotionService': 'openPromotions',
-        'click .userPictures': 'openUserPictures',
-        'click .uploadPromtion': 'openUploadPromotion',
-        'click .uploadGallery': 'openUploadGallery',
-        'click .activatePromotion': 'triggerActivatePromotion',
-        'click .deActivatePromotion': 'triggerDeActivatePromotion',
-        'click .activateGallery': 'triggerActivateGallery',
-        'click .deActiveGallery': 'triggerDeActivateGallery',
-        'click .outofNetworkPromotions': 'showOutOfNetworkText',
-        'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
-        'click .outofNetworkUserReviews': 'showOutOfNetworkText'
+        // 'click .promotionService': 'openPromotions',
+        // 'click .userPictures': 'openUserPictures',
+        // 'click .uploadPromtion': 'openUploadPromotion',
+        // 'click .uploadGallery': 'openUploadGallery',
+        // 'click .activatePromotion': 'triggerActivatePromotion',
+        // 'click .deActivatePromotion': 'triggerDeActivatePromotion',
+        // 'click .activateGallery': 'triggerActivateGallery',
+        // 'click .deActiveGallery': 'triggerDeActivateGallery',
+        // 'click .outofNetworkPromotions': 'showOutOfNetworkText',
+        // 'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
+        // 'click .outofNetworkUserReviews': 'showOutOfNetworkText',
+        'click #cmtyx_share_block .sms_block': 'showSMSInput',
+        'click #cmtyx_share_block .sms_send_button': 'onSendSMS'
     },
 
     undelall: function() {
@@ -58,7 +61,7 @@ var LandingView = Backbone.View.extend({
 
     initialize: function(options) {
         options = options || {};
-        this.sasl = options.sasl;
+        this.sasl = window.saslData;
         this.contests = options.contests;
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
@@ -97,29 +100,53 @@ var LandingView = Backbone.View.extend({
         });
     },
 
-    //TODO
+    showSMSInput: function() {
+        var $el = this.$el.find('#cmtyx_share_block .sms_input_block');
+        $el.slideToggle('slow');
+        $el.find('input').mask('(000) 000-0000');
+    },
+
     getLinks: function() {
-        var links = [
-                //add user phone number here
-                'sms:' + saslData.telephoneNumber + ';body=' + window.encodeURIComponent(window.location.href),
-                'mailto:?subject=&body=' + window.encodeURIComponent(window.location.href),
-                'https://www.facebook.com/sharer/sharer.php?u=' + window.encodeURIComponent(window.location.href),
-                'https://twitter.com/intent/tweet?text=' + window.encodeURIComponent(window.location.href)
-            ];
+      var demo = window.community.demo ? '?demo=true' : '',
+          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + demo),
+          links = [
+              '',
+              'mailto:?subject=&body=' + shareUrl,
+              'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl,
+              'https://twitter.com/intent/tweet?text=' + shareUrl
+          ];
         return links;
     },
 
     setShareLinks: function() {
-        var links = this.getLinks(),
-            $block = this.$el.find('#cmtyx_share_block .ui-grid-c'),
-            $els = $block.find('div');
+        var $block = this.$el.find('#cmtyx_share_block'),
+          links = this.getLinks(),
+          $links = $block.find('a');
 
-        $els.each(function(index){
-            var shareBtn = $(this),
-                link = $('<a href="'+ links[index] +'">').append(shareBtn.html());
-            shareBtn.html(link);
+        $links.each(function(index){
+          var link = $(this);
+          link.attr('href', links[index]);
         });
     },
+
+    onSendSMS: function(e) {
+    //TODO shere promotion
+    var $el = this.$el.find('#cmtyx_share_block .sms_input_block'),
+        $target = $(e.currentTarget),
+        val = $target.prev().find('.sms_input').val();
+
+    loader.showFlashMessage('Sending message to... ' + val);
+    $el.slideUp('slow');
+    contactActions.sendAppURLForSASLToMobileviaSMS(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, val)
+      .then(function(res){
+        loader.showFlashMessage('Sending message success.');
+      }.bind(this))
+      .fail(function(res){
+        if (res.responseJSON && res.responseJSON.error) {
+          loader.showFlashMessage(res.responseJSON.error.message);
+        }
+      }.bind(this));
+  },
 
     renderContent: function() {
         return this.$el;
@@ -374,36 +401,36 @@ var LandingView = Backbone.View.extend({
         this.openSubview('text', {}, {text: text});
     },
 
-    openSMSInput: function() {
-        $('.phone_us').mask('(000) 000-0000');
-        $("#sms_input_block").slideToggle('1000');
-        $('#sms_input').val('').focus();
-    },
+    // openSMSInput: function() {
+    //     $('.phone_us').mask('(000) 000-0000');
+    //     $("#sms_input_block").slideToggle('1000');
+    //     $('#sms_input').val('').focus();
+    // },
 
-    sendSMSToMobile: function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // sendSMSToMobile: function(e) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
 
-        var mobile = $('.phone_us').val();
+    //     var mobile = $('.phone_us').val();
 
-        contactActions.sendAppURLForSASLToMobileviaSMS(this.model.sa(), this.model.sl(), mobile)
-            .then(function(response, status){
-                loader.showFlashMessage( 'Sending message... ' + mobile);
-                this.shut();
-            }.bind(this), function(jqXHR, status) {
-                var errorMessage = "Operation failed";
-                if (status === "timeout") {
-                    errorMessage = 'Service Unavailable';
-                } else {
-                    if (typeof jqXHR.responseJSON !== 'undefined') {
-                        if (typeof jqXHR.responseJSON.error !== 'undefined') {
-                            errorMessage = jqXHR.responseJSON.error.message;
-                        }
-                    }
-                };
-                loader.showFlashMessage(errorMessage);
-            }.bind(this));
-    }
+    //     contactActions.sendAppURLForSASLToMobileviaSMS(this.model.sa(), this.model.sl(), mobile)
+    //         .then(function(response, status){
+    //             loader.showFlashMessage( 'Sending message... ' + mobile);
+    //             this.shut();
+    //         }.bind(this), function(jqXHR, status) {
+    //             var errorMessage = "Operation failed";
+    //             if (status === "timeout") {
+    //                 errorMessage = 'Service Unavailable';
+    //             } else {
+    //                 if (typeof jqXHR.responseJSON !== 'undefined') {
+    //                     if (typeof jqXHR.responseJSON.error !== 'undefined') {
+    //                         errorMessage = jqXHR.responseJSON.error.message;
+    //                     }
+    //                 }
+    //             };
+    //             loader.showFlashMessage(errorMessage);
+    //         }.bind(this));
+    // }
 
 });
 

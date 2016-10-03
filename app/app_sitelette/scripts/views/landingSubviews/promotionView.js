@@ -56,10 +56,12 @@ var PromotionView = Backbone.View.extend({
   showSMSInput: function() {
     var $el = this.$el.find('.sms_input_block');
     $el.slideToggle('slow');
+    $el.find('input').mask('(000) 000-0000');
   },
 
   getLinks: function(uuid) {
-      var shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + '?t=p&u=' + uuid),
+      var demo = window.community.demo ? 'demo=true&' : '',
+          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + '?' + demo + 't=p&u=' + uuid),
           links = [
               '',
               'mailto:?subject=&body=' + shareUrl,
