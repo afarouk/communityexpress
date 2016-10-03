@@ -178,13 +178,19 @@ App.prototype = {
             break;
             case 'h':
                 //Photo contest
-                // this.goToPage('photoContest', {
-                //     sasl: appCache.get('saslData'),
-                //     id: uuid
-                // });
+                $(document).ready(function(){
+                    setTimeout(function () {
+                        Vent.trigger('scrollToBlock', '.photo_contest_block');
+                    }, 2000);
+                });
             break;
             case 'l':
                 //Poll contest
+                $(document).ready(function(){
+                    setTimeout(function () {
+                        Vent.trigger('scrollToBlock', '.poll_block');
+                    }, 1500);
+                });
             break;
             case 'p':
                 //Promotions

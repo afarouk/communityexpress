@@ -72,7 +72,7 @@ var LandingView = Backbone.View.extend({
             'min-height': '0',
             'margin-bottom': '0px'
         });
-        Vent.on('scrollToPromotions', this.scrollToPromotions, this);
+        Vent.on('scrollToBlock', this.scrollToBlock, this);
 
         /*
         _.extend( {}, this.model.attributes, {
@@ -87,6 +87,7 @@ var LandingView = Backbone.View.extend({
 
         this.setShareLinks();
 
+        // gallery doesn't work if I load facebook sdk before (TODO check reason)
         setTimeout(this.facebookInit.bind(this), 100);
     },
 
@@ -103,10 +104,9 @@ var LandingView = Backbone.View.extend({
         window.fbAsyncInit = function() {
           FB.init({
             appId      : '1691237561196865',
-            cookie     : true,  // enable cookies to allow the server to access 
-                                // the session
-            xfbml      : true,  // parse social plugins on this page
-            version    : 'v2.5' // use graph api version 2.5
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.5'
           });
         }
     },
@@ -189,11 +189,11 @@ var LandingView = Backbone.View.extend({
         return this.$el;
     },
 
-    scrollToPromotions: function() {
+    scrollToBlock: function(selector) {
         var time = 1000,
             parentOffset = this.$el.scrollTop(),
             headerHeight = $('#cmtyx_header').height(),
-            offset = parentOffset + this.$el.find('.promotion_block').offset().top - headerHeight,
+            offset = parentOffset + this.$el.find(selector).offset().top - headerHeight,
             flag = Math.abs(parentOffset - offset);
         if (flag < 20) return;
         time = flag * .3;
