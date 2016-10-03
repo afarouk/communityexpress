@@ -9,6 +9,7 @@ var Vent = require('../Vent'),
     contactActions = require('../actions/contactActions'),
     viewFactory = require('../viewFactory'),
     saslActions = require('../actions/saslActions'),
+    sessionActions = require('../actions/sessionActions'),
     contactActions = require('../actions/contactActions'),
     promotionActions = require('../actions/promotionActions'),
     configurationActions = require('../actions/configurationActions'),
@@ -91,6 +92,18 @@ var LandingView = Backbone.View.extend({
         setTimeout(this.facebookInit.bind(this), 100);
     },
 
+    afterTriedToLogin: function() {
+        var uid = sessionActions.getCurrentUser().getUID();
+        if (uid) {
+            this.$el.find('.login_with_facebook').slideUp('slow');
+        } else {
+            this.$el.find('.login_with_facebook').slideDown('slow');
+        }
+        if (typeof FB === 'undefined') {
+            this.facebookInit();
+        }
+    },
+
     facebookInit: function() {
         // Load the SDK asynchronously
           (function(d, s, id) {
@@ -114,14 +127,21 @@ var LandingView = Backbone.View.extend({
     loginWithFacebook: function() {
         FB.login(function(response) {
             if (response.authResponse) {
-             console.log('Welcome!  Fetching your information.... ');
-             FB.api('/me', function(response) {
-               console.log('Good to see you, ' + response.name + '.');
-             });
+             var facebookUID = response.authResponse.userID || '';
+             if (facebookUID) {
+                this.getOrCreateNewUser(facebookUID);
+             }
             } else {
              console.log('User cancelled login or did not fully authorize.');
             }
-        });
+        }.bind(this));
+    },
+
+    getOrCreateNewUser: function(facebookUID) {
+        console.log('Facebook UID: ', facebookUID);
+        //TODO: make new API call that return existing or create new user
+        //and return UID
+        //then trigger logedin
     },
 
     headerToggle: function() {
