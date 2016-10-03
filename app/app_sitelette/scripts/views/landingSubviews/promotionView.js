@@ -44,7 +44,7 @@ var PromotionView = Backbone.View.extend({
         index = el.data('slick-index');
 
     this.$el.find('.body ul').slick('slickGoTo', index);
-    Vent.trigger('scrollToPromotions');
+    Vent.trigger('scrollToBlock', '.promotion_block');
   },
 
   showShareBlock: function(e) {
