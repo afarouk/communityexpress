@@ -2190,6 +2190,11 @@ li.video_block .body {
     background: url('images/tw.png');
 }
 
+.login_with_facebook {
+    text-align: center;
+    padding: 10px;
+}
+
 /********************** DRIVING DIRECTIONS BLOCK ***********************/
 li.driving_directions_block {
     padding-top: 30px;

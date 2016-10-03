@@ -52,7 +52,8 @@ var LandingView = Backbone.View.extend({
         // 'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
         // 'click .outofNetworkUserReviews': 'showOutOfNetworkText',
         'click #cmtyx_share_block .sms_block': 'showSMSInput',
-        'click #cmtyx_share_block .sms_send_button': 'onSendSMS'
+        'click #cmtyx_share_block .sms_send_button': 'onSendSMS',
+        'click .login_with_facebook': 'loginWithFacebook'
     },
 
     undelall: function() {
@@ -85,6 +86,42 @@ var LandingView = Backbone.View.extend({
         this.headerToggle();
 
         this.setShareLinks();
+
+        setTimeout(this.facebookInit.bind(this), 100);
+    },
+
+    facebookInit: function() {
+        // Load the SDK asynchronously
+          (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1691237561196865',
+            cookie     : true,  // enable cookies to allow the server to access 
+                                // the session
+            xfbml      : true,  // parse social plugins on this page
+            version    : 'v2.5' // use graph api version 2.5
+          });
+        }
+    },
+
+    loginWithFacebook: function() {
+        FB.login(function(response) {
+            if (response.authResponse) {
+             console.log('Welcome!  Fetching your information.... ');
+             FB.api('/me', function(response) {
+               console.log('Good to see you, ' + response.name + '.');
+             });
+            } else {
+             console.log('User cancelled login or did not fully authorize.');
+            }
+        });
     },
 
     headerToggle: function() {
