@@ -1713,6 +1713,21 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     max-height: 180px;
 }
 
+.poll_block .share_btn_block {
+    text-align: center;
+    width: 90%;
+}
+.poll_block .share_btn_block .share_icon {
+    background: url('images/share-option.png') no-repeat;
+    background-size: cover;
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+}
+.poll_block .share_block {
+    display: none;
+}
+
 /********************** ABOUT US BLOCK ***********************/
 .about_us_block .text {
     font: 300 12px / 17px 'Open Sans', sans-serif;
