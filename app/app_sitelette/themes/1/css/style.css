@@ -1713,11 +1713,18 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     max-height: 180px;
 }
 
-.poll_block .share_btn_block {
+.poll_block .share_btn_block,
+.promotion_block .share_btn_block,
+.photo_contest_block .share_btn_block {
     text-align: center;
-    width: 90%;
+    width: 100%;
 }
-.poll_block .share_btn_block .share_icon {
+.promotion_block .share_btn_block {
+    margin-bottom: 20px;
+}
+.poll_block .share_btn_block .share_icon,
+.promotion_block .share_btn_block .share_icon,
+.photo_contest_block .share_btn_block .share_icon {
     background: url('images/share-option.png') no-repeat;
     background-size: cover;
     display: inline-block;
@@ -1743,11 +1750,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 100%;
 }
 .loyalty_program_block .qr_code_block {
-    position: relative;
+    /* position: relative;
     border-left: solid 5px;
     background-color: #555555;
     padding: 15px 5px;
-    margin-top: 20px;
+    margin-top: 20px; */
     text-align: left;
     display: none;
 }
@@ -1765,6 +1772,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font: 400 12px 'Open Sans', sans-serif;
     letter-spacing: 1px;
     margin-bottom: 10px;
+}
+.loyalty_program_block .qr_code_title.last {
+    margin: 10px 0 0 0;
 }
 .loyalty_program_block .loyalty_status {
     font-weight: 700;
@@ -1792,7 +1802,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     text-align: left;
     padding: 10px;
 }
-.poll_block .poll-answered {
+.poll-answered {
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 10px;
@@ -1802,14 +1812,14 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .prize_text {
     display: block;
-    font: 500 14px 'Open Sans', sans-serif;
+    font: 700 14px 'Open Sans', sans-serif;
     color: #e34a20;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
 .prize_condition {
     display: block;
-    font: 500 14px 'Open Sans', sans-serif;
+    font: 500 13px 'Open Sans', sans-serif;
     color: #414141;
     margin-bottom: 8px;
 }
@@ -1898,11 +1908,6 @@ li.promotion_block .body {
     padding: 15px 15px 15px 0;
     display: none;
 }
-.promotion_block .share_btn_block {
-    text-align: center;
-    width: 90%;
-    padding: 15px 0 15px 10px;
-}
 .promotion_block .promotion_item_buttons .icon {
     display: inline-block;
     width: 16px;
@@ -1922,19 +1927,25 @@ li.promotion_block .body {
     color: #fff;
 }
 .promotion_block .promotion_title {
+    font: 400 14px 'Open Sans', sans-serif;
+    text-transform: uppercase;
     padding: 5px 10px;
+    padding-bottom: 0;
 }
 .promotion_block .promotion_description {
-    font-weight: 300;
+    font: 300 13px 'Open Sans', sans-serif;
     padding: 10px;
+    padding-bottom: 20px;
 }
 .promotion_block .promotion_type {
     color: red;
-    padding: 5px 10px;
+    text-transform: uppercase;
+    padding: 10px;
 }
 .promotion_block .promotion-share-block {
     padding: 10px 0;
     display: none;
+    margin-top: -20px;
 }
 .promotion_block .promotion-share-block .sms_input_block {
     display:none;
@@ -1985,16 +1996,17 @@ li.promotion_block .body {
     outline: none;
     text-decoration: none;
 }
-.promotion-share-block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
+.sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
     display: inline-block;
-    width: 50%;
+    /* width: 50%; */
     text-align: left;
     background-color: transparent;
+    margin: 0;
 }
-.promotion_block .promotion-share-block .sms_input_block {
+.sms_input_block {
     margin-bottom: 20px;
 }
-.promotion-share-block .sms_input_block input {
+.sms_input_block input {
     font: 300 16px 'Open Sans', sans-serif;
     color: #bbbbbb;
     background-color: #464646;
@@ -2003,8 +2015,13 @@ li.promotion_block .body {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     height: 36px;
+    width: 200px;
+    padding: .4em;
 }
-.promotion-share-block .sms_input_block .sms_send_button {
+.sms_input_block input:focus {
+    outline: none;
+}
+.sms_input_block .sms_send_button {
     display: inline-block;
     line-height: 34px;
     position: relative;
@@ -2036,9 +2053,9 @@ li.promotion_block .body {
 }
 .photo_contest_block .contest_task {
     display: block;
-    font: 400 18px / 28px 'Open Sans', sans-serif;
+    font: 400 16px / 18px 'Open Sans', sans-serif;
     color: #ececec;
-    margin-bottom: 30px;
+    margin: 10px 0 20px 0;
 }
 .photo_contest_block .send_photo_btn {
     font: 400 16px 'Open Sans', sans-serif;
@@ -2097,18 +2114,6 @@ li.promotion_block .body {
     padding: 4px 1.6px;
     border: 0.1rem solid #757373;
 }
-
-.photo_contest_block .share_btn_block {
-    text-align: center;
-    width: 90%;
-}
-.photo_contest_block .share_btn_block .share_icon {
-    background: url('images/share-option.png') no-repeat;
-    background-size: cover;
-    display: inline-block;
-    width: 16px;
-    height: 15px;
-}
 .photo_contest_block .share_block {
     display: none;
 }
@@ -2123,7 +2128,10 @@ li.video_block .body {
 /********************** SHARE BLOCK ***********************/
 .share_block {
     text-align: center;
-    padding: 35px 0 25px 0;
+    padding-top: 25px;
+}
+#cmtyx_share_block.share_block {
+    padding-bottom: 20px;
 }
 
 .share_block .sms_input_block {
@@ -2132,36 +2140,13 @@ li.video_block .body {
 
 .share_block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
     display: inline-block;
-    width: 50%;
+    /* width: 50%; */
     text-align: left;
     background-color: transparent;
 }
 .share_block .promotion-share-block .sms_input_block {
     margin-bottom: 20px;
 }
-.share_block .sms_input_block input {
-    font: 300 16px 'Open Sans', sans-serif;
-    color: #bbbbbb;
-    background-color: #464646;
-    border: 1px solid #757373;
-    border-radius: 0;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    height: 36px;
-}
-.share_block .sms_input_block .sms_send_button {
-    display: inline-block;
-    line-height: 34px;
-    position: relative;
-    right: 5px;
-    padding: 0 5px;
-    border-style: solid;
-    border-width: 1px;
-    text-transform: uppercase;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
 .share_block .title {
     display: inline-block;
     font: 400 12px 'Open Sans', sans-serif;
@@ -2250,7 +2235,7 @@ li.driving_directions_block {
     display: inline-block;
     background-repeat: no-repeat;
     margin-bottom: 10px;
-    margin-left: 5px;
+    margin-left: 3px;
 }
 .document_img {
     width: 17px;
@@ -2263,15 +2248,25 @@ li.driving_directions_block {
     height: 21px;
     background: url('images/document_hover.png') no-repeat;
 }
-.calendar_grey_img {
-    width: 24px;
+.deals_chalkboards_img {
+    width: 25px;
     height: 20px;
-    background: url('images/calendar.png') no-repeat;
+    background: url('images/deals2.png') no-repeat;
+}
+.common_footer a.ui-btn.ui-btn-active .deals_chalkboards_img {
+    width: 25px;
+    height: 20px;
+    background: url('images/deals2.png') no-repeat;
+}
+.calendar_grey_img {
+    width: 25px;
+    height: 20px;
+    background: url('images/deals2.png') no-repeat;
 }
 .common_footer a.ui-btn.ui-btn-active .calendar_grey_img {
-    width: 24px;
+    width: 25px;
     height: 20px;
-    background: url('images/calendar_hover.png') no-repeat;
+    background: url('images/deals2.png') no-repeat;
 }
 .information_button_img {
     width: 24px;
