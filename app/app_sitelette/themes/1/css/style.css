@@ -2183,6 +2183,7 @@ li.video_block .body {
 .login_with_facebook {
     text-align: center;
     padding: 10px;
+    display: none;
 }
 
 /********************** DRIVING DIRECTIONS BLOCK ***********************/
