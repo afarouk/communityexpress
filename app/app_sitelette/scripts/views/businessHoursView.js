@@ -4,11 +4,11 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
-    template= require('ejs!../templates/contactUs.ejs');
+    template= require('ejs!../templates/businessHours.ejs');
 
-var ContactUs = Backbone.View.extend({
-    name: 'contact_us',
-    id: 'cmtyx_contactUs',
+var BusinessHours = Backbone.View.extend({
+    name: 'business_hours',
+    id: 'cmtyx_businessHours',
     
     initialize: function(options) {
         options = options || {};
@@ -33,4 +33,4 @@ var ContactUs = Backbone.View.extend({
     }
 });
 
-module.exports = ContactUs;
+module.exports = BusinessHours;

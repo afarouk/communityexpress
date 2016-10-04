@@ -7,6 +7,7 @@ var Vent = require('../Vent'),
     config = require('../appConfig'),
     loader = require('../loader'),
     contactActions = require('../actions/contactActions'),
+    userController = require('../controllers/userController.js'),
     viewFactory = require('../viewFactory'),
     saslActions = require('../actions/saslActions'),
     sessionActions = require('../actions/sessionActions'),
@@ -88,8 +89,6 @@ var LandingView = Backbone.View.extend({
 
         this.setShareLinks();
 
-        // gallery doesn't work if I load facebook sdk before (TODO check reason)
-        setTimeout(this.facebookInit.bind(this), 100);
     },
 
     afterTriedToLogin: function() {
@@ -99,49 +98,10 @@ var LandingView = Backbone.View.extend({
         } else {
             this.$el.find('.login_with_facebook').slideDown('slow');
         }
-        if (typeof FB === 'undefined') {
-            this.facebookInit();
-        }
-    },
-
-    facebookInit: function() {
-        // Load the SDK asynchronously
-          (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
-
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '1691237561196865',
-            cookie     : true,
-            xfbml      : true,
-            version    : 'v2.5'
-          });
-        }
     },
 
     loginWithFacebook: function() {
-        FB.login(function(response) {
-            if (response.authResponse) {
-             var facebookUID = response.authResponse.userID || '';
-             if (facebookUID) {
-                this.getOrCreateNewUser(facebookUID);
-             }
-            } else {
-             console.log('User cancelled login or did not fully authorize.');
-            }
-        }.bind(this));
-    },
-
-    getOrCreateNewUser: function(facebookUID) {
-        console.log('Facebook UID: ', facebookUID);
-        //TODO: make new API call that return existing or create new user
-        //and return UID
-        //then trigger logedin
+        sessionActions.checkFacebookLoginStatus();
     },
 
     headerToggle: function() {
