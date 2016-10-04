@@ -1259,7 +1259,8 @@ h5{
 /* AF additions */
 
 .push-down-for-menu { 
-	 margin-top:100px;
+	 /* margin-top:100px; */
+	 padding-top: 100px;
 }
 
 .gray-background{
@@ -1493,7 +1494,8 @@ a.get_started_btn:active {
 }
 
 .mobile_power_block .title, 
-.contact_us_block .title {
+.contact_us_block .title,
+ #demo .sec-title {
     display: inline-block;
     text-transform: uppercase;
     font: 700 28px Roboto;
@@ -1503,7 +1505,8 @@ a.get_started_btn:active {
 
 @supports (-webkit-background-clip: text) {
     .mobile_power_block .title, 
-    .contact_us_block .title {
+    .contact_us_block .title,
+    #demo .sec-title {
         background: linear-gradient(to right, #faa019 0%, #ef7112 49%, #f05d13 100%);  
         -webkit-background-clip: text;
         color: transparent;
@@ -1927,4 +1930,31 @@ span.icon-size {
     }
 }
 
+/*DEMO PAGE
+=============================================================*/
+
+#demo .bg-overlay.pattern {
+	background-color: #fff;
+}
+
+#demo .sec-title {
+	padding: 0;
+	margin: 50px 0 20px 0;
+}
+
+.seeForYrslfText {
+	display: inline-block;
+	font-family: Roboto;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    color: #555555;
+    max-width: 520px;
+    text-align: center;
+    line-height: 30px;
+}
+
+nav.navbar {
+	/* background-color: #363636; */
+}
 
