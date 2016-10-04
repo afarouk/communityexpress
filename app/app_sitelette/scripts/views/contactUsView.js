@@ -4,11 +4,16 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
+    communicationActions = require('../actions/communicationActions.js'),
     template= require('ejs!../templates/contactUs.ejs');
 
 var ContactUs = Backbone.View.extend({
     name: 'contact_us',
     id: 'cmtyx_contactUs',
+
+    events: {
+        'click .send_btn': 'onSendMessage'
+    },
     
     initialize: function(options) {
         options = options || {};
@@ -19,6 +24,10 @@ var ContactUs = Backbone.View.extend({
         this.$el.html(template());
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    onSendMessage: function() {
+        communicationActions.sendContactUsMessage();
     },
 
     /* AF: we don't need this function. It was part of the

@@ -115,6 +115,10 @@ module.exports = {
                 }
                 return message;
             });
+    },
+
+    sendContactUsMessage: function(sa, sl, name, email, messageBody) {
+        return communicationsController.sendContactUsMessage(sa, sl, name, email, messageBody);
     }
 
 };
