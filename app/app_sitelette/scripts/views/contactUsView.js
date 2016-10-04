@@ -27,7 +27,17 @@ var ContactUs = Backbone.View.extend({
     },
 
     onSendMessage: function() {
-        communicationActions.sendContactUsMessage();
+        communicationActions.sendContactUsMessage.apply(this, this.getDataFromFields())
+            .then(function(response){
+                debugger;
+            });
+    },
+
+    getDataFromFields: function(){
+        var name = this.$('.contact_name').val(),
+            email = this.$('.contact_email').val(),
+            message = this.$('.contact_message').val();
+        return [this.sasl.sa(), this.sasl.sl(), name, email, message];
     },
 
     /* AF: we don't need this function. It was part of the
