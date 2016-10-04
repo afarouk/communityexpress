@@ -42,11 +42,13 @@ var CatalogView = Backbone.View.extend({
             $("#catalog_items_row").css("visibility", "hidden");
             $("#catalog_extras_row").css("visibility", "hidden");
           } else {
-            this.$('.add_combo_button').hide();
+            // this.$('.add_combo_button').hide();
+            this.$('.back_next_btns').hide();
           }
         } else {
           this.$('.order_button').show();
-          this.$('.add_combo_button').hide();
+          this.$('.back_next_btns').hide();
+        //   this.$('.add_combo_button').hide();
         }
     },
 

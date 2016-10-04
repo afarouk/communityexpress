@@ -56,15 +56,23 @@ var NavbarView = Backbone.View.extend({
 
     triggerCatalogsView: function() {
         var saslData = appCache.get('saslData');
-        var showRoster=false;
-        if (saslData && saslData.services.catalog.catalogAggregationType==='ROSTERIZED') {
-          showRoster=true;
-        }
-
-        if (showRoster) {
-            this.triggerRosterView();
-        } else {
-            Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl]);
+        if (saslData) {
+            switch (saslData.retailViewType) {
+                case 'ROSTER':
+                    this.triggerRosterView();
+                    break;
+                case 'CATALOGS':
+                    Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl]);
+                    break;
+                case 'CATALOG':
+                    Vent.trigger('viewChange', 'catalog', {
+                        backToRoster: false,
+                        backToCatalogs: false,
+                        backToCatalog: true
+                    });
+                    break;
+            default:
+            }
         }
     },
 
