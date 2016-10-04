@@ -440,9 +440,6 @@
 						</div>
 					</div>
 				</li>
-				<li class="login_with_facebook">
-					<fb:login-button size="large">Login with Facebook</fb:login-button>
-				</li>
 				<li id="cmtyx_driving_directions_block"
 					class="driving_directions_block"><span class="title">contact
 						us</span>

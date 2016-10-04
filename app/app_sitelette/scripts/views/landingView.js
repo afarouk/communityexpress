@@ -54,8 +54,7 @@ var LandingView = Backbone.View.extend({
         // 'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
         // 'click .outofNetworkUserReviews': 'showOutOfNetworkText',
         'click #cmtyx_share_block .sms_block': 'showSMSInput',
-        'click #cmtyx_share_block .sms_send_button': 'onSendSMS',
-        'click .login_with_facebook': 'loginWithFacebook'
+        'click #cmtyx_share_block .sms_send_button': 'onSendSMS'
     },
 
     undelall: function() {
@@ -89,19 +88,6 @@ var LandingView = Backbone.View.extend({
 
         this.setShareLinks();
 
-    },
-
-    afterTriedToLogin: function() {
-        var uid = sessionActions.getCurrentUser().getUID();
-        if (uid) {
-            this.$el.find('.login_with_facebook').slideUp('slow');
-        } else {
-            this.$el.find('.login_with_facebook').slideDown('slow');
-        }
-    },
-
-    loginWithFacebook: function() {
-        sessionActions.checkFacebookLoginStatus();
     },
 
     headerToggle: function() {
