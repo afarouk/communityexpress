@@ -162,7 +162,6 @@ App.prototype = {
                 view.afterTriedToLogin();
             }
         });
-        this.landingView.afterTriedToLogin();
     },
 
     checkType: function(type) {

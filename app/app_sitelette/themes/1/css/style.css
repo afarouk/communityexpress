@@ -2185,11 +2185,16 @@ li.video_block .body {
 
 .login_with_facebook {
     text-align: center;
-    padding: 10px;
-    display: none;
+    padding: 0;
+    margin: 0;
 }
-.login_with_facebook iframe {
-    pointer-events: none;
+.login_with_facebook span {
+    background: url('images/login-with-facebook.png');
+    display: inline-block;
+    width: 180px;
+    height: 40px;
+    background-size: 180px 40px;
+    background-repeat: no-repeat;
 }
 
 /********************** DRIVING DIRECTIONS BLOCK ***********************/

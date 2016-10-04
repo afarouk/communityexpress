@@ -156,34 +156,36 @@ module.exports = {
     },
 
     checkFacebookLoginStatus: function() {
+        var def = $.Deferred();
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
-                this.getPublicProfile();
+                this.getPublicProfile(def);
             } else {
                 FB.login(function(response) {
                     if (response.authResponse) {
-                        this.getPublicProfile();
+                        this.getPublicProfile(def);
                     } else {
-                        console.log('User cancelled login or did not fully authorize.');
+                        def.resolve({error:'User cancelled login or did not fully authorize.'});
                     }
                 }.bind(this));
             }
         }.bind(this));
+        return $.when(def);
     },
 
-    getPublicProfile: function() {
+    getPublicProfile: function(def) {
         FB.api('/me', {fields: 'id,name,first_name,last_name,email'}, function(response){
             if (response.id) {
                 this.loginWithFacebook(response);
+                def.resolve({success: 'Loggedin with facebook'});
             } else {
-                //TODO
-                console.log('FB error', response.error);
+                def.resolve({error:'Can\'t login with facebook'});
             }
         }.bind(this));
     },
 
     loginWithFacebook: function(publicProfile) {
-        return userController.loginUserWithFacebook(publicProfile)
+        userController.loginUserWithFacebook(publicProfile)
             .then(onLoginSuccess);
     }
 
