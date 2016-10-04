@@ -23,7 +23,8 @@ var BusinessHours = Backbone.View.extend({
         }
     },
     render: function(hours){
-        this.$el.html(template(hours));
+        debugger;
+        this.$el.html(template({ hours:hours } ));
         this.setElement(this.$el.children().eq(0));
         return this;
     },
