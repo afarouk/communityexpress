@@ -16,6 +16,7 @@ var LandingView = require('./views/landingView'), //
     RootView = require('./views/rootView'),//
     AboutUsView = require('./views/aboutUsView'), //
     ContactUsView = require('./views/contactUsView'),
+    BusinessHoursView = require('./views/businessHoursView'),
     CatalogOrderView = require('./views/catalogOrderView'),//
     RosterOrderView = require('./views/rosterOrderView'),//
     EventActiveView = require('./views/eventActiveView'),//
@@ -161,6 +162,9 @@ module.exports = {
             break;
         case 'contactUs':
             view = new ContactUsView(_.extend(options, {}));
+            break;
+        case 'businessHours':
+            view = new BusinessHoursView(_.extend(options, {}));
             break;
         case 'catalog_order':
             view = new CatalogOrderView(_.extend(options, {

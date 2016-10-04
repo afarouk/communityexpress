@@ -52,11 +52,13 @@ var LeftMenuView = PanelView.extend({
     },
 
     onOpenBusinessHours: function() {
-    	Vent.trigger('viewChange', 'business_hours');
+    	Vent.trigger('viewChange', 'businessHours', 
+    		[this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
     },
 
     onOpenContactUs: function() {
-    	Vent.trigger('viewChange', 'contactUs', [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+    	Vent.trigger('viewChange', 'contactUs', 
+    		[this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
     }
 
 });

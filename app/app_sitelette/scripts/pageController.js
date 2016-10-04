@@ -475,6 +475,13 @@ module.exports = {
             });
     },
 
+    businessHours: function(options) {
+        return saslActions.getSasl(options)
+            .then(function(sasl) {
+                return $.Deferred().resolve({sasl: sasl}).promise();
+            });
+    },
+
     catalog_order: function(options) {
         var sasl,
             orderPrefillInfo,

@@ -2316,7 +2316,7 @@ li.driving_directions_block {
     margin-bottom: 11px;
 }
 
-/*CONTACT US*/
+/*CONTACT US BLOCK*/
 
 .contact_us_block .header,
 #user_reviews .header,
@@ -2470,6 +2470,24 @@ li.driving_directions_block {
 #contact_us .body .send_btn {
     font: 700 16px Roboto !important;
     text-transform: uppercase;
+}
+
+/*BUSINESS HOURS*/
+
+#business_hours .body {
+    padding-top: 110px;
+}
+
+#business_hours td {
+    padding: 10px 22px;
+    border-bottom: none;
+    font: 300 18px Roboto;
+}
+
+#business_hours td.day {
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 400;
 }
 
 /*USER REVIEWS*/
