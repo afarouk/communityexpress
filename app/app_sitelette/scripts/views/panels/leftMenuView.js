@@ -52,6 +52,7 @@ var LeftMenuView = PanelView.extend({
     },
 
     onOpenBusinessHours: function() {
+    	loader.show('retrieving opening hours');
     	Vent.trigger('viewChange', 'businessHours', 
     		[this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
     },

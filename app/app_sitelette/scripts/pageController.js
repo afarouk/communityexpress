@@ -478,7 +478,18 @@ module.exports = {
     businessHours: function(options) {
         return saslActions.getSasl(options)
             .then(function(sasl) {
-                return $.Deferred().resolve({sasl: sasl}).promise();
+                return saslActions.getOpeningHours(sasl.sa(), sasl.sl())
+                    .then(function(hours){
+                        return $.Deferred().resolve({
+                            sasl: sasl,
+                            hours: hours
+                        }).promise();
+                    },function (e) {
+                        $.Deferred().resolve({
+                            error: e,
+                            sasl: sasl
+                        }).promise();
+                    })
             });
     },
 
