@@ -115,6 +115,12 @@ module.exports = {
                 }
                 return message;
             });
+    },
+
+    sendContactUsMessage: function(sa, sl, name, email, messageBody) {
+        var sessionActions = require('./sessionActions');
+        var uid = sessionActions.getCurrentUser().getUID();
+        return communicationsController.sendContactUsMessage(sa, sl, name, email, messageBody, uid);
     }
 
 };
