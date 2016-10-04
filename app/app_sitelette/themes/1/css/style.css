@@ -2516,12 +2516,12 @@ li.driving_directions_block {
 }
 
 #business_hours td {
+    text-transform: uppercase;
     padding: 10px 22px;
     border-bottom: none;
     font: 300 18px 'Open Sans', sans-serif;
 }
 #business_hours td.day {
-    text-transform: uppercase;
     text-align: right;
     font-weight: 400;
 }
