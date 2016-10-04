@@ -1,11 +1,7 @@
-<!-- <a style="background-color: <%= color %>; border-color:#555;" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
-    <%= itemName %>
-    <span class="right">$<%= price %></span>
-</a> -->
 <div class="catalog_item_main_view">
     <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
-        <div style="display: inline-block; vertical-align: top;" class="sides_item_image_small">
-            <img style="width: 40px; margin: 0;" src="<%= mediaURLs[0] %>" alt="" />
+        <div class="sides_item_image_small_container">
+            <img src="<%= mediaURLs[0] %>" alt="" />
         </div>
     <% } %>
     <div class="sides_extras_item_details">
@@ -29,7 +25,7 @@
         <div class="sides_extras_expand_icon">▼</div>
     </div>
 </div>
-<div style="display: none;" class="sides_extras_detailed">
+<div class="sides_extras_detailed">
     <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
         <img src="<%= mediaURLs[0] %>" alt="" />
     <% } %>
