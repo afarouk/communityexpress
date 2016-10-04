@@ -2188,6 +2188,9 @@ li.video_block .body {
     padding: 10px;
     display: none;
 }
+.login_with_facebook iframe {
+    pointer-events: none;
+}
 
 /********************** DRIVING DIRECTIONS BLOCK ***********************/
 li.driving_directions_block {
