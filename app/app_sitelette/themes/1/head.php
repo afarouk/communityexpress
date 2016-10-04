@@ -77,11 +77,11 @@
 
         window.fbAsyncInit = function() {
           FB.init({
-            appId      : '1691237561196865', //TODO change API key to sitelette key
+            appId      : '630212017138999', //TODO change API key to sitelette key
             cookie     : true,
             status     : true,
             xfbml      : true,
-            version    : 'v2.5'
+            version    : 'v2.7'
           });
         }
     </script>
