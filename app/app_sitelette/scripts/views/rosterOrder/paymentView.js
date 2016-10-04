@@ -20,6 +20,9 @@ var PaymentView = Backbone.View.extend({
 	initialize: function(options) {
 		this.options = options || {};
         this.getTipInfo();
+        this.allowCash = this.model.additionalParams.allowCash;
+        this.paymentOnlineAccepted = this.model.additionalParams.paymentOnlineAccepted;
+        this.allowDelivery = this.model.additionalParams.allowDelivery;
         this.on('show', this.onShow, this);
         this.model.on('change', _.bind(this.reRender, this));
         this.render();
@@ -59,6 +62,10 @@ var PaymentView = Backbone.View.extend({
             'click .plus_button': 'incrementTip',
             'click .minus_button': 'decrementTip'
         });
+
+        if (!this.paymentOnlineAccepted && this.allowCash && !this.cashSelected) {
+            this.onCashSelected();
+        }
     },
 
     getTipInfo: function() {
@@ -82,7 +89,10 @@ var PaymentView = Backbone.View.extend({
             cardNumber: this.model.get('creditCard').cardNumber,
             tip: this.tip,
             tipSum: this.tipSum,
-            addrIsEmpty: this.model.additionalParams.addrIsEmpty
+            addrIsEmpty: this.model.additionalParams.addrIsEmpty,
+            allowCash: this.allowCash,
+            paymentOnlineAccepted: this.paymentOnlineAccepted,
+            allowDelivery: this.allowDelivery
     	});
     },
 
@@ -95,11 +105,6 @@ var PaymentView = Backbone.View.extend({
         } else {
             this.triggerSummary();
         }
-        // if (checked.attr('id') === 'use_another' && !this.cashSelected) {
-        //     this.triggerPaymentCard();
-        // } else {
-        //     this.onPlaceOrder();
-        // }
     },
 
     onCashSelected: function() {
@@ -200,12 +205,39 @@ var PaymentView = Backbone.View.extend({
                 text: 'order successful'
             }, callback);
         }.bind(this), function(e) {
+            debugger;
             loader.hide();
             var text = h().getErrorMessage(e, 'Error placing your order');
             popupController.textPopup({
                 text: text
             });
         }.bind(this));
+    },
+
+    triggerCatalogView: function() {
+        var params = this.model.additionalParams;
+        Vent.trigger('viewChange', 'catalog', {
+            sasl: params.sasl.id,
+            id: params.catalogId,
+            backToCatalog: params.backToCatalog === false ? false : true,
+            catalogId: params.catalogId,
+            launchedViaURL: params.launchedViaURL
+        }, {
+            reverse: false
+        });
+    },
+
+    triggerRosterView: function() {
+        var params = this.model.additionalParams;
+        Vent.trigger('viewChange', 'roster', {
+            sasl: params.sasl.id,
+            id: params.rosterId,
+            backToRoster: params.backToRoster === false ? false : true,
+            rosterId: params.rosterId,
+            launchedViaURL: params.launchedViaURL,
+        }, {
+            reverse: false
+        });
     },
 
     goBack : function() {

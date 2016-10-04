@@ -16,7 +16,7 @@ var PaymentCardView = Backbone.View.extend({
 
         //Fix for AMEX card (bug in skeuocard)
         Skeuocard.prototype.isValid = function() {
-          return !this.el.front.hasClass('invalid') 
+          return !this.el.front.hasClass('invalid')
             && (!this.el.back.hasClass('invalid') || !this._inputViewsByFace['back'].length);
         };
 	},

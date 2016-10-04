@@ -64,6 +64,7 @@ module.exports = {
             addReview: ['POST', '/usersasl/createReview'],
 
             login: ['POST', '/authentication/login'],
+            loginWithFacebook: ['POST', '/authentication/exchangeFacebookIdForUID'],
             enterInvitationCode: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],
             userForgotPassword: ['PUT', '/authentication/sendEmailForResetPassword'],

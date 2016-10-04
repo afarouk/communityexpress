@@ -2192,6 +2192,9 @@ li.video_block .body {
     padding: 10px;
     display: none;
 }
+.login_with_facebook iframe {
+    pointer-events: none;
+}
 
 /********************** DRIVING DIRECTIONS BLOCK ***********************/
 li.driving_directions_block {
@@ -2317,7 +2320,7 @@ li.driving_directions_block {
     margin-bottom: 11px;
 }
 
-/*CONTACT US*/
+/*CONTACT US BLOCK*/
 
 .contact_us_block .header,
 #user_reviews .header,
@@ -2398,6 +2401,97 @@ li.driving_directions_block {
 .contact_us_block .body .send_btn {
     font: 700 16px 'Open Sans', sans-serif !important;
     text-transform: uppercase;
+}
+
+/* Contact Us View */
+
+.ui-page#contact_us {
+    padding: 0;
+}
+
+#contact_us .body {
+    padding: 75px 10px 0 10px;
+    text-align: center;
+}
+
+#contact_us .body .title {
+    font: 700 18px Roboto;
+    color: #dddddd;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+#contact_us .body .undertitle {
+    font: 400 12px Roboto;
+    color: rgba(221, 221, 221, 0.7);
+    margin-bottom: 30px;
+}
+
+#contact_us .body .input_container {
+    text-align: left;
+}
+
+#contact_us .body .material-textfield {
+    width: 100%;
+    padding-top: 10px;
+}
+
+#contact_us .material-textfield textarea {
+    width: 100%;
+    background-color: transparent;
+    resize: none;
+    padding: 4px 1.6px;
+}
+
+#contact_us .material-textfield input,
+#contact_us .material-textfield textarea {
+    font: 300 12px Roboto;
+    color: #fafafa;
+}
+
+#contact_us  .material-textfield input+label::before,
+#contact_us  .material-textfield input[required]:focus ~ label::before {
+    font-size: 10px;
+    top: -2.75rem;
+}
+
+#contact_us  .material-textfield textarea+label::before,
+#contact_us  .material-textfield textarea[required]:focus ~ label::before {
+    font-size: 10px;
+    top: -5.45rem;
+}
+
+#contact_us  .material-textfield input:invalid ~ label::before{
+    font: 400 12px Roboto;
+    top: -1.5rem;
+}
+
+#contact_us  .material-textfield textarea:invalid ~ label::before {
+    font: 400 12px Roboto;
+    top: -4rem;
+}
+
+#contact_us .body .send_btn {
+    font: 700 16px Roboto !important;
+    text-transform: uppercase;
+}
+
+/*BUSINESS HOURS*/
+
+#business_hours .body {
+    padding-top: 110px;
+}
+
+#business_hours td {
+    padding: 10px 22px;
+    border-bottom: none;
+    font: 300 18px Roboto;
+}
+
+#business_hours td.day {
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 400;
 }
 
 /*USER REVIEWS*/
