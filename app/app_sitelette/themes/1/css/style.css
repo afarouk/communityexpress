@@ -1767,7 +1767,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     display: none;
 }
 .loyalty_program_block .qr_code_block .close_btn {
-    display: inline-block;
+    display: none;
     background: url('images/close.png') no-repeat;
     width: 9px;
     height: 9px;
