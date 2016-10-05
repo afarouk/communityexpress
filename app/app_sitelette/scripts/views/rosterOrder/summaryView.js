@@ -77,12 +77,14 @@ var SummaryView = Backbone.View.extend({
 
     incrementTip: function() {
         if (this.tip === 20) return;
+        h().playSound('addToCart');
         this.tip = this.tip + 5;
         this.setTotalPticeWithTip();
     },
 
     decrementTip: function() {
         if (this.tip === 0) return;
+        h().playSound('removeFromCart');
         this.tip = this.tip - 5;
         this.setTotalPticeWithTip();
     },

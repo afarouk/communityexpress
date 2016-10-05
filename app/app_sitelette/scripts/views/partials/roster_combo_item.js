@@ -33,8 +33,8 @@ var RosterComboItemView = Backbone.View.extend({
     },
 
     render : function() {
-        // we re-create roster view each time 
-        // and we should update model quantity from basket  
+        // we re-create roster view each time
+        // and we should update model quantity from basket
         var inBasket = this.basket.getCatalog(this.model);
         if (inBasket) {
             this.model.quantity = inBasket.get('quantity');
@@ -84,11 +84,13 @@ var RosterComboItemView = Backbone.View.extend({
     },
 
     incrementQuantity: function (e) {
+        h().playSound('addToCart');
         this.addToCart(e, 'add');
     },
 
     decrementQuantity: function (e) {
         if (this.model.quantity === 0) return;
+        h().playSound('removeFromCart');
         this.addToCart(e, 'remove');
     },
 

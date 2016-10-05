@@ -78,6 +78,9 @@ var SidesCatalogItemView = Backbone.View.extend({
     },
 
     incrementQuantity: function () {
+
+        h().playSound('addToCart');
+
         this.addItem = true;
         this.quantity = this.quantity + 1;
         this.addToBasket();
@@ -89,6 +92,8 @@ var SidesCatalogItemView = Backbone.View.extend({
         var qty = this.quantity;
 
         if (qty === 0) return false;
+
+        h().playSound('removeFromCart');
 
         this.quantity = this.quantity - 1;
         this.addToBasket();

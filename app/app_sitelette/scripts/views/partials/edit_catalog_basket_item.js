@@ -2,7 +2,8 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/edit_catalog_basket_item.ejs');
+var template = require('ejs!../../templates/partials/edit_catalog_basket_item.ejs'),
+    h = require('../../globalHelpers');
 
 var EditCatalogBasketItem = Backbone.View.extend({
 
@@ -35,6 +36,7 @@ var EditCatalogBasketItem = Backbone.View.extend({
     },
 
     incrementQuantity: function() {
+        h().playSound('addToCart');
         this.quantity = this.quantity + 1;
         this.count = 1;
         this.updateQuantity();
@@ -44,6 +46,7 @@ var EditCatalogBasketItem = Backbone.View.extend({
     decrementQuantity: function() {
         // var quantity = this.model.get('quantity');
         if (this.quantity === 0) return;
+        h().playSound('removeFromCart');
         this.quantity = this.quantity - 1;
         this.count = -1;
         this.updateQuantity();

@@ -1,5 +1,8 @@
 <body>
 
+	<audio id="addtocart" src="themes/1/tempSound/addToCart.wav" autostart="false" ></audio>
+	<audio id="removefromcart" src="themes/1/tempSound/removeFromCart.wav" autostart="false" ></audio>
+
 	<div class="popup_container"></div>
 
 	<div id="cmtyx_header" data-role="header" class="header common_header">
