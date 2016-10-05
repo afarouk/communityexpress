@@ -47,7 +47,7 @@ var RosterView = Backbone.View.extend({
         };
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.updateBasket();
-        // this.checkIfOpened();
+        this.checkIfOpened();
         //$('.select').select2();
     },
 
@@ -55,10 +55,8 @@ var RosterView = Backbone.View.extend({
     checkIfOpened: function() {
         //this.roster.isOpen = !Math.round(Math.random());
         //this.roster.isOpen = true; // remove this row when param will be available !!!
-        if (!this.roster.isOpen) {
-            this.openSubview('textPopup',
-                { text: this.isOpenWarningMessage },
-                this.goBack);
+        if (!this.isOpen) {
+            popupController.textPopup({ text: this.isOpenWarningMessage }, _.bind(this.goBack, this));
             // I don't know, exactly, what should be when I click OK
             // right now we return to the restaurant
             // is it correct ???
@@ -73,7 +71,8 @@ var RosterView = Backbone.View.extend({
         this.rosterId = options.rosterId;
         this.rosterType = options.roster.data.rosterType.enumText;
         this.rosterDisplayText = options.roster.data.displayText;
-        this.isOpenWarningMessage = options.roster.data.isOpenWarningMessage;
+        this.isOpen = options.isOpen;
+        this.isOpenWarningMessage = options.isOpenWarningMessage;
         this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
         this.render();

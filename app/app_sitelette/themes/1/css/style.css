@@ -757,7 +757,7 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
 }
 .menu_body ul {
     margin-bottom: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     margin-top: 0;
 }
 .menu_body li {
@@ -771,7 +771,7 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
 }
 .menu_body li .item_name {
     text-transform: uppercase;
-    font: 700 16px 'Open Sans', sans-serif;
+    font: 700 14px 'Open Sans', sans-serif;
     color: #ddd;
     display: inline-block;
     white-space: normal;
@@ -1050,7 +1050,6 @@ li.build_combo, li.choose_extras {
 }
 .sides_extras_container .float_right {
     position: relative;
-    top: 8px;
 }
 .combo_item_container label {
     font: 400 18px 'Open Sans', sans-serif !important;
@@ -1064,6 +1063,8 @@ li.build_combo, li.choose_extras {
     text-shadow: none;
     background-color: transparent;
     margin-left: 10px;
+    width: 35%;
+    padding: .7em 0;
     /*float: left;*/
 }
 .sides_extras_item_details .item_name {
@@ -1302,7 +1303,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding-top: 40px;
 }
 #cmtyx_catalogView .content {
-    margin-bottom: 10%;
+    margin-bottom: 10px;
 }
 .common_header {
     position: relative;
@@ -1766,7 +1767,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     display: none;
 }
 .loyalty_program_block .qr_code_block .close_btn {
-    display: inline-block;
+    display: none;
     background: url('images/close.png') no-repeat;
     width: 9px;
     height: 9px;
@@ -2189,8 +2190,16 @@ li.video_block .body {
 
 .login_with_facebook {
     text-align: center;
-    padding: 10px;
-    display: none;
+    padding: 0;
+    margin: 0;
+}
+.login_with_facebook span {
+    background: url('images/login-with-facebook.png');
+    display: inline-block;
+    width: 180px;
+    height: 40px;
+    background-size: 180px 40px;
+    background-repeat: no-repeat;
 }
 
 /********************** DRIVING DIRECTIONS BLOCK ***********************/
@@ -2317,7 +2326,7 @@ li.driving_directions_block {
     margin-bottom: 11px;
 }
 
-/*CONTACT US*/
+/*CONTACT US BLOCK*/
 
 .contact_us_block .header,
 #user_reviews .header,
@@ -2348,7 +2357,7 @@ li.driving_directions_block {
     width: 22px;
     height: 16px;
 }
-.contact_us_block .body {
+/* .contact_us_block .body {
     padding: 75px 10px 0 10px;
     text-align: center;
 }
@@ -2398,6 +2407,83 @@ li.driving_directions_block {
 .contact_us_block .body .send_btn {
     font: 700 16px 'Open Sans', sans-serif !important;
     text-transform: uppercase;
+} */
+
+/* Contact Us View */
+
+.ui-page#contact_us {
+    padding: 0;
+}
+
+#contact_us .body {
+    padding: 35px 10px 0 10px;
+    text-align: center;
+}
+
+#contact_us .body .title {
+    font: 700 18px 'Open Sans', sans-serif;
+    color: #dddddd;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+#contact_us .body .undertitle {
+    font: 400 12px 'Open Sans', sans-serif;
+    color: rgba(221, 221, 221, 0.7);
+    margin-bottom: 30px;
+}
+
+#contact_us .body .input_container {
+    text-align: left;
+}
+#contact_us .body .input_container input.error,
+#contact_us .body .input_container textarea.error {
+    border-bottom-color: #D8000C;
+}
+
+#contact_us .body .material-textfield {
+    width: 100%;
+    padding-top: 10px;
+}
+
+#contact_us .material-textfield textarea {
+    width: 100%;
+    background-color: transparent;
+    resize: none;
+    padding: 4px 1.6px;
+}
+
+#contact_us .material-textfield input,
+#contact_us .material-textfield textarea {
+    font: 300 16px 'Open Sans', sans-serif;
+    color: #fafafa;
+}
+
+#contact_us  .material-textfield input+label::before,
+#contact_us  .material-textfield input[required]:focus ~ label::before {
+    font-size: 12px;
+    top: -4rem;
+}
+
+#contact_us  .material-textfield textarea+label::before,
+#contact_us  .material-textfield textarea[required]:focus ~ label::before {
+    font-size: 12px;
+    top: -8.5rem;
+}
+
+#contact_us  .material-textfield input:invalid ~ label::before{
+    font: 400 14px Roboto;
+    top: -2.5rem;
+}
+
+#contact_us  .material-textfield textarea:invalid ~ label::before {
+    font: 400 14px Roboto;
+    top: -7rem;
+}
+
+#contact_us .body .send_btn {
+    font: 700 16px Roboto !important;
+    text-transform: uppercase;
 }
 
 /*USER REVIEWS*/
@@ -2425,15 +2511,21 @@ li.driving_directions_block {
 /*BUSINESS HOURS*/
 
 #business_hours .body {
-    padding-top: 110px;
+    text-align: center;
+    padding-top: 60px;
 }
-#cmtyx_business_hours td {
+
+#business_hours .table_container {
+    display: inline-block;
+}
+
+#business_hours td {
+    text-transform: uppercase;
     padding: 10px 22px;
     border-bottom: none;
     font: 300 18px 'Open Sans', sans-serif;
 }
 #business_hours td.day {
-    text-transform: uppercase;
     text-align: right;
     font-weight: 400;
 }
@@ -2869,9 +2961,6 @@ a.cancel {
     padding: 0;
 }
 
-.menu_body li.cmntyex-catalog-item .catalog_item_main_view {
-    padding: .7em;
-}
 .basket_icon_container {
     display: inline-block;
     padding: 10px;
@@ -2920,7 +3009,7 @@ a.cancel {
 .sides_extras_expand_icon {
     color: #fff;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .sides_extras_detailed {
@@ -2959,14 +3048,23 @@ a.cancel {
 .catalog_item_main_view .sides_item_image_small_container {
     display: inline-block;
     vertical-align: top;
+    padding: .7em 0 .7em .7em;
 }
 
 .catalog_item_main_view .sides_item_image_small_container img {
     height: 40px;
     width: auto;
+    max-width: 50px;
     margin: 0;
 }
 
 .sides_extras_detailed {
     display: none;
+}
+
+.select_container.catalog_item_counter {
+    padding: 8px;
+    vertical-align: middle;
+    margin: 0;
+
 }

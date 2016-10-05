@@ -17,7 +17,7 @@ var userController = require('./controllers/userController'),
     LandingView = require('./views/landingView'),
     NavbarView = require('./views/headers/navbarView'),
     HeaderView = require('./views/headers/headerView'),
-    ContactUsView = require('./views/contactUsView'),
+    ContactUsInLandingView = require('./views/landingSubviews/contactUsInLandingView'),
 
     EventsView = require('./views/landingSubviews/eventsView'),
     GalleryView = require('./views/landingSubviews/galleryView'),
@@ -138,7 +138,7 @@ App.prototype = {
             landingReviews: this.createSubview( LandingReviewsView ),
             promotion: this.createSubview( PromotionView ),
             PhotoContest: this.createSubview( PhotoContestView, !saslData.hasPhotoContest ),
-            contactUs: this.createSubview( ContactUsView )
+            contactUs: this.createSubview( ContactUsInLandingView )
         };
     },
 
@@ -162,7 +162,6 @@ App.prototype = {
                 view.afterTriedToLogin();
             }
         });
-        this.landingView.afterTriedToLogin();
     },
 
     checkType: function(type) {
@@ -308,6 +307,8 @@ App.prototype = {
         if (exists) {
             if (viewName === 'catalog' ||
                 viewName === 'roster' ||
+                viewName === 'contactUs' ||
+                viewName === 'businessHours' ||
                 (viewName === 'address' && this.previousViewName === 'roster' ) ||
                 (viewName === 'address' && this.previousViewName === 'catalog' )) {
                     if (viewName === 'address') {

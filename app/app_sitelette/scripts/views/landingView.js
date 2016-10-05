@@ -7,6 +7,7 @@ var Vent = require('../Vent'),
     config = require('../appConfig'),
     loader = require('../loader'),
     contactActions = require('../actions/contactActions'),
+    userController = require('../controllers/userController.js'),
     viewFactory = require('../viewFactory'),
     saslActions = require('../actions/saslActions'),
     sessionActions = require('../actions/sessionActions'),
@@ -53,8 +54,7 @@ var LandingView = Backbone.View.extend({
         // 'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
         // 'click .outofNetworkUserReviews': 'showOutOfNetworkText',
         'click #cmtyx_share_block .sms_block': 'showSMSInput',
-        'click #cmtyx_share_block .sms_send_button': 'onSendSMS',
-        'click .login_with_facebook': 'loginWithFacebook'
+        'click #cmtyx_share_block .sms_send_button': 'onSendSMS'
     },
 
     undelall: function() {
@@ -88,60 +88,6 @@ var LandingView = Backbone.View.extend({
 
         this.setShareLinks();
 
-        // gallery doesn't work if I load facebook sdk before (TODO check reason)
-        setTimeout(this.facebookInit.bind(this), 100);
-    },
-
-    afterTriedToLogin: function() {
-        var uid = sessionActions.getCurrentUser().getUID();
-        if (uid) {
-            this.$el.find('.login_with_facebook').slideUp('slow');
-        } else {
-            this.$el.find('.login_with_facebook').slideDown('slow');
-        }
-        if (typeof FB === 'undefined') {
-            this.facebookInit();
-        }
-    },
-
-    facebookInit: function() {
-        // Load the SDK asynchronously
-          (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
-
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '1691237561196865',
-            cookie     : true,
-            xfbml      : true,
-            version    : 'v2.5'
-          });
-        }
-    },
-
-    loginWithFacebook: function() {
-        FB.login(function(response) {
-            if (response.authResponse) {
-             var facebookUID = response.authResponse.userID || '';
-             if (facebookUID) {
-                this.getOrCreateNewUser(facebookUID);
-             }
-            } else {
-             console.log('User cancelled login or did not fully authorize.');
-            }
-        }.bind(this));
-    },
-
-    getOrCreateNewUser: function(facebookUID) {
-        console.log('Facebook UID: ', facebookUID);
-        //TODO: make new API call that return existing or create new user
-        //and return UID
-        //then trigger logedin
     },
 
     headerToggle: function() {
@@ -187,14 +133,17 @@ var LandingView = Backbone.View.extend({
     },
 
     onSendSMS: function(e) {
-    //TODO shere promotion
     var $el = this.$el.find('#cmtyx_share_block .sms_input_block'),
         $target = $(e.currentTarget),
+        demo = window.community.demo ? 'demo=true&' : '',
+        shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+          '?' + demo),
         val = $target.prev().find('.sms_input').val();
 
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
-    contactActions.sendAppURLForSASLToMobileviaSMS(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, val)
+    contactActions.sendAppURLForSASLToMobileviaSMSPost(this.sasl.serviceAccommodatorId, 
+        this.sasl.serviceLocationId, val, null, shareUrl)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');
       }.bind(this))

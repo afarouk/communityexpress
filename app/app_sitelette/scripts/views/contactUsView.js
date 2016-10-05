@@ -1,64 +1,111 @@
 /*global define*/
+
 'use strict';
 
-var saslActions = require('../actions/saslActions');
+var Vent = require('../Vent'),
+    loader = require('../loader'),
+    contactActions = require('../actions/contactActions'),
+    sessionActions = require('../actions/sessionActions.js'),
+    template = require('ejs!../templates/contactUs.ejs');
 
-var ContactUsView = Backbone.View.extend({
-  name: 'contact_us',
-  el: '#cmtyx_driving_directions_block',
-  map: '#home_map',
+var ContactUs = Backbone.View.extend({
+    name: 'contact_us',
+    id: 'cmtyx_contactUs',
 
-  events: {
-  },
+    events: {
+        'click .send_btn': 'onSendMessage',
+        'keypress input': 'removeError',
+        'keypress textarea': 'removeError'
+    },
+    
+    initialize: function(options) {
+        options = options || {};
+        this.sasl = options.sasl;
+        this.render(this.getUserData());
+    },
+    render: function(data){
+        this.$el.html(template(data));
+        this.setElement(this.$el.children().eq(0));
+        return this;
+    },
 
-  initialize: function(options) {
-    this.options = options || {};
-    this.$el.unbind();
-    this.showMap();
-    this.fillLinks();
-  },
+    getUserData: function () {
+        var user = sessionActions.getCurrentUser();
+        return _.extend({subject: 'I have a question...'} ,user);
+    },
 
-  //TODO temporary, should be set on server side
-  fillLinks: function() {
-    var $drive = this.$('#driveToUs'),
-        $call = this.$('#callUs'),
-        driveHref = 'https://maps.apple.com/?daddr=' +
-          saslData.number + '+' + saslData.street + '+' +
-          saslData.city + '+&saddr=current%20location',
-        callHref = 'tel:'+saslData.telephoneNumber;
-    driveHref = driveHref.replace(/ /g,'+');
-    $drive.attr('href', driveHref);
-    $call.attr('href', callHref);
-  },
+    onSendMessage: function() {
+        var data = this.getContactUsData();
+        if (!data) return;
+        contactActions.sendContactUsEmail(this.getContactUsData())
+            .then(function(response){
+                loader.showFlashMessage(response.explanation);
+                //Maybe goBack after that???
+            });
+    },
 
-  showMap: function() {
-    var lat = saslData.latitude,
-        lng = saslData.longitude,
-        address = saslData.street + ' ' + saslData.number + ', ' + saslData.city;
-    var $map = this.$(this.map);
-    var mapOptions = {
-        center: new google.maps.LatLng(lat, lng),
-        zoom: 10,
-        disableDefaultUI:true
-    };
-    var map = new google.maps.Map($map.get(0), mapOptions);
-    var myCenter=new google.maps.LatLng(lat, lng);
-    var marker = new google.maps.Marker({
-      position:myCenter,
-      animation:google.maps.Animation.BOUNCE
-    });
+    getContactUsData: function(){
+        var $name = this.$('.contact_name'),
+            $email = this.$('.contact_email'),
+            $subject = this.$('.contact_subject'),
+            $message = this.$('.contact_message'),
+            contactUsData = {
+                senderName: $name.val(),
+                replyToEmail: $email.val(),
+                subject: $subject.val(),
+                description: $message.val()
+            },
+            isValid = true;
 
-    marker.setMap(map);
+        //Verification
+        if (contactUsData.senderName.length < 2) {
+            $name.addClass('error');
+            isValid = false;
+        } else {
+            $name.removeClass('error');
+        }
+        if (contactUsData.description.length < 2) {
+            $message.addClass('error');
+            isValid = false;
+        } else {
+            $message.removeClass('error');
+        }
+        if (contactUsData.subject.length < 2) {
+            $subject.addClass('error');
+            isValid = false;
+        } else {
+            $subject.removeClass('error');
+        }
+        if (!this.validateEmail(contactUsData.replyToEmail)) {
+            $email.addClass('error');
+            isValid = false;
+        } else {
+            $email.removeClass('error');
+        }
 
-    var infowindow = new google.maps.InfoWindow({
-      content: address
-    });
+        return isValid ? contactUsData : false;
+    },
 
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-    });
-  }
+    validateEmail: function(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    },
 
+    removeError: function(e) {
+        var $target = $(e.currentTarget);
+        $target.removeClass('error');
+    },
+
+    /* AF: we don't need this function. It was part of the
+       old PageLayout based layout management. We leave
+       it here for now, while we continue clean up */
+    renderContent : function (options){
+        return this.$el;
+    },
+
+    goBack: function() {
+        Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey());
+    }
 });
 
-module.exports = ContactUsView;
+module.exports = ContactUs;

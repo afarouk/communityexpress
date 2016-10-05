@@ -13,6 +13,7 @@
 
     <script src="build/mobile.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
+    <script src="https://connect.facebook.net/en_US/sdk.js"></script>
 
     <link rel="apple-touch-startup-image" href="themes/1/splash/Default-portrait@2x~iphone5.jpg">
 
@@ -72,6 +73,16 @@
             window.community.deliveryAddress.city = '<?php echo $city ?>';
             window.community.deliveryAddress.street = '<?php echo $street ?>';
             window.community.deliveryAddress.number = '<?php echo $number ?>';
+        }
+
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '630212017138999',
+            cookie     : true,
+            status     : true,
+            xfbml      : true,
+            version    : 'v2.7'
+          });
         }
     </script>
 

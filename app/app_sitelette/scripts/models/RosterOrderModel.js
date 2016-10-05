@@ -36,7 +36,11 @@ var RosterOrderModel = Backbone.Model.extend({
 			subTotal: this.getPriceWithoutTaxes(options),
 			tip: 0,
 			tipSum: 0,
-			cachedTotalAmount: this.get('totalAmount')
+			cachedTotalAmount: this.get('totalAmount'),
+			paymentOnlineAccepted: options.sasl.get('services').catalog['paymentOnlineAccepted'],
+			allowPickUp: options.sasl.get('services').catalog['allowPickUp'],
+			allowDelivery: options.sasl.get('services').catalog['allowDelivery'],
+			allowCash: options.sasl.get('services').catalog['allowCash']
 			 // etc...
 		});
 	},
@@ -138,7 +142,9 @@ var RosterOrderModel = Backbone.Model.extend({
 			});
 		}
     	return combinedItems;
-    }
+    },
+
+	getServiceConfiguration: function() {}
 });
 
 module.exports = RosterOrderModel;

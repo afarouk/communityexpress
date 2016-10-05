@@ -15,53 +15,59 @@
     </div>
     <div data-role="tabs" id="tabs">
         <div data-role="navbar">
-            <ul>
-                <li>
-                    <a href="#delivery" data-id="delivery" data-ajax="false" class="leftBtn ui-btn-active cmtyx_border_color_1 cmtyx_text_color_1 cmtyx_color_1 ">Delivery</a>
-                </li>
-                <li class="pick_up_tab">
-                    <a href="#pick_up" data-id="pick_up" data-ajax="false" class="rightBtn cmtyx_border_color_1 cmtyx_text_color_1">Pick up</a>
-                </li>
-            </ul>
+            <% if (allowPickUp && allowDelivery) { %>
+                <ul>
+                    <li>
+                        <a href="#delivery" data-id="delivery" data-ajax="false" class="leftBtn ui-btn-active cmtyx_border_color_1 cmtyx_text_color_1 cmtyx_color_1 ">Delivery</a>
+                    </li>
+                    <li class="pick_up_tab">
+                        <a href="#pick_up" data-id="pick_up" data-ajax="false" class="rightBtn cmtyx_border_color_1 cmtyx_text_color_1">Pick up</a>
+                    </li>
+                </ul>
+            <% } %>
         </div>
-        <div id="delivery" class="ui-body-d ui-content">
-            <p class="choose_card_text">Choose address:</p>
-            <form>
-                <% if (!addrIsEmpty) { %>
-                    <label for="saved_address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></label>
-                    <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'>
-                    <label for="add_another">Add another address</label>
-                    <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice">
-                <% } else { %>
-                    <label for="saved_address" class="hidden"></label>
-                    <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice hidden">
-                    <label for="add_another">Add another address</label>
-                    <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked='checked'>
+        <% if (allowDelivery) { %>
+            <div id="delivery" class="ui-body-d ui-content">
+                <p class="choose_card_text">Choose address:</p>
+                <form>
+                    <% if (!addrIsEmpty) { %>
+                        <label for="saved_address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></label>
+                        <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'>
+                        <label for="add_another">Add another address</label>
+                        <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice">
+                    <% } else { %>
+                        <label for="saved_address" class="hidden"></label>
+                        <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice hidden">
+                        <label for="add_another">Add another address</label>
+                        <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked='checked'>
+                    <% } %>
+                </form>
+                <div class="ui-grid-a back_next_btns">
+                    <div class="ui-block-a p-r-10">
+                        <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                    </div>
+                    <div class="ui-block-b p-l-10">
+                        <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        <% if (allowPickUp) { %>
+            <div id="pick_up" class="ui-body-d ui-content">
+                <% if (address) { %>
+                    <p class="order_address">You can get your order at <%= address.street + ', ' + address.number + ', ' + address.city %></p>
                 <% } %>
-            </form>
-            <div class="ui-grid-a back_next_btns">
-                <div class="ui-block-a p-r-10">
-                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                <div id="shipping_map" class="map_container">
                 </div>
-                <div class="ui-block-b p-l-10">
-                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
-                </div>
-            </div>
-        </div>
-        <div id="pick_up" class="ui-body-d ui-content">
-            <% if (address) { %>
-                <p class="order_address">You can get your order at <%= address.street + ', ' + address.number + ', ' + address.city %></p>
-            <% } %>     
-            <div id="shipping_map" class="map_container">
-            </div>
-            <div class="ui-grid-a back_next_btns">
-                <div class="ui-block-a p-r-10">
-                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
-                </div>
-                <div class="ui-block-b p-l-10">
-                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                <div class="ui-grid-a back_next_btns">
+                    <div class="ui-block-a p-r-10">
+                        <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                    </div>
+                    <div class="ui-block-b p-l-10">
+                        <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        <% } %>
     </div>
 </div>

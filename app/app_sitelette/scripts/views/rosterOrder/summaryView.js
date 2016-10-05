@@ -16,6 +16,7 @@ var SummaryView = Backbone.View.extend({
 	initialize: function(options) {
 		this.options = options || {};
         this.getTipInfo();
+        this.allowDelivery = this.model.additionalParams.allowDelivery;
         this.on('show', this.onShow, this);
         this.model.on('change', _.bind(this.reRender, this));
         this.render();
@@ -69,18 +70,21 @@ var SummaryView = Backbone.View.extend({
             tip: this.tip,
             tipSum: this.tipSum,
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
-    	    addrIsEmpty: this.model.additionalParams.addrIsEmpty
+    	    addrIsEmpty: this.model.additionalParams.addrIsEmpty,
+            allowDelivery: this.allowDelivery
         });
     },
 
     incrementTip: function() {
         if (this.tip === 20) return;
+        h().playSound('addToCart');
         this.tip = this.tip + 5;
         this.setTotalPticeWithTip();
     },
 
     decrementTip: function() {
         if (this.tip === 0) return;
+        h().playSound('removeFromCart');
         this.tip = this.tip - 5;
         this.setTotalPticeWithTip();
     },

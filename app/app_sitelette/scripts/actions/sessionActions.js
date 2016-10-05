@@ -14,7 +14,6 @@ var userController = require('../controllers/userController.js'),
     Cookies = require('../../../vendor/scripts/js.cookie');
 
 var onLoginSuccess = function (response) {
-
     var user = appCache.fetch('user', new User());
     user.initiate(response.uid, response.userName);
     $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
@@ -154,6 +153,47 @@ module.exports = {
         return gateway.sendRequest('userForgotPassword', {
             usernameOrEmail: email
         });
+    },
+
+    checkFacebookLoginStatus: function() {
+        var def = $.Deferred();
+        // FB.getLoginStatus(function(response) {
+        //     if (response.status === 'connected') {
+        //         this.getPublicProfile(def);
+        //     } else {
+        //         FB.login(function(response) {
+        //             if (response.authResponse) {
+        //                 this.getPublicProfile(def);
+        //             } else {
+        //                 def.resolve({error:'User cancelled login or did not fully authorize.'});
+        //             }
+        //         }.bind(this));
+        //     }
+        // }.bind(this));
+        FB.login(function(response) {
+            if (response.authResponse) {
+                this.getPublicProfile(def);
+            } else {
+                def.resolve({error:'User cancelled login or did not fully authorize.'});
+            }
+        }.bind(this));
+        return $.when(def);
+    },
+
+    getPublicProfile: function(def) {
+        FB.api('/me', {fields: 'id,name,first_name,last_name,email'}, function(response){
+            if (response.id) {
+                this.loginWithFacebook(response);
+                def.resolve({success: 'Loggedin with facebook'});
+            } else {
+                def.resolve({error:'Can\'t login with facebook'});
+            }
+        }.bind(this));
+    },
+
+    loginWithFacebook: function(publicProfile) {
+        userController.loginUserWithFacebook(publicProfile)
+            .then(onLoginSuccess);
     }
 
 };

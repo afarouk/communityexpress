@@ -2,7 +2,8 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/edit_roster_view_item.ejs');
+var template = require('ejs!../../templates/partials/edit_roster_view_item.ejs'),
+    h = require('../../globalHelpers');
 
 var EditRosterViewItem = Backbone.View.extend({
 
@@ -35,12 +36,14 @@ var EditRosterViewItem = Backbone.View.extend({
     },
 
     incrementQuantity: function() {
+        h().playSound('addToCart');
         this.model.set('quantity', this.model.get('quantity') + 1);
     },
 
     decrementQuantity: function() {
         var quantity = this.model.get('quantity');
         if (quantity === 0) return;
+        h().playSound('removeFromCart');
         this.model.set('quantity', this.model.get('quantity') - 1);
     },
 

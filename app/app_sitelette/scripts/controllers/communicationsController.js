@@ -52,5 +52,19 @@ module.exports = {
         }).then( function (response) {
             return new CommunicationModel(response);
         });
+    },
+
+    sendContactUsMessage: function(sa, sl, name, email, messageBody, uid) {
+        //TODO should works different way
+        return gateway.sendRequest('sendMessageToSASL',{
+            payload: {
+                toServiceAccommodatorId: sa,
+                toServiceLocationId: sl,
+                name: name,
+                email: email,
+                messageBody: messageBody,
+            },
+            UID: uid
+        })
     }
 };

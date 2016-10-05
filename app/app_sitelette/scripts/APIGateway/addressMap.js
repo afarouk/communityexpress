@@ -64,6 +64,7 @@ module.exports = {
             addReview: ['POST', '/usersasl/createReview'],
 
             login: ['POST', '/authentication/login'],
+            loginWithFacebook: ['POST', '/authentication/exchangeFacebookIdForUID'],
             enterInvitationCode: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],
             userForgotPassword: ['PUT', '/authentication/sendEmailForResetPassword'],
@@ -103,6 +104,10 @@ module.exports = {
             sendPromoURLToEmail: ['GET', '/html/sendPromoURLToEmail'],
             sendPromoURLToMobileviaSMS: ['GET', '/html/sendPromoURLToMobileviaSMS'],
             sendAppURLForSASLToMobileviaSMS: ['GET', '/html/sendAppURLForSASLToMobileviaSMS'],
+            sendAppURLForSASLToMobileviaSMSPOST: ['POST', '/html/sendAppURLForSASLToMobileviaSMSPOST'],
+            sendPromoURLToMobileviaSMSPOST: ['POST', '/html/sendPromoURLToMobileviaSMSPOST'],
+
+            sendContactUsEmail: ['POST', '/html/sendContactUsEmail'],
 
             sendCustomerSupportEmail: ['POST', '/html/sendCustomerSupportEmail']
 

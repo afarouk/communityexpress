@@ -16,6 +16,9 @@ var AddressView = Backbone.View.extend({
     initialize: function(options) {
         this.options = options || {};
         this.addresses = options.addresses;
+        this.allowPickUp = this.model.additionalParams.allowPickUp;
+        this.allowDelivery = this.model.additionalParams.allowDelivery;
+        this.shownMap = false;
         this.on('show', this.onShow, this);
         this.model.on('change', _.bind(this.updateAddress, this));
         this.render();
@@ -28,6 +31,11 @@ var AddressView = Backbone.View.extend({
             'click .rightBtn': 'showMap',
             'click .leftBtn': 'onDelivery'
         });
+
+        if (!this.allowDelivery && this.allowPickUp && !this.shownMap) {
+            this.showMap();
+            this.shownMap = true;
+        }
     },
 
     addEvents: function(eventObj) {
@@ -62,7 +70,9 @@ var AddressView = Backbone.View.extend({
             address = favorites.length !== 0 ? favorites.first().get('address') : undefined,
             tmpData = _.extend({
                 address: address,
-                addrIsEmpty: this.model.additionalParams.addrIsEmpty
+                addrIsEmpty: this.model.additionalParams.addrIsEmpty,
+                allowPickUp: this.allowPickUp,
+                allowDelivery: this.allowDelivery
             }, this.model.toJSON());
 
         return tmpData;

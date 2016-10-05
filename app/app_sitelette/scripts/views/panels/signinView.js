@@ -30,7 +30,8 @@ var SigninView = PopupView.extend({
         this.addEvents({
             'click .submit_button': 'submitForm',
             'click .signup_button': 'openSignupView',
-            'click .forgot_password_button': 'forgotPassword'
+            'click .forgot_password_button': 'forgotPassword',
+            'click .login_with_facebook span': 'loginWithFacebook'
         });
     },
 
@@ -42,6 +43,19 @@ var SigninView = PopupView.extend({
             'max-width': 300,
             'width': w * 0.8
         });
+    },
+
+    loginWithFacebook: function() {
+        loader.show();
+        sessionActions.checkFacebookLoginStatus()
+            .then(function(response){
+                this.shut();
+                if (response.success) {
+                    loader.showFlashMessage('Logged with facebook');
+                } else {
+                    loader.showFlashMessage(response.error);
+                }
+            }.bind(this));
     },
 
     forgotPassword: function() {

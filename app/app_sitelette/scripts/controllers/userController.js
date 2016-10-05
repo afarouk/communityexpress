@@ -46,6 +46,12 @@ module.exports = {
         });
     },
 
+    loginUserWithFacebook: function(publicProfile) {
+        return gateway.sendRequest('loginWithFacebook', {
+            payload: publicProfile
+        });
+    },
+
     logout: function(UID){
         return gateway.sendRequest('logout',{
             UID: UID
