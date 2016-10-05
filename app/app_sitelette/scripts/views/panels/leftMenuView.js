@@ -36,7 +36,7 @@ var LeftMenuView = PanelView.extend({
                     this.triggerRosterView();
                     break;
                 case 'CATALOGS':
-                    Vent.trigger('viewChange', 'catalogs', 
+                    Vent.trigger('viewChange', 'catalogs',
                     	[this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
                     break;
                 case 'CATALOG':
@@ -53,12 +53,12 @@ var LeftMenuView = PanelView.extend({
 
     onOpenBusinessHours: function() {
     	loader.show('retrieving opening hours');
-    	Vent.trigger('viewChange', 'businessHours', 
+    	Vent.trigger('viewChange', 'businessHours',
     		[this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
     },
 
     onOpenContactUs: function() {
-    	Vent.trigger('viewChange', 'contactUs', 
+    	Vent.trigger('viewChange', 'contactUs',
     		[this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
     }
 

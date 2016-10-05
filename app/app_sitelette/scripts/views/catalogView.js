@@ -28,7 +28,8 @@ var CatalogView = Backbone.View.extend({
         'click .basket_icon_container' : 'openEditPanel'
     },
 
-    onShow : function() {
+    onShow: function() {
+        this.checkIfOpened();
         $(this.$('.firstItem a')[0]).trigger('click');
         //TODO --> check listenTo part after jquery.mobile will be fixed
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
@@ -52,6 +53,12 @@ var CatalogView = Backbone.View.extend({
         }
     },
 
+    checkIfOpened: function() {
+        if (!this.isOpen) {
+            popupController.textPopup({ text: this.isOpenWarningMessage }, _.bind(this.goBack, this));
+        }
+    },
+
     initialize : function(options) {
         var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color_4' ];
         this.items = options.catalog.collection;
@@ -65,6 +72,8 @@ var CatalogView = Backbone.View.extend({
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
         this.catalogDisplayText = options.catalog.data.displayText;
+        this.isOpen = options.isOpen;
+        this.isOpenWarningMessage = options.isOpenWarningMessage;
         //this.colors = options.catalog.data.colors;
         this.colors = colors;
         /* add catalog name to basket */

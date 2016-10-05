@@ -45,29 +45,29 @@
 	  			    <#if (medias)?has_content >
 					   <img src="${medias[0].URL}" />
 					<#else>
-					   <img src="themes/1/placeholder_images/welocome_img.png"></img> 
+					   <img src="themes/1/placeholder_images/welocome_img.png"></img>
         			</#if>
-				
+
 					<#if notification??>
 					<div class="breaking_news">
 						<span class="news_line">${notification.notificationBody}</span>
 					</div>
                    	</#if>
-                   	
+
 					<div class="welcome_block">
-					  <#if (medias)?has_content >	
-					    <#if (medias[0]??) >  
+					  <#if (medias)?has_content >
+					    <#if (medias[0]??) >
 						  <div class="title">${medias[0].title}</div>
 						  <div class="undertitle">${medias[0].message}</div>
 					    <#else>
 					      <div class="title">(no title)</div>
-						  <div class="undertitle">(no message) </div> 
+						  <div class="undertitle">(no message) </div>
 					    </#if>
-					  </#if> 
+					  </#if>
 						<button
 							class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 menu_button_3">open
 							menu</button>
-						<!-- 
+						<!--
                           <span class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></span><span class="open_label">open now</span>
                         -->
 					</div>
@@ -204,7 +204,7 @@
 					<div class="body">
 						<div class="text">${(sasl.detailedDescription)!"(no detailedDescription)"}</div>
 					</div>
-					 
+
 				</li>
 				<li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
 				</li>
@@ -229,7 +229,7 @@
 												<span class="current_rating"></span><span>/5</span>
 											</div>
 										</div>
-						                   <div class="text">(This is a sample review)</div> 
+						                   <div class="text">(This is a sample review)</div>
 									</td>
 								</tr>
 							</table>
@@ -289,12 +289,12 @@
 									<div class="ui-block-c text facebook_block">
 										<a href="" class="share_facebook cmtyx_text_color_1">
 											<span class="share_icon facebook_icon"></span> <br>Facebook
-										</a>	
+										</a>
 									</div>
 									<div class="ui-block-d text twitter_block">
 										<a href="" class="share_twitter cmtyx_text_color_1">
 											<span class="share_icon twitter_icon"></span> <br>Twitter
-										</a>	
+										</a>
 									</div>
 								</div>
 							</li> </#list>
@@ -376,7 +376,7 @@
 		            <ul>
 				      <#list externalMedia as media>
 				          <li>
-	 				 
+
 	 				<#if videoNeedsPlaceholder>
                     <div id="externalvideo${media.idMedia}" class="embedded_videos" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
                       <a href="#">
@@ -384,8 +384,8 @@
                       </a>
                     </div>
                     <#else>
-                   
-                   
+
+
                     <div class="embedded_videos">
                     <iframe width="100%" height="250"
 							    src="https://www.youtube.com/embed/${media.vid}?playsinline=1" frameborder="0"
@@ -394,20 +394,20 @@
 						    <br>
  						    <div class="video_item_message">${media.message}</div>
                     </div>
-                    
+
                     </#if>
-                    
-                          </li> 
-						</#list>   
+
+                          </li>
+						</#list>
 				      </ul>
 					  <#else>
 					  <div style="text-align:center;">
-						  (No videos available)			
-					  </div>		
+						  (No videos available)
+					  </div>
 					  </#if>
- 					
+
 					</div>
-					
+
 				</li>
 			</ul>
 			<ul>
@@ -596,7 +596,7 @@
 										<span class="current_rating"></span><span>/5</span>
 									</div>
 									<script>
-										
+
 									</script>
 								</div>
 								<div class="text">We are passionate about coffee. Our
@@ -621,7 +621,7 @@
 										<span class="current_rating"></span><span>/5</span>
 									</div>
 									<script>
-										
+
 									</script>
 								</div>
 								<div class="text">We are passionate about coffee. Our
@@ -646,7 +646,7 @@
 										<span class="current_rating"></span><span>/5</span>
 									</div>
 									<script>
-										
+
 									</script>
 								</div>
 								<div class="text">We are passionate about coffee. Our
@@ -671,7 +671,7 @@
 										<span class="current_rating"></span><span>/5</span>
 									</div>
 									<script>
-										
+
 									</script>
 								</div>
 								<div class="text">We are passionate about coffee. Our
@@ -696,7 +696,7 @@
 										<span class="current_rating"></span><span>/5</span>
 									</div>
 									<script>
-										
+
 									</script>
 								</div>
 								<div class="text">We are passionate about coffee. Our
@@ -857,18 +857,18 @@
 	</div>
 
 	<script src="build/bundle.js"></script>
-	
-	
-	<!-- 
+
+
+	<!--
 	<#if (externalMedia)?has_content >
  	  <#list externalMedia as media>
-	    <script>$( document ).ready(function() { 
+	    <script>$( document ).ready(function() {
           $('.embedded_videos').on('click', function () {
           var vid=$(this).attr("idVideo");
           console.log(vid);
           $(this).html('<iframe width="320"height="240" src="https://www.youtube.com/embed/'+vid+'?playsinline=1" frameborder="0"allowfullscreen></iframe>').css('background','none');});});
         </script>
-      </#list>   
+      </#list>
     </#if>
     -->
 	<!--
