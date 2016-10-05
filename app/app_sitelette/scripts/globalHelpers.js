@@ -228,8 +228,8 @@ var helpers = function() {
         },
 
         playSound: function(sound) {
-            var addToCartSound = $('audio#addtocart')[0],
-                removeFromCartSound = $('audio#removefromcart')[0];
+            var addToCartSound = $('audio#addtocart').get(0),
+                removeFromCartSound = $('audio#removefromcart').get(0);
 
             switch (sound) {
                 case 'addToCart':
