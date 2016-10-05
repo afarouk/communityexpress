@@ -178,7 +178,9 @@ module.exports = {
                  * catalog, else create new.
                  */
 
-                var basket;
+                var basket,
+                    isOpen = catalog.data.isOpen,
+                    isOpenWarningMessage = catalog.data.isOpenWarningMessage;
                 var catalogDetails = {
                     catalogUUID: catalog.data.catalogId,
                     catalogDisplayText: catalog.data.displayText,
@@ -217,7 +219,9 @@ module.exports = {
                     backToCatalogs: backToCatalogs,
                     catalogId: catalogId,
                     navbarView: navbarView,
-                    launchedViaURL :launchedViaURL
+                    launchedViaURL :launchedViaURL,
+                    isOpen: isOpen,
+                    isOpenWarningMessage: isOpenWarningMessage
                 };
             });
     },
@@ -230,6 +234,8 @@ module.exports = {
                 sasl = ret;
                 return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
             }).then(function(options) {
+                var isOpen = options.data[0].isOpen,
+                    isOpenWarningMessage = options.data[0].isOpenWarningMessage;
                 if (options.data.length === 1) {
                     return {
                         catalog: {
@@ -239,13 +245,17 @@ module.exports = {
                             backToRoster: false
                         },
                         sasl: sasl,
-                        catalogs: options
+                        catalogs: options,
+                        isOpen: isOpen,
+                        isOpenWarningMessage: isOpenWarningMessage
                     };
 
                 } else {
                     return {
                         sasl: sasl,
-                        catalogs: options
+                        catalogs: options,
+                        isOpen: isOpen,
+                        isOpenWarningMessage: isOpenWarningMessage
                     };
                 };
             });
@@ -342,7 +352,9 @@ module.exports = {
                     rosterDisplayText: roster.data.displayText,
                     rosterType: roster.data.rosterType.enumText,
                     backToRoster: false,
-                    launchedViaURL: launchedViaURL
+                    launchedViaURL: launchedViaURL,
+                    isOpen: roster.data.isOpen,
+                    isOpenWarningMessage: roster.data.isOpenWarningMessage
                 };
 
             }, this));
