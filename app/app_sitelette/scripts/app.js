@@ -307,6 +307,8 @@ App.prototype = {
         if (exists) {
             if (viewName === 'catalog' ||
                 viewName === 'roster' ||
+                viewName === 'contactUs' ||
+                viewName === 'businessHours' ||
                 (viewName === 'address' && this.previousViewName === 'roster' ) ||
                 (viewName === 'address' && this.previousViewName === 'catalog' )) {
                     if (viewName === 'address') {

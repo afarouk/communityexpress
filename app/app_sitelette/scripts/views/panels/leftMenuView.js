@@ -51,6 +51,16 @@ var LeftMenuView = PanelView.extend({
         }
     },
 
+    triggerRosterView: function() {
+        var uuid = 'ROSTER';
+        Vent.trigger('viewChange', 'roster', {
+            id: uuid,
+            backToRoster: false,
+            rosterId: uuid,
+            launchedViaURL: false
+         }, { reverse: false });
+    },
+
     onOpenBusinessHours: function() {
     	loader.show('retrieving opening hours');
     	Vent.trigger('viewChange', 'businessHours', 

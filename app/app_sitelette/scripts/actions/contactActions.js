@@ -83,5 +83,13 @@ module.exports = {
             params.promoUUID = promoUUID;
         }
         return gateway.sendRequest('sendPromoURLToMobileviaSMSPOST', params);
+    },
+
+    //new Contact Us
+    sendContactUsEmail: function(contactUsInfo) {
+        return gateway.sendRequest('sendContactUsEmail', {
+            payload: contactUsInfo
+        });
     }
+
 };

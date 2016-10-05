@@ -2436,6 +2436,10 @@ li.driving_directions_block {
 #contact_us .body .input_container {
     text-align: left;
 }
+#contact_us .body .input_container input.error,
+#contact_us .body .input_container textarea.error {
+    border-bottom-color: #D8000C;
+}
 
 #contact_us .body .material-textfield {
     width: 100%;
