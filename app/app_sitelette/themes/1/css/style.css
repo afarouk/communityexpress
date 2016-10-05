@@ -2357,7 +2357,7 @@ li.driving_directions_block {
     width: 22px;
     height: 16px;
 }
-.contact_us_block .body {
+/* .contact_us_block .body {
     padding: 75px 10px 0 10px;
     text-align: center;
 }
@@ -2407,7 +2407,7 @@ li.driving_directions_block {
 .contact_us_block .body .send_btn {
     font: 700 16px 'Open Sans', sans-serif !important;
     text-transform: uppercase;
-}
+} */
 
 /* Contact Us View */
 
@@ -2416,19 +2416,19 @@ li.driving_directions_block {
 }
 
 #contact_us .body {
-    padding: 75px 10px 0 10px;
+    padding: 35px 10px 0 10px;
     text-align: center;
 }
 
 #contact_us .body .title {
-    font: 700 18px Roboto;
+    font: 700 18px 'Open Sans', sans-serif;
     color: #dddddd;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
 
 #contact_us .body .undertitle {
-    font: 400 12px Roboto;
+    font: 400 12px 'Open Sans', sans-serif;
     color: rgba(221, 221, 221, 0.7);
     margin-bottom: 30px;
 }
@@ -2451,30 +2451,30 @@ li.driving_directions_block {
 
 #contact_us .material-textfield input,
 #contact_us .material-textfield textarea {
-    font: 300 12px Roboto;
+    font: 300 16px 'Open Sans', sans-serif;
     color: #fafafa;
 }
 
 #contact_us  .material-textfield input+label::before,
 #contact_us  .material-textfield input[required]:focus ~ label::before {
-    font-size: 10px;
-    top: -2.75rem;
+    font-size: 12px;
+    top: -4rem;
 }
 
 #contact_us  .material-textfield textarea+label::before,
 #contact_us  .material-textfield textarea[required]:focus ~ label::before {
-    font-size: 10px;
-    top: -5.45rem;
+    font-size: 12px;
+    top: -8.5rem;
 }
 
 #contact_us  .material-textfield input:invalid ~ label::before{
-    font: 400 12px Roboto;
-    top: -1.5rem;
+    font: 400 14px Roboto;
+    top: -2.5rem;
 }
 
 #contact_us  .material-textfield textarea:invalid ~ label::before {
-    font: 400 12px Roboto;
-    top: -4rem;
+    font: 400 14px Roboto;
+    top: -7rem;
 }
 
 #contact_us .body .send_btn {
