@@ -77,7 +77,7 @@
 
         window.fbAsyncInit = function() {
           FB.init({
-            appId      : '630212017138999', //TODO change API key to sitelette key
+            appId      : '630212017138999',
             cookie     : true,
             status     : true,
             xfbml      : true,
