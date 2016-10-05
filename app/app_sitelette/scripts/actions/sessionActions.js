@@ -157,17 +157,24 @@ module.exports = {
 
     checkFacebookLoginStatus: function() {
         var def = $.Deferred();
-        FB.getLoginStatus(function(response) {
-            if (response.status === 'connected') {
+        // FB.getLoginStatus(function(response) {
+        //     if (response.status === 'connected') {
+        //         this.getPublicProfile(def);
+        //     } else {
+        //         FB.login(function(response) {
+        //             if (response.authResponse) {
+        //                 this.getPublicProfile(def);
+        //             } else {
+        //                 def.resolve({error:'User cancelled login or did not fully authorize.'});
+        //             }
+        //         }.bind(this));
+        //     }
+        // }.bind(this));
+        FB.login(function(response) {
+            if (response.authResponse) {
                 this.getPublicProfile(def);
             } else {
-                FB.login(function(response) {
-                    if (response.authResponse) {
-                        this.getPublicProfile(def);
-                    } else {
-                        def.resolve({error:'User cancelled login or did not fully authorize.'});
-                    }
-                }.bind(this));
+                def.resolve({error:'User cancelled login or did not fully authorize.'});
             }
         }.bind(this));
         return $.when(def);
