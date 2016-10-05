@@ -102,10 +102,12 @@ var RosterCatalogItemView = Backbone.View.extend({
     },
 
     incrementQuantity: function (e) {
+        h().playSound('addToCart');
         this.addToCart(e, 'add');
     },
 
     decrementQuantity: function (e) {
+        h().playSound('removeFromCart');
         this.addToCart(e, 'remove');
     },
 

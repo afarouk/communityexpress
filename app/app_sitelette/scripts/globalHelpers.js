@@ -225,6 +225,25 @@ var helpers = function() {
             } else {
                 return msg;
             }
+        },
+
+        playSound: function(sound) {
+            var addToCartSound = $('audio#addtocart')[0],
+                removeFromCartSound = $('audio#removefromcart')[0];
+
+            switch (sound) {
+                case 'addToCart':
+                    addToCartSound.pause();
+                    addToCartSound.currentTime = 0;
+                    addToCartSound.play();
+                    break;
+                case 'removeFromCart':
+                    removeFromCartSound.pause();
+                    removeFromCartSound.currentTime = 0;
+                    removeFromCartSound.play();
+                    break;
+                default:
+            }
         }
 
     };
