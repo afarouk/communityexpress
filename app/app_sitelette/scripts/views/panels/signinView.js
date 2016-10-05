@@ -45,16 +45,6 @@ var SigninView = PopupView.extend({
         });
     },
 
-    onShow: function() {
-        FB.init({
-            appId      : '630212017138999', //TODO change API key to sitelette key
-            cookie     : true,
-            status     : true,
-            xfbml      : true,
-            version    : 'v2.7'
-        });
-    },
-
     loginWithFacebook: function() {
         loader.show();
         sessionActions.checkFacebookLoginStatus()
