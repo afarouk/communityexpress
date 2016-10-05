@@ -1963,19 +1963,95 @@ span.icon-size {
 	margin-bottom: 100px;
 }
 
-input#user_name {
+input#user_name.form-control,
+input#share_email.form-control {
+	display: inline-block;
 	margin-left: 15px;
+	background-color: transparent;
 	border: none;
 	border-bottom: solid 1px #faa019;
 	font-family: Roboto;
     font-size: 18px;
     font-weight: 300;
     color: #faa019;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 250px;
 }
 
-input:focus {
-	outline: none;
+input:focus,
+.btn-group.bootstrap-select:focus,
+.btn.dropdown-toggle.btn-inverse:focus {
+	outline: none !important;
+	box-shadow: none !important;
 }
+
+.selectContainer {
+	display: inline-block;
+	margin: 0 15px;
+	min-width: 170px;
+}
+
+.btn.dropdown-toggle {
+	background-color: transparent;
+	border: none;
+	border-bottom: solid 1px #faa019;
+	font-family: Roboto;
+    font-size: 18px;
+    font-weight: 300;
+    color: #faa019;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.btn-group.open .dropdown-toggle {
+	box-shadow: none;
+}
+
+.dropdown-menu.open {
+	border-radius: 0;
+	box-shadow: none;
+} 
+
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+	color: #faa019;
+}
+
+.dropdown-menu>li>a:focus {
+	background-color: #f1f1f1;
+}
+
+.btn_container {
+	margin-top: 100px;
+}
+
+button#submit_email {
+	display: inline-block;
+    text-transform: uppercase;
+    padding: 15px 79px;
+    background-image: linear-gradient(to right, #faa019 0%, #ef7112 49%, #f05d13 100%);
+    border-radius: 30px;
+    font: 700 18px Roboto;
+    color: #ffffff;
+    box-shadow: 0px 5px 8.73px 0.27px rgba(0, 0, 0, 0.3);
+    border: none;
+    min-width: 280px;
+}
+
+button#submit_email:hover {
+    background-image: linear-gradient(to left, #faa019 0%, #ef7112 49%, #f05d13 100%);
+}
+
+button#submit_email:focus {
+    outline: none;
+}
+
+button#submit_email:active {
+    box-shadow: 0px 3px 8.73px 0.27px rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: 2px;
+}
+
 
 nav.navbar {
 	/* background-color: #363636; */
