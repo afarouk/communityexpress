@@ -8,8 +8,12 @@
                 <label data-content="Name">Name</label>
             </div>
             <div class="material-textfield yellow">
-                <input type="text" class="contact_email" required data-role="none" />
+                <input type="email" autocomplete="on" class="contact_email validate" required data-role="none" value="<%= userName || '' %>" />
                 <label data-content="Email">Email</label>
+            </div>
+            <div class="material-textfield yellow">
+                <input type="text" class="contact_subject validate" required data-role="none" value="<%= subject %>" />
+                <label data-content="Subject">Subject</label>
             </div>
             <div class="material-textfield yellow">
                 <textarea required class="contact_message" data-role="none" rows="3"></textarea>

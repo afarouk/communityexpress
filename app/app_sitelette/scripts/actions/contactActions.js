@@ -53,5 +53,43 @@ module.exports = {
             params.contestUUID = contestUUID;
         }
         return gateway.sendRequest('sendAppURLForSASLToMobileviaSMS', params);
+    },
+
+    //App new
+    sendAppURLForSASLToMobileviaSMSPost: function(sa, sl, phone, promoUUID, shareURL) {
+        var params = {
+            UID: getUID(),
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            toTelephoneNumber: phone,
+            payload: {shareURL: shareURL}
+        };
+        if (promoUUID) {
+            params.promoUUID = promoUUID;
+        }
+        return gateway.sendRequest('sendAppURLForSASLToMobileviaSMSPOST', params);
+    },
+
+    //Promo new
+    sendPromoURLToMobileviaSMSPOST: function(sa, sl, phone, promoUUID, shareURL) {
+        var params = {
+            UID: getUID(),
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            toTelephoneNumber: phone,
+            payload: {shareURL: shareURL}
+        };
+        if (promoUUID) {
+            params.promoUUID = promoUUID;
+        }
+        return gateway.sendRequest('sendPromoURLToMobileviaSMSPOST', params);
+    },
+
+    //new Contact Us
+    sendContactUsEmail: function(contactUsInfo) {
+        return gateway.sendRequest('sendContactUsEmail', {
+            payload: contactUsInfo
+        });
     }
+
 };

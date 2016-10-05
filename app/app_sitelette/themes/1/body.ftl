@@ -587,7 +587,7 @@
 							<td class="user_avatar"></td>
 							<td class="review_section">
 								<div class="name_date_block">
-									<span class="user_name">Jacob Holiday</span><span class="date">Aug,
+									<span class="user_name">[Sample user]</span><span class="date">Aug,
 										24, 2016</span>
 								</div>
 								<div class="rating_block">
@@ -599,9 +599,7 @@
 
 									</script>
 								</div>
-								<div class="text">We are passionate about coffee. Our
-									founder has a PhD in Coffiology, from the Columbian Beverage
-									Science Academy.</div>
+								<div class="text">[Sample review]</div>
 							</td>
 						</tr>
 					</table>

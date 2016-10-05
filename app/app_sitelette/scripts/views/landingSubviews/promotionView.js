@@ -95,12 +95,17 @@ var PromotionView = Backbone.View.extend({
     //TODO shere promotion
     var $el = this.$el.find('.sms_input_block'),
         $target = $(e.currentTarget),
+        // shareURL = 
         uuid = $target.parent().parent().data('uuid'),
+        demo = window.community.demo ? 'demo=true&' : '',
+        shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+          '?' + demo + 't=p&u=' + uuid),
         val = $target.prev().find('.sms_input').val();
-
+        
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
-    contactActions.sendAppURLForSASLToMobileviaSMS(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, val, uuid)
+    contactActions.sendPromoURLToMobileviaSMSPOST(this.sasl.serviceAccommodatorId, 
+      this.sasl.serviceLocationId, val, uuid, shareUrl)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');
       }.bind(this))
