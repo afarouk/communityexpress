@@ -16,6 +16,7 @@ var SidesCatalogItemView = Backbone.View.extend({
 
     events: {
         'click': 'onClick',
+        'click .catalog_item_counter': 'preventClick',
         'click .plus_button': 'incrementQuantity',
         'click .minus_button': 'decrementQuantity',
         'click .item_name': 'openItemDetails'
@@ -65,6 +66,10 @@ var SidesCatalogItemView = Backbone.View.extend({
         this.onClick();
     },
 
+    preventClick: function() {
+        return false;
+    },
+
     expandDetails: function() {
         this.$('.sides_extras_detailed').slideDown();
         this.$('.sides_extras_expand_icon').text('▲');
@@ -77,7 +82,7 @@ var SidesCatalogItemView = Backbone.View.extend({
         this.withExpandedDetails = false;
     },
 
-    incrementQuantity: function () {
+    incrementQuantity: function() {
 
         h().playSound('addToCart');
 
@@ -87,7 +92,7 @@ var SidesCatalogItemView = Backbone.View.extend({
         return false;
     },
 
-    decrementQuantity: function () {
+    decrementQuantity: function() {
         this.addItem = false;
         var qty = this.quantity;
 

@@ -1050,7 +1050,6 @@ li.build_combo, li.choose_extras {
 }
 .sides_extras_container .float_right {
     position: relative;
-    top: 8px;
 }
 .combo_item_container label {
     font: 400 18px 'Open Sans', sans-serif !important;
@@ -1064,7 +1063,8 @@ li.build_combo, li.choose_extras {
     text-shadow: none;
     background-color: transparent;
     margin-left: 10px;
-    width: 37%;
+    width: 35%;
+    padding: .7em 0;
     /*float: left;*/
 }
 .sides_extras_item_details .item_name {
@@ -2961,9 +2961,6 @@ a.cancel {
     padding: 0;
 }
 
-.menu_body li.cmntyex-catalog-item .catalog_item_main_view {
-    padding: .7em;
-}
 .basket_icon_container {
     display: inline-block;
     padding: 10px;
@@ -3012,7 +3009,7 @@ a.cancel {
 .sides_extras_expand_icon {
     color: #fff;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .sides_extras_detailed {
@@ -3051,14 +3048,23 @@ a.cancel {
 .catalog_item_main_view .sides_item_image_small_container {
     display: inline-block;
     vertical-align: top;
+    padding: .7em 0 .7em .7em;
 }
 
 .catalog_item_main_view .sides_item_image_small_container img {
     height: 40px;
     width: auto;
+    max-width: 50px;
     margin: 0;
 }
 
 .sides_extras_detailed {
     display: none;
+}
+
+.select_container.catalog_item_counter {
+    padding: 8px;
+    vertical-align: middle;
+    margin: 0;
+
 }

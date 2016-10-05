@@ -17,6 +17,7 @@ var CatalogItemView = Backbone.View.extend({
     events: {
         // 'click': 'showAddToBusketView'
         'click': 'onClick',
+        'click .catalog_item_counter': 'preventClick',
         'click .plus_button': 'incrementQuantity',
         'click .minus_button': 'decrementQuantity',
         'click .item_name': 'openItemDetails'
@@ -55,6 +56,10 @@ var CatalogItemView = Backbone.View.extend({
         this.onClick();
     },
 
+    preventClick: function() {
+        return false;
+    },
+
     expandDetails: function() {
         this.$('.sides_extras_detailed').slideDown();
         this.$('.sides_extras_expand_icon').text('▲');
@@ -82,7 +87,7 @@ var CatalogItemView = Backbone.View.extend({
         var qty = this.quantity;
 
         if (qty === 0) return false;
-        
+
         h().playSound('removeFromCart');
 
         this.quantity = this.quantity - 1;
