@@ -69,14 +69,14 @@
             <li>
               <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","features") ?>>Features</a>
             </li>
-            <li><a href="common_senddemo.php">demo</a></li>
+            <li class="li_demo"><a href="common_senddemo.php">demo</a></li>
             <li>
               <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
             </li>
-            <li <?php modifyUrlAndClass("portalexpress") ?> >
+            <li class="li_login" <?php modifyUrlAndClass("portalexpress") ?> >
               <a href="common_portalexpress.php" class="login_btn">Log in</a>
             </li>
-            <li <?php modifyUrlAndClass("signup") ?> >
+            <li class="li_signin" <?php modifyUrlAndClass("signup") ?> >
               <a href="common_signup.php" class="signup_btn">Sign up</a>
             </li>
           </ul>
