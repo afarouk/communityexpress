@@ -1260,7 +1260,7 @@ h5{
 
 .push-down-for-menu { 
 	 /* margin-top:100px; */
-	 padding-top: 100px;
+	 padding-top: 90px;
 }
 
 .gray-background{
@@ -1356,10 +1356,10 @@ nav.navbar.navbar-default {
 	border: none;
 }
 
-.nav li a {
+#header .nav li a {
     text-transform: uppercase;
     font: 400 14px Roboto;
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
 .navbar-default,
@@ -1385,7 +1385,22 @@ nav.navbar.navbar-default {
     top: 3px;
 }
 
-a.signup_btn {
+#header .nav li a.signup_btn,
+#header .nav li a.login_btn {
+	text-transform: none;
+}
+
+.p-r-30 {
+	padding-right: 30px !important;
+}
+
+#header .nav li a.login_btn {
+	padding: 0 15px 0 30px;
+    margin-top: 15px;
+    border-left: solid 1px #979797;
+}
+
+/* a.signup_btn {
     padding: 15px;
     border: solid 1px #fff;
     border-radius: 3px;
@@ -1394,7 +1409,7 @@ a.signup_btn {
 
 a.signup_btn:hover {
     border: solid 1px #F89618; 
-}
+} */
 
 /*Slider section
 =============================================================*/
@@ -1859,7 +1874,7 @@ span.icon-size {
         color: #F99C19 !important;
         border-color: #F99C19;
     }
-    .nav li a:hover {
+    #header .nav li a:hover {
         color: #F06013 !important;
         border-color: #F06013;
     }
@@ -1934,12 +1949,12 @@ span.icon-size {
 =============================================================*/
 
 #demo .bg-overlay.pattern {
-	background-color: #fff;
+	background-color: #f6f6f6;
 }
 
 #demo .sec-title {
 	padding: 0;
-	margin: 50px 0 20px 0;
+	margin: 60px 0 20px 0;
 }
 
 .seeForYrslfText {
@@ -1952,31 +1967,40 @@ span.icon-size {
     max-width: 520px;
     text-align: center;
     line-height: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .formText {
+	padding-top: 30px;
     font-family: Roboto;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
     color: #555555;
-	margin-bottom: 100px;
+	padding-bottom: 50px;
 }
 
 input#user_name.form-control,
-input#share_email.form-control {
+input#share_email.form-control,
+input#share_mobile.form-control {
 	display: inline-block;
-	margin-left: 15px;
+	/* margin-left: 15px; */
 	background-color: transparent;
 	border: none;
-	border-bottom: solid 1px #faa019;
+	border-bottom: solid 1px #979797;
 	font-family: Roboto;
     font-size: 18px;
     font-weight: 300;
-    color: #faa019;
+    color: #979797;
     border-radius: 0;
     box-shadow: none;
     max-width: 250px;
+}
+
+input#user_name.form-control:focus,
+input#share_email.form-control:focus,
+input#share_mobile.form-control:focus {
+	border-bottom: solid 1px #faa019;
+    color: #faa019;
 }
 
 input:focus,
@@ -1988,20 +2012,21 @@ input:focus,
 
 .selectContainer {
 	display: inline-block;
-	margin: 0 15px;
+	margin-right: 15px;
 	min-width: 170px;
 }
 
 .btn.dropdown-toggle {
 	background-color: transparent;
 	border: none;
-	border-bottom: solid 1px #faa019;
+	border-bottom: solid 1px #979797;
 	font-family: Roboto;
     font-size: 18px;
     font-weight: 300;
-    color: #faa019;
+    color: #979797;
     border-radius: 0;
     box-shadow: none;
+    padding-right: 50px;
 }
 
 .btn-group.open .dropdown-toggle {
@@ -2022,10 +2047,12 @@ input:focus,
 }
 
 .btn_container {
-	margin-top: 100px;
+	margin-top: 40px;
+	text-align:center
 }
 
-button#submit_email {
+button#submit_email,
+button#submit_mobile {
 	display: inline-block;
     text-transform: uppercase;
     padding: 15px 79px;
@@ -2035,25 +2062,168 @@ button#submit_email {
     color: #ffffff;
     box-shadow: 0px 5px 8.73px 0.27px rgba(0, 0, 0, 0.3);
     border: none;
-    min-width: 280px;
+    min-width: 400px;
 }
 
-button#submit_email:hover {
+button#submit_email:hover
+button#submit_mobile:hover {
     background-image: linear-gradient(to left, #faa019 0%, #ef7112 49%, #f05d13 100%);
 }
 
-button#submit_email:focus {
+button#submit_email:focus,
+button#submit_mobile:focus {
     outline: none;
 }
 
-button#submit_email:active {
+button#submit_email:active,
+button#submit_mobile:active {
     box-shadow: 0px 3px 8.73px 0.27px rgba(0, 0, 0, 0.3);
     position: relative;
     top: 2px;
 }
 
+#demosite_form_row .form-group {
+	display: inline-block;
+}
+
+.formText .help-block {
+	display: none !important; /* hiding validate messages */
+}
+
+.has-error .bootstrap-select .dropdown-toggle {
+	border-color: #faa019;
+}
+
+.formText i {
+	font-size: 12px;
+    top: 2px;
+}
+
+.checkbox + i {
+	right: -30px;
+}
+
+.nav-tabs li {
+	text-transform: uppercase;
+	width: 50%;
+	text-align: center;
+	border: none;
+    border-radius: 0; 
+}
+
+.nav-tabs li.left {
+	border: solid 4px rgba(220, 220, 220, 0.16);
+    border-bottom: none;
+    border-right: none;
+}
+
+.nav-tabs li.right {
+	border: solid 4px rgba(220, 220, 220, 0.16);
+    border-bottom: none;
+    border-left: none;
+}
+
+.nav-tabs > li > a {
+	display: inline-block;
+	font-family: Roboto;
+    font-size: 18px;
+    line-height: 20px;
+    color: #555555 !important;
+    border: none;
+    border-radius: 0; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.nav-tabs>li>a, 
+.nav-tabs>li>a:focus, 
+.nav-tabs>li>a:hover {
+	background-color: #dedede;
+	border: none;
+	border-radius: 0;
+}
+
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover {
+	background-color: #fff;
+	border: none;
+	border-radius: 0;
+}
+
+.tab-content {
+	background-color: #fff;
+	margin-top: -2px;
+	margin-bottom: 90px;
+	border: solid 4px rgba(181, 180, 180, 0.16);
+	border-top: none;
+}
+
+#demosite_form_row .nav-tabs>li>a {
+	margin-right: 0;
+}
+
+.checkbox label {
+	font-family: Roboto;
+    font-size: 18px;
+    font-weight: 300;
+    color: #555;
+}
+
+.alert_container {
+	padding-top: 20px;
+}
+
+.tab-content .alert {
+	margin-bottom: 0;
+}
+
+.tab-content .alert-success {
+	background-color: transparent;
+	border-color: #faa019;
+}
+
+.tab-content .alert-success .result_span {
+	color: #faa019;
+}
+
+.space_15 {
+	display: inline-block;
+	width: 15px;
+}
+
+.m-t-20 {
+	margin-top: 20px;
+}
 
 nav.navbar {
 	/* background-color: #363636; */
 }
+
+@media (max-width: 768px) {
+	#header .nav li a.login_btn {
+		padding: 10px 15px;
+	    margin-top: 0;
+	    border-left: none;
+	}
+	.p-r-15 {
+		padding-right: 15px !important;
+	}
+	#demo .sec-title {
+		margin-top: 0;
+	}
+	.tab-content {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.formText {
+		padding-top: 0;
+	}
+	button#submit_email,
+	button#submit_mobile {
+	    min-width: 260px;
+	}
+}
+
 
