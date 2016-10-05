@@ -22,6 +22,7 @@ var LeftMenuView = PanelView.extend({
     initialize : function(options) {
         this.options = options || {};
         this.saslData = appCache.get('saslData');
+        setTimeout(this._onOpen.bind(this), 500);
     },
 
     // render : function() {
