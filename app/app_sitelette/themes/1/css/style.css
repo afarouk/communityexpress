@@ -53,7 +53,8 @@
   content: "\64";
 }
 
-#cmtyx_header_back_button:before {
+#cmtyx_header_back_button:before,
+.ui-listview:before {
     display: none;
 }
 
