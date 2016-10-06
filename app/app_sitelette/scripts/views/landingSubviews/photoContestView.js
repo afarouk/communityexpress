@@ -98,7 +98,7 @@ module.exports = Backbone.View.extend({
 
         loader.showFlashMessage('Sending message to... ' + val);
         $el.slideUp('slow');
-        contactActions.sendPromoURLToMobileviaSMSPOST(this.sasl.serviceAccommodatorId, 
+        contactActions.sendPhotoContestURLToMobileviaSMSPOST(this.sasl.serviceAccommodatorId, 
             this.sasl.serviceLocationId, val, uuid, shareUrl)
           .then(function(res){
             loader.showFlashMessage('Sending message success.');

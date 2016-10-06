@@ -56,7 +56,7 @@ module.exports = {
     },
 
     //App new
-    sendAppURLForSASLToMobileviaSMSPost: function(sa, sl, phone, promoUUID, shareURL) {
+    sendAppURLForSASLToMobileviaSMSPost: function(sa, sl, phone, shareURL) {
         var params = {
             UID: getUID(),
             serviceAccommodatorId: sa,
@@ -64,9 +64,6 @@ module.exports = {
             toTelephoneNumber: phone,
             payload: {shareURL: shareURL}
         };
-        if (promoUUID) {
-            params.promoUUID = promoUUID;
-        }
         return gateway.sendRequest('sendAppURLForSASLToMobileviaSMSPOST', params);
     },
 
@@ -77,12 +74,46 @@ module.exports = {
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             toTelephoneNumber: phone,
+            promoUUID: promoUUID,
             payload: {shareURL: shareURL}
         };
-        if (promoUUID) {
-            params.promoUUID = promoUUID;
-        }
         return gateway.sendRequest('sendPromoURLToMobileviaSMSPOST', params);
+    },
+    //Events new
+    sendEventURLToMobileviaSMSPOST: function(sa, sl, phone, eventUUID, shareURL) {
+        var params = {
+            UID: getUID(),
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            toTelephoneNumber: phone,
+            eventUUID: eventUUID,
+            payload: {shareURL: shareURL}
+        };
+        return gateway.sendRequest('sendEventURLToMobileviaSMSPOST', params);
+    },
+    //Poll contest new
+    sendPollContestURLToMobileviaSMSPOST: function(sa, sl, phone, contestUUID, shareURL) {
+        var params = {
+            UID: getUID(),
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            toTelephoneNumber: phone,
+            contestUUID: contestUUID,
+            payload: {shareURL: shareURL}
+        };
+        return gateway.sendRequest('sendPollContestURLToMobileviaSMSPOST', params);
+    },
+    //Photo contest new
+    sendPhotoContestURLToMobileviaSMSPOST: function(sa, sl, phone, contestUUID, shareURL) {
+        var params = {
+            UID: getUID(),
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            toTelephoneNumber: phone,
+            contestUUID: contestUUID,
+            payload: {shareURL: shareURL}
+        };
+        return gateway.sendRequest('sendPhotoContestURLToMobileviaSMSPOST', params);
     },
 
     //new Contact Us

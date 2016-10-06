@@ -106,6 +106,9 @@ module.exports = {
             sendAppURLForSASLToMobileviaSMS: ['GET', '/html/sendAppURLForSASLToMobileviaSMS'],
             sendAppURLForSASLToMobileviaSMSPOST: ['POST', '/html/sendAppURLForSASLToMobileviaSMSPOST'],
             sendPromoURLToMobileviaSMSPOST: ['POST', '/html/sendPromoURLToMobileviaSMSPOST'],
+            sendEventURLToMobileviaSMSPOST: ['POST', '/html/sendEventURLToMobileviaSMSPOST'],
+            sendPollContestURLToMobileviaSMSPOST: ['POST', '/html/sendPollContestURLToMobileviaSMSPOST'],
+            sendPhotoContestURLToMobileviaSMSPOST: ['POST', '/html/sendPhotoContestURLToMobileviaSMSPOST'],
 
             sendContactUsEmail: ['POST', '/html/sendContactUsEmail'],
 

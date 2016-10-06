@@ -143,7 +143,7 @@ var LandingView = Backbone.View.extend({
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
     contactActions.sendAppURLForSASLToMobileviaSMSPost(this.sasl.serviceAccommodatorId, 
-        this.sasl.serviceLocationId, val, null, shareUrl)
+        this.sasl.serviceLocationId, val, shareUrl)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');
       }.bind(this))
