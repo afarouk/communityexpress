@@ -11,12 +11,15 @@ var EventsView = Backbone.View.extend({
   el: '#cmtyx_events_block',
 
   events: {
-    'click .header': 'toggleCollapse'
+    'click .header': 'toggleCollapse',
+    'click .share_btn_block': 'showShareBlock',
+    'click .sms_block': 'showSMSInput',
+    'click .sms_send_button': 'onSendSMS'
   },
 
   initialize: function(options) {
     this.options = options || {};
-
+    this.sasl = window.saslData;
     //slick init
     this.$el.find('.body ul').slick({
         dots: false,
@@ -56,12 +59,13 @@ var EventsView = Backbone.View.extend({
 
   showShareBlock: function(e) {
     var $target = $(e.currentTarget),
-        $el = $target.parent().parent().next();
+        $el = $target.parent().next();
     $el.slideToggle('slow');
   },
 
-  showSMSInput: function() {
-    var $el = this.$el.find('.sms_input_block');
+  showSMSInput: function(e) {
+    var $target = $(e.currentTarget),
+        $el = $target.parent().find('.sms_input_block');
     $el.slideToggle('slow');
     $el.find('input').mask('(000) 000-0000');
   },
@@ -79,7 +83,7 @@ var EventsView = Backbone.View.extend({
   },
 
   setShareLinks: function($event) {
-      var $block = $event.find('.event-share-block'),
+      var $block = $event.find('.events-share-block'),
           uuid = $block.data('uuid'),
           links = this.getLinks(uuid),
           $links = $block.find('a');
@@ -91,7 +95,7 @@ var EventsView = Backbone.View.extend({
   },
 
   setLinksForEachEvent: function() {
-      var $events = this.$el.find('.events-item');
+      var $events = this.$el.find('.event_item');
       $events.each(function(index, el){
         var $event = $(el);
         this.setShareLinks($event);
@@ -104,7 +108,7 @@ var EventsView = Backbone.View.extend({
         uuid = $target.parent().parent().data('uuid'),
         demo = window.community.demo ? 'demo=true&' : '',
         shareUrl = window.location.href.split('?')[0] + 
-          '?' + demo + 't=p&u=' + uuid,
+          '?' + demo + 't=e&u=' + uuid,
         val = $target.prev().find('.sms_input').val();
         
     loader.showFlashMessage('Sending message to... ' + val);

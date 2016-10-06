@@ -63,7 +63,7 @@ module.exports = {
             payload: {
                 shareType: shareType, //[SITELETTE/EVENT/PROMOTION/POLL/CHECKIN/PHOTO/MEDIA]
                 shareURL: shareURL,
-                serviceAccommodatarId: sa,
+                serviceAccommodatorId: sa,
                 serviceLocationId: sl,
                 mobile: mobile, // phone number
                 uuid: uuid,
