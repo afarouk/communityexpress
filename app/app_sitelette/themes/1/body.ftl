@@ -259,7 +259,7 @@
 				<li id="cmtyx_about_us_block" class="about_us_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">about us</span>
-						<div class="collapse_btn"></div>
+						<div class="collapse_btn">&#9650;</div>
 					</div>
 					<div class="body">
 						<div class="text">${(sasl.detailedDescription)!"(no detailedDescription)"}</div>

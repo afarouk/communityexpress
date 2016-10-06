@@ -38,7 +38,7 @@ var NavbarView = Backbone.View.extend({
             $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
         };
 
-        // this.listenTo(Vent, 'login_success logout_success', this.render, this);
+        this.listenTo(Vent, 'login_success logout_success', this.render, this);
 
         this.listenTo(this.parent, 'hide', this.remove, this);
 
@@ -137,6 +137,7 @@ var NavbarView = Backbone.View.extend({
             loader.showFlashMessage( 'signed out' );
             $('.menu_button_5').removeClass('navbutton_sign_out').addClass('navbutton_sign_in');
             $('.menu_button_5').removeClass('cmtyx_text_color_1');
+            $( ".menu_button_5" ).siblings().remove();
         }, function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });
@@ -144,8 +145,6 @@ var NavbarView = Backbone.View.extend({
 
     signin: function() {
         popupController.signin(this.model);
-        $('.menu_button_5').addClass('cmtyx_text_color_1');
-        $('.menu_button_5').find('.icon-user::before').addClass('cmtyx_text_color_1');
     },
 
     toggle: function () {

@@ -53,7 +53,9 @@
   content: "\64";
 }
 
-
+#cmtyx_header_back_button:before {
+    display: none;
+}
 
 html {}
 
@@ -100,6 +102,9 @@ body {
     padding: 0 0 100px 0;
     text-shadow: none;
     color: #fafafa;
+}
+#cmtyx_header {
+    top: -1px;
 }
 #cmtyx_landingView.ui-page {
     padding-bottom: 0;
@@ -1397,8 +1402,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .common_footer a.ui-btn:hover {
     background-color: #464646;
-    border-color: #464646;
-    border-bottom-width: 0 !important;
+}
+.common_footer a.ui-btn:not(.navbutton_sign_out):hover {
+    color: #fff !important;
 }
 
 /*HOME*/
@@ -1616,7 +1622,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .events_block table {
     border-collapse: collapse;
     width: 100%;
-    margin-bottom: 20px;
+    margin: -20px 0 10px 0;
 }
 .events_block tr {
     padding: 15px 0;
@@ -1681,9 +1687,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     height: 40px;
     background: url('images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png');
 }
-
 .events_block .events-share-block {
-    padding: 10px 0;
+    padding: 10px 0 20px 0;
     display: none;
     margin-top: -20px;
 }
@@ -1703,7 +1708,6 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     text-transform: uppercase;
     text-align: center;
 } 
-
 .events-share-block {
     text-align: center;
 }
@@ -2097,8 +2101,14 @@ li.promotion_block .body {
     border-right: 0;
     outline: none;
 }
-.events_block .event_item_buttons {
-    margin-bottom: 20px;
+.events_block .share_btn_block {
+    /* margin-bottom: 20px; */
+}
+.events-share-block .ui-block-a,
+.events-share-block .ui-block-b,
+.events-share-block .ui-block-c,
+.events-share-block .ui-block-d {
+    margin-top: 20px;
 }
 .promotion-share-block {
     text-align: center;
@@ -2116,6 +2126,9 @@ li.promotion_block .body {
 }
 .sms_input_block {
     margin-bottom: 20px;
+}
+.events-share-block .sms_input_block {
+    margin: 20px 0 0 0;
 }
 .sms_input_block input {
     font: 300 16px 'Open Sans', sans-serif;
@@ -2362,7 +2375,7 @@ li.driving_directions_block {
     margin-bottom: 5px;
     margin-left: 5px;
 }
-.document_img {
+/* .document_img {
     width: 17px;
     height: 21px;
     background: url('images/document.png') no-repeat;
@@ -2427,7 +2440,7 @@ li.driving_directions_block {
 }
 .m-b-11 {
     margin-bottom: 11px;
-}
+} */
 
 /*CONTACT US BLOCK*/
 
@@ -2574,7 +2587,7 @@ li.driving_directions_block {
     top: -8.5rem;
 }
 
-#contact_us  .material-textfield input:invalid ~ label::before{
+#contact_us  .material-textfield input:invalid ~ label::before {
     font: 400 14px Roboto;
     top: -2.5rem;
 }
