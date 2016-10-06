@@ -102,10 +102,8 @@ module.exports = {
             getEventByUUID: ['GET', '/reservations/getEventByUUID'],
 
             sendPromoURLToEmail: ['GET', '/html/sendPromoURLToEmail'],
-            sendPromoURLToMobileviaSMS: ['GET', '/html/sendPromoURLToMobileviaSMS'],
-            sendAppURLForSASLToMobileviaSMS: ['GET', '/html/sendAppURLForSASLToMobileviaSMS'],
-            sendAppURLForSASLToMobileviaSMSPOST: ['POST', '/html/sendAppURLForSASLToMobileviaSMSPOST'],
-            sendPromoURLToMobileviaSMSPOST: ['POST', '/html/sendPromoURLToMobileviaSMSPOST'],
+
+            shareURLviaSMS: ['POST', '/html/shareURLviaSMS'],
 
             sendContactUsEmail: ['POST', '/html/sendContactUsEmail'],
 

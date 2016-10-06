@@ -90,7 +90,7 @@ var NavbarView = Backbone.View.extend({
 
     openPromotion: function(pid) {
         // loader.show('retrieving promotions');
-        Vent.trigger('scrollToPromotions');
+        Vent.trigger('scrollToBlock', '.promotion_block');
         // promotionsController.fetchPromotionUUIDsBySasl(
         //     this.sa,
         //     this.sl,
@@ -136,6 +136,8 @@ var NavbarView = Backbone.View.extend({
         userController.logout(this.user.getUID()).then(function(){
             loader.showFlashMessage( 'signed out' );
             $('.menu_button_5').removeClass('navbutton_sign_out').addClass('navbutton_sign_in');
+            $('.menu_button_5').removeClass('cmtyx_text_color_1');
+            $( ".menu_button_5" ).siblings().remove();
         }, function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });

@@ -17,8 +17,6 @@ var PromotionView = Backbone.View.extend({
     'click .sms_send_button': 'onSendSMS'
   },
 
-  //TODO functionality
-
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
@@ -53,8 +51,9 @@ var PromotionView = Backbone.View.extend({
     $el.slideToggle('slow');
   },
 
-  showSMSInput: function() {
-    var $el = this.$el.find('.sms_input_block');
+  showSMSInput: function(e) {
+    var $target = $(e.currentTarget),
+        $el = $target.parent().find('.sms_input_block');
     $el.slideToggle('slow');
     $el.find('input').mask('(000) 000-0000');
   },
@@ -92,19 +91,17 @@ var PromotionView = Backbone.View.extend({
   },
 
   onSendSMS: function(e) {
-    //TODO shere promotion
     var $el = this.$el.find('.sms_input_block'),
         $target = $(e.currentTarget),
-        // shareURL = 
         uuid = $target.parent().parent().data('uuid'),
         demo = window.community.demo ? 'demo=true&' : '',
-        shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
-          '?' + demo + 't=p&u=' + uuid),
+        shareUrl = window.location.href.split('?')[0] + 
+          '?' + demo + 't=p&u=' + uuid,
         val = $target.prev().find('.sms_input').val();
         
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
-    contactActions.sendPromoURLToMobileviaSMSPOST(this.sasl.serviceAccommodatorId, 
+    contactActions.shareURLviaSMS('PROMOTION', this.sasl.serviceAccommodatorId, 
       this.sasl.serviceLocationId, val, uuid, shareUrl)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');

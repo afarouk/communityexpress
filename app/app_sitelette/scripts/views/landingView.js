@@ -136,13 +136,13 @@ var LandingView = Backbone.View.extend({
     var $el = this.$el.find('#cmtyx_share_block .sms_input_block'),
         $target = $(e.currentTarget),
         demo = window.community.demo ? 'demo=true&' : '',
-        shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
-          '?' + demo),
+        shareUrl = window.location.href.split('?')[0] +
+          '?' + demo,
         val = $target.prev().find('.sms_input').val();
 
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
-    contactActions.sendAppURLForSASLToMobileviaSMSPost(this.sasl.serviceAccommodatorId,
+    contactActions.shareURLviaSMS('SITELETTE', this.sasl.serviceAccommodatorId, 
         this.sasl.serviceLocationId, val, null, shareUrl)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');
