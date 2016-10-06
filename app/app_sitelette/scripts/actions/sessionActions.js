@@ -143,8 +143,8 @@ module.exports = {
                 * save it in localstorage
                 *
                 */
-                console.log(" saving to local storage cmxUID:"
-                + userRegistrationDetails.uid);
+                console.log(" saving to local storage cmxUID:" + 
+                    userRegistrationDetails.uid);
                 //localStorage.setItem("cmxUID", userRegistrationDetails.uid);
                 Cookies.set('cmxUID',userRegistrationDetails.uid , {expires:365});
                 self.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
@@ -158,33 +158,25 @@ module.exports = {
         });
     },
 
-    checkFacebookLoginStatus: function() {
+    facebookLoginStatus: function(status) {
         var def = $.Deferred();
-        // FB.getLoginStatus(function(response) {
-        //     if (response.status === 'connected') {
-        //         this.getPublicProfile(def);
-        //     } else {
-        //         FB.login(function(response) {
-        //             if (response.authResponse) {
-        //                 this.getPublicProfile(def);
-        //             } else {
-        //                 def.resolve({error:'User cancelled login or did not fully authorize.'});
-        //             }
-        //         }.bind(this));
-        //     }
-        // }.bind(this));
-        FB.login(function(response) {
-            if (response.authResponse) {
-                this.getPublicProfile(def);
-            } else {
-                def.resolve({error:'User cancelled login or did not fully authorize.'});
-            }
-        }.bind(this));
+        // if (status === 'connected') {
+        //     this.getPublicProfile(def);
+        // } else {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    this.getPublicProfile(def);
+                } else {
+                    def.resolve({error:'User cancelled login or did not fully authorize.'});
+                }
+            }.bind(this));
+        // }
         return $.when(def);
     },
 
     getPublicProfile: function(def) {
-        FB.api('/me', {fields: 'id,name,first_name,last_name,email'}, function(response){
+        FB.api('/me', {fields: 'id,name,first_name,last_name,email'}, 
+            function(response){
             if (response.id) {
                 this.loginWithFacebook(response);
                 def.resolve({success: 'Loggedin with facebook'});

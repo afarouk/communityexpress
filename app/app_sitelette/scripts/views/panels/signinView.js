@@ -33,6 +33,10 @@ var SigninView = PopupView.extend({
             'click .forgot_password_button': 'forgotPassword',
             'click .login_with_facebook span': 'loginWithFacebook'
         });
+
+        FB.getLoginStatus(function (response) {
+            this.facebookStatus = response.status;
+        }.bind(this));
     },
 
     beforeShow: function () {
@@ -47,7 +51,7 @@ var SigninView = PopupView.extend({
 
     loginWithFacebook: function() {
         loader.show();
-        sessionActions.checkFacebookLoginStatus()
+        sessionActions.facebookLoginStatus(this.facebookStatus)
             .then(function(response){
                 this.shut();
                 if (response.success) {
