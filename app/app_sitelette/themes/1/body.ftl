@@ -98,20 +98,22 @@
 											</div>
 										</#if>
 										<div class="event_description" data-uuid="${event.uuid}">
-											<div class="event_date last">
-												<span class="event_day">${event.date}</span>
-												<span class="event_month">${event.month}</span>
-											</div>
-											<div class="event_info last">
-												<span class="event_title">${event.displayText}</span>
-												<span class="event_time">${event.time}</span> <span
-												class="event_text">${event.shortDescription}</span>
-											</div>
-											<div class="add_to_calendar_btn_container last">
-												<a href="${event.calendarURL}">
-													<span class="add_to_calendar_btn"></span>
-												</a>
-											</div>
+										<table>
+				                            <tr>
+				                                <td class="event_date">
+				                                    <span class="event_day">${event.date}</span>
+				                                    <span class="event_month">${event.month}</span>
+				                                </td>
+				                                <td class="event_info">
+				                                    <span class="event_title">${event.displayText}</span>
+				                                    <span class="event_time">${event.time}</span>
+				                                    <span class="event_text">${event.shortDescription}</span>
+				                                </td>
+				                                <td class="add_to_calendar_btn_container">
+				                                    <a href="${event.calendarURL}"><span class="add_to_calendar_btn"></span></a>
+				                                </td>
+				                            </tr>
+			                            </table>
 										</div>
 
 										<div class="ui-grid-a event_item_buttons">

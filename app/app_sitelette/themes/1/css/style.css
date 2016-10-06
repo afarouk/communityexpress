@@ -1558,10 +1558,12 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .events_block table {
     border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
 }
 .events_block tr {
     padding: 15px 0;
-    border-bottom: solid 1px #636363;
+    /* border-bottom: solid 1px #636363; */
 }
 .events_block tr.last {
     border: none;
@@ -1580,6 +1582,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .events_block .event_date {
     padding-left: 0;
     vertical-align: top;
+    text-align: center;
 }
 .events_block .event_day {
     display: block;
@@ -1620,6 +1623,36 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 40px;
     height: 40px;
     background: url('images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png');
+}
+
+.events_block .events-share-block {
+    padding: 10px 0;
+    display: none;
+    margin-top: -20px;
+}
+.events_block .events-share-block .sms_input_block {
+    display:none;
+}
+.events_block .events-share-block .share_icon {
+    display: inline-block;
+    margin-bottom: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+}
+.events_block .events-share-block .text {
+    font: 400 12px 'Open Sans', sans-serif;
+    color: #cbcbcb;
+    text-transform: uppercase;
+    text-align: center;
+} 
+
+.events-share-block {
+    text-align: center;
+}
+.events-share-block a:focus {
+    outline: none;
+    text-decoration: none;
 }
 
 /********************** GALLERY BLOCK ***********************/
@@ -1721,6 +1754,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     max-height: 180px;
 }
 
+.events_block .share_btn_block,
 .poll_block .share_btn_block,
 .promotion_block .share_btn_block,
 .photo_contest_block .share_btn_block {
@@ -1730,6 +1764,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .promotion_block .share_btn_block {
     margin-bottom: 20px;
 }
+
+.events_block .share_btn_block .share_icon,
 .poll_block .share_btn_block .share_icon,
 .promotion_block .share_btn_block .share_icon,
 .photo_contest_block .share_btn_block .share_icon {
@@ -1971,11 +2007,14 @@ li.promotion_block .body {
     text-transform: uppercase;
     text-align: center;
 }
+.events_block .slick-slide:focus,
+.events_block .slick-arrow:focus
 .promotion_block .slick-slide:focus,
 .promotion_block .slick-arrow:focus {
     outline: none;
 }
-.promotion_block .slick-arrow {
+.promotion_block .slick-arrow,
+.events_block .slick-arrow {
     background-color: transparent;
     z-index: 1;
     position: absolute;
@@ -1987,12 +2026,14 @@ li.promotion_block .body {
     padding-top: 0;
     padding-bottom: 0;
 }
-.promotion_block .slick-prev {
+.promotion_block .slick-prev,
+.events_block .slick-prev {
     left: 0;
     border-right:20px solid transparent;
     border-left: 0;
 }
-.promotion_block .slick-next {
+.promotion_block .slick-next,
+.events_block .slick-next {
     right: 0;
     border-left:20px solid transparent;
     border-right: 0;
