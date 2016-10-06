@@ -55,65 +55,24 @@ module.exports = {
         return gateway.sendRequest('sendAppURLForSASLToMobileviaSMS', params);
     },
 
-    //App new
-    sendAppURLForSASLToMobileviaSMSPost: function(sa, sl, phone, shareURL) {
-        var params = {
-            UID: getUID(),
-            serviceAccommodatorId: sa,
-            serviceLocationId: sl,
-            toTelephoneNumber: phone,
-            payload: {shareURL: shareURL}
+    //send share link via sms
+    shareURLviaSMS: function(shareType, sa, sl, mobile, uuid, shareURL) {
+        var UID = getUID(),
+            params = {
+            UID: UID,
+            payload: {
+                shareType: shareType, //[SITELETTE/EVENT/PROMOTION/POLL/CHECKIN/PHOTO/MEDIA]
+                shareURL: shareURL,
+                serviceAccommodatarId: sa,
+                serviceLocationId: sl,
+                mobile: mobile, // phone number
+                uuid: uuid,
+                passCode: 'sitelettes', // ???
+                trackingId: UID,
+                demo: window.community.demo //check if 'demo=true'
+            }
         };
-        return gateway.sendRequest('sendAppURLForSASLToMobileviaSMSPOST', params);
-    },
-
-    //Promo new
-    sendPromoURLToMobileviaSMSPOST: function(sa, sl, phone, promoUUID, shareURL) {
-        var params = {
-            UID: getUID(),
-            serviceAccommodatorId: sa,
-            serviceLocationId: sl,
-            toTelephoneNumber: phone,
-            promoUUID: promoUUID,
-            payload: {shareURL: shareURL}
-        };
-        return gateway.sendRequest('sendPromoURLToMobileviaSMSPOST', params);
-    },
-    //Events new
-    sendEventURLToMobileviaSMSPOST: function(sa, sl, phone, eventUUID, shareURL) {
-        var params = {
-            UID: getUID(),
-            serviceAccommodatorId: sa,
-            serviceLocationId: sl,
-            toTelephoneNumber: phone,
-            eventUUID: eventUUID,
-            payload: {shareURL: shareURL}
-        };
-        return gateway.sendRequest('sendEventURLToMobileviaSMSPOST', params);
-    },
-    //Poll contest new
-    sendPollContestURLToMobileviaSMSPOST: function(sa, sl, phone, contestUUID, shareURL) {
-        var params = {
-            UID: getUID(),
-            serviceAccommodatorId: sa,
-            serviceLocationId: sl,
-            toTelephoneNumber: phone,
-            contestUUID: contestUUID,
-            payload: {shareURL: shareURL}
-        };
-        return gateway.sendRequest('sendPollContestURLToMobileviaSMSPOST', params);
-    },
-    //Photo contest new
-    sendPhotoContestURLToMobileviaSMSPOST: function(sa, sl, phone, contestUUID, shareURL) {
-        var params = {
-            UID: getUID(),
-            serviceAccommodatorId: sa,
-            serviceLocationId: sl,
-            toTelephoneNumber: phone,
-            contestUUID: contestUUID,
-            payload: {shareURL: shareURL}
-        };
-        return gateway.sendRequest('sendPhotoContestURLToMobileviaSMSPOST', params);
+        return gateway.sendRequest('shareURLviaSMS', params);
     },
 
     //new Contact Us
