@@ -20,6 +20,7 @@ var onLoginSuccess = function (response) {
     $('.menu_button_5').addClass('cmtyx_text_color_1');
     var color = $('.cmtyx_text_color_1').css("color");
     $( ".menu_button_5" ).before( "<style>.icon-user:before{color:" + color + "}</style>" );
+    $( ".glyphicon-ok" ).show();
     
     favoriteActions.getFavoritesForCurrentUser();
 

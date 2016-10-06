@@ -41,6 +41,7 @@
 				<li><a href="#" class="menu_button_5">
 						<!-- <div class="navbar_btn_icon user_img m-b-9"></div>  -->
 						<div class="navbar_btn_icon icon-user"></div> 
+						<span class="glyphicon glyphicon-ok .cmtyx_text_color_1" aria-hidden="true"></span>
 						<br>User
 				</a></li>
 			</ul>

@@ -2474,6 +2474,13 @@ li.driving_directions_block {
     width: 22px;
     height: 16px;
 }
+.glyphicon-ok {
+    width: 0;
+    margin-left: -5px;
+    position: relative;
+    top: -10px;
+    right: 5px;
+}
 /* .contact_us_block .body {
     padding: 75px 10px 0 10px;
     text-align: center;
