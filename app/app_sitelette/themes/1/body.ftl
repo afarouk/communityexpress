@@ -86,31 +86,78 @@
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
 						<span class="title">events</span> <span class="collapse_btn">&#9650;</span>
-					</div> <#if (eventsSummary.events)?has_content >
-					<div class="body">
-						<table class="event_block_overlay">
-							<#list eventsSummary.events as event> <#if event.url??>
-							<tr>
-								<td colspan="3"><img src="${event.url}"></img></td>
-							</tr>
-							</#if>
-							<tr>
-								<td class="event_date last"><span class="event_day">${event.date}</span>
-									<span class="event_month">${event.month}</span></td>
-								<td class="event_info last"><span class="event_title">${event.displayText}</span>
-									<span class="event_time">${event.time}</span> <span
-									class="event_text">${event.shortDescription}</span></td>
-								<td class="add_to_calendar_btn_container last"><a
-									href="${event.calendarURL}"><span
-										class="add_to_calendar_btn"></span></a></td>
-							</tr>
-							</#list>
-						</table>
-					</div> <#else>
-					<div class="body" style="text-align: center;">(No events
-						scheduled)</div> </#if>
+					</div> 
+					<#if (eventsSummary.events)?has_content >
+						<div class="body">
+							<ul class="gallery event_block_overlay">
+								<#list eventsSummary.events as event>
+									<li class="event_item">
+										<#if event.url??>
+											<div class="event_image">
+												<img src="${event.url}"></img>
+											</div>
+										</#if>
+										<div class="event_description" data-uuid="${event.uuid}">
+											<div class="event_date last">
+												<span class="event_day">${event.date}</span>
+												<span class="event_month">${event.month}</span>
+											</div>
+											<div class="event_info last">
+												<span class="event_title">${event.displayText}</span>
+												<span class="event_time">${event.time}</span> <span
+												class="event_text">${event.shortDescription}</span>
+											</div>
+											<div class="add_to_calendar_btn_container last">
+												<a href="${event.calendarURL}">
+													<span class="add_to_calendar_btn"></span>
+												</a>
+											</div>
+										</div>
 
+										<div class="ui-grid-a event_item_buttons">
+											<div class="ui-block-b share_btn_block"
+												uuid="${event.uuid}">
+												<span class="icon share_icon"></span> <span class="text">Share</span>
+											</div>
+										</div>
+
+										<div class="ui-grid-c events-share-block" data-uuid="${event.uuid}">
+											<div class="sms_input_block">
+												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+											</div>
+											<div class="ui-block-a text sms_block">
+												<a href="" class="share_sms cmtyx_text_color_1">
+													<span class="share_icon sms_icon"></span> <br>SMS
+												</a>
+											</div>
+											<div class="ui-block-b text email_block">
+												<a href="" class="share_email cmtyx_text_color_1">
+													<span class="share_icon email_icon"></span> <br>E-mail
+												</a>
+											</div>
+											<div class="ui-block-c text facebook_block">
+												<a href="" class="share_facebook cmtyx_text_color_1">
+													<span class="share_icon facebook_icon"></span> <br>Facebook
+												</a>
+											</div>
+											<div class="ui-block-d text twitter_block">
+												<a href="" class="share_twitter cmtyx_text_color_1">
+													<span class="share_icon twitter_icon"></span> <br>Twitter
+												</a>
+											</div>
+										</div>
+
+									</li>
+								</#list>
+							</ul>
+						</div>
+					<#else>
+						<div class="body" style="text-align: center;">(No events
+							scheduled)</div>
+					</#if>
 				</li>
+
 				<li id="cmtyx_gallery_block" class="gallery_block">
 					<div class="header cmtyx_color_1">
 						<span class="title">gallery</span> <span class="collapse_btn">&#9650;</span>
