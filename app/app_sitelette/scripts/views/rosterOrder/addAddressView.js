@@ -34,6 +34,7 @@ var AddAddressView = Backbone.View.extend({
             'change #aptBldgInput': 'onAptBldgChanged',
             'change #streetInput': 'onStreetChanged',
             'change #cityInput': 'onCityChanged',
+            'focus .material-textfield input': 'hideError'
         });
         this.getMapCoordinates();
     },
@@ -79,7 +80,7 @@ var AddAddressView = Backbone.View.extend({
     },
 
     mapResultEmpty: function() {
-        //TODO empty map 
+        //TODO empty map
         // this.$(this.order_address).html('');
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -97,7 +98,7 @@ var AddAddressView = Backbone.View.extend({
     showMap: function(lat, lng) {
         var el = this.$('#shipping_map2')[0],
             options = {
-            center: new google.maps.LatLng(lat, lng), 
+            center: new google.maps.LatLng(lat, lng),
             zoom: 17,
             disableDefaultUI:true
         };
@@ -114,6 +115,7 @@ var AddAddressView = Backbone.View.extend({
     },
 
     dragendMarker: function(event) {
+        this.$('.roster_order_error').slideUp();
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({
             location: this.marker.getPosition()
@@ -172,7 +174,7 @@ var AddAddressView = Backbone.View.extend({
         if (this.validate()) {
             this.model.trigger('change');
             Vent.trigger('viewChange', 'payment', {
-                model: this.model, 
+                model: this.model,
                 backTo: 'add_address'
             });
         } else {
@@ -182,15 +184,25 @@ var AddAddressView = Backbone.View.extend({
 
     validate: function() {
         var address = this.model.get('deliveryAddress');
-        if (address.number && 
-            address.street && 
+        if (address.number &&
+            address.street &&
             address.city) {
             this.model.additionalParams.addrIsEmpty = false;
             return true;
         } else {
             this.model.additionalParams.addrIsEmpty = true;
+            _.each(address, _.bind(function(value, name) {
+                if (!value) {
+                    this.$('.roster_order_error.error_' + name).slideDown();
+                }
+            }, this));
             return false;
         }
+    },
+
+    hideError: function(e) {
+        var name = e.target.name;
+        this.$('.error_' + name).slideUp();
     },
 
     goBack : function() {

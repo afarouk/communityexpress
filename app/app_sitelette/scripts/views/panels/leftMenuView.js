@@ -16,7 +16,8 @@ var LeftMenuView = PanelView.extend({
     events: {
     	'click .open_catalog_btn': 'onOpenCatalog',
     	'click .business_hours_btn': 'onOpenBusinessHours',
-    	'click .contact_us_btn': 'onOpenContactUs'
+    	'click .contact_us_btn': 'onOpenContactUs',
+        'click .chat_btn': 'onOpenChat'
     },
 
     initialize : function(options) {
@@ -71,6 +72,10 @@ var LeftMenuView = PanelView.extend({
     onOpenContactUs: function() {
     	Vent.trigger('viewChange', 'contactUs',
     		[this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+    },
+
+    onOpenChat: function() {
+        Vent.trigger('viewChange', 'chat', [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
     }
 
 });

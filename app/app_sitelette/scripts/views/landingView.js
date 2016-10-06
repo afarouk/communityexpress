@@ -136,7 +136,7 @@ var LandingView = Backbone.View.extend({
     var $el = this.$el.find('#cmtyx_share_block .sms_input_block'),
         $target = $(e.currentTarget),
         demo = window.community.demo ? 'demo=true&' : '',
-        shareUrl = window.location.href.split('?')[0] + 
+        shareUrl = window.location.href.split('?')[0] +
           '?' + demo,
         val = $target.prev().find('.sms_input').val();
 

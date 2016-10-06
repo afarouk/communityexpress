@@ -17,7 +17,8 @@ var PaymentCardView = Backbone.View.extend({
         //Fix for AMEX card (bug in skeuocard)
         Skeuocard.prototype.isValid = function() {
           return !this.el.front.hasClass('invalid')
-            && (!this.el.back.hasClass('invalid') || !this._inputViewsByFace['back'].length);
+            && (!this.el.back.hasClass('invalid') || !this._inputViewsByFace['back'].length)
+            && (this._getUnderlyingValue('name').split(' ').length < 2 ? false : true);
         };
 	},
 
@@ -89,11 +90,30 @@ var PaymentCardView = Backbone.View.extend({
         // Visa: 4556 8270 2101 3160
         // American Express: 3466 255570 30027
         if (valid) {
+            this.$('.roster_order_error').slideUp();
             this.setNewCardToModel();
             // this.resetCVC();
             this.triggerSummary();
         } else {
-            //TODO error
+            this.showError();
+        }
+    },
+
+    showError: function() {
+        if (!this.card._inputViewsByFace.front.length) {
+            this.$('.roster_order_error').text('Please, fill card fields').slideDown();
+        } else if (this.$('.front').hasClass('invalid') || this.$('.cc-name').val().split(' ').length < 2) {
+            if (this.$('.cc-number').hasClass('invalid')) {
+                this.$('.roster_order_error').text('Please, enter card number').slideDown();
+            } else  if (this.$('.cc-exp').hasClass('invalid') || !this.$('.cc-exp-field-m').val() || !this.$('.cc-exp-field-y').val()) {
+                this.$('.roster_order_error').text('Please, enter valid month and year').slideDown();
+            } else if (!this.$('.cc-name').val()) {
+                this.$('.roster_order_error').text('Please, enter your first name and last name').slideDown();
+            } else {
+                this.$('.roster_order_error').text('Please, enter your last name').slideDown();
+            }
+        } else {
+            this.$('.roster_order_error').text('Please, enter cvc').slideDown();
         }
     },
 

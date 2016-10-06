@@ -45,13 +45,8 @@ var ChatView = Backbone.View.extend({
     },
 
     onShow:  function() {
-        // this.addEvents({
-        //     'click .back': 'triggerLandingView',
-        //     'click .navbutton_write_review': 'openNewMessage'
-        // });
-
         this.renderMessages();
-        this.listenTo( Vent, 'logout_success', this.triggerLandingView, this);
+        this.listenTo( Vent, 'logout_success', this.goBack, this);
         this.startPolling();
     },
 
@@ -100,10 +95,6 @@ var ChatView = Backbone.View.extend({
             });
     },
 
-    triggerLandingView: function() {
-        Vent.trigger( 'viewChange', 'restaurant', this.restaurant.getUrlKey(), { reverse: true } );
-    },
-
     startPolling: function() {
         console.log('start polling');
         this.runTimer();
@@ -126,6 +117,10 @@ var ChatView = Backbone.View.extend({
         console.log('polling');
         communicationActions.getConversation(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID());
     },
+
+    goBack: function() {
+        Vent.trigger( 'viewChange', 'restaurant', this.restaurant.getUrlKey());
+    }
 
 
 });

@@ -3185,3 +3185,8 @@ a.cancel {
     margin: 0;
 
 }
+
+.roster_order_error {
+    color: #D8000C;
+    display: none;
+}

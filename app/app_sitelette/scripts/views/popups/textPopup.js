@@ -20,6 +20,7 @@ var TextPopup = PopupView.extend({
         this.addEvents({
             'click .confirmation_button': 'triggerCallback'
         });
+        this.listenTo(this, 'closed', this.callback, this);
     },
 
     render: function () {
