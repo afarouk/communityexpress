@@ -171,9 +171,11 @@ App.prototype = {
 
         switch (type) {
             case 'e':
-                this.goToPage('eventActive', {
-                    sasl: appCache.get('saslData'),
-                    id: uuid
+                //Events
+                $(document).ready(function(){
+                    setTimeout(function () {
+                        Vent.trigger('openEventByShareUrl', uuid);
+                    }, 2000);
                 });
             break;
             case 'h':

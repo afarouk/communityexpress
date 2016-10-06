@@ -106,13 +106,13 @@ module.exports = Backbone.View.extend({
             $target = $(e.currentTarget),
             uuid = this.poll.contestUUID,
             demo = window.community.demo ? 'demo=true&' : '',
-            shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
-              '?' + demo + 't=p&u=' + uuid),
+            shareUrl = window.location.href.split('?')[0] + 
+              '?' + demo + 't=p&u=' + uuid,
             val = $target.prev().val(); //(650) 617-3439
 
         loader.showFlashMessage('Sending message to... ' + val);
         $el.slideUp('slow');
-        contactActions.sendPollContestURLToMobileviaSMSPOST(this.sasl.serviceAccommodatorId, 
+        contactActions.shareURLviaSMS('POLL', this.sasl.serviceAccommodatorId, 
             this.sasl.serviceLocationId, val, uuid, shareUrl)
           .then(function(res){
             loader.showFlashMessage('Sending message success.');
