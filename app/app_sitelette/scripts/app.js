@@ -175,7 +175,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openEventByShareUrl', uuid);
-                    }, 2000);
+                    }, 400);
                 });
             break;
             case 'h':

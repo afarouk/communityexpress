@@ -2031,12 +2031,17 @@ li.promotion_block .body {
     left: 0;
     border-right:20px solid transparent;
     border-left: 0;
+    outline: none;
 }
 .promotion_block .slick-next,
 .events_block .slick-next {
     right: 0;
     border-left:20px solid transparent;
     border-right: 0;
+    outline: none;
+}
+.events_block .event_item_buttons {
+    margin-bottom: 20px;
 }
 .promotion-share-block {
     text-align: center;

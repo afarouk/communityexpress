@@ -51,8 +51,9 @@ var PromotionView = Backbone.View.extend({
     $el.slideToggle('slow');
   },
 
-  showSMSInput: function() {
-    var $el = this.$el.find('.sms_input_block');
+  showSMSInput: function(e) {
+    var $target = $(e.currentTarget),
+        $el = $target.parent().find('.sms_input_block');
     $el.slideToggle('slow');
     $el.find('input').mask('(000) 000-0000');
   },
