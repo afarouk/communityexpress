@@ -78,6 +78,7 @@ var PaymentView = Backbone.View.extend({
                 var currencySymbol = this.model.currencySymbols[resp.currencyCode];
                 this.$('.discount_value').text(currencySymbol + resp.discount);
                 this.model.additionalParams.discount = currencySymbol + resp.discount;
+                this.model.set('totalAmount', this.totalAmount);
             }, this), _.bind(function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
                 popupController.textPopup({
@@ -204,7 +205,7 @@ var PaymentView = Backbone.View.extend({
         this.$('.tip_price_value').text(this.tipSum);
         this.model.additionalParams.tipSum = this.tipSum;
         this.model.additionalParams.tip = this.tip;
-        this.model.set('totalAmount', totalAmountWithTip);
+        this.model.set('totalAmount', totalAmountWithTip - this.model.additionalParams.discount);
     },
 
     onPlaceOrder: function() {

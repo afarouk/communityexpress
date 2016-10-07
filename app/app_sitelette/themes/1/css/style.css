@@ -505,9 +505,7 @@ li {
     padding-bottom: 0;
 }
 .price_list li.tip_price {
-    padding-bottom: 15px;
-    border-bottom: solid 1px #636363;
-    margin-bottom: 15px;
+    padding-bottom: 10px;
 }
 .price_list li.total_price span {
     font-size: 18px;
@@ -3192,7 +3190,9 @@ a.cancel {
 }
 
 .price_list .discount {
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: solid 1px #636363;
 }
 
 input[name=promocode] {
