@@ -54,6 +54,7 @@ var PaymentView = Backbone.View.extend({
     onShow: function() {
         this.checkCashCreditSelection();
         this.getTipInfo();
+        this.setTotalPriceWithTip();
         this.addEvents({
             'click .nav_next_btn': 'triggerNext',
             'click .nav_back_btn': 'goBack',
@@ -187,17 +188,17 @@ var PaymentView = Backbone.View.extend({
         if (this.tip === 20) return;
         h().playSound('addToCart');
         this.tip = this.tip + 5;
-        this.setTotalPticeWithTip();
+        this.setTotalPriceWithTip();
     },
 
     decrementTip: function() {
         if (this.tip === 0) return;
         h().playSound('removeFromCart');
         this.tip = this.tip - 5;
-        this.setTotalPticeWithTip();
+        this.setTotalPriceWithTip();
     },
 
-    setTotalPticeWithTip: function() {
+    setTotalPriceWithTip: function() {
         var totalAmount,
             tipPortion = this.tip/100;
         this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));

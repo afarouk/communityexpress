@@ -38,6 +38,7 @@ var SummaryView = Backbone.View.extend({
 
     onShow: function() {
         this.getTipInfo();
+        this.setTotalPriceWithTip();
         this.addEvents({
             'click .placeOrderBtn': 'onPlaceOrder',
             'click .next_btn': 'onPlaceOrder',
