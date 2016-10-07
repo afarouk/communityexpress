@@ -74,12 +74,8 @@ var PaymentCardView = Backbone.View.extend({
     resetCVC: function() {
         //tweak for skeuocard
         if (this.card.product && this.card.product.attrs.companyShortname !== 'amex') {
-            this.card.flip();
-            this.$el.find('.cc-cvc').val('').trigger('keyup')
-                .trigger('valueChanged', this.card._inputViews.cvc);
-                this.card._state.cvcFilled = false;
-                this.card._state.cvcValid = false;
-            this.card.flip();
+            this.card.set('cvc', '');
+            this.card._updateValidationForFace('back');
         } else {
 
         }
