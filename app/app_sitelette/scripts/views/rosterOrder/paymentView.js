@@ -60,12 +60,31 @@ var PaymentView = Backbone.View.extend({
             'click .rightBtn': 'onCashSelected',
             'click .leftBtn': 'onCreditSelected',
             'click .plus_button': 'incrementTip',
-            'click .minus_button': 'decrementTip'
+            'click .minus_button': 'decrementTip',
+            'click .get_discount_button': 'onGetDiscount'
         });
 
         if (!this.paymentOnlineAccepted && this.allowCash && !this.cashSelected) {
             this.onCashSelected();
         }
+    },
+
+    onGetDiscount: function() {
+        var params = this.model.additionalParams,
+            promoCode = this.$('input[name=promocode]').val();
+        if (!promoCode) return;
+        orderActions.validatePromoCode(params.sasl.sa(), params.sasl.sl(), promoCode)
+            .then(_.bind(function(resp) {
+                var currencySymbol = this.model.currencySymbols[resp.currencyCode];
+                this.$('.discount_value').text(currencySymbol + resp.discount);
+                this.model.additionalParams.discount = resp.discount;
+                this.setTotalPriceWithTip();
+            }, this), _.bind(function(jqXHR) {
+                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
+                popupController.textPopup({
+                    text: text
+                });
+            }, this));
     },
 
     getTipInfo: function() {
@@ -92,7 +111,8 @@ var PaymentView = Backbone.View.extend({
             addrIsEmpty: this.model.additionalParams.addrIsEmpty,
             allowCash: this.allowCash,
             paymentOnlineAccepted: this.paymentOnlineAccepted,
-            allowDelivery: this.allowDelivery
+            allowDelivery: this.allowDelivery,
+            discount: this.model.additionalParams.discount
     	});
     },
 
@@ -178,14 +198,17 @@ var PaymentView = Backbone.View.extend({
     },
 
     setTotalPticeWithTip: function() {
-        var tipPortion = this.tip/100;
+        var totalAmount,
+            tipPortion = this.tip/100;
         this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
         var totalAmountWithTip = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
         this.$('.tip_quantity').text(this.tip + '%');
         this.$('.tip_price_value').text(this.tipSum);
         this.model.additionalParams.tipSum = this.tipSum;
         this.model.additionalParams.tip = this.tip;
-        this.model.set('totalAmount', totalAmountWithTip);
+        var totalAmountWithTipDiscount = parseFloat((totalAmountWithTip - this.model.additionalParams.discount).toFixed(2));
+        totalAmountWithTipDiscount < 0 ? totalAmount = 0 : totalAmount = totalAmountWithTipDiscount;
+        this.model.set('totalAmount', totalAmount);
     },
 
     onPlaceOrder: function() {

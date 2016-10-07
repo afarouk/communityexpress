@@ -233,11 +233,13 @@ var helpers = function() {
 
             switch (sound) {
                 case 'addToCart':
+                    if (!addToCartSound || !addToCartSound.play) return;
                     addToCartSound.pause();
                     addToCartSound.currentTime = 0;
                     addToCartSound.play();
                     break;
                 case 'removeFromCart':
+                    if (!removeFromCartSound || !removeFromCartSound.play) return;
                     removeFromCartSound.pause();
                     removeFromCartSound.currentTime = 0;
                     removeFromCartSound.play();

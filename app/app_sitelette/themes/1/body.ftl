@@ -99,7 +99,7 @@
 						<div class="body">
 							<ul class="gallery event_block_overlay">
 								<#list eventsSummary.events as event>
-									<li class="event_item">
+									<li class="event_item" data-uuid="${event.uuid}">
 										<#if event.url??>
 											<div class="event_image">
 												<img src="${event.url}"></img>
