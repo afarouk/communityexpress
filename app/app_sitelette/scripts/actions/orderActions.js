@@ -1,6 +1,7 @@
 'use strict';
 
 var gateway = require('../APIGateway/gateway.js'),
+    moment = require('moment'),
     sessionActions = require('../actions/sessionActions.js');
 
 var getUser = function () {
@@ -8,6 +9,7 @@ var getUser = function () {
 };
 
 module.exports = {
+    moment: moment,
     placeOrder: function (sa, sl, options) {
         return gateway.sendRequest('createUserOrder', {
             payload: _.extend(options, {
@@ -20,11 +22,10 @@ module.exports = {
     },
 
     validatePromoCode: function(sa, sl, promoCode) {
-        debugger;
         return gateway.sendRequest('validatePromoCode', {
             payload: {
                 promoCode : promoCode,
-                date: new Date(),
+                date: '2016-09-29T20:32:56:UTC',
                 serviceAccommodatorId: sa,
                 serviceLocationId: sl
             },
