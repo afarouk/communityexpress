@@ -87,6 +87,8 @@ module.exports = {
             getOrderPrefillInfo: ['GET', '/retail/getOrderPrefillInfo'],
             getPriceAddons: ['GET', '/retail/retrieveRetailPriceAddon'],
 
+            validatePromoCode: ['POST', '/retail/validateRetailPromoCode'],
+
             retrieveContestsForClient: ['GET', '/contests/retrieveContestsForClient'],
             retrievePhotoContest: ['GET', '/contests/retrievePhotoContestClient'],
             retrievePollContest: ['GET', '/contests/retrievePollContestClient'],

@@ -19,7 +19,17 @@ module.exports = {
         });
     },
 
-   
+    validatePromoCode: function(sa, sl, promoCode) {
+        return gateway.sendRequest('applyPromoCode', {
+            payload: {
+                promoCode : promoCode,
+                date: new Date(),
+                serviceAccommodatorId: sa,
+                serviceLocationId: sl
+            },
+            UID: getUser().getUID(),
+        });
+    },
 
     getOrderPrefillInfo: function() {
         return gateway.sendRequest('getOrderPrefillInfo', {
