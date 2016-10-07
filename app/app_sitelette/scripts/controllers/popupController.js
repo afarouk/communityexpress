@@ -7,7 +7,7 @@ var sessionActions = require('../actions/sessionActions'),
     SigninView = require('../views/panels/signinView'),
     viewFactory = require('../viewFactory');
 
-var PopupController = {
+module.exports = {
     signin: function(model, callback) {
         var view = viewFactory.create('signin', model, this, {callback: callback});
         this.show(view);
@@ -50,8 +50,7 @@ var PopupController = {
     },
 
     openLeftMenu: function(){
-        var view = viewFactory.create('leftMenuView');
-        // debugger;
+        var view = viewFactory.create('leftMenuView', null, this);
         this.show(view);
     },
 
@@ -96,5 +95,3 @@ var PopupController = {
         }
     }
 };
-
-module.exports = PopupController;
