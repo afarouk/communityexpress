@@ -16,9 +16,10 @@ var PaymentCardView = Backbone.View.extend({
 
         //Fix for AMEX card (bug in skeuocard)
         Skeuocard.prototype.isValid = function() {
-          return !this.el.front.hasClass('invalid')
+            var names = this._getUnderlyingValue('name').split(' ');
+            return !this.el.front.hasClass('invalid')
             && (!this.el.back.hasClass('invalid') || !this._inputViewsByFace['back'].length)
-            && (this._getUnderlyingValue('name').split(' ').length < 2 ? false : true);
+            && ((names.length < 2 ? false : true) || !(!names[0] || !names[1]));
         };
 	},
 
@@ -100,20 +101,27 @@ var PaymentCardView = Backbone.View.extend({
     },
 
     showError: function() {
+        var names = this.$('.cc-name').val().split(' '),
+            error = this.$('.roster_order_error'),
+            front = this.$('.front'),
+            number = this.$('.cc-number'),
+            exp = this.$('.cc-exp'),
+            expMonth = this.$('.cc-exp-field-m'),
+            expYear = this.$('.cc-exp-field-y');
+
         if (!this.card._inputViewsByFace.front.length) {
-            this.$('.roster_order_error').text('Please, fill card fields').slideDown();
-        } else if (this.$('.front').hasClass('invalid') || this.$('.cc-name').val().split(' ').length < 2) {
-            if (this.$('.cc-number').hasClass('invalid')) {
-                this.$('.roster_order_error').text('Please, enter card number').slideDown();
-            } else  if (this.$('.cc-exp').hasClass('invalid') || !this.$('.cc-exp-field-m').val() || !this.$('.cc-exp-field-y').val()) {
-                this.$('.roster_order_error').text('Please, enter valid month and year').slideDown();
-            } else if (!this.$('.cc-name').val()) {
-                this.$('.roster_order_error').text('Please, enter your first name and last name').slideDown();
-            } else {
-                this.$('.roster_order_error').text('Please, enter your last name').slideDown();
+            error.text('Please, fill card fields').slideDown();
+        } else if (front.hasClass('invalid') || (names.length < 2 || (!names[0] || !names[1]))) {
+            if (number.hasClass('invalid')) {
+                error.text('Please, enter card number').slideDown();
+            } else  if (exp.hasClass('invalid') || !expMonth.val() || !expYear.val()) {
+                error.text('Please, enter valid month and year').slideDown();
+            }
+            else {
+                error.text('Please, enter your first name and last name').slideDown();
             }
         } else {
-            this.$('.roster_order_error').text('Please, enter cvc').slideDown();
+            error.text('Please, enter cvc').slideDown();
         }
     },
 
