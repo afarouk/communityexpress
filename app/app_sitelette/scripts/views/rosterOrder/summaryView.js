@@ -43,8 +43,17 @@ var SummaryView = Backbone.View.extend({
             'click .next_btn': 'onPlaceOrder',
             'click .nav_back_btn': 'goBack',
             'click .plus_button': 'incrementTip',
-            'click .minus_button': 'decrementTip'
+            'click .minus_button': 'decrementTip',
+            'click .get_discount_button': 'onGetDiscount'
         });
+    },
+
+    onGetDiscount: function() {
+        var params = this.model.additionalParams;
+        orderActions.validatePromoCode(params.sasl.sa(), params.sals.sl(), 'S10')
+            .then(_.bind(function(resp) {
+                debugger;
+            }, this));
     },
 
     getTipInfo: function() {
