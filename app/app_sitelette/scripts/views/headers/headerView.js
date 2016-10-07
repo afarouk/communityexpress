@@ -60,7 +60,7 @@ var HeaderView = Backbone.View.extend({
     },
 
     openLeftMenu: function() {
-        popupController.openLeftMenu(this);
+        popupController.openLeftMenu();
     }
 
 });

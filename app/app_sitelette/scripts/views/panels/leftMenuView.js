@@ -5,8 +5,10 @@
 var template = require('ejs!../../templates/leftMenuView.ejs'),
 loader = require('../../loader'),
 PanelView = require('../components/panelView'),
+RestaurantModel = require('../../models/restaurantModel'),
 appCache = require('../../appCache.js'),
 Vent = require('../../Vent'),
+// PopupController = require('../../controllers/popupController'),
 h = require('../../globalHelpers');
 
 var LeftMenuView = PanelView.extend({
@@ -23,6 +25,7 @@ var LeftMenuView = PanelView.extend({
     initialize : function(options) {
         this.options = options || {};
         this.saslData = appCache.get('saslData');
+        this.sasl = new RestaurantModel(this.saslData);
         setTimeout(this._onOpen.bind(this), 500);
     },
 
@@ -75,7 +78,12 @@ var LeftMenuView = PanelView.extend({
     },
 
     onOpenChat: function() {
+        debugger;
         Vent.trigger('viewChange', 'chat', [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+        // PopupController.requireLogIn(this.sasl,
+        //     Vent.trigger('viewChange', 'chat',
+        //     [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+        // );
     }
 
 });
