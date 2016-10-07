@@ -281,10 +281,6 @@ App.prototype = {
 
         this.visibilityOnSwitchPage(viewName);
 
-        if (viewName === 'chat') { // redirect to restaurant view if user is not signed in
-            viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
-        }
-
         loader.show('loading');
 
         //check if view was created
