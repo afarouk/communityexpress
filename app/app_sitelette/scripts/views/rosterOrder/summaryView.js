@@ -56,7 +56,8 @@ var SummaryView = Backbone.View.extend({
             .then(_.bind(function(resp) {
                 var currencySymbol = this.model.currencySymbols[resp.currencyCode];
                 this.$('.discount_value').text(currencySymbol + resp.discount);
-                this.model.additionalParams.discount = currencySymbol + resp.discount;
+                this.model.additionalParams.discount = resp.discount;
+                this.setTotalPriceWithTip();
             }, this), _.bind(function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
                 popupController.textPopup({
@@ -109,14 +110,17 @@ var SummaryView = Backbone.View.extend({
     },
 
     setTotalPriceWithTip: function() {
-        var tipPortion = this.tip/100;
+        var totalAmount,
+            tipPortion = this.tip/100;
         this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
         var totalAmountWithTip = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
         this.$('.tip_quantity').text(this.tip + '%');
         this.$('.tip_price_value').text(this.tipSum);
         this.model.additionalParams.tipSum = this.tipSum;
         this.model.additionalParams.tip = this.tip;
-        this.model.set('totalAmount', totalAmountWithTip);
+        var totalAmountWithTipDiscount = parseFloat((totalAmountWithTip - this.model.additionalParams.discount).toFixed(2));
+        totalAmountWithTipDiscount < 0 ? totalAmount = 0 : totalAmount = totalAmountWithTipDiscount;
+        this.model.set('totalAmount', totalAmount);
     },
 
     onPlaceOrder: function() {
