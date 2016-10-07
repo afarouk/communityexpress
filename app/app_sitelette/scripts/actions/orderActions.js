@@ -22,10 +22,11 @@ module.exports = {
     },
 
     validatePromoCode: function(sa, sl, promoCode) {
+        var data = this.moment.utc(new Date()).format().replace('Z', ':UTC'); //tweak utc date
         return gateway.sendRequest('validatePromoCode', {
             payload: {
                 promoCode : promoCode,
-                date: '2016-09-29T20:32:56:UTC',
+                date: data,
                 serviceAccommodatorId: sa,
                 serviceLocationId: sl
             },
