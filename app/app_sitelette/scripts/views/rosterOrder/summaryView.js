@@ -49,10 +49,19 @@ var SummaryView = Backbone.View.extend({
     },
 
     onGetDiscount: function() {
-        var params = this.model.additionalParams;
-        orderActions.validatePromoCode(params.sasl.sa(), params.sasl.sl(), 'S10')
+        var params = this.model.additionalParams,
+            promoCode = this.$('input[name=promocode]').val();
+        if (!promoCode) return;
+        orderActions.validatePromoCode(params.sasl.sa(), params.sasl.sl(), promoCode)
             .then(_.bind(function(resp) {
-                debugger;
+                var currencySymbol = this.model.currencySymbols[resp.currencyCode];
+                this.$('.discount_value').text(currencySymbol + resp.discount);
+                this.model.additionalParams.discount = currencySymbol + resp.discount;
+            }, this), _.bind(function(jqXHR) {
+                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
+                popupController.textPopup({
+                    text: text
+                });
             }, this));
     },
 
@@ -80,7 +89,8 @@ var SummaryView = Backbone.View.extend({
             tipSum: this.tipSum,
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty,
-            allowDelivery: this.allowDelivery
+            allowDelivery: this.allowDelivery,
+            discount: this.model.additionalParams.discount
         });
     },
 
@@ -88,17 +98,17 @@ var SummaryView = Backbone.View.extend({
         if (this.tip === 20) return;
         h().playSound('addToCart');
         this.tip = this.tip + 5;
-        this.setTotalPticeWithTip();
+        this.setTotalPriceWithTip();
     },
 
     decrementTip: function() {
         if (this.tip === 0) return;
         h().playSound('removeFromCart');
         this.tip = this.tip - 5;
-        this.setTotalPticeWithTip();
+        this.setTotalPriceWithTip();
     },
 
-    setTotalPticeWithTip: function() {
+    setTotalPriceWithTip: function() {
         var tipPortion = this.tip/100;
         this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
         var totalAmountWithTip = parseFloat((this.totalAmount + this.tipSum).toFixed(2));

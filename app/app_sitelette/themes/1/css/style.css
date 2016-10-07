@@ -1708,7 +1708,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     color: #cbcbcb;
     text-transform: uppercase;
     text-align: center;
-} 
+}
 .events-share-block {
     text-align: center;
 }
@@ -3189,4 +3189,25 @@ a.cancel {
 .roster_order_error {
     color: #D8000C;
     display: none;
+}
+
+.price_list .discount {
+    padding-bottom: 10px;
+}
+
+input[name=promocode] {
+    width: 100px;
+    color: #2b2b2b;
+}
+
+.discount .float_right .get_discount_button {
+    color: #fff;
+    background-color: #2b2b2b;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.discount_value {
+    text-align: right;
+    width: 50px;
 }
