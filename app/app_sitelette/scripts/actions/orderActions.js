@@ -20,7 +20,8 @@ module.exports = {
     },
 
     validatePromoCode: function(sa, sl, promoCode) {
-        return gateway.sendRequest('applyPromoCode', {
+        debugger;
+        return gateway.sendRequest('validatePromoCode', {
             payload: {
                 promoCode : promoCode,
                 date: new Date(),

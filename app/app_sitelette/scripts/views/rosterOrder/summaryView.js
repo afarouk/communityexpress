@@ -50,7 +50,7 @@ var SummaryView = Backbone.View.extend({
 
     onGetDiscount: function() {
         var params = this.model.additionalParams;
-        orderActions.validatePromoCode(params.sasl.sa(), params.sals.sl(), 'S10')
+        orderActions.validatePromoCode(params.sasl.sa(), params.sasl.sl(), 'S10')
             .then(_.bind(function(resp) {
                 debugger;
             }, this));
