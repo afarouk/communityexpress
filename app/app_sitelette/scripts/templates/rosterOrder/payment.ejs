@@ -75,6 +75,14 @@
                         <span class="order_name">Tax (<%= taxState %>%)</span>
                         <span class="order_price cmtyx_text_color_1"><%= cs + taxAmount %></span>
                     </li>
+                    <li class="discount">
+                        <span class="order_name">Discount</span>
+                        <div class="float_right">
+                            <input type="text" name="promocode" data-role="none" placeholder="promo code">
+                            <a class="get_discount_button" href="#">Apply</a>
+                            <span class="order_price discount_value cmtyx_text_color_1"><%= discount %></span>
+                        </div>
+                    </li>
                     <li class="tip_price">
                         <span class="order_name">Tip</span>
                         <div class="float_right">
