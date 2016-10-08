@@ -112,6 +112,9 @@ if (validateParams('friendlyURL')) {
       case 'developer':
        $pageAccess='common_developer.php';
        break;
+      case 'sendsample':
+        $pageAccess='common_sendsample.php';
+       break;
       default:
     }
   }

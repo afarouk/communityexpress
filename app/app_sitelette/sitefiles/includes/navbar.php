@@ -14,8 +14,8 @@
      </div>
     </div>
     <div class="collapse navbar-collapse clearfix navMenu" role="navigation">
-        
-     
+
+
        <ul class="nav navbar-nav navbar-right">
       <li  <?php modifyUrlAndClass("") ?> >
        <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","slider-part") ?>  >Home</a>
@@ -32,7 +32,7 @@
            <li <?php modifyUrlAndClass("Invitation") ?>>
        <a  href="common_signup.php" >Invitation</a>
       </li>
-      
+
       <li>
        <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
       </li>
@@ -60,7 +60,7 @@
             <a href="/" class="page-scroll"> <img class="img-responsive" src="sitefiles/images/logo1.png" alt="logo"> </a>
           </div>
         </div>
-          
+
         <div class="collapse navbar-collapse clearfix navMenu" id="bs-example-navbar-collapse-1" role="navigation">
           <ul class="nav navbar-nav navbar-right">
             <li <?php modifyUrlAndClass("") ?>>
@@ -69,7 +69,7 @@
             <li>
               <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","features") ?>>Features</a>
             </li>
-            <li class="li_demo"><a href="common_senddemo.php">demo</a></li>
+            <li class="li_demo"><a href="sendsample">sample</a></li>
             <li>
               <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
             </li>

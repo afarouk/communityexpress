@@ -15,7 +15,7 @@
 if (isset($saslName)) {
     echo $saslName;
 } else {
-    echo 'Chalkboards Demo';
+    echo 'Chalkboards Sample';
 }
 ?></title>
 <!-- insert page specific css here -->
@@ -27,7 +27,7 @@ include 'sitefiles/includes/navbar.php';
  ?>
  <!-- Header end -->
  <?php
-include 'sitefiles/pages/content_senddemo.html';
+include 'sitefiles/pages/content_sendsample.html';
  ?>
   <?php
 include 'sitefiles/includes/scriptfiles.html';
