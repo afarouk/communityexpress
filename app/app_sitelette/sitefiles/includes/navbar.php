@@ -74,7 +74,7 @@
               <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
             </li>
             <li class="li_login" <?php modifyUrlAndClass("portalexpress") ?> >
-              <a href="common_portalexpress.php" class="login_btn">Log in</a>
+              <a href="portalexpress" class="login_btn">Log in</a>
             </li>
             <li class="li_signin" <?php modifyUrlAndClass("signup") ?> >
               <a href="common_signup.php" class="signup_btn">Sign up</a>

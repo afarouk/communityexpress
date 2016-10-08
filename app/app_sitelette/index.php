@@ -124,6 +124,15 @@ if (validateParams('friendlyURL')) {
       case 'template':
        $pageAccess='common_template.php';
        break;
+      case 'unsubscribe':
+        $pageAccess='common_unsubscribe.php';
+        break;
+      case 'portalexpress':
+        $pageAccess='common_portalexpress.php';
+        break;
+
+
+
       default:
     }
   }
@@ -267,7 +276,7 @@ if(isset($pageAccess)){
   include_once('sitefiles/pages/'.$pageAccess);
 } else if ($saslAccess || $urlKeyAccess) {
   if ( (!$detect->isMobile() || $detect->isTablet()) && !$desktopIFrame) {
-    include_once ('common_desktop.php');
+    include_once ('sitefiles/pages/'.'common_desktop.php');
   } else {
     $errorMessage = null;
     $saslName = null;
@@ -283,11 +292,11 @@ if(isset($pageAccess)){
     $siteletteJSON = makeApiCall($apiURL);
     if ($siteletteJSON['curl_error']) {
       $errorMessage = 'Service unavailable: '.$siteletteJSON['curl_error'];
-      include_once 'error_page/index.php';
+      include_once ('error_page/index.php');
     } else {
       if (isset($siteletteJSON['error'])) {
         $errorMessage = 'Service unavailable: '.$siteletteJSON['error']['message'];
-        include_once 'error_page/index.php';
+        include_once ('error_page/index.php');
 
       } else {
         $saslJSON = json_decode($siteletteJSON['saslJSON'], true);
@@ -336,5 +345,5 @@ if(isset($pageAccess)){
   * neither sasl access or urlkey access.
   * neither URL nor sa,sl provided
   */
-  include_once 'sitefiles/pages/'.'common_chalkboards.php';
+  include_once ('sitefiles/pages/'.'common_chalkboards.php');
 } /* end no url supplied*/
