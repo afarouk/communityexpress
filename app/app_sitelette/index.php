@@ -115,6 +115,15 @@ if (validateParams('friendlyURL')) {
       case 'sendsample':
         $pageAccess='common_sendsample.php';
        break;
+      case 'resetpassword':
+       $pageAccess='common_resetpassword.php';
+      break;
+      case 'sendsample':
+       $pageAccess='common_sendsample.php';
+       break;
+      case 'template':
+       $pageAccess='common_template.php';
+       break;
       default:
     }
   }
