@@ -36,14 +36,14 @@
    <div class="widget">
     <div class="menu-footer4-container">
      <ul class="menu">
-     
+
       <li>
        <a href="/common_privacypolicy.php">Privacy Policy </a>
       </li>
       <li>
        <a href="/common_termsandconditions.php">Terms &amp; Conditions</a>
       </li>
-       
+
 
      </ul>
     </div>
@@ -69,21 +69,21 @@
         <div class="col-sm-12 col-md-5 col-md-offset-1 left_block">
           <div class="col-sm-4 col-md-4">
             <ul>
-              <a href="#"><li>Chalkboards.today</li></a>
-              <a href="/common_about.php"><li>About Us</li></a>
+              <a href="#"><li>chalkboards.today</li></a>
+              <a href="/about"><li>About Us</li></a>
               <a href="/index.php#contact"><li>Contact Us</li></a>
             </ul>
           </div>
           <div class="col-sm-4 col-md-4">
             <ul>
-              <a href="common_developer.php"><li>Developer</li></a>
-              <a href="common_apiLicensing.php"><li>API Licensing</li></a>
+              <a href="developer"><li>Developer</li></a>
+              <a href="apiLicensing"><li>API Licensing</li></a>
             </ul>
           </div>
           <div class="col-sm-4 col-md-4">
             <ul>
-              <a href="/common_privacypolicy.php"><li>Privacy Policy</li></a>
-              <a href="/common_termsandconditions.php"><li>Terms &amp; Conditions </li></a>
+              <a href="/privacypolicy"><li>Privacy Policy</li></a>
+              <a href="/termsandconditions"><li>Terms &amp; Conditions </li></a>
             </ul>
           </div>
         </div>
@@ -92,8 +92,7 @@
             <a href="#"><p>©  2016. All rights reserved.  | orinoco.us, by Orinoco Inc.</p></a>
           </div>
         </div>
-      </div> 
+      </div>
     </div><!-- container end -->
   </section>
 </footer>
-
