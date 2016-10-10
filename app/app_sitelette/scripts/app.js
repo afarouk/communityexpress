@@ -308,7 +308,8 @@ App.prototype = {
                 viewName === 'contactUs' ||
                 viewName === 'businessHours' ||
                 (viewName === 'address' && this.previousViewName === 'roster' ) ||
-                (viewName === 'address' && this.previousViewName === 'catalog' )) {
+                (viewName === 'address' && this.previousViewName === 'catalog' ) ||
+                (viewName === 'address' && this.previousViewName === 'restaurant')) {
                     if (viewName === 'address') {
                         this.removeCashedViews(['add_address', 'payment','payment_card', 'summary']);
                     }
