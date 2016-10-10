@@ -175,6 +175,7 @@ var CatalogView = Backbone.View.extend({
 
     triggerOrder : function() {
         popupController.requireLogIn(this.sasl, function() {
+            this.$('.sub_header').hide();
             Vent.trigger('viewChange', 'address', {
                 id : this.sasl.getUrlKey(),
                 catalogId : this.catalogId,

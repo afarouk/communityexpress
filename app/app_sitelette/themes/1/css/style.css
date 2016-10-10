@@ -1344,6 +1344,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 100%;
     z-index: 1000;
     margin-top: -3px;
+    top: 45px;
     left: 0;
 }
 .sub-radio-list {
@@ -1358,16 +1359,17 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding-top: 0;
 }
 #cmtyx_rosterView .ui-content {
-    padding-top: 60px;
+    padding-top: 105px;
 }
 #cmtyx_catalogView .ui-content {
-    padding-top: 40px;
+    padding-top: 85px;
 }
 #cmtyx_catalogView .content {
     margin-bottom: 10px;
 }
 .common_header {
-    position: relative;
+    /*position: relative;*/
+    position: fixed;
     padding: 0;
     text-align: center;
 }
