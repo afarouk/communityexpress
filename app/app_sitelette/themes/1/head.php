@@ -77,11 +77,11 @@
 
         window.fbAsyncInit = function() {
           FB.init({
-            appId      : '1691237561196865', //(!!!)Change it on yours APP ID
+            appId      : '163685094028796', //(!!!)Change it on yours APP ID
             cookie     : true,
             status     : true,
             xfbml      : true,
-            version    : 'v2.7'
+            version    : 'v2.6'
           });
         }
     </script>

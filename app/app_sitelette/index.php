@@ -95,16 +95,47 @@ if (validateParams('serviceLocationId')) {
 
 if (validateParams('friendlyURL')) {
   $friendlyURL = $_REQUEST['friendlyURL'];
-  /* hack */
-  if($friendlyURL==='signup' ||
-     $friendlyURL==='about'  ||
-     $friendlyURL==='features' ||
-     $friendlyURL==='portalexpress' ||
-     $friendlyURL==='apiLicensing' ||
-     $friendlyURL==='developer' ||
-     $friendlyURL==='common_senddemo.php'
-    )
-     $friendlyURL=null;
+  if(isset($friendlyURL)){
+    switch($friendlyURL){
+      case 'privacypolicy':
+       $pageAccess='common_privacypolicy.php';
+       break;
+      case 'termsandconditions':
+       $pageAccess='common_termsandconditions.php';
+       break;
+      case 'about':
+       $pageAccess='common_about.php';
+       break;
+      case 'apiLicensing':
+       $pageAccess='common_apiLicensing.php';
+       break;
+      case 'developer':
+       $pageAccess='common_developer.php';
+       break;
+      case 'sendsample':
+        $pageAccess='common_sendsample.php';
+       break;
+      case 'resetpassword':
+       $pageAccess='common_resetpassword.php';
+      break;
+      case 'sendsample':
+       $pageAccess='common_sendsample.php';
+       break;
+      case 'template':
+       $pageAccess='common_template.php';
+       break;
+      case 'unsubscribe':
+        $pageAccess='common_unsubscribe.php';
+        break;
+      case 'portalexpress':
+        $pageAccess='common_portalexpress.php';
+        break;
+
+
+
+      default:
+    }
+  }
 } else {
   $friendlyURL = null;
 }
@@ -241,10 +272,11 @@ if (validateParams('debug')) {
 }
 
 // not mobile or tablet and not already in the iframe
-
-if ($saslAccess || $urlKeyAccess) {
+if(isset($pageAccess)){
+  include_once('sitefiles/pages/'.$pageAccess);
+} else if ($saslAccess || $urlKeyAccess) {
   if ( (!$detect->isMobile() || $detect->isTablet()) && !$desktopIFrame) {
-    include_once ('common_desktop.php');
+    include_once ('sitefiles/pages/'.'common_desktop.php');
   } else {
     $errorMessage = null;
     $saslName = null;
@@ -260,11 +292,11 @@ if ($saslAccess || $urlKeyAccess) {
     $siteletteJSON = makeApiCall($apiURL);
     if ($siteletteJSON['curl_error']) {
       $errorMessage = 'Service unavailable: '.$siteletteJSON['curl_error'];
-      include_once 'error_page/index.php';
+      include_once ('error_page/index.php');
     } else {
       if (isset($siteletteJSON['error'])) {
         $errorMessage = 'Service unavailable: '.$siteletteJSON['error']['message'];
-        include_once 'error_page/index.php';
+        include_once ('error_page/index.php');
 
       } else {
         $saslJSON = json_decode($siteletteJSON['saslJSON'], true);
@@ -313,5 +345,5 @@ if ($saslAccess || $urlKeyAccess) {
   * neither sasl access or urlkey access.
   * neither URL nor sa,sl provided
   */
-  include_once 'common_chalkboards.php';
+  include_once ('sitefiles/pages/'.'common_chalkboards.php');
 } /* end no url supplied*/

@@ -25,23 +25,24 @@
 			<ul>
 				<li><a href="#" class="menu_button_3 ui-btn">
 						<!-- <div class="navbar_btn_icon document_img"></div>  -->
-						<div class="navbar_btn_icon icon-document"></div> 
+						<div class="navbar_btn_icon icon-document"></div>
 						<br>Menu
 				</a></li>
 				<li><a href="#" class="menu_button_2">
 						<!-- <div class="navbar_btn_icon calendar_grey_img m-b-11"></div>  -->
-						<div class="navbar_btn_icon icon-deals"></div> 
+						<div class="navbar_btn_icon icon-deals"></div>
 						<br>Deals
 				</a></li>
 				<li><a href="#" class="menu_button_4">
 						<!-- <div class="navbar_btn_icon information_button_img m-b-7"></div>  -->
-						<div class="navbar_btn_icon icon-information"></div> 
+						<div class="navbar_btn_icon icon-information"></div>
 						<br>About
 				</a></li>
 				<li><a href="#" class="menu_button_5">
 						<!-- <div class="navbar_btn_icon user_img m-b-9"></div>  -->
 						<div class="navbar_btn_icon icon-user"></div> 
 						<span class="glyphicon glyphicon-ok .cmtyx_text_color_1" aria-hidden="true"></span>
+
 						<br>User
 				</a></li>
 			</ul>
@@ -95,7 +96,7 @@
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
 						<span class="title">events</span> <span class="collapse_btn">&#9650;</span>
-					</div> 
+					</div>
 					<#if (eventsSummary.events)?has_content >
 						<div class="body">
 							<ul class="gallery event_block_overlay">
@@ -320,6 +321,10 @@
 										${promotion.promoType.displayText}</div>
 									<img src="${promotion.URL}"></img>
 									<div class="promotion_title">${promotion.title}</div>
+									<#if promotion.buyable!false>
+	                 <button class=promotions-buybutton" data-uuid="${promotion.uuid}">
+	                  Buy</button>
+                  </#if>
 									<div class="promotion_description">${promotion.message}</div>
 									<div class="ui-grid-a promotion_item_buttons">
 										<div class="ui-block-a like_btn_block"
