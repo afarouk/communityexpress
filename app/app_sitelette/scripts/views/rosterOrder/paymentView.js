@@ -223,15 +223,19 @@ var PaymentView = Backbone.View.extend({
         ).then(function(e) {
             loader.hide();
             params.basket.reset();
-            params.backToRoster = false;
-            var callback = params.backToCatalog
-            ? _.bind(this.triggerCatalogView, this)
-            : _.bind(this.triggerRosterView, this);
+            // params.backToRoster = false;
+            var callback;
+            if (params.backToCatalog) {
+                callback = _.bind(this.triggerCatalogView, this)
+            } else if (params.backToRoster) {
+                callback = _.bind(this.triggerRosterView, this);
+            } else {
+                callback = _.bind(this.triggerRestaurantView, this);
+            }
             popupController.textPopup({
                 text: 'order successful'
             }, callback);
         }.bind(this), function(e) {
-            debugger;
             loader.hide();
             var text = h().getErrorMessage(e, 'Error placing your order');
             popupController.textPopup({
@@ -264,6 +268,10 @@ var PaymentView = Backbone.View.extend({
         }, {
             reverse: false
         });
+    },
+
+    triggerRestaurantView: function() {
+        Vent.trigger('viewChange', 'restaurant', this.model.additionalParams.sasl.getUrlKey());
     },
 
     goBack : function() {

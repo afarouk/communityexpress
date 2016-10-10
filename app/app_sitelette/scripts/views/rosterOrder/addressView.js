@@ -179,7 +179,6 @@ var AddressView = Backbone.View.extend({
        }, { reverse: true });
     },
 
-    //TODO
     triggerCatalogView: function(params) {
         Vent.trigger('viewChange', 'catalog', {
           sasl: params.sasl.id,
@@ -191,8 +190,8 @@ var AddressView = Backbone.View.extend({
     },
 
     triggerRestaurantView: function() {
-        console.log('return to restaurant');
-    },
+        Vent.trigger('viewChange', 'restaurant', this.model.additionalParams.sasl.getUrlKey());
+    }
 });
 
 module.exports = AddressView;

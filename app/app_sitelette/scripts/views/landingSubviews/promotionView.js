@@ -4,6 +4,11 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
+    appCache = require('../../appCache'),
+    popupController = require('../../controllers/popupController'),
+    saslActions = require('../../actions/saslActions'),
+    catalogActions = require('../../actions/catalogActions'),
+    CatalogBasketModel = require('../../models/CatalogBasketModel'),
     contactActions = require('../../actions/contactActions');
 
 var PromotionView = Backbone.View.extend({
@@ -14,7 +19,8 @@ var PromotionView = Backbone.View.extend({
     'click .header': 'toggleCollapse',
     'click .share_btn_block': 'showShareBlock',
     'click .sms_block': 'showSMSInput',
-    'click .sms_send_button': 'onSendSMS'
+    'click .sms_send_button': 'onSendSMS',
+    'click .promotions-buybutton': 'onBuyItem'
   },
 
   initialize: function(options) {
@@ -95,13 +101,13 @@ var PromotionView = Backbone.View.extend({
         $target = $(e.currentTarget),
         uuid = $target.parent().parent().data('uuid'),
         demo = window.community.demo ? 'demo=true&' : '',
-        shareUrl = window.location.href.split('?')[0] + 
+        shareUrl = window.location.href.split('?')[0] +
           '?' + demo + 't=p&u=' + uuid,
         val = $target.prev().find('.sms_input').val();
-        
+
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
-    contactActions.shareURLviaSMS('PROMOTION', this.sasl.serviceAccommodatorId, 
+    contactActions.shareURLviaSMS('PROMOTION', this.sasl.serviceAccommodatorId,
       this.sasl.serviceLocationId, val, uuid, shareUrl)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');
@@ -123,7 +129,48 @@ var PromotionView = Backbone.View.extend({
             $(this).parent().find('.collapse_btn').html('&#9660;');
         }
     });
-  }
+  },
+
+    onBuyItem: function(e) {
+        var uuid = e.target.dataset.uuid;
+        var sasl;
+        saslActions.getSasl()
+            .then(_.bind(function(ret) {
+                sasl = ret;
+                return catalogActions.getItemDetails(uuid)
+                    .then(_.bind(function(resp) {
+                        // Hardcoded values. We need groupId for item
+                        var catalogDisplayText = 'Catalog',
+                            catalogUUID = 'CATALOG',
+                            groupId = 'CATALOG_FANCYSAREES',
+                            groupDisplayText = '';
+                        // end
+                        var basket = new CatalogBasketModel();
+                        basket.addItem(new Backbone.Model(resp), 1, groupId, groupDisplayText, catalogUUID, catalogDisplayText);
+                        appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + 'CATALOG' + ':catalogbasket', basket);
+                        this.triggerOrder(sasl);
+                    }, this), function(jqXHR) {
+                        var text = h().getErrorMessage(jqXHR, 'You can\'t buy this item now');
+                        popupController.tetxPopup({
+                            text: text
+                        });
+                    });
+            }, this));
+    },
+
+    triggerOrder : function(sasl) {
+        popupController.requireLogIn(this.sasl, function() {
+            Vent.trigger('viewChange', 'address', {
+                id: sasl.getUrlKey(),
+                catalogId: 'CATALOG',
+                backToCatalog: false,
+                backToCatalogs: false,
+                backToRoster: false
+            }, {
+                reverse : true
+            });
+        }.bind(this));
+    }
 
 });
 

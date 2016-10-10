@@ -545,9 +545,9 @@ module.exports = {
             addresses,
             fundsource,
             rosterId = options.rosterId || options.catalogId,
-            backToCatalog = true, // options.backToCatalogs;
-            backToRoster = true,
-            backToCatalogs = options.backToCatalogs,
+            backToCatalog = options.backToCatalog || false, // options.backToCatalogs;
+            backToRoster = options.backToRoster || false,
+            backToCatalogs = options.backToCatalogs || false,
             editModel=options.editModel,
             launchedViaURL=options.launchedViaURL;
         options.rosterId ? basketType = ':rosterbasket' : basketType = ':catalogbasket';

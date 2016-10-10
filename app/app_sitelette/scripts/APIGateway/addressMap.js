@@ -83,6 +83,7 @@ module.exports = {
             getCatalogs: ['GET', '/retail/retrieveCatalogs'],
             getRoster: ['GET', '/retail/retrieveRoster'],
             createUserOrder: ['POST', '/retail/createUserOrderClient'],
+            getItem: ['GET', '/retail/retreiveItemDetailsForPromo'],
 
             getOrderPrefillInfo: ['GET', '/retail/getOrderPrefillInfo'],
             getPriceAddons: ['GET', '/retail/retrieveRetailPriceAddon'],
