@@ -40,7 +40,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			paymentOnlineAccepted: options.sasl.get('services').catalog['paymentOnlineAccepted'],
 			allowPickUp: options.sasl.get('services').catalog['allowPickUp'],
 			allowDelivery: options.sasl.get('services').catalog['allowDelivery'],
-			allowCash: options.sasl.get('services').catalog['allowCash']
+			allowCash: options.sasl.get('services').catalog['allowCash'],
+			discount: 0
 			 // etc...
 		});
 	},
