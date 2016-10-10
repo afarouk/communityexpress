@@ -138,6 +138,7 @@ var NavbarView = Backbone.View.extend({
             $('.menu_button_5').removeClass('navbutton_sign_out').addClass('navbutton_sign_in');
             $('.menu_button_5').removeClass('cmtyx_text_color_1');
             $( ".menu_button_5" ).siblings().remove();
+            $( ".glyphicon-ok" ).hide();
         }, function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });

@@ -29,18 +29,27 @@ $(window).load(function() { // makes sure the whole site is loaded
 		offset : 70
 	})
 
-	if (window.location.pathname == "/common_senddemo.php") {
-		$('nav.navbar').css('background-color','#363636');
-		$('.li_demo').addClass('active');
+	function setHeaderColor() {
+		if ( $(window).width() > 768 ) {
+			if (window.location.pathname == "/sendsample") {
+				$('nav.navbar').css('background-color','#363636');
+				$('.li_demo').addClass('active');
+			}
+			if (window.location.pathname == "/portalexpress") {
+				$('nav.navbar').css('background-color','#363636');
+				$('.li_login').addClass('active');
+			}
+			if (window.location.pathname == "/common_signup.php") {
+				$('nav.navbar').css('background-color','#363636');
+				$('.li_signin').addClass('active');
+			}
+		}
 	}
-	if (window.location.pathname == "/common_portalexpress.php") {
-		$('nav.navbar').css('background-color','#363636');
-		$('.li_login').addClass('active');
-	}
-	if (window.location.pathname == "/common_signup.php") {
-		$('nav.navbar').css('background-color','#363636');
-		$('.li_signin').addClass('active');
-	}
+
+	setHeaderColor();
+	$( window ).resize(function() {
+		setHeaderColor();
+	});
 
 });
 
