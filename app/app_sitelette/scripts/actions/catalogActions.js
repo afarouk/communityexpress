@@ -49,4 +49,11 @@ module.exports = {
             };
         });
     },
+
+    getItemDetails: function(uuid) {
+        return gateway.sendRequest('getItem', {
+            UID: getUID,
+            uuid: uuid
+        });
+    }
 };

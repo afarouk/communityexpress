@@ -320,7 +320,7 @@
 									<img src="${promotion.URL}"></img>
 									<div class="promotion_title">${promotion.title}</div>
 									<#if promotion.buyable!false>
-	                 <button class=promotions-buybutton" data-uuid="${promotion.uuid}">
+	                 <button class="promotions-buybutton" data-uuid="${promotion.uuid}">
 	                  Buy</button>
                   </#if>
 									<div class="promotion_description">${promotion.message}</div>
