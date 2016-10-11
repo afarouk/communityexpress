@@ -140,6 +140,7 @@ App.prototype = {
             PhotoContest: this.createSubview( PhotoContestView, !saslData.hasPhotoContest ),
             contactUs: this.createSubview( ContactUsInLandingView )
         };
+        this.landingView.viewsInLanding = this.viewsInLanding;
     },
 
     //when we don't have subview el in DOM don't create subview

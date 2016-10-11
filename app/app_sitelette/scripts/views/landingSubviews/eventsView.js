@@ -21,19 +21,8 @@ var EventsView = Backbone.View.extend({
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
-    //slick init
-    this.$el.find('.body ul').slick({
-        dots: false,
-        arrows: true,
-        infinite: true,
-        speed: 300,
-        fade: false,
-        cssEase: 'linear',
-        slidesToShow: 1
-    });
-    this.$el.find('button.slick-arrow').css("top", this.$el.find('.body ul').height() / 2 - 24 + "px");
-    this.$el.find('button.slick-prev.slick-arrow').text('').css("border-right-color", $('.cmtyx_color_3').css('background-color'));
-    this.$el.find('button.slick-next.slick-arrow').text('').css("border-left-color", $('.cmtyx_color_3').css('background-color'));
+
+    this.initSlick();
     this.setLinksForEachEvent();
     Vent.on('openEventByShareUrl', this.openEventByShareUrl, this);
   },
@@ -48,6 +37,27 @@ var EventsView = Backbone.View.extend({
             $(this).parent().find('.collapse_btn').html('&#9660;');
         }
     });
+  },
+
+  initSlick: function() {
+    //slick init
+    this.$el.find('.body ul').slick({
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 300,
+        fade: false,
+        cssEase: 'linear',
+        slidesToShow: 1
+    });
+    this.$el.find('button.slick-arrow').css("top", this.$el.find('.body ul').height() / 2 - 24 + "px");
+    this.$el.find('button.slick-prev.slick-arrow').text('').css("border-right-color", $('.cmtyx_color_3').css('background-color'));
+    this.$el.find('button.slick-next.slick-arrow').text('').css("border-left-color", $('.cmtyx_color_3').css('background-color'));
+  },
+
+  onShow: function() {
+    this.$el.find('.body ul').slick('unslick');
+    this.initSlick();
   },
 
   onBuyItem: function(e) {
