@@ -25,6 +25,7 @@ var RosterOrderModel = Backbone.Model.extend({
 			backToCatalog: options.backToCatalog,
 			backToCatalogs: options.backToCatalogs,
 			backToRoster: options.backToRoster,
+			backToSingleton: options.backToSingleton,
 			sasl: options.sasl,
 			launchedViaURL: options.launchedViaURL,
 			rosterId: options.rosterId,
