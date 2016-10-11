@@ -124,6 +124,10 @@
 				                                </td>
 				                            </tr>
 			                            </table>
+			                            <#if event.buyable!false>
+	                                         <button class="events-buybutton" data-uuid="${event.uuid}">
+	                                           Buy Ticket</button>
+                                        </#if>
 										</div>
 
 										<div class="ui-grid-a event_item_buttons">
@@ -258,6 +262,7 @@
 						</ul>
 					</div>
 				</li>
+				<!--  				
 				<li id="cmtyx_about_us_block" class="about_us_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">about us</span>
@@ -266,8 +271,8 @@
 					<div class="body">
 						<div class="text">${(sasl.detailedDescription)!"(no detailedDescription)"}</div>
 					</div>
-
 				</li>
+				-->
 				<li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
 				</li>
 				<li id="cmtyx_reviews_block" class="reviews_block">
@@ -322,9 +327,9 @@
 									<img src="${promotion.URL}"></img>
 									<div class="promotion_title">${promotion.title}</div>
 									<#if promotion.buyable!false>
-	                 <button class="promotions-buybutton" data-uuid="${promotion.uuid}">
-	                  Buy</button>
-                  </#if>
+	                                  <button class="promotions-buybutton" data-uuid="${promotion.uuid}">
+	                                   Buy</button>
+                                    </#if>
 									<div class="promotion_description">${promotion.message}</div>
 									<div class="ui-grid-a promotion_item_buttons">
 										<div class="ui-block-a like_btn_block"
@@ -798,8 +803,7 @@
 								Beverage Science Academy.</div>
 						</td>
 					</tr>
-					<tr>
-						<!--                        <td class="event"></td>-->
+					<tr> 
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">11:00</td>
@@ -807,8 +811,7 @@
 							<div class="event_description reserved">(Reserved)</div>
 						</td>
 					</tr>
-					<tr>
-						<!--                        <td class="event"></td>-->
+					<tr> 
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">12:00</td>
@@ -839,8 +842,7 @@
 								Beverage Science Academy.</div>
 						</td>
 					</tr>
-					<tr>
-						<!--                        <td class="event"></td>-->
+					<tr> 
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">16:00</td>

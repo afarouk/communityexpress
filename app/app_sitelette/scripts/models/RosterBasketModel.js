@@ -190,23 +190,45 @@ var RosterBasketModel = Backbone.Model.extend({
     }
   },
 
+  //sum of all items
   getItemsNumber: function() {
     var count = 0;
     this.catalogs.each(function(catalog) {
         if (typeof catalog.quantity !== 'undefined') {
             if (catalog.catalogType === 'COMBO') {
-            count = count + 1;
+            count = count + catalog.quantity;
             } else if (catalog.catalogType === 'UNDEFINED' || catalog.catalogType==='ITEMIZED') {
-                count = count + catalog.models.length;
+                _.each(catalog.models, function(model){
+                  count = count + model.get('quantity');
+                });
             }
         } else {
             if (catalog.get('catalogType') === 'COMBO') {
-                count = count + 1;
+                count = count + catalog.get('quantity');
             }
         }
     });
     return count;
   },
+
+  //sum of types quantity
+  // getItemsNumberOld: function() {
+  //   var count = 0;
+  //   this.catalogs.each(function(catalog) {
+  //       if (typeof catalog.quantity !== 'undefined') {
+  //           if (catalog.catalogType === 'COMBO') {
+  //           count = count + 1;
+  //           } else if (catalog.catalogType === 'UNDEFINED' || catalog.catalogType==='ITEMIZED') {
+  //               count = count + catalog.models.length;
+  //           }
+  //       } else {
+  //           if (catalog.get('catalogType') === 'COMBO') {
+  //               count = count + 1;
+  //           }
+  //       }
+  //   });
+  //   return count;
+  // },
 
   count: function() {
     /* we return the sum of combos and ala-la-care items */
