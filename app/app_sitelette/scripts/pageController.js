@@ -180,6 +180,7 @@ module.exports = {
                 backToRoster: backToRoster,
                 backToCatalog: backToCatalog,
                 backToCatalogs: backToCatalogs,
+                backToSingleton: backToSingleton,
                 item: item,
                 isOpen: isOpen,
                 isOpenWarningMessage: isOpenWarningMessage
