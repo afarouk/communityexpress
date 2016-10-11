@@ -17,7 +17,18 @@ module.exports = {
                 serviceAccommodatorId: sa,
                 serviceLocationId: sl
             }),
-            UID: getUser().getUID(),
+            UID: getUser().getUID()
+        });
+    },
+
+    createUserOrderSingleton: function(options) {
+        return gateway.sendRequest('createUserOrderSingleton', {
+            payload: _.extend(options, {
+                userName: getUser().getUserName(),
+                serviceAccommodatorId: sa,
+                serviceLocationId: sl
+            }),
+            UID: getUser().getUID()
         });
     },
 

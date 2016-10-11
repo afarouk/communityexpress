@@ -163,6 +163,7 @@ module.exports = {
             backToRoster = options.backToRoster,
             backToCatalog = options.backToCatalog,
             backToCatalogs = options.backToCatalogs;
+            debugger;
         return saslActions.getSasl()
         .then(function(ret) {
             sasl = ret;
