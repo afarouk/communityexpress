@@ -132,30 +132,36 @@ var PromotionView = Backbone.View.extend({
   },
 
     onBuyItem: function(e) {
-        var uuid = e.target.dataset.uuid;
-        var sasl;
-        saslActions.getSasl()
-            .then(_.bind(function(ret) {
-                sasl = ret;
-                return catalogActions.getItemDetails(uuid)
-                    .then(_.bind(function(resp) {
-                        // Hardcoded values. We need groupId for item
-                        var catalogDisplayText = 'Catalog',
-                            catalogUUID = 'CATALOG',
-                            groupId = 'CATALOG_FANCYSAREES',
-                            groupDisplayText = '';
-                        // end
-                        var basket = new CatalogBasketModel();
-                        basket.addItem(new Backbone.Model(resp), 1, groupId, groupDisplayText, catalogUUID, catalogDisplayText);
-                        appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + 'CATALOG' + ':catalogbasket', basket);
-                        this.triggerOrder(sasl);
-                    }, this), function(jqXHR) {
-                        var text = h().getErrorMessage(jqXHR, 'You can\'t buy this item now');
-                        popupController.tetxPopup({
-                            text: text
-                        });
-                    });
-            }, this));
+        Vent.trigger('viewChange', 'singleton', {
+            uuid: e.target.dataset.uuid,
+            backToRoster: false,
+            backToCatalogs: false,
+            backToCatalog: false
+        });
+        // var uuid = e.target.dataset.uuid;
+        // var sasl;
+        // saslActions.getSasl()
+        //     .then(_.bind(function(ret) {
+        //         sasl = ret;
+        //         return catalogActions.getItemDetails(uuid)
+        //             .then(_.bind(function(resp) {
+        //                 // Hardcoded values. We need groupId for item
+        //                 var catalogDisplayText = 'Catalog',
+        //                     catalogUUID = 'CATALOG',
+        //                     groupId = 'CATALOG_FANCYSAREES',
+        //                     groupDisplayText = '';
+        //                 // end
+        //                 var basket = new CatalogBasketModel();
+        //                 basket.addItem(new Backbone.Model(resp), 1, groupId, groupDisplayText, catalogUUID, catalogDisplayText);
+        //                 appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + 'CATALOG' + ':catalogbasket', basket);
+        //                 this.triggerOrder(sasl);
+        //             }, this), function(jqXHR) {
+        //                 var text = h().getErrorMessage(jqXHR, 'You can\'t buy this item now');
+        //                 popupController.tetxPopup({
+        //                     text: text
+        //                 });
+        //             });
+        //     }, this));
     },
 
     triggerOrder : function(sasl) {

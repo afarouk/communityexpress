@@ -14,6 +14,7 @@ var LandingView = require('./views/landingView'), //
     PhotoContestView = require('./views/landingSubviews/photoContestView'), //
     PollContestView = require('./views/landingSubviews/pollContestView'), //
     RootView = require('./views/rootView'),//
+    SingletonView = require('./views/singletonView'),
     AboutUsView = require('./views/aboutUsView'), //
     ContactUsView = require('./views/contactUsView'),
     BusinessHoursView = require('./views/businessHoursView'),
@@ -68,6 +69,9 @@ module.exports = {
                     title : ''
                 }
             }));
+            break;
+        case 'singleton':
+            view = new SingletonView(options);
             break;
         case 'catalog':
             view = new CatalogView(_.extend(options, {

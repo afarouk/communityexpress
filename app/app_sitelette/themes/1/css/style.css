@@ -3232,3 +3232,7 @@ input[name=promocode] {
     text-align: right;
     width: 50px;
 }
+
+#cmtyx_singleton {
+    padding-top: 105px;
+}
