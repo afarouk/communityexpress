@@ -26,6 +26,13 @@ var PromotionView = Backbone.View.extend({
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
+
+    this.initSlick();
+    Vent.on('openPromotionByShareUrl', this.openPromotionByShareUrl, this);
+    this.setLinksForEachPromotion();
+  },
+
+  initSlick: function() {
     //slick init
     this.$el.find('.body ul').slick({
         dots: false,
@@ -39,8 +46,11 @@ var PromotionView = Backbone.View.extend({
     this.$el.find('button.slick-arrow').css("top", $('#cmtyx_promotion_block .body ul').height() / 2 - 24 + "px");
     this.$el.find('button.slick-prev.slick-arrow').text('').css("border-right-color", $('.cmtyx_color_3').css('background-color'));
     this.$el.find('button.slick-next.slick-arrow').text('').css("border-left-color", $('.cmtyx_color_3').css('background-color'));
-    Vent.on('openPromotionByShareUrl', this.openPromotionByShareUrl, this);
-    this.setLinksForEachPromotion();
+  },
+
+  onShow: function() {
+    this.$el.find('.body ul').slick('unslick');
+    this.initSlick();
   },
 
   openPromotionByShareUrl: function(uuid) {

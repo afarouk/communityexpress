@@ -15,6 +15,22 @@ var GalleryView = Backbone.View.extend({
   initialize: function(options) {
     this.options = options || {};
 
+    this.initSlick();
+  },
+
+  toggleCollapse: function() {
+    var $el = this.$('.body');
+    $el.slideToggle('slow', function(){
+        var visible = $(this).is(':visible');
+        if (visible) {
+            $(this).parent().find('.collapse_btn').html('&#9650;');
+        } else {
+            $(this).parent().find('.collapse_btn').html('&#9660;');
+        }
+    });
+  },
+
+  initSlick: function() {
     //slick init
     this.$el.find('.gallery').slick({
         dots: false,
@@ -29,16 +45,9 @@ var GalleryView = Backbone.View.extend({
     });
   },
 
-  toggleCollapse: function() {
-    var $el = this.$('.body');
-    $el.slideToggle('slow', function(){
-        var visible = $(this).is(':visible');
-        if (visible) {
-            $(this).parent().find('.collapse_btn').html('&#9650;');
-        } else {
-            $(this).parent().find('.collapse_btn').html('&#9660;');
-        }
-    });
+  onShow: function() {
+    this.$el.find('.gallery').slick('unslick');
+    this.initSlick();
   }
 
 });

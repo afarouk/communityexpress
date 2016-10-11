@@ -90,6 +90,16 @@ var LandingView = Backbone.View.extend({
 
     },
 
+    onShow: function() {
+        if (this.viewsInLanding) {
+            _.each(this.viewsInLanding, function(view) {
+                if (typeof view.onShow === 'function') {
+                    view.onShow();
+                }
+            });
+        }
+    },
+
     headerToggle: function() {
         this.$el.find('.about_us_block .header, .video_block .header').click(function(){
             $(this).parent().find('.body').slideToggle('slow', function(){
