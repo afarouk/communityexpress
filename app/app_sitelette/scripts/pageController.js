@@ -159,6 +159,7 @@ module.exports = {
 
     singleton: function(options) {
         var sasl,
+            type = options.type,
             uuid = options.uuid,
             backToRoster = options.backToRoster,
             backToCatalog = options.backToCatalog,
@@ -167,7 +168,8 @@ module.exports = {
         return saslActions.getSasl()
         .then(function(ret) {
             sasl = ret;
-            return catalogActions.getItemDetails(uuid);
+            return type === 'PROMO'? catalogActions.getItemDetails(uuid) :
+                catalogActions.getEventDetails(uuid);
         }).then(function(item) {
             var basket = new CatalogBasketModel(),
                 isOpen = true,
@@ -175,6 +177,7 @@ module.exports = {
             basket.addItem(new Backbone.Model(item), 1);
             appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + item.uUID + ':catalogbasket', basket);
             return {
+                type: type,
                 uuid: uuid,
                 sasl: sasl,
                 basket: basket,
@@ -576,6 +579,7 @@ module.exports = {
             basketType,
             addresses,
             fundsource,
+            type = options.type,
             uuid = options.uuid,
             rosterId = options.rosterId || options.catalogId,
             backToCatalog = options.backToCatalog || false, // options.backToCatalogs;
@@ -603,6 +607,7 @@ module.exports = {
                 options.rosterId ? backToRoster = true : backToRoster = false;
                 return {
                     sasl: sasl,
+                    type: type,
                     uuid: uuid,
                     addresses: addresses,
                     fundsource: fundsource,
