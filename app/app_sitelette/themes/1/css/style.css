@@ -2543,7 +2543,7 @@ li.driving_directions_block {
 /* Contact Us View */
 
 .ui-page#contact_us {
-    padding: 0;
+    padding: 45px 0 0 0;
 }
 
 #contact_us .body {
@@ -3234,5 +3234,14 @@ input[name=promocode] {
 }
 
 #cmtyx_singleton {
-    padding-top: 105px;
+    padding-top: 86px;
+}
+
+#cmtyx_singleton .content {
+    padding: 0;
+}
+
+#cmntyex_chat,
+#cmtyx_aboutUs {
+    padding-top: 45px;
 }

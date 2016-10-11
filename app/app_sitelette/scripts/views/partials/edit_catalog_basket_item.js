@@ -64,7 +64,7 @@ var EditCatalogBasketItem = Backbone.View.extend({
             model: this.model,
             count: this.quantity
         }
-        if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED') {
+        if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED' || !this.basket.catalogType) {
             this.changedItems[this.model.get('uUID')] = changedItem;
         }
         // var catalog = this.model.toJSON(),

@@ -122,7 +122,7 @@ var SingletonView = Backbone.View.extend({
     updateBasket: function() {
         this.$('.cart_items_number').text(this.basket.getItemsNumber());
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
-        this.$('.quantity').text(this.basket.models[0].get('quantity'));
+        this.$('.quantity').text(this.basket.getItemsNumber());
         this.basket.getItemsNumber() === 0 ?
         this.$('#roster_order_button').prop('disabled', true) :
         this.$('#roster_order_button').prop('disabled', false);
@@ -168,10 +168,19 @@ var SingletonView = Backbone.View.extend({
     },
 
     addToBasket: function() {
-        var currentQuantity = this.basket.models[0].get('quantity');
-        this.addItem ?
-        this.basket.models[0].set('quantity', currentQuantity + 1) :
-        this.basket.models[0].set('quantity', currentQuantity - 1);
+        if (this.basket.length === 0) {
+            var item = new Backbone.Model(this.item);
+            this.basket.addItem(item);
+        } else {
+            var currentQuantity = this.basket.models[0].get('quantity');
+            if (this.addItem) {
+                this.basket.models[0].set('quantity', currentQuantity + 1);
+            } else {
+                currentQuantity === 1 ?
+                this.basket.remove(this.item.uUID) :
+                this.basket.models[0].set('quantity', currentQuantity - 1);
+            }
+        }
     }
 
 });
