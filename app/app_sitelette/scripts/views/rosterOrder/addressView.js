@@ -171,8 +171,14 @@ var AddressView = Backbone.View.extend({
         }
     },
 
-    triggerSingletonView: function() {
-        debugger;
+    triggerSingletonView: function(params) {
+        Vent.trigger('viewChange', 'singleton', {
+            uuid: params.itemUUID,
+            backToRoster: false,
+            backToCatalogs: false,
+            backToCatalog: false,
+            backToSingleton: true
+       });
     },
 
     triggerRosterView: function(params) {

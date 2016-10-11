@@ -175,6 +175,7 @@ module.exports = {
             basket.addItem(new Backbone.Model(item), 1);
             appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + item.uUID + ':catalogbasket', basket);
             return {
+                uuid: uuid,
                 sasl: sasl,
                 basket: basket,
                 backToRoster: backToRoster,
@@ -575,6 +576,7 @@ module.exports = {
             basketType,
             addresses,
             fundsource,
+            uuid = options.uuid,
             rosterId = options.rosterId || options.catalogId,
             backToCatalog = options.backToCatalog || false, // options.backToCatalogs;
             backToRoster = options.backToRoster || false,
@@ -601,6 +603,7 @@ module.exports = {
                 options.rosterId ? backToRoster = true : backToRoster = false;
                 return {
                     sasl: sasl,
+                    uuid: uuid,
                     addresses: addresses,
                     fundsource: fundsource,
                     priceAddons: ret,
