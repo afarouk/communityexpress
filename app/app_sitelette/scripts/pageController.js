@@ -162,8 +162,8 @@ module.exports = {
             uuid = options.uuid,
             backToRoster = options.backToRoster,
             backToCatalog = options.backToCatalog,
-            backToCatalogs = options.backToCatalogs;
-            debugger;
+            backToCatalogs = options.backToCatalogs,
+            backToSingleton = options.backToSingleton;
         return saslActions.getSasl()
         .then(function(ret) {
             sasl = ret;
@@ -578,6 +578,7 @@ module.exports = {
             backToCatalog = options.backToCatalog || false, // options.backToCatalogs;
             backToRoster = options.backToRoster || false,
             backToCatalogs = options.backToCatalogs || false,
+            backToSingleton = options.backToSingleton,
             editModel=options.editModel,
             launchedViaURL=options.launchedViaURL;
         options.rosterId ? basketType = ':rosterbasket' : basketType = ':catalogbasket';
