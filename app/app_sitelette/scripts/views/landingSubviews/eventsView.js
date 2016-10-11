@@ -14,7 +14,8 @@ var EventsView = Backbone.View.extend({
     'click .header': 'toggleCollapse',
     'click .share_btn_block': 'showShareBlock',
     'click .sms_block': 'showSMSInput',
-    'click .sms_send_button': 'onSendSMS'
+    'click .sms_send_button': 'onSendSMS',
+    'click .events-buybutton': 'onBuyItem'
   },
 
   initialize: function(options) {
@@ -46,6 +47,16 @@ var EventsView = Backbone.View.extend({
         } else {
             $(this).parent().find('.collapse_btn').html('&#9660;');
         }
+    });
+  },
+
+  onBuyItem: function(e) {
+    Vent.trigger('viewChange', 'singleton', {
+        uuid: $(e.target).data('uuid'),
+        backToRoster: false,
+        backToCatalogs: false,
+        backToCatalog: false,
+        backToSingleton: true
     });
   },
 
