@@ -749,11 +749,15 @@ label.checkbox_save_card {
     padding-bottom: 0 !important;
     border-width: 0 !important;
 }
+.ui-btn-icon-notext {
+    width: 35px;
+    height: 35px;
+}
 .quantity_minus.ui-icon-minus:after,
 a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
     background-size: 14px 14px !important;
-    height: 19px !important;
-    width: 19px !important;
+    height: 27px !important;
+    width: 24px !important;
     top: 14px !important;
     background: url('images/minus.png') no-repeat center center !important;
 }
@@ -775,8 +779,8 @@ a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.u
 .quantity_plus.ui-icon-plus:after,
 a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after {
     background-size: 14px 14px !important;
-    height: 19px !important;
-    width: 22px !important;
+    height: 29px !important;
+    width: 31px !important;
     left: 13px !important;
     top: 14px !important;
     background: url('images/plus.png') no-repeat center center !important;
@@ -784,26 +788,26 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
 .quantity_field {
     background: #2b2b2b;
     margin-top: 8px;
-    padding: 3px 2px;
+    padding: 7px 2px;
     vertical-align: middle;
     text-align: center;
     color: #f7f5f3;
     font-weight: bold;
-    height: 28px;
+    height: 35px;
     line-height: 22px;
-    width: 28px !important;
+    width: 35px !important;
 }
 .tip_quantity_field {
     background: #2b2b2b;
     margin-top: 8px;
-    padding: 3px 2px;
+    padding: 6px 5px;
     vertical-align: middle;
     text-align: center;
     color: #f7f5f3;
     font-weight: bold;
-    height: 28px;
+    height: 35px;
     line-height: 22px;
-    width: 33px !important;
+    width: 36px !important;
 }
 .quantity_field span {
     font-size: 14px;
@@ -1174,7 +1178,10 @@ li.build_combo, li.choose_extras {
     display: inline-block;
     position: relative;
     top: 0;
-    margin-top: -12px;
+    margin-top: -17px;
+}
+#left-panel .select_container {
+    margin-top: -14px;
 }
 .cart .select_container {
     bottom: 6px;
@@ -1201,7 +1208,7 @@ li.build_combo, li.choose_extras {
     position: absolute;
     /* bottom: 5px; */
     right: 60px;
-    width: 105px;
+    width: 110px;
 }
 input[type="radio"] {
     width: 15px;
@@ -3187,7 +3194,7 @@ a.cancel {
 }
 
 .select_container.catalog_item_counter {
-    padding: 8px;
+    padding: 4px;
     vertical-align: middle;
     margin: 0;
 
