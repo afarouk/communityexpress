@@ -612,6 +612,7 @@ module.exports = {
                     backToRoster: backToRoster,
                     backToCatalog: backToRoster? false : backToCatalog,
                     backToCatalogs: backToCatalogs,
+                    backToSingleton: backToSingleton,
                     launchedViaURL: launchedViaURL
                 };
             });
