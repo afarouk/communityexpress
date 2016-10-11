@@ -213,6 +213,41 @@ var PaymentView = Backbone.View.extend({
     },
 
     onPlaceOrder: function() {
+        this.model.additionalParams.backToSingleton ?
+        this.onPlaceSingletonOrder() :
+        this.onPlaceMultipleOrder();
+    },
+
+    onPlaceSingletonOrder: function() {
+        var params = this.model.additionalParams;
+        loader.show('placing your order');
+        this.model.set({
+            itemUUID: this.model.additionalParams.itemUUID,
+            quantity: this.model.get('items')[0].quantity
+        });
+        this.model.unset('items');
+
+        return orderActions.placeSingletonOrder(
+            params.sasl.sa(),
+            params.sasl.sl(),
+            this.model.toJSON()
+        ).then(function() {
+            loader.hide();
+            var callback = _.bind(this.triggerSingletonView, this);
+            popupController.textPopup({
+                text: 'order successful'
+            }, callback);
+        }.bind(this), function(e) {
+            debugger;
+            loader.hide();
+            var text = h().getErrorMessage(e, 'Error placing your order');
+            popupController.textPopup({
+                text: text
+            });
+        });
+    },
+
+    onPlaceMultipleOrder: function() {
         var params = this.model.additionalParams;
         loader.show('placing your order');
 
@@ -242,6 +277,17 @@ var PaymentView = Backbone.View.extend({
                 text: text
             });
         }.bind(this));
+    },
+
+    triggerSingletonView: function() {
+        var params = this.model.additionalParams;
+        Vent.trigger('viewChange', 'singleton', {
+            uuid: params.itemUUID,
+            backToRoster: false,
+            backToCatalogs: false,
+            backToCatalog: false,
+            backToSingleton: true
+        }, { reverse: false });
     },
 
     triggerCatalogView: function() {

@@ -21,7 +21,7 @@ module.exports = {
         });
     },
 
-    createUserOrderSingleton: function(options) {
+    placeSingletonOrder: function(sa, sl, options) {
         return gateway.sendRequest('createUserOrderSingleton', {
             payload: _.extend(options, {
                 userName: getUser().getUserName(),
