@@ -1,0 +1,57 @@
+<div id="cmtyx_singleton" data-role="page" class="page build_combo">
+    <div class="sub_header">
+        <div class="basket_icon_container">
+            <a href="#left-panel edit_button">
+                <span class="shopping_icon"></span>
+            </a>
+            <span class="cart_items_number"><%= basket.getItemsNumber() %></span>
+        </div>
+        <div class="total_price_order_block">
+            <span class="total_price cmtyx_text_color_1">$<%= basket.getTotalPrice() %></span>
+            <a class="header_order_btn order_btn order_button" id="roster_order_button">Order</a>
+        </div>
+    </div>
+    <div data-role="content" class="content" role="main">
+        <div class="menu_body">
+            <div class="cmntyex-items_placeholder">
+                <div class="catalog_item_main_view">
+                    <% if (item.mediaURLs[0] !== '' || typeof item.mediaURLs[0] !== 'undefined' ) { %>
+                        <div class="sides_item_image_small_container">
+                            <img src="<%= item.mediaURLs[0] %>" alt="" />
+                        </div>
+                    <% } %>
+                    <div class="sides_extras_item_details">
+                        <span class="item_name"><%= item.itemName %></span>
+                        <div class="order_price">$<%= item.price %></div>
+                    </div>
+                    <div class="float_right">
+                        <div class="select_container catalog_item_counter">
+                            <div class="ui-grid-b">
+                                <div class="ui-block-a quantity_minus decrementQuantity">
+                                    <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a>
+                                </div>
+                                <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
+                                     <span class="quantity"><%= item.quantity %></span>
+                                </div>
+                                <div class="ui-block-c quantity_plus incrementQuantity">
+                                    <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sides_extras_expand_icon">▼</div>
+                    </div>
+                </div>
+                <div class="sides_extras_detailed">
+                    <% if (item.mediaURLs[0] !== '' || typeof item.mediaURLs[0] !== 'undefined' ) { %>
+                        <img src="<%= item.mediaURLs[0] %>" alt="" />
+                    <% } %>
+                    <div class="catalog_item_attributes">
+                        <% _.each(item.attributes, function(status, attr) { %>
+                            <div class="catalog_item_attribute <%= status ? 'true_attr' : 'false_attr' %>"><%= attr %></div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

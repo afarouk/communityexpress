@@ -157,6 +157,35 @@ module.exports = {
         });
     },
 
+    singleton: function(options) {
+        var sasl,
+            uuid = options.uuid,
+            backToRoster = options.backToRoster,
+            backToCatalog = options.backToCatalog,
+            backToCatalogs = options.backToCatalogs;
+        return saslActions.getSasl()
+        .then(function(ret) {
+            sasl = ret;
+            return catalogActions.getItemDetails(uuid);
+        }).then(function(item) {
+            var basket = new CatalogBasketModel(),
+                isOpen = true,
+                isOpenWarningMessage = 'message';
+            basket.addItem(new Backbone.Model(item), 1);
+            appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + item.uUID + ':catalogbasket', basket);
+            return {
+                sasl: sasl,
+                basket: basket,
+                backToRoster: backToRoster,
+                backToCatalog: backToCatalog,
+                backToCatalogs: backToCatalogs,
+                item: item,
+                isOpen: isOpen,
+                isOpenWarningMessage: isOpenWarningMessage
+            }
+        });
+    },
+
     catalog: function(options) { // options is an array with either sasl or
         var sasl;
         var rosterBasket = options.rosterBasket || false;
