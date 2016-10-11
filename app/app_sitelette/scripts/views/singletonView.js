@@ -51,6 +51,7 @@ var SingletonView = Backbone.View.extend({
         this.backToCatalog = options.backToCatalog;
         this.backToCatalogs = options.backToCatalogs;
         this.backToRoster = options.backToRoster;
+        this.backToSingleton = options.backToSingleton;
         this.isOpen = options.isOpen;
         this.isOpenWarningMessage = options.isOpenWarningMessage;
         this.withExpandedDetails = false;
@@ -95,7 +96,8 @@ var SingletonView = Backbone.View.extend({
                 catalogId: this.item.uUID,
                 backToCatalog: this.backToCatalog,
                 backToCatalogs: this.backToCatalogs,
-                backToRoster: this.backToRoster
+                backToRoster: this.backToRoster,
+                backToSingleton: this.backToSingleton
             }, {
                 reverse : true
             });
