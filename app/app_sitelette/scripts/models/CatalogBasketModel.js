@@ -174,9 +174,19 @@ var CatalogBasketModel = Backbone.Collection.extend({
         }.bind(this), 0);
     },
 
+    //sum of all items quantity
     getItemsNumber: function() {
-        return this.length;
+        var count = 0;
+        this.each(function(model){
+            count += model.get('quantity');
+        });
+        return count;
     },
+
+    //collection length
+    // getItemsNumberOld: function() {
+    //     return this.length;
+    // },
 
     dumpCartToConsole : function() {
 
