@@ -39,7 +39,7 @@ var CatalogBasketItem = Backbone.Model.extend({
         this.itemId = options.itemId;
         this.uUID = options.uUID;
         this.itemName = options.itemName;
-        this.itemType = options.itemType.enumText;
+        this.itemType = options.itemType ? options.itemType.enumText : 'EVENT';
       
         // console.log("CatalogBasketItem:initialize::"+this.itemName+",
         // "+this.groupId+", "+this.catalogId);

@@ -52,6 +52,7 @@ var EventsView = Backbone.View.extend({
 
   onBuyItem: function(e) {
     Vent.trigger('viewChange', 'singleton', {
+        type: 'Event',
         uuid: $(e.target).data('uuid'),
         backToRoster: false,
         backToCatalogs: false,

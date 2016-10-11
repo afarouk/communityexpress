@@ -21,8 +21,19 @@ module.exports = {
         });
     },
 
-    placeSingletonOrder: function(sa, sl, options) {
-        return gateway.sendRequest('createUserOrderSingleton', {
+    placePromoSingletonOrder: function(sa, sl, options) {
+        return gateway.sendRequest('createUserPromoOrderSingleton', {
+            payload: _.extend(options, {
+                userName: getUser().getUserName(),
+                serviceAccommodatorId: sa,
+                serviceLocationId: sl
+            }),
+            UID: getUser().getUID()
+        });
+    },
+
+    placeEventSingletonOrder: function(sa, sl, options) {
+        return gateway.sendRequest('createUserEventOrderSingleton', {
             payload: _.extend(options, {
                 userName: getUser().getUserName(),
                 serviceAccommodatorId: sa,

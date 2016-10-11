@@ -219,15 +219,17 @@ var PaymentView = Backbone.View.extend({
     },
 
     onPlaceSingletonOrder: function() {
-        var params = this.model.additionalParams;
+        var params = this.model.additionalParams,
+            request;
         loader.show('placing your order');
         this.model.set({
             itemUUID: this.model.additionalParams.itemUUID,
             quantity: this.model.get('items')[0].quantity
         });
         this.model.unset('items');
-
-        return orderActions.placeSingletonOrder(
+        request = params.type === 'PROMO'? orderActions.placePromoSingletonOrder : 
+            orderActions.placeEventSingletonOrder
+        return request(
             params.sasl.sa(),
             params.sasl.sl(),
             this.model.toJSON()

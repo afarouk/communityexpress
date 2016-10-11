@@ -131,29 +131,30 @@ var PromotionView = Backbone.View.extend({
     });
   },
 
-    onBuyItem: function(e) {
-        Vent.trigger('viewChange', 'singleton', {
-            uuid: $(e.target).data('uuid'),
-            backToRoster: false,
-            backToCatalogs: false,
-            backToCatalog: false,
-            backToSingleton: true
-        });
-    },
+  onBuyItem: function(e) {
+      Vent.trigger('viewChange', 'singleton', {
+          type: 'PROMO',
+          uuid: $(e.target).data('uuid'),
+          backToRoster: false,
+          backToCatalogs: false,
+          backToCatalog: false,
+          backToSingleton: true
+      });
+  },
 
-    triggerOrder : function(sasl) {
-        popupController.requireLogIn(this.sasl, function() {
-            Vent.trigger('viewChange', 'address', {
-                id: sasl.getUrlKey(),
-                catalogId: 'CATALOG',
-                backToCatalog: false,
-                backToCatalogs: false,
-                backToRoster: false
-            }, {
-                reverse : true
-            });
-        }.bind(this));
-    }
+  triggerOrder : function(sasl) {
+      popupController.requireLogIn(this.sasl, function() {
+          Vent.trigger('viewChange', 'address', {
+              id: sasl.getUrlKey(),
+              catalogId: 'CATALOG',
+              backToCatalog: false,
+              backToCatalogs: false,
+              backToRoster: false
+          }, {
+              reverse : true
+          });
+      }.bind(this));
+  }
 
 });
 

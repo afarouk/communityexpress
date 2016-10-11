@@ -45,6 +45,7 @@ var SingletonView = Backbone.View.extend({
 
     initialize : function(options) {
         this.item = options.item;
+        this.type = options.type;
         this.uuid = options.uuid;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
@@ -94,6 +95,7 @@ var SingletonView = Backbone.View.extend({
             this.$('.sub_header').hide();
             Vent.trigger('viewChange', 'address', {
                 id : this.sasl.getUrlKey(),
+                type: this.type,
                 uuid: this.uuid,
                 catalogId: this.item.uUID,
                 backToCatalog: this.backToCatalog,

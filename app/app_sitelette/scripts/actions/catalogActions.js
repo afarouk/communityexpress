@@ -51,7 +51,14 @@ module.exports = {
     },
 
     getItemDetails: function(uuid) {
-        return gateway.sendRequest('getItem', {
+        return gateway.sendRequest('getItemDetails', {
+            UID: getUID,
+            uuid: uuid
+        });
+    },
+
+    getEventDetails: function(uuid) {
+        return gateway.sendRequest('getEventDetails', {
             UID: getUID,
             uuid: uuid
         });
