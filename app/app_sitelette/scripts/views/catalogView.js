@@ -59,7 +59,7 @@ var CatalogView = Backbone.View.extend({
         }
     },
 
-    initialize : function(options) {
+    initialize: function(options) {
         var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color_4' ];
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
@@ -84,7 +84,7 @@ var CatalogView = Backbone.View.extend({
         this.render();
     },
 
-    renderData : function() {
+    renderData: function() {
         return {
             basket : this.basket
         };
@@ -101,7 +101,7 @@ var CatalogView = Backbone.View.extend({
         return this.$el;
     },
 
-    goBack : function() {
+    goBack: function() {
         if ( this.backToRoster) {
           this.triggerRosterView( );
         } else if(this.backToCatalogs) {
@@ -115,7 +115,7 @@ var CatalogView = Backbone.View.extend({
         this.triggerRosterViewWithCatalog();
     },
 
-    triggerRosterView : function() {
+    triggerRosterView: function() {
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
           id: this.rosterId,
@@ -129,7 +129,7 @@ var CatalogView = Backbone.View.extend({
        }, { reverse: true });
     },
 
-    triggerRosterViewWithCatalog : function() {
+    triggerRosterViewWithCatalog: function() {
         Vent.trigger('viewChange', 'roster', {
             sasl: this.sasl.id,
             id: this.rosterId,
@@ -144,17 +144,17 @@ var CatalogView = Backbone.View.extend({
 
     },
 
-    triggerCatalogsView : function() {
+    triggerCatalogsView: function() {
         Vent.trigger('viewChange', 'catalogs', this.sasl.getUrlKey());
     },
 
-    triggerRestaurantView : function() {
+    triggerRestaurantView: function() {
         Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), {
             reverse : true
         });
     },
 
-    openAddToBasketView : function(model, groupId, groupDisplayText, catalogId, catalogDisplayText) {
+    openAddToBasketView: function(model, groupId, groupDisplayText, catalogId, catalogDisplayText) {
         // console.log("CatalogView:openAddToBasketView
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
         this.openSubview('addToCatalogBasket', model, {
@@ -167,13 +167,15 @@ var CatalogView = Backbone.View.extend({
         });
     },
 
-    toggleBasketComboEntry : function(model, groupId, groupDisplayText,catalogId,catalogDisplayText) {
+    toggleBasketComboEntry: function(model, groupId, groupDisplayText,catalogId,catalogDisplayText) {
         // console.log("CatalogView:toggleBasketComboEntry
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
         this.basket.changeItemInCombo(model, groupId, groupDisplayText,catalogId,catalogDisplayText);
     },
 
-    triggerOrder : function() {
+    triggerOrder: function() {
+        this.basket.getItemsNumber() === 0 ?
+        this.showNoItemsPopup() :
         popupController.requireLogIn(this.sasl, function() {
             this.$('.sub_header').hide();
             Vent.trigger('viewChange', 'address', {
@@ -193,7 +195,13 @@ var CatalogView = Backbone.View.extend({
         }.bind(this));
     },
 
-    openEditPanel : function() {
+    showNoItemsPopup: function() {
+        popupController.textPopup({
+            text: 'Please, select at least one item'
+        });
+    },
+
+    openEditPanel: function() {
         if (this.rosterBasket) {
             this.openRosterBasketEditPanel();
         } else {
@@ -228,18 +236,18 @@ var CatalogView = Backbone.View.extend({
         });
     },
 
-    updateBasket : function() {
+    updateBasket: function() {
         if (this.rosterBasket && this.catalogId === 'BUILDYOURCOMBO') {
             this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
             this.$('.total_price').text('$ ' + this.rosterBasket.getTotalPrice().toFixed(2));
         } else {
             this.$('.cart_items_number').text(this.basket.getItemsNumber());
             this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
-            if (!this.rosterBasket) {
-                this.basket.getItemsNumber() === 0 ?
-                this.$('#roster_order_button').prop('disabled', true) :
-                this.$('#roster_order_button').prop('disabled', false);
-            }
+            // if (!this.rosterBasket) {
+            //     this.basket.getItemsNumber() === 0 ?
+            //     this.$('#roster_order_button').prop('disabled', true) :
+            //     this.$('#roster_order_button').prop('disabled', false);
+            // }
         }
         //
         // if (this.basket.hasCombo()) {
@@ -278,13 +286,13 @@ var CatalogView = Backbone.View.extend({
         }
     },
 
-    generateColor : function(index) {
+    generateColor: function(index) {
         // var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
         var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color1' ];
         return this.colors[index % this.colors.length];
     },
 
-    renderItems : function() {
+    renderItems: function() {
 
         this.updateBasket();
 

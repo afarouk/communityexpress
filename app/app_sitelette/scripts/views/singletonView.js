@@ -91,6 +91,8 @@ var SingletonView = Backbone.View.extend({
     },
 
     triggerOrder : function() {
+        this.basket.getItemsNumber() === 0 ?
+        this.showNoItemsPopup() :
         popupController.requireLogIn(this.sasl, function() {
             this.$('.sub_header').hide();
             Vent.trigger('viewChange', 'address', {
@@ -106,6 +108,12 @@ var SingletonView = Backbone.View.extend({
                 reverse : true
             });
         }.bind(this));
+    },
+
+    showNoItemsPopup: function() {
+        popupController.textPopup({
+            text: 'Please, select at least one item'
+        });
     },
 
     openEditPanel: function() {
@@ -125,9 +133,9 @@ var SingletonView = Backbone.View.extend({
         this.$('.cart_items_number').text(this.basket.getItemsNumber());
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
         this.$('.quantity').text(this.basket.getItemsNumber());
-        this.basket.getItemsNumber() === 0 ?
-        this.$('#roster_order_button').prop('disabled', true) :
-        this.$('#roster_order_button').prop('disabled', false);
+        // this.basket.getItemsNumber() === 0 ?
+        // this.$('#roster_order_button').prop('disabled', true) :
+        // this.$('#roster_order_button').prop('disabled', false);
     },
 
     expandCollapseDetails: function(view) {

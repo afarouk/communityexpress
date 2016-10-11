@@ -38,13 +38,13 @@ var RosterView = Backbone.View.extend({
         //     $(this.el).find('.navbutton_back').show();
         // };
 
-        var comboCount = this.basket.getComboCount();
-        var nonComboCount = this.basket.getNonComboItemCount();
-        if (comboCount === 0 && nonComboCount === 0) {
-            $('#roster_order_button').prop('disabled', true);
-        } else {
-            $('#roster_order_button').prop('disabled', false);
-        };
+        // var comboCount = this.basket.getComboCount();
+        // var nonComboCount = this.basket.getNonComboItemCount();
+        // if (comboCount === 0 && nonComboCount === 0) {
+        //     $('#roster_order_button').prop('disabled', true);
+        // } else {
+        //     $('#roster_order_button').prop('disabled', false);
+        // };
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.updateBasket();
         this.checkIfOpened();
@@ -103,11 +103,11 @@ var RosterView = Backbone.View.extend({
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice());
         var comboCount = this.basket.getComboCount();
         var nonComboCount = this.basket.getNonComboItemCount();
-        if (comboCount === 0 && nonComboCount === 0) {
-          this.$('#roster_order_button').prop('disabled', true);
-        } else {
-            this.$('#roster_order_button').prop('disabled', false);
-        }
+        // if (comboCount === 0 && nonComboCount === 0) {
+        //   this.$('#roster_order_button').prop('disabled', true);
+        // } else {
+        //     this.$('#roster_order_button').prop('disabled', false);
+        // }
         this.$('#cmtyx_roster_cart_comboCount').text(comboCount + " x");
         this.$('#cmtyx_roster_cart_nonComboCount').text(nonComboCount + " x");
     },
@@ -135,29 +135,38 @@ var RosterView = Backbone.View.extend({
 
 
     triggerOrder: function() {
+        if (this.basket.getItemsNumber() === 0) {
+            this.showNoItemsPopup();
+        } else {
+            var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
 
-        var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
+            popupController.requireLogIn(this.sasl, function() {
+                this.$('.sub_header').hide();
+                Vent.trigger('viewChange', 'address', {
+                    id: this.sasl.getUrlKey(),
+                    rosterId: this.rosterId,
+                    backToCatalog: true, // /* This will always be true */
+                    backToCatalogs: this.backToCatalogs,
+                    editModel : editModel,
+                    /*
+                     * not used by order,
+                     * but passed back to
+                     * catalog view
+                     */
+                    backToRoster: true,
+                    launchedViaURL: this.launchedViaURL,
+                    navbarView: this.navbarView
+                }, {
+                    reverse: true
+                });
+            }.bind(this));
+        }
+    },
 
-        popupController.requireLogIn(this.sasl, function() {
-            this.$('.sub_header').hide();
-            Vent.trigger('viewChange', 'address', {
-                id: this.sasl.getUrlKey(),
-                rosterId: this.rosterId,
-                backToCatalog: true, // /* This will always be true */
-                backToCatalogs: this.backToCatalogs,
-                editModel : editModel,
-                /*
-                 * not used by order,
-                 * but passed back to
-                 * catalog view
-                 */
-                backToRoster: true,
-                launchedViaURL: this.launchedViaURL,
-                navbarView: this.navbarView
-            }, {
-                reverse: true
-            });
-        }.bind(this));
+    showNoItemsPopup: function() {
+        popupController.textPopup({
+            text: 'Please, select at least one item'
+        });
     },
 
     openEditPanel: function() {

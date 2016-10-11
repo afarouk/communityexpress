@@ -227,7 +227,7 @@ var PaymentView = Backbone.View.extend({
             quantity: this.model.get('items')[0].quantity
         });
         this.model.unset('items');
-        request = params.type === 'PROMO'? orderActions.placePromoSingletonOrder : 
+        request = params.type === 'PROMO'? orderActions.placePromoSingletonOrder :
             orderActions.placeEventSingletonOrder
         return request(
             params.sasl.sa(),
@@ -260,14 +260,12 @@ var PaymentView = Backbone.View.extend({
         ).then(function(e) {
             loader.hide();
             params.basket.reset();
-            // params.backToRoster = false;
+            params.backToRoster = false;
             var callback;
             if (params.backToCatalog) {
                 callback = _.bind(this.triggerCatalogView, this)
-            } else if (params.backToRoster) {
-                callback = _.bind(this.triggerRosterView, this);
             } else {
-                callback = _.bind(this.triggerRestaurantView, this);
+                callback = _.bind(this.triggerRosterView, this);
             }
             popupController.textPopup({
                 text: 'order successful'
@@ -316,10 +314,6 @@ var PaymentView = Backbone.View.extend({
         }, {
             reverse: false
         });
-    },
-
-    triggerRestaurantView: function() {
-        Vent.trigger('viewChange', 'restaurant', this.model.additionalParams.sasl.getUrlKey());
     },
 
     goBack : function() {
