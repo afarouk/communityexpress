@@ -164,9 +164,15 @@ var AddressView = Backbone.View.extend({
           this.triggerRosterView(params);
         } else if (params.backToCatalog) {
             this.triggerCatalogView(params);
+        } else if (params.backToSingleton) {
+            this.triggerSingletonView(params);
         } else {
             this.triggerRestaurantView(params);
         }
+    },
+
+    triggerSingletonView: function() {
+        debugger;
     },
 
     triggerRosterView: function(params) {
