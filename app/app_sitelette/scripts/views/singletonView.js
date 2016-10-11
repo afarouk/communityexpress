@@ -3,17 +3,18 @@
 'use strict';
 
 var Vent = require('../Vent'), //
-loader = require('../loader'), //
-CatalogBasketModel = require('../models/CatalogBasketModel'), //
-orderActions = require('../actions/orderActions'), //
-template = require('ejs!../templates/content/singleton_content.ejs'),
-GroupView = require('./partials/groupView'), //
-ComboGroupView = require('./partials/comboGroupView'), //
-CatalogItemView = require('./partials/catalog_item'),
-SidesCatalogItemView = require('./partials/sides_catalog_item'),
-popupController = require('../controllers/popupController'),
-RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),
-ListView = require('./components/listView');
+    loader = require('../loader'), //
+    h = require('../globalHelpers'),
+    CatalogBasketModel = require('../models/CatalogBasketModel'), //
+    orderActions = require('../actions/orderActions'), //
+    template = require('ejs!../templates/content/singleton_content.ejs'),
+    GroupView = require('./partials/groupView'), //
+    ComboGroupView = require('./partials/comboGroupView'), //
+    CatalogItemView = require('./partials/catalog_item'),
+    SidesCatalogItemView = require('./partials/sides_catalog_item'),
+    popupController = require('../controllers/popupController'),
+    RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),
+    ListView = require('./components/listView');
 
 var SingletonView = Backbone.View.extend({
 
@@ -23,6 +24,9 @@ var SingletonView = Backbone.View.extend({
 
     events: {
         'click .back' : 'goBack',
+        'click .catalog_item_main_view': 'expandCollapseDetails',
+        'click .plus_button': 'incrementQuantity',
+        'click .minus_button': 'decrementQuantity',
         'click .order_button' : 'triggerOrder',
         'click .basket_icon_container' : 'openEditPanel'
     },
@@ -40,7 +44,6 @@ var SingletonView = Backbone.View.extend({
     },
 
     initialize : function(options) {
-        debugger;
         this.item = options.item;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
@@ -50,6 +53,7 @@ var SingletonView = Backbone.View.extend({
         this.backToRoster = options.backToRoster;
         this.isOpen = options.isOpen;
         this.isOpenWarningMessage = options.isOpenWarningMessage;
+        this.withExpandedDetails = false;
         this.colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color_4' ];
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
@@ -59,7 +63,7 @@ var SingletonView = Backbone.View.extend({
     renderData : function() {
         return {
             basket: this.basket,
-            item: this.item
+            item: this.basket.models[0].toJSON()
         };
     },
 
@@ -114,124 +118,56 @@ var SingletonView = Backbone.View.extend({
     updateBasket: function() {
         this.$('.cart_items_number').text(this.basket.getItemsNumber());
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
+        this.$('.quantity').text(this.basket.models[0].get('quantity'));
         this.basket.getItemsNumber() === 0 ?
         this.$('#roster_order_button').prop('disabled', true) :
         this.$('#roster_order_button').prop('disabled', false);
     },
 
     expandCollapseDetails: function(view) {
-        if (!view.withExpandedDetails) {
-            view.expandDetails();
-            if (this.viewWithExpandedDetails) {
-                this.viewWithExpandedDetails.collapseDetails();
-            }
-            this.viewWithExpandedDetails = view;
-        } else {
-            view.collapseDetails();
-            this.viewWithExpandedDetails = false;
-        }
+        this.withExpandedDetails ? this.collapseDetails() : this.expandDetails();
     },
 
-    renderItems : function() {
+    expandDetails: function() {
+        this.$('.sides_extras_detailed').slideDown();
+        this.$('.sides_extras_expand_icon').text('▲');
+        this.withExpandedDetails = true;
+    },
 
-        this.updateBasket();
+    collapseDetails: function() {
+        this.$('.sides_extras_detailed').slideUp();
+        this.$('.sides_extras_expand_icon').text('▼');
+        this.withExpandedDetails = false;
+    },
 
-        var ItemView = this.backToRoster ? SidesCatalogItemView : CatalogItemView;
+    incrementQuantity: function() {
 
-        var catalogType = this.catalogType.enumText;
-        var catalogId = this.catalogId;
-        var catalogDisplayText = this.catalogDisplayText;
+        h().playSound('addToCart');
 
-        switch (catalogType) {
-        case 'COMBO':
+        this.addItem = true;
+        this.item.quantity = this.item.quantity + 1;
+        this.addToBasket();
+        return false;
+    },
 
-            _(this.items.groups).each(function(group, i) {
-                if (group.unSubgroupedItems.length === 0)
-                    return;
+    decrementQuantity: function() {
+        this.addItem = false;
+        var qty = this.item.quantity;
 
-                var groupType = group.groupType.enumText;
-                var groupId = group.groupId;
-                var groupDisplayText = group.groupDisplayText;
+        if (qty === 0) return false;
 
-                switch (groupType) {
-                case 'COMBO':
-                    /*
-                     * use radio boxes
-                     */
-                    var el = new ComboGroupView({
-                        onChange : function(model) {
-                            this.toggleBasketComboEntry(model, groupId, groupDisplayText,catalogId,catalogDisplayText);
-                        }.bind(this),
-                        color : this.generateColor(i),
-                        model : group,
-                        parent : this
-                    }).render().el;
-                    this.$('.cmntyex-items_placeholder').append(el);
-                    /*
-                     * now add the first item for combos, but only if basket
-                     * does not already have an item from this group. (remember,
-                     * back button results in view being built again with
-                     * existing basket).
-                     */
-                    var currentItemId=this.basket.isComboGroupRepresented(groupId);
-                    if (typeof currentItemId==='undefined') {
-                        var firstItem = group.unSubgroupedItems[0];
-                        this.basket.addItemRaw(firstItem, 1, groupId, groupDisplayText, catalogId, catalogDisplayText);
-                        this.updateBasket();
-                    } else {
-                        /*
-                         * highlight that radio button then
-                         */
-                        $(el).find('#'+currentItemId).prop("checked", true)
-                    }
-                    break;
-                case 'ITEMIZED':
-                case 'UNDEFINED':
-                default:
-                    /*
-                     * TODO: Convert these to check boxes.
-                     */
-                    var el = new GroupView({
-                        onClick: function(model) {
-                            this.openAddToBasketView(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
-                        }.bind(this),
-                        color : this.generateColor(i),
-                        model : group,
-                        parent : this
-                    }).render().el;
-                    this.$('.cmntyex-items_placeholder').append(el);
-                }
-            }.bind(this));
-            break;
-        case 'ITEMIZED':
-        case 'UNDEFINED':
-        default:
-            _(this.items.groups).each(function(group, i) {
-                if (group.unSubgroupedItems.length === 0)
-                    return;
+        h().playSound('removeFromCart');
 
-                var groupType = group.groupType.enumText;
-                var groupDisplayText = group.groupDisplayText;
-                var groupId = group.groupId;
+        this.item.quantity = this.item.quantity - 1;
+        this.addToBasket();
+        return false;
+    },
 
-                var el = new GroupView({
-                    // onClick : function(model) {
-                    //     this.openAddToBasketView(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
-                    // }.bind(this),
-                    onClick : function(view) {
-                        this.expandCollapseDetails(view);
-                    }.bind(this),
-                    color : this.generateColor(i),
-                    model : group,
-                    parent : this,
-                    basket: this.basket,
-                    itemView: ItemView
-                }).render().el;
-
-                this.$('.cmntyex-items_placeholder').append(el);
-
-            }.bind(this));
-        }
+    addToBasket: function() {
+        var currentQuantity = this.basket.models[0].get('quantity');
+        this.addItem ?
+        this.basket.models[0].set('quantity', currentQuantity + 1) :
+        this.basket.models[0].set('quantity', currentQuantity - 1);
     }
 
 });
