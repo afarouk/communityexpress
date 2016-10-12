@@ -8,7 +8,7 @@ var RosterBasketDerivedItem = Backbone.Model.extend({
   * what is id, cid and idAttribute?
   * http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid
   *
-  * So, we are telling backbone to use the 'uUID' value as the id value for
+  * So, we are telling backbone to use the 'uuid' value as the id value for
   * this item.
   */
 
@@ -16,7 +16,7 @@ var RosterBasketDerivedItem = Backbone.Model.extend({
     groupId : null,
     catalogId : null,
     itemId : null,
-    uUID:'',
+    uuid:'',
 
     displayText:"",
     rosterEntryType:"ITEM", /* ITEM or COMBO */
@@ -33,7 +33,7 @@ var RosterBasketDerivedItem = Backbone.Model.extend({
     this.set('groupId' , options.groupId);
     this.set('catalogId' ,options.catalogId);
     this.set('itemId' , options.itemId);
-    this.set('uUID', options.uuid);
+    this.set('uuid', options.uuid);
     this.set('price',options.price);
     this.set('quantity', options.quantity);
     this.set('removeItem',options.removeItem);

@@ -8,10 +8,10 @@ var CatalogBasketItem = Backbone.Model.extend({
      * what is id, cid and idAttribute?
      * http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid
      *
-     * So, we are telling backbone to use the 'uUID' value as the id value for
+     * So, we are telling backbone to use the 'uuid' value as the id value for
      * this item.
      */
-    idAttribute : 'uUID',
+    idAttribute : 'uuid',
 
     groupId : null,
     catalogId : null,
@@ -19,10 +19,10 @@ var CatalogBasketItem = Backbone.Model.extend({
     catalogDisplayText:null,
     itemId : null,
     /*
-     * we save the uUID also, so that we can scan by groupId and find the uUID
+     * we save the uuid also, so that we can scan by groupId and find the uuid
      * maybe we can just use the 'id'?
      */
-    uUID : null,
+    uuid : null,
     itemName : null,
     itemType : null,
 
@@ -37,7 +37,7 @@ var CatalogBasketItem = Backbone.Model.extend({
         this.groupDisplayText= options.groupDisplayText;
         this.catalogDisplayText= options.catalogDisplayText;
         this.itemId = options.itemId;
-        this.uUID = options.uUID;
+        this.uuid = options.uuid;
         this.itemName = options.itemName;
         this.itemType = options.itemType ? options.itemType.enumText : 'EVENT';
       

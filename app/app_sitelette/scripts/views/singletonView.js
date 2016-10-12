@@ -99,7 +99,7 @@ var SingletonView = Backbone.View.extend({
                 id : this.sasl.getUrlKey(),
                 type: this.type,
                 uuid: this.uuid,
-                catalogId: this.item.uUID,
+                catalogId: this.item.uuid,
                 backToCatalog: this.backToCatalog,
                 backToCatalogs: this.backToCatalogs,
                 backToRoster: this.backToRoster,
@@ -160,7 +160,7 @@ var SingletonView = Backbone.View.extend({
 
         this.addItem = true;
         this.item.quantity = this.item.quantity + 1;
-        this.addToBasket();
+        this.addToBasket('inc');
         return false;
     },
 
@@ -173,12 +173,12 @@ var SingletonView = Backbone.View.extend({
         h().playSound('removeFromCart');
 
         this.item.quantity = this.item.quantity - 1;
-        this.addToBasket();
+        this.addToBasket('dec');
         return false;
     },
 
-    addToBasket: function() {
-        if (this.basket.length === 0) {
+    addToBasket: function(action) {
+        if (this.basket.length === 0 && action === 'inc') {
             var item = new Backbone.Model(this.item);
             this.basket.addItem(item);
         } else {
@@ -187,7 +187,7 @@ var SingletonView = Backbone.View.extend({
                 this.basket.models[0].set('quantity', currentQuantity + 1);
             } else {
                 currentQuantity === 1 ?
-                this.basket.remove(this.item.uUID) :
+                this.basket.remove(this.item.uuid) :
                 this.basket.models[0].set('quantity', currentQuantity - 1);
             }
         }

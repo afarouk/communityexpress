@@ -25,10 +25,10 @@ var RosterBasketModel = Backbone.Model.extend({
   rosterDisplayText: null,
 
   /*
-  * we save the uUID also, so that we can scan by groupId and find the uUID
+  * we save the uuid also, so that we can scan by groupId and find the uuid
   * maybe we can just use the 'id'?
   */
-  uUID: null,
+  uuid: null,
   rosterType: null,
 
   //    add : function(n) {
@@ -37,7 +37,7 @@ var RosterBasketModel = Backbone.Model.extend({
   //    },
 
   /* catalog uuid */
-  idAttribute: 'uUID',
+  idAttribute: 'uuid',
 
   setRosterDetails: function(rosterDetails) {
     this.idAttribute = rosterDetails.rosterUUID;
@@ -62,7 +62,7 @@ var RosterBasketModel = Backbone.Model.extend({
       });
       if (basketSides) {
           itemModel = basketSides.find(function(sidesItem) {
-              return sidesItem.get('uUID') === item.get('uUID');
+              return sidesItem.get('uuid') === item.get('uuid');
           });
           if (itemModel) {
               itemModel.add(count);
@@ -182,7 +182,7 @@ var RosterBasketModel = Backbone.Model.extend({
   //},
 
   getNumOf: function(catalog) {
-    var model = this.get(catalog.get('uUID'));
+    var model = this.get(catalog.get('uuid'));
     if (model) {
       return model.quantity;
     } else {
@@ -319,7 +319,7 @@ var RosterBasketModel = Backbone.Model.extend({
       _(this.catalogs.models).each(function(catalog,ii,ll){
         if(catalog.id===item.get('catalogId')){
           /* this is a catalogbasketmodel, so we can remove the model from it. */
-          catalog.remove(item.get('uUID'));
+          catalog.remove(item.get('uuid'));
           catalog.dumpCartToConsole();
         }
       });
