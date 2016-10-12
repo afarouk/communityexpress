@@ -1990,13 +1990,18 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 
 /********************** USER'S REVIEWS BLOCK ***********************/
+#cmtyx_reviews_block .review {
+    margin-bottom: 20px;
+}
 .review td {
     border-bottom: none;
     padding-top: 0;
     padding-right: 0;
 }
 .reviews_block .user_avatar {
+    background-image: url('http://static.tumblr.com/c172fd03bf2bedb77e13107cb22cdcc1/3rxa3xq/asBo7l3wr/tumblr_static_6fbdkgohxjgoc4c8o8kwoso4k.png');
     display: inline-block;
+    background-size: cover;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -2004,24 +2009,35 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .reviews_block .review_section {
     padding-left: 15px;
+    width: 100%;
 }
 .reviews_block .name_date_block, .reviews_block .rating_block {
     margin-bottom: 10px;
 }
-.reviews_block .user_name {
+/* .reviews_block .user_name {
     display: inline-block;
     font: 400 16px 'Open Sans', sans-serif;
     margin-right: 30px;
+} */
+.reviews_block .user_name {
+    font: 400 16px 'Open Sans', sans-serif;
+    width: 60%;
+    padding-left: 0;
+    color: #e9e9e9;
 }
-.reviews_block .date {
+/* .reviews_block .date {
     display: inline-block;
     font: 300 12px 'Open Sans', sans-serif;
     float: right;
     position: relative;
     top: 3px;
-}
-.rating_block {
-    margin-left: -7px;
+    margin-bottom: 10px;
+} */
+.reviews_block .date {
+    font: 300 12px 'Open Sans', sans-serif;
+    width: 40%;
+    text-align: right;
+    color: #868686;
 }
 .my-rating {
     display: inline-block;
@@ -2031,9 +2047,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     display: inline-block;
     font: 300 12px 'Open Sans', sans-serif;
     color: #efcd49;
-    margin-left: 20px;
+    margin-left: 15px;
     position: relative;
-    bottom: 6px;
+    bottom: 5px;
 }
 .reviews_block .text {
     font: 300 12px / 17px 'Open Sans', sans-serif;
@@ -2048,11 +2064,32 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     height: 40px;
     border-radius: 50%;
     margin-left: -20px;
+    background-size: cover;
+    border: solid 3px #464646;
+}
+.reviews_block .show_more_block .show_more_avatars_container .avatar1 {
+    background-image: url('http://jsymphony.com/wp-content/uploads/2016/09/avatar.jpg');
+    margin-left: 0;
+}
+.reviews_block .show_more_block .show_more_avatars_container .avatar2 {
+    background-image: url('https://media.creativemornings.com/uploads/user/avatar/2195/allen_avatar_square.jpg');
+}
+.reviews_block .show_more_block .show_more_avatars_container .avatar3 {
+    background-image: url('http://d38we5ntdyxyje.cloudfront.net/85557/profile/CYHUGAGT_avatar_medium_square.jpg');
+}
+.reviews_block .show_more_block .show_more_avatars_container .avatar4 {
+    background-image: url('https://media.creativemornings.com/uploads/user/avatar/15261/Matthew_Avatar_square.jpg');
+}
+.reviews_block .show_more_block .show_more_avatars_container .avatar5 {
+    background-image: url('https://media.creativemornings.com/uploads/user/avatar/47719/f27e6088bf4c921ac8a4609b4bb97226.jpeg');
 }
 .reviews_block .show_more_block .show_more_reviews_btn {
     display: inline-block;
     font: 400 10px 'Open Sans', sans-serif;
     text-transform: uppercase;
+}
+.reviews_block .jq-star {
+    margin-right: 3px;
 }
 
 /********************** PROMOTION BLOCK ***********************/

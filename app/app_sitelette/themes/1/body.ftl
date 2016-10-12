@@ -286,9 +286,9 @@
 								<tr>
 									<td class="user_avatar"></td>
 									<td class="review_section">
-										<div class="name_date_block">
-											<span class="user_name">[Sample user]</span><span
-												class="date">Aug, 24, 2016</span>
+										<div class="ui-grid-a name_date_block">
+											<div class="ui-block-a user_name">[Sample user]</div>
+											<div class="ui-block-b date">Aug, 24, 2016</div>
 										</div>
 										<div class="rating_block">
 											<div class="my-rating"></div>

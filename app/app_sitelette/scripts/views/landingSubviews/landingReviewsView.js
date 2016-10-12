@@ -18,14 +18,18 @@ var LandingReviewsView = Backbone.View.extend({
     this.options = options || {};
 
     this.$el.find('.my-rating').starRating({
-        initialRating: 3.5,
-        strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25
+        initialRating: 4,
+        emptyColor: '#464646',
+        strokeColor: '#EECB49',
+        activeColor: '#EECB49',
+        hoverColor: '#EECB49',
+        strokeWidth: 45,
+        starSize: 20,
+        useGradient: false,
+        useFullStars: true
     });
-    
     this.$el.find('.current_rating')
-      .text($('.my-rating').starRating('getRating'));
+      .text($('.my-rating').starRating('getRating')[0]);
   },
 
   toggleCollapse: function() {
