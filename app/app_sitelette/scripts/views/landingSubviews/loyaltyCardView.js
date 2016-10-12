@@ -65,12 +65,12 @@ var LoyaltyCardView = Backbone.View.extend({
         * this for other things.
         */
         if (resp.hasLoyaltyProgram) {
-          var content = '<div>'+ resp.loyaltyBlockLine1 +'</div><div>'+ 
+          var content = '<div>'+ resp.loyaltyBlockLine1 +'</div><div>'+
             resp.loyaltyBlockLine2 +'</div><div>' + resp.loyaltyBlockLine3 + '</div>';
           this.$(this.status).html(content);
         }
-        this.$(this.qrCode).find('.qr_code_container').html('<img src="' + 
-          resp.qrcodeURL + '" alt="" style="width:100%">');
+        this.$(this.qrCode).find('.qr_code_container').html('<img src="' +
+          resp.qrcodeURL + '" alt="" >');
         this.$(this.qrCode).slideDown('slow');
         this.$(this.no_qrCode).slideUp('slow');
         this.$(this.qrCode).find('.qr_code_title.title').text(resp.qrCodeBlockLine1);

@@ -2185,7 +2185,8 @@ border-right: solid 1px #e1e1e1;
 }
 .loyalty_program_block img {
     padding: 0;
-    width: 100%;
+    display: block;
+    margin:auto;
 }
 .loyalty_program_block .qr_code_block {
     position: relative;

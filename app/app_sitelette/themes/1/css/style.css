@@ -1860,7 +1860,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .loyalty_program_block img {
     padding: 0;
-    width: 100%;
+    display: block;
+    margin:auto;
 }
 .loyalty_program_block .qr_code_block {
     /* position: relative;
