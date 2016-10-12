@@ -749,18 +749,6 @@ label.checkbox_save_card {
     padding-bottom: 0 !important;
     border-width: 0 !important;
 }
-.ui-btn-icon-notext {
-    width: 35px;
-    height: 35px;
-}
-.quantity_minus.ui-icon-minus:after,
-a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
-    background-size: 14px 14px !important;
-    height: 27px !important;
-    width: 24px !important;
-    top: 14px !important;
-    background: url('images/minus.png') no-repeat center center !important;
-}
 .quantity_plus a {
     font-size: 16px !important;
     margin-left: 0px !important;
@@ -785,6 +773,14 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
     top: 14px !important;
     background: url('images/plus.png') no-repeat center center !important;
 }
+.quantity_minus.ui-icon-minus:after,
+a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
+    background-size: 14px 14px !important;
+    height: 27px !important;
+    width: 24px !important;
+    top: 14px !important;
+    background: url('images/minus.png') no-repeat center center !important;
+}
 .quantity_field {
     background: #2b2b2b;
     margin-top: 8px;
@@ -796,6 +792,24 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
     height: 35px;
     line-height: 22px;
     width: 35px !important;
+}
+.ui-btn-icon-notext {
+    width: 35px;
+    height: 35px;
+}
+#cmtyx_catalogView .select_container.catalog_item_counter {
+    padding: 0;
+}
+#cmtyx_catalogView .select_container.catalog_item_counter .ui-btn-icon-notext {
+    height: 44px;
+}
+#cmtyx_catalogView .select_container.catalog_item_counter .quantity_field {
+    height: 44px;
+    padding: 11px 2px;
+}
+#cmtyx_catalogView .select_container.catalog_item_counter a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after,
+#cmtyx_catalogView .select_container.catalog_item_counter a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
+    height: 37px !important;
 }
 .tip_quantity_field {
     background: #2b2b2b;
