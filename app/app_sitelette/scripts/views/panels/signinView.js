@@ -53,12 +53,18 @@ var SigninView = PopupView.extend({
         loader.show();
         sessionActions.facebookLoginStatus(this.facebookStatus)
             .then(function(response){
-                this.shut();
                 if (response.success) {
-                    loader.showFlashMessage('Logged with facebook');
+                    // loader.showFlashMessage('Logged with facebook');
+                    this.$el.on('popupafterclose', function () {
+                        this.parent.textPopup({text: 'Successfully Logged in with FB Login'}, 
+                            this.callback);
+                    }.bind(this));
+                    loader.hide();
+                this.shut();
                 } else {
                     loader.showFlashMessage(response.error);
                 }
+                this.shut();
             }.bind(this));
     },
 
