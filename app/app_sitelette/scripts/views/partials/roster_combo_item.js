@@ -37,6 +37,8 @@ var RosterComboItemView = Backbone.View.extend({
         // and we should update model quantity from basket
         var inBasket = this.basket.getCatalog(this.model);
         if (inBasket) {
+            // We need it when rerender view and change items in editBasketPanel
+            inBasket.off('change remove').on('change remove', _.bind(this.changeCount, this));
             this.model.quantity = inBasket.get('quantity');
         }
         this.$el.html(this.template({

@@ -2674,38 +2674,44 @@ li.driving_directions_block {
     margin-top: 5px;
     margin-left: 5px;
 }
-.chat_block .date {
+#cmntyex_chat .date {
     font: 300 12px 'Open Sans', sans-serif;
     color: rgba(236, 236, 236, 0.5);
 }
-.chat_block td {
+#cmntyex_chat td {
     border: none;
 }
-.chat_block .friend_message td {
+#cmntyex_chat .friend_message td {
     padding: 15px 0 15px 10px;
 }
-.chat_block .my_message td {
+#cmntyex_chat .my_message td {
     padding: 15px 10px 15px 0;
 }
-.chat_block td.time {
+#cmntyex_chat td.time {
     vertical-align: middle;
     font: italic 12px 'Open Sans', sans-serif;
     color: rgba(236, 236, 236, 0.7);
 }
-.chat_block .friend_message td.time {
+#cmntyex_chat .friend_message td.time {
     text-align: right;
 }
-.chat_block .my_message td.time {
+#cmntyex_chat .my_message td.time {
     text-align: left;
 }
-.chat_block li,
-.chat_block table {
+#cmntyex_chat li,
+#cmntyex_chat table {
     margin-bottom: 0;
+    width: 100%;
 }
-.chat_block td.message {
+#cmntyex_chat td.message {
     vertical-align: middle;
     width: 65%;
 }
+
+.chat_message_time {
+    text-align: center;
+}
+
 li .message_text {
     padding: 10px;
     border-radius: 3px;

@@ -31,11 +31,12 @@ var MessageView = Backbone.View.extend({
     },
 
     addClasses: function() {
-        if ( !this.model.get('fromUser') || this.model.get('fromUser') === 'false' ){
-            this.$el.addClass('restaurant');
-        }else{
-            this.$el.addClass('user');
-        }
+        this.model.get('fromUser') ? this.$el.addClass('my_message') : this.$el.addClass('friend_message');
+        // if ( !this.model.get('fromUser') || this.model.get('fromUser') === 'false' ){
+        //     this.$el.addClass('restaurant');
+        // }else{
+        //     this.$el.addClass('user');
+        // }
     }
 
 });
