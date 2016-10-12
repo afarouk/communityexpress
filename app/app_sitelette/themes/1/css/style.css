@@ -2755,6 +2755,14 @@ li.driving_directions_block {
 #cmntyex_chat .friend_message td.time {
     text-align: right;
 }
+
+#cmntyex_chat .time div {
+    display: inline-block;
+}
+
+#cmntyex_chat .time div:first-child {
+    margin-right: 5px;
+}
 #cmntyex_chat .my_message td.time {
     text-align: left;
 }

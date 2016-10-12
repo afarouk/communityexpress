@@ -8,9 +8,9 @@
 				<td class="message">
 					<div class="message_text"><%= messageBody %></div>
 				</td>
-                <td class="time"><%= (userName || '') + ' ' + toTimeString %></td>
+                <td class="time"><div><%= (userName || '') %></div><div><%= toTimeString %></div></td>
 			<% } else { %>
-                <td class="time"><%= saslName + ' ' + toTimeString %></td>
+                <td class="time"><div><%= saslName %></div><div><%= toTimeString %></div></td>
 				<td class="message">
 					<div class="message_text"><%= messageBody %></div>
 				</td>
