@@ -97,6 +97,7 @@ var AddAddressView = Backbone.View.extend({
 
     showMap: function(lat, lng) {
         var el = this.$('#shipping_map2')[0],
+            infoVisible = false,
             options = {
             center: new google.maps.LatLng(lat, lng),
             zoom: 17,
@@ -111,7 +112,24 @@ var AddAddressView = Backbone.View.extend({
           raiseOnDrag: true
         });
 
+        var infowindow = new google.maps.InfoWindow({
+          content: 'Drag marker or double click on map to move it.'
+        });
+        google.maps.event.addListener(this.marker, 'click', _.bind(function(){
+          if (infoVisible) {
+            infowindow.close(this.map, this.marker);
+            infoVisible = false;
+          } else {
+            infowindow.open(this.map, this.marker);
+            infoVisible = true;
+          }
+        },this));
         google.maps.event.addListener(this.marker, 'dragend', _.bind(this.dragendMarker,this));
+        google.maps.event.addListener(this.map, 'dblclick', function(e) {
+            var positionDoubleclick = e.latLng;
+            this.marker.setPosition(positionDoubleclick);
+            e.stopPropagation();
+        }.bind(this));
     },
 
     dragendMarker: function(event) {

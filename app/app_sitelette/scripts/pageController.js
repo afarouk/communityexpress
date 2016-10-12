@@ -172,21 +172,14 @@ module.exports = {
                 catalogActions.getEventDetails(uuid);
         }).then(function(item) {
             var basket = new CatalogBasketModel(),
-
             // Should we have isOpen and isOpenWarningMessage in response?
                 isOpen = true,
                 isOpenWarningMessage = 'message';
-            // in response we have different parameters for event and promotion
-            // uuid and uUID
-            if (!item.uUID) {
-                item.uUID = item.uuid;
-            }
-            // end
             basket.addItem(new Backbone.Model(item), 1);
-            appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + item.uUID + ':catalogbasket', basket);
+            appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
             return {
                 type: type,
-                uuid: uuid,
+                uuid: item.uuid,
                 sasl: sasl,
                 basket: basket,
                 backToRoster: backToRoster,

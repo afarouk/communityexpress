@@ -9,7 +9,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
     model : CatalogBasketItem,
     /* catalog uuid */
-    idAttribute : 'uUID',
+    idAttribute : 'uuid',
 
       id:0,
       quantity:0,
@@ -24,7 +24,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
     setCatalogDetails : function(catalogDetails) {
         this.id=catalogDetails.catalogUUID;
-        this.uUID=catalogDetails.catalogUUID;
+        this.uuid=catalogDetails.catalogUUID;
         this.idAttribute = catalogDetails.catalogUUID;
         this.catalogDisplayText = catalogDetails.catalogDisplayText;
         this.catalogType = catalogDetails.catalogType;
@@ -48,7 +48,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
                 var group = itemInCart.groupId;
                 if (group === groupId && foundElementToRemove === false) {
                     foundElementToRemove = true;
-                    self.remove(itemInCart.get('uUID'));
+                    self.remove(itemInCart.get('uuid'));
                 }
             }
         });
@@ -79,7 +79,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
     },
 
     changeItem: function(item, count) {
-        var itemModel = this.get(item.get('uUID'));
+        var itemModel = this.get(item.get('uuid'));
         itemModel.set('quantity', count);
         if (!itemModel.get('quantity') || itemModel.get('quantity') === 0) {
             this.removeItem(itemModel);
@@ -89,7 +89,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
     addItem : function(item, count, groupId, groupDisplayText,catalogId,catalogDisplayText) {
         // console.log("BasketModel:addItem::"+item.get('itemName')+",
         // "+groupId+", "+catalogId);
-        var itemModel = this.get(item.get('uUID'));
+        var itemModel = this.get(item.get('uuid'));
         if (itemModel) {
             itemModel.add(count);
             if (!itemModel.get('quantity') || itemModel.get('quantity') === 0) {
@@ -150,11 +150,11 @@ var CatalogBasketModel = Backbone.Collection.extend({
     },
 
     removeItem : function(item) {
-        this.remove(item.get('uUID'));
+        this.remove(item.get('uuid'));
     },
 
     getNumOf : function(item) {
-        var model = this.get(item.get('uUID'));
+        var model = this.get(item.get('uuid'));
         if (model) {
             return model.get('quantity');
         } else {

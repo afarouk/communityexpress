@@ -20,7 +20,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
-
     <link rel="apple-touch-icon"  href="<?php
     if (!is_null($appleTouchIcon60URL)) {
         echo $appleTouchIcon60URL;
@@ -40,6 +39,19 @@
 
     <link rel="icon" href="themes/1/favicon.ico?v=1.1">
 
+    <!-- TODO splash screen styles 
+      temporary for demo
+    -->
+    <style type="text/css">
+        body {
+            background-color: black;
+            background-image: url("http://images.mobile-patterns.com/1362787787006-2013-03-08%2019.05.38.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <!-- end -->
+    
     <script>
         window.saslData = <?php
             if (!is_null($saslJSON)) {

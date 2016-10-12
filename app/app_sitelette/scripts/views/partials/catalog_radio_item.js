@@ -43,11 +43,10 @@ var CatalogRadioItemView = Backbone.View.extend({
     },
 
     render : function() {
-       
         var tempModel=_.extend({}, this.model.attributes, {
             color: this.color,
             catalog_radio_item_name :this.radio_group_name,//'testName',
-            catalog_radio_item_id :this.model.attributes.uUID,
+            catalog_radio_item_id :this.model.attributes.uuid,
             catalog_radio_item_label :this.model.attributes.itemName 
           });
         

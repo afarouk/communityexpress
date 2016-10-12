@@ -240,7 +240,6 @@ var PaymentView = Backbone.View.extend({
                 text: 'order successful'
             }, callback);
         }.bind(this), function(e) {
-            debugger;
             loader.hide();
             var text = h().getErrorMessage(e, 'Error placing your order');
             popupController.textPopup({

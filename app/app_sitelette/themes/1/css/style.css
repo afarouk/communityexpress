@@ -241,6 +241,12 @@ button.ui-btn {
     outline: none;
     font: 300 18px 'Open Sans', sans-serif !important;
 }
+.back_btn.ui-btn:focus {
+    box-shadow: none;
+}
+.open_menu_btn.ui-btn:focus {
+    box-shadow: none;
+}
 .next_btn {
     border-width: 1px;
     border-style: solid;
@@ -749,18 +755,6 @@ label.checkbox_save_card {
     padding-bottom: 0 !important;
     border-width: 0 !important;
 }
-.ui-btn-icon-notext {
-    width: 35px;
-    height: 35px;
-}
-.quantity_minus.ui-icon-minus:after,
-a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
-    background-size: 14px 14px !important;
-    height: 27px !important;
-    width: 24px !important;
-    top: 14px !important;
-    background: url('images/minus.png') no-repeat center center !important;
-}
 .quantity_plus a {
     font-size: 16px !important;
     margin-left: 0px !important;
@@ -785,6 +779,14 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
     top: 14px !important;
     background: url('images/plus.png') no-repeat center center !important;
 }
+.quantity_minus.ui-icon-minus:after,
+a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
+    background-size: 14px 14px !important;
+    height: 27px !important;
+    width: 24px !important;
+    top: 14px !important;
+    background: url('images/minus.png') no-repeat center center !important;
+}
 .quantity_field {
     background: #2b2b2b;
     margin-top: 8px;
@@ -796,6 +798,29 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
     height: 35px;
     line-height: 22px;
     width: 35px !important;
+}
+.ui-btn-icon-notext {
+    width: 35px;
+    height: 35px;
+}
+#cmtyx_catalogView .select_container.catalog_item_counter,
+#cmtyx_singleton .select_container.catalog_item_counter{
+    padding: 0;
+}
+#cmtyx_catalogView .select_container.catalog_item_counter .ui-btn-icon-notext,
+#cmtyx_singleton .select_container.catalog_item_counter .ui-btn-icon-notext {
+    height: 44px;
+}
+#cmtyx_catalogView .select_container.catalog_item_counter .quantity_field,
+#cmtyx_singleton .select_container.catalog_item_counter .quantity_field {
+    height: 44px;
+    padding: 11px 2px;
+}
+#cmtyx_catalogView .select_container.catalog_item_counter a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after,
+#cmtyx_catalogView .select_container.catalog_item_counter a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after,
+#cmtyx_singleton .select_container.catalog_item_counter a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after,
+#cmtyx_singleton .select_container.catalog_item_counter a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
+    height: 37px !important;
 }
 .tip_quantity_field {
     background: #2b2b2b;
@@ -960,6 +985,15 @@ li.build_combo, li.choose_extras {
 .open_menu_btn {
     text-transform: uppercase;
     font: 700 18px / 19px 'Open Sans', sans-serif !important;
+}
+.build_btn.ui-btn:focus,
+.choose_extr_btn.ui-btn:focus,
+.open_menu_btn.ui-btn:focus,
+.add_to_cart_btn.add_combo_button.ui-btn:focus {
+    box-shadow: none;
+}
+.add_to_cart_btn.add_combo_button.ui-btn:hover {
+    color: #fff;
 }
 .cart_items_number {
     border-radius: 50%;
@@ -1128,7 +1162,7 @@ li.build_combo, li.choose_extras {
     text-shadow: none;
     background-color: transparent;
     margin-left: 10px;
-    width: 35%;
+    width: 31%;
     padding: .7em 0;
     /*float: left;*/
 }
@@ -1723,6 +1757,15 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     outline: none;
     text-decoration: none;
 }
+.events-buybutton.ui-btn {
+    margin-bottom: 10px;
+}
+.events-buybutton.ui-btn:hover {
+    color: #fff;
+}
+.events-buybutton.ui-btn:focus {
+    box-shadow: none;
+}
 
 /********************** GALLERY BLOCK ***********************/
 .home_tabs_list li.gallery_block .body {
@@ -1766,7 +1809,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     display: block;
     margin-top: 10px;
     margin-bottom: 20px;
-    font: 400 18px 'Open Sans', sans-serif;
+    font: 400 16px 'Open Sans', sans-serif;
     color: #ececec;
 }
 .poll_block .submit_poll_button {
@@ -1942,6 +1985,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font: 500 11px 'Open Sans', sans-serif;
     color: rgba(65, 65, 65, 0.7);
 }
+.prize_block img {
+    width: 100%;
+}
 
 /********************** USER'S REVIEWS BLOCK ***********************/
 .review td {
@@ -2078,7 +2124,7 @@ li.promotion_block .body {
     text-align: center;
 }
 .events_block .slick-slide:focus,
-.events_block .slick-arrow:focus
+.events_block .slick-arrow:focus,
 .promotion_block .slick-slide:focus,
 .promotion_block .slick-arrow:focus {
     outline: none;
@@ -2148,7 +2194,7 @@ li.promotion_block .body {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     height: 36px;
-    width: 200px;
+    width: 185px;
     padding: .4em;
 }
 .sms_input_block input:focus {
@@ -2165,6 +2211,16 @@ li.promotion_block .body {
     text-transform: uppercase;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+.promotions-buybutton.ui-btn {
+    width: 90%;
+    margin: 10px auto;
+}
+.promotions-buybutton.ui-btn:hover {
+    color: #fff;
+}
+.promotions-buybutton.ui-btn:focus {
+    box-shadow: none;
 }
 
 /********************** PHOTO CONTEST BLOCK ***********************/
@@ -2193,6 +2249,9 @@ li.promotion_block .body {
 .photo_contest_block .send_photo_btn {
     font: 400 16px 'Open Sans', sans-serif;
     margin-bottom: 25px;
+}
+.photo_contest_block .send_photo_btn:focus {
+    box-shadow: none;
 }
 .photo_contest_block .photo_contest_upload_image {
     max-height: 568px;
@@ -2326,11 +2385,15 @@ li.video_block .body {
     background-size: 180px 40px;
     background-repeat: no-repeat;
 }
+#cmtyx_share_block a:focus {
+    outline: none;
+    text-decoration: none;
+}
 
 /********************** DRIVING DIRECTIONS BLOCK ***********************/
 li.driving_directions_block {
     padding-top: 30px;
-    margin-bottom: 80px;
+    margin-bottom: 63px;
     text-align: center;
     background-color: #464646;
 }
@@ -2354,6 +2417,10 @@ li.driving_directions_block {
 }
 .driving_directions_block .ui-btn {
     letter-spacing: 1px;
+}
+#driveToUs.ui-btn:hover,
+#callUs.ui-btn:hover {
+    border-width: 1px;
 }
 
 /********************** FOOTER ***********************/
@@ -2384,72 +2451,6 @@ li.driving_directions_block {
     margin-bottom: 5px;
     margin-left: 5px;
 }
-/* .document_img {
-    width: 17px;
-    height: 21px;
-    background: url('images/document.png') no-repeat;
-    background-size: cover;
-}
-.common_footer a.ui-btn.ui-btn-active .document_img {
-    width: 17px;
-    height: 21px;
-    background: url('images/document_hover.png') no-repeat;
-}
-.deals_chalkboards_img {
-    width: 25px;
-    height: 20px;
-    background: url('images/deals2.png') no-repeat;
-}
-.common_footer a.ui-btn.ui-btn-active .deals_chalkboards_img {
-    width: 25px;
-    height: 20px;
-    background: url('images/deals2.png') no-repeat;
-}
-.calendar_grey_img {
-    width: 25px;
-    height: 20px;
-    background: url('images/deals2.png') no-repeat;
-}
-.common_footer a.ui-btn.ui-btn-active .calendar_grey_img {
-    width: 25px;
-    height: 20px;
-    background: url('images/deals2.png') no-repeat;
-}
-.information_button_img {
-    width: 24px;
-    height: 24px;
-    background: url('images/information.png') no-repeat;
-}
-.common_footer a.ui-btn.ui-btn-active .information_button_img {
-    width: 24px;
-    height: 24px;
-    background: url('images/information_hover.png') no-repeat;
-}
-.user_img {
-    width: 16px;
-    height: 22px;
-    background: url('images/user.png') no-repeat;
-}
-.common_footer a.ui-btn.ui-btn-active .user_img {
-    width: 16px;
-    height: 22px;
-    background: url('images/user_hover.png') no-repeat;
-}
-.common_footer a.ui-btn.navbutton_sign_out .user_img {
-    width: 16px;
-    height: 22px;
-    background: url('images/user_signed_in.png') no-repeat;
-}
-
-.m-b-7 {
-    margin-bottom: 7px;
-}
-.m-b-9 {
-    margin-bottom: 9px;
-}
-.m-b-11 {
-    margin-bottom: 11px;
-} */
 
 /*CONTACT US BLOCK*/
 
@@ -2489,57 +2490,7 @@ li.driving_directions_block {
     top: -10px;
     right: 5px;
 }
-/* .contact_us_block .body {
-    padding: 75px 10px 0 10px;
-    text-align: center;
-}
-.contact_us_block .body .title {
-    font: 700 18px 'Open Sans', sans-serif;
-    color: #dddddd;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-.contact_us_block .body .undertitle {
-    font: 400 12px 'Open Sans', sans-serif;
-    color: rgba(221, 221, 221, 0.7);
-    margin-bottom: 30px;
-}
-.contact_us_block .body .input_container {
-    text-align: left;
-}
-.contact_us_block .body .material-textfield {
-    width: 100%;
-    padding-top: 10px;
-}
-.contact_us_block .material-textfield textarea {
-    width: 100%;
-    background-color: transparent;
-    resize: none;
-}
-.contact_us_block .material-textfield input, .contact_us_block .material-textfield textarea {
-    font: 300 12px 'Open Sans', sans-serif;
-    color: #fafafa;
-}
-.contact_us_block .material-textfield input+label::before, .contact_us_block .material-textfield input[required]:focus~label::before {
-    font-size: 10px;
-    top: -2.75rem;
-}
-.contact_us_block .material-textfield textarea+label::before, .contact_us_block .material-textfield textarea[required]:focus~label::before {
-    font-size: 10px;
-    top: -5rem;
-}
-.contact_us_block .material-textfield input:invalid~label::before {
-    font: 400 12px 'Open Sans', sans-serif;
-    top: -1.5rem;
-}
-.contact_us_block .material-textfield textarea:invalid~label::before {
-    font: 400 12px 'Open Sans', sans-serif;
-    top: -4rem;
-}
-.contact_us_block .body .send_btn {
-    font: 700 16px 'Open Sans', sans-serif !important;
-    text-transform: uppercase;
-} */
+
 
 /* Contact Us View */
 
@@ -2616,6 +2567,9 @@ li.driving_directions_block {
 #contact_us .body .send_btn {
     font: 700 16px Roboto !important;
     text-transform: uppercase;
+}
+#contact_us .body .send_btn:focus {
+    box-shadow: none;
 }
 
 /*USER REVIEWS*/
@@ -2720,38 +2674,52 @@ li.driving_directions_block {
     margin-top: 5px;
     margin-left: 5px;
 }
-.chat_block .date {
+#cmntyex_chat .date {
     font: 300 12px 'Open Sans', sans-serif;
     color: rgba(236, 236, 236, 0.5);
 }
-.chat_block td {
+#cmntyex_chat td {
     border: none;
 }
-.chat_block .friend_message td {
+#cmntyex_chat .friend_message td {
     padding: 15px 0 15px 10px;
 }
-.chat_block .my_message td {
+#cmntyex_chat .my_message td {
     padding: 15px 10px 15px 0;
 }
-.chat_block td.time {
+#cmntyex_chat td.time {
     vertical-align: middle;
     font: italic 12px 'Open Sans', sans-serif;
     color: rgba(236, 236, 236, 0.7);
 }
-.chat_block .friend_message td.time {
+#cmntyex_chat .friend_message td.time {
     text-align: right;
 }
-.chat_block .my_message td.time {
+
+#cmntyex_chat .time div {
+    display: inline-block;
+}
+
+#cmntyex_chat .time div:first-child {
+    margin-right: 5px;
+}
+#cmntyex_chat .my_message td.time {
     text-align: left;
 }
-.chat_block li,
-.chat_block table {
+#cmntyex_chat li,
+#cmntyex_chat table {
     margin-bottom: 0;
+    width: 100%;
 }
-.chat_block td.message {
+#cmntyex_chat td.message {
     vertical-align: middle;
     width: 65%;
 }
+
+.chat_message_time {
+    text-align: center;
+}
+
 li .message_text {
     padding: 10px;
     border-radius: 3px;
@@ -2766,7 +2734,11 @@ li .message_text {
     color: #ececec;
 }
 
-/*appointments*/
+.cmntyex-message_list:before {
+    display: none;
+}
+
+/*APPOINTMENTS*/
 
 #cmtyx_appointments .body {
     padding: 45px 10px 0 10px;
@@ -3213,7 +3185,7 @@ a.cancel {
 }
 
 input[name=promocode] {
-    width: 100px;
+    width: 90px;
     background: none;
     border: none;
     text-align: center;
@@ -3227,6 +3199,12 @@ input[name=promocode] {
     border-radius: 3px;
     padding: 5px;
     margin-left: 10px;
+}
+
+.discount .float_right .get_discount_button:focus {
+    box-shadow: none;
+    outline: none;
+    text-decoration: none;
 }
 
 .discount_value {

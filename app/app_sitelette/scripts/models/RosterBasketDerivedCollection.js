@@ -73,7 +73,7 @@ var RosterBasketDerivedCollection = Backbone.Collection.extend({
 
                         var entryItem = new RosterBasketDerivedItem({
                             rosterEntryType: 'ITEMIZED',
-                            uuid: item.get('uUID'),
+                            uuid: item.get('uuid'),
                             itemId: item.get('itemId'),
                             groupId: item.get('groupId'),
                             catalogId: item.get('catalogId'),

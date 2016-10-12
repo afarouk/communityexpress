@@ -40,7 +40,11 @@ var ContactUsInLandindView = Backbone.View.extend({
         center: new google.maps.LatLng(lat, lng),
         zoom: 10,
         disableDefaultUI:true,
-        draggable:false
+        zoomControl: true,
+        draggable:false,
+        scaleControl: false,
+        scrollwheel: false,
+        disableDoubleClickZoom: true
     };
     var map = new google.maps.Map($map.get(0), mapOptions);
     var myCenter=new google.maps.LatLng(lat, lng);

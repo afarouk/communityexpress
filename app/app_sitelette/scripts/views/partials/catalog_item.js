@@ -100,7 +100,7 @@ var CatalogItemView = Backbone.View.extend({
             this.$('.quantity').text(0);
             this.quantity = 0;
         } else {
-            var modelChanged = this.basket.get(this.model.get('uUID'));
+            var modelChanged = this.basket.get(this.model.get('uuid'));
             if (modelChanged) {
                 this.quantity = modelChanged.get('quantity');
                 this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
