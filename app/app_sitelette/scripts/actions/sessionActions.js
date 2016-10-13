@@ -170,7 +170,7 @@ module.exports = {
                 } else {
                     def.resolve({error:'User cancelled login or did not fully authorize.'});
                 }
-            }.bind(this));
+            }.bind(this), true);
         // }
         return $.when(def);
     },
