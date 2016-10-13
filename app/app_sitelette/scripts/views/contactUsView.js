@@ -31,7 +31,7 @@ var ContactUs = Backbone.View.extend({
 
     getUserData: function () {
         var user = sessionActions.getCurrentUser();
-        return _.extend({subject: 'I have a question...'} ,user);
+        return _.extend({subject: ''} ,user);
     },
 
     onSendMessage: function() {

@@ -2578,6 +2578,29 @@ li.driving_directions_block {
     border-bottom-color: #D8000C;
 }
 
+#contact_us .body .email_error {
+    padding: 3px 1px;
+    display: inline-block;
+    height: 0px;
+    overflow: hidden;
+    transition:height 0.5s linear;
+}
+#contact_us .body .email_error span {
+    color: #D8000C;
+    float: left;
+    font-size: 12px;
+}
+#contact_us .body .input_container input.contact_email + label {
+    height: 0;
+    display: block;
+}
+#contact_us .body .input_container input.error ~ .email_error {
+    height: 25px;
+}
+#contact_us .body .input_container input.error ~ .email_error span {
+    opacity: 1;
+}
+
 #contact_us .body .material-textfield {
     width: 100%;
     padding-top: 10px;
