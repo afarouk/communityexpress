@@ -8,6 +8,7 @@
 	<div id="cmtyx_header" data-role="header" class="header common_header">
 		<div id="cmtyx_header_menu_button" class="menu_btn">
 			<div class="menu_btn_img"></div>
+			<span class="messages_counter" style="display:none;"></span>
 		</div>
 		<div id="cmtyx_header_back_button" data-role="button" data-icon="back">
 			<span class="back_arr_icon"></span>
@@ -153,12 +154,12 @@
 												</a>
 											</div>
 											<div class="ui-block-c text facebook_block">
-												<a href="" class="share_facebook cmtyx_text_color_1">
+												<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
 													<span class="share_icon facebook_icon"></span> <br>Facebook
 												</a>
 											</div>
 											<div class="ui-block-d text twitter_block">
-												<a href="" class="share_twitter cmtyx_text_color_1">
+												<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
 													<span class="share_icon twitter_icon"></span> <br>Twitter
 												</a>
 											</div>
@@ -358,12 +359,12 @@
 										</a>
 									</div>
 									<div class="ui-block-c text facebook_block">
-										<a href="" class="share_facebook cmtyx_text_color_1">
+										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
 											<span class="share_icon facebook_icon"></span> <br>Facebook
 										</a>
 									</div>
 									<div class="ui-block-d text twitter_block">
-										<a href="" class="share_twitter cmtyx_text_color_1">
+										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
 											<span class="share_icon twitter_icon"></span> <br>Twitter
 										</a>
 									</div>
@@ -500,12 +501,12 @@
 							</a>
 						</div>
 						<div class="ui-block-c text facebook_block">
-							<a href="" class="share_facebook cmtyx_text_color_1">
+							<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
 								<span class="share_icon facebook_icon"></span> <br>Facebook
 							</a>
 						</div>
 						<div class="ui-block-d text twitter_block">
-							<a href="" class="share_twitter cmtyx_text_color_1">
+							<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
 								<span class="share_icon twitter_icon"></span> <br>Twitter
 							</a>
 						</div>
