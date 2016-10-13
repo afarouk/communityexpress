@@ -512,7 +512,7 @@ li {
     padding-bottom: 0;
 }
 .price_list li.tip_price {
-    padding-bottom: 10px;
+    padding: 10px 0;
 }
 .price_list li.total_price span {
     font-size: 18px;
@@ -774,7 +774,7 @@ label.checkbox_save_card {
 .quantity_plus.ui-icon-plus:after,
 a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after {
     background-size: 14px 14px !important;
-    height: 29px !important;
+    height: 37px !important;
     width: 31px !important;
     left: 13px !important;
     top: 14px !important;
@@ -783,7 +783,7 @@ a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-
 .quantity_minus.ui-icon-minus:after,
 a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
     background-size: 14px 14px !important;
-    height: 27px !important;
+    height: 37px !important;
     width: 24px !important;
     top: 14px !important;
     background: url('images/minus.png') no-repeat center center !important;
@@ -791,12 +791,12 @@ a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.u
 .quantity_field {
     background: #2b2b2b;
     margin-top: 8px;
-    padding: 7px 2px;
+    padding: 11px 2px;
     vertical-align: middle;
     text-align: center;
     color: #f7f5f3;
     font-weight: bold;
-    height: 35px;
+    height: 44px;
     line-height: 22px;
     width: 35px !important;
 }
@@ -804,34 +804,25 @@ a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.u
     width: 35px;
     height: 35px;
 }
+
+.select_container .plus_button,
+.select_container .minus_button {
+    height: 44px;
+}
 #cmtyx_catalogView .select_container.catalog_item_counter,
 #cmtyx_singleton .select_container.catalog_item_counter{
     padding: 0;
 }
-#cmtyx_catalogView .select_container.catalog_item_counter .ui-btn-icon-notext,
-#cmtyx_singleton .select_container.catalog_item_counter .ui-btn-icon-notext {
-    height: 44px;
-}
-#cmtyx_catalogView .select_container.catalog_item_counter .quantity_field,
-#cmtyx_singleton .select_container.catalog_item_counter .quantity_field {
-    height: 44px;
-    padding: 11px 2px;
-}
-#cmtyx_catalogView .select_container.catalog_item_counter a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after,
-#cmtyx_catalogView .select_container.catalog_item_counter a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after,
-#cmtyx_singleton .select_container.catalog_item_counter a.left.plus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after,
-#cmtyx_singleton .select_container.catalog_item_counter a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-minus.ui-btn-icon-notext:after {
-    height: 37px !important;
-}
+
 .tip_quantity_field {
     background: #2b2b2b;
     margin-top: 8px;
-    padding: 6px 5px;
+    padding: 11px 2px;
     vertical-align: middle;
     text-align: center;
     color: #f7f5f3;
     font-weight: bold;
-    height: 35px;
+    height: 44px;
     line-height: 22px;
     width: 36px !important;
 }
