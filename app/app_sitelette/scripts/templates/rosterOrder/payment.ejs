@@ -26,12 +26,12 @@
                     <% if (cardNumber) { %>
                         <label for="saved_card"><%= creditCard.cardNumber %></label>
                         <input type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice" checked='checked'>
-                        <label for="use_another">Use another</label>
+                        <label for="use_another">Add another card</label>
                         <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice">
                     <% } else { %>
                         <label for="saved_card" class="hidden"></label>
                         <input type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice hidden" checked='checked'>
-                        <label for="use_another">Use another</label>
+                        <label for="use_another">Add another card</label>
                         <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice" checked='checked'>
                     <% } %>
                 </form>
