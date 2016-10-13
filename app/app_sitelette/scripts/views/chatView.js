@@ -87,7 +87,7 @@ var ChatView = Backbone.View.extend({
         communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), val)
             .then(function() {
                 loader.hide();
-                popupController.textPopup({text: 'message sent'});
+                // popupController.textPopup({text: 'message sent'});
             }, function(e) {
                 loader.hide();
                 var text = h().getErrorMessage(e, 'Error sending message');

@@ -108,6 +108,7 @@ body {
     top: -1px;
 }
 #cmtyx_landingView.ui-page {
+    padding-top: 45px;
     padding-bottom: 0;
 }
 #address.ui-page,
