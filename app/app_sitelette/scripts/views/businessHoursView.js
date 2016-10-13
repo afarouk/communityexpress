@@ -10,7 +10,7 @@ var Vent = require('../Vent'),
 var BusinessHours = Backbone.View.extend({
     name: 'business_hours',
     id: 'cmtyx_businessHours',
-    
+
     initialize: function(options) {
         options = options || {};
         this.sasl = options.sasl;
