@@ -25,6 +25,15 @@ var HeaderView = Backbone.View.extend({
 
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
+        Vent.on('update_message_count', this.updateMessageCount, this);
+    },
+
+    updateMessageCount: function(count) {
+        if (count > 0) {
+            this.$('.messages_counter').text(count).show();
+        } else {
+            this.$('.messages_counter').hide();
+        }
     },
 
     headerHide: function() {

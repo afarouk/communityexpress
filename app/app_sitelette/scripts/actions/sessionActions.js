@@ -30,6 +30,10 @@ var onLoginSuccess = function (response) {
     };
     Vent.trigger('login_success');
 
+    if (typeof response.messageCount !== 'undefined') {
+        Vent.trigger('update_message_count', response.messageCount);
+    }
+
     if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
         //var a = localStorage.getItem("cmxUID");
         var a = Cookies.get("cmxUID");
@@ -79,7 +83,8 @@ module.exports = {
             if (response.action && response.action.enumText === 'NO_ACTION') {
                 onLoginSuccess({
                     uid: uid,
-                    userName: response.userName
+                    userName: response.userName,
+                    messageCount: response.messageCount
                 });
             }
         });
@@ -97,7 +102,8 @@ module.exports = {
                 if (response.action && response.action.enumText === 'NO_ACTION') {
                     onLoginSuccess({
                         uid: persistedUID,
-                        userName: response.userName
+                        userName: response.userName,
+                        messageCount: response.messageCount
                     });
                 } else {
                     console.log("not removing cookie, getAuthentication status call failed?");
