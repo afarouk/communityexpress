@@ -1,14 +1,17 @@
 <div data-role="page" id="business_hours">
     <div class="body">
         <div class="table_container">
-               
+
             <table>
                 <% _.each( hours, function( hour ) { %>
                     <tr>
                         <td class="day cmtyx_text_color_1">
                             <%= hour[0] %>
                         </td>
-                        <td> <%= hour[1] %> <% if(hour.length === 3) { %> <span>- </span><%= hour[2] %> <% } %></td>
+                        <td><%= hour[1] %><% if (hour[1] !== 'closed') { %>
+                            <span>- </span><%= hour[hour.length - 1] %>
+                            <% } %>
+                        </td>
                     </tr>
                 <% } ) %>
             </table>
