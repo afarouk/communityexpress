@@ -26,6 +26,11 @@ var HeaderView = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         Vent.on('update_message_count', this.updateMessageCount, this);
+        Vent.on('logout_success', this.hideMessageCount, this);
+    },
+
+    hideMessageCount: function() {
+        this.updateMessageCount(0);
     },
 
     updateMessageCount: function(count) {
