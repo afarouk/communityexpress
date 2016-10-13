@@ -2594,11 +2594,15 @@ li.driving_directions_block {
     opacity: 1;
 }
 
-#contact_us .body .input_container .contact_message + label::before {
-    top: -9rem;
+#contact_us .body .input_container .contact_message {
+    text-transform: none;
 }
-#contact_us .body .input_container .contact_message:focus + label::before {
-    top: -9rem;
+
+#contact_us .body .input_container .contact_message ~ label::before {
+    top: -9.3rem;
+}
+#contact_us .body .input_container .contact_message:focus ~ label::before {
+    top: -9.3rem;
 }
 
 #contact_us .body .material-textfield {
