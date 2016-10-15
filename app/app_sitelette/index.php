@@ -129,9 +129,9 @@ if (validateParams('friendlyURL')) {
       case 'portalexpress':
         $pageAccess = 'common_portalexpress.php';
         break;
-
-
-
+      case 'signup':
+        $pageAccess = 'common_signup.php'; 
+        break;
       default:
     }
   }
