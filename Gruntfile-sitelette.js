@@ -126,7 +126,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
                         src: [
-                            '*.php', 
+                            '*.php',
                             '!sitelette-production.php',
                             '!production-index.php'
                         ],
@@ -167,11 +167,12 @@ module.exports = function (grunt) {
                         cwd: '<%= yeoman.app %>/themes',
                         src: '**',
                         dest: '<%= yeoman.dist %>/themes'
-                    },
-                    {
-                        src: '<%= yeoman.app %>/sitelette-production.php',
-                        dest: '<%= yeoman.dist %>/sitelette.php'
                     }
+                    //,
+                    //{
+                    //    src: '<%= yeoman.app %>/sitelette-production.php',
+                    //    dest: '<%= yeoman.dist %>/sitelette.php'
+                    //}
                     // {
                     //     src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
                     //     dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
@@ -206,7 +207,7 @@ module.exports = function (grunt) {
                 files: [{
                     dot: true,
                     expand: true,
-                    src : "**/*", 
+                    src : "**/*",
                     cwd : "./dist/"
                 }]
             }
