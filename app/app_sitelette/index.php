@@ -2,27 +2,26 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include_once ('sitefiles/php/Mobile_Detect.php');
-include_once ('sitefiles/php/parser_api_utility.php');
-include_once ('sitefiles/php/detecturl.php');
+include_once('sitefiles/php/Mobile_Detect.php');
+include_once('sitefiles/php/parser_api_utility.php');
+include_once('sitefiles/php/detecturl.php');
 
 $tileViewDetails = false;
-$useTemplate=true;
+$useTemplate     = true;
 /*is demo=true */
 
 
-$detect = new Mobile_Detect;
-$iPhoneVersion=$detect->version('iPhone'); // 3.1 (float)
-if ($iPhoneVersion){
-  $IOSversion= intval( substr($iPhoneVersion, 0, strpos($iPhoneVersion, '_')));
-  if($IOSversion >= 10){
-    $videoNeedsPlaceholder=false;
-  }else{
-    $videoNeedsPlaceholder=true;
+$detect        = new Mobile_Detect;
+$iPhoneVersion = $detect->version('iPhone'); // 3.1 (float)
+if ($iPhoneVersion) {
+  $IOSversion = intval(substr($iPhoneVersion, 0, strpos($iPhoneVersion, '_')));
+  if ($IOSversion >= 10) {
+    $videoNeedsPlaceholder = false;
+  } else {
+    $videoNeedsPlaceholder = true;
   }
-}
-else {
-  $videoNeedsPlaceholder=false;
+} else {
+  $videoNeedsPlaceholder = false;
 }
 
 
@@ -33,10 +32,10 @@ if (validateParams('demo')) {
 }
 
 /* is desktopiframe=true
-*
-* if this is true, we load normally even when we detect
-* desktop. This means the iframe src will not try to load
-* the desktop wrapper and thus prevent a re-entrant loop*/
+ *
+ * if this is true, we load normally even when we detect
+ * desktop. This means the iframe src will not try to load
+ * the desktop wrapper and thus prevent a re-entrant loop*/
 
 if (validateParams('desktopiframe')) {
   $desktopIFrame = true;
@@ -45,7 +44,7 @@ if (validateParams('desktopiframe')) {
 }
 
 $completeURL = full_url($_SERVER, true);
-$serverName = $_SERVER['SERVER_NAME'];
+$serverName  = $_SERVER['SERVER_NAME'];
 /* determine the http host */
 
 
@@ -95,40 +94,40 @@ if (validateParams('serviceLocationId')) {
 
 if (validateParams('friendlyURL')) {
   $friendlyURL = $_REQUEST['friendlyURL'];
-  if(isset($friendlyURL)){
-    switch($friendlyURL){
+  if (isset($friendlyURL)) {
+    switch ($friendlyURL) {
       case 'privacypolicy':
-       $pageAccess='common_privacypolicy.php';
-       break;
+        $pageAccess = 'common_privacypolicy.php';
+        break;
       case 'termsandconditions':
-       $pageAccess='common_termsandconditions.php';
-       break;
+        $pageAccess = 'common_termsandconditions.php';
+        break;
       case 'about':
-       $pageAccess='common_about.php';
-       break;
+        $pageAccess = 'common_about.php';
+        break;
       case 'apiLicensing':
-       $pageAccess='common_apiLicensing.php';
-       break;
+        $pageAccess = 'common_apiLicensing.php';
+        break;
       case 'developer':
-       $pageAccess='common_developer.php';
-       break;
+        $pageAccess = 'common_developer.php';
+        break;
       case 'sendsample':
-        $pageAccess='common_sendsample.php';
-       break;
+        $pageAccess = 'common_sendsample.php';
+        break;
       case 'resetpassword':
-       $pageAccess='common_resetpassword.php';
-      break;
+        $pageAccess = 'common_resetpassword.php';
+        break;
       case 'sendsample':
-       $pageAccess='common_sendsample.php';
-       break;
+        $pageAccess = 'common_sendsample.php';
+        break;
       case 'template':
-       $pageAccess='common_template.php';
-       break;
+        $pageAccess = 'common_template.php';
+        break;
       case 'unsubscribe':
-        $pageAccess='common_unsubscribe.php';
+        $pageAccess = 'common_unsubscribe.php';
         break;
       case 'portalexpress':
-        $pageAccess='common_portalexpress.php';
+        $pageAccess = 'common_portalexpress.php';
         break;
 
 
@@ -177,9 +176,9 @@ if (validateParams('number')) {
 }
 
 if ((!is_null($city)) || (!is_null($street)) || (!is_null($number))) {
-    $hasAddress = true;
+  $hasAddress = true;
 } else {
-    $hasAddress = false;
+  $hasAddress = false;
 }
 
 if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
@@ -196,46 +195,10 @@ if (!is_null($friendlyURL)) {
 
 if (validateParams('ftl')) {
   $ftlfile = $_REQUEST['ftl'];
-}else {
+} else {
   $ftlfile = null;
 }
 
-  $og_type="article";
-  $og_title="Chalkboards Title";
-  $og_description="Chalkboards Description";
-  $og_image=null;//$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/pree/default.jpg";
-  /* Twitter related */
-  $twitter_card="summary_large_image";
-  $twitter_site="@Chalkboards";
-  $twitter_title=  $og_title;
-  $twitter_description=$og_description;
-  $twitter_image=$og_image;
-
-  $detectedShare=false;
-
-  if( $detectedShare ){
-    /* depending on the type, make the api call, get the details
-       and update the og tags */
-
-    $apiURL = $protocol . $server . "/apptsvc/rest/pree/retrieveQuestion?contestUUID=".$uuidURL;
-    $questionJSON = makeApiCall($apiURL);
-    if ($questionJSON['curl_error']) {
-     $errorMessage = $siteletteJSON['curl_error'];
-     $errorMessage = 'Service unavailable.';
-    } else if (isset($questionJSON['error'])) {
-      $errorMessage = $questionJSON['error']['message'];
-    } else {
-      /* change meta data based on question */
-
-      $og_title=$questionJSON['ogTitle'];
-      $og_description=$questionJSON['ogDescription'];
-      $og_image =$questionJSON['ogImage'];
-
-      $twitter_title=  $og_title;
-      $twitter_description=$og_description;
-      $twitter_image=$og_image;
-    }
-  }
 
 
 /* NOTE: if debug=true then PHP will echo variables and exit */
@@ -252,19 +215,19 @@ if (validateParams('debug')) {
   echo '$UID=' . $UID . '</br>';
   echo '$saslAccess=' . ($saslAccess ? 'true' : 'false') . '</br>';
   echo '$urlKeyAccess=' . ($urlKeyAccess ? 'true' : 'false') . '</br>';
-  echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false')  . '</br>';
-  if(isset($IOSversion)){
+  echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false') . '</br>';
+  if (isset($IOSversion)) {
     echo '$IOSversion=' . $IOSversion . '</br>';
   }
-  echo '$videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false')  . '</br>';
+  echo '$videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') . '</br>';
   echo '$city=' . $city . '</br>';
   echo '$street=' . $street . '</br>';
   echo '$number=' . $number . '</br>';
   if (!is_null($friendlyURL)) {
     echo '$friendlyURL is ' . $friendlyURL . '</br>';
-  }  elseif ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
+  } elseif ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
     echo '$serviceAccommodatorId is ' . $serviceAccommodatorId . ' and $serviceLocationId is ' . $serviceLocationId;
-  }  else {
+  } else {
     echo ' root case ';
   }
 
@@ -272,40 +235,40 @@ if (validateParams('debug')) {
 }
 
 // not mobile or tablet and not already in the iframe
-if(isset($pageAccess)){
-  include_once('sitefiles/pages/'.$pageAccess);
+if (isset($pageAccess)) {
+  include_once('sitefiles/pages/' . $pageAccess);
 } else if ($saslAccess || $urlKeyAccess) {
-  if ( (!$detect->isMobile() || $detect->isTablet()) && !$desktopIFrame) {
-    include_once ('sitefiles/pages/'.'common_desktop.php');
+  if ((!$detect->isMobile() || $detect->isTablet()) && !$desktopIFrame) {
+    include_once('sitefiles/pages/' . 'common_desktop.php');
   } else {
-    $errorMessage = null;
-    $saslName = null;
-    $appleTouchIcon60URL = null;
-    $isPrivate = false;
+    $errorMessage           = null;
+    $saslName               = null;
+    $appleTouchIcon60URL    = null;
+    $isPrivate              = false;
     $canCreateAnonymousUser = false;
     if ($urlKeyAccess) {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false').'&ftl='.$ftlfile;
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') . '&ftl=' . $ftlfile;
     } else {
-      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false').'&videoNeedsPlaceholder='.($videoNeedsPlaceholder ?'true':'false').'&ftl='.$ftlfile;
+      $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') . '&ftl=' . $ftlfile;
     }
 
     $siteletteJSON = makeApiCall($apiURL);
     if ($siteletteJSON['curl_error']) {
-      $errorMessage = 'Service unavailable: '.$siteletteJSON['curl_error'];
-      include_once ('error_page/index.php');
+      $errorMessage = 'Service unavailable: ' . $siteletteJSON['curl_error'];
+      include_once('error_page/index.php');
     } else {
       if (isset($siteletteJSON['error'])) {
-        $errorMessage = 'Service unavailable: '.$siteletteJSON['error']['message'];
-        include_once ('error_page/index.php');
+        $errorMessage = 'Service unavailable: ' . $siteletteJSON['error']['message'];
+        include_once('error_page/index.php');
 
       } else {
-        $saslJSON = json_decode($siteletteJSON['saslJSON'], true);
-        $themeId = $saslJSON['themeId'];
-        $domain = $saslJSON['domainEnum'];
-        $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
-        $serviceLocationId = $saslJSON['serviceLocationId'];
-        $saslName = $saslJSON['saslName'];
-        $appleTouchIcon60URL = $saslJSON['appleTouchIcon60URL'];
+        $saslJSON                 = json_decode($siteletteJSON['saslJSON'], true);
+        $themeId                  = $saslJSON['themeId'];
+        $domain                   = $saslJSON['domainEnum'];
+        $serviceAccommodatorId    = $saslJSON['serviceAccommodatorId'];
+        $serviceLocationId        = $saslJSON['serviceLocationId'];
+        $saslName                 = $saslJSON['saslName'];
+        $appleTouchIcon60URL      = $saslJSON['appleTouchIcon60URL'];
         $androidHomeScreenIconURL = $saslJSON['androidHomeScreenIconURL'];
         if (is_null($friendlyURL)) {
           if (array_key_exists('anchorURL', $saslJSON)) {
@@ -319,31 +282,55 @@ if(isset($pageAccess)){
             $friendlyURL = null;
           }
         }
-        $og_title="Some Title ";
-        $og_description="Some Description";
-        $og_image="Some image url";
 
-        $twitter_card="Some Twitter card";
-        $twitter_site="Some twitter site url";
-        $twitter_title=" Some title";
-        $twitter_description="Some description";
-        $twitter_image="Some image url";
+        if(is_null($type)){
+          $og_title       =  $saslJSON['ogTags']['title'];
+          $og_description =  $saslJSON['ogTags']['description'];
+          $og_image       =  $saslJSON['ogTags']['image'];
+          $og_url         =  remove_querystring_var($completeURL, 'desktopiframe');
+        }else{
+          /* make api call */
+          $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveOgTags?type='.$type.'&uuid='.$uuidURL;
+
+          $ogTags = makeApiCall($apiURL);
+
+          $og_title       =  $ogTags['title'];
+          $og_description =  $ogTags['description'];
+          $og_image       =  $ogTags['image'];
+          $og_url         =  remove_querystring_var($completeURL, 'desktopiframe');
+
+        }
 
 
-       include_once 'themes/1/head.php';
-       if($useTemplate){
-         echo $siteletteJSON['landingViewHTML'];
-       }else{
-         include_once 'themes/1/body.html';
-       }
-       echo '</html>';
-      } /*end valid sitelette*/
-    } /*end can reach server */
+
+
+
+
+        $twitter_card        =  "summary_large_image";
+        $twitter_site        =  "@ChalkboardsToday";
+
+        $twitter_title       =  $og_title;
+        $twitter_description =  $og_description;
+        $twitter_image       =  $og_image;
+        $twitter_url         =  $og_url;
+
+        include_once 'themes/1/head.php';
+        if ($useTemplate) {
+          echo $siteletteJSON['landingViewHTML'];
+        } else {
+          include_once 'themes/1/body.html';
+        }
+        echo '</html>';
+      }
+      /*end valid sitelette*/
+    }
+    /*end can reach server */
   }
 } else {
   /*
-  * neither sasl access or urlkey access.
-  * neither URL nor sa,sl provided
-  */
-  include_once ('sitefiles/pages/'.'common_chalkboards.php');
-} /* end no url supplied*/
+   * neither sasl access or urlkey access.
+   * neither URL nor sa,sl provided
+   */
+  include_once('sitefiles/pages/' . 'common_chalkboards.php');
+}
+/* end no url supplied*/
