@@ -77,7 +77,7 @@
               <a href="portalexpress" class="login_btn">Log in</a>
             </li>
             <li class="li_signin" <?php modifyUrlAndClass("signup") ?> >
-              <a href="common_signup.php" class="signup_btn">Sign up</a>
+              <a href="signup" class="signup_btn">Sign up</a>
             </li>
           </ul>
         </div>
