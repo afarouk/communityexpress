@@ -305,10 +305,16 @@ if (validateParams('debug')) {
   } else {
     echo ' root case </br>';
   }
-  if (!$isDesktop) {
-    echo 'Mobile detected </br>';
-  }else{
+  if ($isDesktop) {
     echo 'Desktop detected </br>';
+  }else{
+    echo 'Mobile detected </br>';
   }
+  if(!is_null($type)){
+    echo ' $og_title:'.$og_title.'</br>';
+    echo ' $og_description:'.$og_description.'</br>'; ;
+    echo ' $og_image:'.$og_image.'</br>';  
+  }
+
   exit();
 }
