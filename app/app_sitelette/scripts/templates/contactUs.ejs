@@ -1,22 +1,25 @@
 <div data-role="page" id="contact_us" data-title="Info" class="ui-page">
     <div class="body">
-        <div class="title">keep in touch</div>
+        <div class="title">Contact Us</div>
         <div class="undertitle">Do you have some questions? Feel free to write us!</div>
         <div class="input_container">
             <div class="material-textfield yellow">
-                <input type="text" class="contact_name" required data-role="none" />
+                <input type="text" class="contact_name" required data-role="none" autocapitalize="none" />
                 <label data-content="Name">Name</label>
             </div>
             <div class="material-textfield yellow">
-                <input type="text" class="contact_email validate" required data-role="none" value="<%= userName || '' %>" />
+                <input type="text" class="contact_email validate" required data-role="none" value="" autocapitalize="none" />
                 <label data-content="Email">Email</label>
+                <div class="email_error">
+                    <span>* Please, provide an email</span>
+                </div>
             </div>
             <div class="material-textfield yellow">
-                <input type="text" class="contact_subject validate" required data-role="none" value="<%= subject %>" />
+                <input type="text" class="contact_subject validate" required data-role="none" value="<%= subject %>" autocapitalize="none" />
                 <label data-content="Subject">Subject</label>
             </div>
             <div class="material-textfield yellow">
-                <textarea required class="contact_message" data-role="none" rows="3"></textarea>
+                <textarea required class="contact_message" data-role="none" rows="3" autocapitalize="none" ></textarea>
                 <label data-content="Message">City</label>
             </div>
         </div>

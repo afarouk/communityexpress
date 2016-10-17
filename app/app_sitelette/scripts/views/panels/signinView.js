@@ -36,7 +36,7 @@ var SigninView = PopupView.extend({
 
         FB.getLoginStatus(function (response) {
             this.facebookStatus = response.status;
-        }.bind(this));
+        }.bind(this), true);
     },
 
     beforeShow: function () {

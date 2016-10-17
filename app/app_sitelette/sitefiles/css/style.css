@@ -1169,6 +1169,126 @@ h5{
 	background: #fff;
 }
 
+
+/*-----------signup---------------------*/
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+	    text-shadow: 0 0px 0 #f3f3f3 !important;
+}
+
+#simpleSignupRow1, #simpleSignupRow1a, #simpleSignupRow1b{
+	padding-bottom: 30px;
+}
+.validationErrorMessageClass.help-block {
+    margin-top: -20px;
+    margin-bottom: 5px !important;
+}
+.stepsButtonWrap{
+	padding: 20px 20px 30px;
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #ddd;
+}
+.formSteps{
+	text-align: center;
+	position: relative;
+	min-height: 90px;
+}
+.formSteps .stepsIcon{
+	display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: #d8d8d8;
+  text-align: center;
+  font-size: 20px;
+  color: #444;
+  border: 0px solid #555;
+  position: relative;
+  z-index: 1;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+	line-height: 49px;
+}
+.stepsButtonWrap .formSteps:before, .stepsButtonWrap .formSteps:after {
+	position: absolute;
+  background-color: #d8d8d8;
+  top: 50%;
+  margin-top: -23px;
+  width: 50%;
+  height: 5px;
+  border-top: 0px solid #d9d9d9;
+  border-bottom: 0px solid #d9d9d9;
+  content: '';
+}
+.stepsButtonWrap .formSteps.currentStep:after, .stepsButtonWrap .formSteps.currentStep:before {
+    background-color: #ef7112 ;
+		border: none;
+}
+.stepsButtonWrap .formSteps.currentStep .stepsIcon{
+    background-color: #ef7112;
+    color: #fff;
+}
+.stepsButtonWrap .formSteps.successStep:after, .stepsButtonWrap .formSteps.successStep:before {
+    background-color: #30bf5a ;
+		border: none;
+}
+.stepsButtonWrap .formSteps.successStep .stepsIcon{
+    background-color: #30bf5a;
+    color: #fff;
+}
+.stepsButtonWrap .formSteps:after {
+    right: 0;
+}
+.stepsButtonWrap .formSteps:before {
+    left: 0;
+}
+.stepsButtonWrap .formSteps:first-child:before { display: none; }
+.stepsButtonWrap .formSteps:first-child + .formSteps + .formSteps:after { display: none; }
+.stepsContent{
+	font-size: 14px;
+	margin-top: 10px;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #555;
+}
+.stepsButtonWrap .formSteps.currentStep .stepsContent{
+	color: #ef7112;
+}
+.stepsButtonWrap .formSteps.successStep .stepsContent{
+	color: #30bf5a;
+}
+a.invitCodeButton{
+	color: #fff !important;
+	font-weight: 400 !important;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-top: -40px;
+	margin-left: -106px;
+}
+h1.formHeading{
+	font-size: 22px;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #ef7112;
+}
+.ui-mobile .form-group .control-label{
+	font-size: 14px;
+	font-weight: 400;
+	margin-bottom: 5px;
+  padding-top: 0;
+	text-align: left;
+}
+.ui-grid-a>.ui-block-a, .ui-grid-a>.ui-block-b{
+	padding: 0 3px;
+}
+
+@media (max-width:480px){
+	.stepsButtonWrap{
+		padding: 20px 0px 30px;
+	}
+}
+
 /*FOoter
 =========================================================================*/
 
@@ -1259,12 +1379,15 @@ h5{
 /* AF additions */
 
 .push-down-for-menu { 
-	 /* margin-top:100px; */
-	 padding-top: 90px;
+	 margin-top:100px;
 }
 
 .gray-background{
 	 background-color:#E6E6E6;  
+}
+.gray-background-border{
+	background-color: #ffffff;
+  border: 1px solid #ddd;
 }
 
 .force-min-height {
@@ -1359,7 +1482,7 @@ nav.navbar.navbar-default {
 #header .nav li a {
     text-transform: uppercase;
     font: 400 14px Roboto;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .navbar-default,
@@ -1385,22 +1508,7 @@ nav.navbar.navbar-default {
     top: 3px;
 }
 
-#header .nav li a.signup_btn,
-#header .nav li a.login_btn {
-	text-transform: none;
-}
-
-.p-r-30 {
-	padding-right: 30px !important;
-}
-
-#header .nav li a.login_btn {
-	padding: 0 15px 0 30px;
-    margin-top: 15px;
-    border-left: solid 1px #979797;
-}
-
-/* a.signup_btn {
+a.signup_btn {
     padding: 15px;
     border: solid 1px #fff;
     border-radius: 3px;
@@ -1409,7 +1517,7 @@ nav.navbar.navbar-default {
 
 a.signup_btn:hover {
     border: solid 1px #F89618; 
-} */
+}
 
 /*Slider section
 =============================================================*/
@@ -1874,7 +1982,7 @@ span.icon-size {
         color: #F99C19 !important;
         border-color: #F99C19;
     }
-    #header .nav li a:hover {
+    .nav li a:hover {
         color: #F06013 !important;
         border-color: #F06013;
     }

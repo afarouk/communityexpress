@@ -62,13 +62,13 @@ var CatalogItemView = Backbone.View.extend({
 
     expandDetails: function() {
         this.$('.sides_extras_detailed').slideDown();
-        this.$('.sides_extras_expand_icon').text('▲');
+        // this.$('.sides_extras_expand_icon').text('▲');
         this.withExpandedDetails = true;
     },
 
     collapseDetails: function() {
         this.$('.sides_extras_detailed').slideUp();
-        this.$('.sides_extras_expand_icon').text('▼');
+        // this.$('.sides_extras_expand_icon').text('▼');
         this.withExpandedDetails = false;
     },
 
