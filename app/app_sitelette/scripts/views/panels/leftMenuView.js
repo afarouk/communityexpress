@@ -17,6 +17,9 @@ var LeftMenuView = PanelView.extend({
     events: {
     	'click .open_catalog_btn': 'onOpenCatalog',
     	'click .business_hours_btn': 'onOpenBusinessHours',
+        'click .upload_photo_btn': 'onOpenUploadPhoto',
+        'click .user_reviews_btn': 'onOpenUserReviews',
+        'click .blog_posts_btn': 'onOpenCreateBlogPosts',
     	'click .contact_us_btn': 'onOpenContactUs',
         'click .chat_btn': 'onOpenChat'
     },
@@ -82,6 +85,22 @@ var LeftMenuView = PanelView.extend({
             Vent.trigger('viewChange', 'chat',
             [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
         }.bind(this));
+    },
+
+    onOpenUserReviews: function() {
+        console.log('user reviews');
+        this.PopupController.requireLogIn(this.sasl, function() {
+            Vent.trigger('viewChange', 'reviews',
+            [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+        }.bind(this));
+    },
+
+    onOpenUploadPhoto: function() {
+        console.log('upload photo');
+    },
+
+    onOpenCreateBlogPosts: function() {
+        console.log('create blog posts');
     }
 
 });
