@@ -2742,10 +2742,11 @@ li.driving_directions_block {
     padding: 10px 22px;
     border-bottom: none;
     font: 300 18px 'Open Sans', sans-serif;
+    vertical-align: top;
 }
-#business_hours td.day {
-    text-align: right;
-    font-weight: 400;
+
+#business_hours td div {
+    padding-bottom: 6px;
 }
 
 /*CHAT*/
@@ -3258,9 +3259,22 @@ a.cancel {
     margin: 0;
 }
 
+.short_description {
+    color: #ddd;
+    font: 700 14px 'Open Sans', sans-serif;
+    padding: .7em;
+    text-transform: uppercase;
+}
+
+.long_description {
+    color: #ddd;
+    font: 300 14px 'Open Sans', sans-serif;
+    padding: .7em;
+}
+
 .catalog_item_attribute {
-    color: #fff;
-    padding: 6px;
+    color: #ddd;
+    padding: .7em;
     display: inline-block;
     width: 45%;
 }

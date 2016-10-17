@@ -30,6 +30,8 @@
         <img src="<%= mediaURLs[0] %>" alt="" />
     <% } %>
     <div class="catalog_item_attributes">
+        <div class="short_description"><%= shortDescription %></div>
+        <div class="long_description"><%= longDescription %></div>
         <% _.each(attributes, function(status, attr) { %>
             <div class="catalog_item_attribute <%= status ? 'true_attr' : 'false_attr' %>"><%= attr %></div>
         <% }) %>
