@@ -45,7 +45,7 @@
     <style type="text/css">
         body {
             background-color: black;
-            background-image: url("http://images.mobile-patterns.com/1362787787006-2013-03-08%2019.05.38.png");
+            background-image: url("themes/1/splash/Default-portrait@2x~iphone5.jpg");
             background-size: 100% 100%;
             background-repeat: no-repeat;
         }
