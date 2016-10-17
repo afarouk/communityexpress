@@ -58,6 +58,8 @@
     display: none;
 }
 
+/* ::-webkit-scrollbar { display: none; } */
+
 html {}
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans);
