@@ -17,7 +17,8 @@ var LandingView = require('./views/landingView'), //
     SingletonView = require('./views/singletonView'),
     AboutUsView = require('./views/aboutUsView'), //
     ContactUsView = require('./views/contactUsView'),
-    BusinessHoursView = require('./views/businessHoursView'),
+    BusinessHoursView = require('./views/businessHoursView'), //
+    UploadPhotoView = require('./views/uploadPhotoView'), //
     CatalogOrderView = require('./views/catalogOrderView'),//
     RosterOrderView = require('./views/rosterOrderView'),//
     EventActiveView = require('./views/eventActiveView'),//
@@ -169,6 +170,9 @@ module.exports = {
             break;
         case 'businessHours':
             view = new BusinessHoursView(_.extend(options, {}));
+            break;
+        case 'upload_photo':
+            view = new UploadPhotoView(_.extend(options, {}));
             break;
         case 'catalog_order':
             view = new CatalogOrderView(_.extend(options, {

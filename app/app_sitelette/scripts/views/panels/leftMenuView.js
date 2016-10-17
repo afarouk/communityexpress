@@ -107,6 +107,10 @@ var LeftMenuView = PanelView.extend({
 
     onOpenUploadPhoto: function() {
         console.log('upload photo');
+        this.PopupController.requireLogIn(this.sasl, function() {
+            Vent.trigger('viewChange', 'upload_photo',
+            [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+        }.bind(this));
     },
 
     onOpenCreateBlogPosts: function() {
