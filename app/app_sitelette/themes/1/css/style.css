@@ -3378,7 +3378,8 @@ input[name=promocode] {
 }
 
 #cmntyex_chat,
-#cmtyx_aboutUs {
+#cmtyx_aboutUs,
+#cmntyex_reviews {
     padding-top: 45px;
 }
 

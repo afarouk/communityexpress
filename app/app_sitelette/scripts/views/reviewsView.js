@@ -1,5 +1,5 @@
 /*global define*/
- 
+
 'use strict';
 
 var Vent = require('../Vent'),
@@ -121,7 +121,7 @@ var ReviewsView = Backbone.View.extend({
     },
 
     openNewReview: function () {
-        popupController.requireLogIn(function () {
+        popupController.requireLogIn(null, function() {
             popupController.newReview(this, this.restaurant, {
                 action: function (sa, sl, file, title, message, rating) {
                     return reviewActions.addReview(sa, sl, file, title, message, rating)
