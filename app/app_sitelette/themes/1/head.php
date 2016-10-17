@@ -39,7 +39,7 @@
 
     <link rel="icon" href="themes/1/favicon.ico?v=1.1">
 
-    <!-- TODO splash screen styles 
+    <!-- TODO splash screen styles
       temporary for demo
     -->
     <style type="text/css">
@@ -51,7 +51,7 @@
         }
     </style>
     <!-- end -->
-    
+
     <script>
         window.saslData = <?php
             if (!is_null($saslJSON)) {
@@ -109,6 +109,7 @@
     <meta property="og:title"              content="<?PHP echo $og_title?>"/>
     <meta property="og:description"        content="<?PHP echo $og_description?>"/>
     <meta property="og:image"              content="<?PHP echo $og_image?>"/>
+    <meta property="og:url"                content="<?PHP echo $og_url?>"/>
 
     <meta name="twitter:card"              content="<?PHP echo $twitter_card?>"/>
     <meta name="twitter:site"              content="<?PHP echo $twitter_site?>"/>
@@ -116,6 +117,7 @@
     <meta name="twitter:title"             content="<?PHP echo $twitter_title?>"/>
     <meta name="twitter:description"       content="<?PHP echo $twitter_description?>"/>
     <meta name="twitter:image"             content="<?PHP echo $twitter_image?>"/>
+    <meta name="twitter:url"               content="<?PHP echo $twitter_url?>"/>
 
     <!--  End sharing meta data -->
 
