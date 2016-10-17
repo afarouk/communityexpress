@@ -49,8 +49,8 @@ var ContactUsInLandindView = Backbone.View.extend({
     var map = new google.maps.Map($map.get(0), mapOptions);
     var myCenter=new google.maps.LatLng(lat, lng);
     var marker = new google.maps.Marker({
-      position:myCenter,
-      animation:google.maps.Animation.BOUNCE
+      position:myCenter
+      // ,animation:google.maps.Animation.BOUNCE
     });
 
     marker.setMap(map);
