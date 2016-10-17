@@ -15,13 +15,13 @@ var LeftMenuView = PanelView.extend({
     template : template,
 
     events: {
-    	'click .open_catalog_btn': 'onOpenCatalog',
-    	'click .business_hours_btn': 'onOpenBusinessHours',
-        'click .upload_photo_btn': 'onOpenUploadPhoto',
-        'click .user_reviews_btn': 'onOpenUserReviews',
-        'click .blog_posts_btn': 'onOpenCreateBlogPosts',
-    	'click .contact_us_btn': 'onOpenContactUs',
-        'click .chat_btn': 'onOpenChat'
+    	'click .catalog': 'onOpenCatalog',
+    	'click .openingHours': 'onOpenBusinessHours',
+        'click .userMediaService': 'onOpenUploadPhoto',
+        'click .userReviewsService': 'onOpenUserReviews',
+        'click .wallService': 'onOpenCreateBlogPosts',
+    	'click .contactUs': 'onOpenContactUs',
+        'click .messagingService': 'onOpenChat'
     },
 
     initialize : function(options) {
@@ -29,7 +29,17 @@ var LeftMenuView = PanelView.extend({
         this.PopupController = options.parent;
         this.saslData = appCache.get('saslData');
         this.sasl = new RestaurantModel(this.saslData);
+        this.model = new Backbone.Model(this.getActiveButtons());
         setTimeout(this._onOpen.bind(this), 500);
+    },
+
+    getActiveButtons: function() {
+        var buttons = _.filter(this.sasl.get('services'), function (option, key) {
+            if (!option || !option.masterEnabled) return false;
+            option.key = key;
+            return true;
+        });
+        return {buttons: buttons};
     },
 
     // render : function() {

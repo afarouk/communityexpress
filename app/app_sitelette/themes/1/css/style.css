@@ -1500,25 +1500,32 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     position: relative;
     bottom: 3px;
 }
-.list_img {
+.list_img,
+.button0_16_0_0 {
     background-image: url('images/list.png');
 }
-.speech_bubble_img {
+.speech_bubble_img,
+.button0_6_0_0 {
     background-image: url('images/speech-bubble.png');
 }
-.clock_circular_img {
+.clock_circular_img,
+.button0_18_0_0 {
     background-image: url('images/clock-circular-outline.png');
 }
-.photo_camera_img {
+.photo_camera_img,
+.button0_22_0_0 {
     background-image: url('images/photo-camera.png');
 }
-.speaking_img {
+.speaking_img,
+.button0_23_0_0 {
     background-image: url('images/speaking.png');
 }
-.calendar_img {
+.calendar_img,
+.button0_4_0_0 {
     background-image: url('images/calendar.png');
 }
-.edit_img {
+.edit_img,
+.button0_68_0_0 {
     background-image: url('images/edit.png');
 }
 .deals_img {
@@ -1574,7 +1581,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   background: #30AB40;
   color: white;
   font-size: 9px;
-  letter-spacing: 0.2em; 
+  letter-spacing: 0.2em;
   font-weight: 900;
   text-transform: uppercase;
   -webkit-box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.5);
@@ -3373,4 +3380,8 @@ input[name=promocode] {
 #cmntyex_chat,
 #cmtyx_aboutUs {
     padding-top: 45px;
+}
+
+.button0_16_0_0 {
+
 }

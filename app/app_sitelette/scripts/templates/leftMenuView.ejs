@@ -3,13 +3,19 @@
         <a href="#" data-rel="close" class="close_cart_button close_button left_arrow_icon"></a>
     </div>
     <ul class="left_panel_menu">
-        <li class="menu_item open_catalog_btn">
+        <% _.each(buttons, function(button) { %>
+            <li class="menu_item <%= button.key %>">
+                <div class="menu_item_icon <%= button.className %>"></div>
+                <span class="menu_item_title"><%= button.displayText %></span>
+            </li>
+        <% }) %>
+        <!-- <li class="menu_item open_catalog_btn">
             <div class="menu_item_icon list_img"></div>
-            <span class="menu_item_title">View/Edit catalogue</span>
+            <span class="menu_item_title">View/Edit catalogue</span> -->
             <!-- <a href="#" data-rel="close" class="close_cart_button close_button">
                 <div class="left_arr_icon left_arr_img"></div>
             </a> -->
-        </li>
+        <!-- </li>
         <li class="menu_item chat_btn">
             <div class="menu_item_icon speech_bubble_img"></div>
             <span class="menu_item_title">Messanging/Chat</span>
@@ -27,16 +33,16 @@
         <li class="menu_item user_reviews_btn">
             <div class="menu_item_icon speaking_img"></div>
             <span class="menu_item_title">User reviews</span>
-        </li>
+        </li> -->
         <!-- <li class="menu_item appointments_btn">
             <div class="menu_item_icon calendar_img"></div>
             <span class="menu_item_title">Appointments</span></li> -->
-        <li class="menu_item blog_posts_btn">
+        <!-- <li class="menu_item blog_posts_btn">
             <div class="menu_item_icon blog_post_img"></div>
             <span class="menu_item_title">Create Blog/Posts</span>
         </li>
         <li class="menu_item contact_us_btn">
             <div class="menu_item_icon edit_img"></div>
-            <span class="menu_item_title">Contact us</span></li>
+            <span class="menu_item_title">Contact us</span></li> -->
     </ul>
 </div>
