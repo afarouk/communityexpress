@@ -1,19 +1,26 @@
 <div data-role="page" id="business_hours">
     <div class="body">
         <div class="table_container">
-
             <table>
-                <% _.each( hours, function( hour ) { %>
+                <% _.each(hours, function (hour) { %>
                     <tr>
-                        <td class="day cmtyx_text_color_1">
-                            <%= hour[0] %>
-                        </td>
-                        <td><%= hour[1] %><% if (hour[1] !== 'closed') { %>
-                            <span>- </span><%= hour[hour.length - 1] %>
+                        <td><%= hour[0] %></td>
+                        <td>
+                            <% if (hour[1] == "closed") { %>
+                                <div>closed</div>
+                            <% } else { %>
+                                <% _.each(hour, function(v, i) { %>
+                                    <% if (i == 1 && hour[1] && hour[2]) { %>
+                                        <div><%= hour[1]%> - <%= hour[2] %></div>
+                                    <% } %>
+                                    <% if (i > 2 && i % 2 > 0 && hour[i+1]) { %>
+                                        <div><%= hour[i] %> - <%= hour[i+1] %></div>
+                                    <% } %>
+                                <% }) %>
                             <% } %>
                         </td>
                     </tr>
-                <% } ) %>
+                <% }) %>
             </table>
         </div>
     </div>
