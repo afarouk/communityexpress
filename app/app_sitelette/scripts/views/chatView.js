@@ -30,7 +30,6 @@ var ChatView = Backbone.View.extend({
         this.restaurant = options.restaurant;
 
         this.on('show', this.onShow, this);
-        this.on('hide', this.onHide, this);
         this.render();
     },
 
@@ -48,10 +47,6 @@ var ChatView = Backbone.View.extend({
         this.renderMessages();
         this.listenTo( Vent, 'logout_success', this.goBack, this);
         this.startPolling();
-    },
-
-    onHide: function() {
-        this.stopPolling();
     },
 
     renderMessages: function() {
@@ -119,10 +114,9 @@ var ChatView = Backbone.View.extend({
     },
 
     goBack: function() {
+        this.stopPolling();
         Vent.trigger( 'viewChange', 'restaurant', this.restaurant.getUrlKey());
     }
-
-
 });
 
 module.exports = ChatView;
