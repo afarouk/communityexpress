@@ -64,6 +64,9 @@ var UploadPhotoView = Backbone.View.extend({
             this.$el.find('.gallery_item').removeClass('selected');
             $(e.currentTarget).addClass('selected');
         }.bind(this));
+        setTimeout(function(){ //tweak for slick gallery
+            this.$el.find('button.slick-next').trigger('click');
+        }.bind(this), 100);
     },
 
     onClickAddNewPhoto: function(e) {
@@ -104,8 +107,9 @@ var UploadPhotoView = Backbone.View.extend({
     onSendPhoto: function () {
         var description = this.$el.find('.upload_description').val(),
             title = this.$el.find('.upload_title').val(),
-            promotionType = this.$('select[name=promotiontype]').val() || 'POLL';
-        if (!this.file || !description || !title) {
+            promotionType = this.$('select[name=promotiontype]').val() || '';
+
+        if (!this.file || !promotionType || !description || !title) {
             //TODO show errors
             return;
         }

@@ -1,22 +1,16 @@
 <div data-role="page" id="upload_photo">
     <div class="body">
       <% if (promotionTypes) { %>
-        <div class="ui-grid-solo">
-            <div class="ui-grid-a">
-                <select name="promotiontype" id="cmntyex_select-promotion-type" data-corners="false">
-                    <option value="" disabled selected>Select a type</option>
-                    <% promotionTypes.each(function (promotion) { %>
-                        <option value="<%= promotion.get('enumText') %>"><%= promotion.get('displayText') %></option>
-                    <% }) %>
-                </select>
-            </div>
-        </div>
+        <select data-role="none" name="promotiontype" id="cmntyex_select-promotion-type" data-corners="false">
+            <option value="" disabled selected>Select a type</option>
+            <% promotionTypes.each(function (promotion) { %>
+                <option value="<%= promotion.get('enumText') %>"><%= promotion.get('displayText') %></option>
+            <% }) %>
+        </select>
       <% } %>
-        <div class="ui-grid-solo">
-            <div class="ui-grid-a">
-                <span>Title</span>
-                <input type="text" class="upload_title" placeholder="Title" autocapitalize="off" name="title" id="title" data-corners="false" />
-            </div>
+        <div class="title_block material-textfield yellow">
+            <input type="text" class="upload_title" required="" data-role="none" autocapitalize="none">
+            <label data-content="Title">Title</label>
         </div>
         <div class="gallery_block" data-role="none">
             <span>Select a picture</span>
@@ -27,20 +21,22 @@
                     </li>
                 <% }) %>
             </ul>
-            <span>or</span>
-            <button class="ui-btn ui-corner-all back_btn add_new_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">ADD NEW</button>
+            <div class="add_new_block">
+                <span>or</span>
+                <button class="ui-btn ui-corner-all back_btn add_new_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">ADD NEW</button>
+            </div>
         </div>
         <div class="upload_photo">
             <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
                 <input type="file" data-role="none" name="thumb" />
             </div>
         </div>
-        <div class="ui-grid-solo">
-            <span>Description</span>
-            <textarea autocapitalize="off" placeholder="Description" class="upload_description" id="message" name="message" data-corners="false" />
+        <div class="description_block material-textfield yellow">
+            <textarea required class="upload_description" data-role="none" rows="3" autocapitalize="none" ></textarea>
+            <label data-content="Description">Description</label>
         </div>
-        <div class="ui-grid-a">
-            <div style="color:#FF0000; display:none;" id="err_text"></div>
+        <div style="color:#FF0000; display:none;" id="err_text"></div>
+        <div class="ui-grid-a back_next_btns">
             <div class="ui-block-a">
                 <a href="#" class="save_button" data-role="button" data-corners="false">Save</a>
             </div>

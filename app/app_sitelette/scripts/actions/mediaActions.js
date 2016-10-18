@@ -20,13 +20,14 @@ module.exports = {
         });
     },
 
-    uploadUserMedia: function(sa, sl, file, title, message) {
+    uploadUserMedia: function(sa, sl, file, title, message, promotionType) {
         return gateway.sendFile('createWNewPictureNewMetaData', {
             image: file,
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             title: title,
             message: message,
+            promotionType: promotionType,
             UID: getUID()
         });
     }
