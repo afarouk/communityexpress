@@ -27,10 +27,11 @@ var ListView = Backbone.View.extend({
     render: function () {
         this.$el.empty();
         var frg = document.createDocumentFragment();
-        this.collection.each(function (item) {
+        this.collection.each(function (item, key) {
             $(frg).append( new this.ListItemView($.extend(this.ListItemViewOptions, {
                 model: item,
-                parent: this
+                parent: this,
+                index: key + 1
             })).render().el);
         }, this);
         this.$el.append(frg);
