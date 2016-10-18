@@ -102,6 +102,14 @@ function hideEmailRegistrationError() {
     $("#emailRegistrationFormErrorDiv").fadeOut('slow');
 }
 
+function showRegistrationErrorInner(msg) {
+    var errdiv = $('#RegistrationFormErrorDivInner')
+        .find('.signupErrorMessageDivInner');
+    errdiv.text(msg);
+    $("#RegistrationFormErrorDivInner").fadeIn('slow');
+}
+
+
 function showEmailVerificationMessage(alertType, message) {
     var tmpDiv = $('#emailVerificationCheckMessage');
     tmpDiv.removeClass('alert-danger');
@@ -307,7 +315,7 @@ function verifyInvitationCode(evt) {
                 varifiedinvitationcode = code;
                 $('#InvitationSc1Form').formValidation('resetForm', true);
                 $("#errorDv").hide('fast');
-                $('#VrfyInvCd').hide();
+                //$('#VrfyInvCd').hide();
                 $('#crtByInvCd').show();
                 $("#invitationCode2").val(varifiedinvitationcode);
                 $('#invitationCode2').prop('disabled', true);
@@ -326,7 +334,10 @@ function createOwnerByInvitation(evt) {
 
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var email = $('#invitationEmail').val();
-    if (email.trim() == '' || regex.test(email) == false) {
+    if ($('#invitationUsername').val() == '') {
+        $("#errorDv2").show('fast');
+        $("#errorDv2").html("Username can not be empty");
+    } else if (email.trim() == '' || regex.test(email) == false) {
         $("#errorDv2").show('fast');
         $("#errorDv2").html("please enter a valid email");
         return false;
@@ -341,6 +352,7 @@ function createOwnerByInvitation(evt) {
         ladda_create_incode_button.start();
         var data = {
             "invitationCode": varifiedinvitationcode,
+            "username": $('#invitationUsername').val(),
             "email": $('#invitationEmail').val(),
             "password": $('#invitationPsw').val(),
             "username": $('#invitationEmail').val()
@@ -367,7 +379,11 @@ function createOwnerByInvitation(evt) {
                         if (typeof result.uid !== 'undefined') {
                             newUID = result.uid;
                             console.log("ppp_uid=" + newUID);
+                            $('#VrfyInvCd').hide('fast');
                             $('#crtByInvCd').hide('fast');
+                            $(".steps1").addClass("successStep").removeClass("currentStep");
+                            $(".steps2").addClass("successStep").removeClass("currentStep");
+                            $(".steps3").addClass("successStep").removeClass("currentStep");
                             $('#clkToCRT').show();
                             $("html, body").animate({
                                 scrollTop: 0
@@ -584,11 +600,14 @@ function submitEmailRegistrationFormToAPI(apiurl, postPayload, formValidation) {
 
             var extractedErrorMessage = processAjaxError(jqXHR);
             showEmailRegistrationError(extractedErrorMessage);
+            showRegistrationErrorInner(extractedErrorMessage);
 
         }).always(function() {
             ladda_signup_submit_button.stop();
             formValidation.disableSubmitButtons(false);
         });
+
+        showRegistrationErrorInner("Error encountered");
 }
 
 function submitEmailLoginFormToAPI(apiurl, postPayload, formValidation) {
@@ -983,6 +1002,10 @@ function attachBootstrapValidatorsToRegistrationForm() {
                     validators: {
                         notEmpty: {
                             message: 'Zip can not be empty'
+                        },
+                        regexp: {
+                            regexp: /^\d{5}$/,
+                            message: 'The US zipcode should be numeric and must contain 5 digits'
                         }
                     },
                     onSuccess: function(e, data) {
