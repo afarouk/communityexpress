@@ -1,9 +1,33 @@
 <div id="cmntyex_reviews" data-role="page" class="page">
-	<div class="sprite_navbar navbutton_back back"></div>
-	<div class="sprite_navbar navbutton_write_review"></div>
     <div data-role="content" class="content">
         <div class="cmntyex-reviews_placeholder">
             <div class="cmntyex-content_placeholder"></div>
         </div>
     </div>
+	<div class="new_review_container">
+		<div class="new_review_body">
+			<div class="rating_block">
+                <div class="my-rating"></div>
+                <div class="rating_number">
+                    <span class="set_rating"></span><span>/5</span>
+                </div>
+				<div class="rating_error new_review_error">Set rating</div>
+            </div>
+			<div class="input_container">
+				<textarea type="text" placeholder="Type a message here" data-role="none"></textarea>
+				<div class="message_error new_review_error">Type your message</div>
+			</div>
+			<div class="ui-grid-a">
+	             <div class="submit_review ui-block-a">
+					 <button class="cmtyx_border_color_1 cmtyx_text_color_1">Submit</button>
+	             </div>
+				 <div class="cancel_review ui-block-b">
+				 	<button class="cmtyx_border_color_1 cmtyx_text_color_1">Cancel</button>
+				 </div>
+	         </div>
+		</div>
+		<div class="navbutton_write_review">
+			<button class="cmtyx_border_color_1 cmtyx_text_color_1">Write a review</button>
+		</div>
+	</div>
 </div>

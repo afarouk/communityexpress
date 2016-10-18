@@ -3330,7 +3330,8 @@ a.cancel {
 
 }
 
-.roster_order_error {
+.roster_order_error,
+.new_review_error {
     color: #D8000C;
     display: none;
 }
@@ -3414,4 +3415,47 @@ input[name=promocode] {
 
 .review_background_color_5 {
     background-color: #212121;
+}
+
+.new_review_container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.new_review_container button {
+    text-transform: uppercase;
+    font: 700 18px / 19px 'Open Sans', sans-serif !important;
+}
+
+.navbutton_write_review {
+    padding: 1em;
+}
+
+.submit_review {
+    padding-right: .5em;
+}
+
+.cancel_review {
+    padding-left: .5em;
+}
+
+.new_review_body {
+    display: none;
+    padding: 1em;
+}
+
+.new_review_body .input_container {
+    padding: 1em 0;
+}
+
+.new_review_body textarea {
+    width: 100%;
+    background-color: transparent;
+    border: solid 1px #6b6b6b;
+    border-radius: 2px;
+    padding: 5px;
+    color: #ababab;
+    resize: none;
 }

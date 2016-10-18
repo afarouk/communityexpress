@@ -112,7 +112,7 @@ var NewReview = PopupView.extend({
         {
             $('#file').css("border","0");
         }
-        
+
         var title = this.$('input[name=title]').val();
         var message = this.$('textarea').val();
         var rating = this.ratingView.val();

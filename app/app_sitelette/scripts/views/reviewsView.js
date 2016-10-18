@@ -4,6 +4,7 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
+    h = require('../globalHelpers'),
     viewFactory = require('../viewFactory'),
     template = require('ejs!../templates/content/reviews_content.ejs'),
     popupController = require('../controllers/popupController'),
@@ -20,7 +21,9 @@ var ReviewsView = Backbone.View.extend({
     events: {
         'click .navbutton_write_review': 'openNewReview',
         'click .next': 'nextPage',
-        'click .prev': 'prevPage'
+        'click .prev': 'prevPage',
+        'click .cancel_review': 'closeNewReview',
+        'click .submit_review': 'onSendReview'
     },
 
     initialize: function(options) {
@@ -50,6 +53,7 @@ var ReviewsView = Backbone.View.extend({
     },
 
     goBack: function() {
+        this.trigger('hide');
         Vent.trigger('viewChange', 'restaurant', this.restaurant.getUrlKey(), {
             reverse: true
         });
@@ -63,6 +67,10 @@ var ReviewsView = Backbone.View.extend({
         //     'click .prev': 'prevPage'
         // });
         this.renderReviews();
+    },
+
+    onHide: function() {
+        this.closeNewReview();
     },
 
     triggerLandingView: function() {
@@ -120,19 +128,73 @@ var ReviewsView = Backbone.View.extend({
         }).render().el);
     },
 
-    openNewReview: function () {
-        popupController.requireLogIn(null, function() {
-            popupController.newReview(this, this.restaurant, {
-                action: function (sa, sl, file, title, message, rating) {
-                    return reviewActions.addReview(sa, sl, file, title, message, rating)
-                        .then(function (review) {
-                            this.collection.add(review);
-                            return review;
-                        }.bind(this));
-                }.bind(this),
-                imageOptional: true
+    initializeRating: function() {
+        this.$('.my-rating').starRating({
+            initialRating: this.rating || 0,
+            emptyColor: '#464646',
+            strokeColor: '#EECB49',
+            activeColor: '#EECB49',
+            hoverColor: '#EECB49',
+            strokeWidth: 45,
+            starSize: 20,
+            useGradient: false,
+            useFullStars: true,
+            disableAfterRate: false,
+            callback: function(currentRating, $el) {
+                this.rating = currentRating;
+                this.$('.rating_error').slideUp();
+                this.$('.set_rating').text(currentRating);
+                this.$('.my-rating').starRating('setRating', currentRating);
+            }.bind(this)
+        });
+        this.$('.set_rating').text(this.rating || 0);
+    },
+
+    openNewReview: function() {
+        this.rating = null;
+        this.$('.new_review_body').slideDown('fast', _.bind(this.initializeRating, this));
+    },
+
+    closeNewReview: function() {
+        this.$('.new_review_body').slideUp();
+    },
+
+    onSendReview: function() {
+        this.file = 'null';
+        this.title = '';
+        var message = this.$('.input_container textarea').val(),
+            rating = this.rating;
+        if (!this.isValid(message, rating)) return;
+        loader.show('adding review');
+        return reviewActions.addReview(this.restaurant.sa(), this.restaurant.sl(), this.file, this.title, message, rating)
+            .then(_.bind(function(review) {
+                loader.hide();
+                this.closeNewReview();
+                this.collection.add(review);
+                return review;
+            }, this), function(e) {
+                loader.hide();
+                var text = h().getErrorMessage(e, 'error adding review');
+                popupController.textPopup({text: text});
             });
-        }.bind(this));
+    },
+
+    isValid: function(message, rating) {
+        var errors = [];
+        if (!message) {
+            this.$('.message_error').slideDown('fast', _.bind(function() {
+                this.$('.message_error').siblings('textarea').on('focus', _.bind(function() {
+                    this.$('.message_error').slideUp();
+                }, this));
+            }, this));
+            errors.push(false);
+        }
+        if (rating === null) {
+            this.$('.rating_error').slideDown();
+            errors.push(false);
+        }
+        var isValid = errors.length > 0 ? false : true;
+        return isValid;
     }
 
 });

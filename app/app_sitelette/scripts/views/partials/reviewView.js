@@ -33,7 +33,8 @@ var ReviewView = Backbone.View.extend({
             strokeWidth: 45,
             starSize: 20,
             useGradient: false,
-            useFullStars: true
+            useFullStars: true,
+            readOnly: true
         });
         this.$('.current_rating').text(this.model.get('rating'));
     },
