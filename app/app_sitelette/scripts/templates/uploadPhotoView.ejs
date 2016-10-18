@@ -1,0 +1,52 @@
+<div data-role="page" id="upload_photo">
+    <div class="body">
+      <% if (promotionTypes) { %>
+        <div class="ui-grid-solo">
+            <div class="ui-grid-a">
+                <select name="promotiontype" id="cmntyex_select-promotion-type" data-corners="false">
+                    <option value="" disabled selected>Select a type</option>
+                    <% promotionTypes.each(function (promotion) { %>
+                        <option value="<%= promotion.get('enumText') %>"><%= promotion.get('displayText') %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+      <% } %>
+        <div class="ui-grid-solo">
+            <div class="ui-grid-a">
+                <span>Title</span>
+                <input type="text" class="upload_title" placeholder="Title" autocapitalize="off" name="title" id="title" data-corners="false" />
+            </div>
+        </div>
+        <div class="gallery_block" data-role="none">
+            <span>Select a picture</span>
+            <ul class="gallery" data-role="none">
+                <% models.each( function(model) { %>
+                    <li class="gallery_item" data-role="none">
+                        <img class="cmntyx-user_picture" src=<%= model.get('url')%> data-role="none">
+                    </li>
+                <% }) %>
+            </ul>
+            <span>or</span>
+            <button class="ui-btn ui-corner-all back_btn add_new_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">ADD NEW</button>
+        </div>
+        <div class="upload_photo">
+            <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+                <input type="file" data-role="none" name="thumb" />
+            </div>
+        </div>
+        <div class="ui-grid-solo">
+            <span>Description</span>
+            <textarea autocapitalize="off" placeholder="Description" class="upload_description" id="message" name="message" data-corners="false" />
+        </div>
+        <div class="ui-grid-a">
+            <div style="color:#FF0000; display:none;" id="err_text"></div>
+            <div class="ui-block-a">
+                <a href="#" class="save_button" data-role="button" data-corners="false">Save</a>
+            </div>
+            <div class="ui-block-b">
+                <a href="#" class="close_button" data-role="button" data-corners="false">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>

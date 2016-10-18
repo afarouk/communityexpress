@@ -14,7 +14,7 @@ module.exports = {
             serviceLocationId: sl,
             lastIndex: 0,
             count: 10,
-            mediaType: 'GALLERY_MEMBER'
+            mediaType: ''//'GALLERY_MEMBER'
         }).then(function (pics) {
             return new Backbone.Collection(pics);
         });
