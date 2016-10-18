@@ -3459,14 +3459,17 @@ input[name=promocode] {
     border-color: #464646;
 }
 #upload_photo .gallery {
-    max-height: 100px;
+    max-height: 110px;
 }
 #upload_photo .gallery li {
     margin: 4px;
-    max-height: 97px;
 }
-#upload_photo .gallery li.selected {
-    border: 1px solid green;
+#upload_photo .gallery li img {
+    border: none;
+}
+#upload_photo .gallery li.selected img {
+    border: 1px solid;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.3);
 }
 #upload_photo .add_new_block {
     float: right;
@@ -3496,4 +3499,10 @@ input[name=promocode] {
     border-radius: 0;
     height: 40px;
     font-weight: 300;
+}
+#upload_photo .gallery .slick-next {
+    right: -8px;
+}
+#upload_photo .gallery .slick-prev {
+    left: -6px;
 }

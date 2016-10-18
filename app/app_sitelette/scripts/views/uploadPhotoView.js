@@ -57,7 +57,8 @@ var UploadPhotoView = Backbone.View.extend({
             cssEase: 'linear',
             slidesToShow: 3
         });
-        this.$el.find('button.slick-arrow').css("top", this.$el.find('.body ul').height() + 24 + "px");
+        this.$el.find('button.slick-arrow').css("top", 
+            this.$el.find('.body ul').height() + 30 + "px");
         this.$el.find('button.slick-prev.slick-arrow').text('').css("border-right-color", $('.cmtyx_color_3').css('background-color'));
         this.$el.find('button.slick-next.slick-arrow').text('').css("border-left-color", $('.cmtyx_color_3').css('background-color'));
         this.$el.find('.gallery .slick-slide').on('click', function(e){
