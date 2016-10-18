@@ -389,7 +389,7 @@
 						data-style="expand-left" data-inline="true" data-size="l" name="emailRegistrationNext2">
 								<span class="ladda-label">Next</span><span class="ladda-spinner"></span>
 						</button>
-						<button onclick="location.href='http://communityexpress.aqbstaging.com/communityexpress/app/app_sitelette/';" type="reset" id="cancelRegSub" name="cancelRegSub" class="btn btn-primary ui-btn ui-mini ladda-button"
+						<button onclick="location.href='index.php#slider-part';" type="reset" id="cancelRegSub" name="cancelRegSub" class="btn btn-primary ui-btn ui-mini ladda-button"
 						data-style="expand-left" data-inline="true" data-size="l" name="cancel">
 								<span class="ladda-label">Cancel</span><span class="ladda-spinner"></span>
 						</button>
@@ -527,6 +527,10 @@
 					style="padding-right: 5px;"></div>
 				</div>
 			</div>
+			<div style="clear:both"></div>
+			<div id="RegistrationFormErrorDivInner" class="row communityError" style="display: none;margin:0;">
+				<div class="signupErrorMessageDivInner col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 10px;border: 1px solid #e25c5c;color: #e25c5c;border-radius:5px;"></div>
+			</div>
 			<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
 					<div class="ui-grid-a ui-responsive" style="text-align:center;margin-top:10px;">
 						<button type="button" id="emailRegistrationPrev2" class="btn btn-primary ui-btn ui-mini ladda-button"
@@ -537,7 +541,7 @@
 							data-style="expand-left" data-inline="true" data-size="l" name="emailRegistrationSubmit">
                             <span class="ladda-label">Submit</span><span class="ladda-spinner"></span>
                         </button>
-							<button onclick="location.href='http://communityexpress.aqbstaging.com/communityexpress/app/app_sitelette/';" type="reset" id="cancelRegSub2" name="cancelRegSub2" class="btn btn-primary ui-btn ui-mini ladda-button"
+							<button onclick="location.href='index.php#slider-part';" type="reset" id="cancelRegSub2" name="cancelRegSub2" class="btn btn-primary ui-btn ui-mini ladda-button"
 							data-style="expand-left" data-inline="true" data-size="l" name="cancel">
                             <span class="ladda-label">Cancel</span><span class="ladda-spinner"></span>
                         </button>
@@ -953,7 +957,7 @@
     
 <div class="container">
  <!-- Modal -->
-    <div class="row " id="VrfyInvCd" style="display:none;padding: 112px 90px;">
+    <div class="row " id="VrfyInvCd" style="display:none;padding: 80px 20px;">
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
  <form id="InvitationSc1Form" class="contact" name="contact" role="form">
 				<div class="form-group" style="margin-bottom:0;">
@@ -964,12 +968,11 @@
        <!-- Qaptcha add this line in your form -->
 	       <div class="alert fade in alert-danger" id="errorDv" style="width:100%;margin-bottom:0px !important;display:none;text-align:center; padding: 5px;">&nbsp;</div>
 				 <div class="ui-grid-a ui-responsive" style="text-align:center;margin-top:10px;">
-					 <div class="ui-block-a">
+
 	          <button type="button" id="verifyInv" onclick="verifyInvitationCode(event)" name="submit" class="btn btn-primary ui-btn ui-mini ladda-button" data-style="expand-left" data-size="l" > <span class="ladda-label">Submit</span><span class="ladda-spinner"> </span></button>
-					</div>
-					<div class="ui-block-b">
+
 	          <button type="button" onclick="close_vrfyinvcd_sec(event);" name="cancel" data-dismiss="modal"  class="btn btn-secondary ui-btn ui-mini" >Cancel</button>
-					</div>
+						<div style="clear:both"></div>
           <div class="QapTcha"></div>
       </div>
 			</div>
@@ -981,32 +984,39 @@
 
 <div class="container col-md-12">
  <!-- Modal -->
-    <div class="row " id="crtByInvCd" style="display:none;padding:101px 107px">
- <form id="InvitationSc2Form" class="contact" name="contact" role="form" method="post" style="margin-left:100px">
-      <label class="col-md-4 col-xs-3 col-sm-4" for="invitationCode2">Invitation Code:</label>
+    <div class="row " id="crtByInvCd" style="display:none;">
+ <form id="InvitationSc2Form" class="contact" name="contact" role="form" method="post" style="">
+      	<label class="col-md-4 col-xs-5 col-sm-4" for="invitationCode2">Invitation Code:</label>
          <input type="text" name="invitationCode2" id="invitationCode2"  class="form-control" style="width:50%">
          </br>
         
-        <label class="col-md-4 col-xs-3 col-sm-4" for="invitationEmail">Email:</label>
+				 <label class="col-md-4 col-xs-5 col-sm-4" for="invitationUsername">Username:</label>
+          <input type="email" name="invitationUsername" id="invitationUsername"  class="form-control" style="width:50%">
+         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
+         </br>
+
+        <label class="col-md-4 col-xs-5 col-sm-4" for="invitationEmail">Email:</label>
          <input type="email" name="invitationEmail" id="invitationEmail"  class="form-control" style="width:50%">
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
         </br>
        
-       <label class="col-md-4 col-xs-3 col-sm-4" for="invitationPsw">Password:</label>
+       <label class="col-md-4 col-xs-5 col-sm-4" for="invitationPsw">Password:</label>
          <input type="password" name="invitationPsw" id="invitationPsw"  class="form-control" style="width:50%">
        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
        </br>
       
-      <label class="col-md-4 col-xs-3 col-sm-4" for="invitationCPsw">Re-enter password:</label>
+      <label class="col-md-4 col-xs-5 col-sm-4" for="invitationCPsw">Re-enter password:</label>
          <input type="password" name="invitationCPsw" id="invitationCPsw"  class="form-control" style="width:50%">
       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
       </br>
      
-      <div class="modal-footer" style="width:70%">
+      <div class="modal-footer" style="text-align:center;">
        <!-- Qaptcha add this line in your form -->
-       <div class="alert fade in alert-danger" id="errorDv2" style="float:left;width:65%;margin-bottom:0px !important;display:none;text-align:center; padding: 5px;">&nbsp;</div>
+       <div class="alert fade in alert-danger" id="errorDv2" style="width:80%;margin-bottom:10px !important;margin-right:auto;margin-left:auto;display:none;text-align:center; padding: 5px;">&nbsp;</div>
+			  <div style="clear:both"></div>
           <button type="button" id="InvitationSubmit2" type="button" name="submit"  onclick="createOwnerByInvitation(event)" class="btn btn-primary ladda-button" data-style="expand-left" data-size="l" ><span class="ladda-label">Submit</span><span class="ladda-spinner"> </butto> 
           <button type="button" onclick="close_createinvcd()" name="cancel" data-dismiss="modal"  class="btn btn-secondary" >Cancel</button>
+				  <div style="clear:both;margin-top:10px;"></div>
           <div class="QapTcha"></div>
       </div>
 
