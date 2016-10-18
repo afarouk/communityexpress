@@ -1,44 +1,18 @@
-<div class="cmntyex-review_title">
-    <span class="cmntyex-review_author"><%= userName %></span>
-    <% for (var i = 0; i < 10; i += 2) { %>
-        <% if (rating - i == 1) { %>
-            <span class="cmntyex-icon sprite_navbar half_star"></span>
-        <% } else if (rating - i > 1) { %>
-            <span class="cmntyex-icon sprite_navbar star_small"></span>
-        <% } else { %>
-            <span class="cmntyex-icon sprite_navbar gray_star"></span>
-        <% } %>
-    <% } %>
-</div>
-<div class="cmntyex-review_text">
-    <p><%= text_excerpt %></p>
-    <% if ( imageURL ) { %>
-        <img src="<%= imageURL %>"></img>
-    <% } %>
-</div>
-<!-- <table>
-    <tbody>
-        <tr>
-            <td class="user_avatar"></td>
-            <td class="review_section">
-                <div class="name_date_block">
-                    <span class="user_name">Jacob Holiday</span>
-                    <span class="date">Aug, 24, 2016</span>
+<table>
+    <tr>
+        <td class="user_avatar"></td>
+        <td class="review_section">
+            <div class="ui-grid-a name_date_block">
+                <div class="ui-block-a user_name"><%= userName %></div>
+                <div class="ui-block-b date"><%= timeStamp %></div>
+            </div>
+            <div class="rating_block">
+                <div class="my-rating"></div>
+                <div class="rating_number">
+                    <span class="current_rating"></span><span>/5</span>
                 </div>
-                <div class="rating_block">
-                    <div class="my-rating">
-                        <div class="jq-star" style="width:25px;  height:25px;">
-                            <svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-250{fill:url(#250_SVGID_1_);}.svg-hovered-250{fill:url(#250_SVGID_2_);}.svg-active-250{fill:url(#250_SVGID_3_);}</style><linearGradient id="250_SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </linearGradient><linearGradient id="250_SVGID_2_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:orange"></stop><stop offset="1" style="stop-color:orange"></stop> </linearGradient><linearGradient id="250_SVGID_3_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:#FEF7CD"></stop><stop offset="1" style="stop-color:#FF9511"></stop> </linearGradient><polygon data-side="center" class="svg-empty-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 212.9,181.1 213.9,181 306.5,241 " style="fill: transparent; stroke: #894A00;"></polygon><polygon data-side="left" class="svg-active-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke-opacity: 0;"></polygon><polygon data-side="right" class="svg-active-250" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-opacity: 0;"></polygon></svg></div><div class="jq-star" style="width:25px;  height:25px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-250{fill:url(#250_SVGID_1_);}.svg-hovered-250{fill:url(#250_SVGID_2_);}.svg-active-250{fill:url(#250_SVGID_3_);}</style><linearGradient id="250_SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </linearGradient><linearGradient id="250_SVGID_2_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:orange"></stop><stop offset="1" style="stop-color:orange"></stop> </linearGradient><linearGradient id="250_SVGID_3_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:#FEF7CD"></stop><stop offset="1" style="stop-color:#FF9511"></stop> </linearGradient><polygon data-side="center" class="svg-empty-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 212.9,181.1 213.9,181 306.5,241 " style="fill: transparent; stroke: #894A00;"></polygon><polygon data-side="left" class="svg-active-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke-opacity: 0;"></polygon><polygon data-side="right" class="svg-active-250" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-opacity: 0;"></polygon></svg></div><div class="jq-star" style="width:25px;  height:25px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-250{fill:url(#250_SVGID_1_);}.svg-hovered-250{fill:url(#250_SVGID_2_);}.svg-active-250{fill:url(#250_SVGID_3_);}</style><linearGradient id="250_SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </linearGradient><linearGradient id="250_SVGID_2_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:orange"></stop><stop offset="1" style="stop-color:orange"></stop> </linearGradient><linearGradient id="250_SVGID_3_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:#FEF7CD"></stop><stop offset="1" style="stop-color:#FF9511"></stop> </linearGradient><polygon data-side="center" class="svg-empty-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 212.9,181.1 213.9,181 306.5,241 " style="fill: transparent; stroke: #894A00;"></polygon><polygon data-side="left" class="svg-active-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke-opacity: 0;"></polygon><polygon data-side="right" class="svg-active-250" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-opacity: 0;"></polygon></svg></div><div class="jq-star" style="width:25px;  height:25px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-250{fill:url(#250_SVGID_1_);}.svg-hovered-250{fill:url(#250_SVGID_2_);}.svg-active-250{fill:url(#250_SVGID_3_);}</style><linearGradient id="250_SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </linearGradient><linearGradient id="250_SVGID_2_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:orange"></stop><stop offset="1" style="stop-color:orange"></stop> </linearGradient><linearGradient id="250_SVGID_3_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:#FEF7CD"></stop><stop offset="1" style="stop-color:#FF9511"></stop> </linearGradient><polygon data-side="center" class="svg-empty-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 212.9,181.1 213.9,181 306.5,241 " style="fill: transparent; stroke: #894A00;"></polygon><polygon data-side="left" class="svg-active-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke-opacity: 0;"></polygon><polygon data-side="right" class="svg-empty-250" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-opacity: 0;"></polygon></svg></div><div class="jq-star" style="width:25px;  height:25px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-250{fill:url(#250_SVGID_1_);}.svg-hovered-250{fill:url(#250_SVGID_2_);}.svg-active-250{fill:url(#250_SVGID_3_);}</style><linearGradient id="250_SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </linearGradient><linearGradient id="250_SVGID_2_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:orange"></stop><stop offset="1" style="stop-color:orange"></stop> </linearGradient><linearGradient id="250_SVGID_3_" gradientUnits="userSpaceOnUse" x1="0" y1="-50" x2="0" y2="250"><stop offset="0" style="stop-color:#FEF7CD"></stop><stop offset="1" style="stop-color:#FF9511"></stop> </linearGradient><polygon data-side="center" class="svg-empty-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 212.9,181.1 213.9,181 306.5,241 " style="fill: transparent; stroke: #894A00;"></polygon><polygon data-side="left" class="svg-empty-250" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke-opacity: 0;"></polygon><polygon data-side="right" class="svg-empty-250" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-opacity: 0;"></polygon>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="rating_number">
-                        <span class="current_rating">3.5</span>
-                        <span>/5</span>
-                    </div>
-                </div>
-                <div class="text">We are passionate about coffee</div>
-            </td>
-        </tr>
-    </tbody>
-</table> -->
+            </div>
+               <div class="text"><%= text_excerpt %></div>
+        </td>
+    </tr>
+</table>
