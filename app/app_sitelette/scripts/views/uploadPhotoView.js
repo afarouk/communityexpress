@@ -5,6 +5,7 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     mediaActions = require('../actions/mediaActions'),
+    popupController = require('../controllers/popupController'),
     h = require('../globalHelpers'),
     template= require('ejs!../templates/uploadPhotoView.ejs');
 
@@ -15,7 +16,10 @@ var UploadPhotoView = Backbone.View.extend({
     events: {
         'click .add_new_photo_btn': 'onClickAddNewPhoto',
         'click .save_button': 'onSendPhoto',
-        'click .close_button': 'goBack'
+        'click .close_button': 'goBack',
+        'keydown .upload_title': 'removeTitleError',
+        'keydown .upload_description': 'removeDescriptionError',
+        'change select': 'removeSelectError'
     },
 
     initialize: function(options) {
@@ -64,6 +68,7 @@ var UploadPhotoView = Backbone.View.extend({
         this.$el.find('.gallery .slick-slide').on('click', function(e){
             this.$el.find('.gallery_item').removeClass('selected');
             $(e.currentTarget).addClass('selected');
+            this.$el.find('.gallery_block').removeClass('error');
         }.bind(this));
         setTimeout(function(){ //tweak for slick gallery
             this.$el.find('button.slick-next').trigger('click');
@@ -71,6 +76,7 @@ var UploadPhotoView = Backbone.View.extend({
     },
 
     onClickAddNewPhoto: function(e) {
+        this.addNewPhoto = true;
         this.$('.gallery_block').slideUp('slow');
         this.$el.find('.upload_photo').show();
         this.initUploader();
@@ -103,25 +109,62 @@ var UploadPhotoView = Backbone.View.extend({
 
     onSaveImage: function(image) {
         this.file = h().dataURLtoBlob(image.data);
+        this.$el.find('.upload_photo').removeClass('error');
     },
 
     onSendPhoto: function () {
-        var description = this.$el.find('.upload_description').val(),
+        var error = false,
+            description = this.$el.find('.upload_description').val(),
             title = this.$el.find('.upload_title').val(),
             promotionType = this.$('select[name=promotiontype]').val() || '';
 
-        if (!this.file || !promotionType || !description || !title) {
-            //TODO show errors
-            return;
+        if (this.addNewPhoto) {
+            if (!this.file) {
+                this.$el.find('.upload_photo').addClass('error');
+                error = true;
+            }
+        } else {
+            this.$el.find('.gallery_block').addClass('error');
+            error = true;
+            //TODO check if selected and use it for upload???
         }
+        if (!promotionType) {
+            this.$el.find('.promotions_block').addClass('error');
+            error = true;
+        }
+        if (!title) {
+            this.$el.find('.title_block').addClass('error');
+            error = true;
+        }
+        if (!description) {
+            this.$el.find('.description_block').addClass('error');
+            error = true;
+        }
+        if (error) return;
+
         loader.show('uploading');
 
         mediaActions.uploadUserMedia(this.sasl.sa(), this.sasl.sl(), this.file, title, description, promotionType)
             .then(function () {
-                loader.showFlashMessage('upload successful');
-            }, function (e) {
+                loader.hide();
+                popupController.textPopup(
+                    { text: 'Photo was uploaded successfully' }, 
+                    this.goBack.bind(this));
+            }.bind(this), function (e) {
                 loader.showFlashMessage(h().getErrorMessage(e, 'error uploading'));
             });
+    },
+
+    removeTitleError: function() {
+        this.$el.find('.title_block').removeClass('error');
+    },
+
+    removeDescriptionError: function() {
+        this.$el.find('.description_block').removeClass('error');
+    },
+
+    removeSelectError: function() {
+        this.$el.find('.promotions_block').removeClass('error');
     },
 
     goBack: function() {

@@ -3463,6 +3463,7 @@ input[name=promocode] {
 }
 #upload_photo .gallery li {
     margin: 4px;
+    max-height: 110px;
 }
 #upload_photo .gallery li img {
     border: none;
@@ -3479,6 +3480,9 @@ input[name=promocode] {
     float: left;
     padding-right: 20px;
     padding-top: 9px;
+}
+#upload_photo .gallery_block .text {
+    color: #fafafa;
 }
 #upload_photo .add_new_block button {
     width: 130px;
@@ -3505,4 +3509,19 @@ input[name=promocode] {
 }
 #upload_photo .gallery .slick-prev {
     left: -6px;
+}
+#upload_photo .back_next_btns > div {
+    padding: 2px;
+}
+#upload_photo .error_msg {
+    color: #f00;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+}
+#upload_photo .error .error_msg {
+    visibility: visible;
+    height: 20px;
+    opacity: 1;
 }

@@ -1,19 +1,25 @@
 <div data-role="page" id="upload_photo">
     <div class="body">
       <% if (promotionTypes) { %>
-        <select data-role="none" name="promotiontype" id="cmntyex_select-promotion-type" data-corners="false">
-            <option value="" disabled selected>Select a type</option>
-            <% promotionTypes.each(function (promotion) { %>
-                <option value="<%= promotion.get('enumText') %>"><%= promotion.get('displayText') %></option>
-            <% }) %>
-        </select>
+        <div class="promotions_block">
+            <select data-role="none" name="promotiontype" id="cmntyex_select-promotion-type" data-corners="false">
+                <option value="" disabled selected>Select a type</option>
+                <% promotionTypes.each(function (promotion) { %>
+                    <option value="<%= promotion.get('enumText') %>"><%= promotion.get('displayText') %></option>
+                <% }) %>
+            </select>
+            <div class="error_msg">* select a type</div>
+        </div>
       <% } %>
-        <div class="title_block material-textfield yellow">
-            <input type="text" class="upload_title" required="" data-role="none" autocapitalize="none">
-            <label data-content="Title">Title</label>
+        <div class="title_block">
+            <div class="material-textfield yellow">
+                <input type="text" class="upload_title" required="" data-role="none" autocapitalize="none">
+                <label data-content="Title">Title</label>
+            </div>
+            <div class="error_msg">* enter a title</div>
         </div>
         <div class="gallery_block" data-role="none">
-            <span>Select a picture</span>
+            <span class="text">Select a picture</span>
             <ul class="gallery" data-role="none">
                 <% models.each( function(model) { %>
                     <li class="gallery_item" data-role="none">
@@ -22,26 +28,30 @@
                 <% }) %>
             </ul>
             <div class="add_new_block">
-                <span>or</span>
+                <span class="text">or</span>
                 <button class="ui-btn ui-corner-all back_btn add_new_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">ADD NEW</button>
             </div>
+            <div class="error_msg">* select a picture or add new one</div>
         </div>
         <div class="upload_photo">
             <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
                 <input type="file" data-role="none" name="thumb" />
             </div>
+            <div class="error_msg">* add a picture</div>
         </div>
-        <div class="description_block material-textfield yellow">
-            <textarea required class="upload_description" data-role="none" rows="3" autocapitalize="none" ></textarea>
-            <label data-content="Description">Description</label>
+        <div class="description_block">
+            <div class="material-textfield yellow">
+                <textarea required class="upload_description" data-role="none" rows="3" autocapitalize="none" ></textarea>
+                <label data-content="Description">Description</label>
+            </div>
+            <div class="error_msg">* enter a description</div>
         </div>
-        <div style="color:#FF0000; display:none;" id="err_text"></div>
         <div class="ui-grid-a back_next_btns">
             <div class="ui-block-a">
-                <a href="#" class="save_button" data-role="button" data-corners="false">Save</a>
+                <button class="cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all close_button">Cancel</button>
             </div>
             <div class="ui-block-b">
-                <a href="#" class="close_button" data-role="button" data-corners="false">Cancel</a>
+                <button class="cmtyx_color_1 cmtyx_border_color_1 ui-btn ui-corner-all save_button">Save</button>
             </div>
         </div>
     </div>
