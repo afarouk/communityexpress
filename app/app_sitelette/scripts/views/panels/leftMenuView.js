@@ -107,6 +107,7 @@ var LeftMenuView = PanelView.extend({
 
     onOpenUploadPhoto: function() {
         console.log('upload photo');
+        loader.show('retrieving user pictures');
         this.PopupController.requireLogIn(this.sasl, function() {
             Vent.trigger('viewChange', 'upload_photo',
             [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);

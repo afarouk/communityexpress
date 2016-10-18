@@ -177,27 +177,6 @@ module.exports = Backbone.View.extend({
             }.bind(this));
     },
 
-    dataURLtoBlob: function(data) {
-        var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
-        var byteString = atob(data.split(',')[1]);
-        var ab = new ArrayBuffer(byteString.length);
-        var ia = new Uint8Array(ab);
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-        var bb = (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder);
-        if (bb) {
-            bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)();
-            bb.append(ab);
-            return bb.getBlob(mimeString);
-        } else {
-            bb = new Blob([ab], {
-                'type': (mimeString)
-            });
-            return bb;this.showPrizes();
-        }
-    },
-
     showPrizes: function() {
         this.$el.find('.prizes_container').slideDown('slow');
     },
@@ -205,7 +184,7 @@ module.exports = Backbone.View.extend({
     onSaveImage: function(image) {
         var message = this.$el.find('.comntyex-upload_message_input').val(),
             contestUUID = this.contest.contestUUID,
-            file = this.dataURLtoBlob(image.data);
+            file = h().dataURLtoBlob(image.data);
 
         contestActions.enterPhotoContest(this.sa, this.sl, 
             contestUUID, file, message)

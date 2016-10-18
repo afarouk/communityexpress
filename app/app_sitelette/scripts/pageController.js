@@ -12,6 +12,7 @@ var Vent = require('./Vent'),
     saslActions = require('./actions/saslActions'),
     sessionActions = require('./actions/sessionActions'),
     promotionActions = require('./actions/promotionActions'),
+    mediaActions = require('./actions/mediaActions'),
     orderActions = require('./actions/orderActions'),
     galleryActions = require('./actions/galleryActions'),
     catalogActions = require('./actions/catalogActions'),
@@ -542,9 +543,25 @@ module.exports = {
     },
 
     upload_photo: function(options) {
+        var saslData,
+            promotionTypes;
         return saslActions.getSasl(options)
             .then(function(sasl) {
-                return $.Deferred().resolve({sasl: sasl}).promise();
+                saslData = sasl;
+                return promotionActions.getPromotionTypes();
+            })
+            .then(function(types) {
+                promotionTypes = types;
+                return mediaActions.getUserPictures(saslData.sa(), saslData.sl());
+            })
+            .then(function (pics) {
+                return $.Deferred().resolve({
+                    sasl: saslData,
+                    types: promotionTypes,
+                    pics: pics
+                }).promise();
+            }.bind(this), function () {
+                loader.showFlashMessage('error retrieving user pictures');
             });
     },
 

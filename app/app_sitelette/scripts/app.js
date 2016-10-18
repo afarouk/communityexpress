@@ -310,6 +310,7 @@ App.prototype = {
                 viewName === 'singleton' ||
                 viewName === 'contactUs' ||
                 viewName === 'businessHours' ||
+                viewName === 'upload_photo' ||
                 (viewName === 'address' && this.previousViewName === 'roster' ) ||
                 (viewName === 'address' && this.previousViewName === 'catalog' ) ||
                 (viewName === 'address' && this.previousViewName === 'singleton' ) ||

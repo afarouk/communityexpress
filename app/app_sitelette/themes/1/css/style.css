@@ -2225,10 +2225,13 @@ li.promotion_block .body {
 }
 .events_block .slick-slide:focus,
 .events_block .slick-arrow:focus,
+#upload_photo .slick-slide:focus,
+#upload_photo .slick-arrow:focus,
 .promotion_block .slick-slide:focus,
 .promotion_block .slick-arrow:focus {
     outline: none;
 }
+#upload_photo .slick-arrow,
 .promotion_block .slick-arrow,
 .events_block .slick-arrow {
     background-color: transparent;
@@ -2242,6 +2245,7 @@ li.promotion_block .body {
     padding-top: 0;
     padding-bottom: 0;
 }
+#upload_photo .slick-prev,
 .promotion_block .slick-prev,
 .events_block .slick-prev {
     left: 0;
@@ -2249,6 +2253,7 @@ li.promotion_block .body {
     border-left: 0;
     outline: none;
 }
+#upload_photo .slick-next,
 .promotion_block .slick-next,
 .events_block .slick-next {
     right: 0;
@@ -2662,12 +2667,13 @@ li.driving_directions_block {
 #contact_us .body .input_container .contact_message:focus ~ label::before {
     top: -9.3rem;
 } */
-
+#upload_photo .body .material-textfield,
 #contact_us .body .material-textfield {
     width: 100%;
     padding-top: 10px;
 }
 
+#upload_photo .material-textfield textarea,
 #contact_us .material-textfield textarea {
     width: 100%;
     background-color: transparent;
@@ -2675,29 +2681,37 @@ li.driving_directions_block {
     padding: 4px 1.6px;
 }
 
+#upload_photo .material-textfield input,
+#upload_photo .material-textfield textarea,
 #contact_us .material-textfield input,
 #contact_us .material-textfield textarea {
     font: 300 16px 'Open Sans', sans-serif;
     color: #fafafa;
 }
 
+#upload_photo .material-textfield input+label::before,
+#upload_photo .material-textfield input[required]:focus ~ label::before,
 #contact_us  .material-textfield input+label::before,
 #contact_us  .material-textfield input[required]:focus ~ label::before {
     font-size: 12px;
     top: -4rem;
 }
 
+#upload_photo .material-textfield textarea+label::before,
+#upload_photo .material-textfield textarea[required]:focus ~ label::before,
 #contact_us  .material-textfield textarea+label::before,
 #contact_us  .material-textfield textarea[required]:focus ~ label::before {
     font-size: 12px;
     top: -8.5rem;
 }
 
+#upload_photo .material-textfield input:invalid ~ label::before,
 #contact_us  .material-textfield input:invalid ~ label::before {
     font: 400 14px Roboto;
     top: -2.5rem;
 }
 
+#upload_photo .material-textfield textarea:invalid ~ label::before,
 #contact_us  .material-textfield textarea:invalid ~ label::before {
     font: 400 14px Roboto;
     top: -7rem;
@@ -2989,27 +3003,27 @@ color: #acacac;
 #upload_photo .select2-container--default .select2-selection--single {
     background-color: #363636;
 }
-#upload_photo .title_input_container, #upload_photo .select_picture_container {
-    margin-bottom: 25px;
-}
-#upload_photo label {
-    color: #ececec;
-    font: 300 14px 'Open Sans', sans-serif;
-}
-#upload_photo input, #upload_photo textarea {
-    background-color: transparent;
-    box-shadow: none;
-    border: solid 1px #959595;
-    color: #acacac;
-    padding: 12px 35px 12px 15px;
-    font: 400 12px 'Open Sans', sans-serif;
-    width: 100%;
-    border-radius: 2px;
-    resize: none;
-}
-#upload_photo input:focus, #upload_photo textarea:focus {
-    outline: none;
-}
+// #upload_photo .title_input_container, #upload_photo .select_picture_container {
+//     margin-bottom: 25px;
+// }
+// #upload_photo label {
+//     color: #ececec;
+//     font: 300 14px 'Open Sans', sans-serif;
+// }
+// #upload_photo input, #upload_photo textarea {
+//     background-color: transparent;
+//     box-shadow: none;
+//     border: solid 1px #959595;
+//     color: #acacac;
+//     padding: 12px 35px 12px 15px;
+//     font: 400 12px 'Open Sans', sans-serif;
+//     width: 100%;
+//     border-radius: 2px;
+//     resize: none;
+// }
+// #upload_photo input:focus, #upload_photo textarea:focus {
+//     outline: none;
+// }
 #upload_photo .select_picture_container .btn_container {
     text-align: right;
 }
@@ -3458,4 +3472,101 @@ input[name=promocode] {
     padding: 5px;
     color: #ababab;
     resize: none;
+}
+
+
+#upload_photo .upload_photo {
+    display: none;
+}
+#upload_photo .upload_photo .dropzone {
+    border-radius: 4px;
+    min-height: 100px!important;
+    border-color: #757373;
+    background-color: transparent;
+}
+#upload_photo .upload_photo .dropzone:before {
+    font-size: 60px;
+    top: 7px;
+}
+#upload_photo .upload_photo .dropzone:after {
+    bottom: 10%;
+    font-size: 20px;
+    padding: 5%;
+}
+#upload_photo .upload_photo .dropzone.added {
+    height: 495px!important;
+}
+#upload_photo .upload_photo .dropzone.loading:after {
+    visibility: hidden;
+}
+#upload_photo .upload_photo .dropzone .btn {
+    background-color: #464646;
+    border-color: #464646;
+}
+#upload_photo .gallery {
+    max-height: 110px;
+}
+#upload_photo .gallery li {
+    margin: 4px;
+    max-height: 110px;
+}
+#upload_photo .gallery li img {
+    border: none;
+}
+#upload_photo .gallery li.selected img {
+    border: 1px solid;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.3);
+}
+#upload_photo .add_new_block {
+    float: right;
+    margin: 15px 5px;
+}
+#upload_photo .add_new_block span {
+    float: left;
+    padding-right: 20px;
+    padding-top: 9px;
+}
+#upload_photo .gallery_block .text {
+    color: #fafafa;
+}
+#upload_photo .add_new_block button {
+    width: 130px;
+}
+#upload_photo .description_block {
+    clear: both;
+    margin-top: 10px;
+}
+#upload_photo .title_block {
+    margin-top: 10px;
+}
+#upload_photo select {
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 40px;
+    font-weight: 300;
+}
+#upload_photo .gallery .slick-next {
+    right: -8px;
+}
+#upload_photo .gallery .slick-prev {
+    left: -6px;
+}
+#upload_photo .back_next_btns > div {
+    padding: 2px;
+}
+#upload_photo .error_msg {
+    color: #f00;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+}
+#upload_photo .error .error_msg {
+    visibility: visible;
+    height: 20px;
+    opacity: 1;
 }
