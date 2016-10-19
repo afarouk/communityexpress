@@ -24,8 +24,8 @@ var ReviewView = Backbone.View.extend({
     },
 
     onShow: function() {
-        this.$el.find('.my-rating').starRating({
-            initialRating: this.model.get('rating'),
+        this.$el.find('.review-rating').starRating({
+            initialRating: this.model.get('rating')/2,
             emptyColor: '#464646',
             strokeColor: '#EECB49',
             activeColor: '#EECB49',
@@ -36,7 +36,7 @@ var ReviewView = Backbone.View.extend({
             useFullStars: true,
             readOnly: true
         });
-        this.$('.current_rating').text(this.model.get('rating'));
+        this.$('.current_rating').text(this.model.get('rating')/2);
     },
 
     render: function() {

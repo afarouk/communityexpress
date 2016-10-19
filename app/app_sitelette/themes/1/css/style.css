@@ -2074,7 +2074,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding-left: 15px;
     width: 100%;
 }
-.reviews_block .name_date_block, .reviews_block .rating_block {
+.reviews_block .name_date_block,
+.reviews_block .rating_block,
+.reviews_block .review_rating_block {
     margin-bottom: 10px;
 }
 /* .reviews_block .user_name {
@@ -3431,20 +3433,22 @@ input[name=promocode] {
     background-color: #212121;
 }
 
-.new_review_container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
 .new_review_container button {
     text-transform: uppercase;
     font: 700 18px / 19px 'Open Sans', sans-serif !important;
 }
 
 .navbutton_write_review {
+    /*position: fixed;*/
+    top: 0;
+    right: 0;
+    width: 50%;
     padding: 1em;
+}
+
+.navbutton_write_review button {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .new_review_body {
@@ -3467,31 +3471,43 @@ input[name=promocode] {
 }
 
 
-#upload_photo .upload_photo {
+#upload_photo .upload_photo,
+#cmntyex_reviews .upload_photo {
     display: none;
 }
-#upload_photo .upload_photo .dropzone {
+#upload_photo .upload_photo .dropzone,
+#cmntyex_reviews .upload_photo .dropzone {
     border-radius: 4px;
     min-height: 100px!important;
     border-color: #757373;
     background-color: transparent;
 }
-#upload_photo .upload_photo .dropzone:before {
+#upload_photo .upload_photo .dropzone .glyphicon-ok,
+#cmntyex_reviews .upload_photo .dropzone .glyphicon-ok,
+#cmtyx_photo_contest_block .dropzone .glyphicon-ok {
+    top: 0;
+}
+#upload_photo .upload_photo .dropzone:before,
+#cmntyex_reviews .upload_photo .dropzone:before {
     font-size: 60px;
     top: 7px;
 }
-#upload_photo .upload_photo .dropzone:after {
+#upload_photo .upload_photo .dropzone:after,
+#cmntyex_reviews .upload_photo .dropzone:after {
     bottom: 10%;
     font-size: 20px;
     padding: 5%;
 }
-#upload_photo .upload_photo .dropzone.added {
+#upload_photo .upload_photo .dropzone.added,
+#cmntyex_reviews .upload_photo .dropzone.added {
     height: 495px!important;
 }
-#upload_photo .upload_photo .dropzone.loading:after {
+#upload_photo .upload_photo .dropzone.loading:after,
+#cmntyex_reviews .upload_photo .dropzone.loading:after {
     visibility: hidden;
 }
-#upload_photo .upload_photo .dropzone .btn {
+#upload_photo .upload_photo .dropzone .btn,
+#cmntyex_reviews .upload_photo .dropzone .btn {
     background-color: #464646;
     border-color: #464646;
 }
@@ -3512,6 +3528,9 @@ input[name=promocode] {
 #upload_photo .add_new_block {
     float: right;
     margin: 15px 5px;
+}
+#cmntyex_reviews .add_new_block {
+    padding: 10px 0;
 }
 #upload_photo .add_new_block span {
     float: left;

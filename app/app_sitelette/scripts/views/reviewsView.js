@@ -18,11 +18,13 @@ var ReviewsView = Backbone.View.extend({
     id: 'cmntyex_reviews',
 
     events: {
+        'click .add_new_photo_btn': 'onClickAddNewPhoto',
         'click .navbutton_write_review': 'openNewReview',
         'click .next': 'nextPage',
         'click .prev': 'prevPage',
         'click .cancel_review': 'closeNewReview',
-        'click .submit_review': 'onSendReview'
+        'click .submit_review': 'onSendReview',
+        'keyup .input_container textarea': 'resizeTextarea'
     },
 
     initialize: function(options) {
@@ -129,7 +131,7 @@ var ReviewsView = Backbone.View.extend({
 
     initializeRating: function() {
         this.$('.my-rating').starRating({
-            initialRating: this.rating || 0,
+            initialRating: 5,
             emptyColor: '#464646',
             strokeColor: '#EECB49',
             activeColor: '#EECB49',
@@ -140,17 +142,16 @@ var ReviewsView = Backbone.View.extend({
             useFullStars: true,
             disableAfterRate: false,
             callback: function(currentRating, $el) {
-                this.rating = currentRating;
+                this.rating = currentRating * 2;
                 this.$('.rating_error').slideUp();
                 this.$('.set_rating').text(currentRating);
-                // this.$('.my-rating').starRating('setRating', currentRating);
             }.bind(this)
         });
-        this.$('.set_rating').text(this.rating || 0);
+        this.$('.set_rating').text(5);
     },
 
     openNewReview: function() {
-        this.rating = null;
+        this.rating = 10;
         var template = '<div class="my-rating"></div><div class="rating_number"><span class="set_rating"></span><span>/5</span></div>';
         this.$('.rating_block').html(template);
         this.$('.navbutton_write_review').slideUp(400, _.bind(function() {
@@ -159,14 +160,65 @@ var ReviewsView = Backbone.View.extend({
     },
 
     closeNewReview: function() {
+        this.$('.new_review_error').hide();
+        this.$('.input_container textarea').val('');
+        this.$el.find('.upload_photo').hide();
+        this.$('.add_new_block').show();
+        this.resizeTextarea();
+        this.$('.btn-del').trigger('click');
+        this.$('.btn-cancel').trigger('click');
         this.$('.new_review_body').slideUp(400, _.bind(function() {
             this.$('.navbutton_write_review').slideDown();
         }, this));
-        this.$('.new_review_error').hide();
+    },
+
+    resizeTextarea: function() {
+        this.$('.input_container textarea').css('height', 0);
+        var height = this.$('.input_container textarea')[0].scrollHeight + 22;
+        this.$('.input_container textarea').css({
+            overflow: 'hidden',
+            height: height + 'px'
+        });
+    },
+
+    onClickAddNewPhoto: function(e) {
+        this.addNewPhoto = true;
+        this.$('.add_new_block').hide();
+        this.$el.find('.upload_photo').show();
+        this.initUploader();
+    },
+
+    initUploader: function() {
+        var that = this;
+        this.$el.find('.dropzone').html5imageupload({
+            ghost: false,
+            save: false,
+            canvas: true,
+            data: {},
+            resize: false,
+            onSave: this.onSaveImage.bind(this),
+            onAfterSelectImage: function(){
+                $(this.element).addClass('added');
+            },
+            onToolsInitialized: function(){
+                $(this.element).find('.btn').addClass('cmtyx_text_color_1');
+            },
+            onAfterProcessImage: function(){
+                $(this.element).find('.btn').addClass('cmtyx_text_color_1');
+            },
+            onAfterCancel: function() {
+                $(this.element).removeClass('added').css('height', '100px');
+                that.file = null;
+            }
+        });
+    },
+
+    onSaveImage: function(image) {
+        this.file = h().dataURLtoBlob(image.data);
     },
 
     onSendReview: function() {
-        this.file = 'null';
+        // this.file = 'null';
         this.title = '';
         var message = this.$('.input_container textarea').val(),
             rating = this.rating;
@@ -186,20 +238,19 @@ var ReviewsView = Backbone.View.extend({
     },
 
     isValid: function(message, rating) {
-        var errors = [];
+        var isValid = true;
         if (!message) {
             this.$('.message_error').slideDown('fast', _.bind(function() {
                 this.$('.message_error').siblings('textarea').on('focus', _.bind(function() {
                     this.$('.message_error').slideUp();
                 }, this));
             }, this));
-            errors.push(false);
+            isValid = false;
         }
         if (rating === null) {
             this.$('.rating_error').slideDown();
-            errors.push(false);
+            isValid = false;
         }
-        var isValid = errors.length > 0 ? false : true;
         return isValid;
     }
 
