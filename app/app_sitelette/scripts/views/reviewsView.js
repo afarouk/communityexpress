@@ -67,6 +67,7 @@ var ReviewsView = Backbone.View.extend({
         //     'click .next': 'nextPage',
         //     'click .prev': 'prevPage'
         // });
+        this.$el.off('scroll').on('scroll', _.bind(this.calculateScroll, this));
         this.renderReviews();
     },
 
@@ -76,6 +77,16 @@ var ReviewsView = Backbone.View.extend({
 
     triggerLandingView: function() {
         Vent.trigger('viewChange', 'restaurant', this.restaurant.getUrlKey(), { reverse: true });
+    },
+
+    calculateScroll: function() {
+        if (!this.pagination.get('hasNextReviews')) return;
+        var windowHeight = $(window).height();
+        var reviewsArr = this.$el.find('.cmntyex-review_list li');
+        var lastQuestionTop = $(reviewsArr[reviewsArr.length - 1]).offset().top + 100;
+        if (lastQuestionTop < windowHeight) {
+            this.nextPage();
+        };
     },
 
     updateButtons: function () {
@@ -99,7 +110,8 @@ var ReviewsView = Backbone.View.extend({
         loader.show();
         return reviewActions.getReviewsBySASL(this.restaurant.sa(), this.restaurant.sl(), prevId, prevOffset, nextId, nextOffset)
             .then( function (reviews) {
-                this.collection.set(reviews.collection.models);
+                this.collection.add(reviews.collection.models);
+                // this.collection.set(reviews.collection.models);
                 this.pagination.set('hasNextReviews', reviews.data.hasNextReviews);
                 this.pagination.set('hasPreviousReviews', reviews.data.hasPreviousReviews);
                 loader.hide();
@@ -151,6 +163,7 @@ var ReviewsView = Backbone.View.extend({
     },
 
     openNewReview: function() {
+        this.$('.new_review_blinder').show();
         this.rating = 10;
         var template = '<div class="my-rating"></div><div class="rating_number"><span class="set_rating"></span><span>/5</span></div>';
         this.$('.rating_block').html(template);
@@ -168,6 +181,7 @@ var ReviewsView = Backbone.View.extend({
         this.$('.btn-del').trigger('click');
         this.$('.btn-cancel').trigger('click');
         this.$('.new_review_body').slideUp(400, _.bind(function() {
+            this.$('.new_review_blinder').hide();
             this.$('.navbutton_write_review').slideDown();
         }, this));
     },

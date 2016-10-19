@@ -15,7 +15,7 @@ module.exports = {
 
     getReviewsBySASL: function (sa, sl, prevId, prevOffset, nextId, nextOffset) {
         return gateway.sendRequest('retrieveReviews', {
-            count: 5,
+            count: 10,
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             previousId: prevId,

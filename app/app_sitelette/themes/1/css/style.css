@@ -3172,15 +3172,6 @@ a.cancel {
     display: block;
 }
 
-/*temporary styles for write_review button*/
-
-
-/*.navbutton_write_review {
-    width: 40px;
-    height: 40px;
-    background-color: red;
-}*/
-
 .hidden {
     display: none;
 }
@@ -3395,9 +3386,12 @@ input[name=promocode] {
 }
 
 #cmntyex_chat,
-#cmtyx_aboutUs,
-#cmntyex_reviews {
+#cmtyx_aboutUs {
     padding-top: 45px;
+}
+
+#cmntyex_reviews {
+    padding-top: 115px;
 }
 
 #cmntyex_reviews ul:before {
@@ -3426,10 +3420,28 @@ input[name=promocode] {
 }
 
 .review_background_color_4 {
-    background-color: #272727;
+    background-color: #2a2a2a;
 }
 
 .review_background_color_5 {
+    background-color: #262626;
+}
+
+.new_review_blinder {
+    position: fixed;
+    top: 45px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*width: 100%;
+    height: 100%;*/
+    margin: auto;
+    display: none;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.new_review_container {
     background-color: #212121;
 }
 
@@ -3439,11 +3451,13 @@ input[name=promocode] {
 }
 
 .navbutton_write_review {
-    /*position: fixed;*/
-    top: 0;
+    position: fixed;
+    top: 45px;
     right: 0;
-    width: 50%;
-    padding: 1em;
+    width: 100%;
+    padding: 1em 2em;
+    background-color: #212121;
+    z-index: 1;
 }
 
 .navbutton_write_review button {
@@ -3453,7 +3467,7 @@ input[name=promocode] {
 
 .new_review_body {
     display: none;
-    padding: 1em;
+    padding: 2em;
 }
 
 .new_review_body .input_container {
