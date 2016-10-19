@@ -3447,14 +3447,6 @@ input[name=promocode] {
     padding: 1em;
 }
 
-.submit_review {
-    padding-right: .5em;
-}
-
-.cancel_review {
-    padding-left: .5em;
-}
-
 .new_review_body {
     display: none;
     padding: 1em;

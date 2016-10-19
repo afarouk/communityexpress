@@ -5,7 +5,6 @@
 var Vent = require('../Vent'),
     loader = require('../loader'),
     h = require('../globalHelpers'),
-    viewFactory = require('../viewFactory'),
     template = require('ejs!../templates/content/reviews_content.ejs'),
     popupController = require('../controllers/popupController'),
     ListView = require('./components/listView'),
@@ -144,7 +143,7 @@ var ReviewsView = Backbone.View.extend({
                 this.rating = currentRating;
                 this.$('.rating_error').slideUp();
                 this.$('.set_rating').text(currentRating);
-                this.$('.my-rating').starRating('setRating', currentRating);
+                // this.$('.my-rating').starRating('setRating', currentRating);
             }.bind(this)
         });
         this.$('.set_rating').text(this.rating || 0);
@@ -152,11 +151,18 @@ var ReviewsView = Backbone.View.extend({
 
     openNewReview: function() {
         this.rating = null;
-        this.$('.new_review_body').slideDown('fast', _.bind(this.initializeRating, this));
+        var template = '<div class="my-rating"></div><div class="rating_number"><span class="set_rating"></span><span>/5</span></div>';
+        this.$('.rating_block').html(template);
+        this.$('.navbutton_write_review').slideUp(400, _.bind(function() {
+            this.$('.new_review_body').slideDown(400, _.bind(this.initializeRating, this));
+        }, this));
     },
 
     closeNewReview: function() {
-        this.$('.new_review_body').slideUp();
+        this.$('.new_review_body').slideUp(400, _.bind(function() {
+            this.$('.navbutton_write_review').slideDown();
+        }, this));
+        this.$('.new_review_error').hide();
     },
 
     onSendReview: function() {
