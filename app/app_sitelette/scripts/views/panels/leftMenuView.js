@@ -21,7 +21,8 @@ var LeftMenuView = PanelView.extend({
         'click .userReviewsService': 'onOpenUserReviews',
         'click .wallService': 'onOpenCreateBlogPosts',
     	'click .contactUs': 'onOpenContactUs',
-        'click .messagingService': 'onOpenChat'
+        'click .messagingService': 'onOpenChat',
+        'click .appointmentService': 'onOpenAppointment'
     },
 
     initialize : function(options) {
@@ -33,12 +34,16 @@ var LeftMenuView = PanelView.extend({
         setTimeout(this._onOpen.bind(this), 500);
     },
 
+    //Temporary remove delayed buttons
+    except: ['USER_MEDIA_UPLOAD', 'WALL_FOR_DASHBOARD'],
+
     getActiveButtons: function() {
         var buttons = _.filter(this.sasl.get('services'), function (option, key) {
             if (!option || !option.masterEnabled) return false;
+            if (this.except.indexOf(option.configurationEnum) !== -1) return;
             option.key = key;
             return true;
-        });
+        }.bind(this));
         return {buttons: buttons};
     },
 
@@ -105,17 +110,27 @@ var LeftMenuView = PanelView.extend({
         }.bind(this));
     },
 
-    onOpenUploadPhoto: function() {
-        console.log('upload photo');
+    // Temporary commented
+    // onOpenUploadPhoto: function() {
+    //     console.log('upload photo');
+    //     loader.show('retrieving user pictures');
+    //     this.PopupController.requireLogIn(this.sasl, function() {
+    //         Vent.trigger('viewChange', 'upload_photo',
+    //         [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+    //     }.bind(this));
+    // },
+
+    // onOpenCreateBlogPosts: function() {
+    //     console.log('create blog posts');
+    // },
+
+    onOpenAppointment: function() {
+        console.log('appointments');
         loader.show('retrieving user pictures');
         this.PopupController.requireLogIn(this.sasl, function() {
-            Vent.trigger('viewChange', 'upload_photo',
+            Vent.trigger('viewChange', 'appointments',
             [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
         }.bind(this));
-    },
-
-    onOpenCreateBlogPosts: function() {
-        console.log('create blog posts');
     }
 
 });

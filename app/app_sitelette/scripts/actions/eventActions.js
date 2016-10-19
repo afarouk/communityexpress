@@ -13,5 +13,23 @@ module.exports = {
             eventUUID: options.id,
             UID: getUser().getUID()
         });
+    },
+
+    getAppointments: function(start, end) {
+    	return gateway.sendRequest('getAppointments', {
+			start: start,
+			end: end,
+			underscore: null,
+            UID: getUser().getUID()
+        });
+    },
+
+    bookAppointment: function(bookId, sa, sl) {
+    	return gateway.sendRequest('bookAppointment', {
+            id: bookId,
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            UID: getUser().getUID()
+        });
     }
 };
