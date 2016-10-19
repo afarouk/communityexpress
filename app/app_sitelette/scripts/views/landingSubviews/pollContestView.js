@@ -128,6 +128,7 @@ module.exports = Backbone.View.extend({
         var status = this.poll.answerStatus;
         if (status.enumText === 'ANSWERED') {
             this.displayResults(this.poll);
+            this.$el.find('.contest_prizes').show();
             this.$el.find('.prize_block').slideDown('slow');
         }
     },
@@ -148,6 +149,7 @@ module.exports = Backbone.View.extend({
                     popupController.textPopup({ text: 'You already answered this question.'});
                 }.bind(this));
             this.$el.find('.submit_poll_button').slideUp('slow');
+            this.$el.find('.contest_prizes').show();
             this.$el.find('.prize_block').slideDown('slow');
         }.bind(this));
     },

@@ -126,6 +126,11 @@ var LeftMenuView = PanelView.extend({
 
     onOpenAppointment: function() {
         console.log('appointments');
+        loader.show('retrieving user pictures');
+        this.PopupController.requireLogIn(this.sasl, function() {
+            Vent.trigger('viewChange', 'appointments',
+            [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+        }.bind(this));
     }
 
 });

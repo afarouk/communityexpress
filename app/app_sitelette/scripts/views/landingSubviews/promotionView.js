@@ -30,6 +30,7 @@ var PromotionView = Backbone.View.extend({
     this.initSlick();
     Vent.on('openPromotionByShareUrl', this.openPromotionByShareUrl, this);
     this.setLinksForEachPromotion();
+    $( ".promotion_block .header #flag" ).before( "<style>.promotion_block #flag:after { border-bottom-color:" + $('.cmtyx_color_3').css('background-color') + "}</style>" );
   },
 
   initSlick: function() {
@@ -43,9 +44,9 @@ var PromotionView = Backbone.View.extend({
         cssEase: 'linear',
         slidesToShow: 1
     });
-    this.$el.find('button.slick-arrow').css("top", $('#cmtyx_promotion_block .body ul').height() / 2 - 24 + "px");
-    this.$el.find('button.slick-prev.slick-arrow').text('').css("border-right-color", $('.cmtyx_color_3').css('background-color'));
-    this.$el.find('button.slick-next.slick-arrow').text('').css("border-left-color", $('.cmtyx_color_3').css('background-color'));
+    this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
+    this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
+    this.$el.find('button.slick-arrow').text('');
   },
 
   onShow: function() {

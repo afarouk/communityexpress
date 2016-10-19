@@ -113,8 +113,10 @@ module.exports = {
 
             sendContactUsEmail: ['POST', '/html/sendContactUsEmail'],
 
-            sendCustomerSupportEmail: ['POST', '/html/sendCustomerSupportEmail']
+            sendCustomerSupportEmail: ['POST', '/html/sendCustomerSupportEmail'],
 
+            getAppointments: ['GET', '/appointments/fc_retrieveEvents'],
+            bookAppointment: ['PUT', '/appointments/bookappointment'],
         };
     }
 };
