@@ -45,11 +45,7 @@ var LandingReviewsView = Backbone.View.extend({
   },
 
   showMoreReviews: function() {
-    // show more reviews
-    var user = userController.getCurrentUser(),
-        sasl = user.favorites.at(0);
-    Vent.trigger('viewChange', 'reviews', sasl.getUrlKey() );
-    // exists for http://localhost/cmt2_lefoodtruck?demo=true&desktopIframe=true
+    Vent.trigger('viewChange', 'reviews', [window.community.serviceAccommodatorId, window.community.serviceLocationId] );
   }
 
 });
