@@ -18,7 +18,7 @@ var LandingReviewsView = Backbone.View.extend({
     this.options = options || {};
 
     this.$el.find('.my-rating').starRating({
-        initialRating: 4,
+        initialRating: 5,
         emptyColor: '#464646',
         strokeColor: '#EECB49',
         activeColor: '#EECB49',

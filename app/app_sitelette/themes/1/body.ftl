@@ -308,15 +308,33 @@
 								</tr>
 							</table>
 						</div>
-						<div class="show_more_block">
-							<div class="show_more_avatars_container">
-								<span class="avatar avatar1"></span> <span
-									class="avatar avatar2"></span> <span class="avatar avatar3"></span>
-								<span class="avatar avatar4"></span> <span
-									class="avatar avatar5"></span>
+						<div class="show_more_block_container">
+							<div class="show_more_block">
+								<div class="show_more_avatars_container">
+									<span class="avatar avatar1"></span> <span
+										class="avatar avatar2"></span> <span class="avatar avatar3"></span>
+									<span class="avatar avatar4"></span> <span
+										class="avatar avatar5"></span>
+								</div>
+								<span class="show_more_reviews_btn cmtyx_text_color_1">Show
+									more reviews</span>
 							</div>
-							<span class="show_more_reviews_btn cmtyx_text_color_1">show
-								more reviews</span>
+						</div>
+						<div class="leave_review_block">
+							<span class="title">
+								leave a review
+							</span>
+							<div class="rating_block">
+								<div class="my-rating"></div>
+								<div class="rating_number">
+									<span class="current_rating"></span><span>/5</span>
+								</div>
+							</div>
+							<input type="text" id="full_name" name="full_name" data-role="none" placeholder="Full name">
+							<textarea id="review_text" name="review_text" data-role="none" rows="3" placeholder="Your review"></textarea>
+							<div class="send_review_btn_container">
+								<button class="send_review_btn">send</button>
+							</div>
 						</div>
 					</div>
 				</li>

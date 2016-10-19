@@ -2215,7 +2215,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font: 300 12px / 17px 'Open Sans', sans-serif;
     color: #bdbdbd;
 }
+.reviews_block .show_more_block_container {
+    text-align: right;
+}
 .reviews_block .show_more_block {
+    display: inline-block;
     text-align: center;
 }
 .reviews_block .show_more_block .show_more_avatars_container .avatar {
@@ -2245,11 +2249,51 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .reviews_block .show_more_block .show_more_reviews_btn {
     display: inline-block;
-    font: 400 10px 'Open Sans', sans-serif;
-    text-transform: uppercase;
+    font: 400 12px 'Open Sans', sans-serif;
+    /* text-transform: uppercase; */
 }
 .reviews_block .jq-star {
     margin-right: 3px;
+}
+.leave_review_block {
+    margin-top: 20px;
+}
+.leave_review_block .title {
+    display: inline-block;
+    color: #ececec;
+    font: 400 14px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+.leave_review_block input#full_name,
+.leave_review_block textarea#review_text {
+    width: 100%;
+    border: 1px solid #727272;
+    border-radius: 3px;
+    padding: 8px;
+    color: #b1b1b1;
+    font: 500 12px/17px 'Open Sans', sans-serif;
+    background-color: transparent;
+    margin-bottom: 15px;
+}
+.leave_review_block input#full_name:focus,
+.leave_review_block textarea#review_text:focus {
+    outline: none;
+}
+.leave_review_block textarea#review_text {
+    resize: none;
+}
+.send_review_btn_container {
+    text-align: right;
+}
+.send_review_btn.ui-btn {
+    display: inline-block;
+    font: 700 12px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: #a2a2a2;
+    border: 1px solid #a2a2a2;
+    border-radius: 1px;
+    width: 30%;
 }
 
 /********************** PROMOTION BLOCK ***********************/
