@@ -560,8 +560,25 @@ module.exports = {
                     types: promotionTypes,
                     pics: pics
                 }).promise();
-            }.bind(this), function () {
-                loader.showFlashMessage('error retrieving user pictures');
+            }.bind(this), function (err) {
+                return err;
+            });
+    },
+
+    appointments: function(options){
+        var saslData;
+        return saslActions.getSasl(options)
+            .then(function(sasl) {
+                saslData = sasl;
+                return eventActions.getAppointments('2016-10-1', '2016-11-10');
+            })
+            .then(function (appointments) {
+                return $.Deferred().resolve({
+                    sasl: saslData,
+                    appointments: appointments
+                }).promise();
+            }.bind(this), function (err) {
+                return err;
             });
     },
 
