@@ -133,7 +133,7 @@
 			                            <#if event.buyable!false>
 				                            <div class="events-buybutton-container">
 		                                         <button class="events-buybutton" data-uuid="${event.uuid}">
-		                                           Buy Ticket</button>
+		                                           Buy</button>
 				                            </div>
                                         </#if>
 
