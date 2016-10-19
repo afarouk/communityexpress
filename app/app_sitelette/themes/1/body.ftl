@@ -103,36 +103,42 @@
 							<ul class="gallery event_block_overlay">
 								<#list eventsSummary.events as event>
 									<li class="event_item" data-uuid="${event.uuid}">
-										<#if event.url??>
-											<div class="event_image">
-												<img src="${event.url}"></img>
+										<div class="event-container">
+					                        <span class="event_title">${event.displayText}</span>
+											<#if event.url??>
+												<div class="event_image">
+													<img src="${event.url}"></img>
+												</div>
+											</#if>
+											<div class="event_description" data-uuid="${event.uuid}">
+												<table>
+						                            <tr>
+						                                <td class="event_date">
+							                                <div class="event_container">
+							                                    <span class="event_day">${event.date}</span>
+							                                    <span class="event_month">${event.month}</span>
+							                                </div>
+						                                </td>
+						                                <td class="event_info">
+						                                    <span class="event_time">${event.time}</span>
+						                                    <span class="event_text">${event.shortDescription}</span>
+						                                </td>
+						                                <td class="add_to_calendar_btn_container">
+						                                    <a href="${event.calendarURL}"><span class="add_to_calendar_btn"></span></a>
+						                                </td>
+						                            </tr>
+					                            </table>
 											</div>
-										</#if>
-										<div class="event_description" data-uuid="${event.uuid}">
-										<table>
-				                            <tr>
-				                                <td class="event_date">
-				                                    <span class="event_day">${event.date}</span>
-				                                    <span class="event_month">${event.month}</span>
-				                                </td>
-				                                <td class="event_info">
-				                                    <span class="event_title">${event.displayText}</span>
-				                                    <span class="event_time">${event.time}</span>
-				                                    <span class="event_text">${event.shortDescription}</span>
-				                                </td>
-				                                <td class="add_to_calendar_btn_container">
-				                                    <a href="${event.calendarURL}"><span class="add_to_calendar_btn"></span></a>
-				                                </td>
-				                            </tr>
-			                            </table>
-			                            <#if event.buyable!false>
-	                                         <button class="events-buybutton" data-uuid="${event.uuid}">
-	                                           Buy Ticket</button>
-                                        </#if>
 										</div>
+			                            <#if event.buyable!false>
+				                            <div class="events-buybutton-container">
+		                                         <button class="events-buybutton" data-uuid="${event.uuid}">
+		                                           Buy Ticket</button>
+				                            </div>
+                                        </#if>
 
-										<div class="ui-grid-a event_item_buttons">
-											<div class="ui-block-b share_btn_block"
+										<div class="event_item_buttons">
+											<div class="share_btn_block"
 												uuid="${event.uuid}">
 												<span class="icon share_icon"></span> <span class="text">Share</span>
 											</div>
@@ -316,6 +322,7 @@
 				</li>
 				<li id="cmtyx_promotion_block" class="promotion_block">
 					<div class="header cmtyx_color_3">
+    					<div id="flag"><span>free</span></div>
 						<span class="title">Promotion</span> <span class="collapse_btn">&#9650;</span>
 					</div>
 					<div class="body">

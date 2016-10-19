@@ -6,7 +6,7 @@ module.exports = {
 		"captureRightClick":true,
 		"grid":{  
 			"drawGridLines": false, 
-			"gridLineColor": '#bbb',
+			"gridLineColor": 'transparent',
 		    "background": 'transparent',     
 		    "borderColor": 'transparent',     
 		    "borderWidth": 0,          
@@ -24,7 +24,7 @@ module.exports = {
 			"rendererOptions":{  
 				"tickOptions":{  
 					 "mark":null,
-					 "fontSize":14
+					 "fontSize":12
 				}
 			},
 			"ticks":[],
@@ -43,7 +43,7 @@ module.exports = {
 			"pointLabels":{
 				"show":true,
 				"stacked":true,
-				"formatString": "%d"
+				"formatString": "%d votes"
 			}
 		}
 	}
