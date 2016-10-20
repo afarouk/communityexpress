@@ -543,8 +543,17 @@ module.exports = {
     },
 
     upload_photo: function(options) {
-        var saslData,
-            promotionTypes;
+        return saslActions.getSasl(options)
+            .then(function(sasl) {
+                return $.Deferred().resolve({
+                    sasl: sasl
+                }).promise();
+            }.bind(this), function (err) {
+                return err;
+            });
+    },
+
+    blog_posts: function(options) {
         return saslActions.getSasl(options)
             .then(function(sasl) {
                 return $.Deferred().resolve({
