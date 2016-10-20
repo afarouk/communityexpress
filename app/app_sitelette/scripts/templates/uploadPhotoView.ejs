@@ -1,16 +1,5 @@
 <div data-role="page" id="upload_photo">
     <div class="body">
-      <% if (promotionTypes) { %>
-        <div class="promotions_block">
-            <select data-role="none" name="promotiontype" id="cmntyex_select-promotion-type" data-corners="false">
-                <option value="" disabled selected>Select a type</option>
-                <% promotionTypes.each(function (promotion) { %>
-                    <option value="<%= promotion.get('enumText') %>"><%= promotion.get('displayText') %></option>
-                <% }) %>
-            </select>
-            <div class="error_msg">* select a type</div>
-        </div>
-      <% } %>
         <div class="title_block">
             <div class="material-textfield yellow">
                 <input type="text" class="upload_title" required="" data-role="none" autocapitalize="none">
@@ -18,23 +7,8 @@
             </div>
             <div class="error_msg">* enter a title</div>
         </div>
-        <div class="gallery_block" data-role="none">
-            <span class="text">Select a picture</span>
-            <ul class="gallery" data-role="none">
-                <% models.each( function(model) { %>
-                    <li class="gallery_item" data-role="none">
-                        <img class="cmntyx-user_picture cmtyx_border_color_1" src=<%= model.get('url')%> data-role="none">
-                    </li>
-                <% }) %>
-            </ul>
-            <div class="add_new_block">
-                <span class="text">or</span>
-                <button class="ui-btn ui-corner-all back_btn add_new_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">ADD NEW</button>
-            </div>
-            <div class="error_msg">* select a picture or add new one</div>
-        </div>
-        <div class="upload_photo">
-            <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+        <div class="upload_photo" data-role="none">
+            <div data-role="none" class="dropzone" data-width="320" data-height="568" style="width: 100%;">
                 <input type="file" data-role="none" name="thumb" />
             </div>
             <div class="error_msg">* add a picture</div>

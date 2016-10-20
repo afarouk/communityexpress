@@ -547,18 +547,8 @@ module.exports = {
             promotionTypes;
         return saslActions.getSasl(options)
             .then(function(sasl) {
-                saslData = sasl;
-                return promotionActions.getPromotionTypes();
-            })
-            .then(function(types) {
-                promotionTypes = types;
-                return mediaActions.getUserPictures(saslData.sa(), saslData.sl());
-            })
-            .then(function (pics) {
                 return $.Deferred().resolve({
-                    sasl: saslData,
-                    types: promotionTypes,
-                    pics: pics
+                    sasl: sasl
                 }).promise();
             }.bind(this), function (err) {
                 return err;

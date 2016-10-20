@@ -3647,7 +3647,9 @@ input[name=promocode] {
 }
 
 
-#upload_photo .upload_photo,
+#upload_photo .upload_photo {
+    display: block;
+}
 #cmntyex_reviews .upload_photo {
     display: none;
 }

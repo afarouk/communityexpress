@@ -34,13 +34,9 @@ var LeftMenuView = PanelView.extend({
         setTimeout(this._onOpen.bind(this), 500);
     },
 
-    //Temporary remove delayed buttons
-    except: ['USER_MEDIA_UPLOAD', 'WALL_FOR_DASHBOARD'],
-
     getActiveButtons: function() {
         var buttons = _.filter(this.sasl.get('services'), function (option, key) {
             if (!option || !option.masterEnabled) return false;
-            if (this.except.indexOf(option.configurationEnum) !== -1) return;
             option.key = key;
             return true;
         }.bind(this));
@@ -110,19 +106,22 @@ var LeftMenuView = PanelView.extend({
         }.bind(this));
     },
 
-    // Temporary commented
-    // onOpenUploadPhoto: function() {
-    //     console.log('upload photo');
-    //     loader.show('retrieving user pictures');
-    //     this.PopupController.requireLogIn(this.sasl, function() {
-    //         Vent.trigger('viewChange', 'upload_photo',
-    //         [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
-    //     }.bind(this));
-    // },
+    onOpenUploadPhoto: function() {
+        console.log('upload photo');
+        loader.show('retrieving user pictures');
+        this.PopupController.requireLogIn(this.sasl, function() {
+            Vent.trigger('viewChange', 'upload_photo',
+            [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+        }.bind(this));
+    },
 
-    // onOpenCreateBlogPosts: function() {
-    //     console.log('create blog posts');
-    // },
+    onOpenCreateBlogPosts: function() {
+        console.log('create blog posts');
+        this.PopupController.requireLogIn(this.sasl, function() {
+            Vent.trigger('viewChange', 'blog_posts',
+            [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+        }.bind(this));
+    },
 
     onOpenAppointment: function() {
         console.log('appointments');
