@@ -3,6 +3,8 @@
 'use strict';
 
 var Vent = require('../../Vent'),
+  loader = require('../../loader'),
+  contactActions = require('../../actions/contactActions'),
   sessionActions = require('../../actions/sessionActions.js'),
   loyaltyActions = require('../../actions/loyaltyActions.js'),
   template = require('ejs!../../templates/landingSubviews/loyaltyCardView.ejs');
@@ -18,17 +20,22 @@ var LoyaltyCardView = Backbone.View.extend({
 
   events: {
     'click .refresh_button_style1': 'refresh',
-    'click .header': 'toggleCollapse'
+    'click .header': 'toggleCollapse',
+    'click .share_btn_block': 'showShareBlock',
+    'click .sms_block': 'showSMSInput',
+    'click .sms_send_button': 'onSendSMS'
   },
 
   initialize: function(options) {
-    var loyaltyProgram = saslData.loyaltyProgram || {};
+    this.loyaltyProgram = saslData.loyaltyProgram || {};
     this.options = options || {};
+    this.sasl = window.saslData;
+        this.sa = community.serviceAccommodatorId;
+        this.sl = community.serviceLocationId;
     Vent.on('login_success', this.onLogin, this);
     Vent.on('logout_success', this.onLogout, this);
-    // loyaltyProgram.hasLoyaltyProgram = false;
-    // loyaltyProgram.status  = 'You have made 3 of 10 purchases';
-    this.render(loyaltyProgram);
+    this.render(this.loyaltyProgram);
+    this.setShareLinks();
   },
 
   render: function(loyaltyProgram) {
@@ -89,7 +96,65 @@ var LoyaltyCardView = Backbone.View.extend({
       if user is not logged in, show login
       popup, then call retrieveLoyaltyStatus above */
     console.log("loyalty card refresh button clicked");
-  }
+  },
+
+  showShareBlock: function() {
+      var $el = this.$el.find('.share_block');
+      $el.slideToggle('slow');
+  },
+
+  showSMSInput: function() {
+      var $el = this.$el.find('.sms_input_block');
+      $el.slideToggle('slow');
+      $el.find('input').mask('(000) 000-0000');
+  },
+
+  getLinks: function() {
+      var demo = window.community.demo ? 'demo=true&' : '',
+        shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+          '?' + demo + 't=y&u=' + this.loyaltyProgram.loyaltyUUID),
+        links = [
+            '',
+            'mailto:?subject=&body=' + shareUrl,
+            'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl,
+            'https://twitter.com/intent/tweet?text=' + shareUrl
+        ];
+      return links;
+  },
+
+  setShareLinks: function() {
+      var $block = this.$el.find('.share_block'),
+        links = this.getLinks(),
+        $links = $block.find('a');
+
+      $links.each(function(index){
+        var link = $(this);
+        link.attr('href', links[index]);
+      });
+  },
+
+  onSendSMS: function(e) {
+      var $el = this.$el.find('.sms_input_block'),
+          $target = $(e.currentTarget),
+          uuid = this.loyaltyProgram.loyaltyUUID,
+          demo = window.community.demo ? 'demo=true&' : '',
+          shareUrl = window.location.href.split('?')[0] + 
+            '?' + demo + 't=p&u=' + uuid,
+          val = $target.prev().val(); //(650) 617-3439
+
+      loader.showFlashMessage('Sending message to... ' + val);
+      $el.slideUp('slow');
+      contactActions.shareURLviaSMS('LOYALTY', this.sasl.serviceAccommodatorId, 
+          this.sasl.serviceLocationId, val, uuid, shareUrl)
+        .then(function(res){
+          loader.showFlashMessage('Sending message success.');
+        }.bind(this))
+        .fail(function(res){
+          if (res.responseJSON && res.responseJSON.error) {
+            loader.showFlashMessage(res.responseJSON.error.message);
+          }
+        }.bind(this));
+  },
 
 });
 

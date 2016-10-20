@@ -2011,6 +2011,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .poll_block .share_container {
     padding: 15px 0 20px 0;
 }
+.loyalty_program_block .share_container {
+    padding: 15px 0 5px 0;
+}
+.loyalty_program_block .share_btn_block,
 .poll_block .share_btn_block,
 .promotion_block .share_btn_block,
 .photo_contest_block .share_btn_block {
@@ -2020,7 +2024,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .promotion_block .share_btn_block {
     margin-bottom: 20px;
 }
-
+.loyalty_program_block .share_btn_block .share_icon,
 .events_block .share_btn_block .share_icon,
 .poll_block .share_btn_block .share_icon,
 .promotion_block .share_btn_block .share_icon,
@@ -2581,6 +2585,7 @@ li.promotion_block .body {
     padding: 4px 1.6px;
     border: 0.1rem solid #757373;
 }
+.loyalty_program_block .share_block,
 .photo_contest_block .share_block {
     display: none;
 }

@@ -65,7 +65,7 @@ module.exports = {
                 shareURL: shareURL,
                 serviceAccommodatorId: sa,
                 serviceLocationId: sl,
-                mobile: mobile, // phone number
+                mobile: mobile.replace(/[()-\s]/g, ''), // phone number
                 uuid: uuid,
                 passCode: 'sitelettes', // ???
                 trackingId: UID,

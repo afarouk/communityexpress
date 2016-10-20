@@ -179,6 +179,14 @@ App.prototype = {
                     }, 400);
                 });
             break;
+            case 'y':
+                //Loyalty block
+                $(document).ready(function(){
+                    setTimeout(function () {
+                        Vent.trigger('scrollToBlock', '.loyalty_program_block');
+                    }, 2000);
+                });
+            break;
             case 'h':
                 //Photo contest
                 $(document).ready(function(){
