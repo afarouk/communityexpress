@@ -14,20 +14,20 @@ module.exports = {
             serviceLocationId: sl,
             lastIndex: 0,
             count: 10,
-            mediaType: ''//'GALLERY_MEMBER'
+            mediaType: 'GALLERY_MEMBER'
         }).then(function (pics) {
             return new Backbone.Collection(pics);
         });
     },
 
-    uploadUserMedia: function(sa, sl, file, title, message, promotionType) {
+    uploadUserMedia: function(sa, sl, file, title, message) {
         return gateway.sendFile('createWNewPictureNewMetaData', {
             image: file,
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             title: title,
             message: message,
-            promotionType: promotionType,
+            status: 'PROPOSED',
             UID: getUID()
         });
     }

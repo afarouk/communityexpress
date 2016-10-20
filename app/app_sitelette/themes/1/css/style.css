@@ -1517,6 +1517,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     background-image: url('images/photo-camera.png');
 }
 .speaking_img,
+.button0_47_0_0,
 .button0_23_0_0 {
     background-image: url('images/speaking.png');
 }
@@ -1631,9 +1632,6 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 100%;
 }
 .breaking_news {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     background-color: #ca1d1d;
     text-align: center;
@@ -2010,6 +2008,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .poll_block .share_container {
     padding: 15px 0 20px 0;
 }
+.loyalty_program_block .share_container {
+    padding: 15px 0 5px 0;
+}
+.loyalty_program_block .share_btn_block,
 .poll_block .share_btn_block,
 .promotion_block .share_btn_block,
 .photo_contest_block .share_btn_block {
@@ -2019,7 +2021,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .promotion_block .share_btn_block {
     margin-bottom: 20px;
 }
-
+.loyalty_program_block .share_btn_block .share_icon,
 .events_block .share_btn_block .share_icon,
 .poll_block .share_btn_block .share_icon,
 .promotion_block .share_btn_block .share_icon,
@@ -2043,6 +2045,19 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 /********************** LOYALTY CARD BLOCK ***********************/
 .loyalty_program_block .header {
     padding-left: 40px !important;
+}
+.loyalty_card_icon {
+    display: inline-block;
+    background: url('images/card-icon.png') no-repeat;
+    background-size: cover;
+    width: 35px;
+    height: 23px;
+}
+.loyalty_program_block .header .loyalty_card_icon {
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 2px;
 }
 .loyalty_program_block .body {
     text-align: center;
@@ -2330,21 +2345,25 @@ li.promotion_block .body {
     font: 500 14px 'Open Sans', sans-serif;
     color: #fff;
 }
-.promotion_block .promotion_title {
-    font: 400 14px 'Open Sans', sans-serif;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    padding-bottom: 0;
+.promotion_block .promotion_details_container {
+    padding: 20px;
+    border-bottom: solid 1px #636363;
+    margin-bottom: 20px;
 }
+.promotion_block .promotion_title,
 .promotion_block .promotion_description {
-    font: 300 13px 'Open Sans', sans-serif;
-    padding: 10px;
-    padding-bottom: 20px;
+    font: 400 14px/21px 'Open Sans', sans-serif;
+    color: #ececec;
+}
+.promotion_block .promotion_title {
+    margin-bottom: 10px;
 }
 .promotion_block .promotion_type {
-    color: red;
+    padding: 20px;
+    color: #ececec;
+    font: 400 16px/16px 'Open Sans', sans-serif;
     text-transform: uppercase;
-    padding: 10px;
+    text-align: center;
 }
 .promotion_block .promotion-share-block {
     padding: 10px 0;
@@ -2580,6 +2599,7 @@ li.promotion_block .body {
     padding: 4px 1.6px;
     border: 0.1rem solid #757373;
 }
+.loyalty_program_block .share_block,
 .photo_contest_block .share_block {
     display: none;
 }
@@ -3648,7 +3668,9 @@ input[name=promocode] {
 }
 
 
-#upload_photo .upload_photo,
+#upload_photo .upload_photo {
+    display: block;
+}
 #cmntyex_reviews .upload_photo {
     display: none;
 }

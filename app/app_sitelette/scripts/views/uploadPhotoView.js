@@ -27,18 +27,10 @@ var UploadPhotoView = Backbone.View.extend({
         this.sasl = options.sasl;
         this.restaurant = options.restaurant;
         this.on('show', this.onShow, this);
-        //temp hardcoded
-        this.renderData = {
-            models: options.pics,
-            promotionTypes: options.types
-        };
         this.render();
-        if (options.pics.length > 0) {
-            this.initSlick();
-        }
     },
     render: function(){
-        this.$el.html(template(this.renderData));
+        this.$el.html(template());
         this.setElement(this.$el.children().eq(0));
         return this;
     },
@@ -49,36 +41,6 @@ var UploadPhotoView = Backbone.View.extend({
 
     onShow:  function() {
         loader.hide();
-    },
-
-    initSlick: function() {
-        this.$el.find('.gallery').slick({
-            dots: false,
-            arrows: true,
-            infinite: true,
-            speed: 300,
-            fade: false,
-            cssEase: 'linear',
-            slidesToShow: 3
-        });
-        this.$el.find('button.slick-arrow').css("top", 
-            this.$el.find('.body ul').height() + 30 + "px");
-        this.$el.find('button.slick-prev.slick-arrow').text('').css("border-right-color", $('.cmtyx_color_3').css('background-color'));
-        this.$el.find('button.slick-next.slick-arrow').text('').css("border-left-color", $('.cmtyx_color_3').css('background-color'));
-        this.$el.find('.gallery .slick-slide').on('click', function(e){
-            this.$el.find('.gallery_item').removeClass('selected');
-            $(e.currentTarget).addClass('selected');
-            this.$el.find('.gallery_block').removeClass('error');
-        }.bind(this));
-        setTimeout(function(){ //tweak for slick gallery
-            this.$el.find('button.slick-next').trigger('click');
-        }.bind(this), 100);
-    },
-
-    onClickAddNewPhoto: function(e) {
-        this.addNewPhoto = true;
-        this.$('.gallery_block').slideUp('slow');
-        this.$el.find('.upload_photo').show();
         this.initUploader();
     },
 
@@ -115,23 +77,14 @@ var UploadPhotoView = Backbone.View.extend({
     onSendPhoto: function () {
         var error = false,
             description = this.$el.find('.upload_description').val(),
-            title = this.$el.find('.upload_title').val(),
-            promotionType = this.$('select[name=promotiontype]').val() || '';
+            title = this.$el.find('.upload_title').val();
 
-        if (this.addNewPhoto) {
-            if (!this.file) {
-                this.$el.find('.upload_photo').addClass('error');
-                error = true;
-            }
-        } else {
-            this.$el.find('.gallery_block').addClass('error');
-            error = true;
-            //TODO check if selected and use it for upload???
-        }
-        if (!promotionType) {
-            this.$el.find('.promotions_block').addClass('error');
+        
+        if (!this.file) {
+            this.$el.find('.upload_photo').addClass('error');
             error = true;
         }
+        
         if (!title) {
             this.$el.find('.title_block').addClass('error');
             error = true;
@@ -144,7 +97,8 @@ var UploadPhotoView = Backbone.View.extend({
 
         loader.show('uploading');
 
-        mediaActions.uploadUserMedia(this.sasl.sa(), this.sasl.sl(), this.file, title, description, promotionType)
+        mediaActions.uploadUserMedia(this.sasl.sa(), this.sasl.sl(), 
+            this.file, title, description)
             .then(function () {
                 loader.hide();
                 popupController.textPopup(
