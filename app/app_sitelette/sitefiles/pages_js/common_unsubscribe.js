@@ -100,9 +100,9 @@ $(document).ready(
        + communityRequestProfile.email + '&serviceAccommodatorId='
        + communityRequestProfile.sa + '&serviceLocationId='
        + communityRequestProfile.sl;
-    } else if (communityRequestProfile.service === 'setNewsletterOptout') {
+    } else if (communityRequestProfile.service === 'setEmailOptout') {
      apiurl = communityRequestProfile.protocol + communityRequestProfile.api_server
-       + '/apptsvc/rest/communication/setNewsletterOptout?email='
+       + '/apptsvc/rest/communication/setEmailOptout?email='
        + communityRequestProfile.email+'&serviceAccommodatorId='
        + communityRequestProfile.sa + '&serviceLocationId='
        + communityRequestProfile.sl;
