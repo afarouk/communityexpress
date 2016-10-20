@@ -131,8 +131,6 @@ var ReviewsView = Backbone.View.extend({
     nextPage: function() {
         var prevId = this.collection.at(this.collection.length - 1).get('communicationId');
         var prevOffset = this.collection.at(this.collection.length - 1).get('offset');
-        debugger;
-        // return;
         this.getReviews(prevId, prevOffset);
     },
 
