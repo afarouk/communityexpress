@@ -3765,3 +3765,47 @@ input[name=promocode] {
     height: 20px;
     opacity: 1;
 }
+#appointments {
+    overflow-y: hidden;
+}
+#appointments .body {
+    margin-top: 45px;
+    height: inherit;
+}
+#appointments .appointments_calendar {
+    height: inherit;
+}
+#appointments .appointments_calendar .fc-toolbar {
+    position: fixed;
+    top: 45px;
+    z-index: 2;
+    background: #212121;
+    padding: 2px 5px;
+}
+#appointments .appointments_calendar .fc-toolbar .fc-today-button,
+#appointments .appointments_calendar .fc-toolbar .fc-listWeek-button,
+#appointments .appointments_calendar .fc-toolbar .fc-listDay-button {
+    color: white;
+    border-radius: 2px;
+    line-height: 0px;
+    border: 1px solid #faa019;
+    background: transparent;
+    margin-right: .5em;
+}
+
+#appointments .appointments_calendar .fc-toolbar .fc-center h2 {
+    font-size: 18px;
+    padding: 4px;
+}
+#appointments .appointments_calendar .fc-toolbar .fc-button-group {
+    padding-left:0;
+    margin-left:0;
+}
+#appointments .appointments_calendar .fc-view-container {
+    margin-top: 110px;
+}
+#appointments .appointments_calendar .fc-toolbar .ui-icon-left-single-arrow,
+#appointments .appointments_calendar .fc-toolbar .ui-icon-right-single-arrow {
+    font-size: 20px;
+    padding: 2px;
+}

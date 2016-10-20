@@ -116,7 +116,7 @@ module.exports = {
             sendCustomerSupportEmail: ['POST', '/html/sendCustomerSupportEmail'],
 
             getAppointments: ['GET', '/appointments/fc_retrieveEvents'],
-            bookAppointment: ['PUT', '/appointments/bookappointment'],
+            bookAppointment: ['PUT', '/appointments/fc_bookappointment'],
         };
     }
 };

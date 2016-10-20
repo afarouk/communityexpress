@@ -73,7 +73,10 @@ module.exports = {
             processData: false,
             timeout: 60000
         });
+    },
 
+    getUrlByName: function(name) {
+        return resolveAddress(name);
     }
 
 };

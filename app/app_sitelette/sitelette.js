@@ -12,8 +12,8 @@ require('../vendor/skeuocard-master/styles/skeuocard.reset.css');
 require('../vendor/skeuocard-master/styles/skeuocard.css');
 require('../vendor/star-rating-svg-master/src/css/star-rating-svg.css');
 require('../vendor/styles/owl.carousel.css');
-// require('../vendor/styles/fullcalendar.min.css');
-// require('./styles/sitelette.css');
+require('../vendor/fullcalendar-3.0.1/fullcalendar.min.css');
+// require('../vendor/fullcalendar-3.0.1/fullcalendar.print.css');
 
 require('../vendor/add-to-homescreen/src/addtohomescreen.min');
 
@@ -33,7 +33,7 @@ require('../vendor/swipe/swipe');
 require('../vendor/canvasResize/canvasResize');
 require('jquery-mask-plugin');
 require('moment');
-// require('fullcalendar');
+require('../vendor/fullcalendar-3.0.1/fullcalendar.min');
 
 require('../vendor/styles/select2.css');
 require('../vendor/scripts/select2.full');

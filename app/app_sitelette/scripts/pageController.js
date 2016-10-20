@@ -565,16 +565,10 @@ module.exports = {
     },
 
     appointments: function(options){
-        var saslData;
         return saslActions.getSasl(options)
-            .then(function(sasl) {
-                saslData = sasl;
-                return eventActions.getAppointments('2016-10-1', '2016-11-10');
-            })
-            .then(function (appointments) {
+            .then(function (sasl) {
                 return $.Deferred().resolve({
-                    sasl: saslData,
-                    appointments: appointments
+                    sasl: sasl,
                 }).promise();
             }.bind(this), function (err) {
                 return err;

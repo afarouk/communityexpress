@@ -24,6 +24,10 @@ module.exports = {
         });
     },
 
+    getAppointmentsUrl: function(options) {
+        return gateway.getUrlByName('getAppointments') + '?' + $.param(options);
+    },
+
     bookAppointment: function(bookId, sa, sl) {
     	return gateway.sendRequest('bookAppointment', {
             id: bookId,
