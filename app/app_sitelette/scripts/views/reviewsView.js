@@ -80,11 +80,13 @@ var ReviewsView = Backbone.View.extend({
     },
 
     calculateScroll: function() {
-        if (!this.pagination.get('hasNextReviews')) return;
+        if (!this.pagination.get('hasNextReviews') || this.retrievingNext) return;
         var windowHeight = $(window).height();
         var reviewsArr = this.$el.find('.cmntyex-review_list li');
         var lastQuestionTop = $(reviewsArr[reviewsArr.length - 1]).offset().top + 100;
         if (lastQuestionTop < windowHeight) {
+            this.retrievingNext = true;
+            this.$el.off('scroll');
             this.nextPage();
         };
     },
@@ -106,11 +108,13 @@ var ReviewsView = Backbone.View.extend({
         }
     },
 
-    getReviews: function (prevId, prevOffset, nextId, nextOffset) {
+    getReviews: function(prevId, prevOffset, nextId, nextOffset) {
         loader.show();
         return reviewActions.getReviewsBySASL(this.restaurant.sa(), this.restaurant.sl(), prevId, prevOffset, nextId, nextOffset)
             .then( function (reviews) {
                 this.collection.add(reviews.collection.models);
+                this.$el.on('scroll', _.bind(this.calculateScroll, this));
+                this.retrievingNext = false;
                 // this.collection.set(reviews.collection.models);
                 this.pagination.set('hasNextReviews', reviews.data.hasNextReviews);
                 this.pagination.set('hasPreviousReviews', reviews.data.hasPreviousReviews);
@@ -118,15 +122,17 @@ var ReviewsView = Backbone.View.extend({
             }.bind(this), loader.hide);
     },
 
-    prevPage: function () {
+    prevPage: function() {
         var nextId = this.collection.at(0).get('communicationId');
         var nextOffset = this.collection.at(0).get('offset');
         this.getReviews(null, null, nextId, nextOffset);
     },
 
-    nextPage: function () {
+    nextPage: function() {
         var prevId = this.collection.at(this.collection.length - 1).get('communicationId');
         var prevOffset = this.collection.at(this.collection.length - 1).get('offset');
+        debugger;
+        // return;
         this.getReviews(prevId, prevOffset);
     },
 
