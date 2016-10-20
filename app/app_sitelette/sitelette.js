@@ -3,7 +3,6 @@
 require('../vendor/css/fonts.css');
 require('../vendor/css/jquery.mobile-1.4.5.min.css');
 require('../vendor/css/bootstrap.min.css');
-// require('../app_sitelette/styles/sitelette_icons.css');
 require('../vendor/css/slick.css');
 require('../vendor/codecanyon/assets/css/html5imageupload.css');
 require('../vendor/styles/jquery.jqplot.min.css');
@@ -13,7 +12,6 @@ require('../vendor/skeuocard-master/styles/skeuocard.css');
 require('../vendor/star-rating-svg-master/src/css/star-rating-svg.css');
 require('../vendor/styles/owl.carousel.css');
 require('../vendor/fullcalendar-3.0.1/fullcalendar.min.css');
-// require('../vendor/fullcalendar-3.0.1/fullcalendar.print.css');
 
 require('../vendor/add-to-homescreen/src/addtohomescreen.min');
 

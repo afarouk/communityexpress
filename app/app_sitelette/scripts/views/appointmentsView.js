@@ -141,15 +141,20 @@ var AppointmentsView = Backbone.View.extend({
             eventClick : function(calEvent, jsEvent, view) {
                 if (typeof calEvent.cmtyx === 'undefined'
                 || calEvent.cmtyx !== 'NOT_AVAILABLE') {
+                    loader.show();
                     eventActions.bookAppointment(calEvent.id, 
                         this.sasl.sa(), 
                         this.sasl.sl())
                     .then(function(response) {
                         if (response.success === true) {
-                            //TODO success
                             this.$('#calendar').fullCalendar('refetchEvents');
+                            loader.hide();
+                            popupController.textPopup(
+                                { text: 'You successfully booked event.' });
                         } else {
-                            //TODO fail
+                            this.$('#calendar').fullCalendar('refetchEvents');
+                            popupController.textPopup(
+                                { text: 'Sorry, event isn\'t available already.' });
                         }
                     }.bind(this), function(jqXHR, error, errorThrown) {
                         var msg = "Service unavailable";
@@ -164,17 +169,13 @@ var AppointmentsView = Backbone.View.extend({
                         } else {
                             msg = jqXHR.responseText;
                         }
-                        //TODO loader
+                        loader.showFlashMessage(h().getErrorMessage(error, msg));
                     }.bind(this));
                 }
             }.bind(this),
             events : {
                 url : appointmentURL,
                 error : function(jqXHR, error, errorThrown) {
-                    // var errorObj = JSON.parse(jqXHR);
-                    $('#calendarSuccess').hide();
-                    $('#calendarLoading').hide();
-
                     var msg = "Service not available";
                     if (typeof jqXHR.error !== 'undefined') {
                         try {
@@ -188,10 +189,7 @@ var AppointmentsView = Backbone.View.extend({
                         msg = jqXHR.responseText;
                     }
 
-                    $('#calendarWarning').html("Error:" + msg);
-                    $('#calendarWarning').slideDown("slow");
-
-                    $('#calendar').slideUp("slow");
+                    loader.showFlashMessage(h().getErrorMessage(error, msg));
                 },
                 success : function(e) {
                     $('#calendarLoading').slideUp("slow");
