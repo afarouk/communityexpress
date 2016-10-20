@@ -3807,6 +3807,11 @@ input[name=promocode] {
     background: transparent;
     margin-right: .5em;
 }
+#appointments .appointments_calendar .fc-toolbar .fc-next-button,
+#appointments .appointments_calendar .fc-toolbar .fc-prev-button {
+    background: transparent;
+    border: none;
+}
 
 #appointments .appointments_calendar .fc-toolbar .fc-center h2 {
     font-size: 18px;
