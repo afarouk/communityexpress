@@ -56,17 +56,17 @@
 			<ul>
 				<li id="cmtyx_welcome_block">
 					<!-- <img src="themes/1/placeholder_images/welocome_img.png"></img> -->
+					<#if notification??>
+					<div class="breaking_news">
+						<span class="news_line">${notification.notificationBody}</span>
+					</div>
+                   	</#if>
 	  			    <#if (medias)?has_content >
 					   <img src="${medias[0].URL}" />
 					<#else>
 					   <img src="themes/1/placeholder_images/welocome_img.png"></img>
         			</#if>
 
-					<#if notification??>
-					<div class="breaking_news">
-						<span class="news_line">${notification.notificationBody}</span>
-					</div>
-                   	</#if>
 
 					<div class="welcome_block">
 					  <#if (medias)?has_content >
@@ -351,12 +351,14 @@
 									<div class="promotion_type">
 										${promotion.promoType.displayText}</div>
 									<img src="${promotion.URL}"></img>
-									<div class="promotion_title">${promotion.title}</div>
-									<#if promotion.buyable!false>
-	                                  <button class="promotions-buybutton" data-uuid="${promotion.uuid}">
-	                                   Buy</button>
-                                    </#if>
-									<div class="promotion_description">${promotion.message}</div>
+									<div class="promotion_details_container">
+										<div class="promotion_title">${promotion.title}</div>
+										<#if promotion.buyable!false>
+		                                  <button class="promotions-buybutton" data-uuid="${promotion.uuid}">
+		                                   Buy</button>
+	                                    </#if>
+										<div class="promotion_description">${promotion.message}</div>
+									</div>
 									<div class="ui-grid-a promotion_item_buttons">
 										<div class="ui-block-a like_btn_block"
 											uuid="${promotion.uuid}">
