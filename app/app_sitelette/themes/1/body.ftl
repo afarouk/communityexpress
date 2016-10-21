@@ -151,22 +151,22 @@
 											</div>
 											<div class="ui-block-a text sms_block">
 												<a href="" class="share_sms cmtyx_text_color_1">
-													<span class="share_icon sms_icon"></span> <br>SMS
+													<span class="share_icon sms_icon"></span>
 												</a>
 											</div>
 											<div class="ui-block-b text email_block">
 												<a href="" class="share_email cmtyx_text_color_1">
-													<span class="share_icon email_icon"></span> <br>E-mail
+													<span class="share_icon email_icon"></span>
 												</a>
 											</div>
 											<div class="ui-block-c text facebook_block">
 												<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-													<span class="share_icon facebook_icon"></span> <br>Facebook
+													<span class="share_icon facebook_icon"></span>
 												</a>
 											</div>
 											<div class="ui-block-d text twitter_block">
 												<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-													<span class="share_icon twitter_icon"></span> <br>Twitter
+													<span class="share_icon twitter_icon"></span>
 												</a>
 											</div>
 										</div>
@@ -212,22 +212,22 @@
 									</div>
 									<div class="ui-block-a text sms_block">
 										<a href="" class="share_sms cmtyx_text_color_1">
-											<span class="share_icon sms_icon"></span> <br>SMS
+											<span class="share_icon sms_icon"></span>
 										</a>
 									</div>
 									<div class="ui-block-b text email_block">
 										<a href="" class="share_email cmtyx_text_color_1">
-											<span class="share_icon email_icon"></span> <br>E-mail
+											<span class="share_icon email_icon"></span>
 										</a>
 									</div>
 									<div class="ui-block-c text facebook_block">
 										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-											<span class="share_icon facebook_icon"></span> <br>Facebook
+											<span class="share_icon facebook_icon"></span>
 										</a>
 									</div>
 									<div class="ui-block-d text twitter_block">
 										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-											<span class="share_icon twitter_icon"></span> <br>Twitter
+											<span class="share_icon twitter_icon"></span>
 										</a>
 									</div>
 								</div>
@@ -424,22 +424,22 @@
 									</div>
 									<div class="ui-block-a text sms_block">
 										<a href="" class="share_sms cmtyx_text_color_1">
-											<span class="share_icon sms_icon"></span> <br>SMS
+											<span class="share_icon sms_icon"></span>
 										</a>
 									</div>
 									<div class="ui-block-b text email_block">
 										<a href="" class="share_email cmtyx_text_color_1">
-											<span class="share_icon email_icon"></span> <br>E-mail
+											<span class="share_icon email_icon"></span>
 										</a>
 									</div>
 									<div class="ui-block-c text facebook_block">
 										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-											<span class="share_icon facebook_icon"></span> <br>Facebook
+											<span class="share_icon facebook_icon"></span>
 										</a>
 									</div>
 									<div class="ui-block-d text twitter_block">
 										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-											<span class="share_icon twitter_icon"></span> <br>Twitter
+											<span class="share_icon twitter_icon"></span>
 										</a>
 									</div>
 								</div>
@@ -582,22 +582,22 @@
 						</div>
 						<div class="ui-block-a text sms_block">
 							<a href="" class="share_sms cmtyx_text_color_1">
-								<span class="share_icon sms_icon"></span> <br>SMS
+								<span class="share_icon sms_icon"></span>
 							</a>
 						</div>
 						<div class="ui-block-b text email_block">
 							<a href="" class="share_email cmtyx_text_color_1">
-								<span class="share_icon email_icon"></span> <br>E-mail
+								<span class="share_icon email_icon"></span>
 							</a>
 						</div>
 						<div class="ui-block-c text facebook_block">
 							<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-								<span class="share_icon facebook_icon"></span> <br>Facebook
+								<span class="share_icon facebook_icon"></span>
 							</a>
 						</div>
 						<div class="ui-block-d text twitter_block">
 							<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-								<span class="share_icon twitter_icon"></span> <br>Twitter
+								<span class="share_icon twitter_icon"></span>
 							</a>
 						</div>
 					</div>

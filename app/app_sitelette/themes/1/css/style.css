@@ -1882,7 +1882,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .gallery_item_description {
     display: block;
     width: 100%;
-    padding: 15px 20px;
+    padding: 15px 0;
 }
 .gallery_item_title {
     display: block;
@@ -1897,6 +1897,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .gallery img {
     width: 100%;
+    max-height: 250px;
 }
 
 /********************** POLL BLOCK ***********************/
@@ -1958,7 +1959,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .poll_block .ansRadioChoice + label {
     font: 400 14px 'Open Sans', sans-serif;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     padding-right: 5px;
     line-height: 17px;
 }
@@ -2035,6 +2036,28 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .poll_block .share_block {
     display: none;
+}
+
+.poll_block input[type=radio]:not(old){
+  display: none;
+}
+
+.poll_block input[type=radio]:not(old) + label > span{
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background : url('images/unchecked-radio.png') no-repeat;
+  background-size: cover;
+  margin-right: 10px; 
+}
+
+.poll_block input[type=radio]:not(old):checked + label > span > span{
+  display: block;
+  width: 12px;
+  height: 12px;
+  background : url('images/checked-radio.png') no-repeat;
+  background-size: cover; 
+  margin-right: 10px; 
 }
 
 /********************** ABOUT US BLOCK ***********************/
@@ -2269,6 +2292,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font: 400 12px 'Open Sans', sans-serif;
     /* text-transform: uppercase; */
 }
+.review-rating {
+    display: inline-block;
+}
 .reviews_block .jq-star {
     margin-right: 3px;
 }
@@ -2307,14 +2333,14 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .send_review_btn_container {
     text-align: right;
 }
-.send_review_btn.ui-btn {
+.send_review_btn.ui-btn,
+.send_review_btn.ui-btn:hover {
     display: inline-block;
     font: 700 18px 'Open Sans', sans-serif;
     text-transform: uppercase;
     color: #a2a2a2;
     border: 1px solid #a2a2a2;
     margin-top: 10px;
-    /*border-radius: 1px;*/
     width: 50%;
 }
 

@@ -19,7 +19,7 @@
                             <input type="radio" name="radio-choice-ans" id="ans_<%= index %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (answerStatus.enumText === 'ANSWERED') {
                                     if (answerStatus.id === index + 1) {%> checked='checked'<% } %>
                                 <% } else if ( index === 0 ) { %>checked='checked'<% } %>>
-                            <label for="ans_<%= index %>"><%= choice.displayText %> </label>
+                            <label for="ans_<%= index %>"><span><span></span></span><%= choice.displayText %> </label>
                         </div>
                         <div class="ui-block-b">
                             <span class="answer_color_container cmtyx_color_<%= (index % 4) + 1 %>"></span>
