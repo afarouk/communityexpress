@@ -29,7 +29,6 @@ module.exports = {
     },
 
     textPopup: function(text, callback) {
-        debugger;
         var view = viewFactory.create('textPopup', text, this, {callback:callback});
         this.show(view);
     },
