@@ -41,7 +41,7 @@
 				</a></li>
 				<li><a href="#" class="menu_button_5">
 						<!-- <div class="navbar_btn_icon user_img m-b-9"></div>  -->
-						<div class="navbar_btn_icon icon-user"></div> 
+						<div class="navbar_btn_icon icon-user"></div>
 						<span class="glyphicon glyphicon-ok .cmtyx_text_color_1" aria-hidden="true"></span>
 
 						<br>User
@@ -269,7 +269,7 @@
 						</ul>
 					</div>
 				</li>
-				<!--  				
+				<!--
 				<li id="cmtyx_about_us_block" class="about_us_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">about us</span>
@@ -332,6 +332,7 @@
 							</div>
 							<input type="text" id="full_name" name="full_name" data-role="none" placeholder="Full name">
 							<textarea id="review_text" name="review_text" data-role="none" rows="3" placeholder="Your review"></textarea>
+							<div class="message_error new_review_error">Type your message</div>
 							<div class="send_review_btn_container">
 								<button class="send_review_btn">send</button>
 							</div>
@@ -831,7 +832,7 @@
 								Beverage Science Academy.</div>
 						</td>
 					</tr>
-					<tr> 
+					<tr>
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">11:00</td>
@@ -839,7 +840,7 @@
 							<div class="event_description reserved">(Reserved)</div>
 						</td>
 					</tr>
-					<tr> 
+					<tr>
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">12:00</td>
@@ -870,7 +871,7 @@
 								Beverage Science Academy.</div>
 						</td>
 					</tr>
-					<tr> 
+					<tr>
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">16:00</td>
