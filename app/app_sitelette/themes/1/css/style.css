@@ -1775,7 +1775,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     text-transform: uppercase;
 }
 .events_block .event_info {
-    padding: 0;
+    /* padding: 0; */
 }
 .events_block .event_title {
     display: block;
@@ -3078,7 +3078,7 @@ li .message_text {
 
 /*APPOINTMENTS*/
 
-#cmtyx_appointments .body {
+/* #cmtyx_appointments .body {
     padding: 45px 10px 0 10px;
 }
 #cmtyx_appointments .navigation_block {
@@ -3146,7 +3146,7 @@ li .message_text {
     vertical-align: middle;
     font: 300 12px/50px 'Open Sans', sans-serif;
     color: rgba(85, 85, 85, 0.7);
-}
+} */
 
 /*UPLOAD PHOTO*/
 
@@ -3796,6 +3796,7 @@ input[name=promocode] {
     z-index: 2;
     background: #212121;
     padding: 2px 5px;
+    width: 100%;
 }
 #appointments .appointments_calendar .fc-toolbar .fc-today-button,
 #appointments .appointments_calendar .fc-toolbar .fc-listWeek-button,
@@ -3805,7 +3806,7 @@ input[name=promocode] {
     line-height: 0px;
     border: 1px solid #faa019;
     background: transparent;
-    margin-right: .5em;
+    margin: 0 .3em;
 }
 
 #appointments .appointments_calendar .fc-toolbar .fc-center h2 {
@@ -3824,3 +3825,51 @@ input[name=promocode] {
     font-size: 20px;
     padding: 2px;
 }
+
+.fc .fc-toolbar>*>* {
+    float: none;
+    margin: 0;
+}
+
+.fc button:focus {
+    outline: none;
+}
+
+.fc button.fc-prev-button,
+.fc button.fc-next-button {
+    height: auto;
+    padding: 0 .6em;
+    background-color: transparent;
+    border: none;
+    /* border: solid 1px #636363; */
+}
+
+.fc button.fc-prev-button {
+    float: left;
+}
+
+.fc button.fc-next-button {
+    float: right;
+}
+
+.fc-listWeek-view,
+.fc-scroller,
+.fc-list-view {
+    border:  none !important;
+}
+
+.fc-list-table td {
+    border-color: #636363;
+}
+
+.fc-toolbar .fc-left {
+    width: 100%;
+    padding: 3px 0;
+}
+
+.ui-widget-header a,
+.ui-widget-header a:hover {
+    color: #faa019;
+    text-decoration: none;
+}
+
