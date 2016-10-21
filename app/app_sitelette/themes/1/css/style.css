@@ -1713,6 +1713,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .events_block .body {
     padding: 0 !important;
 }
+.gallery_container,
 .event-container {
     padding: 20px 20px 0 20px;
     border-bottom: solid 1px #636363;
@@ -1777,6 +1778,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .events_block .event_info {
     padding: 0;
 }
+.gallery_block .gallery_title,
 .events_block .event_title {
     display: block;
     font: 400 16px/16px 'Open Sans', sans-serif;
@@ -1875,15 +1877,12 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .gallery li.gallery_item {
     position: relative;
     display: inline-block;
-    height: 300px;
+    // height: 300px;
 }
 .gallery_item_description {
-    position: absolute;
     display: block;
-    bottom: 0;
     width: 100%;
     padding: 15px 20px;
-    background-color: rgba(54, 54, 54, 0.8);
 }
 .gallery_item_title {
     display: block;
@@ -2011,6 +2010,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .loyalty_program_block .share_container {
     padding: 15px 0 5px 0;
 }
+.gallery_block .share_btn_block,
 .loyalty_program_block .share_btn_block,
 .poll_block .share_btn_block,
 .promotion_block .share_btn_block,
@@ -2021,6 +2021,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .promotion_block .share_btn_block {
     margin-bottom: 20px;
 }
+.gallery_block .share_btn_block .share_icon,
 .loyalty_program_block .share_btn_block .share_icon,
 .events_block .share_btn_block .share_icon,
 .poll_block .share_btn_block .share_icon,
@@ -2365,14 +2366,20 @@ li.promotion_block .body {
     text-transform: uppercase;
     text-align: center;
 }
+.gallery_block .share_btn_block {
+    height:40px;
+}
+.gallery_block .gallery-share-block,
 .promotion_block .promotion-share-block {
     padding: 10px 0;
     display: none;
     margin-top: -20px;
 }
+.gallery_block .gallery-share-block .sms_input_block,
 .promotion_block .promotion-share-block .sms_input_block {
     display:none;
 }
+.gallery_block .gallery-share-block .share_icon,
 .promotion_block .promotion-share-block .share_icon {
     display: inline-block;
     margin-bottom: 10px;
@@ -2380,6 +2387,7 @@ li.promotion_block .body {
     height: 38px;
     border-radius: 50%;
 }
+.gallery_block .gallery-share-block .text,
 .promotion_block .promotion-share-block .text {
     font: 400 12px 'Open Sans', sans-serif;
     color: #cbcbcb;
@@ -2434,9 +2442,11 @@ li.promotion_block .body {
 .events-share-block .ui-block-d {
     margin-top: 20px;
 }
+.gallery-share-block,
 .promotion-share-block {
     text-align: center;
 }
+.gallery-share-block a:focus,
 .promotion-share-block a:focus {
     outline: none;
     text-decoration: none;
@@ -2630,6 +2640,7 @@ li.video_block .body {
     text-align: left;
     background-color: transparent;
 }
+.share_block .gallery-share-block .sms_input_block,
 .share_block .promotion-share-block .sms_input_block {
     margin-bottom: 20px;
 }
