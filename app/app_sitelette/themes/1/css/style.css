@@ -2232,6 +2232,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     color: #bdbdbd;
 }
 .reviews_block .show_more_block_container {
+    margin-bottom: 10px;
     text-align: right;
 }
 .reviews_block .show_more_block {
@@ -2272,6 +2273,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     margin-right: 3px;
 }
 .leave_review_block {
+    display: none;
     margin-top: 20px;
 }
 .leave_review_block .title {
@@ -2280,6 +2282,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font: 400 14px 'Open Sans', sans-serif;
     text-transform: uppercase;
     margin-bottom: 15px;
+}
+.leave_review_block input#full_name {
+    display: none;
 }
 .leave_review_block input#full_name,
 .leave_review_block textarea#review_text {
