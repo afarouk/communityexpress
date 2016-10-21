@@ -530,7 +530,9 @@
 									    allowfullscreen="1">
 								    </iframe>
 								    <br>
-		 						    <div class="video_item_message">${media.message}</div>
+		 						    <div class="video_item_message">
+		 						    	<span>${media.message}</span>
+		 						    </div>
 			                    </div>
 		                    </#if>
 
