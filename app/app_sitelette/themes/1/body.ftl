@@ -338,9 +338,15 @@
 											<div class="ui-block-b date">Aug, 24, 2016</div>
 										</div>
 										<div class="rating_block">
+<<<<<<< HEAD
 											<div class="review-rating" initial-rating="9"></div>
 											<div class="rating_number">
 												<span class="review_current_rating"></span><span>/5</span>
+=======
+											<div class="my-rating" ></div>
+											<div class="rating_number">
+												<span class="current_rating" ></span><span>/5</span>
+>>>>>>> 46a07e683a6701997c23448bc3abfc76856fd1a9
 											</div>
 										</div>
 						                   <div class="text">(This is a sample review)</div>
@@ -531,7 +537,9 @@
 									    allowfullscreen="1">
 								    </iframe>
 								    <br>
-		 						    <div class="video_item_message">${media.message}</div>
+		 						    <div class="video_item_message">
+		 						    	<span>${media.message}</span>
+		 						    </div>
 			                    </div>
 		                    </#if>
 
@@ -548,7 +556,21 @@
 
 				</li>
 			</ul>
-			<ul>
+			<ul class="cmtyx_bottom_block" id="cmtyx_contact_us_block">
+				<li id="cmtyx_driving_directions_block"
+					class="driving_directions_block"><span class="title">contact
+						us</span>
+					<div class="ui-grid-a btns_container">
+						<div class="ui-block-a p-r-10">
+							<a target="_blank" href="" id="driveToUs"
+								class="ui-btn ui-corner-all back_btn cmtyx_border_color_1 cmtyx_text_color_1">Drive</a>
+						</div>
+						<div class="ui-block-b p-l-10">
+							<a target="_blank" href="" id="callUs"
+								class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Call</a>
+						</div>
+					</div>
+				</li>
 				<li id="cmtyx_share_block" class="share_block"><span
 					class="title"> Share this site </span>
 					<div class="ui-grid-c">
@@ -578,20 +600,9 @@
 						</div>
 					</div>
 				</li>
-				<li id="cmtyx_driving_directions_block"
-					class="driving_directions_block"><span class="title">contact
-						us</span>
-					<div class="ui-grid-a btns_container">
-						<div class="ui-block-a p-r-10">
-							<a target="_blank" href="" id="driveToUs"
-								class="ui-btn ui-corner-all back_btn cmtyx_border_color_1 cmtyx_text_color_1">Drive</a>
-						</div>
-						<div class="ui-block-b p-l-10">
-							<a target="_blank" href="" id="callUs"
-								class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Call</a>
-						</div>
-					</div>
-					<div id="home_map" class="map_container"></div></li>
+				<li class="map_in_landing">
+					<div id="home_map" class="map_container"></div>
+				</li>
 			</ul>
 		</div>
 	</div>
