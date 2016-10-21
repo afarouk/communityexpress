@@ -101,7 +101,7 @@ var LandingView = Backbone.View.extend({
     },
 
     headerToggle: function() {
-        this.$el.find('.about_us_block .header, .video_block .header').click(function(){
+        this.$el.find('.about_us_block .header').click(function(){
             $(this).parent().find('.body').slideToggle('slow', function(){
                 var visible = $(this).is(':visible');
                 if (visible) {

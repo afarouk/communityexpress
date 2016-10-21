@@ -515,26 +515,23 @@
 		            <ul>
 				      <#list externalMedia as media>
 				          <li>
-
-	 				<#if videoNeedsPlaceholder>
-                    <div id="externalvideo${media.idMedia}" class="embedded_videos" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
-                      <a href="#">
-                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
-                      </a>
-                    </div>
-                    <#else>
-
-
-                    <div class="embedded_videos">
-                    <iframe width="100%" height="250"
-							    src="https://www.youtube.com/embed/${media.vid}?playsinline=1" frameborder="0"
-							  allowfullscreen="1">
-						    </iframe>
-						    <br>
- 						    <div class="video_item_message">${media.message}</div>
-                    </div>
-
-                    </#if>
+			          		<span class="video_title">${media.title}</span>
+	 						<#if videoNeedsPlaceholder>
+			                    <div id="externalvideo${media.idMedia}" class="embedded_videos" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
+			                      <a href="#">
+			                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
+			                      </a>
+			                    </div>
+                    		<#else>
+			                    <div class="embedded_videos">
+				                    <iframe width="100%" height="250"
+									    src="https://www.youtube.com/embed/${media.vid}?playsinline=1"frameborder="0"
+									    allowfullscreen="1">
+								    </iframe>
+								    <br>
+		 						    <div class="video_item_message">${media.message}</div>
+			                    </div>
+		                    </#if>
 
                           </li>
 						</#list>
