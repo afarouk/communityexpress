@@ -20,6 +20,7 @@ var userController = require('./controllers/userController'),
     ContactUsInLandingView = require('./views/landingSubviews/contactUsInLandingView'),
 
     EventsView = require('./views/landingSubviews/eventsView'),
+    VideoView = require('./views/landingSubviews/videoView'),
     GalleryView = require('./views/landingSubviews/galleryView'),
     PollContestView = require('./views/landingSubviews/pollContestView'),
     LandingReviewsView = require('./views/landingSubviews/landingReviewsView'),
@@ -133,6 +134,7 @@ App.prototype = {
         this.viewsInLanding = {
             loyaltyCard: this.createSubview( LoyaltyCardView ),
             events: this.createSubview( EventsView ),
+            video: this.createSubview( VideoView ),
             gallery: this.createSubview( GalleryView ),
             pollContest: this.createSubview( PollContestView, !saslData.hasPollContest ),
             landingReviews: this.createSubview( LandingReviewsView ),

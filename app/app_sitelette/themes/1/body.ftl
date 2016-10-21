@@ -133,7 +133,7 @@
 			                            <#if event.buyable!false>
 				                            <div class="events-buybutton-container">
 		                                         <button class="events-buybutton" data-uuid="${event.uuid}">
-		                                           Buy Ticket</button>
+		                                           Buy</button>
 				                            </div>
                                         </#if>
 
@@ -188,11 +188,51 @@
 					<div class="body">
 						<ul class="gallery">
 							<#list medias as media>
-							<li class="gallery_item  "><img src="${media.URL}"></img>
-								<div class="gallery_item_description">
-									<span class="gallery_item_title">${media.title}</span> <span
-										class="gallery_item_undertitle">${media.message}</span>
-								</div></li> </#list>
+							<li class="gallery_item" data-uuid="${media.uuid}">
+								<div class="gallery_container">
+									<span class="gallery_title gallery_item_title">${media.title}</span>
+									<div class="gallery_image">
+										<img src="${media.URL}"></img>
+									</div>
+									<div class="gallery_item_description">
+										<span class="gallery_item_undertitle">${media.message}</span>
+									</div>
+								</div>
+								<div class="gallery_item_buttons">
+									<div class="share_btn_block"
+										uuid="${media.uuid}">
+										<span class="icon share_icon"></span> <span class="text">Share</span>
+									</div>
+								</div>
+
+								<div class="ui-grid-c gallery-share-block" data-uuid="${media.uuid}">
+									<div class="sms_input_block">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+									</div>
+									<div class="ui-block-a text sms_block">
+										<a href="" class="share_sms cmtyx_text_color_1">
+											<span class="share_icon sms_icon"></span> <br>SMS
+										</a>
+									</div>
+									<div class="ui-block-b text email_block">
+										<a href="" class="share_email cmtyx_text_color_1">
+											<span class="share_icon email_icon"></span> <br>E-mail
+										</a>
+									</div>
+									<div class="ui-block-c text facebook_block">
+										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+											<span class="share_icon facebook_icon"></span> <br>Facebook
+										</a>
+									</div>
+									<div class="ui-block-d text twitter_block">
+										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+											<span class="share_icon twitter_icon"></span> <br>Twitter
+										</a>
+									</div>
+								</div>
+							</li>
+							</#list>
 						</ul>
 					</div>
 				</li>
@@ -476,26 +516,23 @@
 		            <ul>
 				      <#list externalMedia as media>
 				          <li>
-
-	 				<#if videoNeedsPlaceholder>
-                    <div id="externalvideo${media.idMedia}" class="embedded_videos" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
-                      <a href="#">
-                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
-                      </a>
-                    </div>
-                    <#else>
-
-
-                    <div class="embedded_videos">
-                    <iframe width="100%" height="250"
-							    src="https://www.youtube.com/embed/${media.vid}?playsinline=1" frameborder="0"
-							  allowfullscreen="1">
-						    </iframe>
-						    <br>
- 						    <div class="video_item_message">${media.message}</div>
-                    </div>
-
-                    </#if>
+			          		<span class="video_title">${media.title}</span>
+	 						<#if videoNeedsPlaceholder>
+			                    <div id="externalvideo${media.idMedia}" class="embedded_videos" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
+			                      <a href="#">
+			                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
+			                      </a>
+			                    </div>
+                    		<#else>
+			                    <div class="embedded_videos">
+				                    <iframe width="100%" height="250"
+									    src="https://www.youtube.com/embed/${media.vid}?playsinline=1"frameborder="0"
+									    allowfullscreen="1">
+								    </iframe>
+								    <br>
+		 						    <div class="video_item_message">${media.message}</div>
+			                    </div>
+		                    </#if>
 
                           </li>
 						</#list>
