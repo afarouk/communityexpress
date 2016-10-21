@@ -41,7 +41,7 @@
 				</a></li>
 				<li><a href="#" class="menu_button_5">
 						<!-- <div class="navbar_btn_icon user_img m-b-9"></div>  -->
-						<div class="navbar_btn_icon icon-user"></div> 
+						<div class="navbar_btn_icon icon-user"></div>
 						<span class="glyphicon glyphicon-ok .cmtyx_text_color_1" aria-hidden="true"></span>
 
 						<br>User
@@ -133,7 +133,7 @@
 			                            <#if event.buyable!false>
 				                            <div class="events-buybutton-container">
 		                                         <button class="events-buybutton" data-uuid="${event.uuid}">
-		                                           Buy Ticket</button>
+		                                           Buy</button>
 				                            </div>
                                         </#if>
 
@@ -188,11 +188,51 @@
 					<div class="body">
 						<ul class="gallery">
 							<#list medias as media>
-							<li class="gallery_item  "><img src="${media.URL}"></img>
-								<div class="gallery_item_description">
-									<span class="gallery_item_title">${media.title}</span> <span
-										class="gallery_item_undertitle">${media.message}</span>
-								</div></li> </#list>
+							<li class="gallery_item" data-uuid="${media.uuid}">
+								<div class="gallery_container">
+									<span class="gallery_title gallery_item_title">${media.title}</span>
+									<div class="gallery_image">
+										<img src="${media.URL}"></img>
+									</div>
+									<div class="gallery_item_description">
+										<span class="gallery_item_undertitle">${media.message}</span>
+									</div>
+								</div>
+								<div class="gallery_item_buttons">
+									<div class="share_btn_block"
+										uuid="${media.uuid}">
+										<span class="icon share_icon"></span> <span class="text">Share</span>
+									</div>
+								</div>
+
+								<div class="ui-grid-c gallery-share-block" data-uuid="${media.uuid}">
+									<div class="sms_input_block">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+									</div>
+									<div class="ui-block-a text sms_block">
+										<a href="" class="share_sms cmtyx_text_color_1">
+											<span class="share_icon sms_icon"></span> <br>SMS
+										</a>
+									</div>
+									<div class="ui-block-b text email_block">
+										<a href="" class="share_email cmtyx_text_color_1">
+											<span class="share_icon email_icon"></span> <br>E-mail
+										</a>
+									</div>
+									<div class="ui-block-c text facebook_block">
+										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+											<span class="share_icon facebook_icon"></span> <br>Facebook
+										</a>
+									</div>
+									<div class="ui-block-d text twitter_block">
+										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+											<span class="share_icon twitter_icon"></span> <br>Twitter
+										</a>
+									</div>
+								</div>
+							</li>
+							</#list>
 						</ul>
 					</div>
 				</li>
@@ -269,7 +309,7 @@
 						</ul>
 					</div>
 				</li>
-				<!--  				
+				<!--
 				<li id="cmtyx_about_us_block" class="about_us_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">about us</span>
@@ -298,9 +338,9 @@
 											<div class="ui-block-b date">Aug, 24, 2016</div>
 										</div>
 										<div class="rating_block">
-											<div class="my-rating"></div>
+											<div class="review-rating" initial-rating="9"></div>
 											<div class="rating_number">
-												<span class="current_rating"></span><span>/5</span>
+												<span class="review_current_rating"></span><span>/5</span>
 											</div>
 										</div>
 						                   <div class="text">(This is a sample review)</div>
@@ -320,6 +360,7 @@
 									more reviews</span>
 							</div>
 						</div>
+						<button class="ui-btn ui-corner-all add_review_btn cmtyx_border_color_1 cmtyx_text_color_1">ADD A REVIEW</button>
 						<div class="leave_review_block">
 							<span class="title">
 								leave a review
@@ -332,6 +373,7 @@
 							</div>
 							<input type="text" id="full_name" name="full_name" data-role="none" placeholder="Full name">
 							<textarea id="review_text" name="review_text" data-role="none" rows="3" placeholder="Your review"></textarea>
+							<div class="message_error new_review_error">Type your message</div>
 							<div class="send_review_btn_container">
 								<button class="send_review_btn">send</button>
 							</div>
@@ -475,26 +517,25 @@
 		            <ul>
 				      <#list externalMedia as media>
 				          <li>
-
-	 				<#if videoNeedsPlaceholder>
-                    <div id="externalvideo${media.idMedia}" class="embedded_videos" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
-                      <a href="#">
-                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
-                      </a>
-                    </div>
-                    <#else>
-
-
-                    <div class="embedded_videos">
-                    <iframe width="100%" height="250"
-							    src="https://www.youtube.com/embed/${media.vid}?playsinline=1" frameborder="0"
-							  allowfullscreen="1">
-						    </iframe>
-						    <br>
- 						    <div class="video_item_message">${media.message}</div>
-                    </div>
-
-                    </#if>
+			          		<span class="video_title">${media.title}</span>
+	 						<#if videoNeedsPlaceholder>
+			                    <div id="externalvideo${media.idMedia}" class="embedded_videos" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
+			                      <a href="#">
+			                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
+			                      </a>
+			                    </div>
+                    		<#else>
+			                    <div class="embedded_videos">
+				                    <iframe width="100%" height="250"
+									    src="https://www.youtube.com/embed/${media.vid}?playsinline=1"frameborder="0"
+									    allowfullscreen="1">
+								    </iframe>
+								    <br>
+		 						    <div class="video_item_message">
+		 						    	<span>${media.message}</span>
+		 						    </div>
+			                    </div>
+		                    </#if>
 
                           </li>
 						</#list>
@@ -509,7 +550,21 @@
 
 				</li>
 			</ul>
-			<ul>
+			<ul class="cmtyx_bottom_block" id="cmtyx_contact_us_block">
+				<li id="cmtyx_driving_directions_block"
+					class="driving_directions_block"><span class="title">contact
+						us</span>
+					<div class="ui-grid-a btns_container">
+						<div class="ui-block-a p-r-10">
+							<a target="_blank" href="" id="driveToUs"
+								class="ui-btn ui-corner-all back_btn cmtyx_border_color_1 cmtyx_text_color_1">Drive</a>
+						</div>
+						<div class="ui-block-b p-l-10">
+							<a target="_blank" href="" id="callUs"
+								class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Call</a>
+						</div>
+					</div>
+				</li>
 				<li id="cmtyx_share_block" class="share_block"><span
 					class="title"> Share this site </span>
 					<div class="ui-grid-c">
@@ -539,20 +594,9 @@
 						</div>
 					</div>
 				</li>
-				<li id="cmtyx_driving_directions_block"
-					class="driving_directions_block"><span class="title">contact
-						us</span>
-					<div class="ui-grid-a btns_container">
-						<div class="ui-block-a p-r-10">
-							<a target="_blank" href="" id="driveToUs"
-								class="ui-btn ui-corner-all back_btn cmtyx_border_color_1 cmtyx_text_color_1">Drive</a>
-						</div>
-						<div class="ui-block-b p-l-10">
-							<a target="_blank" href="" id="callUs"
-								class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Call</a>
-						</div>
-					</div>
-					<div id="home_map" class="map_container"></div></li>
+				<li class="map_in_landing">
+					<div id="home_map" class="map_container"></div>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -831,7 +875,7 @@
 								Beverage Science Academy.</div>
 						</td>
 					</tr>
-					<tr> 
+					<tr>
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">11:00</td>
@@ -839,7 +883,7 @@
 							<div class="event_description reserved">(Reserved)</div>
 						</td>
 					</tr>
-					<tr> 
+					<tr>
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">12:00</td>
@@ -870,7 +914,7 @@
 								Beverage Science Academy.</div>
 						</td>
 					</tr>
-					<tr> 
+					<tr>
 					</tr>
 					<tr>
 						<td rowspan="2" class="hour cmtyx_text_color_1 right_border">16:00</td>

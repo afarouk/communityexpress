@@ -21,7 +21,8 @@ module.exports = {
             previousId: prevId,
             previousOffset: prevOffset,
             nextId: nextId,
-            nextOffset: nextOffset
+            nextOffset: nextOffset,
+            UID: getUID()
         }).then(function (response) {
             return {
                 data: response,
@@ -31,7 +32,6 @@ module.exports = {
     },
 
     addReview: function  (sa, sl, file, title, message, rating) {
-        var uid = sessionActions.getCurrentUser().getUID();
         return gateway.sendFile('addReview', {
             image: file,
             toServiceAccommodatorId: sa,
@@ -40,7 +40,7 @@ module.exports = {
             authorId: getUID(),
             rating: rating,
             isPositive: true,
-            UID: uid
+            UID: getUID()
         });
     }
 

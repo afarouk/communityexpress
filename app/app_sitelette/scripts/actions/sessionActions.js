@@ -176,7 +176,7 @@ module.exports = {
                 } else {
                     def.resolve({error:'User cancelled login or did not fully authorize.'});
                 }
-            }.bind(this), true);
+            }.bind(this), { scope: 'email' });
         // }
         return $.when(def);
     },

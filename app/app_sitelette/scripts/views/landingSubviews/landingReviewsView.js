@@ -3,6 +3,9 @@
 'use strict';
 
 var Vent = require('../../Vent'),
+    loader = require('../../loader'),
+    popupController = require('../../controllers/popupController'),
+    reviewActions = require('../../actions/reviewActions'),
     userController = require('../../controllers/userController');
 
 var LandingReviewsView = Backbone.View.extend({
@@ -11,14 +14,17 @@ var LandingReviewsView = Backbone.View.extend({
 
   events: {
     'click .header': 'toggleCollapse',
-    'click .show_more_reviews_btn': 'showMoreReviews'
+    'click .add_review_btn': 'showLeaveReviewBlock',
+    'click .show_more_reviews_btn': 'showMoreReviews',
+    'click .send_review_btn': 'onSendReview'
   },
 
   initialize: function(options) {
     this.options = options || {};
+    this.rating = 10;
 
-    this.$el.find('.my-rating').starRating({
-        initialRating: 5,
+    this.$('.review-rating').starRating({
+        initialRating: this.$('.review-rating').attr('initial-rating')/2,
         emptyColor: '#464646',
         strokeColor: '#EECB49',
         activeColor: '#EECB49',
@@ -26,10 +32,45 @@ var LandingReviewsView = Backbone.View.extend({
         strokeWidth: 45,
         starSize: 20,
         useGradient: false,
-        useFullStars: true
+        useFullStars: true,
+        readOnly: true
     });
-    this.$el.find('.current_rating')
-      .text($('.my-rating').starRating('getRating')[0]);
+    this.$('.review_current_rating').text(this.$('.review-rating').attr('initial-rating')/2);
+
+    this.initializeMyRating();
+  },
+
+  initializeMyRating: function() {
+      this.$el.find('.my-rating').starRating({
+          initialRating: 5,
+          emptyColor: '#464646',
+          strokeColor: '#EECB49',
+          activeColor: '#EECB49',
+          hoverColor: '#EECB49',
+          strokeWidth: 45,
+          starSize: 20,
+          useGradient: false,
+          useFullStars: true,
+          disableAfterRate: false,
+          callback: function(currentRating, $el) {
+              this.rating = currentRating * 2;
+              this.$('.current_rating').text(currentRating);
+          }.bind(this)
+      });
+      this.$el.find('.current_rating').text(5);
+  },
+
+  showLeaveReviewBlock: function() {
+      this.$('.add_review_btn').slideUp(400, _.bind(function() {
+          this.$('.leave_review_block').slideDown();
+      }, this));
+  },
+
+  hideLeaveReviewBlock: function() {
+      this.refreshReview();
+      this.$('.leave_review_block').slideUp(400, _.bind(function() {
+          this.$('.add_review_btn').slideDown();
+      }, this));
   },
 
   toggleCollapse: function() {
@@ -42,6 +83,44 @@ var LandingReviewsView = Backbone.View.extend({
             $(this).parent().find('.collapse_btn').html('&#9660;');
         }
     });
+  },
+
+  onSendReview: function() {
+      this.title = '';
+      var message = this.$('#review_text').val(),
+          rating = this.rating;
+      if (!this.isValid(message, rating)) return;
+      popupController.requireLogIn({}, _.bind(function() {
+          loader.show('adding review');
+          return reviewActions.addReview(window.community.serviceAccommodatorId, window.community.serviceLocationId, this.file, this.title, message, rating)
+              .then(_.bind(function(review) {
+                  loader.hide();
+                  var text = 'Review successfully added',
+                      callback = _.bind(this.hideLeaveReviewBlock, this);
+                  popupController.textPopup({ text: text }, callback);
+              }, this), function(e) {
+                  loader.hide();
+                  var text = h().getErrorMessage(e, 'error adding review');
+                  popupController.textPopup({text: text});
+              });
+      }, this));
+  },
+
+  isValid: function(message, rating) {
+      var isValid = true;
+      if (!message) {
+          this.$('.message_error').slideDown('fast', _.bind(function() {
+              this.$('.message_error').siblings('textarea').on('focus', _.bind(function() {
+                  this.$('.message_error').slideUp();
+              }, this));
+          }, this));
+          isValid = false;
+      }
+      return isValid;
+  },
+
+  refreshReview: function() {
+      this.$('#review_text').val('');
   },
 
   showMoreReviews: function() {

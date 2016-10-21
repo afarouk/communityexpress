@@ -5,7 +5,7 @@ var saslActions = require('../../actions/saslActions');
 
 var ContactUsInLandindView = Backbone.View.extend({
   name: 'contact_us_subview',
-  el: '#cmtyx_driving_directions_block',
+  el: '#cmtyx_contact_us_block',
   map: '#home_map',
 
   events: {
