@@ -2635,7 +2635,8 @@ li.video_block .body {
     padding-top: 25px;
 }
 #cmtyx_share_block.share_block {
-    padding-bottom: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .share_block .sms_input_block {
@@ -2708,8 +2709,8 @@ li.video_block .body {
     padding-top: 0;
 }
 li.driving_directions_block {
-    padding-top: 30px;
-    // margin-bottom: 63px;
+    padding-top: 50px;
+    padding-bottom: 30px;
     text-align: center;
     background-color: #464646;
 }
