@@ -374,8 +374,13 @@
 							<input type="text" id="full_name" name="full_name" data-role="none" placeholder="Full name">
 							<textarea id="review_text" name="review_text" data-role="none" rows="3" placeholder="Your review"></textarea>
 							<div class="message_error new_review_error">Type your message</div>
+							<div class="upload_photo">
+			                    <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+			                        <input type="file" data-role="none" name="thumb" />
+			                    </div>
+			                </div>
 							<div class="send_review_btn_container">
-								<button class="send_review_btn">send</button>
+								<button class="send_review_btn ui-btn ui-corner-all">send</button>
 							</div>
 						</div>
 					</div>
@@ -519,11 +524,14 @@
 				          <li>
 			          		<span class="video_title">${media.title}</span>
 	 						<#if videoNeedsPlaceholder>
-			                    <div id="externalvideo${media.idMedia}" class="embedded_videos" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
+			                    <div id="externalvideo${media.idMedia}" class="embedded_videos external" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
 			                      <a href="#">
 			                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
 			                      </a>
 			                    </div>
+			                    <div class="video_item_message">
+		 						    <span>${media.message}</span>
+		 						</div>
                     		<#else>
 			                    <div class="embedded_videos">
 				                    <iframe width="100%" height="250"

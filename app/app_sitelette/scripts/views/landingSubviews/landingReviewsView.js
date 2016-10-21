@@ -4,6 +4,7 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
+    h = require('../../globalHelpers'),
     popupController = require('../../controllers/popupController'),
     reviewActions = require('../../actions/reviewActions'),
     userController = require('../../controllers/userController');
@@ -16,7 +17,8 @@ var LandingReviewsView = Backbone.View.extend({
     'click .header': 'toggleCollapse',
     'click .add_review_btn': 'showLeaveReviewBlock',
     'click .show_more_reviews_btn': 'showMoreReviews',
-    'click .send_review_btn': 'onSendReview'
+    'click .send_review_btn': 'onSendReview',
+    'keyup #review_text': 'resizeTextarea'
   },
 
   initialize: function(options) {
@@ -63,6 +65,7 @@ var LandingReviewsView = Backbone.View.extend({
   showLeaveReviewBlock: function() {
       this.$('.add_review_btn').slideUp(400, _.bind(function() {
           this.$('.leave_review_block').slideDown();
+          this.initUploader();
       }, this));
   },
 
@@ -71,6 +74,36 @@ var LandingReviewsView = Backbone.View.extend({
       this.$('.leave_review_block').slideUp(400, _.bind(function() {
           this.$('.add_review_btn').slideDown();
       }, this));
+  },
+
+  initUploader: function() {
+      var that = this;
+      this.$el.find('.dropzone').html5imageupload({
+          ghost: false,
+          save: false,
+          canvas: true,
+          data: {},
+          resize: false,
+          onSave: this.onSaveImage.bind(this),
+          onAfterSelectImage: function(){
+              $(this.element).addClass('added');
+          },
+          onToolsInitialized: function(){
+              $(this.element).find('.btn').addClass('cmtyx_text_color_1');
+          },
+          onAfterProcessImage: function(){
+              $(this.element).find('.btn').addClass('cmtyx_text_color_1');
+          },
+          onAfterCancel: function() {
+              $(this.element).removeClass('added').css('height', '100px');
+              that.file = null;
+          }
+      });
+  },
+
+  onSaveImage: function(image) {
+      this.file = h().dataURLtoBlob(image.data);
+      debugger;
   },
 
   toggleCollapse: function() {
@@ -121,6 +154,18 @@ var LandingReviewsView = Backbone.View.extend({
 
   refreshReview: function() {
       this.$('#review_text').val('');
+      this.resizeTextarea();
+      this.$('.btn-del').trigger('click');
+      this.$('.btn-cancel').trigger('click');
+  },
+
+  resizeTextarea: function() {
+      this.$('#review_text').css('height', 0);
+      var height = this.$('#review_text')[0].scrollHeight + 36;
+      this.$('#review_text').css({
+          overflow: 'hidden',
+          height: height + 'px'
+      });
   },
 
   showMoreReviews: function() {
