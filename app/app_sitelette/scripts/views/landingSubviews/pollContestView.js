@@ -79,7 +79,7 @@ module.exports = Backbone.View.extend({
     getLinks: function() {
         var demo = window.community.demo ? 'demo=true&' : '',
           uuid = this.poll.contestUUID,
-          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
             '?' + demo + 't=l&u=' + uuid),
           links = [
               '',
@@ -106,13 +106,13 @@ module.exports = Backbone.View.extend({
             $target = $(e.currentTarget),
             uuid = this.poll.contestUUID,
             demo = window.community.demo ? 'demo=true&' : '',
-            shareUrl = window.location.href.split('?')[0] + 
+            shareUrl = window.location.href.split('?')[0] +
               '?' + demo + 't=p&u=' + uuid,
             val = $target.prev().val(); //(650) 617-3439
 
         loader.showFlashMessage('Sending message to... ' + val);
         $el.slideUp('slow');
-        contactActions.shareURLviaSMS('POLL', this.sasl.serviceAccommodatorId, 
+        contactActions.shareURLviaSMS('POLL_CONTEST', this.sasl.serviceAccommodatorId,
             this.sasl.serviceLocationId, val, uuid, shareUrl)
           .then(function(res){
             loader.showFlashMessage('Sending message success.');
@@ -160,7 +160,7 @@ module.exports = Backbone.View.extend({
         $elements.each(function(){
             colors.push($(this).css('background-color'));
         });
-        //TODO now we have different colours in sasl then themes 
+        //TODO now we have different colours in sasl then themes
         return this.sasl.themeColors ? this.sasl.themeColors.cmtyx_color : colors;
     },
 
