@@ -338,15 +338,12 @@
 											<div class="ui-block-b date">Aug, 24, 2016</div>
 										</div>
 										<div class="rating_block">
-<<<<<<< HEAD
 											<div class="review-rating" initial-rating="9"></div>
 											<div class="rating_number">
 												<span class="review_current_rating"></span><span>/5</span>
-=======
 											<div class="my-rating" ></div>
 											<div class="rating_number">
 												<span class="current_rating" ></span><span>/5</span>
->>>>>>> 46a07e683a6701997c23448bc3abfc76856fd1a9
 											</div>
 										</div>
 						                   <div class="text">(This is a sample review)</div>
