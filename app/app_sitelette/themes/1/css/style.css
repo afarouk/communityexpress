@@ -3884,6 +3884,10 @@ input[name=promocode] {
     border-color: #636363;
 }
 
+.fc-list-table tr.fc-list-item:hover td {
+  background-color: rgba(0,0,0,0.2);
+}
+
 .fc-toolbar .fc-left {
     width: 100%;
     padding: 3px 0;
