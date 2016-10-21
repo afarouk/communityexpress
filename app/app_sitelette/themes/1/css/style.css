@@ -2615,10 +2615,13 @@ li.promotion_block .body {
 }
 
 /********************** VIDEO BLOCK ***********************/
+li.video_block {
+    margin-bottom: 10px;
+}
 li.video_block .body {
     -webkit-overflow-scrolling: touch;
     padding: 0px;
-    height: 250px;
+    // height: 250px;
 }
 
 /********************** SHARE BLOCK ***********************/
@@ -2696,9 +2699,12 @@ li.video_block .body {
 }
 
 /********************** DRIVING DIRECTIONS BLOCK ***********************/
+.cmtyx_bottom_block .share_block {
+    padding-top: 0;
+}
 li.driving_directions_block {
     padding-top: 30px;
-    margin-bottom: 63px;
+    // margin-bottom: 63px;
     text-align: center;
     background-color: #464646;
 }
@@ -2709,10 +2715,14 @@ li.driving_directions_block {
     color: #dddddd;
     margin-bottom: 25px;
 }
-.driving_directions_block .map_container {
+.cmtyx_bottom_block .map_container {
     height: 320px;
     width: 100%;
 }
+.cmtyx_bottom_block .map_in_landing {
+    margin-bottom: 50px;
+}
+
 .gm-style .gm-style-iw {
     color: #252525;
 }
