@@ -53,9 +53,9 @@ var AppointmentsView = Backbone.View.extend({
         this.$('#calendar').fullCalendar({
             height: 'parent',
             header: {
-                left: 'prev',
+                left: 'prev, today, listDay, listWeek, next',
                 center: 'title',
-                right: 'today, listDay,listWeek, next'
+                right: ''
             },
 
             themeButtonIcons: {

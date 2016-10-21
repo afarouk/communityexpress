@@ -1776,7 +1776,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     text-transform: uppercase;
 }
 .events_block .event_info {
-    padding: 0;
+    /* padding: 0; */
 }
 .gallery_block .gallery_title,
 .events_block .event_title {
@@ -2636,7 +2636,8 @@ li.video_block .body {
     padding-top: 25px;
 }
 #cmtyx_share_block.share_block {
-    padding-bottom: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .share_block .sms_input_block {
@@ -2709,8 +2710,8 @@ li.video_block .body {
     padding-top: 0;
 }
 li.driving_directions_block {
-    padding-top: 30px;
-    // margin-bottom: 63px;
+    padding-top: 50px;
+    padding-bottom: 30px;
     text-align: center;
     background-color: #464646;
 }
@@ -3105,7 +3106,7 @@ li .message_text {
 
 /*APPOINTMENTS*/
 
-#cmtyx_appointments .body {
+/* #cmtyx_appointments .body {
     padding: 45px 10px 0 10px;
 }
 #cmtyx_appointments .navigation_block {
@@ -3173,7 +3174,7 @@ li .message_text {
     vertical-align: middle;
     font: 300 12px/50px 'Open Sans', sans-serif;
     color: rgba(85, 85, 85, 0.7);
-}
+} */
 
 /*UPLOAD PHOTO*/
 
@@ -3214,27 +3215,27 @@ color: #acacac;
 #upload_photo .select2-container--default .select2-selection--single {
     background-color: #363636;
 }
-// #upload_photo .title_input_container, #upload_photo .select_picture_container {
-//     margin-bottom: 25px;
-// }
-// #upload_photo label {
-//     color: #ececec;
-//     font: 300 14px 'Open Sans', sans-serif;
-// }
-// #upload_photo input, #upload_photo textarea {
-//     background-color: transparent;
-//     box-shadow: none;
-//     border: solid 1px #959595;
-//     color: #acacac;
-//     padding: 12px 35px 12px 15px;
-//     font: 400 12px 'Open Sans', sans-serif;
-//     width: 100%;
-//     border-radius: 2px;
-//     resize: none;
-// }
-// #upload_photo input:focus, #upload_photo textarea:focus {
-//     outline: none;
-// }
+/* #upload_photo .title_input_container, #upload_photo .select_picture_container {
+    margin-bottom: 25px;
+}
+#upload_photo label {
+    color: #ececec;
+    font: 300 14px 'Open Sans', sans-serif;
+}
+#upload_photo input, #upload_photo textarea {
+    background-color: transparent;
+    box-shadow: none;
+    border: solid 1px #959595;
+    color: #acacac;
+    padding: 12px 35px 12px 15px;
+    font: 400 12px 'Open Sans', sans-serif;
+    width: 100%;
+    border-radius: 2px;
+    resize: none;
+}
+#upload_photo input:focus, #upload_photo textarea:focus {
+    outline: none;
+} */
 #upload_photo .select_picture_container .btn_container {
     text-align: right;
 }
@@ -3812,6 +3813,7 @@ input[name=promocode] {
     z-index: 2;
     background: #212121;
     padding: 2px 5px;
+    width: 100%;
 }
 #appointments .appointments_calendar .fc-toolbar .fc-today-button,
 #appointments .appointments_calendar .fc-toolbar .fc-listWeek-button,
@@ -3821,7 +3823,7 @@ input[name=promocode] {
     line-height: 0px;
     border: 1px solid #faa019;
     background: transparent;
-    margin-right: .5em;
+    margin: 0 .3em;
 }
 #appointments .appointments_calendar .fc-toolbar .fc-next-button,
 #appointments .appointments_calendar .fc-toolbar .fc-prev-button {
@@ -3845,6 +3847,54 @@ input[name=promocode] {
     font-size: 20px;
     padding: 2px;
 }
+
+.fc .fc-toolbar>*>* {
+    float: none;
+    margin: 0;
+}
+
+.fc button:focus {
+    outline: none;
+}
+
+.fc button.fc-prev-button,
+.fc button.fc-next-button {
+    height: auto;
+    padding: 0 .6em;
+    background-color: transparent;
+    border: none;
+    /* border: solid 1px #636363; */
+}
+
+.fc button.fc-prev-button {
+    float: left;
+}
+
+.fc button.fc-next-button {
+    float: right;
+}
+
+.fc-listWeek-view,
+.fc-scroller,
+.fc-list-view {
+    border:  none !important;
+}
+
+.fc-list-table td {
+    border-color: #636363;
+}
+
+.fc-toolbar .fc-left {
+    width: 100%;
+    padding: 3px 0;
+}
+
+.ui-widget-header a,
+.ui-widget-header a:hover {
+    color: #faa019;
+    text-decoration: none;
+}
+
 .video_block .video_title {
     display: block;
     padding: 20px;
