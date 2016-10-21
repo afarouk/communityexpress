@@ -14,6 +14,7 @@ var LandingReviewsView = Backbone.View.extend({
 
   events: {
     'click .header': 'toggleCollapse',
+    'click .add_review_btn': 'showLeaveReviewBlock',
     'click .show_more_reviews_btn': 'showMoreReviews',
     'click .send_review_btn': 'onSendReview'
   },
@@ -22,10 +23,24 @@ var LandingReviewsView = Backbone.View.extend({
     this.options = options || {};
     this.rating = 10;
 
-    this.initializeRating();
+    this.$('.review-rating').starRating({
+        initialRating: this.$('.review-rating').attr('initial-rating')/2,
+        emptyColor: '#464646',
+        strokeColor: '#EECB49',
+        activeColor: '#EECB49',
+        hoverColor: '#EECB49',
+        strokeWidth: 45,
+        starSize: 20,
+        useGradient: false,
+        useFullStars: true,
+        readOnly: true
+    });
+    this.$('.review_current_rating').text(this.$('.review-rating').attr('initial-rating')/2);
+
+    this.initializeMyRating();
   },
 
-  initializeRating: function() {
+  initializeMyRating: function() {
       this.$el.find('.my-rating').starRating({
           initialRating: 5,
           emptyColor: '#464646',
@@ -43,6 +58,19 @@ var LandingReviewsView = Backbone.View.extend({
           }.bind(this)
       });
       this.$el.find('.current_rating').text(5);
+  },
+
+  showLeaveReviewBlock: function() {
+      this.$('.add_review_btn').slideUp(400, _.bind(function() {
+          this.$('.leave_review_block').slideDown();
+      }, this));
+  },
+
+  hideLeaveReviewBlock: function() {
+      this.refreshReview();
+      this.$('.leave_review_block').slideUp(400, _.bind(function() {
+          this.$('.add_review_btn').slideDown();
+      }, this));
   },
 
   toggleCollapse: function() {
@@ -67,9 +95,8 @@ var LandingReviewsView = Backbone.View.extend({
           return reviewActions.addReview(window.community.serviceAccommodatorId, window.community.serviceLocationId, this.file, this.title, message, rating)
               .then(_.bind(function(review) {
                   loader.hide();
-                  this.refreshReview();
                   var text = 'Review successfully added',
-                      callback = _.bind(this.showMoreReviews, this);
+                      callback = _.bind(this.hideLeaveReviewBlock, this);
                   popupController.textPopup({ text: text }, callback);
               }, this), function(e) {
                   loader.hide();

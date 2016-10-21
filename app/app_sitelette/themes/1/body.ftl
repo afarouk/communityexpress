@@ -338,9 +338,15 @@
 											<div class="ui-block-b date">Aug, 24, 2016</div>
 										</div>
 										<div class="rating_block">
+<<<<<<< HEAD
+											<div class="review-rating" initial-rating="9"></div>
+											<div class="rating_number">
+												<span class="review_current_rating"></span><span>/5</span>
+=======
 											<div class="my-rating" ></div>
 											<div class="rating_number">
 												<span class="current_rating" ></span><span>/5</span>
+>>>>>>> 46a07e683a6701997c23448bc3abfc76856fd1a9
 											</div>
 										</div>
 						                   <div class="text">(This is a sample review)</div>
@@ -360,6 +366,7 @@
 									more reviews</span>
 							</div>
 						</div>
+						<button class="ui-btn ui-corner-all add_review_btn cmtyx_border_color_1 cmtyx_text_color_1">ADD A REVIEW</button>
 						<div class="leave_review_block">
 							<span class="title">
 								leave a review
