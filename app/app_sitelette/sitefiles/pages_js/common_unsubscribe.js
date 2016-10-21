@@ -26,7 +26,7 @@ function submitUnsubscribeRequest() {
  $
    .ajax({
     url : apiurl,
-    type : 'PUT'
+    type : 'POST'
    })
    .done(function(response) {
     console.log("response :" + response);
@@ -62,7 +62,7 @@ function submitUnsubscribeRequest() {
        */
       showResults(success, message);
       /*
-       * 
+       *
        */
      }).always(function() {
     ladda_unsubscribe_submit_button.stop();
@@ -73,9 +73,9 @@ $(document).ready(
   function() {
    /*
     * this parses the URL and sets up the global variables object
-    * 
+    *
     * communityRequestProfile.
-    * 
+    *
     * Globals are ugly, but ok for now
     */
    parseCommunityURL();
@@ -83,8 +83,8 @@ $(document).ready(
    /*
     * check the url and pick out the parameters. Without proper code, disable
     * the dialog so that we avoid false hits or google bot hits.
-    * 
-    * 
+    *
+    *
     */
    /*
     * setup ladda progress indicator
@@ -99,13 +99,13 @@ $(document).ready(
        + '/apptsvc/rest/communication/setSASLNewsletterOptout?email='
        + communityRequestProfile.email + '&serviceAccommodatorId='
        + communityRequestProfile.sa + '&serviceLocationId='
-       + communityRequestProfile.sl;
+       + communityRequestProfile.sl + '&topic=&optout=true';
     } else if (communityRequestProfile.service === 'setEmailOptout') {
      apiurl = communityRequestProfile.protocol + communityRequestProfile.api_server
-       + '/apptsvc/rest/communication/setEmailOptout?email='
+       + '/apptsvc/rest/communication/setEmailOptout?email='      //setNewsletterOptout
        + communityRequestProfile.email+'&serviceAccommodatorId='
        + communityRequestProfile.sa + '&serviceLocationId='
-       + communityRequestProfile.sl;
+       + communityRequestProfile.sl + '&topic=&optout=true';
     } else {
      /*
       * unrecognized, error
@@ -113,14 +113,14 @@ $(document).ready(
      console.log("nothing to do")
      showError();
     }
-    
 
-   
+
+
 
     var form = $('#unsubscribe_form');
     /*
      * ok, url is valid.
-     * 
+     *
      * attach form validator (to check repeated password match and passwords are
      * right length
      */
