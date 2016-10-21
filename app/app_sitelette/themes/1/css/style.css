@@ -2309,12 +2309,13 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .send_review_btn.ui-btn {
     display: inline-block;
-    font: 700 12px 'Open Sans', sans-serif;
+    font: 700 18px 'Open Sans', sans-serif;
     text-transform: uppercase;
     color: #a2a2a2;
     border: 1px solid #a2a2a2;
-    border-radius: 1px;
-    width: 30%;
+    margin-top: 10px;
+    /*border-radius: 1px;*/
+    width: 50%;
 }
 
 /********************** PROMOTION BLOCK ***********************/
@@ -3682,6 +3683,7 @@ input[name=promocode] {
 #cmntyex_reviews .upload_photo {
     display: none;
 }
+.leave_review_block .upload_photo .dropzone,
 #upload_photo .upload_photo .dropzone,
 #cmntyex_reviews .upload_photo .dropzone {
     border-radius: 4px;
@@ -3689,30 +3691,36 @@ input[name=promocode] {
     border-color: #757373;
     background-color: transparent;
 }
+.leave_review_block .upload_photo .dropzone .glyphicon-ok,
 #upload_photo .upload_photo .dropzone .glyphicon-ok,
 #cmntyex_reviews .upload_photo .dropzone .glyphicon-ok,
 #cmtyx_photo_contest_block .dropzone .glyphicon-ok {
     top: 0;
 }
+.leave_review_block .upload_photo .dropzone:before,
 #upload_photo .upload_photo .dropzone:before,
 #cmntyex_reviews .upload_photo .dropzone:before {
     font-size: 60px;
     top: 7px;
 }
+.leave_review_block .upload_photo .dropzone:after,
 #upload_photo .upload_photo .dropzone:after,
 #cmntyex_reviews .upload_photo .dropzone:after {
     bottom: 10%;
     font-size: 20px;
     padding: 5%;
 }
+.leave_review_block .upload_photo .dropzone.added,
 #upload_photo .upload_photo .dropzone.added,
 #cmntyex_reviews .upload_photo .dropzone.added {
     height: 495px!important;
 }
+..leave_review_block .upload_photo .dropzone.loading:after,
 #upload_photo .upload_photo .dropzone.loading:after,
 #cmntyex_reviews .upload_photo .dropzone.loading:after {
     visibility: hidden;
 }
+.leave_review_block .upload_photo .dropzone .btn,
 #upload_photo .upload_photo .dropzone .btn,
 #cmntyex_reviews .upload_photo .dropzone .btn {
     background-color: #464646;

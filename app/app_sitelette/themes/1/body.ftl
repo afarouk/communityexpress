@@ -374,8 +374,13 @@
 							<input type="text" id="full_name" name="full_name" data-role="none" placeholder="Full name">
 							<textarea id="review_text" name="review_text" data-role="none" rows="3" placeholder="Your review"></textarea>
 							<div class="message_error new_review_error">Type your message</div>
+							<div class="upload_photo">
+			                    <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+			                        <input type="file" data-role="none" name="thumb" />
+			                    </div>
+			                </div>
 							<div class="send_review_btn_container">
-								<button class="send_review_btn">send</button>
+								<button class="send_review_btn ui-btn ui-corner-all">send</button>
 							</div>
 						</div>
 					</div>
