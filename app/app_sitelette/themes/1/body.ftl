@@ -400,10 +400,23 @@
 									<img src="${promotion.URL}"></img>
 									<div class="promotion_details_container">
 										<div class="promotion_title">${promotion.title}</div>
+										
 										<#if promotion.buyable!false>
 		                                  <button class="promotions-buybutton" data-uuid="${promotion.uuid}">
 		                                   Buy</button>
 	                                    </#if>
+	                                    
+	                                    <#if promotion.buyable!false>
+		                                  <div class="promotions-originalprice" >
+		                                   Regular price: ${promotion.originalPrice}</div>
+	                                    </#if>
+	                                    
+	                                    <#if promotion.buyable!false>
+		                                  <div class="promotions-promoprice">
+		                                   Special price: ${promotion.promoPrice}</div>
+	                                    </#if>
+	                                    
+	                                    
 										<div class="promotion_description">${promotion.message}</div>
 									</div>
 									<div class="ui-grid-a promotion_item_buttons">
