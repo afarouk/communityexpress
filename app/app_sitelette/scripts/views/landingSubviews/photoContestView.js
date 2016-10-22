@@ -65,7 +65,7 @@ module.exports = Backbone.View.extend({
     getLinks: function() {
         var demo = window.community.demo ? 'demo=true&' : '',
           uuid = this.contest.contestUUID,
-          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
             '?' + demo + 't=h&u=' + uuid),
           links = [
               '',
@@ -92,13 +92,13 @@ module.exports = Backbone.View.extend({
             $target = $(e.currentTarget),
             uuid = this.contest.contestUUID,
             demo = window.community.demo ? 'demo=true&' : '',
-            shareUrl = window.location.href.split('?')[0] + 
+            shareUrl = window.location.href.split('?')[0] +
               '?' + demo + 't=p&u=' + uuid,
             val = $target.prev().val(); //(650) 617-3439
 
         loader.showFlashMessage('Sending message to... ' + val);
         $el.slideUp('slow');
-        contactActions.shareURLviaSMS('PHOTO', this.sasl.serviceAccommodatorId, 
+        contactActions.shareURLviaSMS('PHOTO_CONTEST', this.sasl.serviceAccommodatorId,
             this.sasl.serviceLocationId, val, uuid, shareUrl)
           .then(function(res){
             loader.showFlashMessage('Sending message success.');
@@ -186,7 +186,7 @@ module.exports = Backbone.View.extend({
             contestUUID = this.contest.contestUUID,
             file = h().dataURLtoBlob(image.data);
 
-        contestActions.enterPhotoContest(this.sa, this.sl, 
+        contestActions.enterPhotoContest(this.sa, this.sl,
             contestUUID, file, message)
             .then(function(result) {
                 this.$el.find('.photo_contest_upload_image').slideUp('slow');
