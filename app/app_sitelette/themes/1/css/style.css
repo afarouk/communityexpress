@@ -1900,6 +1900,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     max-height: 250px;
 }
 
+.gallery .gallery_item .gallery_item_buttons {
+    display: none; //was temporary hidden
+}
+
 /********************** POLL BLOCK ***********************/
 .poll_block .header {
     padding-left: 40px !important;
