@@ -20,17 +20,10 @@ module.exports = Backbone.View.extend({
     name: 'photoContest',
     el: '#cmtyx_photo_contest_block',
 
-    // renderData: function () {
-    //     return $.extend(this.model, {
-    //         activationDate: h().toPrettyTime(this.model.activationDate),
-    //         expirationDate: h().toPrettyTime(this.model.expirationDate)
-    //     });
-    // },
-
     events: {
         'click .header': 'toggleCollapse',
         'click .send_photo_btn': 'onClickSendPhoto',
-        'click .body>img': 'checkIfAnswered',
+        'click .photo_image': 'checkIfAnswered',
         'click .share_btn_block': 'showShareBlock',
         'click .sms_block': 'showSMSInput',
         'click .sms_send_button': 'onSendSMS'
@@ -41,6 +34,7 @@ module.exports = Backbone.View.extend({
         this.sasl = window.saslData;
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
+        Vent.on('openPhotoByShareUrl', this.openPhotoByShareUrl, this);
     },
 
     render: function(photos) {
@@ -63,36 +57,32 @@ module.exports = Backbone.View.extend({
             speed: 300,
             fade: false,
             cssEase: 'linear',
-            slidesToShow: 1,
-            adaptiveHeight: true
+            slidesToShow: 1
         });
         this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
         this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
         this.$el.find('button.slick-arrow').text('');
     },
 
+    openPhotoByShareUrl: function(uuid) {
+        var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
+            index = el.data('slick-index');
+
+        this.$el.find('.body ul.photo_gallery').slick('slickGoTo', index);
+        Vent.trigger('scrollToBlock', '.photo_contest_block');
+    },
+
     showShareBlock: function(e) {
         var $target = $(e.currentTarget),
         $el = $target.next();
-        this.changeSlideHeight($el, 50);
         $el.slideToggle('slow');
     },
 
     showSMSInput: function(e) {
         var $target = $(e.currentTarget),
         $el = $target.parent().find('.sms_input_block');
-        this.changeSlideHeight($el, 70);
         $el.find('input').mask('(000) 000-0000');
         $el.slideToggle('slow');
-    },
-
-    changeSlideHeight: function($target, additional) {
-        var $el = $target.parents('.slick-list[aria-live="polite"]'),
-            height = $el.height(),
-            visible = $target.is(':visible');
-        if (visible) additional = -additional;
-        $el.css('transition', '0.3s');
-        $el.height(height + additional + 'px');
     },
 
     getLinks: function(uuid) {
@@ -138,7 +128,6 @@ module.exports = Backbone.View.extend({
             val = $target.prev().val(); //(650) 617-3439
 
         loader.showFlashMessage('Sending message to... ' + val);
-        this.changeSlideHeight($el, 70);
         $el.slideUp('slow');
         contactActions.shareURLviaSMS('PHOTO_CONTEST', this.sasl.serviceAccommodatorId,
             this.sasl.serviceLocationId, val, uuid, shareUrl)
@@ -152,10 +141,13 @@ module.exports = Backbone.View.extend({
           }.bind(this));
     },
 
-    checkIfAnswered: function() {
-        var status = this.contest.responseStatus;
+    checkIfAnswered: function(e) {
+        var $target = $(e.currentTarget),
+            $uploader = $target.parent().find('.photo_contest_upload_image'),
+            index = $target.data('index'),
+            status = this.contest[index].responseStatus;
         if (status.enumText === 'ANSWERED') {
-            this.showPrizes();
+            this.showPrizes($uploader);
         }
     },
 
@@ -166,20 +158,21 @@ module.exports = Backbone.View.extend({
     onClickSendPhoto: function(e) {
         var btn = $(e.currentTarget);
         popupController.requireLogIn(this.sasl, function() {
+            var $el = btn.next();
             btn.slideUp('slow');
-            this.$el.find('.photo_contest_upload_image').show();
-            this.initUploader();
+            $el.show();
+            this.initUploader($el);
         }.bind(this));
     },
 
-    initUploader: function() {
-        this.$el.find('.dropzone').html5imageupload({
+    initUploader: function($el) {
+        $el.find('.dropzone').html5imageupload({
             ghost: false,
             save: false,
             canvas: true,
             data: {},
             resize: false,
-            onSave: this.onSaveImage.bind(this),
+            onSave: this.onSaveImage.bind(this, $el),
             onAfterSelectImage: function(){
                 $(this.element).addClass('added');
             },
@@ -219,20 +212,20 @@ module.exports = Backbone.View.extend({
             }.bind(this));
     },
 
-    showPrizes: function() {
-        this.$el.find('.prizes_container').slideDown('slow');
+    showPrizes: function($el) {
+        $el.next().slideDown('slow');
     },
 
-    onSaveImage: function(image) {
-        var message = this.$el.find('.comntyex-upload_message_input').val(),
-            contestUUID = this.contest.contestUUID,
+    onSaveImage: function($el, image) {
+        var message = $el.find('.comntyex-upload_message_input').val(),
+            contestUUID = $el.data('uuid'),
             file = h().dataURLtoBlob(image.data);
 
         contestActions.enterPhotoContest(this.sa, this.sl,
             contestUUID, file, message)
             .then(function(result) {
-                this.$el.find('.photo_contest_upload_image').slideUp('slow');
-                this.showPrizes();
+                $el.slideUp('slow');
+                this.showPrizes($el);
                 loader.showFlashMessage('contest entered');
             }.bind(this))
             .fail(function(err){
@@ -240,18 +233,6 @@ module.exports = Backbone.View.extend({
                 loader.showErrorMessage(e, 'error uploading photo');
             }.bind(this));
     },
-
-    // renderPrizes: function () {
-    //     this.$('.cmntyex_prizes_placeholder').html(
-    //         new ListView({
-    //             ListItemView: PrizeView,
-    //             collection: new Backbone.Collection(this.model.prizes),
-    //             update: false,
-    //             dataRole: 'none',
-    //             parent: this
-    //         }).render().el
-    //     );
-    // },
 
     enterContest: function () {
         var user = userController.getCurrentUser(),

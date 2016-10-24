@@ -8,7 +8,7 @@
 <div class="body">
     <ul class="poll_gallery">
         <% _.each(contests, function(poll, index){ %>
-            <li class="poll_item">
+            <li class="poll_item" data-uuid="<%= poll.contestUUID %>">
                 <div class="contest_container">
                     <div class="poll_block_title">Answer questions - <br>win the prize</div>
                     <img class="poll_image" src="<%= poll.imageURL %>"></img>
