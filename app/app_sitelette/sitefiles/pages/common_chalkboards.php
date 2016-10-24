@@ -58,6 +58,7 @@ include 'sitefiles/includes/scriptfiles.html';
 		time : 2000
 	});
   </script>
+     <script type="text/javascript" src="sitefiles/pages_js/content_packages.js"></script>
      <script type="text/javascript" src="sitefiles/pages_js/content_contactUs.js"></script>
  </body>
 </html>
