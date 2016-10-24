@@ -56,7 +56,9 @@ var EventsView = Backbone.View.extend({
   },
 
   onShow: function() {
-    this.$el.find('.body ul').slick('unslick');
+    var $el = this.$el.find('.body ul.gallery');
+    $el.find('.slick-arrow-container').remove();
+    $el.slick('unslick');
     this.initSlick();
   },
 
@@ -129,13 +131,13 @@ var EventsView = Backbone.View.extend({
         $target = $(e.currentTarget),
         uuid = $target.parent().parent().data('uuid'),
         demo = window.community.demo ? 'demo=true&' : '',
-        shareUrl = window.location.href.split('?')[0] + 
+        shareUrl = window.location.href.split('?')[0] +
           '?' + demo + 't=e&u=' + uuid,
         val = $target.prev().find('.sms_input').val();
-        
+
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
-    contactActions.shareURLviaSMS('EVENT', this.sasl.serviceAccommodatorId, 
+    contactActions.shareURLviaSMS('EVENT', this.sasl.serviceAccommodatorId,
       this.sasl.serviceLocationId, val, uuid, shareUrl)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');
