@@ -77,7 +77,8 @@ module.exports = Backbone.View.extend({
             speed: 300,
             fade: false,
             cssEase: 'linear',
-            slidesToShow: 1
+            slidesToShow: 1,
+            adaptiveHeight: true
         });
         this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
         this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
@@ -87,14 +88,25 @@ module.exports = Backbone.View.extend({
     showShareBlock: function(e) {
         var $target = $(e.currentTarget),
         $el = $target.next();
+        this.changeSlideHeight($el, 50);
         $el.slideToggle('slow');
     },
 
     showSMSInput: function(e) {
         var $target = $(e.currentTarget),
         $el = $target.parent().find('.sms_input_block');
-        $el.slideToggle('slow');
+        this.changeSlideHeight($el, 70);
         $el.find('input').mask('(000) 000-0000');
+        $el.slideToggle('slow');
+    },
+
+    changeSlideHeight: function($target, additional) {
+        var $el = $target.parents('.slick-list[aria-live="polite"]'),
+            height = $el.height(),
+            visible = $target.is(':visible');
+        if (visible) additional = -additional;
+        $el.css('transition', '0.3s');
+        $el.height(height + additional + 'px');
     },
 
     getLinks: function(uuid) {
