@@ -88,8 +88,8 @@ var EventsView = Backbone.View.extend({
   showSMSInput: function(e) {
     var $target = $(e.currentTarget),
         $el = $target.parent().find('.sms_input_block');
-    $el.slideToggle('slow');
-    $el.find('input').mask('(000) 000-0000');
+        $el.slideToggle('slow');
+        $el.find('input').mask('(000) 000-0000');
   },
 
   getLinks: function(uuid) {

@@ -60,25 +60,45 @@ module.exports = Backbone.View.extend({
     render: function(poll) {
         console.log('poll', poll);
         this.poll = poll;
-        this.$el.html(pollTemplate(poll));
-        this.setShareLinks();
+        this.$el.html(pollTemplate({
+            contests: poll
+        }));
+        this.setLinksForEachPoll();
+        this.initSlick();
         return this;
     },
 
-    showShareBlock: function() {
-        var $el = this.$el.find('.share_block');
+    initSlick: function() {
+        //slick init
+        this.$el.find('.body ul.poll_gallery').slick({
+            dots: false,
+            arrows: true,
+            infinite: true,
+            speed: 300,
+            fade: false,
+            cssEase: 'linear',
+            slidesToShow: 1
+        });
+        this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
+        this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
+        this.$el.find('button.slick-arrow').text('');
+    },
+
+    showShareBlock: function(e) {
+        var $target = $(e.currentTarget),
+        $el = $target.next();
         $el.slideToggle('slow');
     },
 
-    showSMSInput: function() {
-        var $el = this.$el.find('.sms_input_block');
+    showSMSInput: function(e) {
+        var $target = $(e.currentTarget),
+        $el = $target.parent().find('.sms_input_block');
         $el.slideToggle('slow');
         $el.find('input').mask('(000) 000-0000');
     },
 
-    getLinks: function() {
+    getLinks: function(uuid) {
         var demo = window.community.demo ? 'demo=true&' : '',
-          uuid = this.poll.contestUUID,
           shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
             '?' + demo + 't=l&u=' + uuid),
           links = [
@@ -90,21 +110,30 @@ module.exports = Backbone.View.extend({
         return links;
     },
 
-    setShareLinks: function() {
-        var $block = this.$el.find('.share_block'),
-          links = this.getLinks(),
-          $links = $block.find('a');
+    setShareLinks: function($poll) {
+        var $block = $poll.find('.share_block'),
+            uuid = $block.data('uuid'),
+            links = this.getLinks(uuid),
+            $links = $block.find('a');
 
         $links.each(function(index){
-          var link = $(this);
-          link.attr('href', links[index]);
+            var link = $(this);
+            link.attr('href', links[index]);
         });
+    },
+
+    setLinksForEachPoll: function() {
+        var $contests = this.$el.find('.poll_item');
+        $contests.each(function(index, el){
+            var $poll = $(el);
+            this.setShareLinks($poll);
+        }.bind(this));
     },
 
     onSendSMS: function(e) {
         var $el = this.$el.find('.sms_input_block'),
             $target = $(e.currentTarget),
-            uuid = this.poll.contestUUID,
+            uuid = $target.parent().data('uuid'),
             demo = window.community.demo ? 'demo=true&' : '',
             shareUrl = window.location.href.split('?')[0] +
               '?' + demo + 't=p&u=' + uuid,
@@ -124,33 +153,40 @@ module.exports = Backbone.View.extend({
           }.bind(this));
     },
 
-    checkIfAnswered: function() {
-        var status = this.poll.answerStatus;
+    checkIfAnswered: function(e) {
+        var $target = $(e.currentTarget),
+            $container = $target.parent(),
+            index = $target.data('index'),
+            status = this.poll[index].answerStatus;
         if (status.enumText === 'ANSWERED') {
-            this.displayResults(this.poll);
-            this.$el.find('.contest_prizes').show();
-            this.$el.find('.prize_block').slideDown('slow');
+            this.displayResults($container, this.poll[index]);
+            $container.find('.contest_prizes').show();
+            $container.find('.prize_block').slideDown('slow');
         }
     },
 
     afterTriedToLogin: function() {
-        this.getPollContest();
+        this.getPollContests();
     },
 
-    submitPoll: function() {
+    submitPoll: function(e) {
+        var $target = $(e.currentTarget),
+            uuid = $target.data('uuid'),
+            $container = $target.parent();
         popupController.requireLogIn(this.sasl, function() {
-            var choise = this.$el.find('input.ansRadioChoice:checked').data('choice');
+            var choise = this.$el.find('input.ansRadioChoice:checked', $container).data('choice');
             console.log(choise);
-            contestActions.enterPoll(this.sa,this.sl, this.poll.contestUUID, choise)
+            debugger;
+            contestActions.enterPoll(this.sa,this.sl, uuid, choise)
                 .then(function(result) {
-                    this.displayResults(result);
+                    this.displayResults($container, result);
                 }.bind(this))
                 .fail(function(err){
                     popupController.textPopup({ text: 'You already answered this question.'});
                 }.bind(this));
-            this.$el.find('.submit_poll_button').slideUp('slow');
-            this.$el.find('.contest_prizes').show();
-            this.$el.find('.prize_block').slideDown('slow');
+            $container.find('.submit_poll_button').slideUp('slow');
+            $container.find('.contest_prizes').show();
+            $container.find('.prize_block').slideDown('slow');
         }.bind(this));
     },
 
@@ -164,9 +200,9 @@ module.exports = Backbone.View.extend({
         return this.sasl.themeColors ? this.sasl.themeColors.cmtyx_color : colors;
     },
 
-    displayResults: function(result) {
-        this.$el.find('.poll_ans_form').addClass('answered');
-        this.$el.find('.poll_results').show();
+    displayResults: function($container, result) {
+        $container.find('.poll_ans_form').addClass('answered');
+        $container.find('.poll_results').show();
         var choices = result.choices,
             options = _.extend(jqPlotOptions.options, {height: choices.length * 35}),
             colorChoices = this.getColors();
@@ -182,10 +218,10 @@ module.exports = Backbone.View.extend({
             options.seriesDefaults.renderer = $.jqplot.BarRenderer;
             options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
             options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;
-            $.jqplot('pollBar', [array], options);
+            $.jqplot('pollBar-' + (result.contestUUID || result.uuid), [array], options);
     },
 
-    getPollContest: function() {
+    getPollContests: function() {
         contestActions.pollBySASL(this.sa,this.sl)
             .then(function(poll) {
                 if (poll) {

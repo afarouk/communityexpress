@@ -38,7 +38,7 @@ module.exports = {
     },
 
     photoBySASL: function (sa, sl) {
-        return gateway.sendRequest('retrievePhotoContestBySASL', {
+        return gateway.sendRequest('retrievePhotoContestsBySASL', {
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             UID: getUID(),
@@ -47,7 +47,7 @@ module.exports = {
     },
 
     pollBySASL: function (sa, sl) {
-        return gateway.sendRequest('retrievePollContestBySASL', {
+        return gateway.sendRequest('retrievePollContestsBySASL', {
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             UID: getUID(),
