@@ -79,8 +79,13 @@
 					    </#if>
 					  </#if>
 						<button
-							class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 menu_button_3">open
-							menu</button>
+								class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 menu_button_3">
+		            <#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" >
+							    open menu
+							  <#else>
+							    open catalog
+							  </#if>
+						</button>
 						<!--
                           <span class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></span><span class="open_label">open now</span>
                         -->
@@ -400,23 +405,23 @@
 									<img src="${promotion.URL}"></img>
 									<div class="promotion_details_container">
 										<div class="promotion_title">${promotion.title}</div>
-										
+
 										<#if promotion.buyable!false>
 		                                  <button class="promotions-buybutton" data-uuid="${promotion.uuid}">
 		                                   Buy</button>
 	                                    </#if>
-	                                    
+
 	                                    <#if promotion.buyable!false>
 		                                  <div class="promotions-originalprice" >
 		                                   Regular price: ${promotion.originalPrice}</div>
 	                                    </#if>
-	                                    
+
 	                                    <#if promotion.buyable!false>
 		                                  <div class="promotions-promoprice">
 		                                   Special price: ${promotion.promoPrice}</div>
 	                                    </#if>
-	                                    
-	                                    
+
+
 										<div class="promotion_description">${promotion.message}</div>
 									</div>
 									<div class="ui-grid-a promotion_item_buttons">
