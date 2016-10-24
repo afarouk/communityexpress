@@ -150,8 +150,8 @@ module.exports = Backbone.View.extend({
     },
 
     onSendSMS: function(e) {
-        var $el = this.$el.find('.sms_input_block'),
-            $target = $(e.currentTarget),
+        var $target = $(e.currentTarget),
+            $el = $target.parent(),
             uuid = $target.parent().data('uuid'),
             demo = window.community.demo ? 'demo=true&' : '',
             shareUrl = window.location.href.split('?')[0] +
@@ -159,6 +159,7 @@ module.exports = Backbone.View.extend({
             val = $target.prev().val(); //(650) 617-3439
 
         loader.showFlashMessage('Sending message to... ' + val);
+        this.changeSlideHeight($el, 70);
         $el.slideUp('slow');
         contactActions.shareURLviaSMS('POLL_CONTEST', this.sasl.serviceAccommodatorId,
             this.sasl.serviceLocationId, val, uuid, shareUrl)
@@ -198,7 +199,6 @@ module.exports = Backbone.View.extend({
         popupController.requireLogIn(this.sasl, function() {
             var choise = this.$el.find('input.ansRadioChoice:checked', $container).data('choice');
             console.log(choise);
-            debugger;
             contestActions.enterPoll(this.sa,this.sl, uuid, choise)
                 .then(function(result) {
                     this.displayResults($container, result);

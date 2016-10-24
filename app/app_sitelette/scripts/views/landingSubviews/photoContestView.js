@@ -43,28 +43,60 @@ module.exports = Backbone.View.extend({
         this.sl = community.serviceLocationId;
     },
 
-    render: function(contest) {
-        console.log('contest', contest);
-        this.contest = contest;
-        this.$el.html(photoContestTemplate(contest));
-        this.setShareLinks();
+    render: function(photos) {
+        console.log('contest', photos);
+        this.contest = photos;
+        this.$el.html(photoContestTemplate({
+            contests: photos
+        }));
+        this.setLinksForEachPhoto();
+        this.initSlick();
         return this;
     },
 
-    showShareBlock: function() {
-        var $el = this.$el.find('.share_block');
+    initSlick: function() {
+        //slick init
+        this.$el.find('.body ul.photo_gallery').slick({
+            dots: false,
+            arrows: true,
+            infinite: true,
+            speed: 300,
+            fade: false,
+            cssEase: 'linear',
+            slidesToShow: 1,
+            adaptiveHeight: true
+        });
+        this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
+        this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
+        this.$el.find('button.slick-arrow').text('');
+    },
+
+    showShareBlock: function(e) {
+        var $target = $(e.currentTarget),
+        $el = $target.next();
+        this.changeSlideHeight($el, 50);
         $el.slideToggle('slow');
     },
 
-    showSMSInput: function() {
-        var $el = this.$el.find('.sms_input_block');
-        $el.slideToggle('slow');
+    showSMSInput: function(e) {
+        var $target = $(e.currentTarget),
+        $el = $target.parent().find('.sms_input_block');
+        this.changeSlideHeight($el, 70);
         $el.find('input').mask('(000) 000-0000');
+        $el.slideToggle('slow');
     },
 
-    getLinks: function() {
+    changeSlideHeight: function($target, additional) {
+        var $el = $target.parents('.slick-list[aria-live="polite"]'),
+            height = $el.height(),
+            visible = $target.is(':visible');
+        if (visible) additional = -additional;
+        $el.css('transition', '0.3s');
+        $el.height(height + additional + 'px');
+    },
+
+    getLinks: function(uuid) {
         var demo = window.community.demo ? 'demo=true&' : '',
-          uuid = this.contest.contestUUID,
           shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
             '?' + demo + 't=h&u=' + uuid),
           links = [
@@ -76,27 +108,37 @@ module.exports = Backbone.View.extend({
         return links;
     },
 
-    setShareLinks: function() {
-        var $block = this.$el.find('.share_block'),
-          links = this.getLinks(),
-          $links = $block.find('a');
+    setShareLinks: function($photo) {
+        var $block = $photo.find('.share_block'),
+            uuid = $block.data('uuid'),
+            links = this.getLinks(uuid),
+            $links = $block.find('a');
 
         $links.each(function(index){
-          var link = $(this);
-          link.attr('href', links[index]);
+            var link = $(this);
+            link.attr('href', links[index]);
         });
     },
 
+    setLinksForEachPhoto: function() {
+        var $contests = this.$el.find('.photo_item');
+        $contests.each(function(index, el){
+            var $photo = $(el);
+            this.setShareLinks($photo);
+        }.bind(this));
+    },
+
     onSendSMS: function(e) {
-        var $el = this.$el.find('.sms_input_block'),
-            $target = $(e.currentTarget),
-            uuid = this.contest.contestUUID,
+        var $target = $(e.currentTarget),
+            $el = $target.parent(),
+            uuid = $target.parent().data('uuid'),
             demo = window.community.demo ? 'demo=true&' : '',
             shareUrl = window.location.href.split('?')[0] +
               '?' + demo + 't=p&u=' + uuid,
             val = $target.prev().val(); //(650) 617-3439
 
         loader.showFlashMessage('Sending message to... ' + val);
+        this.changeSlideHeight($el, 70);
         $el.slideUp('slow');
         contactActions.shareURLviaSMS('PHOTO_CONTEST', this.sasl.serviceAccommodatorId,
             this.sasl.serviceLocationId, val, uuid, shareUrl)

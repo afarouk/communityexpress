@@ -99,7 +99,7 @@ module.exports = {
             retrieveCheckinContest: ['GET', '/contests/retrieveCheckinContestClient'],
 
             retrievePollContestsBySASL: ['GET', '/contests/retrievePollContestsBySASL'],
-            retrievePhotoContestsBySASL: ['GET', '/contests/retrievePhotoContestBySASL'],
+            retrievePhotoContestsBySASL: ['GET', '/contests/retrievePhotoContestsBySASL'],
 
             enterPoll: ['POST', '/contests/enterPoll'],
             enterCheckIn: ['POST', '/contests/enterCheckinContest'],
