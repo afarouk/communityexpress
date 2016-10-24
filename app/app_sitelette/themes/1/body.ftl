@@ -379,14 +379,22 @@
 							<input type="text" id="full_name" name="full_name" data-role="none" placeholder="Full name">
 							<textarea id="review_text" name="review_text" data-role="none" rows="3" placeholder="Your review"></textarea>
 							<div class="message_error new_review_error">Type your message</div>
-							<div class="upload_photo">
+							<div class="add_new_block">
+			                    <button class="ui-btn ui-corner-all back_btn add_new_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">ADD A PHOTO</button>
+			                </div>
+			                <div class="upload_photo">
 			                    <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
 			                        <input type="file" data-role="none" name="thumb" />
 			                    </div>
 			                </div>
-							<div class="send_review_btn_container">
-								<button class="send_review_btn ui-btn ui-corner-all">send</button>
-							</div>
+			                <div class="add_review_btns_block ui-grid-a">
+			                     <div class="ui-block-a p-r-10">
+			                        <button class="back_btn cancel_review cmtyx_border_color_1 cmtyx_text_color_1">Cancel</button>
+			                     </div>
+			                     <div class="ui-block-b p-l-10">
+			                         <button class="next_btn send_review cmtyx_border_color_1 cmtyx_color_1">Submit</button>
+			                     </div>
+			                 </div>
 						</div>
 					</div>
 				</li>

@@ -2054,7 +2054,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   height: 12px;
   background : url('images/unchecked-radio.png') no-repeat;
   background-size: cover;
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .poll_block input[type=radio]:not(old):checked + label > span > span{
@@ -2062,8 +2062,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   width: 12px;
   height: 12px;
   background : url('images/checked-radio.png') no-repeat;
-  background-size: cover; 
-  margin-right: 10px; 
+  background-size: cover;
+  margin-right: 10px;
 }
 
 /********************** ABOUT US BLOCK ***********************/
@@ -2194,7 +2194,15 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 
 /********************** USER'S REVIEWS BLOCK ***********************/
 #cmtyx_reviews_block .review {
+    padding: 20px 20px 0 20px;
     margin-bottom: 20px;
+}
+#cmtyx_reviews_block .body {
+    padding: 0 0 20px 0;
+}
+#cmtyx_reviews_block .add_review_btn {
+    width: 80%;
+    margin: auto;
 }
 .review td {
     border-bottom: none;
@@ -2261,8 +2269,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     color: #bdbdbd;
 }
 .reviews_block .show_more_block_container {
-    margin-bottom: 10px;
-    text-align: right;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #868686;
 }
 .reviews_block .show_more_block {
     display: inline-block;
@@ -2306,6 +2316,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .leave_review_block {
     display: none;
+    padding: 0 20px;
     margin-top: 20px;
 }
 .leave_review_block .title {
@@ -2328,6 +2339,12 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font: 500 12px/17px 'Open Sans', sans-serif;
     background-color: transparent;
     margin-bottom: 15px;
+}
+.leave_review_block .add_review_btns_block {
+    padding-top: 20px;
+}
+.leave_review_block .upload_photo {
+    display: none;
 }
 .leave_review_block input#full_name:focus,
 .leave_review_block textarea#review_text:focus {
