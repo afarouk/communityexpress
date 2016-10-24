@@ -20,7 +20,7 @@
                                 <div class="ui-grid-a">
                                     <div class="ui-block-a">
                                         <input type="radio" name="radio-choice-ans" id="ans_<%= index %>-<%= poll.contestUUID %>" data-uuid="<%= poll.contestUUID %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (poll.answerStatus.enumText === 'ANSWERED') {
-                                            if (poll.answerStatus.id === index + 1) {%> checked='checked'<% } %>
+                                            if (poll.answerStatus.id === index + 1) {%> checked="checked"<% } %>
                                         <% } else if ( index === 0 ) { %>checked='checked'<% } %>>
                                         <label for="ans_<%= index %>-<%= poll.contestUUID %>"><span><span></span></span><%= choice.displayText %> </label>
                                     </div>

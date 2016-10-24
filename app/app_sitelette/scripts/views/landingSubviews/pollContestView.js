@@ -158,6 +158,9 @@ module.exports = Backbone.View.extend({
             $container = $target.parent(),
             index = $target.data('index'),
             status = this.poll[index].answerStatus;
+        //tweak for chrome input:checked issue
+        $target.find('input[checked="checked"]').attr('checked', false);
+        //end
         if (status.enumText === 'ANSWERED') {
             this.displayResults($container, this.poll[index]);
             $container.find('.contest_prizes').show();

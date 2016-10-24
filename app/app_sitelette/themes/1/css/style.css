@@ -2055,6 +2055,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   margin-right: 10px; 
 }
 
+.poll_block input[checked="checked"] +label > span > span, /* <-- tweak for chrome */
 .poll_block input[type=radio]:not(old):checked + label > span > span{
   display: block;
   width: 12px;
