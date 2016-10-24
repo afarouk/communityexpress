@@ -2040,6 +2040,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 16px;
     height: 15px;
 }
+.share_block a {
+    outline: none;
+}
 .poll_block .share_block {
     display: none;
 }

@@ -62,6 +62,13 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
+    onShow: function() {
+      var $el = this.$el.find('.body ul');
+      $el.find('.slick-arrow-container').remove();
+      $el.slick('unslick');
+      this.initSlick();
+    },
+
     initSlick: function() {
         //slick init
         this.$el.find('.body ul.poll_gallery').slick({

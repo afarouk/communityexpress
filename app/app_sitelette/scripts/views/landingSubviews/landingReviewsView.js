@@ -16,7 +16,8 @@ var LandingReviewsView = Backbone.View.extend({
   events: {
     'click .header': 'toggleCollapse',
     'click .add_review_btn': 'showLeaveReviewBlock',
-    'click .show_more_reviews_btn': 'showMoreReviews',
+    // 'click .show_more_reviews_btn': 'showMoreReviews',
+    'click .show_more_block': 'showMoreReviews',
     'click .send_review': 'onSendReview',
     'keyup #review_text': 'resizeTextarea',
     'click .add_new_photo_btn': 'onClickAddNewPhoto',
