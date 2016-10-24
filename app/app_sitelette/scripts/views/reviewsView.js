@@ -199,7 +199,7 @@ var ReviewsView = Backbone.View.extend({
         });
     },
 
-    onClickAddNewPhoto: function(e) {
+    onClickAddNewPhoto: function() {
         this.addNewPhoto = true;
         this.$('.add_new_block').hide();
         this.$el.find('.upload_photo').show();

@@ -17,8 +17,10 @@ var LandingReviewsView = Backbone.View.extend({
     'click .header': 'toggleCollapse',
     'click .add_review_btn': 'showLeaveReviewBlock',
     'click .show_more_reviews_btn': 'showMoreReviews',
-    'click .send_review_btn': 'onSendReview',
-    'keyup #review_text': 'resizeTextarea'
+    'click .send_review': 'onSendReview',
+    'keyup #review_text': 'resizeTextarea',
+    'click .add_new_photo_btn': 'onClickAddNewPhoto',
+    'click .cancel_review': 'closeNewReview'
   },
 
   initialize: function(options) {
@@ -65,8 +67,27 @@ var LandingReviewsView = Backbone.View.extend({
   showLeaveReviewBlock: function() {
       this.$('.add_review_btn').slideUp(400, _.bind(function() {
           this.$('.leave_review_block').slideDown();
-          this.initUploader();
+        //   this.initUploader();
       }, this));
+  },
+
+  closeNewReview: function() {
+      this.$('.new_review_error').hide();
+      this.$('#review_text').val('');
+      this.$el.find('.upload_photo').hide();
+      this.$('.add_new_block').show();
+      this.resizeTextarea();
+      this.$('.btn-del').trigger('click');
+      this.$('.btn-cancel').trigger('click');
+      this.$('.leave_review_block').slideUp(400, _.bind(function() {
+          this.$('.add_review_btn').slideDown();
+      }, this));
+  },
+
+  onClickAddNewPhoto: function(e) {
+      this.$('.add_new_block').hide();
+      this.$el.find('.upload_photo').show();
+      this.initUploader();
   },
 
   hideLeaveReviewBlock: function() {
@@ -103,7 +124,6 @@ var LandingReviewsView = Backbone.View.extend({
 
   onSaveImage: function(image) {
       this.file = h().dataURLtoBlob(image.data);
-      debugger;
   },
 
   toggleCollapse: function() {
