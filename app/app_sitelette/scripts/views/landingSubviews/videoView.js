@@ -28,8 +28,10 @@ var VideoView = Backbone.View.extend({
   },
 
   onShow: function() {
-    this.$el.find('.body ul').slick('unslick');
-    this.initSlick();
+      var $el = this.$el.find('.body ul.gallery');
+      $el.find('.slick-arrow-container').remove();
+      $el.slick('unslick');
+      this.initSlick();
   },
 
   initSlick: function() {

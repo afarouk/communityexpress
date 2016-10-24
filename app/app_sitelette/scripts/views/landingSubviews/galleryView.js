@@ -53,8 +53,10 @@ var GalleryView = Backbone.View.extend({
   },
 
   onShow: function() {
-    this.$el.find('.gallery').slick('unslick');
-    this.initSlick();
+      var $el = this.$el.find('.body ul.gallery');
+      $el.find('.slick-arrow-container').remove();
+      $el.slick('unslick');
+      this.initSlick();
   },
 
   showShareBlock: function(e) {
@@ -72,7 +74,7 @@ var GalleryView = Backbone.View.extend({
 
   getLinks: function(uuid) {
       var demo = window.community.demo ? 'demo=true&' : '',
-          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
             '?' + demo + 't=g&u=' + uuid),
           links = [
               '',
@@ -108,13 +110,13 @@ var GalleryView = Backbone.View.extend({
         $target = $(e.currentTarget),
         uuid = $target.parent().parent().data('uuid'),
         demo = window.community.demo ? 'demo=true&' : '',
-        shareUrl = window.location.href.split('?')[0] + 
+        shareUrl = window.location.href.split('?')[0] +
           '?' + demo + 't=g&u=' + uuid,
         val = $target.prev().find('.sms_input').val();
-        
+
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');
-    contactActions.shareURLviaSMS('GALLERY', this.sasl.serviceAccommodatorId, 
+    contactActions.shareURLviaSMS('GALLERY', this.sasl.serviceAccommodatorId,
       this.sasl.serviceLocationId, val, uuid, shareUrl)
       .then(function(res){
         loader.showFlashMessage('Sending message success.');
