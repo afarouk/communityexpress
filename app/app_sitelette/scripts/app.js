@@ -193,15 +193,15 @@ App.prototype = {
                 //Photo contest
                 $(document).ready(function(){
                     setTimeout(function () {
-                        Vent.trigger('scrollToBlock', '.photo_contest_block');
-                    }, 2000);
+                        Vent.trigger('openPhotoByShareUrl', uuid);
+                    }, 2500);
                 });
             break;
             case 'l':
                 //Poll contest
                 $(document).ready(function(){
                     setTimeout(function () {
-                        Vent.trigger('scrollToBlock', '.poll_block');
+                        Vent.trigger('openPollByShareUrl', uuid);
                     }, 1500);
                 });
             break;

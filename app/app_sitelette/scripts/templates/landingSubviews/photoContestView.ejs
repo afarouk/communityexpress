@@ -7,12 +7,12 @@
 <div class="body">
     <ul class="photo_gallery">
         <% _.each(contests, function(photo, index){ %>
-            <li class="photo_item">
-                <img src="<%= photo.imageURL %>"></img>
+            <li class="photo_item" data-uuid="<%= photo.contestUUID %>">
+                <img src="<%= photo.imageURL %>" class="photo_image" data-index="<%= index %>"></img>
                 <span class="contest_task"><%= photo.displayText %></span>
                 <% if (photo.responseStatus.enumText !== "ANSWERED") { %>
                     <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
-                    <div class="photo_contest_upload_image">
+                    <div class="photo_contest_upload_image" data-uuid="<%= photo.contestUUID %>">
                         <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
                         <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
                             <input type="file" name="thumb" />

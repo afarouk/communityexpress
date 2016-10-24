@@ -31,13 +31,6 @@ module.exports = Backbone.View.extend({
         'click .sms_send_button': 'onSendSMS'
     },
 
-    // renderData: function () {
-    //     return $.extend(this.model, {
-    //         activationDate: h().toPrettyTime(this.model.activationDate),
-    //         expirationDate: h().toPrettyTime(this.model.expirationDate)
-    //     });
-    // },
-
     toggleCollapse: function() {
         var $el = this.$('.body');
         $el.slideToggle('slow', function(){
@@ -55,6 +48,7 @@ module.exports = Backbone.View.extend({
         this.sasl = window.saslData;
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
+        Vent.on('openPollByShareUrl', this.openPollByShareUrl, this);
     },
 
     render: function(poll) {
@@ -83,6 +77,14 @@ module.exports = Backbone.View.extend({
         this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
         this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
         this.$el.find('button.slick-arrow').text('');
+    },
+
+    openPollByShareUrl: function(uuid) {
+        var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
+            index = el.data('slick-index');
+
+        this.$el.find('.body ul.poll_gallery').slick('slickGoTo', index);
+        Vent.trigger('scrollToBlock', '.poll_block');
     },
 
     showShareBlock: function(e) {
@@ -250,33 +252,6 @@ module.exports = Backbone.View.extend({
                 this.$el.hide();
             }.bind(this));
     },
-
-    // renderPrizes: function () {
-    //     this.$('.cmntyex_prizes_placeholder').html(
-    //         new ListView({
-    //             ListItemView: PrizeView,
-    //             collection: new Backbone.Collection(this.model.prizes),
-    //             update: false,
-    //             dataRole: 'none',
-    //             parent: this
-    //         }).render().el
-    //     );
-    // },
-
-    // renderOptions: function () {
-    //     this.$('.cmntyex_options_placeholder').html(
-    //         new ListView({
-    //             ListItemView: PollOptionView,
-    //             ListItemViewOptions: {
-    //                 onClick: this.onPollClick.bind(this)
-    //             },
-    //             collection: new Backbone.Collection(this.model.choices),
-    //             update: false,
-    //             dataRole: 'none',
-    //             parent: this
-    //         }).render().el
-    //     );
-    // },
 
     onPollClick: function(model) {
         this.withLogIn(function () {
