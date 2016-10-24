@@ -153,7 +153,8 @@ function attachBootstrapValidatorsToSendMobileForm($demositeMobileForm,
 										message : 'The value is not valid US phone number'
 									}
 								}
-							},
+							}
+							/*,
 							certify_mobile : {
 								trigger : 'keyup change',
 								validators : {
@@ -167,7 +168,7 @@ function attachBootstrapValidatorsToSendMobileForm($demositeMobileForm,
 								onError : function(e, data) {
 
 								}
-							}
+							}*/
 						}
 					// end fields
 					})
@@ -284,7 +285,8 @@ function attachBootstrapValidatorsToSendEmailForm($demositeEmailForm,
 										message : 'The value is not a valid email address'
 									}
 								}
-							},
+							}
+							/* ,
 							certify_email : {
 								trigger : 'keyup change',
 								validators : {
@@ -298,7 +300,7 @@ function attachBootstrapValidatorsToSendEmailForm($demositeEmailForm,
 								onError : function(e, data) {
 
 								}
-							}
+							} */
 						}
 					// end fields
 					})
