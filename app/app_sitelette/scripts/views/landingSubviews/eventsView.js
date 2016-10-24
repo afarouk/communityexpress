@@ -89,10 +89,10 @@ var EventsView = Backbone.View.extend({
       $el = $target.parent().next(),
       visible = $el.is(':visible'),
       visibleSMS = $el.find('.sms_input_block').is(':visible'),
-      height = 50;
+      height = 70;
       if (visible && visibleSMS) {
           this.$('.sms_input_block').hide();
-          height = 120;
+          height = 150;
       }
       this.changeSlideHeight($el, height);
       $el.slideToggle('slow', _.bind(function() {
@@ -105,7 +105,7 @@ var EventsView = Backbone.View.extend({
       this.animating = true;
       var $target = $(e.currentTarget),
       $el = $target.parent().find('.sms_input_block');
-      this.changeSlideHeight($el, 70);
+      this.changeSlideHeight($el, 80);
       $el.find('input').mask('(000) 000-0000');
       $el.slideToggle('slow', _.bind(function() {
           this.animating = false;
