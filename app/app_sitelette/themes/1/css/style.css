@@ -2429,23 +2429,27 @@ li.promotion_block .body {
 .slick-arrow-container {
     display: inline-block;
     position: absolute;
-    top: 17px;
-    height: 22px;
-    width: 22px;
-    background-color: #5d5d5d;
-    z-index: 1;
-    border-radius: 50%;
-    margin-left: 5px;
+    /* top: 17px; */
+    /* height: 22px; */
+    /* width: 22px; */
+    /* background-color: #5d5d5d; */
+    /* z-index: 1; */
+    /* border-radius: 50%; */
+    /* margin-left: 5px; */
 }
 .slick-arrow-container.right {
     right: 0;
+    margin-right: 5px;
+}
+.slick-arrow-container.right {
+    left: 0;
     margin-right: 5px;
 }
 .slick-slide:focus,
 .slick-arrow-container .slick-arrow:focus {
     outline: none;
 }
-.slick-arrow-container .slick-arrow {
+/* .slick-arrow-container .slick-arrow {
     background-color: transparent;
     position: relative;
     z-index: 1;
@@ -2467,6 +2471,18 @@ li.promotion_block .body {
     right: -7px;
     border-left:10px solid #efefef;
     border-right: 0;
+} */
+.slick-arrow-container .slick-arrow {
+    display: inline-block;
+    position: absolute;
+    top: 17px;
+    height: 22px;
+    width: 22px;
+    background-color: #5d5d5d;
+    z-index: 1;
+    border-radius: 50%;
+    margin-left: 5px;
+    border: none;
 }
 .events-share-block .ui-block-a,
 .events-share-block .ui-block-b,
