@@ -93,18 +93,33 @@ module.exports = Backbone.View.extend({
     },
 
     showShareBlock: function(e) {
+        if (this.animating) return;
+        this.animating = true;
         var $target = $(e.currentTarget),
-        $el = $target.next();
-        this.changeSlideHeight($el, 50);
-        $el.slideToggle('slow');
+        $el = $target.next(),
+        visible = $el.is(':visible'),
+        visibleSMS = $el.find('.sms_input_block').is(':visible'),
+        height = 50;
+        if (visible && visibleSMS) {
+            this.$('.sms_input_block').hide();
+            height = 120;
+        }
+        this.changeSlideHeight($el, height);
+        $el.slideToggle('slow', _.bind(function() {
+            this.animating = false;
+        }, this));
     },
 
     showSMSInput: function(e) {
+        if (this.animating) return;
+        this.animating = true;
         var $target = $(e.currentTarget),
         $el = $target.parent().find('.sms_input_block');
         this.changeSlideHeight($el, 70);
         $el.find('input').mask('(000) 000-0000');
-        $el.slideToggle('slow');
+        $el.slideToggle('slow', _.bind(function() {
+            this.animating = false;
+        }, this));
     },
 
     changeSlideHeight: function($target, additional) {
@@ -199,16 +214,22 @@ module.exports = Backbone.View.extend({
         popupController.requireLogIn(this.sasl, function() {
             var choise = this.$el.find('input.ansRadioChoice:checked', $container).data('choice');
             console.log(choise);
+            var height = $container.find('.poll_ans_form').find('li').length * 35 - this.$el.find('.submit_poll_button').height();
+
             contestActions.enterPoll(this.sa,this.sl, uuid, choise)
                 .then(function(result) {
-                    this.displayResults($container, result);
+                    $container.find('.submit_poll_button').slideUp('slow', _.bind(function() {
+                        $container.find('.contest_prizes').show();
+                        $container.find('.prize_block').show();
+                        var $el = $container.find('.poll_results');
+                        height = height + $container.find('.contest_prizes').height();
+                        this.changeSlideHeight($el, height);
+                        this.displayResults($container, result);
+                    }, this));
                 }.bind(this))
                 .fail(function(err){
                     popupController.textPopup({ text: 'You already answered this question.'});
                 }.bind(this));
-            $container.find('.submit_poll_button').slideUp('slow');
-            $container.find('.contest_prizes').show();
-            $container.find('.prize_block').slideDown('slow');
         }.bind(this));
     },
 
