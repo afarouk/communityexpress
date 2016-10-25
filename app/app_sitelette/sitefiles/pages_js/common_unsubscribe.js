@@ -26,7 +26,7 @@ function submitUnsubscribeRequest() {
  $
    .ajax({
     url : apiurl,
-    type : 'POST'
+    type : 'PUT'
    })
    .done(function(response) {
     console.log("response :" + response);
