@@ -2580,7 +2580,7 @@ li.promotion_block .body {
 }
 .poll_block .body li,
 .photo_contest_block .body li {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 .poll_block .body li.last,
 .photo_contest_block .body li.last {
