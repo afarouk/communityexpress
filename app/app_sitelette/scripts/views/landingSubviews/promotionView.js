@@ -34,6 +34,7 @@ var PromotionView = Backbone.View.extend({
   },
 
   initSlick: function() {
+    // debugger;
     //slick init
     this.$el.find('.body ul').slick({
         dots: false,
@@ -51,7 +52,7 @@ var PromotionView = Backbone.View.extend({
   },
 
   onShow: function() {
-      var $el = this.$el.find('.body ul.gallery');
+      var $el = this.$el.find('.body ul');
       $el.find('.slick-arrow-container').remove();
       $el.slick('unslick');
       this.initSlick();
