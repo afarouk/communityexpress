@@ -1927,7 +1927,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding: 0 !important;
 }
 .poll_block .contest_container {
-    padding: 20px 20px 10px 20px;
+    padding: 10px 20px 10px 20px;
 }
 .poll_block .poll_block_title {
     text-align: center;
@@ -2154,6 +2154,26 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     text-align: left;
     padding: 10px;
 }
+#cmtyx_photo_contest_block.photo_contest_block .contest_container {
+    padding: 0 20px 10px 20px;
+}
+#cmtyx_photo_contest_block.photo_contest_block .body {
+    padding: 0;
+}
+.photo_contest_block .photo_block_title {
+    padding: 20px;
+    color: #ececec;
+    font: 400 16px/16px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+}
+.photo_contest_block .photo_block_title p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
 .alert_sign_icon {
     display: inline-block;
     background: url('images/alert_sign.png') no-repeat;
@@ -2164,13 +2184,17 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     top: 3px;
     margin-right: 2px;
 }
+.photo-answered,
 .poll-answered {
     text-align: center;
     color: #ececec;
     font: 400 12px/19px 'Open Sans', sans-serif;
-    /* margin-bottom: 15px; */
+    margin-bottom: 15px;
     border: solid 1px #ececec;
     padding: 7px 20px;
+}
+.photo-answered {
+    margin-bottom: 25px;
 }
 .poll_block .prize_block {
     display: none;
@@ -2459,8 +2483,8 @@ li.promotion_block .body {
     top: 17px;
     height: 22px;
     width: 22px;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     z-index: 1;
     border: none;
 }
@@ -2552,10 +2576,11 @@ li.promotion_block .body {
     max-height: 230px;
     padding: 0;
     width: 100%;
+    margin-bottom: 10px;
 }
 .poll_block .body li,
 .photo_contest_block .body li {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 .poll_block .body li.last,
 .photo_contest_block .body li.last {

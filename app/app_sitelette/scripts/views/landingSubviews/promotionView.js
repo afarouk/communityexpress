@@ -34,6 +34,7 @@ var PromotionView = Backbone.View.extend({
   },
 
   initSlick: function() {
+    // debugger;
     //slick init
     this.$el.find('.body ul').slick({
         dots: false,
@@ -42,7 +43,8 @@ var PromotionView = Backbone.View.extend({
         speed: 300,
         fade: false,
         cssEase: 'linear',
-        slidesToShow: 1
+        slidesToShow: 1,
+        adaptiveHeight: true
     });
     this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
     this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
@@ -50,7 +52,7 @@ var PromotionView = Backbone.View.extend({
   },
 
   onShow: function() {
-      var $el = this.$el.find('.body ul.gallery');
+      var $el = this.$el.find('.body ul');
       $el.find('.slick-arrow-container').remove();
       $el.slick('unslick');
       this.initSlick();
@@ -65,16 +67,43 @@ var PromotionView = Backbone.View.extend({
   },
 
   showShareBlock: function(e) {
+    if (this.animating) return;
+    this.animating = true;
     var $target = $(e.currentTarget),
-        $el = $target.parent().parent().next();
-    $el.slideToggle('slow');
+        // $el = $target.next(),
+        $el = $target.parent().parent().next(),
+        visible = $el.is(':visible'),
+        visibleSMS = $el.find('.sms_input_block').is(':visible'),
+        height = 50;
+    if (visible && visibleSMS) {
+        this.$('.sms_input_block').hide();
+        height = 120;
+    }
+    this.changeSlideHeight($el, height);
+    $el.slideToggle('slow', _.bind(function() {
+        this.animating = false;
+    }, this));
   },
 
   showSMSInput: function(e) {
+    if (this.animating) return;
+    this.animating = true;
     var $target = $(e.currentTarget),
         $el = $target.parent().find('.sms_input_block');
-    $el.slideToggle('slow');
+    this.changeSlideHeight($el, 70);
     $el.find('input').mask('(000) 000-0000');
+    $el.slideToggle('slow', _.bind(function() {
+        this.animating = false;
+    }, this));
+  },
+
+  changeSlideHeight: function($target, additional) {
+      var $el = $target.parents('.slick-list[aria-live="polite"]'),
+          height = $el.height(),
+          visible = $target.is(':visible');
+      if (visible) additional = -additional;
+      $el.css('transition', '0.3s');
+      $el.height(height + additional + 'px');
   },
 
   getLinks: function(uuid) {

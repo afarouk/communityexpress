@@ -48,8 +48,17 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
+    onShow: function() {
+      var $el = this.$el.find('.body ul.photo_gallery');
+      // debugger;
+      $el.find('.slick-arrow-container').remove();
+      $el.slick('unslick');
+      this.initSlick();
+    },
+
     initSlick: function() {
         //slick init
+        // debugger;
         this.$el.find('.body ul.photo_gallery').slick({
             dots: false,
             arrows: true,
@@ -57,12 +66,13 @@ module.exports = Backbone.View.extend({
             speed: 300,
             fade: false,
             cssEase: 'linear',
-            slidesToShow: 1
+            slidesToShow: 1,
+            adaptiveHeight: true
         });
         this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
         this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
         this.$el.find('button.slick-arrow').text('');
-    },
+      },
 
     openPhotoByShareUrl: function(uuid) {
         var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
@@ -73,16 +83,42 @@ module.exports = Backbone.View.extend({
     },
 
     showShareBlock: function(e) {
+        if (this.animating) return;
+        this.animating = true;
         var $target = $(e.currentTarget),
-        $el = $target.next();
-        $el.slideToggle('slow');
+            $el = $target.next(),
+            visible = $el.is(':visible'),
+            visibleSMS = $el.find('.sms_input_block').is(':visible'),
+            height = 70;
+        if (visible && visibleSMS) {
+            this.$('.sms_input_block').hide();
+            height = 140;
+        }
+        this.changeSlideHeight($el, height);
+        $el.slideToggle('slow', _.bind(function() {
+            this.animating = false;
+        }, this));
     },
 
     showSMSInput: function(e) {
+        if (this.animating) return;
+        this.animating = true;
         var $target = $(e.currentTarget),
-        $el = $target.parent().find('.sms_input_block');
+            $el = $target.parent().find('.sms_input_block');
+        this.changeSlideHeight($el, 70);
         $el.find('input').mask('(000) 000-0000');
-        $el.slideToggle('slow');
+        $el.slideToggle('slow', _.bind(function() {
+            this.animating = false;
+        }, this));
+    },
+
+    changeSlideHeight: function($target, additional) {
+        var $el = $target.parents('.slick-list[aria-live="polite"]'),
+            height = $el.height(),
+            visible = $target.is(':visible');
+        if (visible) additional = -additional;
+        $el.css('transition', '0.3s');
+        $el.height(height + additional + 'px');
     },
 
     getLinks: function(uuid) {
@@ -156,12 +192,15 @@ module.exports = Backbone.View.extend({
     },
 
     onClickSendPhoto: function(e) {
-        var btn = $(e.currentTarget);
+        var btn = $(e.currentTarget),
+            $container = btn.parent();
         popupController.requireLogIn(this.sasl, function() {
             var $el = btn.next();
             btn.slideUp('slow');
             $el.show();
             this.initUploader($el);
+            var height = -($container.find('.photo_contest_upload_image').height() - btn.height());
+            this.changeSlideHeight($el, height);
         }.bind(this));
     },
 
@@ -177,14 +216,20 @@ module.exports = Backbone.View.extend({
                 $(this.element).addClass('added');
             },
             onToolsInitialized: function(){
-                $(this.element).find('.btn').addClass('cmtyx_text_color_1');
-            },
+                $el.find('.dropzone').find('.btn').addClass('cmtyx_text_color_1');
+                var height = -($el.find('.dropzone').height() - 100);
+                this.changeSlideHeight($el, height);
+            }.bind(this),
             onAfterProcessImage: function(){
                 $(this.element).find('.btn').addClass('cmtyx_text_color_1');
-            },
+                var height = 450;
+                this.changeSlideHeight($el, height);
+            }.bind(this),
             onAfterCancel: function() {
-                $(this.element).removeClass('added');
-            }
+                $el.find('.dropzone').removeClass('added');
+                var height = 400;
+                this.changeSlideHeight($el, height);
+            }.bind(this)
         });
     },
 
@@ -224,8 +269,12 @@ module.exports = Backbone.View.extend({
         contestActions.enterPhotoContest(this.sa, this.sl,
             contestUUID, file, message)
             .then(function(result) {
-                $el.slideUp('slow');
-                this.showPrizes($el);
+                $el.slideUp('fast', function() {
+                    $el.next().slideDown('fast', function() {
+
+                    }.bind(this));
+                }.bind(this));
+                // this.showPrizes($el);
                 loader.showFlashMessage('contest entered');
             }.bind(this))
             .fail(function(err){

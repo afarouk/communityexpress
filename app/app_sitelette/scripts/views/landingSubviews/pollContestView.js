@@ -63,7 +63,7 @@ module.exports = Backbone.View.extend({
     },
 
     onShow: function() {
-      var $el = this.$el.find('.body ul');
+      var $el = this.$el.find('.body ul.poll_gallery');
       $el.find('.slick-arrow-container').remove();
       $el.slick('unslick');
       this.initSlick();
@@ -124,11 +124,11 @@ module.exports = Backbone.View.extend({
         }, this));
     },
 
-    changeSlideHeight: function($target, additional) {
+    changeSlideHeight: function($target, additional, add) {
         var $el = $target.parents('.slick-list[aria-live="polite"]'),
             height = $el.height(),
             visible = $target.is(':visible');
-        if (visible) additional = -additional;
+        if (visible && !add) additional = -additional;
         $el.css('transition', '0.3s');
         $el.height(height + additional + 'px');
     },
@@ -195,13 +195,15 @@ module.exports = Backbone.View.extend({
             $container = $target.parent(),
             index = $target.data('index'),
             status = this.poll[index].answerStatus;
-        //tweak for chrome input:checked issue
-        $target.find('input[checked="checked"]').attr('checked', false);
-        //end
+
         if (status.enumText === 'ANSWERED') {
+            $container.parent().find('.contest_prizes').show();
+            $container.parent().find('.prize_block').show();
             this.displayResults($container, this.poll[index]);
-            $container.find('.contest_prizes').show();
-            $container.find('.prize_block').slideDown('slow');
+        } else {
+            //tweak for chrome input:checked issue
+            $target.find('input[checked="checked"]').attr('checked', false);
+            //end
         }
     },
 
@@ -216,16 +218,12 @@ module.exports = Backbone.View.extend({
         popupController.requireLogIn(this.sasl, function() {
             var choise = this.$el.find('input.ansRadioChoice:checked', $container).data('choice');
             console.log(choise);
-            var height = $container.find('.poll_ans_form').find('li').length * 35 - this.$el.find('.submit_poll_button').height();
 
             contestActions.enterPoll(this.sa,this.sl, uuid, choise)
                 .then(function(result) {
                     $container.find('.submit_poll_button').slideUp('slow', _.bind(function() {
-                        $container.find('.contest_prizes').show();
-                        $container.find('.prize_block').show();
-                        var $el = $container.find('.poll_results');
-                        height = height + $container.find('.contest_prizes').height();
-                        this.changeSlideHeight($el, height);
+                        $container.parent().find('.contest_prizes').show();
+                        $container.parent().find('.prize_block').show();
                         this.displayResults($container, result);
                     }, this));
                 }.bind(this))
@@ -246,8 +244,11 @@ module.exports = Backbone.View.extend({
     },
 
     displayResults: function($container, result) {
+        var height,
+            $el = $container.find('.poll_results');
+        if ($el.is(':visible')) return;
+        $el.show();
         $container.find('.poll_ans_form').addClass('answered');
-        $container.find('.poll_results').show();
         var choices = result.choices,
             options = _.extend(jqPlotOptions.options, {height: choices.length * 35}),
             colorChoices = this.getColors();
@@ -264,6 +265,10 @@ module.exports = Backbone.View.extend({
             options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
             options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;
             $.jqplot('pollBar-' + (result.contestUUID || result.uuid), [array], options);
+        
+        height = $el.height() + $container.parent().find('.contest_prizes').outerHeight() - 
+            ($container.find('.submit_poll_button').height() || 0);
+        this.changeSlideHeight($el, height, true);
     },
 
     getPollContests: function() {
