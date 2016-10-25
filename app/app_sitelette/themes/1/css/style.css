@@ -2578,9 +2578,12 @@ li.promotion_block .body {
     width: 100%;
     margin-bottom: 10px;
 }
-.poll_block .body li,
+
 .photo_contest_block .body li {
     margin-bottom: 20px;
+}
+.poll_block .body li {
+    margin-bottom: 5px;
 }
 .poll_block .body li.last,
 .photo_contest_block .body li.last {
