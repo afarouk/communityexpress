@@ -2459,8 +2459,8 @@ li.promotion_block .body {
     top: 17px;
     height: 22px;
     width: 22px;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     z-index: 1;
     border: none;
 }
