@@ -8,74 +8,77 @@
     <ul class="photo_gallery">
         <% _.each(contests, function(photo, index){ %>
             <li class="photo_item" data-uuid="<%= photo.contestUUID %>">
-                <img src="<%= photo.imageURL %>" class="photo_image" data-index="<%= index %>"></img>
-                <span class="contest_task"><%= photo.displayText %></span>
-                <% if (photo.responseStatus.enumText !== "ANSWERED") { %>
-                    <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
-                    <div class="photo_contest_upload_image" data-uuid="<%= photo.contestUUID %>">
-                        <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
-                        <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
-                            <input type="file" name="thumb" />
+                <div class="contest_container">
+                    <div class="photo_block_title"><p><%= photo.displayText %></p></div>
+                    <img src="<%= photo.imageURL %>" class="photo_image" data-index="<%= index %>"></img>
+                    <!-- <span class="contest_task"><%= photo.displayText %></span> -->
+                    <% if (photo.responseStatus.enumText !== "ANSWERED") { %>
+                        <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
+                        <div class="photo_contest_upload_image" data-uuid="<%= photo.contestUUID %>">
+                            <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
+                            <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+                                <input type="file" name="thumb" />
+                            </div>
                         </div>
-                    </div>
-                <% } else { %>
-                    <div class="poll-answered cmtyx_text_color_1">
-                        you've already sent a photo
-                    </div>
-                <% } %>
+                    <% } else { %>
+                        <div class="photo-answered cmtyx_text_color_1">
+                            you've already sent a photo
+                        </div>
+                    <% } %>
 
-                <div class="prizes_container">
-                    <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
-                    <ul>
-                        <% _.each(photo.prizes, function(prize, index){ %>
-                            <li>
-                                <div class="prize_block">
-                                    <div class="ui-grid-a prize_container">
-                                        <div class="ui-block-a">
-                                            <div class="prize_text_block">
-                                                <span class="prize_text"><%= prize.contestPrizeName %></span>
-                                                <span class="prize_condition"><%= prize.displayText %></span>
-                                                <span class="prize_date"><%= prize.quantity %></span>
+                    <div class="prizes_container">
+                        <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
+                        <ul>
+                            <% _.each(photo.prizes, function(prize, index){ %>
+                                <li>
+                                    <div class="prize_block">
+                                        <div class="ui-grid-a prize_container">
+                                            <div class="ui-block-a">
+                                                <div class="prize_text_block">
+                                                    <span class="prize_text"><%= prize.contestPrizeName %></span>
+                                                    <span class="prize_condition"><%= prize.displayText %></span>
+                                                    <span class="prize_date"><%= prize.quantity %></span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-block-b ">
+                                                <img src="<%= prize.imageUrl %>"></img>
                                             </div>
                                         </div>
-                                        <div class="ui-block-b ">
-                                            <img src="<%= prize.imageUrl %>"></img>
-                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        <% }) %>
-                    </ul>
-                </div>
-                <div class="share_btn_block"
-                    uuid="">
-                    <span class="icon share_icon"></span> <span class="text">Share</span>
-                </div>
-                <div class="share_block" data-uuid="<%= photo.contestUUID %>">
-                    <div class="ui-grid-c">
-                        <div class="sms_input_block" data-uuid="<%= photo.contestUUID %>">
-                            <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-                            <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-                        </div>
-                        <div class="ui-block-a text sms_block">
-                            <a href="" class="share_sms cmtyx_text_color_1">
-                                <span class="share_icon sms_icon"></span>
-                            </a>
-                        </div>
-                        <div class="ui-block-b text email_block">
-                            <a href="" class="share_email cmtyx_text_color_1">
-                                <span class="share_icon email_icon"></span>
-                            </a>
-                        </div>
-                        <div class="ui-block-c text facebook_block">
-                            <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-                                <span class="share_icon facebook_icon"></span>
-                            </a>
-                        </div>
-                        <div class="ui-block-d text twitter_block">
-                            <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-                                <span class="share_icon twitter_icon"></span>
-                            </a>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    <div class="share_btn_block"
+                        uuid="">
+                        <span class="icon share_icon"></span> <span class="text">Share</span>
+                    </div>
+                    <div class="share_block" data-uuid="<%= photo.contestUUID %>">
+                        <div class="ui-grid-c">
+                            <div class="sms_input_block" data-uuid="<%= photo.contestUUID %>">
+                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                                <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+                            </div>
+                            <div class="ui-block-a text sms_block">
+                                <a href="" class="share_sms cmtyx_text_color_1">
+                                    <span class="share_icon sms_icon"></span>
+                                </a>
+                            </div>
+                            <div class="ui-block-b text email_block">
+                                <a href="" class="share_email cmtyx_text_color_1">
+                                    <span class="share_icon email_icon"></span>
+                                </a>
+                            </div>
+                            <div class="ui-block-c text facebook_block">
+                                <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                                    <span class="share_icon facebook_icon"></span>
+                                </a>
+                            </div>
+                            <div class="ui-block-d text twitter_block">
+                                <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                                    <span class="share_icon twitter_icon"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
