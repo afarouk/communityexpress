@@ -69,11 +69,11 @@ var PromotionView = Backbone.View.extend({
     if (this.animating) return;
     this.animating = true;
     var $target = $(e.currentTarget),
-    // $el = $target.next(),
-    $el = $target.parent().parent().next(),
-    visible = $el.is(':visible'),
-    visibleSMS = $el.find('.sms_input_block').is(':visible'),
-    height = 50;
+        // $el = $target.next(),
+        $el = $target.parent().parent().next(),
+        visible = $el.is(':visible'),
+        visibleSMS = $el.find('.sms_input_block').is(':visible'),
+        height = 50;
     if (visible && visibleSMS) {
         this.$('.sms_input_block').hide();
         height = 120;
@@ -88,7 +88,7 @@ var PromotionView = Backbone.View.extend({
     if (this.animating) return;
     this.animating = true;
     var $target = $(e.currentTarget),
-    $el = $target.parent().find('.sms_input_block');
+        $el = $target.parent().find('.sms_input_block');
     this.changeSlideHeight($el, 70);
     $el.find('input').mask('(000) 000-0000');
     $el.slideToggle('slow', _.bind(function() {
