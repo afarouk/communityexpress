@@ -1964,11 +1964,52 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .poll_block .poll_ans_form input:focus {
     outline: none;
 }
+.poll_block .poll_ans_form .question_item {
+    min-height: 24px;
+    width: 90%;
+    position: relative;
+    list-style-type: none;
+    float: left;
+}
+.poll_block .poll_ans_form .question_item .question_text {
+    z-index: 1;
+    top: 0;
+    padding-left: 3px;
+    width: 85%;
+    word-wrap: break-word;
+    line-height: 24px;
+    position: relative;
+    margin: 0;
+}
+.poll_block .poll_ans_form .question_item .bar {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left:0;
+    margin: auto;
+}
+.poll_block .poll_ans_form .question_item .bar span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9;
+    padding-right: 3px;
+    line-height: 24px;
+}
+.poll_block .poll_ans_form .question_item .bar .back {
+    position: relative;
+    width: 0;
+    height: 100%;
+    transition: 1.5s;
+}
 .poll_block .ansRadioChoice + label {
     font: 400 14px 'Open Sans', sans-serif;
-    /* padding-left: 20px; */
-    padding-right: 5px;
-    line-height: 17px;
+    width: 10%;
+    float: left;
+    height: 24px;
+    padding: 6px 3px;
 }
 .poll_block .answer_color_container {
     display: inline-block;
@@ -1985,7 +2026,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     display: none;
 }
 #cmtyx_poll_block .poll_ans_form .ui-block-a {
-    width: 90%;
+    width: 100%;
+    padding-top: 0;
 }
 #cmtyx_poll_block .poll_ans_form .ui-block-b {
     width: 10%;
@@ -2008,6 +2050,12 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     display: none;
     padding: 15px 20px 0 20px;
     border-bottom: solid 1px #636363;
+}
+.poll_block .contest_prizes.shown {
+    display: block;
+}
+.poll_block .contest_prizes.shown .prize_block {
+    display: block;
 }
 .poll_block .body .prize_container {
     max-height: 180px;
@@ -2058,6 +2106,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   background : url('images/unchecked-radio.png') no-repeat;
   background-size: cover;
   margin-right: 10px;
+  pointer-events: none;
 }
 
 .poll_block input[checked="checked"] +label > span > span, /* <-- tweak for chrome */

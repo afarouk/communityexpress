@@ -65,7 +65,7 @@ var SignupView = PopupView.extend({
             var text = 'Password does not match the confirm password';
             this.showSignupError('password', text);
             return false;
-        } else if(data.password === '') {
+        } else if (data.password === '') {
             var text = 'Please, enter password';
             this.showSignupError('password', text);
         } else if (data.password.length < 6) {
@@ -79,25 +79,30 @@ var SignupView = PopupView.extend({
     showSignupError: function(error, text) {
         switch (error) {
             case 'password':
-                this.$el.find('.signup_password_error').text(text).slideDown();
+                // this.$el.find('.signup_password_error').text(text).slideDown();
+                this.$el.find('.signup_password_error').text(text).removeClass('hidden');
                 break;
             case 'email':
-                this.$el.find('.signup_email_error').slideDown();
+                // this.$el.find('.signup_email_error').slideDown();
+                this.$el.find('.signup_email_error').removeClass('hidden');
                 break;
             default:
 
         }
         this.$el.find('.signup_error').slideDown();
+        return false;
     },
 
     hideSignupError: function(e) {
         var target = e.target;
         switch (target.type) {
             case 'email':
-                this.$el.find('.signup_email_error').slideUp();
+                // this.$el.find('.signup_email_error').slideUp();
+                this.$el.find('.signup_email_error').addClass('hidden');
                 break;
             case 'password':
-                this.$el.find('.signup_password_error').slideUp();
+                // this.$el.find('.signup_password_error').slideUp();
+                this.$el.find('.signup_password_error').addClass('hidden');
                 break;
             default:
 
@@ -113,25 +118,26 @@ var SignupView = PopupView.extend({
     },
 
     _onSignupSuccess: function(response) {
-        loader.showFlashMessage( 'successfully signed up as ' + response.username );
-        setTimeout(this.callback, 1000);
+        loader.hide();
+        var text = 'successfully signed up as ' + response.username;
         this.shut();
+        this.$el.on('popupafterclose', function() {
+            this.parent.textPopup({text: text}, this.callback);
+        }.bind(this));
     },
 
     _onSignupError: function(e) {
+        loader.hide();
         var text = h().getErrorMessage(e, 'Error signin up'),
             callback = this.openSignup;
         this.shut();
-        this.$el.on('popupafterclose', function () {
-            this.parent.openSubview('textPopup', {
-                text: text,
-                color: '#ff0000'
-            }, callback);
+        this.$el.on('popupafterclose', function() {
+            this.parent.textPopup({text: text}, callback);
         }.bind(this));
     },
 
     openSignup: function() {
-        this.openSubview('signup');
+        this.signup();
     }
 
 });
