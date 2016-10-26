@@ -1857,14 +1857,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .events-buybutton.ui-btn:focus {
     box-shadow: none;
 }
-.event_item_buttons {
-    width: 50%;
+.event_item_buttons .share_btn_block {
+    margin-bottom: 20px;
 }
 .events_block .share_btn_block {
     text-align: center;
-    width: 100%;
-    position: relative;
-    bottom: 34px;
 }
 
 .share_btn_block {
@@ -1899,7 +1896,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .gallery img {
     width: 100%;
-    max-height: 250px;
+    height: 100%;
 }
 
 .gallery .gallery_item .gallery_item_buttons {
@@ -2020,7 +2017,6 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .gallery_block .share_btn_block,
 .loyalty_program_block .share_btn_block,
 .poll_block .share_btn_block,
-.promotion_block .share_btn_block,
 .photo_contest_block .share_btn_block {
     text-align: center;
     width: 100%;
@@ -2557,17 +2553,36 @@ li.promotion_block .body {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-.promotions-buybutton.ui-btn {
+/* .promotions-buybutton.ui-btn {
     width: 90%;
     margin: 10px auto;
-}
+} */
 .promotions-buybutton.ui-btn:hover {
     color: #fff;
 }
 .promotions-buybutton.ui-btn:focus {
     box-shadow: none;
 }
+.promotion_title {
 
+}
+.promotions-originalprice,
+.promotions-promoprice {
+
+}
+.promotions-originalprice span {
+    text-decoration: line-through;
+}
+.promotion_item_buttons .share_btn_block {
+    text-align: center;
+}
+.ui-grid-a.promotion_item_buttons .share_btn_block {
+    margin-top: 10px;
+}
+.promotions-buybutton.ui-btn {
+    width: 90%;
+    margin: 0 30px 20px 0;
+}
 /********************** PHOTO CONTEST BLOCK ***********************/
 .photo_contest_block .header {
     padding-left: 40px !important;

@@ -45,7 +45,8 @@ var GalleryView = Backbone.View.extend({
         speed: 300,
         fade: false,
         cssEase: 'linear',
-        slidesToShow: 1
+        slidesToShow: 1,
+        adaptiveHeight: true
     });
     this.$el.find('button.slick-arrow.slick-prev').wrap( "<div class='slick-arrow-container left'></div>" );
     this.$el.find('button.slick-arrow.slick-next').wrap( "<div class='slick-arrow-container right'></div>" );
