@@ -1,7 +1,7 @@
 <body>
 
-	<audio id="addtocart" src="themes/1/tempSound/addToCart.wav" autostart="false" ></audio>
-	<audio id="removefromcart" src="themes/1/tempSound/removeFromCart.wav" autostart="false" ></audio>
+	<audio id="addtocart" src="themes/3/tempSound/addToCart.wav" autostart="false" ></audio>
+	<audio id="removefromcart" src="themes/3/tempSound/removeFromCart.wav" autostart="false" ></audio>
 
 	<div class="popup_container"></div>
 
@@ -15,7 +15,7 @@
 		</div>
 		<div class="logo_container"
 			style="background-color: ${sasl.themeColors.background}">
-			<!--  <img src="themes/1/placeholder_images/ZAZA-Grill.png" /> -->
+			<!--  <img src="themes/3/placeholder_images/ZAZA-Grill.png" /> -->
 			<img src="${bannerImageURL}" />
 		</div>
 	</div>
@@ -55,7 +55,7 @@
 		<div class="home_body p-0">
 			<ul>
 				<li id="cmtyx_welcome_block">
-					<!-- <img src="themes/1/placeholder_images/welocome_img.png"></img> -->
+					<!-- <img src="themes/3/placeholder_images/welocome_img.png"></img> -->
 					<#if notification??>
 					<div class="breaking_news">
 						<span class="news_line">${notification.notificationBody}</span>
@@ -64,7 +64,7 @@
 	  			    <#if (medias)?has_content >
 					   <img src="${medias[0].URL}" />
 					<#else>
-					   <img src="themes/1/placeholder_images/welocome_img.png"></img>
+					   <img src="themes/3/placeholder_images/welocome_img.png"></img>
         			</#if>
 
 
@@ -94,7 +94,7 @@
 			</ul>
 			<!--
 			 <div style="text-align:center; margin: auto auto; background-color:white; height: 120px; width: 355px;">
-	          	<a href="https://www.facebook.com/dialog/oauth?client_id=630212017138999&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fapptsvc%2Frest%2Fext%2FfacebookLogin&scope=email"> <img style="margin-top: 138px;" src="themes/1/placeholder_images/facebookloginbutton.png" />
+	          	<a href="https://www.facebook.com/dialog/oauth?client_id=630212017138999&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fapptsvc%2Frest%2Fext%2FfacebookLogin&scope=email"> <img style="margin-top: 138px;" src="themes/3/placeholder_images/facebookloginbutton.png" />
 	          	</a>
 	         </div>
 	        -->
@@ -336,7 +336,7 @@
 					</div>
 					<div class="body">
 						<img class="poll_image"
-							src="themes/1/placeholder_images/6359862041401967861409225263_coffee.png"></img>
+							src="themes/3/placeholder_images/6359862041401967861409225263_coffee.png"></img>
 						<span class="poll_displaytext">Our coffee is awesome</span>
 
 						<!-- BEGIN place holder, will have to be removed. It must be geenrated dynamically -->
@@ -379,7 +379,7 @@
 											</div>
 										</div>
 										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
+											<img src="themes/3/placeholder_images/burger.png"></img>
 										</div>
 									</div>
 								</div>
@@ -395,7 +395,7 @@
 											</div>
 										</div>
 										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
+											<img src="themes/3/placeholder_images/burger.png"></img>
 										</div>
 									</div>
 								</div>
@@ -568,7 +568,7 @@
 							class="collapse_btn">&#9650;</span>
 					</div>
 					<div class="body">
-						<img src="themes/1/placeholder_images/special.png"></img> <span
+						<img src="themes/3/placeholder_images/special.png"></img> <span
 							class="contest_task">Send us a picture of your dog,
 							running!</span>
 						<button
@@ -588,7 +588,7 @@
 											</div>
 										</div>
 										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
+											<img src="themes/3/placeholder_images/burger.png"></img>
 										</div>
 									</div>
 								</div>
@@ -604,7 +604,7 @@
 											</div>
 										</div>
 										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
+											<img src="themes/3/placeholder_images/burger.png"></img>
 										</div>
 									</div>
 								</div>
@@ -620,7 +620,7 @@
 											</div>
 										</div>
 										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
+											<img src="themes/3/placeholder_images/burger.png"></img>
 										</div>
 									</div>
 								</div>
@@ -641,7 +641,7 @@
 	 						<#if videoNeedsPlaceholder>
 			                    <div id="externalvideo${media.idMedia}" class="embedded_videos external" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
 			                      <a href="#">
-			                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
+			                        <img src="themes/3/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
 			                      </a>
 			                    </div>
 			                    <div class="video_item_message">
@@ -1085,13 +1085,13 @@
 			<div class="select_picture_container">
 				<label data-content="Title">Select a picture</label>
 				<div class="select_picture_gallery">
-					<img src="themes/1/placeholder_images/pexels-photo-59523.png"
+					<img src="themes/3/placeholder_images/pexels-photo-59523.png"
 						alt=""> <img
-						src="themes/1/placeholder_images/6359862041401967861409225263_coffee.png"
-						alt=""> <img src="themes/1/placeholder_images/burger.png"
-						alt=""> <img src="themes/1/placeholder_images/special.png"
+						src="themes/3/placeholder_images/6359862041401967861409225263_coffee.png"
+						alt=""> <img src="themes/3/placeholder_images/burger.png"
+						alt=""> <img src="themes/3/placeholder_images/special.png"
 						alt=""> <img
-						src="themes/1/placeholder_images/Salad_platter.png" alt="">
+						src="themes/3/placeholder_images/Salad_platter.png" alt="">
 				</div>
 				<div class="btn_container">
 					or
