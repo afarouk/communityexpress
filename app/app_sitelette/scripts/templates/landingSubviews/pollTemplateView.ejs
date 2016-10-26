@@ -7,25 +7,34 @@
 </div>
 <div class="body">
     <ul class="poll_gallery">
-        <% _.each(contests, function(poll, index){ %>
+        <% _.each(contests, function(poll, poll_index){ %>
             <li class="poll_item" data-uuid="<%= poll.contestUUID %>">
                 <div class="contest_container">
                     <div class="poll_block_title">Answer questions - <br>win the prize</div>
                     <img class="poll_image" src="<%= poll.imageURL %>"></img>
                     <span class="poll_displaytext"><%= poll.displayText %>?</span>
 
-                    <ul class="poll_ans_form <% if (poll.answerStatus.enumText === 'ANSWERED') { %>answered<% } %>" data-index="<%= index %>">
+                    <ul class="poll_ans_form <% if (poll.answerStatus.enumText === 'ANSWERED') { %>answered<% } %>" data-index="<%= poll_index %>">
                         <% _.each(poll.choices, function(choice, index){ %>
                             <li>
                                 <div class="ui-grid-a">
                                     <div class="ui-block-a">
-                                        <input type="radio" name="radio-choice-ans" id="ans_<%= index %>-<%= poll.contestUUID %>" data-uuid="<%= poll.contestUUID %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (poll.answerStatus.enumText === 'ANSWERED') {
+                                        <input type="radio" name="radio-choice-ans" data-poll-index="<%= poll_index %>" id="ans_<%= index %>-<%= poll.contestUUID %>" data-uuid="<%= poll.contestUUID %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (poll.answerStatus.enumText === 'ANSWERED') {
                                             if (poll.answerStatus.id === index + 1) {%> checked="checked"<% } %>
                                         <% } else if ( index === 0 ) { %>checked='checked'<% } %>>
-                                        <label for="ans_<%= index %>-<%= poll.contestUUID %>"><span><span></span></span><%= choice.displayText %> </label>
-                                    </div>
-                                    <div class="ui-block-b">
-                                        <span class="answer_color_container cmtyx_color_<%= (index % 4) + 1 %>"></span>
+                                        <label for="ans_<%= index %>-<%= poll.contestUUID %>"><span><span></span></span></label>
+                                        <div class="question_item">
+                                            <div class="bar">
+                                                <% if (poll.answerStatus.enumText !== 'ANSWERED') { %>
+                                                    <div class="back cmtyx_color_<%= (index % 4) + 1 %>"></div>
+                                                    <span class="percent"></span>
+                                                <% } else { %>
+                                                    <div class="back cmtyx_color_<%= (index % 4) + 1 %>" style="width: <%= Math.floor(choice.percentOfTotalResponses) %>%"></div>
+                                                    <span class="percent"><%= Math.floor(choice.percentOfTotalResponses) %>%</span>
+                                                <% } %>
+                                            </div>
+                                            <p class="question_text"><%= choice.displayText %></p>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -34,10 +43,10 @@
                     <% if (poll.answerStatus.enumText !== 'ANSWERED') { %>
                         <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all" data-uuid="<%= poll.contestUUID %>">submit</button>
                     <% } else { %>
-                        <div class="poll-answered">
+                        <!-- <div class="poll-answered">
                             <span class="alert_sign_icon"></span>
                             You have already answered this question
-                        </div>
+                        </div> -->
                     <% } %>
                     <div class="poll_results answerBar jqplot-target" id="pollBar-<%= poll.contestUUID %>"></div>
                 </div>
@@ -48,7 +57,7 @@
                     </div>
                     <div class="ui-block-b">All entries are entered into our mini sweepstakes!</div>
                 </div>
-                <ul class="contest_prizes">
+                <ul class="contest_prizes <% if (poll.answerStatus.enumText === 'ANSWERED') { %>shown<% } %>">
                     <% _.each(poll.prizes, function(prize, index){ %>
                         <li>
                             <div class="prize_block">

@@ -270,6 +270,10 @@ button.ui-btn.next_btn:active,
 a.ui-btn.ui-btn-active:focus {
     box-shadow: none;
 }
+input:focus,
+textarea:focus {
+    outline: none;
+}
 .ui-page-theme-a a.ui-btn,
 .common_footer a.ui-btn {
     background-color: transparent;
@@ -1857,14 +1861,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .events-buybutton.ui-btn:focus {
     box-shadow: none;
 }
-.event_item_buttons {
-    width: 50%;
+.event_item_buttons .share_btn_block {
+    margin-bottom: 20px;
 }
 .events_block .share_btn_block {
     text-align: center;
-    width: 100%;
-    position: relative;
-    bottom: 34px;
 }
 
 .share_btn_block {
@@ -1899,7 +1900,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .gallery img {
     width: 100%;
-    max-height: 250px;
+    height: 100%;
 }
 
 .gallery .gallery_item .gallery_item_buttons {
@@ -1963,11 +1964,52 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .poll_block .poll_ans_form input:focus {
     outline: none;
 }
+.poll_block .poll_ans_form .question_item {
+    min-height: 24px;
+    width: 90%;
+    position: relative;
+    list-style-type: none;
+    float: left;
+}
+.poll_block .poll_ans_form .question_item .question_text {
+    z-index: 1;
+    top: 0;
+    padding-left: 3px;
+    width: 85%;
+    word-wrap: break-word;
+    line-height: 24px;
+    position: relative;
+    margin: 0;
+}
+.poll_block .poll_ans_form .question_item .bar {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left:0;
+    margin: auto;
+}
+.poll_block .poll_ans_form .question_item .bar span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9;
+    padding-right: 3px;
+    line-height: 24px;
+}
+.poll_block .poll_ans_form .question_item .bar .back {
+    position: relative;
+    width: 0;
+    height: 100%;
+    transition: 1.5s;
+}
 .poll_block .ansRadioChoice + label {
     font: 400 14px 'Open Sans', sans-serif;
-    /* padding-left: 20px; */
-    padding-right: 5px;
-    line-height: 17px;
+    width: 10%;
+    float: left;
+    height: 24px;
+    padding: 6px 3px;
 }
 .poll_block .answer_color_container {
     display: inline-block;
@@ -1984,7 +2026,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     display: none;
 }
 #cmtyx_poll_block .poll_ans_form .ui-block-a {
-    width: 90%;
+    width: 100%;
+    padding-top: 0;
 }
 #cmtyx_poll_block .poll_ans_form .ui-block-b {
     width: 10%;
@@ -2008,6 +2051,12 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding: 15px 20px 0 20px;
     border-bottom: solid 1px #636363;
 }
+.poll_block .contest_prizes.shown {
+    display: block;
+}
+.poll_block .contest_prizes.shown .prize_block {
+    display: block;
+}
 .poll_block .body .prize_container {
     max-height: 180px;
 }
@@ -2020,7 +2069,6 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .gallery_block .share_btn_block,
 .loyalty_program_block .share_btn_block,
 .poll_block .share_btn_block,
-.promotion_block .share_btn_block,
 .photo_contest_block .share_btn_block {
     text-align: center;
     width: 100%;
@@ -2058,6 +2106,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   background : url('images/unchecked-radio.png') no-repeat;
   background-size: cover;
   margin-right: 10px;
+  pointer-events: none;
 }
 
 .poll_block input[checked="checked"] +label > span > span, /* <-- tweak for chrome */
@@ -2430,17 +2479,9 @@ li.promotion_block .body {
     color: #fff;
 }
 .promotion_block .promotion_details_container {
-    padding: 20px;
+    padding: 20px 10px;
     border-bottom: solid 1px #636363;
     margin-bottom: 20px;
-}
-.promotion_block .promotion_title,
-.promotion_block .promotion_description {
-    font: 400 14px/21px 'Open Sans', sans-serif;
-    color: #ececec;
-}
-.promotion_block .promotion_title {
-    margin-bottom: 10px;
 }
 .promotion_block .promotion_type {
     padding: 20px;
@@ -2557,23 +2598,53 @@ li.promotion_block .body {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-.promotions-buybutton.ui-btn {
+/* .promotions-buybutton.ui-btn {
     width: 90%;
     margin: 10px auto;
+} */
+.promotion_block .promotion_title {
+    text-transform: uppercase;
+    font: 700 16px 'Open Sans', sans-serif;
+    color: #ddd;
+    display: inline-block;
+    white-space: normal;
+    margin-bottom: 10px;
 }
-.promotions-buybutton.ui-btn:hover {
-    color: #fff;
+.promotion_block .promotions-originalprice,
+.promotion_block .promotions-promoprice {
+    font: 300 14px 'Open Sans', sans-serif;
+    color: #dddddd;
 }
-.promotions-buybutton.ui-btn:focus {
-    box-shadow: none;
+.promotions-originalprice {
+    margin-bottom: 5px;
 }
-
+.promotion_block .promotions-originalprice span {
+    text-decoration: line-through;
+    font-weight: 700;
+}
+.promotion_block .promotions-promoprice {
+    margin-bottom: 10px;
+}
+.promotion_block .promotion_description {
+    font: 300 12px 'Open Sans', sans-serif;
+    color: #dddddd;
+}
+.promotion_block .promotion_item_buttons .share_btn_block {
+    text-align: center;
+}
+.promotion_block .ui-grid-a.promotion_item_buttons .share_btn_block {
+    margin-top: 10px;
+}
+.promotion_block .promotions-buybutton.ui-btn {
+    width: 90%;
+    margin: 0 30px 20px 0;
+}
 /********************** PHOTO CONTEST BLOCK ***********************/
 .photo_contest_block .header {
     padding-left: 40px !important;
 }
 .photo_contest_block img {
-    max-height: 230px;
+    /* max-height: 230px; */
     padding: 0;
     width: 100%;
     margin-bottom: 10px;
@@ -3056,15 +3127,19 @@ li.driving_directions_block {
 }
 #cmntyex_chat .footer_panel .ui-block-a.input_container {
     width: 75%;
-    padding: 5px 10px;
+    padding: 4px 10px;
 }
 #cmntyex_chat .footer_panel .ui-block-a.input_container input {
     width: 100%;
     background-color: transparent;
     border: solid 1px #6b6b6b;
     border-radius: 2px;
-    padding: 5px;
+    padding: 4px;
     color: #ababab;
+    font-size: 16px;
+}
+#cmntyex_chat .footer_panel .ui-block-a.input_container input:focus {
+    outline: none;
 }
 #cmntyex_chat .footer_panel .ui-block-b.icons_container {
     width: 25%;
@@ -3739,7 +3814,12 @@ input[name=promocode] {
     padding: 5px;
     color: #ababab;
     resize: none;
+    font-size: 16px;
 }
+
+/* .new_review_body textarea:focus {
+    outline: none;
+} */
 
 
 #upload_photo .upload_photo {

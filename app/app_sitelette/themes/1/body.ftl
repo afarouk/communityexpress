@@ -224,19 +224,28 @@
 					                            </table>
 											</div>
 										</div>
-			                            <#if event.buyable!false>
-				                            <div class="events-buybutton-container">
-		                                         <button class="events-buybutton" data-uuid="${event.uuid}">
-		                                           Buy</button>
-				                            </div>
-                                        </#if>
 
-										<div class="event_item_buttons">
-											<div class="share_btn_block"
-												uuid="${event.uuid}">
-												<span class="icon share_icon"></span> <span class="text">Share</span>
+
+										<#if event.buyable!false>
+											<div class="ui-grid-a event_item_buttons">
+												<div class="ui-block-a share_btn_block"
+													uuid="${event.uuid}">
+													<span class="icon share_icon"></span> <span class="text">Share</span>
+												</div>
+												<div class="ui-block-b "
+													uuid="${event.uuid}">
+					                                  <button class="events-buybutton" data-uuid="${event.uuid}">
+		                                           		Buy</button>
+												</div>
 											</div>
-										</div>
+										<#else>
+											<div class="ui-grid-solo event_item_buttons">
+												<div class="ui-block-a share_btn_block"
+													uuid="${event.uuid}">
+													<span class="icon share_icon"></span> <span class="text">Share</span>
+												</div>
+											</div>
+			                            </#if>
 
 										<div class="ui-grid-c events-share-block" data-uuid="${event.uuid}">
 											<div class="sms_input_block">
@@ -489,7 +498,7 @@
 				</li>
 				<li id="cmtyx_promotion_block" class="promotion_block">
 					<div class="header cmtyx_color_3">
-    					<div id="flag"><span>free</span></div>
+    					<div id="flag"><span>sale</span></div>
 						<span class="title">Promotion</span> <span class="collapse_btn">&#9650;</span>
 					</div>
 					<div class="body">
@@ -503,34 +512,41 @@
 									<div class="promotion_details_container">
 										<div class="promotion_title">${promotion.title}</div>
 
-										<#if promotion.buyable!false>
-		                                  <button class="promotions-buybutton" data-uuid="${promotion.uuid}">
-		                                   Buy</button>
-	                                    </#if>
 
 	                                    <#if promotion.buyable!false>
 		                                  <div class="promotions-originalprice" >
-		                                   Regular price: ${promotion.originalPrice}</div>
+		                                   Regular price: <span>$${promotion.originalPrice}</span></div>
 	                                    </#if>
 
 	                                    <#if promotion.buyable!false>
 		                                  <div class="promotions-promoprice">
-		                                   Special price: ${promotion.promoPrice}</div>
+		                                   Special price: <span class="cmtyx_text_color_1">$${promotion.promoPrice}</span></div>
 	                                    </#if>
 
-
 										<div class="promotion_description">${promotion.message}</div>
+
 									</div>
+									<#if promotion.buyable!false>
 									<div class="ui-grid-a promotion_item_buttons">
-										<div class="ui-block-a like_btn_block"
+										<div class="ui-block-a share_btn_block"
 											uuid="${promotion.uuid}">
-											<span class="icon like_icon"></span> <span class="text">Like</span>
+											<span class="icon share_icon"></span> <span class="text">Share</span>
 										</div>
-										<div class="ui-block-b share_btn_block"
+										<div class="ui-block-b "
+											uuid="${promotion.uuid}">
+			                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-uuid="${promotion.uuid}">
+			                                   Buy</button>
+										</div>
+									</div>
+									<#else>
+									<div class="ui-grid-solo promotion_item_buttons">
+										<div class="ui-block-a share_btn_block"
 											uuid="${promotion.uuid}">
 											<span class="icon share_icon"></span> <span class="text">Share</span>
 										</div>
 									</div>
+		                            </#if>
+										
 								</div>
 								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
 									<div class="sms_input_block">

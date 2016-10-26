@@ -28,6 +28,7 @@ var SigninView = PopupView.extend({
         this.$el.attr('id', 'cmntyex_signin_panel');
 
         this.addEvents({
+            'focus input': 'hideLoginError',
             'click .submit_button': 'submitForm',
             'click .signup_button': 'openSignupView',
             'click .forgot_password_button': 'forgotPassword',
@@ -56,7 +57,7 @@ var SigninView = PopupView.extend({
                 if (response.success) {
                     // loader.showFlashMessage('Logged with facebook');
                     this.$el.on('popupafterclose', function () {
-                        this.parent.textPopup({text: 'Successfully Logged in with FB Login'}, 
+                        this.parent.textPopup({text: 'Successfully Logged in with FB Login'},
                             this.callback);
                     }.bind(this));
                     loader.hide();
@@ -83,6 +84,8 @@ var SigninView = PopupView.extend({
     },
 
     submitForm: function() {
+        var data = this.getFormData();
+        if (!this.isValid(data)) return;
         loader.show();
         sessionActions.startSession(this.val().username, this.val().password)
             .then(function(response){
@@ -104,12 +107,32 @@ var SigninView = PopupView.extend({
         return false;
     },
 
+    getFormData: function() {
+        var values = {};
+        $.each(this.$el.find('form').serializeArray(), function(i, field) {
+            values[field.name] = field.value;
+        });
+        return values;
+    },
+
+    isValid: function(data) {
+        if (data.username === '' || data.password === '' || data.password.length < 6) {
+            this.showLoginError();
+            return false;
+        }
+        return true;
+    },
+
+    openSignin: function() {
+        this.signin();
+    },
+
     showLoginError: function() {
-        this.$el.find('.login_error').show();
+        this.$el.find('.login_error').show().removeClass('hidden');
     },
 
     hideLoginError: function() {
-        this.$el.find('.login_error').hide();
+        this.$el.find('.login_error').hide().addClass('hidden');
     },
 
     val: function () {
