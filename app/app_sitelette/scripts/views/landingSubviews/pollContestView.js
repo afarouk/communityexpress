@@ -248,7 +248,7 @@ module.exports = Backbone.View.extend({
         $container.parent().find('.prize_block').show();
         $questions.find('li').each(function(index, element){
             var choice = result.choices[index],
-                percent = Math.floor(choice.percentOfTotalResponses),
+                percent = Math.round(choice.percentOfTotalResponses),
                 $el = $(element),
                 $bar = $el.find('.question_item .bar');
             $bar.find('.percent').text(percent + '%');
