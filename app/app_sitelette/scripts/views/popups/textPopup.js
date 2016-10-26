@@ -18,9 +18,9 @@ var TextPopup = PopupView.extend({
         this.callback = options.callback || function () {};
 
         this.addEvents({
-            'click .confirmation_button': 'triggerCallback'
+            'click .confirmation_button': 'shut'
         });
-        this.listenTo(this, 'closed', this.callback, this);
+        this.listenTo(this, 'closed', this.triggerCallback, this);
     },
 
     render: function () {
@@ -53,10 +53,7 @@ var TextPopup = PopupView.extend({
     },
 
     triggerCallback: function() {
-        this.shut();
-        this.$el.on('popupafterclose', function () {
-            setTimeout(this.callback.bind(this.options.parent), 0);
-        }.bind(this));
+        setTimeout(this.callback.bind(this.options.parent), 0);
     },
 
     selectText: function () {
