@@ -270,6 +270,10 @@ button.ui-btn.next_btn:active,
 a.ui-btn.ui-btn-active:focus {
     box-shadow: none;
 }
+input:focus,
+textarea:focus {
+    outline: none;
+}
 .ui-page-theme-a a.ui-btn,
 .common_footer a.ui-btn {
     background-color: transparent;
@@ -2588,7 +2592,7 @@ li.promotion_block .body {
     padding-left: 40px !important;
 }
 .photo_contest_block img {
-    max-height: 230px;
+    /* max-height: 230px; */
     padding: 0;
     width: 100%;
     margin-bottom: 10px;
@@ -3071,15 +3075,19 @@ li.driving_directions_block {
 }
 #cmntyex_chat .footer_panel .ui-block-a.input_container {
     width: 75%;
-    padding: 5px 10px;
+    padding: 4px 10px;
 }
 #cmntyex_chat .footer_panel .ui-block-a.input_container input {
     width: 100%;
     background-color: transparent;
     border: solid 1px #6b6b6b;
     border-radius: 2px;
-    padding: 5px;
+    padding: 4px;
     color: #ababab;
+    font-size: 16px;
+}
+#cmntyex_chat .footer_panel .ui-block-a.input_container input:focus {
+    outline: none;
 }
 #cmntyex_chat .footer_panel .ui-block-b.icons_container {
     width: 25%;
@@ -3754,7 +3762,12 @@ input[name=promocode] {
     padding: 5px;
     color: #ababab;
     resize: none;
+    font-size: 16px;
 }
+
+/* .new_review_body textarea:focus {
+    outline: none;
+} */
 
 
 #upload_photo .upload_photo {
