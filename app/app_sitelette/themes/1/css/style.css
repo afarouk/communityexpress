@@ -112,7 +112,7 @@ body {
 }
 #cmtyx_landingView.ui-page {
     padding-top: 45px;
-    padding-bottom: 0;
+    padding-bottom: 13px;
 }
 #address.ui-page,
 #shipping_page.ui-page,
