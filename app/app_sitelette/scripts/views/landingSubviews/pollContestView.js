@@ -25,7 +25,7 @@ module.exports = Backbone.View.extend({
     events: {
         'click .header': 'toggleCollapse',
         'click .submit_poll_button': 'submitPoll',
-        'click .poll_ans_form': 'checkIfAnswered',
+        'change .poll_ans_form input': 'checkIfAnswered',
         'click .share_btn_block': 'showShareBlock',
         'click .sms_block': 'showSMSInput',
         'click .sms_send_button': 'onSendSMS'
@@ -192,17 +192,15 @@ module.exports = Backbone.View.extend({
 
     checkIfAnswered: function(e) {
         var $target = $(e.currentTarget),
-            $container = $target.parent(),
-            index = $target.data('index'),
+            index = $target.data('poll-index'),
             status = this.poll[index].answerStatus;
-
         if (status.enumText === 'ANSWERED') {
-            $container.parent().find('.contest_prizes').show();
-            $container.parent().find('.prize_block').show();
-            this.displayResults($container, this.poll[index]);
+            // $container.parent().find('.contest_prizes').show();
+            // $container.parent().find('.prize_block').show();
+            // this.displayResults($container, this.poll[index]);
         } else {
             //tweak for chrome input:checked issue
-            $target.find('input[checked="checked"]').attr('checked', false);
+            $target.parents('.poll_ans_form').find('input[checked="checked"]').attr('checked', false);
             //end
         }
     },
@@ -222,8 +220,6 @@ module.exports = Backbone.View.extend({
             contestActions.enterPoll(this.sa,this.sl, uuid, choise)
                 .then(function(result) {
                     $container.find('.submit_poll_button').slideUp('slow', _.bind(function() {
-                        $container.parent().find('.contest_prizes').show();
-                        $container.parent().find('.prize_block').show();
                         this.displayResults($container, result);
                     }, this));
                 }.bind(this))
@@ -245,30 +241,37 @@ module.exports = Backbone.View.extend({
 
     displayResults: function($container, result) {
         var height,
-            $el = $container.find('.poll_results');
-        if ($el.is(':visible')) return;
-        $el.show();
-        $container.find('.poll_ans_form').addClass('answered');
-        var choices = result.choices,
-            options = _.extend(jqPlotOptions.options, {height: choices.length * 35}),
-            colorChoices = this.getColors();
+            $questions = $container.find('.poll_ans_form');
 
-            var array = [], a = [], b = [];
-            _.each(choices, function(choice, index) {
-                var reversedIndex = choices.length - index;
-                options.axes.yaxis.ticks[reversedIndex - 1] = Math.round(choice.percentOfTotalResponses) + '%';
-                options.seriesColors[index] = colorChoices[index];
-                array.push([choice.entryCountForThisChoice, reversedIndex]);
-            });
+        $questions.addClass('answered');
+        $container.parent().find('.contest_prizes').show();
+        $container.parent().find('.prize_block').show();
+        $questions.find('li').each(function(index, element){
+            var choice = result.choices[index],
+                percent = Math.floor(choice.percentOfTotalResponses),
+                $el = $(element),
+                $bar = $el.find('.question_item .bar');
+            $bar.find('.percent').text(percent + '%');
+            $bar.find('.back').css('width', percent + '%');
+        });
+        // var choices = result.choices,
+        //     options = _.extend(jqPlotOptions.options, {height: choices.length * 35}),
+        //     colorChoices = this.getColors();
 
-            options.seriesDefaults.renderer = $.jqplot.BarRenderer;
-            options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
-            options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;
-            $.jqplot('pollBar-' + (result.contestUUID || result.uuid), [array], options);
-        
-        height = $el.height() + $container.parent().find('.contest_prizes').outerHeight() - 
-            ($container.find('.submit_poll_button').height() || 0);
-        this.changeSlideHeight($el, height, true);
+        //     var array = [], a = [], b = [];
+        //     _.each(choices, function(choice, index) {
+        //         var reversedIndex = choices.length - index;
+        //         options.axes.yaxis.ticks[reversedIndex - 1] = Math.round(choice.percentOfTotalResponses) + '%';
+        //         options.seriesColors[index] = colorChoices[index];
+        //         array.push([choice.entryCountForThisChoice, reversedIndex]);
+        //     });
+
+        //     options.seriesDefaults.renderer = $.jqplot.BarRenderer;
+        //     options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
+        //     options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;
+        //     $.jqplot('pollBar-' + (result.contestUUID || result.uuid), [array], options);
+        height = $container.parent().find('.contest_prizes').height() - 30;
+        this.changeSlideHeight($container, height, true);
     },
 
     getPollContests: function() {
