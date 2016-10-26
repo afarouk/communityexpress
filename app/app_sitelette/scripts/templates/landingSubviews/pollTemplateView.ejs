@@ -22,11 +22,18 @@
                                         <input type="radio" name="radio-choice-ans" id="ans_<%= index %>-<%= poll.contestUUID %>" data-uuid="<%= poll.contestUUID %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (poll.answerStatus.enumText === 'ANSWERED') {
                                             if (poll.answerStatus.id === index + 1) {%> checked="checked"<% } %>
                                         <% } else if ( index === 0 ) { %>checked='checked'<% } %>>
-                                        <label for="ans_<%= index %>-<%= poll.contestUUID %>"><span><span></span></span><%= choice.displayText %> </label>
+                                        <label for="ans_<%= index %>-<%= poll.contestUUID %>"><span><span></span></span></label>
                                     </div>
-                                    <div class="ui-block-b">
+                                    <div class="question_item">
+                                      <div class="bar">
+                                        <div class="back cmtyx_color_<%= (index % 4) + 1 %>"></div>
+                                        <span>75%</span>
+                                      </div>
+                                      <span class="question_text">question 1</span>
+                                    </div>
+                                    <!-- <div class="ui-block-b">
                                         <span class="answer_color_container cmtyx_color_<%= (index % 4) + 1 %>"></span>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </li>
                         <% }) %>
