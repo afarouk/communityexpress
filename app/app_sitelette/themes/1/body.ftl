@@ -137,7 +137,7 @@
 										</div>
 
 
-										<#if promotion.buyable!false>
+										<#if event.buyable!false>
 											<div class="ui-grid-a event_item_buttons">
 												<div class="ui-block-a share_btn_block"
 													uuid="${promotion.uuid}">
@@ -157,22 +157,6 @@
 												</div>
 											</div>
 			                            </#if>
-										
-
-
-			                            <!-- <#if event.buyable!false>
-				                            <div class="events-buybutton-container">
-		                                         <button class="events-buybutton" data-uuid="${event.uuid}">
-		                                           Buy</button>
-				                            </div>
-                                        </#if>
-
-										<div class="event_item_buttons">
-											<div class="share_btn_block"
-												uuid="${event.uuid}">
-												<span class="icon share_icon"></span> <span class="text">Share</span>
-											</div>
-										</div> -->
 
 										<div class="ui-grid-c events-share-block" data-uuid="${event.uuid}">
 											<div class="sms_input_block">
@@ -425,7 +409,7 @@
 				</li>
 				<li id="cmtyx_promotion_block" class="promotion_block">
 					<div class="header cmtyx_color_3">
-    					<div id="flag"><span>free</span></div>
+    					<div id="flag"><span>sale</span></div>
 						<span class="title">Promotion</span> <span class="collapse_btn">&#9650;</span>
 					</div>
 					<div class="body">
@@ -442,12 +426,12 @@
 
 	                                    <#if promotion.buyable!false>
 		                                  <div class="promotions-originalprice" >
-		                                   Regular price: <span>${promotion.originalPrice}</span></div>
+		                                   Regular price: <span>$${promotion.originalPrice}</span></div>
 	                                    </#if>
 
 	                                    <#if promotion.buyable!false>
 		                                  <div class="promotions-promoprice">
-		                                   Special price: <span class="cmtyx_text_color_1">${promotion.promoPrice}</span></div>
+		                                   Special price: <span class="cmtyx_text_color_1">$${promotion.promoPrice}</span></div>
 	                                    </#if>
 
 										<div class="promotion_description">${promotion.message}</div>
