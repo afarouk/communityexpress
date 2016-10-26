@@ -2615,6 +2615,9 @@ li.promotion_block .body {
     font: 300 14px 'Open Sans', sans-serif;
     color: #dddddd;
 }
+.promotions-originalprice {
+    margin-bottom: 5px;
+}
 .promotion_block .promotions-originalprice span {
     text-decoration: line-through;
     font-weight: 700;

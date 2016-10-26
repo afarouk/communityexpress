@@ -140,11 +140,11 @@
 										<#if event.buyable!false>
 											<div class="ui-grid-a event_item_buttons">
 												<div class="ui-block-a share_btn_block"
-													uuid="${promotion.uuid}">
+													uuid="${event.uuid}">
 													<span class="icon share_icon"></span> <span class="text">Share</span>
 												</div>
 												<div class="ui-block-b "
-													uuid="${promotion.uuid}">
+													uuid="${event.uuid}">
 					                                  <button class="events-buybutton" data-uuid="${event.uuid}">
 		                                           		Buy</button>
 												</div>
@@ -152,7 +152,7 @@
 										<#else>
 											<div class="ui-grid-solo event_item_buttons">
 												<div class="ui-block-a share_btn_block"
-													uuid="${promotion.uuid}">
+													uuid="${event.uuid}">
 													<span class="icon share_icon"></span> <span class="text">Share</span>
 												</div>
 											</div>
