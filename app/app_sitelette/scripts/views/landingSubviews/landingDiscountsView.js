@@ -6,25 +6,24 @@ var Vent = require('../../Vent'),
     loader = require('../../loader'),
     contactActions = require('../../actions/contactActions');
 
-var EventsView = Backbone.View.extend({
-  name: 'events',
-  el: '#cmtyx_events_block',
+var DiscountsView = Backbone.View.extend({
+  name: 'discounts',
+  el: '#cmtyx_promocodes_block',
 
   events: {
     'click .header': 'toggleCollapse',
     'click .share_btn_block': 'showShareBlock',
     'click .sms_block': 'showSMSInput',
     'click .sms_send_button': 'onSendSMS',
-    'click .events-buybutton': 'onBuyItem'
+    'click .promoCode-buybutton': 'onGoToShop'
   },
 
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
-
     this.initSlick();
-    this.setLinksForEachEvent();
-    Vent.on('openEventByShareUrl', this.openEventByShareUrl, this);
+    this.setLinksForEachDiscount();
+    Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
   },
 
   toggleCollapse: function() {
@@ -63,23 +62,18 @@ var EventsView = Backbone.View.extend({
     this.initSlick();
   },
 
-  onBuyItem: function(e) {
-    Vent.trigger('viewChange', 'singleton', {
-        type: 'Event',
-        uuid: $(e.target).data('uuid'),
-        backToRoster: false,
-        backToCatalogs: false,
-        backToCatalog: false,
-        backToSingleton: true
-    });
+  onGoToShop: function() {
+    var $el = this.$('.promoCode-buybutton');
+    var promocode = $el.data('promocode');
+    console.log(promocode);
   },
 
-  openEventByShareUrl: function(uuid) {
+  openDiscountByShareUrl: function(uuid) {
     var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
         index = el.data('slick-index');
 
     this.$el.find('.body ul').slick('slickGoTo', index);
-    Vent.trigger('scrollToBlock', '.events_block');
+    Vent.trigger('scrollToBlock', '.promocodes_block');
   },
 
   showShareBlock: function(e) {
@@ -89,10 +83,10 @@ var EventsView = Backbone.View.extend({
       $el = $target.parent().next(),
       visible = $el.is(':visible'),
       visibleSMS = $el.find('.sms_input_block').is(':visible'),
-      height = 70;
+      height = 30;
       if (visible && visibleSMS) {
           this.$('.sms_input_block').hide();
-          height = 150;
+          height = 100;
       }
       this.changeSlideHeight($el, height);
       $el.slideToggle('slow', _.bind(function() {
@@ -123,7 +117,8 @@ var EventsView = Backbone.View.extend({
 
   getLinks: function(uuid) {
       var demo = window.community.demo ? 'demo=true&' : '',
-          shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + '?' + demo + 't=e&u=' + uuid),
+            shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+            '?' + demo + 't=d&u=' + uuid),
           links = [
               '',
               'mailto:?subject=&body=' + shareUrl,
@@ -133,8 +128,8 @@ var EventsView = Backbone.View.extend({
       return links;
   },
 
-  setShareLinks: function($event) {
-      var $block = $event.find('.events-share-block'),
+  setShareLinks: function($discount) {
+      var $block = $discount.find('.promoCode-share-block'),
           uuid = $block.data('uuid'),
           links = this.getLinks(uuid),
           $links = $block.find('a');
@@ -145,37 +140,38 @@ var EventsView = Backbone.View.extend({
       });
   },
 
-  setLinksForEachEvent: function() {
-      var $events = this.$el.find('.event_item');
-      $events.each(function(index, el){
-        var $event = $(el);
-        this.setShareLinks($event);
+  setLinksForEachDiscount: function() {
+      var $discounts = this.$el.find('.promoCode_item');
+      $discounts.each(function(index, el){
+        var $discount = $(el);
+        this.setShareLinks($discount);
       }.bind(this));
   },
 
   onSendSMS: function(e) {
-    var $el = this.$el.find('.sms_input_block'),
-        $target = $(e.currentTarget),
-        uuid = $target.parent().parent().data('uuid'),
-        demo = window.community.demo ? 'demo=true&' : '',
-        shareUrl = window.location.href.split('?')[0] +
-          '?' + demo + 't=e&u=' + uuid,
-        val = $target.prev().find('.sms_input').val();
+    console.log('send sms');
+    // var $el = this.$el.find('.sms_input_block'),
+    //     $target = $(e.currentTarget),
+    //     uuid = $target.parent().parent().data('uuid'),
+    //     demo = window.community.demo ? 'demo=true&' : '',
+    //     shareUrl = window.location.href.split('?')[0] +
+    //       '?' + demo + 't=e&u=' + uuid,
+    //     val = $target.prev().find('.sms_input').val();
 
-    loader.showFlashMessage('Sending message to... ' + val);
-    $el.slideUp('slow');
-    contactActions.shareURLviaSMS('EVENT', this.sasl.serviceAccommodatorId,
-      this.sasl.serviceLocationId, val, uuid, shareUrl)
-      .then(function(res){
-        loader.showFlashMessage('Sending message success.');
-      }.bind(this))
-      .fail(function(res){
-        if (res.responseJSON && res.responseJSON.error) {
-          loader.showFlashMessage(res.responseJSON.error.message);
-        }
-      }.bind(this));
-  }
+    // loader.showFlashMessage('Sending message to... ' + val);
+    // $el.slideUp('slow');
+    // contactActions.shareURLviaSMS('DISCOUNT', this.sasl.serviceAccommodatorId,
+    //   this.sasl.serviceLocationId, val, uuid, shareUrl)
+    //   .then(function(res){
+    //     loader.showFlashMessage('Sending message success.');
+    //   }.bind(this))
+    //   .fail(function(res){
+    //     if (res.responseJSON && res.responseJSON.error) {
+    //       loader.showFlashMessage(res.responseJSON.error.message);
+    //     }
+    //   }.bind(this));
+  },
 
 });
 
-module.exports = EventsView;
+module.exports = DiscountsView;

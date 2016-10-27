@@ -112,7 +112,7 @@ body {
 }
 #cmtyx_landingView.ui-page {
     padding-top: 45px;
-    padding-bottom: 0;
+    padding-bottom: 13px;
 }
 #address.ui-page,
 #shipping_page.ui-page,
@@ -1864,13 +1864,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .event_item_buttons .share_btn_block {
     margin-bottom: 20px;
 }
-.events_block .share_btn_block {
-    text-align: center;
-}
 
 .share_btn_block {
     font: 500 14px 'Open Sans', sans-serif;
     color: white;
+    text-align: center;
 }
 
 /********************** GALLERY BLOCK ***********************/
@@ -2066,6 +2064,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .loyalty_program_block .share_container {
     padding: 15px 0 5px 0;
 }
+.promocodes_block .share_btn_block {
+    display:none;
+}
+.promocodes_block .share_btn_block,
 .gallery_block .share_btn_block,
 .loyalty_program_block .share_btn_block,
 .poll_block .share_btn_block,
@@ -2073,15 +2075,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     text-align: center;
     width: 100%;
 }
+.promocodes_block .share_btn_block,
 .promotion_block .share_btn_block {
     margin-bottom: 20px;
 }
-.gallery_block .share_btn_block .share_icon,
-.loyalty_program_block .share_btn_block .share_icon,
-.events_block .share_btn_block .share_icon,
-.poll_block .share_btn_block .share_icon,
-.promotion_block .share_btn_block .share_icon,
-.photo_contest_block .share_btn_block .share_icon {
+.share_btn_block .share_icon {
     background: url('images/share-option.png') no-repeat;
     background-size: cover;
     display: inline-block;
@@ -2493,16 +2491,20 @@ li.promotion_block .body {
 .gallery_block .share_btn_block {
     height:40px;
 }
+.promocodes_block .promoCode-share-block,
 .gallery_block .gallery-share-block,
 .promotion_block .promotion-share-block {
     padding: 10px 0;
     display: none;
     margin-top: -20px;
+    text-align: center;
 }
+.promocodes_block .promoCode-share-block .sms_input_block,
 .gallery_block .gallery-share-block .sms_input_block,
 .promotion_block .promotion-share-block .sms_input_block {
     display:none;
 }
+.promocodes_block .promoCode-share-block .share_icon,
 .gallery_block .gallery-share-block .share_icon,
 .promotion_block .promotion-share-block .share_icon {
     display: inline-block;
@@ -2551,6 +2553,7 @@ li.promotion_block .body {
 .promotion-share-block {
     text-align: center;
 }
+.promoCode-share-block a:focus,
 .gallery-share-block a:focus,
 .promotion-share-block a:focus {
     outline: none;
@@ -2762,6 +2765,48 @@ li.video_block .body {
     padding: 0px;
     // height: 250px;
 }
+
+/********************** DISCOUNTS BLOCK ***********************/
+.promocodes_block .sms_input_block {
+    display: none;
+}
+
+.promocodes_block .promoCode_title {
+    display: block;
+    font: 400 16px/16px 'Open Sans', sans-serif;
+    color: #ddd;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.promocodes_block .slick-arrow {
+    top: -3px;
+}
+
+.promocodes_block .promoCode_container {
+    color: #C01F2F;
+    position: relative;
+    bottom: 60px;
+    left: 8px;
+    font: 700 14px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    width: 180px;
+}
+
+.promocodes_block .promoCode_details {
+    position: relative;
+    right: 200px;
+    bottom: 142px;
+    font: 700 20px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.promocodes_block .promoCode-buybutton {
+    margin-bottom: 10px;
+}
+
 
 /********************** SHARE BLOCK ***********************/
 .share_block {

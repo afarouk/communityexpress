@@ -20,6 +20,7 @@ var userController = require('./controllers/userController'),
     ContactUsInLandingView = require('./views/landingSubviews/contactUsInLandingView'),
 
     EventsView = require('./views/landingSubviews/eventsView'),
+    DiscountsView = require('./views/landingSubviews/landingDiscountsView'),
     VideoView = require('./views/landingSubviews/videoView'),
     GalleryView = require('./views/landingSubviews/galleryView'),
     PollContestView = require('./views/landingSubviews/pollContestView'),
@@ -134,6 +135,7 @@ App.prototype = {
         this.viewsInLanding = {
             loyaltyCard: this.createSubview( LoyaltyCardView ),
             events: this.createSubview( EventsView ),
+            discounts: this.createSubview( DiscountsView ),
             video: this.createSubview( VideoView ),
             gallery: this.createSubview( GalleryView ),
             pollContest: this.createSubview( PollContestView, !saslData.hasPollContest ),
@@ -179,6 +181,14 @@ App.prototype = {
                     setTimeout(function () {
                         Vent.trigger('openEventByShareUrl', uuid);
                     }, 400);
+                });
+            break;
+            case 'd':
+                //Discounts
+                $(document).ready(function(){
+                    setTimeout(function () {
+                        Vent.trigger('openDiscountByShareUrl', uuid);
+                    }, 200);
                 });
             break;
             case 'y':
