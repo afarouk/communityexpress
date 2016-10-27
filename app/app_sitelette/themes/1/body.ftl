@@ -344,71 +344,98 @@
 						<span class="title">Poll</span> <span class="collapse_btn">&#9650;</span>
 					</div>
 					<div class="body">
-						<img class="poll_image"
-							src="themes/1/placeholder_images/6359862041401967861409225263_coffee.png"></img>
-						<span class="poll_displaytext">Our coffee is awesome</span>
-
-						<!-- BEGIN place holder, will have to be removed. It must be geenrated dynamically -->
-						<div class="poll_ans_form">
-							<label for="a_ans">YES <span
-								class="answer_color_container cmtyx_color_1"></span></label> <input
-								type="radio" name="radio-choice-ans" id="a_ans"
-								class="ansRadioChoice" checked='checked'> <label
-								for="b_ans">NO <span
-								class="answer_color_container cmtyx_color_2"></span></label> <input
-								type="radio" name="radio-choice-ans" id="b_ans"
-								class="ansRadioChoice">
-						</div>
-						<button
-							class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all">submit</button>
-						<div class="poll_results">
-
-							<div class="a_ans_result">
-								<div class="a_ans_graph cmtyx_color_1"></div>
-								<span class="a_ans_percent_num">85%</span>
-							</div>
-							<div class="b_ans_result">
-								<div class="b_ans_graph cmtyx_color_2"></div>
-								<span class="b_ans_percent_num">15%</span>
-							</div>
-						</div>
-						<!-- END place holder, will have to be removed. It must be geenrated dynamically -->
-
-						<div class="prizes_title">All entries are entered into our
-							mini sweepstakes!</div>
-						<ul>
-							<li>
-								<div class="prize_block">
-									<div class="ui-grid-a prize_container">
-										<div class="ui-block-a">
-											<div class="prize_text_block">
-												<span class="prize_text">First Prize</span> <span
-													class="prize_condition">A free burger. All toppings.</span>
-												<span class="prize_date">till 30.07</span>
-											</div>
-										</div>
-										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="last">
-								<div class="prize_block">
-									<div class="ui-grid-a prize_container">
-										<div class="ui-block-a">
-											<div class="prize_text_block">
-												<span class="prize_text">Second Prize</span> <span
-													class="prize_condition">A free burger, toppings
-													extra</span> <span class="prize_date">till 30.07</span>
-											</div>
-										</div>
-										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
-										</div>
-									</div>
-								</div>
-							</li>
+						<ul class="poll_gallery">
+        					<#list polls as poll>
+            					<li class="poll_item" data-uuid="${poll.contestUUID}">
+                					<div class="contest_container">
+                						<div class="poll_block_title">&nbsp</div>
+					                    <img class="poll_image" src="${poll.imageURL}"></img>
+					                    <span class="poll_displaytext">${poll.displayText}?</span>
+					                    <ul class="poll_ans_form <#if poll.answerStatus.enumText == 'ANSWERED'>answered</#if>">
+				                    		<#list poll.choices as choice>
+					                            <li>
+					                                <div class="ui-grid-a">
+					                                    <div class="ui-block-a">
+					                                        <input data-role="none" type="radio" name="radio-choice-ans" id="ans_${choice_index}-${poll.contestUUID}" data-uuid="${poll.contestUUID}" data-choice="${choice.choiceId}" class="ansRadioChoice" <#if choice_index == 0>checked="checked"</#if> >
+					                                        <label for="ans_${choice_index}-${poll.contestUUID}"><span><span></span></span></label>
+					                                        <div class="question_item">
+					                                            <div class="bar">
+					                                            	<div class="back cmtyx_color_${(choice_index % 4) + 1}"></div>
+                                                    				<span class="percent"></span>
+					                                            </div>
+					                                            <p class="question_text">${choice.displayText}</p>
+					                                        </div>
+					                                    </div>
+					                                </div>
+					                            </li>
+					                        </#list>
+					                    </ul>
+					                    <#if poll.answerStatus.enumText != "ANSWERED">
+					                        <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all" data-uuid="${poll.contestUUID}">submit</button>
+					                    </#if>
+					                    <div class="ui-grid-a prizes_title">
+						                    <div class="ui-block-a">
+						                        <div class="medal_icon"></div>
+						                    </div>
+						                    <div class="ui-block-b">All entries are entered into our mini sweepstakes!</div>
+						                </div>
+						                <ul class="contest_prizes <#if poll.answerStatus.enumText == 'ANSWERED'>shown</#if>">
+						                    <#list poll.prizes as prize>
+						                        <li>
+						                            <div class="prize_block">
+						                                <div class="ui-grid-a prize_container">
+						                                    <div class="ui-block-a">
+						                                        <img src="<%= prize.imageUrl %>"></img>
+						                                    </div>
+						                                    <div class="ui-block-b ">
+						                                        <div class="prize_text_block">
+						                                            <span class="prize_text">${prize.contestPrizeName}</span>
+						                                            <span class="prize_condition">${prize.displayText}</span>
+						                                            <span class="prize_date">${prize.quantity}</span>
+						                                        </div>
+						                                    </div>
+						                                </div>
+						                            </div>
+						                        </li>
+						                    </#list>
+						                </ul>
+						                <div class="share_container">
+						                    <div class="share_btn_block"
+						                        uuid="">
+						                        <span class="icon share_icon"></span> <span class="text">Share</span>
+						                    </div>
+						                    <div class="share_block" data-uuid="${poll.contestUUID}">
+						                        <div class="ui-grid-c">
+						                            <div class="sms_input_block" data-uuid="${poll.contestUUID}">
+						                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+						                                <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+						                            </div>
+						                            <div class="ui-block-a text sms_block">
+						                                <a href="" class="share_sms cmtyx_text_color_1">
+						                                    <span class="share_icon sms_icon"></span>
+						                                </a>
+						                            </div>
+						                            <div class="ui-block-b text email_block">
+						                                <a href="" class="share_email cmtyx_text_color_1">
+						                                    <span class="share_icon email_icon"></span>
+						                                </a>
+						                            </div>
+						                            <div class="ui-block-c text facebook_block">
+						                                <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+						                                    <span class="share_icon facebook_icon"></span>
+						                                </a>
+						                            </div>
+						                            <div class="ui-block-d text twitter_block">
+						                                <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+						                                    <span class="share_icon twitter_icon"></span>
+						                                </a>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </div>
+						            </div>
+						        </li>
+							</#list>
 						</ul>
 					</div>
 				</li>
