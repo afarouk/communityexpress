@@ -2064,6 +2064,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .loyalty_program_block .share_container {
     padding: 15px 0 5px 0;
 }
+.promocodes_block .share_btn_block {
+    display:none;
+}
+.promocodes_block .share_btn_block,
 .gallery_block .share_btn_block,
 .loyalty_program_block .share_btn_block,
 .poll_block .share_btn_block,
@@ -2071,6 +2075,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     text-align: center;
     width: 100%;
 }
+.promocodes_block .share_btn_block,
 .promotion_block .share_btn_block {
     margin-bottom: 20px;
 }
@@ -2486,16 +2491,20 @@ li.promotion_block .body {
 .gallery_block .share_btn_block {
     height:40px;
 }
+.promocodes_block .promoCode-share-block,
 .gallery_block .gallery-share-block,
 .promotion_block .promotion-share-block {
     padding: 10px 0;
     display: none;
     margin-top: -20px;
+    text-align: center;
 }
+.promocodes_block .promoCode-share-block .sms_input_block,
 .gallery_block .gallery-share-block .sms_input_block,
 .promotion_block .promotion-share-block .sms_input_block {
     display:none;
 }
+.promocodes_block .promoCode-share-block .share_icon,
 .gallery_block .gallery-share-block .share_icon,
 .promotion_block .promotion-share-block .share_icon {
     display: inline-block;
@@ -2544,6 +2553,7 @@ li.promotion_block .body {
 .promotion-share-block {
     text-align: center;
 }
+.promoCode-share-block a:focus,
 .gallery-share-block a:focus,
 .promotion-share-block a:focus {
     outline: none;

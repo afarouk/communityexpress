@@ -183,6 +183,14 @@ App.prototype = {
                     }, 400);
                 });
             break;
+            case 'd':
+                //Discounts
+                $(document).ready(function(){
+                    setTimeout(function () {
+                        Vent.trigger('openDiscountByShareUrl', uuid);
+                    }, 200);
+                });
+            break;
             case 'y':
                 //Loyalty block
                 $(document).ready(function(){

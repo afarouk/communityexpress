@@ -121,19 +121,6 @@ var EventsView = Backbone.View.extend({
       $el.height(height + additional + 'px');
   },
 
-  // showShareBlock: function(e) {
-  //   var $target = $(e.currentTarget),
-  //       $el = $target.parent().next();
-  //   $el.slideToggle('slow');
-  // },
-  //
-  // showSMSInput: function(e) {
-  //   var $target = $(e.currentTarget),
-  //       $el = $target.parent().find('.sms_input_block');
-  //       $el.slideToggle('slow');
-  //       $el.find('input').mask('(000) 000-0000');
-  // },
-
   getLinks: function(uuid) {
       var demo = window.community.demo ? 'demo=true&' : '',
           shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + '?' + demo + 't=e&u=' + uuid),
@@ -187,7 +174,7 @@ var EventsView = Backbone.View.extend({
           loader.showFlashMessage(res.responseJSON.error.message);
         }
       }.bind(this));
-  },
+  }
 
 });
 

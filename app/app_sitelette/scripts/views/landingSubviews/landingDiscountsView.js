@@ -22,6 +22,8 @@ var DiscountsView = Backbone.View.extend({
     this.options = options || {};
     this.sasl = window.saslData;
     this.initSlick();
+    this.setLinksForEachDiscount();
+    Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
   },
 
   toggleCollapse: function() {
@@ -64,7 +66,111 @@ var DiscountsView = Backbone.View.extend({
     var $el = this.$('.promoCode-buybutton');
     var promocode = $el.data('promocode');
     console.log(promocode);
-  }
+  },
+
+  openDiscountByShareUrl: function(uuid) {
+    var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
+        index = el.data('slick-index');
+
+    this.$el.find('.body ul').slick('slickGoTo', index);
+    Vent.trigger('scrollToBlock', '.promocodes_block');
+  },
+
+  showShareBlock: function(e) {
+      if (this.animating) return;
+      this.animating = true;
+      var $target = $(e.currentTarget),
+      $el = $target.parent().next(),
+      visible = $el.is(':visible'),
+      visibleSMS = $el.find('.sms_input_block').is(':visible'),
+      height = 30;
+      if (visible && visibleSMS) {
+          this.$('.sms_input_block').hide();
+          height = 100;
+      }
+      this.changeSlideHeight($el, height);
+      $el.slideToggle('slow', _.bind(function() {
+          this.animating = false;
+      }, this));
+  },
+
+  showSMSInput: function(e) {
+      if (this.animating) return;
+      this.animating = true;
+      var $target = $(e.currentTarget),
+      $el = $target.parent().find('.sms_input_block');
+      this.changeSlideHeight($el, 80);
+      $el.find('input').mask('(000) 000-0000');
+      $el.slideToggle('slow', _.bind(function() {
+          this.animating = false;
+      }, this));
+  },
+
+  changeSlideHeight: function($target, additional) {
+      var $el = $target.parents('.slick-list[aria-live="polite"]'),
+          height = $el.height(),
+          visible = $target.is(':visible');
+      if (visible) additional = -additional;
+      $el.css('transition', '0.3s');
+      $el.height(height + additional + 'px');
+  },
+
+  getLinks: function(uuid) {
+      var demo = window.community.demo ? 'demo=true&' : '',
+            shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+            '?' + demo + 't=d&u=' + uuid),
+          links = [
+              '',
+              'mailto:?subject=&body=' + shareUrl,
+              'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl,
+              'https://twitter.com/intent/tweet?text=' + shareUrl
+          ];
+      return links;
+  },
+
+  setShareLinks: function($discount) {
+      var $block = $discount.find('.promoCode-share-block'),
+          uuid = $block.data('uuid'),
+          links = this.getLinks(uuid),
+          $links = $block.find('a');
+
+      $links.each(function(index){
+          var link = $(this);
+          link.attr('href', links[index]);
+      });
+  },
+
+  setLinksForEachDiscount: function() {
+      var $discounts = this.$el.find('.promoCode_item');
+      $discounts.each(function(index, el){
+        var $discount = $(el);
+        this.setShareLinks($discount);
+      }.bind(this));
+  },
+
+  onSendSMS: function(e) {
+    console.log('send sms');
+    // var $el = this.$el.find('.sms_input_block'),
+    //     $target = $(e.currentTarget),
+    //     uuid = $target.parent().parent().data('uuid'),
+    //     demo = window.community.demo ? 'demo=true&' : '',
+    //     shareUrl = window.location.href.split('?')[0] +
+    //       '?' + demo + 't=e&u=' + uuid,
+    //     val = $target.prev().find('.sms_input').val();
+
+    // loader.showFlashMessage('Sending message to... ' + val);
+    // $el.slideUp('slow');
+    // contactActions.shareURLviaSMS('DISCOUNT', this.sasl.serviceAccommodatorId,
+    //   this.sasl.serviceLocationId, val, uuid, shareUrl)
+    //   .then(function(res){
+    //     loader.showFlashMessage('Sending message success.');
+    //   }.bind(this))
+    //   .fail(function(res){
+    //     if (res.responseJSON && res.responseJSON.error) {
+    //       loader.showFlashMessage(res.responseJSON.error.message);
+    //     }
+    //   }.bind(this));
+  },
 
 });
 
