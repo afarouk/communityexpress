@@ -186,7 +186,7 @@ module.exports = {
                     break;
                 default:
             }
-            discountPrice = item.price - price;
+            discountPrice = parseInt((item.price - price) * 100) / 100;
             item.price = price;
             var basket = new CatalogBasketModel(),
             // Should we have isOpen and isOpenWarningMessage in response?
