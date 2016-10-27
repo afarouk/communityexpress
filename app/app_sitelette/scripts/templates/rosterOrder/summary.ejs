@@ -59,14 +59,16 @@
                 <li class="discount">
                     <span class="order_name">Discount</span>
                     <div class="float_right">
-                        <input type="text" name="promocode" data-role="none" placeholder="promo code">
-                        <a class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</a>
-                        <span class="order_price discount_value cmtyx_text_color_1">$<%= discount %></span>
+                        <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />
+                        <% if (!promoCode) { %>
+                            <a class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</a>
+                        <% } %>
+                        <span class="order_price discount_value cmtyx_text_color_1"><%= cs + discount %></span>
                     </div>
                 </li>
                 <li class="total_price">
                     <span class="order_name">Total</span>
-                    <span class="order_price cmtyx_text_color_1"><%= cs %><%= totalAmount %></span>
+                    <span class="order_price cmtyx_text_color_1"><%= cs + totalAmount %></span>
                 </li>
             </ul>
             <div class="ui-grid-a back_next_btns">

@@ -49,10 +49,11 @@ module.exports = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         Vent.on('openPollByShareUrl', this.openPollByShareUrl, this);
+        this.initSlick();
     },
 
     render: function(poll) {
-        console.log('poll', poll);
+        // console.log('poll', poll);
         this.poll = poll;
         this.$el.html(pollTemplate({
             contests: poll

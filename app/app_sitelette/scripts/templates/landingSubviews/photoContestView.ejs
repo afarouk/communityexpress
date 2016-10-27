@@ -3,15 +3,16 @@
     <div id="flag"><span>prize</span></div>
     <span class="title">Photo contest</span>
     <span class="collapse_btn">&#9650;</span>
+    <span class="prize_cup_icon"></span>
 </div>
 <div class="body">
     <ul class="photo_gallery">
         <% _.each(contests, function(photo, index){ %>
             <li class="photo_item" data-uuid="<%= photo.contestUUID %>">
                 <div class="contest_container">
-                    <div class="photo_block_title"><p><%= photo.displayText %></p></div>
+                    <div class="photo_block_title"><p>&nbsp</p></div>
                     <img src="<%= photo.imageURL %>" class="photo_image" data-index="<%= index %>"></img>
-                    <!-- <span class="contest_task"><%= photo.displayText %></span> -->
+                    <span class="contest_task"><%= photo.displayText %></span>
                     <% if (photo.responseStatus.enumText !== "ANSWERED") { %>
                         <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
                         <div class="photo_contest_upload_image" data-uuid="<%= photo.contestUUID %>">

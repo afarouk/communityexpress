@@ -4,10 +4,12 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
+    h = require('../../globalHelpers'),
     appCache = require('../../appCache'),
     popupController = require('../../controllers/popupController'),
     saslActions = require('../../actions/saslActions'),
     catalogActions = require('../../actions/catalogActions'),
+    orderActions = require('../../actions/orderActions'),
     CatalogBasketModel = require('../../models/CatalogBasketModel'),
     contactActions = require('../../actions/contactActions');
 
@@ -34,7 +36,6 @@ var PromotionView = Backbone.View.extend({
   },
 
   initSlick: function() {
-    // debugger;
     //slick init
     this.$el.find('.body ul').slick({
         dots: false,
@@ -174,14 +175,38 @@ var PromotionView = Backbone.View.extend({
   },
 
   onBuyItem: function(e) {
-      Vent.trigger('viewChange', 'singleton', {
-          type: 'PROMO',
-          uuid: $(e.target).data('uuid'),
-          backToRoster: false,
-          backToCatalogs: false,
-          backToCatalog: false,
-          backToSingleton: true
-      });
+      var promoCode = 'P322DEC';
+    //   window.community.promoCode = promoCode;
+      orderActions.validatePromoCode(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, promoCode)
+        .then(_.bind(function(resp) {
+            console.log(resp);
+            var discount = resp.discount,
+                discountType = resp.discountType;
+                Vent.trigger('viewChange', 'singleton', {
+                    type: 'PROMO',
+                    uuid: $(e.target).data('uuid'),
+                    backToRoster: false,
+                    backToCatalogs: false,
+                    backToCatalog: false,
+                    backToSingleton: true,
+                    discount: discount,
+                    discountType: discountType,
+                    promoCode: promoCode
+                });
+        }, this), function(e) {
+            var text = h().getErrorMessage(e, 'promo code is not valid');
+            popupController.textPopup({
+                text: text
+            });
+        });
+    //   Vent.trigger('viewChange', 'singleton', {
+    //       type: 'PROMO',
+    //       uuid: $(e.target).data('uuid'),
+    //       backToRoster: false,
+    //       backToCatalogs: false,
+    //       backToCatalog: false,
+    //       backToSingleton: true
+    //   });
   },
 
   triggerOrder : function(sasl) {

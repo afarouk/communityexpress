@@ -112,7 +112,7 @@ body {
 }
 #cmtyx_landingView.ui-page {
     padding-top: 45px;
-    padding-bottom: 0;
+    padding-bottom: 13px;
 }
 #address.ui-page,
 #shipping_page.ui-page,
@@ -312,6 +312,7 @@ a.rightBtn.ui-btn {
     overflow-x: visible;
 }
 
+
 /**************************** ADDRESS PAGE ****************************/
 
 .wrapper {
@@ -397,6 +398,7 @@ a.rightBtn.ui-btn {
     height: 370px;
     width: 100%;
 }
+
 
 /**************************** PAYMENT PAGE ****************************/
 
@@ -536,6 +538,7 @@ li {
     top: 6px;
 }
 
+
 /*************************** SKEUOCARD ***************************/
 
 .credit_card_container { text-align: center; }
@@ -659,6 +662,7 @@ label.checkbox_save_card {
     font-weight: 300;
     padding-left: 10px;
 }
+
 
 /*************************** ROSTER PAGE ***************************/
 
@@ -1056,7 +1060,8 @@ li.build_combo, li.choose_extras {
     font-weight: 700;
 }
 
-/*BUILD COMBO*/
+
+/************************** BUILD COMBO ***************************/
 
 .build_combo_title {
     padding: 25px 0px 25px 15px;
@@ -1249,9 +1254,10 @@ input[type="radio"] {
     width: 15px;
 }
 
-/*SELECT2*/
 
-.select2-container--default .select2-selection--single .select2-selection__rendered {
+/********************************* SELECT2 ******************************/
+
+/* .select2-container--default .select2-selection--single .select2-selection__rendered {
     background-color: #464646;
     border: solid 1px #555;
     border-radius: 2px;
@@ -1308,9 +1314,6 @@ span.select2-container--default .select2-selection--single:focus {
 .tip_price .select2-container--default .select2-selection--single .select2-selection__rendered {
     padding: 5px 30px 5px 20px;
 }
-.tip_price .float_right {
-    position: relative;
-}
 .items_list .select2-container--default .select2-selection--single .select2-selection__rendered {
     background-color: #D38B1F;
     border: solid 1px #e1e1e1;
@@ -1329,6 +1332,11 @@ span.select2-container--default .select2-selection--single:focus {
     border: none;
     border-left: solid 1px #e1e1e1;
     border-right: solid 1px #e1e1e1;
+}
+*/
+
+.tip_price .float_right {
+    position: relative;
 }
 
 .shopping_icon {
@@ -1370,11 +1378,11 @@ span.delete_btn {
 #cmntyex_edit_favorites_panel {
     background-color: #363636;
 }
-span.select2.select2-container.select2-container--default,
+/* span.select2.select2-container.select2-container--default,
 span.select2.select2-container.select2-container--default.select2-container--above.select2-container--focus,
 span.select2.select2-container.select2-container--default.select2-container--open.select2-container--above.select2-container--focus {
     width: 62px !important;
-}
+} */
 .NoLeftPadding {
     padding-left: 0px !importnat;
 }
@@ -1466,7 +1474,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     color: #fff !important;
 }
 
-/*HOME*/
+
+/*************************** HOME ****************************/
 
 #cmytx_landingView>.header {
     padding-left: 10px;
@@ -1622,7 +1631,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     right: 3px;
 }
 
+
 /********************** WELCOME BLOCK ***********************/
+
 #cmtyx_welcome_block {
     position: relative;
 }
@@ -1712,7 +1723,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     float: right;
 }
 
+
 /********************** EVENTS BLOCK ***********************/
+
 .events_block {
     position: relative;
 }
@@ -1723,7 +1736,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .event-container {
     padding: 20px 20px 0 20px;
     border-bottom: solid 1px #636363;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 .events_block img {
     padding: 0;
@@ -1815,34 +1828,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     height: 40px;
     background: url('images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png');
 }
-.events_block .events-share-block {
-    padding: 10px 0 20px 0;
-    display: none;
-    margin-top: -20px;
-}
-.events_block .events-share-block .sms_input_block {
-    display:none;
-}
-.events_block .events-share-block .share_icon {
-    display: inline-block;
-    margin-bottom: 10px;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-}
-.events_block .events-share-block .text {
-    font: 400 12px 'Open Sans', sans-serif;
-    color: #cbcbcb;
-    text-transform: uppercase;
-    text-align: center;
-}
-.events-share-block {
-    text-align: center;
-}
-.events-share-block a:focus {
-    outline: none;
-    text-decoration: none;
-}
+
 .events-buybutton-container {
     width: 100%;
     text-align: right;
@@ -1861,19 +1847,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .events-buybutton.ui-btn:focus {
     box-shadow: none;
 }
-.event_item_buttons .share_btn_block {
-    margin-bottom: 20px;
-}
-.events_block .share_btn_block {
-    text-align: center;
-}
 
-.share_btn_block {
-    font: 500 14px 'Open Sans', sans-serif;
-    color: white;
-}
 
 /********************** GALLERY BLOCK ***********************/
+
 .home_tabs_list li.gallery_block .body {
     padding: 0;
 }
@@ -1907,7 +1884,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     display: none; //was temporary hidden
 }
 
+
 /********************** POLL BLOCK ***********************/
+
 .poll_block .header {
     padding-left: 40px !important;
 }
@@ -1918,7 +1897,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 22px;
     height: 22px;
 }
-.poll_block .header .prize_cup_icon {
+.poll_block .header .prize_cup_icon,
+.photo_contest_block .header .prize_cup_icon {
     float: right;
     position: relative;
     right: 10px;
@@ -1928,7 +1908,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding: 0 !important;
 }
 .poll_block .contest_container {
-    padding: 10px 20px 10px 20px;
+    padding: 20px 20px 0 20px;
 }
 .poll_block .poll_block_title {
     text-align: center;
@@ -1936,6 +1916,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font: 400 16px/24px 'Open Sans', sans-serif;
     text-transform: uppercase;
     margin-bottom: 15px;
+    /* display: none; */
 }
 .poll_block img {
     padding: 0;
@@ -2060,41 +2041,6 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .poll_block .body .prize_container {
     max-height: 180px;
 }
-.poll_block .share_container {
-    padding: 15px 0 20px 0;
-}
-.loyalty_program_block .share_container {
-    padding: 15px 0 5px 0;
-}
-.gallery_block .share_btn_block,
-.loyalty_program_block .share_btn_block,
-.poll_block .share_btn_block,
-.photo_contest_block .share_btn_block {
-    text-align: center;
-    width: 100%;
-}
-.promotion_block .share_btn_block {
-    margin-bottom: 20px;
-}
-.gallery_block .share_btn_block .share_icon,
-.loyalty_program_block .share_btn_block .share_icon,
-.events_block .share_btn_block .share_icon,
-.poll_block .share_btn_block .share_icon,
-.promotion_block .share_btn_block .share_icon,
-.photo_contest_block .share_btn_block .share_icon {
-    background: url('images/share-option.png') no-repeat;
-    background-size: cover;
-    display: inline-block;
-    width: 16px;
-    height: 15px;
-}
-.share_block a {
-    outline: none;
-}
-.poll_block .share_block {
-    display: none;
-}
-
 .poll_block input[type=radio]:not(old){
   display: none;
 }
@@ -2119,13 +2065,17 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   margin-right: 10px;
 }
 
+
 /********************** ABOUT US BLOCK ***********************/
+
 .about_us_block .text {
     font: 300 12px / 17px 'Open Sans', sans-serif;
     color: #ececec;
 }
 
+
 /********************** LOYALTY CARD BLOCK ***********************/
+
 .loyalty_program_block .header {
     padding-left: 40px !important;
 }
@@ -2143,12 +2093,16 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     bottom: 2px;
 }
 .loyalty_program_block .body {
+    padding: 1px !important;
     text-align: center;
+}
+.loyalty_program_block .loyalty_inner_wrapper {
+    padding: 20px;
 }
 .loyalty_program_block img {
     padding: 0;
     display: block;
-    margin:auto;
+    margin: auto;
 }
 .loyalty_program_block .qr_code_block {
     /* position: relative;
@@ -2204,17 +2158,18 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding: 10px;
 }
 #cmtyx_photo_contest_block.photo_contest_block .contest_container {
-    padding: 0 20px 10px 20px;
+    padding: 20px 20px 0 20px;
 }
 #cmtyx_photo_contest_block.photo_contest_block .body {
     padding: 0;
 }
 .photo_contest_block .photo_block_title {
-    padding: 20px;
+    padding: 10px;
     color: #ececec;
     font: 400 16px/16px 'Open Sans', sans-serif;
     text-transform: uppercase;
     text-align: center;
+    /* display: none; */
 }
 .photo_contest_block .photo_block_title p {
     overflow: hidden;
@@ -2269,7 +2224,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 100%;
 }
 
+
 /********************** USER'S REVIEWS BLOCK ***********************/
+
 #cmtyx_reviews_block .review {
     padding: 20px 20px 0 20px;
     margin-bottom: 20px;
@@ -2444,7 +2401,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 50%;
 }
 
+
 /********************** PROMOTION BLOCK ***********************/
+
 .promotion_block .header {
     padding-left: 40px !important;
 }
@@ -2470,10 +2429,7 @@ li.promotion_block .body {
     background: url('images/thumbs-up-hand-symbol.png') no-repeat;
     background-size: cover;
 }
-.promotion_block .promotion_item_buttons .share_icon {
-    background: url('images/share-option.png') no-repeat;
-    background-size: cover;
-}
+
 .promotion_block .promotion_item_buttons .text {
     font: 500 14px 'Open Sans', sans-serif;
     color: #fff;
@@ -2490,34 +2446,7 @@ li.promotion_block .body {
     text-transform: uppercase;
     text-align: center;
 }
-.gallery_block .share_btn_block {
-    height:40px;
-}
-.gallery_block .gallery-share-block,
-.promotion_block .promotion-share-block {
-    padding: 10px 0;
-    display: none;
-    margin-top: -20px;
-}
-.gallery_block .gallery-share-block .sms_input_block,
-.promotion_block .promotion-share-block .sms_input_block {
-    display:none;
-}
-.gallery_block .gallery-share-block .share_icon,
-.promotion_block .promotion-share-block .share_icon {
-    display: inline-block;
-    margin-bottom: 10px;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-}
-.gallery_block .gallery-share-block .text,
-.promotion_block .promotion-share-block .text {
-    font: 400 12px 'Open Sans', sans-serif;
-    color: #cbcbcb;
-    text-transform: uppercase;
-    text-align: center;
-}
+
 .slick-arrow {
     display: inline-block;
     position: absolute;
@@ -2525,7 +2454,7 @@ li.promotion_block .body {
     height: 22px;
     width: 22px;
     background-repeat: no-repeat !important;
-    background-size: cover !important;
+    background-size: contain !important;
     z-index: 1;
     border: none;
 }
@@ -2541,21 +2470,6 @@ li.promotion_block .body {
 .slick-arrow-container .slick-arrow:focus {
     outline: none;
 }
-.events-share-block .ui-block-a,
-.events-share-block .ui-block-b,
-.events-share-block .ui-block-c,
-.events-share-block .ui-block-d {
-    margin-top: 20px;
-}
-.gallery-share-block,
-.promotion-share-block {
-    text-align: center;
-}
-.gallery-share-block a:focus,
-.promotion-share-block a:focus {
-    outline: none;
-    text-decoration: none;
-}
 .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
     display: inline-block;
     /* width: 50%; */
@@ -2567,9 +2481,7 @@ li.promotion_block .body {
 .sms_input_block {
     margin-bottom: 20px;
 }
-.events-share-block .sms_input_block {
-    margin: 20px 0 0 0;
-}
+
 .sms_input_block input {
     font: 300 16px 'Open Sans', sans-serif;
     color: #bbbbbb;
@@ -2629,17 +2541,14 @@ li.promotion_block .body {
     font: 300 12px 'Open Sans', sans-serif;
     color: #dddddd;
 }
-.promotion_block .promotion_item_buttons .share_btn_block {
-    text-align: center;
-}
-.promotion_block .ui-grid-a.promotion_item_buttons .share_btn_block {
-    margin-top: 10px;
-}
 .promotion_block .promotions-buybutton.ui-btn {
     width: 90%;
     margin: 0 30px 20px 0;
 }
+
+
 /********************** PHOTO CONTEST BLOCK ***********************/
+
 .photo_contest_block .header {
     padding-left: 40px !important;
 }
@@ -2651,7 +2560,7 @@ li.promotion_block .body {
 }
 
 .photo_contest_block .body li {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 .poll_block .body li {
     margin-bottom: 5px;
@@ -2671,7 +2580,7 @@ li.promotion_block .body {
 }
 .photo_contest_block .send_photo_btn {
     font: 400 16px 'Open Sans', sans-serif;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 .photo_contest_block .send_photo_btn:focus {
     box-shadow: none;
@@ -2748,12 +2657,10 @@ li.promotion_block .body {
     padding: 4px 1.6px;
     border: 0.1rem solid #757373;
 }
-.loyalty_program_block .share_block,
-.photo_contest_block .share_block {
-    display: none;
-}
+
 
 /********************** VIDEO BLOCK ***********************/
+
 li.video_block {
     margin-bottom: 10px;
 }
@@ -2763,50 +2670,134 @@ li.video_block .body {
     // height: 250px;
 }
 
-/********************** SHARE BLOCK ***********************/
-.share_block {
-    text-align: center;
-    padding-top: 25px;
+
+/********************** DISCOUNTS BLOCK ***********************/
+
+.promocodes_block .body {
+    padding: 0 !important;
 }
+
+.promocodes_block .promocode_inner_wrapper {
+    padding: 20px;
+}
+
+.promocodes_block .sms_input_block {
+    display: none;
+}
+
+.promocodes_block .promoCode_title {
+    display: block;
+    font: 400 16px/16px 'Open Sans', sans-serif;
+    color: #ddd;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.promocodes_block .promoCode_container {
+    color: #C01F2F;
+    position: relative;
+    bottom: 60px;
+    left: 8px;
+    font: 700 14px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    width: 180px;
+}
+
+.promocodes_block .promoCode_details {
+    position: relative;
+    right: 200px;
+    bottom: 142px;
+    font: 700 20px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+
+/********************** SHARE BLOCK ***********************/
+
+.share_btn_block {
+    text-align: center;
+    width: 100%;
+    font: 500 14px 'Open Sans', sans-serif;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.share_btn_block .share_icon {
+    background: url('images/share-option.png') no-repeat;
+    background-size: cover;
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+}
+
+.ui-grid-a.promotion_item_buttons .share_btn_block {
+    margin-top: 10px;
+}
+
+.share_block a,
+.share_block a:focus,
+.promoCode-share-block a:focus,
+.gallery-share-block a:focus,
+.promotion-share-block a:focus,
+.events-share-block a:focus,
+#cmtyx_share_block a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+.share_block,
+.events_block .events-share-block,
+.promocodes_block .promoCode-share-block,
+.gallery_block .gallery-share-block,
+.promotion_block .promotion-share-block {
+    padding: 10px 0;
+    display: none;
+    margin-top: -20px;
+    text-align: center;
+}
+
 #cmtyx_share_block.share_block {
+    display: block;
     padding-top: 50px;
     padding-bottom: 50px;
 }
 
-.share_block .sms_input_block {
-    display: none;
-}
-
-.share_block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
-    display: inline-block;
-    /* width: 50%; */
-    text-align: left;
-    background-color: transparent;
-}
-.share_block .gallery-share-block .sms_input_block,
-.share_block .promotion-share-block .sms_input_block {
-    margin-bottom: 20px;
-}
-.share_block .title {
+#cmtyx_share_block.share_block .title {
     display: inline-block;
     font: 400 12px 'Open Sans', sans-serif;
     color: #dddddd;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
-.share_block .text {
-    font: 400 12px 'Open Sans', sans-serif;
-    color: #cbcbcb;
-    text-transform: uppercase;
+
+.share_block .sms_input_block,
+.promocodes_block .promoCode-share-block .sms_input_block,
+.gallery_block .gallery-share-block .sms_input_block,
+.promotion_block .promotion-share-block .sms_input_block,
+.events_block .events-share-block .sms_input_block {
+    display: none;
+    margin-bottom: 20px;
+    text-align: center;
 }
-.share_block .share_icon {
+
+.share_block .sms_input_block > .ui-input-text.ui-body-inherit.ui-shadow-inset {
     display: inline-block;
-    /* margin-bottom: 10px; */
+    text-align: left;
+    background-color: transparent;
+}
+
+.share_block .share_icon,
+.events_block .events-share-block .share_icon,
+.promocodes_block .promoCode-share-block .share_icon,
+.gallery_block .gallery-share-block .share_icon,
+.promotion_block .promotion-share-block .share_icon {
+    display: inline-block;
     width: 38px;
     height: 38px;
     border-radius: 50%;
 }
-
 .sms_icon {
     background: url('images/sms.png');
 }
@@ -2819,7 +2810,6 @@ li.video_block .body {
 .twitter_icon {
     background: url('images/tw.png');
 }
-
 .login_with_facebook {
     text-align: center;
     padding: 0;
@@ -2833,12 +2823,13 @@ li.video_block .body {
     background-size: 180px 40px;
     background-repeat: no-repeat;
 }
-#cmtyx_share_block a:focus {
-    outline: none;
-    text-decoration: none;
+.contest_prizes + .share_container {
+    margin-top: 20px;
 }
 
+
 /********************** DRIVING DIRECTIONS BLOCK ***********************/
+
 .cmtyx_bottom_block .share_block {
     padding-top: 0;
 }
@@ -2878,7 +2869,9 @@ li.driving_directions_block {
     border-width: 1px;
 }
 
+
 /********************** FOOTER ***********************/
+
 .ui-footer {
     border: none;
 }
@@ -2907,7 +2900,8 @@ li.driving_directions_block {
     margin-left: 5px;
 }
 
-/*CONTACT US BLOCK*/
+
+/************************* CONTACT US BLOCK *************************/
 
 .contact_us_block .header,
 #user_reviews .header,
@@ -2947,7 +2941,7 @@ li.driving_directions_block {
 }
 
 
-/* Contact Us View */
+/************************** Contact Us View *************************/
 
 .ui-page#contact_us {
     padding: 45px 0 0 0;
@@ -3070,7 +3064,8 @@ li.driving_directions_block {
     box-shadow: none;
 }
 
-/*USER REVIEWS*/
+
+/*************************** USER REVIEWS **************************/
 
 #user_reviews .body {
     padding-top: 45px;
@@ -3092,7 +3087,8 @@ li.driving_directions_block {
     background: url(images/drinks_image.png) no-repeat;
 }
 
-/*BUSINESS HOURS*/
+
+/************************* BUSINESS HOURS ****************************/
 
 #business_hours .body {
     text-align: center;
@@ -3115,7 +3111,8 @@ li.driving_directions_block {
     padding-bottom: 6px;
 }
 
-/*CHAT*/
+
+/**************************** CHAT ****************************/
 
 #cmntyex_chat .footer_panel {
     position: fixed;
@@ -3243,7 +3240,8 @@ li .message_text {
     display: none;
 }
 
-/*APPOINTMENTS*/
+
+/**************************** APPOINTMENTS ****************************/
 
 /* #cmtyx_appointments .body {
     padding: 45px 10px 0 10px;
@@ -3315,7 +3313,8 @@ li .message_text {
     color: rgba(85, 85, 85, 0.7);
 } */
 
-/*UPLOAD PHOTO*/
+
+/**************************** UPLOAD PHOTO ****************************/
 
 #upload_photo .body {
     padding: 75px 10px 80px 10px;
@@ -3324,7 +3323,7 @@ li .message_text {
     text-transform: uppercase;
     font-weight: 700 !important;
 }
-#upload_photo .select2-container {
+/* #upload_photo .select2-container {
     width: 100% !important;
     height: 40px;
     margin-bottom: 15px;
@@ -3335,7 +3334,7 @@ li .message_text {
     padding: 12px 35px 12px 15px;
     font: 400 12px 'Open Sans', sans-serif;
     color: #acacac;
-}
+} */
 
 /*
 .select2-results__option {
@@ -3348,12 +3347,12 @@ color: #acacac;
 }
 */
 
-#upload_photo .select2-container--default .select2-selection--single .select2-selection__arrow {
+/* #upload_photo .select2-container--default .select2-selection--single .select2-selection__arrow {
     top: 6px;
 }
 #upload_photo .select2-container--default .select2-selection--single {
     background-color: #363636;
-}
+} */
 /* #upload_photo .title_input_container, #upload_photo .select_picture_container {
     margin-bottom: 25px;
 }
@@ -3406,7 +3405,7 @@ color: #acacac;
     margin: 10px;
 }
 
-/* SIGN IN/LOG IN */
+/**************************** SIGN IN/LOG IN ****************************/
 
 .ui-popup-screen {
     background: white;
