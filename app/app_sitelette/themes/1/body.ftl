@@ -108,42 +108,44 @@
 							<ul class="gallery event_block_overlay">
 								<#list promoCodes as promoCode>
 									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" >
-										<div class="promoCode-container">
-					                        <span class="promoCode_title">${promoCode.title}</span>
-											<#if promoCode.imageURL??>
-												<div class="promoCode_image">
-													<img src="${promoCode.imageURL}"></img>
+										<div class="promocode_inner_wrapper">
+											<div class="promoCode-container">
+						                        <span class="promoCode_title">${promoCode.title}</span>
+												<#if promoCode.imageURL??>
+													<div class="promoCode_image">
+														<img src="${promoCode.imageURL}"></img>
+													</div>
+												</#if>
+												<div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
+													<table>
+							                            <tr>
+							                                <td class="promoCode_expiration_date">
+								                                <div class="promoCode_container"> 
+								                                     Expires: ${promoCode.expirationDate?date}
+								                                </div>
+							                                </td>
+							                               
+							                                <#if promoCode.type.name()=="AMOUNT">
+							                                  <td class="promoCode_details">
+							                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
+							                                    <span class="promoCode_discount">${promoCode.discount}</span>
+							                                  </td>
+							                                <#else>
+							                                  <td class="promoCode_details">
+							                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
+							                                  </td>
+							                                </#if>  
+							                            </tr>
+						                            </table>
 												</div>
-											</#if>
-											<div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
-												<table>
-						                            <tr>
-						                                <td class="promoCode_expiration_date">
-							                                <div class="promoCode_container"> 
-							                                     Expires: ${promoCode.expirationDate?date}
-							                                </div>
-						                                </td>
-						                               
-						                                <#if promoCode.type.name()=="AMOUNT">
-						                                  <td class="promoCode_details">
-						                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
-						                                    <span class="promoCode_discount">${promoCode.discount}</span>
-						                                  </td>
-						                                <#else>
-						                                  <td class="promoCode_details">
-						                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
-						                                  </td>
-						                                </#if>  
-						                            </tr>
-					                            </table>
 											</div>
+				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
+					                            <div class="promoCode-buybutton-container">
+			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-promoCode="${promoCode.promoCode}">
+			                                           Shop</button>
+					                            </div>
+	                                        </#if>
 										</div>
-			                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
-				                            <div class="promoCode-buybutton-container">
-		                                         <button class="promoCode-buybutton" data-promoCode="${promoCode.promoCode}">
-		                                           Shop</button>
-				                            </div>
-                                        </#if>
 
 										<div class="promoCode_item_buttons">
 											<div class="share_btn_block"
