@@ -10,7 +10,7 @@
         <% _.each(contests, function(poll, poll_index){ %>
             <li class="poll_item" data-uuid="<%= poll.contestUUID %>">
                 <div class="contest_container">
-                    <div class="poll_block_title">Answer questions - <br>win the prize</div>
+                    <div class="poll_block_title">&nbsp</div>
                     <img class="poll_image" src="<%= poll.imageURL %>"></img>
                     <span class="poll_displaytext"><%= poll.displayText %>?</span>
 
@@ -20,7 +20,7 @@
                                 <div class="ui-grid-a">
                                     <div class="ui-block-a">
                                         <input type="radio" name="radio-choice-ans" data-poll-index="<%= poll_index %>" id="ans_<%= index %>-<%= poll.contestUUID %>" data-uuid="<%= poll.contestUUID %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (poll.answerStatus.enumText === 'ANSWERED') {
-                                            if (poll.answerStatus.id === index + 1) {%> checked="checked"<% } %>
+                                            if (choice.thisIsYourChoice) {%> checked="checked"<% } %>
                                         <% } else if ( index === 0 ) { %>checked='checked'<% } %>>
                                         <label for="ans_<%= index %>-<%= poll.contestUUID %>"><span><span></span></span></label>
                                         <div class="question_item">
