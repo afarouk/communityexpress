@@ -29,8 +29,8 @@
                                                     <div class="back cmtyx_color_<%= (index % 4) + 1 %>"></div>
                                                     <span class="percent"></span>
                                                 <% } else { %>
-                                                    <div class="back cmtyx_color_<%= (index % 4) + 1 %>" style="width: <%= Math.floor(choice.percentOfTotalResponses) %>%"></div>
-                                                    <span class="percent"><%= Math.floor(choice.percentOfTotalResponses) %>%</span>
+                                                    <div class="back cmtyx_color_<%= (index % 4) + 1 %>" style="width: <%= Math.round(choice.percentOfTotalResponses) %>%"></div>
+                                                    <span class="percent"><%= Math.round(choice.percentOfTotalResponses) %>%</span>
                                                 <% } %>
                                             </div>
                                             <p class="question_text"><%= choice.displayText %></p>
