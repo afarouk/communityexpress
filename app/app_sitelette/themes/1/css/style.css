@@ -1864,13 +1864,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .event_item_buttons .share_btn_block {
     margin-bottom: 20px;
 }
-.events_block .share_btn_block {
-    text-align: center;
-}
 
 .share_btn_block {
     font: 500 14px 'Open Sans', sans-serif;
     color: white;
+    text-align: center;
 }
 
 /********************** GALLERY BLOCK ***********************/
@@ -2076,12 +2074,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .promotion_block .share_btn_block {
     margin-bottom: 20px;
 }
-.gallery_block .share_btn_block .share_icon,
-.loyalty_program_block .share_btn_block .share_icon,
-.events_block .share_btn_block .share_icon,
-.poll_block .share_btn_block .share_icon,
-.promotion_block .share_btn_block .share_icon,
-.photo_contest_block .share_btn_block .share_icon {
+.share_btn_block .share_icon {
     background: url('images/share-option.png') no-repeat;
     background-size: cover;
     display: inline-block;
@@ -2762,6 +2755,48 @@ li.video_block .body {
     padding: 0px;
     // height: 250px;
 }
+
+/********************** DISCOUNTS BLOCK ***********************/
+.promocodes_block .sms_input_block {
+    display: none;
+}
+
+.promocodes_block .promoCode_title {
+    display: block;
+    font: 400 16px/16px 'Open Sans', sans-serif;
+    color: #ddd;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.promocodes_block .slick-arrow {
+    top: -3px;
+}
+
+.promocodes_block .promoCode_container {
+    color: #C01F2F;
+    position: relative;
+    bottom: 60px;
+    left: 8px;
+    font: 700 14px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    width: 180px;
+}
+
+.promocodes_block .promoCode_details {
+    position: relative;
+    right: 200px;
+    bottom: 142px;
+    font: 700 20px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.promocodes_block .promoCode-buybutton {
+    margin-bottom: 10px;
+}
+
 
 /********************** SHARE BLOCK ***********************/
 .share_block {
