@@ -43,10 +43,12 @@ var SingletonView = Backbone.View.extend({
         }
     },
 
-    initialize : function(options) {
+    initialize: function(options) {
         this.item = options.item;
         this.type = options.type;
         this.uuid = options.uuid;
+        this.promoCode = options.promoCode;
+        this.discountPrice = options.discountPrice;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
         this.basket = options.basket;
@@ -91,7 +93,8 @@ var SingletonView = Backbone.View.extend({
     },
 
     triggerOrder : function() {
-        this.basket.getItemsNumber() === 0 ?
+        var itemsNumber = this.basket.getItemsNumber();
+        itemsNumber === 0 ?
         this.showNoItemsPopup() :
         popupController.requireLogIn(this.sasl, function() {
             this.$('.sub_header').hide();
@@ -103,7 +106,9 @@ var SingletonView = Backbone.View.extend({
                 backToCatalog: this.backToCatalog,
                 backToCatalogs: this.backToCatalogs,
                 backToRoster: this.backToRoster,
-                backToSingleton: this.backToSingleton
+                backToSingleton: this.backToSingleton,
+                promoCode: this.promoCode,
+                discountPrice: this.discountPrice * itemsNumber
             }, {
                 reverse : true
             });

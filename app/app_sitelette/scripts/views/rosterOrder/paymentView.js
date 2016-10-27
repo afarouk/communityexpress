@@ -82,12 +82,12 @@ var PaymentView = Backbone.View.extend({
                 this.model.additionalParams.discount = resp.discount;
                 this.model.additionalParams.discountType = resp.discountType;
                 this.setTotalPriceWithTip();
-            }, this), _.bind(function(jqXHR) {
+            }, this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
                 popupController.textPopup({
                     text: text
                 });
-            }, this));
+            });
     },
 
     getTipInfo: function() {
