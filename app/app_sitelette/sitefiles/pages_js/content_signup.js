@@ -52,6 +52,12 @@ var removeFeatureFromPreview = function(enum_text) {
     }
 };
 
+
+// function showSimpleSignupRow1() {
+//     $('#simpleSignupRow1').hide();
+//     $('#simpleSignupRow2').fadeIn('slow');
+// }
+
 function showSimpleSignupRow2() {
     $('#simpleSignupRow1').hide();
     $('#simpleSignupRow2').fadeIn('slow');
@@ -384,6 +390,7 @@ function createOwnerByInvitation(evt) {
                             $(".steps1").addClass("successStep").removeClass("currentStep");
                             $(".steps2").addClass("successStep").removeClass("currentStep");
                             $(".steps3").addClass("successStep").removeClass("currentStep");
+                            $(".steps4").addClass("successStep").removeClass("currentStep");
                             $('#clkToCRT').show();
                             $("html, body").animate({
                                 scrollTop: 0
@@ -570,6 +577,7 @@ function submitEmailRegistrationFormToAPI(apiurl, postPayload, formValidation) {
                         $(".steps1").addClass("successStep").removeClass("currentStep");
                         $(".steps2").addClass("successStep").removeClass("currentStep");
                         $(".steps3").addClass("successStep").removeClass("currentStep");
+                        $(".steps4").addClass("successStep").removeClass("currentStep");
                         $("html, body").animate({
                             scrollTop: 0
                         }, 600);
@@ -1113,7 +1121,7 @@ function attachBootstrapValidatorsToRegistrationForm() {
                     trigger: ' blur',
                     validators: {
                         notEmpty: {
-                            message: 'First name can not be empty'
+                            message: 'Last name can not be empty'
                         }
                     }
                 }
@@ -1181,7 +1189,8 @@ function attachBootstrapValidatorsToRegistrationForm() {
                     $("#simpleSignupRow1").hide();
                     $("#simpleSignupRow1a").show();
                     $(".steps1").addClass("successStep").removeClass("currentStep");
-                    $(".steps2").addClass("currentStep");
+                    $(".steps2").addClass("successStep").removeClass("currentStep");
+                    $(".steps3").addClass("currentStep");
                 }
 
             })
@@ -1209,10 +1218,19 @@ function attachBootstrapValidatorsToRegistrationForm() {
                     $("#simpleSignupRow1b").show();
                     $(".steps1").addClass("successStep").removeClass("currentStep");
                     $(".steps2").addClass("successStep").removeClass("currentStep");
-                    $(".steps3").addClass("currentStep");
+                    $(".steps3").addClass("successStep").removeClass("currentStep");
+                    $(".steps4").addClass("currentStep");
                 }
 
             })
+        // .on(
+        //     'click',
+        //     '[name="emailRegistrationPrev0"]',
+        //     function() {
+        //         $("#simpleSignupRow1").hide();
+        //         $(".package_block").show();
+        //
+        //     })
         .on(
             'click',
             '[name="emailRegistrationPrev1"]',

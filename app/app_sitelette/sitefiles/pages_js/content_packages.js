@@ -1,6 +1,11 @@
 
+  var globalplan = '';
+  var globalplancounter = 0;
+
 $.get( "http://simfel.com/apptsvc/rest/billing/getPacakgesByDomain", function( data ) {
     console.log(data);
+    globalplan=data;
+    console.log(globalplan);
     var class_arr = ['orangeBg', 'voiletBg', 'greenBg'];
     var packageBlock = "";
     var counter=0;
@@ -14,11 +19,12 @@ $.get( "http://simfel.com/apptsvc/rest/billing/getPacakgesByDomain", function( d
           }
           packageBlock = packageBlock + '<li>'+data[i].features[j].displayText+tickhtml+'</li>';
         }
-        packageBlock = packageBlock + '</ul><div class="prcing_bottom_btn_wrap"><a href="javascript:void(0)" class="pricing_demo_button '+class_arr[counter]+'">Schedule a demo</a></div></div></div>';
+        packageBlock = packageBlock + '</ul><div class="prcing_bottom_btn_wrap"><a href="javascript:void(0)" id="plan_'+[i]+'" class="pricing_demo_button '+class_arr[counter]+'">Buy Now</a></div></div></div>';
 
         counter++;
         }
     }
+    globalplancounter=counter;
     $( ".packageListDyn" ).html( packageBlock );
 });
 
@@ -40,6 +46,35 @@ $(document).ready(function() {
           $('.pricing_inner_block').height(highestBox);
 
         });
+                for(var i=0; i<globalplancounter; i++) {
+                  $('#plan_'+i).on('click', function () {
+                    thisid=this.id;
+                    var j=thisid.split("_");
+                    $(location).attr('href','signup#'+j[1]);
+                  });
+                }
 
   }, 2000);
 });
+
+
+
+var interval =  setInterval(function(){
+  for(var i=0; i< globalplancounter; i++) {
+     if(window.location.href.indexOf("#"+i) > -1) {
+     $('.package_block').hide();
+     $('#simpleSignupRow1').show();
+     $(".steps1").addClass("successStep").removeClass("currentStep");
+     $(".steps2").addClass("currentStep");
+     $("#monthlyPriceInCents").val(globalplan[i].packagePricing.monthlyPrice);
+     $("#monthlyPriceInCents").attr('disabled', true);
+     myStopFunction();
+   }
+  }
+
+   }, 500);
+
+   function myStopFunction() {
+       clearInterval(interval);
+   }
+   //clearInterval(interval);

@@ -1242,7 +1242,8 @@ h5{
     left: 0;
 }
 .stepsButtonWrap .formSteps:first-child:before { display: none; }
-.stepsButtonWrap .formSteps:first-child + .formSteps + .formSteps:after { display: none; }
+/*.stepsButtonWrap .formSteps:first-child + .formSteps + .formSteps:after { display: none; }*/
+.stepsButtonWrap .formSteps:last-child:after { display: none; }
 .stepsContent{
 	font-size: 14px;
 	margin-top: 10px;
