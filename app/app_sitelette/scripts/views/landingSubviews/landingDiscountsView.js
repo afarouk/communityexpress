@@ -23,10 +23,10 @@ var DiscountsView = Backbone.View.extend({
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
-    this.initSlick();
-    this.setLinksForEachDiscount();
+    // this.initSlick();
+    // this.setLinksForEachDiscount();
     Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
-    // this.getPromoCode();
+    this.getPromoCodes();
   },
 
   toggleCollapse: function() {
@@ -65,10 +65,10 @@ var DiscountsView = Backbone.View.extend({
     this.initSlick();
   },
 
-  getPromoCode: function() {
-    orderActions.retrievePromoCodeByUUID('DD43FE3')
+  getPromoCodes: function() {
+    orderActions.retrieveRetailPromoCodes(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId)
       .then(function(res){
-        debugger;
+        this.render(res)
       }.bind(this))
       .fail(function(res){
         if (res.responseJSON && res.responseJSON.error) {
@@ -77,10 +77,52 @@ var DiscountsView = Backbone.View.extend({
       }.bind(this));
   },
 
+  render: function(promoCodes) {
+        this.promoCodes = promoCodes;
+        this.$el.html(discountsTemplate({
+            promoCodes: promoCodes
+        }));
+        this.initSlick();
+        this.setLinksForEachDiscount();
+        return this;
+    },
+
   onGoToShop: function() {
     var $el = this.$('.promoCode-buybutton');
     var promocode = $el.data('promocode');
     console.log(promocode);
+  },
+
+  triggerCatalogsView: function() {
+    //   var saslData = appCache.get('saslData');
+      if (this.sasl) {
+          switch (this.sasl.retailViewType) {
+              case 'ROSTER':
+                  this.triggerRosterView();
+                  break;
+              case 'CATALOGS':
+                  Vent.trigger('viewChange', 'catalogs', [this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId]);
+                  break;
+              case 'CATALOG':
+                  Vent.trigger('viewChange', 'catalog', {
+                      backToRoster: false,
+                      backToCatalogs: false,
+                      backToCatalog: true
+                  });
+                  break;
+          default:
+          }
+      }
+  },
+
+  triggerRosterView: function() {
+      var uuid = 'ROSTER';
+      Vent.trigger('viewChange', 'roster', {
+          id: uuid,
+          backToRoster: false,
+          rosterId: uuid,
+          launchedViaURL: false
+       }, { reverse: false });
   },
 
   openDiscountByShareUrl: function(uuid) {
@@ -132,7 +174,7 @@ var DiscountsView = Backbone.View.extend({
 
   getLinks: function(uuid) {
       var demo = window.community.demo ? 'demo=true&' : '',
-            shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+            shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
             '?' + demo + 't=d&u=' + uuid),
           links = [
               '',
@@ -170,7 +212,7 @@ var DiscountsView = Backbone.View.extend({
         demo = window.community.demo ? 'demo=true&' : '',
         shareUrl = window.location.href.split('?')[0] +
           '?' + demo + 't=e&u=' + uuid,
-        val = $target.prev().find('.sms_input').val();
+        val = $target.prev().val();
 
     loader.showFlashMessage('Sending message to... ' + val);
     this.changeSlideHeight($el, 70);
