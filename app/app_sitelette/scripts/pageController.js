@@ -160,6 +160,7 @@ module.exports = {
 
     singleton: function(options) {
         var sasl,
+            promoPrice = options.promoPrice,
             discount = options.discount || null,
             discountType = options.discountType || '',
             promoCode = options.promoCode || null,
@@ -175,19 +176,7 @@ module.exports = {
             return type === 'PROMO'? catalogActions.getItemDetails(uuid) :
                 catalogActions.getEventDetails(uuid);
         }).then(function(item) {
-            var price = item.price,
-                discountPrice = 0;
-            switch (discountType) {
-                case 'PERCENT':
-                    price = parseInt((100 - discount) * item.price)/100;
-                    break;
-                case 'AMOUNT':
-                    price = parseFloat(item.price - discount);
-                    break;
-                default:
-            }
-            discountPrice = parseInt((item.price - price) * 100) / 100;
-            item.price = price;
+            item.price = promoPrice;
             var basket = new CatalogBasketModel(),
             // Should we have isOpen and isOpenWarningMessage in response?
                 isOpen = true,
@@ -195,9 +184,6 @@ module.exports = {
             basket.addItem(new Backbone.Model(item), 1);
             appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
             return {
-                discount: discount,
-                discountType: discountType,
-                discountPrice: discountPrice,
                 promoCode: promoCode,
                 type: type,
                 uuid: item.uuid,
