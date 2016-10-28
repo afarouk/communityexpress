@@ -33,6 +33,7 @@ var PromotionView = Backbone.View.extend({
     Vent.on('openPromotionByShareUrl', this.openPromotionByShareUrl, this);
     this.setLinksForEachPromotion();
     $( ".promotion_block .header #flag" ).before( "<style>.promotion_block #flag:after { border-bottom-color:" + $('.cmtyx_color_3').css('background-color') + "}</style>" );
+    this.resolved();
   },
 
   initSlick: function() {

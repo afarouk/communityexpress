@@ -43,6 +43,7 @@ var LandingReviewsView = Backbone.View.extend({
     this.$('.review_current_rating').text(this.$('.review-rating').attr('initial-rating')/2);
 
     this.initializeMyRating();
+    this.resolved();
   },
 
   initializeMyRating: function() {

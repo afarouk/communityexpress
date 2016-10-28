@@ -36,6 +36,7 @@ var LoyaltyCardView = Backbone.View.extend({
     Vent.on('logout_success', this.onLogout, this);
     this.render(this.loyaltyProgram);
     this.setShareLinks();
+    this.resolved();
   },
 
   render: function(loyaltyProgram) {

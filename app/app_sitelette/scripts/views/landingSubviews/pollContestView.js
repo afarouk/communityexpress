@@ -60,6 +60,7 @@ module.exports = Backbone.View.extend({
         }));
         this.setLinksForEachPoll();
         this.initSlick();
+        this.resolved();
         return this;
     },
 
