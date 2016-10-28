@@ -35,10 +35,11 @@ module.exports = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         Vent.on('openPhotoByShareUrl', this.openPhotoByShareUrl, this);
+        this.initSlick();
     },
 
     render: function(photos) {
-        console.log('contest', photos);
+        // console.log('contest', photos);
         this.contest = photos;
         this.$el.html(photoContestTemplate({
             contests: photos
