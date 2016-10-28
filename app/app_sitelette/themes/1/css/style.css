@@ -1389,13 +1389,18 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .sub_header {
     background-color: #444;
     height: auto;
-    /*padding: 10px 5% 10px;*/
     position: fixed;
     width: 100%;
-    z-index: 1000;
+    z-index: 9999;
     margin-top: -3px;
     top: 45px;
     left: 0;
+    transform: translateZ(0);
+    -moz-transform: translatez(0);
+    -ms-transform: translatez(0);
+    -o-transform: translatez(0);
+    -webkit-transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
 }
 .sub-radio-list {
     color: #fafafa;
