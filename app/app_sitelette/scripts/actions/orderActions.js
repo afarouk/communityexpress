@@ -50,6 +50,14 @@ module.exports = {
         });
     },
 
+    retrieveRetailPromoCodes: function(sa, sl) {
+        return gateway.sendRequest('retrieveRetailPromoCodes', {
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            UID: getUser().getUID(),
+        });
+    },
+
     validatePromoCode: function(sa, sl, promoCode) {
         var data = this.moment.utc(new Date()).format().replace('Z', ':UTC'); //tweak utc date
         return gateway.sendRequest('validatePromoCode', {

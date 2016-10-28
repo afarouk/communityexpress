@@ -26,7 +26,7 @@ var DiscountsView = Backbone.View.extend({
     this.initSlick();
     this.setLinksForEachDiscount();
     Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
-    // this.getPromoCode();
+    // this.getPromoCodes();
   },
 
   toggleCollapse: function() {
@@ -65,10 +65,10 @@ var DiscountsView = Backbone.View.extend({
     this.initSlick();
   },
 
-  getPromoCode: function() {
-    orderActions.retrievePromoCodeByUUID('DD43FE3')
+  getPromoCodes: function() {
+    orderActions.retrieveRetailPromoCodes(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId)
       .then(function(res){
-        debugger;
+        this.render(res)
       }.bind(this))
       .fail(function(res){
         if (res.responseJSON && res.responseJSON.error) {
@@ -76,6 +76,16 @@ var DiscountsView = Backbone.View.extend({
         }
       }.bind(this));
   },
+
+  render: function(promoCodes) {
+        this.promoCodes = promoCodes;
+        this.$el.html(discountsTemplate({
+            promoCodes: promoCodes
+        }));
+        this.initSlick();
+        this.setLinksForEachDiscount();
+        return this;
+    },
 
   onGoToShop: function() {
     var $el = this.$('.promoCode-buybutton');
