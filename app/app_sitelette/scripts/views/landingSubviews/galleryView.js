@@ -22,6 +22,7 @@ var GalleryView = Backbone.View.extend({
     this.sasl = window.saslData;
     this.initSlick();
     this.setLinksForEachPicture();
+    this.resolved();
   },
 
   toggleCollapse: function() {

@@ -25,6 +25,7 @@ var EventsView = Backbone.View.extend({
     this.initSlick();
     this.setLinksForEachEvent();
     Vent.on('openEventByShareUrl', this.openEventByShareUrl, this);
+    this.resolved();
   },
 
   toggleCollapse: function() {

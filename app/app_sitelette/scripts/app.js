@@ -61,9 +61,9 @@ var App = function() {
     this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);
 
-    if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
-        this.checkType(window.community.type);
-    }
+    // if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
+    //     this.checkType(window.community.type);
+    // }
 
     Backbone.View.prototype.addEvents = function(eventObj) {
         var events = _.extend( {}, eventObj, this.pageEvents );
@@ -144,17 +144,37 @@ App.prototype = {
             PhotoContest: this.createSubview( PhotoContestView, !saslData.hasPhotoContest ),
             contactUs: this.createSubview( ContactUsInLandingView )
         };
+
+        // !!! We should render all views amd wait a little before scroll to block
+        var defrs = _.pluck(this.viewsInLanding, 'deferred');
+        $.when.apply( this, defrs )
+            .then( function(){
+                console.log(arguments);
+                if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
+                    setTimeout(this.checkType.bind(this, window.community.type), 100);
+                }
+            }.bind(this), function(){
+                //TODO error
+            });
+        // end
+        
         this.landingView.viewsInLanding = this.viewsInLanding;
     },
 
     //when we don't have subview el in DOM don't create subview
-    createSubview: function(view, hideContest) {
-        var inDOM = $(view.prototype.el);
+    createSubview: function(View, hideContest) {
+        var inDOM = $(View.prototype.el);
         if (inDOM.length > 0) {
             if (hideContest) {
                 inDOM.hide();
             } else {
-                return new view();
+                var def = $.Deferred();
+                View.prototype.resolved = function() {
+                    def.resolve(this.el);
+                };
+                var view = new View();
+                view.deferred = def;
+                return view;
             }
         } else {
             inDOM.hide();
@@ -180,7 +200,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openEventByShareUrl', uuid);
-                    }, 400);
+                    }, 20);
                 });
             break;
             case 'd':
@@ -188,7 +208,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openDiscountByShareUrl', uuid);
-                    }, 200);
+                    }, 10);
                 });
             break;
             case 'y':
@@ -196,7 +216,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('scrollToBlock', '.loyalty_program_block');
-                    }, 2000);
+                    }, 100);
                 });
             break;
             case 'h':
@@ -204,7 +224,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openPhotoByShareUrl', uuid);
-                    }, 2500);
+                    }, 500);
                 });
             break;
             case 'l':
@@ -212,7 +232,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openPollByShareUrl', uuid);
-                    }, 1500);
+                    }, 400);
                 });
             break;
             case 'p':
@@ -220,7 +240,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openPromotionByShareUrl', uuid);
-                    }, 1500);
+                    }, 100);
                 });
                 //&t=p&u=RorazeUAS5eH9grwf2o4Qw
             break;

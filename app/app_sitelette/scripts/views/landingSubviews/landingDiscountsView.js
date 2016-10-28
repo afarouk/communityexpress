@@ -84,6 +84,7 @@ var DiscountsView = Backbone.View.extend({
         }));
         this.initSlick();
         this.setLinksForEachDiscount();
+        this.resolved();
         return this;
     },
 

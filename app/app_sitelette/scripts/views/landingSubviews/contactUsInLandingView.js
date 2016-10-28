@@ -16,6 +16,7 @@ var ContactUsInLandindView = Backbone.View.extend({
     this.$el.unbind();
     this.showMap();
     this.fillLinks();
+    this.resolved();
   },
 
   //TODO temporary, should be set on server side
