@@ -93,6 +93,38 @@ var DiscountsView = Backbone.View.extend({
     console.log(promocode);
   },
 
+  triggerCatalogsView: function() {
+    //   var saslData = appCache.get('saslData');
+      if (this.sasl) {
+          switch (this.sasl.retailViewType) {
+              case 'ROSTER':
+                  this.triggerRosterView();
+                  break;
+              case 'CATALOGS':
+                  Vent.trigger('viewChange', 'catalogs', [this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId]);
+                  break;
+              case 'CATALOG':
+                  Vent.trigger('viewChange', 'catalog', {
+                      backToRoster: false,
+                      backToCatalogs: false,
+                      backToCatalog: true
+                  });
+                  break;
+          default:
+          }
+      }
+  },
+
+  triggerRosterView: function() {
+      var uuid = 'ROSTER';
+      Vent.trigger('viewChange', 'roster', {
+          id: uuid,
+          backToRoster: false,
+          rosterId: uuid,
+          launchedViaURL: false
+       }, { reverse: false });
+  },
+
   openDiscountByShareUrl: function(uuid) {
     var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
         index = el.data('slick-index');
@@ -142,7 +174,7 @@ var DiscountsView = Backbone.View.extend({
 
   getLinks: function(uuid) {
       var demo = window.community.demo ? 'demo=true&' : '',
-            shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+            shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
             '?' + demo + 't=d&u=' + uuid),
           links = [
               '',
