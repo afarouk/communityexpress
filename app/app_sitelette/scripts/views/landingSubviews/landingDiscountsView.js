@@ -4,6 +4,8 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
+    discountsTemplate = require('ejs!../../templates/landingSubviews/discountsView.ejs'),
+    orderActions = require('../../actions/orderActions'),
     contactActions = require('../../actions/contactActions');
 
 var DiscountsView = Backbone.View.extend({
@@ -24,6 +26,7 @@ var DiscountsView = Backbone.View.extend({
     this.initSlick();
     this.setLinksForEachDiscount();
     Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
+    // this.getPromoCode();
   },
 
   toggleCollapse: function() {
@@ -60,6 +63,18 @@ var DiscountsView = Backbone.View.extend({
     $el.find('.slick-arrow-container').remove();
     $el.slick('unslick');
     this.initSlick();
+  },
+
+  getPromoCode: function() {
+    orderActions.retrievePromoCodeByUUID('DD43FE3')
+      .then(function(res){
+        debugger;
+      }.bind(this))
+      .fail(function(res){
+        if (res.responseJSON && res.responseJSON.error) {
+          loader.showFlashMessage(res.responseJSON.error.message);
+        }
+      }.bind(this));
   },
 
   onGoToShop: function() {

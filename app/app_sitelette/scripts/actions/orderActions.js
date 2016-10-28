@@ -43,6 +43,13 @@ module.exports = {
         });
     },
 
+    retrievePromoCodeByUUID: function(uuid) {
+        return gateway.sendRequest('retrievePromoCodeByUUID', {
+            uuid: uuid,
+            UID: getUser().getUID(),
+        });
+    },
+
     validatePromoCode: function(sa, sl, promoCode) {
         var data = this.moment.utc(new Date()).format().replace('Z', ':UTC'); //tweak utc date
         return gateway.sendRequest('validatePromoCode', {
