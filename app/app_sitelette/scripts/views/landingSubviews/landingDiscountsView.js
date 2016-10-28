@@ -17,7 +17,7 @@ var DiscountsView = Backbone.View.extend({
     'click .share_btn_block': 'showShareBlock',
     'click .sms_block': 'showSMSInput',
     'click .sms_send_button': 'onSendSMS',
-    'click .promoCode-buybutton': 'onGoToShop'
+    'click .promoCode-buybutton': 'triggerCatalogsView'
   },
 
   initialize: function(options) {
@@ -95,20 +95,28 @@ var DiscountsView = Backbone.View.extend({
   },
 
   triggerCatalogsView: function() {
-    //   var saslData = appCache.get('saslData');
+      var index = this.$('.promoCode-buybutton').data('uuid'),
+          promo = this.promoCodes.filter(function(item) {
+              return item.discountUUID === index;
+          })[0],
+          promoCode = promo.promoCode;
       if (this.sasl) {
           switch (this.sasl.retailViewType) {
               case 'ROSTER':
-                  this.triggerRosterView();
+                  this.triggerRosterView(promoCode);
                   break;
               case 'CATALOGS':
-                  Vent.trigger('viewChange', 'catalogs', [this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId]);
+                  Vent.trigger('viewChange', 'catalogs', {
+                      id: [this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId],
+                      promoCode: promoCode
+                  });
                   break;
               case 'CATALOG':
                   Vent.trigger('viewChange', 'catalog', {
                       backToRoster: false,
                       backToCatalogs: false,
-                      backToCatalog: true
+                      backToCatalog: true,
+                      promoCode: promoCode
                   });
                   break;
           default:
@@ -116,13 +124,14 @@ var DiscountsView = Backbone.View.extend({
       }
   },
 
-  triggerRosterView: function() {
+  triggerRosterView: function(promoCode) {
       var uuid = 'ROSTER';
       Vent.trigger('viewChange', 'roster', {
           id: uuid,
           backToRoster: false,
           rosterId: uuid,
-          launchedViaURL: false
+          launchedViaURL: false,
+          promoCode: promoCode
        }, { reverse: false });
   },
 

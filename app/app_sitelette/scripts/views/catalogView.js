@@ -74,6 +74,7 @@ var CatalogView = Backbone.View.extend({
         this.catalogDisplayText = options.catalog.data.displayText;
         this.isOpen = options.isOpen;
         this.isOpenWarningMessage = options.isOpenWarningMessage;
+        this.promoCode = options.promoCode;
         //this.colors = options.catalog.data.colors;
         this.colors = colors;
         /* add catalog name to basket */
@@ -180,6 +181,7 @@ var CatalogView = Backbone.View.extend({
             this.$('.sub_header').hide();
             Vent.trigger('viewChange', 'address', {
                 id : this.sasl.getUrlKey(),
+                promoCode: this.promoCode,
                 catalogId : this.catalogId,
                 backToCatalog : true,// /* This will always be true */
                 backToCatalogs : this.backToCatalogs, /*

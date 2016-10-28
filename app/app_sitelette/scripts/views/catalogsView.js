@@ -17,6 +17,7 @@ var CatalogsView = Backbone.View.extend({
 
     initialize: function (options) {
         this.sasl = options.sasl;
+        this.promoCode = options.promoCode;
         this.options = options || {};
         this.isOpen = options.isOpen;
         this.isOpenWarningMessage = options.isOpenWarningMessage;
