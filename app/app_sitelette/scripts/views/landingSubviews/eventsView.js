@@ -163,6 +163,7 @@ var EventsView = Backbone.View.extend({
         val = $target.prev().find('.sms_input').val();
 
     loader.showFlashMessage('Sending message to... ' + val);
+    this.changeSlideHeight($el, 70);
     $el.slideUp('slow');
     contactActions.shareURLviaSMS('EVENT', this.sasl.serviceAccommodatorId,
       this.sasl.serviceLocationId, val, uuid, shareUrl)

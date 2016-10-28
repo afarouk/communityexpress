@@ -165,6 +165,7 @@ module.exports = Backbone.View.extend({
             val = $target.prev().val(); //(650) 617-3439
 
         loader.showFlashMessage('Sending message to... ' + val);
+        this.changeSlideHeight($el, 70);
         $el.slideUp('slow');
         contactActions.shareURLviaSMS('PHOTO_CONTEST', this.sasl.serviceAccommodatorId,
             this.sasl.serviceLocationId, val, uuid, shareUrl)

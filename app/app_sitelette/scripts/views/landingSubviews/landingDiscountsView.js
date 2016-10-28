@@ -149,27 +149,27 @@ var DiscountsView = Backbone.View.extend({
   },
 
   onSendSMS: function(e) {
-    console.log('send sms');
-    // var $el = this.$el.find('.sms_input_block'),
-    //     $target = $(e.currentTarget),
-    //     uuid = $target.parent().parent().data('uuid'),
-    //     demo = window.community.demo ? 'demo=true&' : '',
-    //     shareUrl = window.location.href.split('?')[0] +
-    //       '?' + demo + 't=e&u=' + uuid,
-    //     val = $target.prev().find('.sms_input').val();
+    var $el = this.$el.find('.sms_input_block'),
+        $target = $(e.currentTarget),
+        uuid = $target.parent().parent().data('uuid'),
+        demo = window.community.demo ? 'demo=true&' : '',
+        shareUrl = window.location.href.split('?')[0] +
+          '?' + demo + 't=e&u=' + uuid,
+        val = $target.prev().find('.sms_input').val();
 
-    // loader.showFlashMessage('Sending message to... ' + val);
-    // $el.slideUp('slow');
-    // contactActions.shareURLviaSMS('DISCOUNT', this.sasl.serviceAccommodatorId,
-    //   this.sasl.serviceLocationId, val, uuid, shareUrl)
-    //   .then(function(res){
-    //     loader.showFlashMessage('Sending message success.');
-    //   }.bind(this))
-    //   .fail(function(res){
-    //     if (res.responseJSON && res.responseJSON.error) {
-    //       loader.showFlashMessage(res.responseJSON.error.message);
-    //     }
-    //   }.bind(this));
+    loader.showFlashMessage('Sending message to... ' + val);
+    this.changeSlideHeight($el, 70);
+    $el.slideUp('slow');
+    contactActions.shareURLviaSMS('DISCOUNT', this.sasl.serviceAccommodatorId,
+      this.sasl.serviceLocationId, val, uuid, shareUrl)
+      .then(function(res){
+        loader.showFlashMessage('Sending message success.');
+      }.bind(this))
+      .fail(function(res){
+        if (res.responseJSON && res.responseJSON.error) {
+          loader.showFlashMessage(res.responseJSON.error.message);
+        }
+      }.bind(this));
   },
 
 });
