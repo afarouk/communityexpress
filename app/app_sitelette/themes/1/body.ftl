@@ -107,7 +107,7 @@
 						<div class="body">
 							<ul class="gallery event_block_overlay">
 								<#list promoCodes as promoCode>
-									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" >
+									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
 										<div class="promocode_inner_wrapper">
 											<div class="promoCode-container">
 						                        <span class="promoCode_title">${promoCode.title}</span>
@@ -155,7 +155,7 @@
 											</div>
 										</div>
 
-										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}">
+										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
 											<div class="sms_input_block">
 												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
 												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
