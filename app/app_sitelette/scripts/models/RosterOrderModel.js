@@ -46,7 +46,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			allowCash: options.sasl.get('services').catalog['allowCash'],
 			discount: 0,
 			discountDisplay: options.discountPrice,
-			promoCode: options.promoCode
+			promoCode: options.promoCode,
+			promoCodeActive: false
 			 // etc...
 		});
 	},
