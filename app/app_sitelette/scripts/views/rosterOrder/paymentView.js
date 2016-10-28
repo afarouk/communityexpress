@@ -24,6 +24,7 @@ var PaymentView = Backbone.View.extend({
         this.paymentOnlineAccepted = this.model.additionalParams.paymentOnlineAccepted;
         this.allowDelivery = this.model.additionalParams.allowDelivery;
         this.currencySymbol = this.model.currencySymbols['USD'];
+        this.onGetDiscount();
         this.on('show', this.onShow, this);
         this.model.on('change', _.bind(this.reRender, this));
         this.render();
@@ -72,8 +73,14 @@ var PaymentView = Backbone.View.extend({
     },
 
     onGetDiscount: function() {
+        if (this.model.additionalParams.promoCodeActive) return;
         var params = this.model.additionalParams,
+            promoCode;
+        if (!params.promoCodeActive && params.promoCode) {
+            promoCode = params.promoCode;
+        } else {
             promoCode = this.$('input[name=promocode]').val();
+        }
         this.model.additionalParams.promoCode = promoCode;
         if (!promoCode) return;
         orderActions.validatePromoCode(params.sasl.sa(), params.sasl.sl(), promoCode)
@@ -81,6 +88,7 @@ var PaymentView = Backbone.View.extend({
                 this.currencySymbol = this.model.currencySymbols[resp.currencyCode];
                 this.model.additionalParams.discount = resp.discount;
                 this.model.additionalParams.discountType = resp.discountType;
+                this.model.additionalParams.promoCodeActive = true;
                 this.setTotalPriceWithTip();
             }, this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
@@ -98,7 +106,7 @@ var PaymentView = Backbone.View.extend({
         this.$('.tip_price_value').text(this.tipSum);
     },
 
-    renderContent: function (options){
+    renderContent: function(options) {
         return this.$el;
     },
 
