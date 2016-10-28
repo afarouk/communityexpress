@@ -33,6 +33,7 @@ var PromotionView = Backbone.View.extend({
     Vent.on('openPromotionByShareUrl', this.openPromotionByShareUrl, this);
     this.setLinksForEachPromotion();
     $( ".promotion_block .header #flag" ).before( "<style>.promotion_block #flag:after { border-bottom-color:" + $('.cmtyx_color_3').css('background-color') + "}</style>" );
+    this.resolved();
   },
 
   initSlick: function() {
@@ -176,31 +177,8 @@ var PromotionView = Backbone.View.extend({
   },
 
   onBuyItem: function(e) {
-    //   orderActions.validatePromoCode(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, promoCode)
-    //     .then(_.bind(function(resp) {
-    //         console.log(resp);
-    //         var discount = resp.discount,
-    //             discountType = resp.discountType;
-    //             Vent.trigger('viewChange', 'singleton', {
-    //                 type: 'PROMO',
-    //                 uuid: $(e.target).data('uuid'),
-    //                 backToRoster: false,
-    //                 backToCatalogs: false,
-    //                 backToCatalog: false,
-    //                 backToSingleton: true,
-    //                 discount: discount,
-    //                 discountType: discountType,
-    //                 promoCode: promoCode
-    //             });
-    //     }, this), function(e) {
-    //         var text = h().getErrorMessage(e, 'promo code is not valid');
-    //         popupController.textPopup({
-    //             text: text
-    //         });
-    //     });
       var $target = $(e.currentTarget),
           promoPrice = parseInt($target.data('price').substr(1, $target.data('price').length - 1));
-      debugger;
       Vent.trigger('viewChange', 'singleton', {
           type: 'PROMO',
           promoPrice: promoPrice || 20,

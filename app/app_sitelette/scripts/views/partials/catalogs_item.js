@@ -20,6 +20,7 @@ var CatalogsItemView = Backbone.View.extend({
 
     initialize: function(options) {
         this.sasl = options.parent.parent.sasl;
+        this.promoCode = options.parent.parent.promoCode,
         this.listenTo(this.model, 'destroy', this.remove, this );
     },
 

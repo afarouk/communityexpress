@@ -13,6 +13,7 @@ var VideoView = Backbone.View.extend({
     this.options = options || {};
     this.sasl = window.saslData;
     this.initSlick();
+    this.resolved();
   },
 
   toggleCollapse: function() {

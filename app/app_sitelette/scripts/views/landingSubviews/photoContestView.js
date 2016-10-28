@@ -46,6 +46,7 @@ module.exports = Backbone.View.extend({
         }));
         this.setLinksForEachPhoto();
         this.initSlick();
+        this.resolved();
         return this;
     },
 
