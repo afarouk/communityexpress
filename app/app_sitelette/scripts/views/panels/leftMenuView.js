@@ -55,8 +55,9 @@ var LeftMenuView = PanelView.extend({
                     this.triggerRosterView();
                     break;
                 case 'CATALOGS':
-                    Vent.trigger('viewChange', 'catalogs',
-                    	[this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+                    Vent.trigger('viewChange', 'catalogs', {
+                    	id: [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]
+                    });
                     break;
                 case 'CATALOG':
                     Vent.trigger('viewChange', 'catalog', {

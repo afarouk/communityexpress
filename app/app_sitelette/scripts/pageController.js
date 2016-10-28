@@ -211,6 +211,7 @@ module.exports = {
         var catalogId = options.catalogId;
         var navbarView = options.navbarView;
         var launchedViaURL = options.launchedViaURL;
+        var promoCode = options.promoCode || null;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
@@ -264,14 +265,16 @@ module.exports = {
                     navbarView: navbarView,
                     launchedViaURL :launchedViaURL,
                     isOpen: isOpen,
-                    isOpenWarningMessage: isOpenWarningMessage
+                    isOpenWarningMessage: isOpenWarningMessage,
+                    promoCode: promoCode
                 };
             });
     },
 
     catalogs: function(options) {
-        var sasl;
-        var id = options;
+        var sasl,
+            id = options.id,
+            promoCode = options.promoCode || null;
         return saslActions.getSasl(options)
             .then(function(ret) {
                 sasl = ret;
@@ -281,6 +284,7 @@ module.exports = {
                     isOpenWarningMessage = options.data[0].isOpenWarningMessage;
                 if (options.data.length === 1) {
                     return {
+                        promoCode: promoCode,
                         catalog: {
                             id: id,
                             catalogId: options.data.catalogId,
@@ -295,6 +299,7 @@ module.exports = {
 
                 } else {
                     return {
+                        promoCode: promoCode,
                         sasl: sasl,
                         catalogs: options,
                         isOpen: isOpen,
