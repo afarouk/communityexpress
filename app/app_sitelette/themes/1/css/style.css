@@ -2530,10 +2530,12 @@ li.promotion_block .body {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-/* .promotions-buybutton.ui-btn {
-    width: 90%;
-    margin: 10px auto;
-} */
+ .promotions-buybutton.ui-btn {
+    padding: 5px;
+    color: white;
+    font: 700 12px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+} 
 .promotion_block .promotion_title {
     text-transform: uppercase;
     font: 700 16px 'Open Sans', sans-serif;

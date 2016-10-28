@@ -631,7 +631,7 @@
 				                                    <#if promotion.buyable!false>
 				                                    	<div class="promotions_buybutton_container"
 															uuid="${promotion.uuid}">
-							                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
+							                                  <button class="promotions-buybutton cmtyx_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
 							                                   Buy</button>
 														</div>
 				                                    </#if>
