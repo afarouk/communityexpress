@@ -23,10 +23,10 @@ var DiscountsView = Backbone.View.extend({
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
-    this.initSlick();
-    this.setLinksForEachDiscount();
+    // this.initSlick();
+    // this.setLinksForEachDiscount();
     Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
-    // this.getPromoCodes();
+    this.getPromoCodes();
   },
 
   toggleCollapse: function() {
@@ -180,7 +180,7 @@ var DiscountsView = Backbone.View.extend({
         demo = window.community.demo ? 'demo=true&' : '',
         shareUrl = window.location.href.split('?')[0] +
           '?' + demo + 't=e&u=' + uuid,
-        val = $target.prev().find('.sms_input').val();
+        val = $target.prev().val();
 
     loader.showFlashMessage('Sending message to... ' + val);
     this.changeSlideHeight($el, 70);
