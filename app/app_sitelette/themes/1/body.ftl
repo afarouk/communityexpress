@@ -120,11 +120,11 @@
 													<table>
 							                            <tr>
 							                                <td class="promoCode_expiration_date">
-								                                <div class="promoCode_container"> 
+								                                <div class="promoCode_container">
 								                                     Expires: ${promoCode.expirationDate?date}
 								                                </div>
 							                                </td>
-							                               
+
 							                                <#if promoCode.type.name()=="AMOUNT">
 							                                  <td class="promoCode_details">
 							                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
@@ -134,14 +134,14 @@
 							                                  <td class="promoCode_details">
 							                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
 							                                  </td>
-							                                </#if>  
+							                                </#if>
 							                            </tr>
 						                            </table>
 												</div>
 											</div>
 				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
 					                            <div class="promoCode-buybutton-container">
-			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1" 
+			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
 			                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
 			                                           Shop</button>
 					                            </div>
@@ -189,8 +189,8 @@
 					<#else>
 						<div class="body" style="text-align: center;">(No Discounts)</div>
 					</#if>
-				</li>			
-			
+				</li>
+
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
 						<span class="title">events</span> <span class="collapse_btn">&#9650;</span>
@@ -564,7 +564,7 @@
 										</div>
 										<div class="ui-block-b "
 											uuid="${promotion.uuid}">
-			                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-uuid="${promotion.uuid}">
+			                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
 			                                   Buy</button>
 										</div>
 									</div>
@@ -576,7 +576,7 @@
 										</div>
 									</div>
 		                            </#if>
-										
+
 								</div>
 								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
 									<div class="sms_input_block">
@@ -628,7 +628,7 @@
 				                                <input type="file" name="thumb" />
 				                            </div>
 				                        </div>
-					                
+
 					                    <div class="share_container">
 					                        <div class="share_btn_block"
 					                            uuid="">
