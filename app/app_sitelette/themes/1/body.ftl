@@ -113,7 +113,7 @@
 						                        <span class="promoCode_title">${promoCode.title}</span>
 												<#if promoCode.imageURL??>
 													<div class="promoCode_image">
-														<img src="${promoCode.imageURL}"></img>
+														<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
 													</div>
 												</#if>
 												<div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
@@ -141,7 +141,8 @@
 											</div>
 				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
 					                            <div class="promoCode-buybutton-container">
-			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-promoCode="${promoCode.promoCode}">
+			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1" 
+			                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
 			                                           Shop</button>
 					                            </div>
 	                                        </#if>
