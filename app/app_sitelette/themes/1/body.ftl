@@ -117,26 +117,22 @@
 													</div>
 												</#if>
 												<div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
-													<table>
-							                            <tr>
-							                                <td class="promoCode_expiration_date">
-								                                <div class="promoCode_container">
-								                                     Expires: ${promoCode.expirationDate?date}
-								                                </div>
-							                                </td>
-
-							                                <#if promoCode.type.name()=="AMOUNT">
-							                                  <td class="promoCode_details">
-							                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
-							                                    <span class="promoCode_discount">${promoCode.discount}</span>
-							                                  </td>
-							                                <#else>
-							                                  <td class="promoCode_details">
-							                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
-							                                  </td>
-							                                </#if>
-							                            </tr>
-						                            </table>
+					                                <div class="promoCode_expiration_date">
+						                                <div class="promoCode_container"> 
+						                                     Expires: ${promoCode.expirationDate?date}
+						                                </div>
+					                                </div>
+					                               
+					                                <#if promoCode.type.name()=="AMOUNT">
+					                                  <div class="promoCode_details">
+					                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
+					                                    <span class="promoCode_discount">${promoCode.discount}</span>
+					                                  </div>
+					                                <#else>
+					                                  <div class="promoCode_details">
+					                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
+					                                  </div>
+					                                </#if>
 												</div>
 											</div>
 				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
@@ -187,7 +183,11 @@
 							</ul>
 						</div>
 					<#else>
-						<div class="body" style="text-align: center;">(No Discounts)</div>
+						<div class="body">
+							<div class="no_discounts">
+								(No Discounts)
+							</div>
+						</div>
 					</#if>
 				</li>
 
