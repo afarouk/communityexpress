@@ -2446,10 +2446,18 @@ li.promotion_block .body {
     font: 500 14px 'Open Sans', sans-serif;
     color: #fff;
 }
-.promotion_block .promotion_details_container {
-    padding: 20px 10px;
-    border-bottom: solid 1px #636363;
+.promotion_block .promotion_item_container_wrapper {
+    padding: 0 10px 20px 10px;
     margin-bottom: 20px;
+    border-bottom: solid 1px #636363;
+}
+.promotion_block .promotion_item_container {
+    background-color: #ececec;
+}
+.promotion_block .promotion_details_container {
+    padding: 10px;
+    /*border-bottom: solid 1px #636363;*/
+    /*margin-bottom: 20px;*/
 }
 .promotion_block .promotion_type {
     padding: 20px;
@@ -2532,30 +2540,31 @@ li.promotion_block .body {
     color: #ddd;
     display: inline-block;
     white-space: normal;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 .promotion_block .promotions-originalprice,
 .promotion_block .promotions-promoprice {
-    font: 300 14px 'Open Sans', sans-serif;
-    color: #dddddd;
+    display: inline-block;
+    font: 500 14px 'Open Sans', sans-serif;
+    color: #464646;
 }
 .promotions-originalprice {
-    margin-bottom: 5px;
+    margin-right: 10px;
 }
 .promotion_block .promotions-originalprice span {
     text-decoration: line-through;
-    font-weight: 700;
 }
 .promotion_block .promotions-promoprice {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 .promotion_block .promotion_description {
     font: 300 12px 'Open Sans', sans-serif;
-    color: #dddddd;
+    color: #464646;
+    margin-bottom: 20px;
 }
 .promotion_block .promotions-buybutton.ui-btn {
-    width: 90%;
-    margin: 0 30px 20px 0;
+    /*width: 90%;*/
+    /*margin: 0 30px 20px 0;*/
 }
 
 

@@ -533,7 +533,7 @@
 					</div>
 					<div class="body">
 						<ul>
-							<#list promotions as promotion>
+							<!-- <#list promotions as promotion>
 							<li class="promotions-item" data-uuid="${promotion.uuid}">
 								<div class="promotion_item">
 									<div class="promotion_type">
@@ -577,6 +577,74 @@
 									</div>
 		                            </#if>
 
+								</div>
+								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
+									<div class="sms_input_block">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+									</div>
+									<div class="ui-block-a text sms_block">
+										<a href="" class="share_sms cmtyx_text_color_1">
+											<span class="share_icon sms_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-b text email_block">
+										<a href="" class="share_email cmtyx_text_color_1">
+											<span class="share_icon email_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-c text facebook_block">
+										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+											<span class="share_icon facebook_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-d text twitter_block">
+										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+											<span class="share_icon twitter_icon"></span>
+										</a>
+									</div>
+								</div>
+							</li> </#list> -->
+							<#list promotions as promotion>
+							<li class="promotions-item" data-uuid="${promotion.uuid}">
+								<div class="promotion_item">
+									<div class="promotion_type">
+										<!-- ${promotion.promoType.displayText} -->
+										<div class="promotion_title">${promotion.title}</div>
+									</div>
+									<div class="promotion_item_container_wrapper">
+										<div class="ui-grid-a promotion_item_container">
+											<div class="ui-block-a">
+												<img src="${promotion.URL}"></img>
+											</div>
+											<div class="ui-block-b">
+												<div class="promotion_details_container">
+				                                    <#if promotion.buyable!false>
+					                                  <div class="promotions-originalprice" >
+					                                   <span>$${promotion.originalPrice}</span></div>
+					                                  <div class="promotions-promoprice">
+					                                   <span class="cmtyx_text_color_1">$${promotion.promoPrice}</span>
+					                                   </div>
+				                                    </#if>
+
+													<div class="promotion_description">${promotion.message}</div>	
+				                                    <#if promotion.buyable!false>
+				                                    	<div class="promotions_buybutton_container"
+															uuid="${promotion.uuid}">
+							                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
+							                                   Buy</button>
+														</div>
+				                                    </#if>
+												</div>			
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="promotion_item_buttons">
+									<div class="share_btn_block"
+										uuid="${promotion.uuid}">
+										<span class="icon share_icon"></span> <span class="text">Share</span>
+									</div>
 								</div>
 								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
 									<div class="sms_input_block">
