@@ -149,7 +149,7 @@ App.prototype = {
         var defrs = _.pluck(this.viewsInLanding, 'deferred');
         $.when.apply( this, defrs )
             .then( function(){
-                console.log(arguments);
+                // console.log(arguments);
                 if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
                     setTimeout(this.checkType.bind(this, window.community.type), 100);
                 }
@@ -157,7 +157,6 @@ App.prototype = {
                 //TODO error
             });
         // end
-        
         this.landingView.viewsInLanding = this.viewsInLanding;
     },
 
@@ -170,7 +169,9 @@ App.prototype = {
             } else {
                 var def = $.Deferred();
                 View.prototype.resolved = function() {
-                    def.resolve(this.el);
+                    setTimeout(function(){
+                        def.resolve(this.el);
+                    }.bind(this), 0);
                 };
                 var view = new View();
                 view.deferred = def;
@@ -200,7 +201,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openEventByShareUrl', uuid);
-                    }, 20);
+                    }, 10);
                 });
             break;
             case 'd':
@@ -216,7 +217,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('scrollToBlock', '.loyalty_program_block');
-                    }, 100);
+                    }, 10);
                 });
             break;
             case 'h':
@@ -224,7 +225,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openPhotoByShareUrl', uuid);
-                    }, 500);
+                    }, 10);
                 });
             break;
             case 'l':
@@ -232,7 +233,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openPollByShareUrl', uuid);
-                    }, 400);
+                    }, 10);
                 });
             break;
             case 'p':
@@ -240,7 +241,7 @@ App.prototype = {
                 $(document).ready(function(){
                     setTimeout(function () {
                         Vent.trigger('openPromotionByShareUrl', uuid);
-                    }, 100);
+                    }, 10);
                 });
                 //&t=p&u=RorazeUAS5eH9grwf2o4Qw
             break;

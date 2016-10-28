@@ -36,7 +36,6 @@ var LoyaltyCardView = Backbone.View.extend({
     Vent.on('logout_success', this.onLogout, this);
     this.render(this.loyaltyProgram);
     this.setShareLinks();
-    this.resolved();
   },
 
   render: function(loyaltyProgram) {
@@ -53,6 +52,13 @@ var LoyaltyCardView = Backbone.View.extend({
             $(this).parent().find('.collapse_btn').html('&#9660;');
         }
     });
+  },
+
+  afterTriedToLogin: function() {
+    var uid = this.getUID();
+    if (!uid) {
+      this.resolved();
+    }
   },
 
   onLogin: function() {
@@ -79,7 +85,9 @@ var LoyaltyCardView = Backbone.View.extend({
         }
         this.$(this.qrCode).find('.qr_code_container').html('<img src="' +
           resp.qrcodeURL + '" alt="" >');
-        this.$(this.qrCode).slideDown('slow');
+        this.$(this.qrCode).slideDown('slow', function(){
+          this.resolved();
+        }.bind(this));
         this.$(this.no_qrCode).slideUp('slow');
         this.$(this.qrCode).find('.qr_code_title.title').text(resp.qrCodeBlockLine1);
         this.$(this.qrCode).find('.qr_code_title.info').text(resp.qrCodeBlockLine2);
