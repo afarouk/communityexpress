@@ -149,6 +149,7 @@ var PromotionView = Backbone.View.extend({
         val = $target.prev().find('.sms_input').val();
 
     loader.showFlashMessage('Sending message to... ' + val);
+    this.changeSlideHeight($el, 70);
     $el.slideUp('slow');
     contactActions.shareURLviaSMS('PROMOTION', this.sasl.serviceAccommodatorId,
       this.sasl.serviceLocationId, val, uuid, shareUrl)
@@ -175,38 +176,40 @@ var PromotionView = Backbone.View.extend({
   },
 
   onBuyItem: function(e) {
-      var promoCode = 'P322DEC';
-    //   window.community.promoCode = promoCode;
-      orderActions.validatePromoCode(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, promoCode)
-        .then(_.bind(function(resp) {
-            console.log(resp);
-            var discount = resp.discount,
-                discountType = resp.discountType;
-                Vent.trigger('viewChange', 'singleton', {
-                    type: 'PROMO',
-                    uuid: $(e.target).data('uuid'),
-                    backToRoster: false,
-                    backToCatalogs: false,
-                    backToCatalog: false,
-                    backToSingleton: true,
-                    discount: discount,
-                    discountType: discountType,
-                    promoCode: promoCode
-                });
-        }, this), function(e) {
-            var text = h().getErrorMessage(e, 'promo code is not valid');
-            popupController.textPopup({
-                text: text
-            });
-        });
-    //   Vent.trigger('viewChange', 'singleton', {
-    //       type: 'PROMO',
-    //       uuid: $(e.target).data('uuid'),
-    //       backToRoster: false,
-    //       backToCatalogs: false,
-    //       backToCatalog: false,
-    //       backToSingleton: true
-    //   });
+    //   orderActions.validatePromoCode(this.sasl.serviceAccommodatorId, this.sasl.serviceLocationId, promoCode)
+    //     .then(_.bind(function(resp) {
+    //         console.log(resp);
+    //         var discount = resp.discount,
+    //             discountType = resp.discountType;
+    //             Vent.trigger('viewChange', 'singleton', {
+    //                 type: 'PROMO',
+    //                 uuid: $(e.target).data('uuid'),
+    //                 backToRoster: false,
+    //                 backToCatalogs: false,
+    //                 backToCatalog: false,
+    //                 backToSingleton: true,
+    //                 discount: discount,
+    //                 discountType: discountType,
+    //                 promoCode: promoCode
+    //             });
+    //     }, this), function(e) {
+    //         var text = h().getErrorMessage(e, 'promo code is not valid');
+    //         popupController.textPopup({
+    //             text: text
+    //         });
+    //     });
+      var $target = $(e.currentTarget),
+          promoPrice = parseInt($target.data('price').substr(1, $target.data('price').length - 1));
+      debugger;
+      Vent.trigger('viewChange', 'singleton', {
+          type: 'PROMO',
+          promoPrice: promoPrice || 20,
+          uuid: $(e.target).data('uuid'),
+          backToRoster: false,
+          backToCatalogs: false,
+          backToCatalog: false,
+          backToSingleton: true
+      });
   },
 
   triggerOrder : function(sasl) {

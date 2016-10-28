@@ -4,6 +4,8 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
+    discountsTemplate = require('ejs!../../templates/landingSubviews/discountsView.ejs'),
+    orderActions = require('../../actions/orderActions'),
     contactActions = require('../../actions/contactActions');
 
 var DiscountsView = Backbone.View.extend({
@@ -24,6 +26,7 @@ var DiscountsView = Backbone.View.extend({
     this.initSlick();
     this.setLinksForEachDiscount();
     Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
+    // this.getPromoCode();
   },
 
   toggleCollapse: function() {
@@ -60,6 +63,18 @@ var DiscountsView = Backbone.View.extend({
     $el.find('.slick-arrow-container').remove();
     $el.slick('unslick');
     this.initSlick();
+  },
+
+  getPromoCode: function() {
+    orderActions.retrievePromoCodeByUUID('DD43FE3')
+      .then(function(res){
+        debugger;
+      }.bind(this))
+      .fail(function(res){
+        if (res.responseJSON && res.responseJSON.error) {
+          loader.showFlashMessage(res.responseJSON.error.message);
+        }
+      }.bind(this));
   },
 
   onGoToShop: function() {
@@ -149,27 +164,27 @@ var DiscountsView = Backbone.View.extend({
   },
 
   onSendSMS: function(e) {
-    console.log('send sms');
-    // var $el = this.$el.find('.sms_input_block'),
-    //     $target = $(e.currentTarget),
-    //     uuid = $target.parent().parent().data('uuid'),
-    //     demo = window.community.demo ? 'demo=true&' : '',
-    //     shareUrl = window.location.href.split('?')[0] +
-    //       '?' + demo + 't=e&u=' + uuid,
-    //     val = $target.prev().find('.sms_input').val();
+    var $el = this.$el.find('.sms_input_block'),
+        $target = $(e.currentTarget),
+        uuid = $target.parent().parent().data('uuid'),
+        demo = window.community.demo ? 'demo=true&' : '',
+        shareUrl = window.location.href.split('?')[0] +
+          '?' + demo + 't=e&u=' + uuid,
+        val = $target.prev().find('.sms_input').val();
 
-    // loader.showFlashMessage('Sending message to... ' + val);
-    // $el.slideUp('slow');
-    // contactActions.shareURLviaSMS('DISCOUNT', this.sasl.serviceAccommodatorId,
-    //   this.sasl.serviceLocationId, val, uuid, shareUrl)
-    //   .then(function(res){
-    //     loader.showFlashMessage('Sending message success.');
-    //   }.bind(this))
-    //   .fail(function(res){
-    //     if (res.responseJSON && res.responseJSON.error) {
-    //       loader.showFlashMessage(res.responseJSON.error.message);
-    //     }
-    //   }.bind(this));
+    loader.showFlashMessage('Sending message to... ' + val);
+    this.changeSlideHeight($el, 70);
+    $el.slideUp('slow');
+    contactActions.shareURLviaSMS('DISCOUNT', this.sasl.serviceAccommodatorId,
+      this.sasl.serviceLocationId, val, uuid, shareUrl)
+      .then(function(res){
+        loader.showFlashMessage('Sending message success.');
+      }.bind(this))
+      .fail(function(res){
+        if (res.responseJSON && res.responseJSON.error) {
+          loader.showFlashMessage(res.responseJSON.error.message);
+        }
+      }.bind(this));
   },
 
 });

@@ -35,10 +35,11 @@ module.exports = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         Vent.on('openPhotoByShareUrl', this.openPhotoByShareUrl, this);
+        this.initSlick();
     },
 
     render: function(photos) {
-        console.log('contest', photos);
+        // console.log('contest', photos);
         this.contest = photos;
         this.$el.html(photoContestTemplate({
             contests: photos
@@ -164,6 +165,7 @@ module.exports = Backbone.View.extend({
             val = $target.prev().val(); //(650) 617-3439
 
         loader.showFlashMessage('Sending message to... ' + val);
+        this.changeSlideHeight($el, 70);
         $el.slideUp('slow');
         contactActions.shareURLviaSMS('PHOTO_CONTEST', this.sasl.serviceAccommodatorId,
             this.sasl.serviceLocationId, val, uuid, shareUrl)

@@ -92,6 +92,7 @@ module.exports = {
             getPriceAddons: ['GET', '/retail/retrieveRetailPriceAddon'],
 
             validatePromoCode: ['POST', '/retail/validateRetailPromoCode'],
+            retrievePromoCodeByUUID: ['GET', '/retail/retrieveRetailPromoCodeByUUID'],
 
             retrieveContestsForClient: ['GET', '/contests/retrieveContestsForClient'],
             retrievePhotoContest: ['GET', '/contests/retrievePhotoContestClient'],

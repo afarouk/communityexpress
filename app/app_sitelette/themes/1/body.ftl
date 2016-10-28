@@ -107,13 +107,13 @@
 						<div class="body">
 							<ul class="gallery event_block_overlay">
 								<#list promoCodes as promoCode>
-									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" >
+									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
 										<div class="promocode_inner_wrapper">
 											<div class="promoCode-container">
 						                        <span class="promoCode_title">${promoCode.title}</span>
 												<#if promoCode.imageURL??>
 													<div class="promoCode_image">
-														<img src="${promoCode.imageURL}"></img>
+														<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
 													</div>
 												</#if>
 												<div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
@@ -137,7 +137,8 @@
 											</div>
 				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
 					                            <div class="promoCode-buybutton-container">
-			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-promoCode="${promoCode.promoCode}">
+			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
+			                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
 			                                           Shop</button>
 					                            </div>
 	                                        </#if>
@@ -150,7 +151,7 @@
 											</div>
 										</div>
 
-										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}">
+										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
 											<div class="sms_input_block">
 												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
 												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
@@ -188,8 +189,8 @@
 							</div>
 						</div>
 					</#if>
-				</li>			
-			
+				</li>
+
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
 						<span class="title">events</span> <span class="collapse_btn">&#9650;</span>
@@ -563,7 +564,7 @@
 										</div>
 										<div class="ui-block-b "
 											uuid="${promotion.uuid}">
-			                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-uuid="${promotion.uuid}">
+			                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
 			                                   Buy</button>
 										</div>
 									</div>
@@ -575,7 +576,7 @@
 										</div>
 									</div>
 		                            </#if>
-										
+
 								</div>
 								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
 									<div class="sms_input_block">
@@ -613,64 +614,59 @@
 							class="collapse_btn">&#9650;</span>
 					</div>
 					<div class="body">
-						<img src="themes/1/placeholder_images/special.png"></img> <span
-							class="contest_task">Send us a picture of your dog,
-							running!</span>
-						<button
-							class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND
-							A PHOTO</button>
-						<div class="prizes_title">All submissions are entered into
-							our mini-sweepstake!</div>
-						<ul>
-							<li>
-								<div class="prize_block">
-									<div class="ui-grid-a prize_container">
-										<div class="ui-block-a">
-											<div class="prize_text_block">
-												<span class="prize_text">prize</span> <span
-													class="prize_condition">every second burger</span> <span
-													class="prize_date">till 30.07</span>
-											</div>
-										</div>
-										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="prize_block">
-									<div class="ui-grid-a prize_container">
-										<div class="ui-block-a">
-											<div class="prize_text_block">
-												<span class="prize_text">prize</span> <span
-													class="prize_condition">every second coffee</span> <span
-													class="prize_date">till 30.07</span>
-											</div>
-										</div>
-										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="last">
-								<div class="prize_block">
-									<div class="ui-grid-a prize_container">
-										<div class="ui-block-a">
-											<div class="prize_text_block">
-												<span class="prize_text">prize</span> <span
-													class="prize_condition">every second salad</span> <span
-													class="prize_date">till 30.07</span>
-											</div>
-										</div>
-										<div class="ui-block-b ">
-											<img src="themes/1/placeholder_images/burger.png"></img>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
+						<ul class="photo_gallery">
+							<#list photocontests as photo>
+					            <li class="photo_item" data-uuid="${photo.contestUUID}">
+					                <div class="contest_container">
+					                    <div class="photo_block_title"><p>&nbsp</p></div>
+					                    <img src="${photo.imageURL}" class="photo_image"></img>
+					                    <span class="contest_task">${photo.displayText}</span>
+				                        <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
+				                        <div class="photo_contest_upload_image" data-uuid="${photo.contestUUID}">
+				                            <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
+				                            <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+				                                <input type="file" name="thumb" />
+				                            </div>
+				                        </div>
+
+					                    <div class="share_container">
+					                        <div class="share_btn_block"
+					                            uuid="">
+					                            <span class="icon share_icon"></span> <span class="text">Share</span>
+					                        </div>
+					                        <div class="share_block" data-uuid="${photo.contestUUID}">
+					                            <div class="ui-grid-c">
+					                                <div class="sms_input_block" data-uuid="${photo.contestUUID}">
+					                                    <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+					                                    <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+					                                </div>
+					                                <div class="ui-block-a text sms_block">
+					                                    <a href="" class="share_sms cmtyx_text_color_1">
+					                                        <span class="share_icon sms_icon"></span>
+					                                    </a>
+					                                </div>
+					                                <div class="ui-block-b text email_block">
+					                                    <a href="" class="share_email cmtyx_text_color_1">
+					                                        <span class="share_icon email_icon"></span>
+					                                    </a>
+					                                </div>
+					                                <div class="ui-block-c text facebook_block">
+					                                    <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+					                                        <span class="share_icon facebook_icon"></span>
+					                                    </a>
+					                                </div>
+					                                <div class="ui-block-d text twitter_block">
+					                                    <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+					                                        <span class="share_icon twitter_icon"></span>
+					                                    </a>
+					                                </div>
+					                            </div>
+					                        </div>
+					                    </div>
+					                </div>
+					            </li>
+					        </#list>
+					    </ul>
 					</div>
 				</li>
 				<li id="cmtyx_video_block" class="video_block">
