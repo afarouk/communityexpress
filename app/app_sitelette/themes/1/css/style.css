@@ -1904,6 +1904,13 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     right: 10px;
     bottom: 2px;
 }
+.prizes_title .prize_cup_icon {
+    height: 30px;
+    width: 30px;
+    position: relative;
+    left: 10px;
+    top: 5px;
+}
 .poll_block .body {
     padding: 0 !important;
 }
@@ -1923,13 +1930,13 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 100%;
 /* AF  max-height: 230px; */
 }
-.poll_block .poll_displaytext {
+/*.poll_block .poll_displaytext {
     display: block;
     margin-top: 20px;
     margin-bottom: 20px;
     font: 400 14px/21px 'Open Sans', sans-serif;
     color: #ececec;
-}
+}*/
 .poll_block .submit_poll_button {
     width: 60%;
     margin: 10px auto;
@@ -2572,7 +2579,8 @@ li.promotion_block .body {
 .photo_contest_block .poll_image {
     margin-bottom: 15px;
 }
-.photo_contest_block .contest_task {
+.photo_contest_block .contest_task,
+.poll_block .poll_displaytext {
     display: block;
     font: 400 16px / 18px 'Open Sans', sans-serif;
     color: #ececec;
@@ -2621,7 +2629,8 @@ li.promotion_block .body {
 .photo_contest_block .prizes_container {
     display: none;
 }
-.poll_block .prizes_title {
+.poll_block .prizes_title,
+.photo_contest_block .prizes_title {
     color: #ececec;
     font: 400 14px/21px 'Open Sans', sans-serif;
     border-bottom: solid 1px #636363;
@@ -2641,13 +2650,13 @@ li.promotion_block .body {
     width: 33px;
     height: 36px;
 }
-.photo_contest_block .prizes_title {
+/*.photo_contest_block .prizes_title {
     text-align: center;
     font: 400 12px 'Open Sans', sans-serif;
     color: #ececec;
     text-transform: uppercase;
     margin-bottom: 15px;
-}
+}*/
 .photo_contest_upload_image textarea.ui-input-text.ui-body-inherit.ui-shadow-inset {
     font: 300 16px 'Open Sans', sans-serif;
     color: #bbbbbb;
@@ -2686,31 +2695,56 @@ li.video_block .body {
 }
 
 .promocodes_block .promoCode_title {
-    display: block;
+    /*display: block;
     font: 400 16px/16px 'Open Sans', sans-serif;
     color: #ddd;
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 20px;
-    padding: 0 20px;
+    padding: 0 20px;*/
+    display: inline-block;
+    font: 900 13px/16px 'Open Sans', sans-serif;
+    max-width: 100px;
+    color: #3a3a3a;
+    text-transform: uppercase;
+    float: right;
+    letter-spacing: 0px;
+    position: relative;
+    top: 60px;
+    margin-right: 12%;
 }
 
 .promocodes_block .promoCode_container {
     color: #C01F2F;
     position: relative;
-    bottom: 60px;
+    bottom: 20px;
     left: 8px;
-    font: 700 14px 'Open Sans', sans-serif;
+    font: 700 10px 'Open Sans', sans-serif;
     text-transform: uppercase;
-    width: 180px;
 }
 
 .promocodes_block .promoCode_details {
-    position: relative;
-    right: 200px;
-    bottom: 142px;
+    width: 50px;
+    margin-left: 5px;
+    position: absolute;
+    top: 0;
+    margin-top: 5%;
     font: 700 20px 'Open Sans', sans-serif;
     text-transform: uppercase;
+}
+
+.promoCode_currency {
+    display: inline-block;
+    margin-right: -5px;
+}
+
+.promoCode_description {
+    height: 20px;
+}
+
+.no_discounts {
+    text-align: center;
+    padding: 20px; 
 }
 
 
@@ -2823,7 +2857,8 @@ li.video_block .body {
     background-size: 180px 40px;
     background-repeat: no-repeat;
 }
-.contest_prizes + .share_container {
+.contest_prizes + .share_container,
+.photo_contest_block .share_container {
     margin-top: 20px;
 }
 
