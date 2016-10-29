@@ -1578,7 +1578,7 @@ a.signup_btn:hover {
 
 .banner {
     display: inline-block;
-    background: url(../images/coupon_banner.jpg) no-repeat center;
+    background: url(../images/coupon_banner.png) no-repeat center;
     background-size: cover;
     padding: 4% 0 1% 0;
     margin-top: -70px;
