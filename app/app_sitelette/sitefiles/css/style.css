@@ -1578,7 +1578,7 @@ a.signup_btn:hover {
 
 .banner {
     display: inline-block;
-    background: url(../images/banner_img.png) no-repeat center;
+    background: url(../images/coupon_banner.jpg) no-repeat center;
     background-size: cover;
     padding: 4% 0 1% 0;
     margin-top: -70px;
@@ -1587,6 +1587,15 @@ a.signup_btn:hover {
 .banner2 {
     display: inline-block;
     background: url(../images/banner2.jpg) no-repeat center;
+    background-size: cover;
+    padding: 4% 0 1% 0;
+    margin-top: -70px;
+    width: 100%;
+}
+
+.banner3 {
+    display: inline-block;
+    background: url(../images/banner_img.png) no-repeat center;
     background-size: cover;
     padding: 4% 0 1% 0;
     margin-top: -70px;
@@ -1957,7 +1966,7 @@ span.precing_features_active_circle {
 @media(max-width:800px){
 	.price_wrap p {
     font-size: 36px;
-    line-height: 36px; 
+    line-height: 36px;
 	}
 	.price_wrap sup{
 		left: -15px;
