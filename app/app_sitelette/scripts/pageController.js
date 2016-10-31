@@ -160,16 +160,25 @@ module.exports = {
 
     singleton: function(options) {
         var sasl,
-            promoPrice = options.promoPrice || null,
+            // promoPrice = options.promoPrice || null,
             discount = options.discount || null,
             discountType = options.discountType || '',
             promoCode = options.promoCode || null,
-            type = options.type,
-            uuid = options.uuid,
+            // type = options.type,
+            // uuid = options.uuid,
             backToRoster = options.backToRoster,
             backToCatalog = options.backToCatalog,
             backToCatalogs = options.backToCatalogs,
-            backToSingleton = options.backToSingleton;
+            backToSingleton = options.backToSingleton,
+            singletonItem = {
+                uuid: options.uuid || null,
+                type: options.type || null,
+                promoPrice: options.promoPrice || null
+            };
+        singletonItem = appCache.fetch('singletonItem', singletonItem);
+        var uuid = singletonItem.uuid,
+            type = singletonItem.type,
+            promoPrice = singletonItem.promoPrice;
         return saslActions.getSasl()
         .then(function(ret) {
             sasl = ret;
