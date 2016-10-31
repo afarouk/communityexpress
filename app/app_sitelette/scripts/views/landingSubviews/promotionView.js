@@ -178,10 +178,10 @@ var PromotionView = Backbone.View.extend({
 
   onBuyItem: function(e) {
       var $target = $(e.currentTarget),
-          promoPrice = parseInt($target.data('price').substr(1, $target.data('price').length - 1));
+          promoPrice = parseInt($target.data('price').substr(1, $target.data('price').length - 1) * 100) / 100;
       Vent.trigger('viewChange', 'singleton', {
           type: 'PROMO',
-          promoPrice: promoPrice || 20,
+          promoPrice: promoPrice || null,
           uuid: $(e.target).data('uuid'),
           backToRoster: false,
           backToCatalogs: false,

@@ -124,7 +124,8 @@ var PaymentView = Backbone.View.extend({
             paymentOnlineAccepted: this.paymentOnlineAccepted,
             allowDelivery: this.allowDelivery,
             discount: this.model.additionalParams.discountDisplay,
-            promoCode: this.model.additionalParams.promoCode
+            promoCode: this.model.additionalParams.promoCode,
+            backToSingleton: this.model.additionalParams.backToSingleton
     	});
     },
 

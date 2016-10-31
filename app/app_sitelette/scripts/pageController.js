@@ -160,7 +160,7 @@ module.exports = {
 
     singleton: function(options) {
         var sasl,
-            promoPrice = options.promoPrice,
+            promoPrice = options.promoPrice || null,
             discount = options.discount || null,
             discountType = options.discountType || '',
             promoCode = options.promoCode || null,
@@ -176,7 +176,9 @@ module.exports = {
             return type === 'PROMO'? catalogActions.getItemDetails(uuid) :
                 catalogActions.getEventDetails(uuid);
         }).then(function(item) {
-            item.price = promoPrice;
+            if (promoPrice) {
+                item.price = promoPrice;
+            }
             var basket = new CatalogBasketModel(),
             // Should we have isOpen and isOpenWarningMessage in response?
                 isOpen = true,
