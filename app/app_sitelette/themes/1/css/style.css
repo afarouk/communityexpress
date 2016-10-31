@@ -2717,6 +2717,14 @@ li.video_block .body {
     padding: 0 !important;
 }
 
+.promocodes_block .body .promoCode-container {
+    padding-top: 30px;
+}
+
+.promocodes_block .body .promoCode-container .promoCode_image {
+    margin-bottom: 20px;
+}
+
 .promocodes_block .promocode_inner_wrapper {
     padding: 20px;
 }

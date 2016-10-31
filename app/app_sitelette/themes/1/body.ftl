@@ -112,13 +112,13 @@
 									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
 										<div class="promocode_inner_wrapper">
 											<div class="promoCode-container">
-						                        <span class="promoCode_title">${promoCode.title}</span>
+						                        <!-- <span class="promoCode_title">${promoCode.title}</span> -->
 												<#if promoCode.imageURL??>
 													<div class="promoCode_image">
 														<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
 													</div>
 												</#if>
-												<div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
+												<!-- <div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
 					                                <div class="promoCode_expiration_date">
 						                                <div class="promoCode_container"> 
 						                                     Expires: ${promoCode.expirationDate?date}
@@ -135,7 +135,7 @@
 					                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
 					                                  </div>
 					                                </#if>
-												</div>
+												</div> -->
 											</div>
 				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
 					                            <div class="promoCode-buybutton-container">

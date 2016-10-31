@@ -23,8 +23,8 @@ var DiscountsView = Backbone.View.extend({
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
-    // this.initSlick();
-    // this.setLinksForEachDiscount();
+    this.initSlick();
+    this.setLinksForEachDiscount();
     Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
     this.getPromoCodes();
   },
