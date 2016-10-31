@@ -101,7 +101,9 @@
 			<ul class="home_tabs_list">
                 <li id="cmtyx_promocodes_block" class="promocodes_block">
 					<div class="header cmtyx_color_1">
-						<span class="title">Discounts</span> <span class="collapse_btn">&#9650;</span>
+						<span class="title">Discounts</span> 
+						<span class="collapse_btn">&#9650;</span>
+						<span class="tag_icon"></span>
 					</div>
 					<#if (promoCodes)?has_content >
 						<div class="body">
