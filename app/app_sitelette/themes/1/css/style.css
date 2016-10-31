@@ -2093,10 +2093,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .loyalty_card_icon {
     display: inline-block;
-    background: url('images/card-icon.png') no-repeat;
+    background: url('images/loyalty_card_icon.png') no-repeat;
     background-size: cover;
-    width: 35px;
-    height: 23px;
+    width: 34px;
+    height: 21px;
 }
 .loyalty_program_block .header .loyalty_card_icon {
     float: right;
@@ -2697,6 +2697,21 @@ li.video_block .body {
 
 
 /********************** DISCOUNTS BLOCK ***********************/
+
+.tag_icon {
+    display: inline-block;
+    background: url('images/tag_icon.png') no-repeat;
+    background-size: cover;
+    width: 31px;
+    height: 34px;
+}
+
+.promocodes_block .header .tag_icon {
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 2px;
+}
 
 .promocodes_block .body {
     padding: 0 !important;
