@@ -344,6 +344,15 @@ App.prototype = {
         this.previousViewName = viewName;
     },
 
+    checkIfDiscountShouldBeUpdated: function() {
+        // set true to update promo after discound was used 
+        var updateDiscount = appCache.get('updateDiscount');
+        if (updateDiscount) {
+            appCache.set('updateDiscount', false);
+            this.viewsInLanding.discounts.getPromoCodes();
+        }
+    },
+
     shouldBeLoadedFromCache: function(viewName, exists) {
         if (exists) {
             if (viewName === 'catalog' ||
@@ -362,6 +371,9 @@ App.prototype = {
                     }
                     return false;
                 } else {
+                    if (viewName === 'restaurant') {
+                        this.checkIfDiscountShouldBeUpdated();
+                    }
                     return true;
                 }
         } else {

@@ -5,6 +5,7 @@ var Vent = require('../../Vent'),
     loader = require('../../loader'),
     popupController = require('../../controllers/popupController'),
     h = require('../../globalHelpers'),
+    appCache = require('../../appCache.js'),
     template = require('ejs!../../templates/rosterOrder/payment.ejs');
 
 var PaymentView = Backbone.View.extend({
@@ -271,6 +272,7 @@ var PaymentView = Backbone.View.extend({
             this.model.toJSON()
         ).then(function() {
             loader.hide();
+            appCache.set('updateDiscount', true);
             var callback = _.bind(this.triggerSingletonView, this);
             popupController.textPopup({
                 text: 'order successful'
@@ -296,6 +298,7 @@ var PaymentView = Backbone.View.extend({
             loader.hide();
             params.basket.reset();
             params.backToRoster = false;
+            appCache.set('updateDiscount', true);
             var callback;
             if (params.backToCatalog) {
                 callback = _.bind(this.triggerCatalogView, this)

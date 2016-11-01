@@ -168,7 +168,6 @@ var SummaryView = Backbone.View.extend({
             });
             return;
         }
-        
         loader.show('placing your order');
         this.model.set({
             itemUUID: this.model.additionalParams.itemUUID,
@@ -183,6 +182,7 @@ var SummaryView = Backbone.View.extend({
             this.model.toJSON()
         ).then(function() {
             loader.hide();
+            appCache.set('updateDiscount', true);
             var callback = _.bind(this.triggerSingletonView, this);
             popupController.textPopup({
                 text: 'order successful'
@@ -208,6 +208,7 @@ var SummaryView = Backbone.View.extend({
             loader.hide();
             params.basket.reset();
             params.backToRoster = false;
+            appCache.set('updateDiscount', true);
             var callback;
             if (params.backToCatalog) {
                 callback = _.bind(this.triggerCatalogView, this);
