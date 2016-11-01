@@ -48,7 +48,7 @@ var helpers = function() {
                     console.error('========== API ERROR ==========\n');
                     console.error('UnableToComplyException:' + excp.message + ' warning');
                     console.error('===============================');
-                } catch(e) { console.error(e); }
+                } catch(e) { console.error(jqXHR.responseText, e); }
                 break;
             case 500:
                 try {
@@ -56,7 +56,7 @@ var helpers = function() {
                     console.error('========== API ERROR ==========\n');
                     console.error('PanicException:' + excp.message + ' panic');
                     console.error('===============================');
-                } catch(e) { console.error(e); }
+                } catch(e) { console.error(jqXHR.responseText, e); }
                 break;
             default:
                 console.log('HTTP status=' + jqXHR.status + ',' + textStatus + ',' + errorThrown + ',' + jqXHR.responseText);
@@ -233,7 +233,12 @@ var helpers = function() {
             if (jqXHR && jqXHR.statusText === 'timeout') {
                 return config.timeoutErrorMessage;
             } else if (jqXHR.responseText) {
-                var excp = $.parseJSON(jqXHR.responseText).error;
+                var excp;
+                try {
+                   excp = $.parseJSON(jqXHR.responseText).error;
+                } catch(e) {
+                   return msg; 
+                }
                 switch (excp.type) {
                     case 'unabletocomplyexception':
                         return excp.message;

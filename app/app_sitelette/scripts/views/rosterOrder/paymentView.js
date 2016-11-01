@@ -247,11 +247,20 @@ var PaymentView = Backbone.View.extend({
 
     onPlaceSingletonOrder: function() {
         var params = this.model.additionalParams,
+            items = this.model.get('items'),
             request;
+
+        if (!items) {
+            popupController.textPopup({
+                text: 'Can\'t place order.'
+            });
+            return;
+        }
+        
         loader.show('placing your order');
         this.model.set({
             itemUUID: this.model.additionalParams.itemUUID,
-            quantity: this.model.get('items')[0].quantity
+            quantity: items[0].quantity
         });
         this.model.unset('items');
         request = params.type === 'PROMO'? orderActions.placePromoSingletonOrder :
