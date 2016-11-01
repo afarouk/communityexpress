@@ -1391,7 +1391,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     height: auto;
     position: fixed;
     width: 100%;
-    z-index: 9999;
+    z-index: 1000;
     margin-top: -3px;
     top: 45px;
     left: 0;
