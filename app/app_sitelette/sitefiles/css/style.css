@@ -1515,7 +1515,7 @@ nav.navbar.navbar-default {
 #header .nav li a {
     text-transform: uppercase;
     font: 400 14px Roboto;
-    color: #ffffff !important;
+    color: #cccccc !important;
 }
 
 .navbar-default,
