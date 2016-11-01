@@ -94,12 +94,14 @@ var DiscountsView = Backbone.View.extend({
     console.log(promocode);
   },
 
-  triggerCatalogsView: function() {
-      var index = this.$('.promoCode-buybutton').data('uuid'),
+  triggerCatalogsView: function(e) {
+      var $target = $(e.currentTarget),
+          index = $target.data('uuid'),
           promo = this.promoCodes.filter(function(item) {
               return item.discountUUID === index;
           })[0],
           promoCode = promo.promoCode;
+ 
       if (this.sasl) {
           switch (this.sasl.retailViewType) {
               case 'ROSTER':
