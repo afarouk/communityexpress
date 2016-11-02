@@ -1578,7 +1578,7 @@ a.signup_btn:hover {
 
 .banner {
     display: inline-block;
-    background: url(../images/coupon_banner.png) no-repeat center;
+    background: url(../images/banner_plain1.png) no-repeat center;
     background-size: cover;
     padding: 4% 0 1% 0;
     margin-top: -70px;
@@ -1586,7 +1586,7 @@ a.signup_btn:hover {
 }
 .banner2 {
     display: inline-block;
-    background: url(../images/banner2.jpg) no-repeat center;
+    background: url(../images/banner_plain2.png) no-repeat center;
     background-size: cover;
     padding: 4% 0 1% 0;
     margin-top: -70px;
@@ -1595,7 +1595,7 @@ a.signup_btn:hover {
 
 .banner3 {
     display: inline-block;
-    background: url(../images/banner_img.png) no-repeat center;
+    background: url(../images/banner_plain3.png) no-repeat center;
     background-size: cover;
     padding: 4% 0 1% 0;
     margin-top: -70px;
@@ -1615,7 +1615,7 @@ a.signup_btn:hover {
 
 .undertitle_text {
     font: 400 18px Roboto;
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 35px;
     text-shadow: 0px 5px 8.73px rgba(0, 0, 0, 0.3);
 }
