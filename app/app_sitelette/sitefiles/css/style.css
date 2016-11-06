@@ -1515,7 +1515,9 @@ nav.navbar.navbar-default {
 #header .nav li a {
     text-transform: uppercase;
     font: 400 14px Roboto;
+		/*
     color: #cccccc !important;
+		*/
 }
 
 .navbar-default,
@@ -1540,7 +1542,7 @@ nav.navbar.navbar-default {
     position: relative;
     top: 3px;
 }
-
+/*
 a.signup_btn {
     padding: 15px;
     border: solid 1px #fff;
@@ -1551,7 +1553,7 @@ a.signup_btn {
 a.signup_btn:hover {
     border: solid 1px #F89618;
 }
-
+*/
 /*Slider section
 =============================================================*/
 
