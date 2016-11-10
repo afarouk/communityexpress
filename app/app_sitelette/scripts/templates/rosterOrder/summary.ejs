@@ -17,7 +17,7 @@
             <% } %>
             <% if (!addrIsEmpty && allowDelivery) { %>
                 <p class="delivery_address_text">Delivery address</p>
-                <p class="address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></p>
+                <p class="address"><%= deliveryAddress.number + ', ' + deliveryAddress.street + ', ' + deliveryAddress.city %></p>
             <% } %>
             <p class="your_order_text">Your order</p>
             <ul class="order_list">

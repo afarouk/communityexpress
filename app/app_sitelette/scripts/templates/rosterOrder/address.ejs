@@ -31,7 +31,7 @@
                 <p class="choose_card_text">Choose address:</p>
                 <form>
                     <% if (!addrIsEmpty) { %>
-                        <label for="saved_address"><%= deliveryAddress.street + ' ,' + deliveryAddress.number + ' ,' + deliveryAddress.city %></label>
+                        <label for="saved_address"><%= deliveryAddress.number + ', ' + deliveryAddress.street + ', ' + deliveryAddress.city %></label>
                         <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'>
                         <label for="add_another">Add another address</label>
                         <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice">
