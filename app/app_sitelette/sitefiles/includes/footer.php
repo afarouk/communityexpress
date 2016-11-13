@@ -69,7 +69,7 @@
         <div class="col-sm-12 col-md-5 col-md-offset-1 left_block">
           <div class="col-sm-4 col-md-4">
             <ul>
-              <a href="#"><li>chalkboards.today</li></a>
+              <a href="#"><li>chalkboardstoday.com</li></a>
               <a href="/about"><li>About Us</li></a>
               <a href="/index.php#contact"><li>Contact Us</li></a>
             </ul>
@@ -89,7 +89,7 @@
         </div>
         <div class="col-sm-12 col-md-12 footer_last_line p-r-0">
           <div class="col-md-11 col-md-offset-1 p-r-0">
-            <a href="#"><p>©  2016. All rights reserved.  | orinoco.us, by Orinoco Inc.</p></a>
+            <a href="#"><p>©  2016. All rights reserved.  | by Orinoco Inc.</p></a>
           </div>
         </div>
       </div>
