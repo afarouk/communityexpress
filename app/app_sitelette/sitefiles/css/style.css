@@ -1192,6 +1192,7 @@ h5{
 	text-align: center;
 	position: relative;
 	min-height: 90px;
+  padding-top: 30px;
 }
 .formSteps .stepsIcon{
 	display: inline-block;
@@ -1212,7 +1213,7 @@ h5{
 	position: absolute;
   background-color: #d8d8d8;
   top: 50%;
-  margin-top: -23px;
+  margin-top: -5px;
   width: 50%;
   height: 5px;
   border-top: 0px solid #d9d9d9;
@@ -1257,6 +1258,25 @@ h5{
 .stepsButtonWrap .formSteps.successStep .stepsContent{
 	color: #30bf5a;
 }
+.showPlanInSteps{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+}
+.planNameShow{
+	font-size: 12px;
+	color: #999;
+	padding-right: 5px;
+	text-transform: uppercase;
+}
+.planPriceShow{
+	font-size: 14px;
+	color: #6f6f6f;
+}
+
+
 a.invitCodeButton{
 	color: #fff !important;
 	font-weight: 400 !important;
@@ -1871,7 +1891,7 @@ a.get_started_btn:active {
 	background-color: #f4f4f4;
 }
 .price_wrap p{
-	font-size: 72px;
+	font-size: 50px;
 	line-height: 72px;
 	color: #6f6f6f;
 	font-weight: 300;
@@ -1892,9 +1912,9 @@ a.get_started_btn:active {
 	line-height: 40px;
 }
 .price_wrap sub{
-	right: -80px;
-	bottom: 10px;
-	font-size: 24px;
+	right: -60px;
+	bottom: 14px;
+	font-size: 18px;
 	line-height: 20px;
 }
 .pricing_features_list_wrap{
@@ -2555,4 +2575,3 @@ nav.navbar {
 	    min-width: 260px;
 	}
 }
- 

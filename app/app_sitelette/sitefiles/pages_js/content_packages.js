@@ -1,8 +1,14 @@
 
+
+var createPlan;
+parseCommunityURL();
+createPlan = communityRequestProfile.protocol +
+    communityRequestProfile.api_server +
+    '/apptsvc/rest/billing/getPacakgesByDomain';
   var globalplan = '';
   var globalplancounter = 0;
-
-$.get( "http://simfel.com/apptsvc/rest/billing/getPacakgesByDomain", function( data ) {
+  //console.log(createPlan);
+$.get( createPlan, function( data ) {
     console.log(data);
     globalplan=data;
     console.log(globalplan);
@@ -19,7 +25,7 @@ $.get( "http://simfel.com/apptsvc/rest/billing/getPacakgesByDomain", function( d
           }
           packageBlock = packageBlock + '<li>'+data[i].features[j].displayText+tickhtml+'</li>';
         }
-        packageBlock = packageBlock + '</ul><div class="prcing_bottom_btn_wrap"><a href="javascript:void(0)" id="plan_'+[i]+'" class="pricing_demo_button '+class_arr[counter]+'">Buy Now</a></div></div></div>';
+        packageBlock = packageBlock + '</ul><div class="prcing_bottom_btn_wrap"><a href="javascript:void(0)" id="plan_'+[i]+'" class="pricing_demo_button '+class_arr[counter]+'">Get started</a></div></div></div>';
 
         counter++;
         }
@@ -51,10 +57,15 @@ $(document).ready(function() {
                     thisid=this.id;
                     var j=thisid.split("_");
                     $(location).attr('href','signup#'+j[1]);
+                    $(".step2PlanShow").show();
+                    $(".step3PlanShow").hide();
+                    $(".step4PlanShow").hide();
                   });
                 }
 
+
   }, 2000);
+
 });
 
 
@@ -68,6 +79,11 @@ var interval =  setInterval(function(){
      $(".steps2").addClass("currentStep");
      $("#monthlyPriceInCents").val(globalplan[i].packagePricing.monthlyPrice);
      $("#monthlyPriceInCents").attr('disabled', true);
+     $(".planNameShow").html(globalplan[i].displayText);
+     $(".planPriceShow").html('$' + globalplan[i].packagePricing.monthlyPrice);
+     $(".step2PlanShow").show();
+     $(".step3PlanShow").hide();
+     $(".step4PlanShow").hide();
      myStopFunction();
    }
   }

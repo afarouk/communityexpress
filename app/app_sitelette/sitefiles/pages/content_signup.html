@@ -4,12 +4,15 @@
 			<div class="stepsIcon">1</div><div class="stepsContent">Plan</div>
 		</div>
 		<div class="col-xs-3 col-sm-3 col-md-3 formSteps steps2">
+			<div class="showPlanInSteps step2PlanShow"><span class="planNameShow"></span><span class="planPriceShow"></span></div>
 			<div class="stepsIcon">2</div><div class="stepsContent">Personal</div>
 		</div>
 		<div class="col-xs-3 col-sm-3 col-md-3 formSteps steps3">
+			<div class="showPlanInSteps step3PlanShow"><span class="planNameShow"></span><span class="planPriceShow"></span></div>
 			<div class="stepsIcon">3</div><div class="stepsContent">Business</div>
 		</div>
 		<div class="col-xs-3 col-sm-3 col-md-3 formSteps steps4">
+			<div class="showPlanInSteps step4PlanShow"><span class="planNameShow"></span><span class="planPriceShow"></span></div>
 			<div class="stepsIcon">4</div><div class="stepsContent">Payment</div>
 		</div>
 		<!-- <ul class="stepsButtonWrap">
@@ -82,13 +85,13 @@
 					<label class="col-lg-3 col-md-3  col-sm-3  col-xs-12   control-label">Domain</label>
 					<div class="col-lg-9 col-md-9 col-sm-9   col-xs-12">
                         <select class="form-control input-sm" name="domain" id="domain"></select>
-						
+
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div> -->
 
 
-                
+
 				<!-- Initials and Agreement -->
 				<!-- <div class="form-group">
 					<div style="padding-left: 11px;"	class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -104,8 +107,8 @@
 					<div class="signupErrorMessageDiv col-lg-offset-3 col-md-offset-3  col-sm-offset-3   "></div>
 				</div>
 
-            
-			
+
+
 		</div>
 
 		<!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -227,7 +230,7 @@
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div>
-            
+
             <!--Country
             <div class="form-group  ">
 					<label class="col-lg-3 col-md-3  col-sm-3  col-xs-12   control-label">Country</label>
@@ -238,7 +241,7 @@
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div>
-			
+
 		</div> -->
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <div class="ui-grid-a ui-responsive" style="text-align:center;margin-top:10px;padding-left:15px;">
@@ -598,7 +601,7 @@
 			</div>
 		</form>
 	</div>
-    
+
     <div class="row force-min-height" id="clkToCRT" style="display: none;">
 			<div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2" style="padding-top: 60px;">
             <div class="alert alert-success fade in">
@@ -606,7 +609,7 @@
 					</div>
 		</div>
 
-        
+
 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 			<div class="form-group ">
 				<div class="col-lg-offset-3 col-md-offset-3  col-sm-offset-3 col-lg-9 col-md-9 col-sm-9 ">
@@ -624,9 +627,9 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
-    
+
 	<!-- END Email Verification Interrupt -->
 
 	<!-- BEGIN Feature picker beta signup -->
@@ -967,7 +970,7 @@
 		<div id="signupErrorDiv" class="alert alert-danger " style="display: none;" role="alert"></div>
 	</div>
 	<div class="row " id="portalExpressRow" style="display: none;"></div>
-    
+
 <div class="container">
  <!-- Modal -->
     <div class="row " id="VrfyInvCd" style="display:none;padding: 80px 20px;">
@@ -1002,7 +1005,7 @@
       	<label class="col-md-4 col-xs-5 col-sm-4" for="invitationCode2">Invitation Code:</label>
          <input type="text" name="invitationCode2" id="invitationCode2"  class="form-control" style="width:50%">
          </br>
-        
+
 				 <label class="col-md-4 col-xs-5 col-sm-4" for="invitationUsername">Username:</label>
           <input type="email" name="invitationUsername" id="invitationUsername"  class="form-control" style="width:50%">
          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
@@ -1012,22 +1015,22 @@
          <input type="email" name="invitationEmail" id="invitationEmail"  class="form-control" style="width:50%">
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
         </br>
-       
+
        <label class="col-md-4 col-xs-5 col-sm-4" for="invitationPsw">Password:</label>
          <input type="password" name="invitationPsw" id="invitationPsw"  class="form-control" style="width:50%">
        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
        </br>
-      
+
       <label class="col-md-4 col-xs-5 col-sm-4" for="invitationCPsw">Re-enter password:</label>
          <input type="password" name="invitationCPsw" id="invitationCPsw"  class="form-control" style="width:50%">
       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
       </br>
-     
+
       <div class="modal-footer" style="text-align:center;">
        <!-- Qaptcha add this line in your form -->
        <div class="alert fade in alert-danger" id="errorDv2" style="width:80%;margin-bottom:10px !important;margin-right:auto;margin-left:auto;display:none;text-align:center; padding: 5px;">&nbsp;</div>
 			  <div style="clear:both"></div>
-          <button type="button" id="InvitationSubmit2" type="button" name="submit"  onclick="createOwnerByInvitation(event)" class="btn btn-primary ladda-button" data-style="expand-left" data-size="l" ><span class="ladda-label">Submit</span><span class="ladda-spinner"> </butto> 
+          <button type="button" id="InvitationSubmit2" type="button" name="submit"  onclick="createOwnerByInvitation(event)" class="btn btn-primary ladda-button" data-style="expand-left" data-size="l" ><span class="ladda-label">Submit</span><span class="ladda-spinner"> </butto>
           <button type="button" onclick="close_createinvcd()" name="cancel" data-dismiss="modal"  class="btn btn-secondary" >Cancel</button>
 				  <div style="clear:both;margin-top:10px;"></div>
           <div class="QapTcha"></div>

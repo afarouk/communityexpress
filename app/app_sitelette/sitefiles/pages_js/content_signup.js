@@ -266,6 +266,7 @@ function updateAllAPIURLS() {
     createUser = communityRequestProfile.protocol +
         communityRequestProfile.api_server +
         '/apptsvc/rest/billing/purchaseSASLandSignup';
+
     //createUser = 'http://simfel.com/apptsvc/rest/billing/purchaseSASLandSignupLiveOffers';
     varifyInovationCodeUrl = communityRequestProfile.protocol +
         communityRequestProfile.api_server + '/apptsvc/rest/authentication/verifyInvitationCode'
@@ -391,6 +392,9 @@ function createOwnerByInvitation(evt) {
                             $(".steps2").addClass("successStep").removeClass("currentStep");
                             $(".steps3").addClass("successStep").removeClass("currentStep");
                             $(".steps4").addClass("successStep").removeClass("currentStep");
+                            $(".step2PlanShow").hide();
+                            $(".step3PlanShow").hide();
+                            $(".step4PlanShow").hide();
                             $('#clkToCRT').show();
                             $("html, body").animate({
                                 scrollTop: 0
@@ -578,6 +582,9 @@ function submitEmailRegistrationFormToAPI(apiurl, postPayload, formValidation) {
                         $(".steps2").addClass("successStep").removeClass("currentStep");
                         $(".steps3").addClass("successStep").removeClass("currentStep");
                         $(".steps4").addClass("successStep").removeClass("currentStep");
+                        $(".step2PlanShow").hide();
+                        $(".step3PlanShow").hide();
+                        $(".step4PlanShow").hide();
                         $("html, body").animate({
                             scrollTop: 0
                         }, 600);
@@ -1191,6 +1198,9 @@ function attachBootstrapValidatorsToRegistrationForm() {
                     $(".steps1").addClass("successStep").removeClass("currentStep");
                     $(".steps2").addClass("successStep").removeClass("currentStep");
                     $(".steps3").addClass("currentStep");
+                    $(".step2PlanShow").hide();
+                    $(".step3PlanShow").show();
+                    $(".step4PlanShow").hide();
                 }
 
             })
@@ -1220,6 +1230,9 @@ function attachBootstrapValidatorsToRegistrationForm() {
                     $(".steps2").addClass("successStep").removeClass("currentStep");
                     $(".steps3").addClass("successStep").removeClass("currentStep");
                     $(".steps4").addClass("currentStep");
+                    $(".step2PlanShow").hide();
+                    $(".step3PlanShow").hide();
+                    $(".step4PlanShow").show();
                 }
 
             })
