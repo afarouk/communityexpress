@@ -28,6 +28,7 @@ $.get( createPlan, function( data ) {
         packageBlock = packageBlock + '</ul><div class="prcing_bottom_btn_wrap"><a href="javascript:void(0)" id="plan_'+[i]+'" class="pricing_demo_button '+class_arr[counter]+'">Get started</a></div></div></div>';
 
         counter++;
+
         }
     }
     globalplancounter=counter;
@@ -37,7 +38,6 @@ $.get( createPlan, function( data ) {
 
 
 $(document).ready(function() {
-
   setTimeout(function(){
     $('.pricingListing').each(function(){
           var highestBox = 0;
@@ -58,8 +58,8 @@ $(document).ready(function() {
                     var j=thisid.split("_");
                     $(location).attr('href','signup#'+j[1]);
                     $(".step2PlanShow").show();
-                    $(".step3PlanShow").hide();
-                    $(".step4PlanShow").hide();
+                    // $(".step3PlanShow").hide();
+                    // $(".step4PlanShow").hide();
                   });
                 }
 
@@ -82,13 +82,12 @@ var interval =  setInterval(function(){
      $(".planNameShow").html(globalplan[i].displayText);
      $(".planPriceShow").html('$' + globalplan[i].packagePricing.monthlyPrice);
      $(".step2PlanShow").show();
-     $(".step3PlanShow").hide();
-     $(".step4PlanShow").hide();
+     $(".showPlanInSteps").addClass('InfoColor'+i);
      myStopFunction();
    }
   }
 
-   }, 500);
+}, 300);
 
    function myStopFunction() {
        clearInterval(interval);

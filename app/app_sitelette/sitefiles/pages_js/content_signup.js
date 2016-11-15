@@ -1198,9 +1198,9 @@ function attachBootstrapValidatorsToRegistrationForm() {
                     $(".steps1").addClass("successStep").removeClass("currentStep");
                     $(".steps2").addClass("successStep").removeClass("currentStep");
                     $(".steps3").addClass("currentStep");
-                    $(".step2PlanShow").hide();
-                    $(".step3PlanShow").show();
-                    $(".step4PlanShow").hide();
+                    // $(".step2PlanShow").hide();
+                    // $(".step3PlanShow").show();
+                    // $(".step4PlanShow").hide();
                 }
 
             })
@@ -1230,9 +1230,9 @@ function attachBootstrapValidatorsToRegistrationForm() {
                     $(".steps2").addClass("successStep").removeClass("currentStep");
                     $(".steps3").addClass("successStep").removeClass("currentStep");
                     $(".steps4").addClass("currentStep");
-                    $(".step2PlanShow").hide();
-                    $(".step3PlanShow").hide();
-                    $(".step4PlanShow").show();
+                    // $(".step2PlanShow").hide();
+                    // $(".step3PlanShow").hide();
+                    // $(".step4PlanShow").show();
                 }
 
             })

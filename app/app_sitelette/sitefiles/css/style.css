@@ -1192,7 +1192,7 @@ h5{
 	text-align: center;
 	position: relative;
 	min-height: 90px;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 .formSteps .stepsIcon{
 	display: inline-block;
@@ -1213,7 +1213,7 @@ h5{
 	position: absolute;
   background-color: #d8d8d8;
   top: 50%;
-  margin-top: -5px;
+  margin-top: -15px;
   width: 50%;
   height: 5px;
   border-top: 0px solid #d9d9d9;
@@ -1242,9 +1242,9 @@ h5{
 .stepsButtonWrap .formSteps:before {
     left: 0;
 }
-.stepsButtonWrap .formSteps:first-child:before { display: none; }
+.stepsButtonWrap  div.formSteps.steps1:before { display: none;}
 /*.stepsButtonWrap .formSteps:first-child + .formSteps + .formSteps:after { display: none; }*/
-.stepsButtonWrap .formSteps:last-child:after { display: none; }
+.stepsButtonWrap  div.formSteps:last-child:after { display: none; }
 .stepsContent{
 	font-size: 14px;
 	margin-top: 10px;
@@ -1259,21 +1259,34 @@ h5{
 	color: #30bf5a;
 }
 .showPlanInSteps{
-	position: absolute;
-	top: 0;
+	position: relative;;
+	top: -10px;
+	left: 0;
 	width: 100%;
 	text-align: center;
 	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 }
-.planNameShow{
-	font-size: 12px;
-	color: #999;
-	padding-right: 5px;
+.showPlanInSteps span{
+	font-size: 20px;
+}
+.showPlanInSteps .planNameShow{
+	font-size: 20px;
 	text-transform: uppercase;
+	font-weight: 400;
 }
-.planPriceShow{
-	font-size: 14px;
-	color: #6f6f6f;
+.showPlanInSteps .planPriceShow{
+	font-size: 24px;
+	font-weight: 400;
+}
+.InfoColor0{
+	color: #ef761c;
+}
+.InfoColor1{
+	color: #a15bcd;
+}
+.InfoColor2{
+	color: #6cb031;
 }
 
 
