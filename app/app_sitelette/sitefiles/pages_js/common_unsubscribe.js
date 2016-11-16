@@ -1,5 +1,6 @@
 var ladda_unsubscribe_submit_button;
 var apiurl;
+var email;
 
 function disableform() {
 
@@ -22,11 +23,12 @@ function showError(success, message) {
  * This is the ajax API call to submit the password change request.
  */
 function submitUnsubscribeRequest() {
-
- $
-   .ajax({
+ $.ajax({
     url : apiurl,
-    type : 'PUT'
+    type : 'PUT',
+    data : JSON.stringify({"serviceAccommodatorId":null,"serviceLocationId":null,"topic":"","email":email,"optout":true}),
+    dataType : "json",
+    contentType:'application/json'
    })
    .done(function(response) {
     console.log("response :" + response);
@@ -91,6 +93,12 @@ $(document).ready(
     */
    ladda_unsubscribe_submit_button = Ladda.create(document
      .querySelector('#unsubscribesubmit'));
+     var url  = new URI().query(true);
+
+      email = url['email'];
+
+      communityRequestProfile.isService=true;
+      communityRequestProfile.service="setEmailOptout";
 
    if (communityRequestProfile.isService) {
     if (communityRequestProfile.service === 'setSASLNewsletterOptout') {
@@ -101,17 +109,15 @@ $(document).ready(
        + communityRequestProfile.sa + '&serviceLocationId='
        + communityRequestProfile.sl + '&topic=&optout=true';
     } else if (communityRequestProfile.service === 'setEmailOptout') {
+
      apiurl = communityRequestProfile.protocol + communityRequestProfile.api_server
-       + '/apptsvc/rest/communication/setEmailOptout?email='      //setNewsletterOptout
-       + communityRequestProfile.email+'&serviceAccommodatorId='
-       + communityRequestProfile.sa + '&serviceLocationId='
-       + communityRequestProfile.sl + '&topic=&optout=true';
+       + '/apptsvc/rest/communication/setEmailOptout?email='+email;
     } else {
      /*
       * unrecognized, error
       */
      console.log("nothing to do")
-     showError();
+  //   showError();
     }
 
 
