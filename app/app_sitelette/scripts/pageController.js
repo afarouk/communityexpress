@@ -175,7 +175,9 @@ module.exports = {
                 type: options.type || null,
                 promoPrice: options.promoPrice || null
             };
-        singletonItem = appCache.fetch('singletonItem', singletonItem);
+        if(options.type!=='PROMO'){     
+          singletonItem = appCache.fetch('singletonItem', singletonItem);
+        }
         var uuid = singletonItem.uuid,
             type = singletonItem.type,
             promoPrice = singletonItem.promoPrice;
