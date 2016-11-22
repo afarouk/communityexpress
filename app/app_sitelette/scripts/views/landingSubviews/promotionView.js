@@ -178,7 +178,7 @@ var PromotionView = Backbone.View.extend({
 
   onBuyItem: function(e) {
       var $target = $(e.currentTarget);
-      var promoPrice = parseInt($target.data('price'));
+      var promoPrice = parseFloat($target.data('price'));
       //promoPrice=promoPrice.substr(1, $target.data('price').length - 1) * 100) / 100;
       var promoUUID=$target.data('uuid');
       console.log(" price:"+promoPrice+", uuid:"+promoUUID);
