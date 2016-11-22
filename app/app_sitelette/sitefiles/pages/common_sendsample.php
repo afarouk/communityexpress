@@ -15,7 +15,7 @@
 if (isset($saslName)) {
     echo $saslName;
 } else {
-    echo 'Chalkboards Sample';
+    echo 'Chalkboard - how it works';
 }
 ?></title>
 <!-- insert page specific css here -->
