@@ -16,7 +16,8 @@
  <meta name="twitter:description"       content="Make your coupons and discounts work harder for you. Get Chalkboards for your business."/>
  <meta name="twitter:image"             content="sitefiles/images/ogImage.png"/>
 
-
+ <meta name="apple-mobile-web-app-title" content="Chalkboards">
+ <link rel="apple-touch-icon" href="sitefiles/images/appIcon.png">
 
   <?php
 include 'sitefiles/includes/stylesheets.html';
