@@ -12,7 +12,7 @@ if (isset($pageAccess)) {
     include_once('sitefiles/pages/' . 'common_desktop.php');
   } else {
     if (!is_null($errorMessage)) {
-      include_once('error_page/index.php');
+      include_once('error_page/error_page.php');
     } else {
       include_once 'themes/'.$themeId.'/head.php';
       if ($useTemplate) {
