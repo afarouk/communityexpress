@@ -1,7 +1,7 @@
 /*
- * variables for this form. Additional variables 
- * like communityRequestProfile.protocol and communityRequestProfile.api_server 
- * come from URL parsing. 
+ * variables for this form. Additional variables
+ * like communityRequestProfile.protocol and communityRequestProfile.api_server
+ * come from URL parsing.
  */
 
 var newUID;
@@ -27,7 +27,8 @@ var getUserAPI;
 var getFeaturesAPI;
 var urlSuffixValidationAPI;
 var purchaseBetaSASL;
-var portalExpressURL = 'http://sitelettes.com/sites/ext/portalexpress/';
+//var portalExpressURL = 'http://sitelettes.com/sites/ext/portalexpress/';
+var portalExpressURL = 'http://chalkboardstoday.com/sitefiles/plugins/portalexpress/';
 var varifyInovationCodeUrl;
 
 /*
@@ -179,7 +180,7 @@ function showFeatureRetrievalError(msg) {
 function showPortalExpressPage(src) {
 
  /* hide everything else */
- 
+
  $('#simpleSignupRow1').hide();
  $('#portalExpressRow').fadeIn('slow');
     var htm='<center><div style="margin-top:170px"><img src="/images/loading.gif"><p style="color: brown;">Loading....</p></div></center>';
@@ -251,7 +252,7 @@ function updateAllAPIURLS() {
     varifyInovationCodeUrl=communityRequestProfile.protocol
    + communityRequestProfile.api_server+'/apptsvc/rest/authentication/verifyInvitationCode'
     //varifyInovationCodeUrl='http://simfel.com/apptsvc/rest/authentication/verifyInvitationCode';
-    
+
     createOwnerFromInvitation=communityRequestProfile.protocol
    + communityRequestProfile.api_server+'/apptsvc/rest/authentication/createOwnerFromInvitation';
     //createOwnerFromInvitation='http://simfel.com/apptsvc/rest/authentication/createOwnerFromInvitation';
@@ -261,20 +262,20 @@ function retrieveDomains(packageEnum, $selection) {
  attachBootstrapValidatorsToBuildAppForm2();
 }
 function open_vrfyinvcd_sec(){
-  $('#simpleSignupRow1').hide();  
-  $('#VrfyInvCd').show();  
+  $('#simpleSignupRow1').hide();
+  $('#VrfyInvCd').show();
     $("#signup_root").removeClass("force-min-height");
 }
 function close_vrfyinvcd_sec(evt){
     evt.preventDefault();
-  $('#simpleSignupRow1').show();  
-  $('#VrfyInvCd').hide();  
+  $('#simpleSignupRow1').show();
+  $('#VrfyInvCd').hide();
     $("#signup_root").addClass("force-min-height");
 }
 
 function close_createinvcd(){
-  
-    $('#crtByInvCd').hide(); 
+
+    $('#crtByInvCd').hide();
     $('#VrfyInvCd').show();
 }
 var varifiedinvitationcode;
@@ -315,7 +316,7 @@ function verifyInvitationCode(evt){
 
 function createOwnerByInvitation(evt){
        evt.preventDefault();
-    
+
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var email=$('#invitationEmail').val();
     if(email.trim()=='' || regex.test(email)==false){
@@ -326,7 +327,7 @@ function createOwnerByInvitation(evt){
     else if($('#invitationPsw').val().trim()=='' || $('#invitationPsw').val().length<6)
         {
        $("#errorDv2").show('fast');
-       $("#errorDv2").html("Password length must be greater than 5"); 
+       $("#errorDv2").html("Password length must be greater than 5");
         }
     else if($('#invitationPsw').val()!=$('#invitationCPsw').val()){
        $("#errorDv2").show('fast');
@@ -371,19 +372,19 @@ function createOwnerByInvitation(evt){
        }}
          ladda_create_incode_button.stop();
          //$('#InvitationSc2').modal('hide');
-         
+
      }).fail(function(jqXHR, textStatus, errorThrown) {
        var msg=JSON.parse(jqXHR.responseText);
        $("#errorDv2").show('fast');
        $("#errorDv2").html(msg.error.message);
        ladda_create_incode_button.stop();
-   }); 
+   });
     }
-   
+
 }
 
 function fetchDomain_form(){
-    
+
  var request = $
    .ajax({
     url : fetchDomain,
@@ -400,7 +401,7 @@ function fetchDomain_form(){
              {
             $("<option></option>", {value: result[i].enumText,text : result[i].displayText }).appendTo('#domain');
              }
-         
+
      }).fail(function(jqXHR, textStatus, errorThrown) { });
 
 }
@@ -503,7 +504,7 @@ function retrieveActiveFeatures(packageEnum, $featuresRow) {
        /*
         * attach formvalidation validators
         */
-     
+
        attachBootstrapValidatorsToBuildAppForm();
       }
 
@@ -559,10 +560,10 @@ function submitEmailRegistrationFormToAPI(apiurl, postPayload, formValidation) {
           else
               {
                  /* var html='<h1 class="text-center">Create your mobile streaming app</h1><div class="alert fade in alert-success" style="width:80%;margin-left:10%" id="emailVerificationCheckMessage"><span id="emailVerificationCheckMessageSpan">Your account has been created successfully. Please verify your email. After verfication, click next to continue.</span></div><div class="form-group "><div class="col-lg-offset-3 col-md-offset-3  col-sm-offset-3 col-lg-9 col-md-9 col-sm-9 "><label for="waitingForVerification"> Click next to create your app. </label><button type="submit" id="waitingForVerification" class=" btn btn-lg btn-primary ladda-button" data-style="expand-left" data-size="l" name="waitingForVerification"><span class="ladda-label">Next</span><span class="ladda-spinner"></span> <span class="ladda-spinner"></span></button></div></div><br><br></br>';*/
-                  
+
                   //$("#simpleSignupRow1").html(html);
                   //$("#signup_root").removeClass("force-min-height");
-                  
+
               }
       } else {
        /*
@@ -663,8 +664,8 @@ function submitNextFormToAPI(apiurl, uid) {
      } else {
       // verified email
       $('#emailVerificationCheckMessage').hide();
-       
-      
+
+
       showSimpleSignupRow3();
       retrieveActiveFeatures('PK_BETA', $('#features_row'));
 
@@ -802,7 +803,7 @@ function attachBootstrapValidatorsToRegistrationForm() {
         }
        },
        emailForRegistration : {
-           
+
         trigger : ' blur',
         verbose: false,
         validators : {
@@ -819,7 +820,7 @@ function attachBootstrapValidatorsToRegistrationForm() {
            // instance
            // $field is the field element
            // value is the field value
-              
+
            return isEmailAvailableBootStrap + '?email=' + value;
           },
           message : 'This email is not available',
@@ -869,7 +870,7 @@ function attachBootstrapValidatorsToRegistrationForm() {
         validators : {
          notEmpty : {
           message : 'Business phone number is Required'
-         }, 
+         },
           numeric : {
           message : 'Business phone number should be numeric'
          }
@@ -882,7 +883,7 @@ function attachBootstrapValidatorsToRegistrationForm() {
                         }
                     }
                 }*/
-         
+
 
       }
      // end fields
@@ -960,7 +961,7 @@ function attachBootstrapValidatorsToRegistrationForm() {
       submitEmailRegistrationFormToAPI(createUser, postPayload,formValidation);
 
       /*
-       * 
+       *
        */
      }).on('err.form.fv', function(e, data) {
 
@@ -1075,7 +1076,7 @@ function attachBootstrapValidatorsToLoginForm() {
   submitEmailLoginFormToAPI(loginEmailAPI, postPayload, formValidation);
 
   /*
-   * 
+   *
    */
  }).on('err.form.fv', function(e, data) {
 
@@ -1176,7 +1177,7 @@ function attachBootstrapValidatorsToBuildAppForm() {
    * onError : function(e, data) { var errmsg = "Signup service not available";
    * if (typeof data.result.errorMessage !== 'undefined') { errmsg =
    * data.result.errorMessage; }
-   * 
+   *
    * errmsg = 'This url suffix is not available';
    * $('#buildAppForm').formValidation("updateMessage", "urlSuffixSimpleSignup",
    * "remote", errmsg); }, onSuccess : function(e, data) { } } } }
@@ -1211,7 +1212,7 @@ function attachBootstrapValidatorsToBuildAppForm() {
      */
     /*
      * pull up the features, create object, send to API
-     * 
+     *
      */
 
     var saslName = $('#buildAppForm').find('input[name="appNameSimpleSignup"]')
@@ -1248,7 +1249,7 @@ function attachBootstrapValidatorsToBuildAppForm() {
     // console.log(postPayload);
     submitBuildApp(purchaseBetaSASL, postPayload, formValidation);
     /*
-     * 
+     *
      */
    }).on('err.form.fv', function(e, data) {
 
@@ -1349,7 +1350,7 @@ function attachBootstrapValidatorsToBuildAppForm2() {
    * onError : function(e, data) { var errmsg = "Signup service not available";
    * if (typeof data.result.errorMessage !== 'undefined') { errmsg =
    * data.result.errorMessage; }
-   * 
+   *
    * errmsg = 'This url suffix is not available';
    * $('#buildAppForm').formValidation("updateMessage", "urlSuffixSimpleSignup",
    * "remote", errmsg); }, onSuccess : function(e, data) { } } } }
@@ -1384,7 +1385,7 @@ function attachBootstrapValidatorsToBuildAppForm2() {
      */
     /*
      * pull up the features, create object, send to API
-     * 
+     *
      */
 
     var saslName = $('#buildAppForm2').find('input[name="appNameSimpleSignup"]')
@@ -1421,7 +1422,7 @@ function attachBootstrapValidatorsToBuildAppForm2() {
     // console.log(postPayload);
     submitBuildApp(purchaseBetaSASL, postPayload, formValidation);
     /*
-     * 
+     *
      */
    }).on('err.form.fv', function(e, data) {
 
@@ -1431,7 +1432,7 @@ function attachBootstrapValidatorsToBuildAppForm2() {
 function attachButtonHandlers() {
 
  /*
-  * 
+  *
   */
  ladda_signup_submit_button = Ladda.create(document
    .querySelector('#emailRegistrationSubmit'));
@@ -1444,13 +1445,13 @@ function attachButtonHandlers() {
 
  ladda_build_submit_button = Ladda.create(document
    .querySelector('#buildAppSubmit'));
-    
+
 ladda_check_incode_button = Ladda.create(document
    .querySelector('#verifyInv'));
-    
+
     ladda_create_incode_button=Ladda.create(document
    .querySelector('#InvitationSubmit2'));
-    
+
  $('#waitingForVerification').click(function(e) {
   var evt = e ? e : window.event;
   if (evt.preventDefault)
@@ -1527,7 +1528,7 @@ ladda_check_incode_button = Ladda.create(document
 $(document).ready(function() {
  parseCommunityURL();
  updateAllAPIURLS();
- fetchDomain_form(); 
+ fetchDomain_form();
 /*
   * hook up the validators
   */
