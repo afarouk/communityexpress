@@ -1653,7 +1653,7 @@ a.signup_btn:hover {
     font: 400 18px Roboto;
     color: #000000;
     margin-bottom: 35px;
-    text-shadow: 0px 5px 8.73px rgba(0, 0, 0, 0.3);
+    /* text-shadow: 0px 5px 8.73px rgba(0, 0, 0, 0.3); */
 }
 
 a.get_started_btn {
