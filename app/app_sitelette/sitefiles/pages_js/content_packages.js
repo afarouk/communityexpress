@@ -1,6 +1,8 @@
 
 
 var createPlan;
+sessionStorage.global_enumText="";
+sessionStorage.global_monthlyPrice="";
 parseCommunityURL();
 createPlan = communityRequestProfile.protocol +
     communityRequestProfile.api_server +
@@ -9,9 +11,9 @@ createPlan = communityRequestProfile.protocol +
   var globalplancounter = 0;
   //console.log(createPlan);
 $.get( createPlan, function( data ) {
-    console.log(data);
+    //console.log(data);
     globalplan=data;
-    console.log(globalplan);
+    //console.log(globalplan);
     var class_arr = ['orangeBg', 'voiletBg', 'greenBg'];
     var packageBlock = "";
     var counter=0;
@@ -25,7 +27,7 @@ $.get( createPlan, function( data ) {
           }
           packageBlock = packageBlock + '<li>'+data[i].features[j].displayText+tickhtml+'</li>';
         }
-        packageBlock = packageBlock + '</ul><div class="prcing_bottom_btn_wrap"><a href="javascript:void(0)" id="plan_'+[i]+'" class="pricing_demo_button '+class_arr[counter]+'">Get started</a></div></div></div>';
+        packageBlock = packageBlock + '</ul><div class="prcing_bottom_btn_wrap"><a href="javascript:void(0)" id="plan_'+[i]+'" enumText="'+data[i].enumText+'" monthlyPrice="'+data[i].packagePricing.monthlyPrice+'" class="pricing_demo_button '+class_arr[counter]+'">Get started</a></div></div></div>';
 
         counter++;
 
@@ -54,7 +56,14 @@ $(document).ready(function() {
         });
                 for(var i=0; i<globalplancounter; i++) {
                   $('#plan_'+i).on('click', function () {
+
                     thisid=this.id;
+                    var enumText=$(this).attr('enumText');
+                    var monthlyPrice=$(this).attr('monthlyPrice');
+                    //$("#enumText").val(enumText);
+                    //$("#monthlyPrice").val(monthlyPrice);
+                    sessionStorage.global_enumText=enumText;
+                    sessionStorage.global_monthlyPrice=monthlyPrice;
                     var j=thisid.split("_");
                     $(location).attr('href','signup#'+j[1]);
                     $(".step2PlanShow").show();
