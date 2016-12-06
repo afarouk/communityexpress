@@ -50,8 +50,8 @@ module.exports = {
         });
     },
 
-    getItemDetails: function(uuid) {
-        return gateway.sendRequest('getItemDetails', {
+    getItemDetailsForPromoItem: function(uuid) {
+        return gateway.sendRequest('getItemDetailsForPromoItem', {
             UID: getUID,
             uuid: uuid
         });
