@@ -641,6 +641,7 @@ module.exports = {
             fundsource,
             discountPrice = options.discountPrice || 0,
             promoCode = options.promoCode || null,
+            promoUUID = options.promoUUID || null,
             type = options.type,
             uuid = options.uuid,
             rosterId = options.rosterId || options.catalogId,
@@ -686,6 +687,7 @@ module.exports = {
                     backToSingleton: backToSingleton,
                     launchedViaURL: launchedViaURL,
                     promoCode: promoCode,
+                    promoUUID: promoUUID,
                     discountPrice: discountPrice
                 };
             });

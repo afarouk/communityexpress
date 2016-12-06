@@ -17,6 +17,7 @@ var RosterOrderModel = Backbone.Model.extend({
 		_.extend(this.attributes, this.getDefaults(options));
 		this.setAdditionalParams(options);
     this.set('promoCode',options.promoCode);
+    this.set('promoUUID',options.promoUUID);
 	},
 
 	setAdditionalParams: function(options) {
