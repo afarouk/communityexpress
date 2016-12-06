@@ -315,7 +315,7 @@ function showPortalExpressPage(src) {
     $('#simpleSignupRow1').hide();
     $(".stepsButtonWrap").hide();
     $('#portalExpressRow').fadeIn('slow');
-    var htm = '<center><div style="margin-top:170px"><img src="/images/loading.gif"><p style="color: brown;">Loading....</p></div></center>';
+    var htm = '<center><div style="margin-top:170px"><img src="sitefiles/images/loading.gif"><p style="color: brown;">Loading....</p></div></center>';
     $('#portalExpressRow').html(htm);
     $("html, body").animate({
         scrollTop: 0
@@ -1476,8 +1476,8 @@ function attachBootstrapValidatorsToRegistrationForm() {
                         "credit_card_number":formObject.credit_card_number,
                         "expirationYear": formObject.expirationYear,
                         "expirationMonth": formObject.expirationMonth,
-                        "monthlyPrice": parseInt(formObject.monthlyPrice),
-                        "setupPrice": parseInt(formObject.setupPriceInCents),
+                        "monthlyPrice": formObject.monthlyPrice,
+                        "setupPrice": formObject.setupPriceInCents,
                         "currencyCode": "",
                         "firstName": formObject.firstName,
                         "lastName": formObject.lastName,
