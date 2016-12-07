@@ -22,7 +22,7 @@ include ('sitefiles/includes/scriptfiles.html');
   ?>
 
   <script type="text/javascript" src="sitefiles/pages_js/content_signup.js"></script>
-  <script type="text/javascript" src="sitefiles/pages_js/content_packages.js"></script>
+  <!-- <script type="text/javascript" src="sitefiles/pages_js/content_packages.js"></script> -->
 
   <?php
 include ('sitefiles/includes/footer.php');

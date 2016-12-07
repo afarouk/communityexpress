@@ -48,6 +48,7 @@ var SingletonView = Backbone.View.extend({
         this.type = options.type;
         this.uuid = options.uuid;
         this.promoCode = options.promoCode;
+        this.promoUUID=options.promoUUID;
         this.discountPrice = options.discountPrice;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
@@ -108,6 +109,7 @@ var SingletonView = Backbone.View.extend({
                 backToRoster: this.backToRoster,
                 backToSingleton: this.backToSingleton,
                 promoCode: this.promoCode,
+                promoUUID: this.promoUUID, 
                 discountPrice: this.discountPrice * itemsNumber
             }, {
                 reverse : true

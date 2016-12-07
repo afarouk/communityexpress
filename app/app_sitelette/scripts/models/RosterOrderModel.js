@@ -1,8 +1,7 @@
 'use strict';
 
 var RosterOrderModel = Backbone.Model.extend({
-
-	currencySymbols: {
+ currencySymbols: {
 	    'USD': '$',
 	    'EUR': '€',
 	    'GBP': '£',
@@ -17,6 +16,8 @@ var RosterOrderModel = Backbone.Model.extend({
 	initialize: function(attr, options) {
 		_.extend(this.attributes, this.getDefaults(options));
 		this.setAdditionalParams(options);
+    this.set('promoCode',options.promoCode);
+    this.set('promoUUID',options.promoUUID);
 	},
 
 	setAdditionalParams: function(options) {
@@ -50,6 +51,7 @@ var RosterOrderModel = Backbone.Model.extend({
 			promoCodeActive: false
 			 // etc...
 		});
+
 	},
 
 	getDefaults: function(options) {

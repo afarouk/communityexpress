@@ -175,7 +175,7 @@ module.exports = {
                 type: options.type || null,
                 promoPrice: options.promoPrice || null
             };
-        if(options.type!=='PROMO'){     
+        if(options.type!=='PROMO'){
           singletonItem = appCache.fetch('singletonItem', singletonItem);
         }
         var uuid = singletonItem.uuid,
@@ -184,7 +184,7 @@ module.exports = {
         return saslActions.getSasl()
         .then(function(ret) {
             sasl = ret;
-            return type === 'PROMO'? catalogActions.getItemDetails(uuid) :
+            return type === 'PROMO'? catalogActions.getItemDetailsForPromoItem(uuid) :
                 catalogActions.getEventDetails(uuid);
         }).then(function(item) {
             if (promoPrice) {
@@ -198,6 +198,7 @@ module.exports = {
             appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
             return {
                 promoCode: promoCode,
+                promoUUID:uuid,
                 type: type,
                 uuid: item.uuid,
                 sasl: sasl,
@@ -640,6 +641,7 @@ module.exports = {
             fundsource,
             discountPrice = options.discountPrice || 0,
             promoCode = options.promoCode || null,
+            promoUUID = options.promoUUID || null,
             type = options.type,
             uuid = options.uuid,
             rosterId = options.rosterId || options.catalogId,
@@ -685,6 +687,7 @@ module.exports = {
                     backToSingleton: backToSingleton,
                     launchedViaURL: launchedViaURL,
                     promoCode: promoCode,
+                    promoUUID: promoUUID,
                     discountPrice: discountPrice
                 };
             });

@@ -54,6 +54,119 @@ var removeFeatureFromPreview = function(enum_text) {
 };
 
 
+
+
+
+
+
+var createPlan;
+parseCommunityURL();
+createPlan = communityRequestProfile.protocol +
+    communityRequestProfile.api_server +
+    '/apptsvc/rest/billing/getPacakgesByDomain';
+  var globalplan = '';
+  var globalplancounter = 0;
+
+  //console.log(createPlan);
+$.get( createPlan, function( data ) {
+    //console.log(data);
+    globalplan=data;
+
+    //console.log(globalplan);
+    var class_arr = ['orangeBg', 'voiletBg', 'greenBg'];
+    var packageBlock = "";
+    var counter=0;
+    for (var i=0; i<data.length; i++){
+        if(data[i].state == 'ACTIVE' && !data[i].isHidden) {
+        packageBlock = packageBlock + '<div class="col-sm-4 col-md-4 pricingListing"><div class="pricing_inner_block"><h3 class="pricing_heading '+class_arr[counter]+'">'+data[i].displayText+'</h3><div class="price_wrap"><p><sup>$</sup> '+data[i].packagePricing.monthlyPrice+' <sub>/month</sub><p></div><ul class="pricing_features_list_wrap">';
+        for (var j=0; j<data[i].features.length; j++){
+          var tickhtml="";
+          if(data[i].features[j].preSelected){
+            tickhtml='<span class="precing_features_active_circle '+class_arr[counter]+'"><img src="sitefiles/images/landing/tick.png" alt="" class="tick"></span>';
+          }
+          packageBlock = packageBlock + '<li>'+data[i].features[j].displayText+tickhtml+'</li>';
+        }
+        packageBlock = packageBlock + '</ul><div class="prcing_bottom_btn_wrap"><a href="javascript:void(0)" id="plan_'+[i]+'" enumText="'+data[i].enumText+'" monthlyPrice="'+data[i].packagePricing.monthlyPrice+'" class="pricing_demo_button '+class_arr[counter]+'">Get started</a></div></div></div>';
+
+        counter++;
+
+        }
+    }
+    globalplancounter=counter;
+    $( ".packageListDyn" ).html( packageBlock );
+});
+
+
+
+$(document).ready(function() {
+
+  $("#enumText").val(sessionStorage.global_enumText);
+  $("#monthlyPrice").val(sessionStorage.global_monthlyPrice);
+
+
+  setTimeout(function(){
+    $('.pricingListing').each(function(){
+          var highestBox = 0;
+
+          $('.pricing_inner_block').each(function(){
+
+            if($(this).height() > highestBox) {
+              highestBox = $(this).height();
+            }
+
+          });
+          $('.pricing_inner_block').height(highestBox);
+
+        });
+                for(var i=0; i<globalplancounter; i++) {
+                  $('#plan_'+i).on('click', function () {
+
+                    thisid=this.id;
+                    var enumText=$(this).attr('enumText');
+                    var monthlyPrice=$(this).attr('monthlyPrice');
+                  $("#enumText").val(enumText);
+                  $("#monthlyPrice").val(monthlyPrice);
+
+                    sessionStorage.global_enumText=enumText;
+                    sessionStorage.global_monthlyPrice=monthlyPrice;
+                    var j=thisid.split("_");
+                    $(location).attr('href','signup#'+j[1]);
+                    $(".step2PlanShow").show();
+                  });
+                }
+  }, 2000);
+
+});
+
+var interval =  setInterval(function(){
+  for(var i=0; i< globalplancounter; i++) {
+     if(window.location.href.indexOf("#"+i) > -1) {
+     $('.package_block').hide();
+     $('#simpleSignupRow1').show();
+     $(".steps1").addClass("successStep").removeClass("currentStep");
+     $(".steps2").addClass("currentStep");
+     $("#monthlyPriceInCents").val(globalplan[i].packagePricing.monthlyPrice);
+     $("#monthlyPriceInCents").attr('disabled', true);
+     $(".planNameShow").html(globalplan[i].displayText);
+     $(".planPriceShow").html('$' + globalplan[i].packagePricing.monthlyPrice);
+     $(".step2PlanShow").show();
+     $(".showPlanInSteps").addClass('InfoColor'+i);
+     myStopFunction();
+   }
+  }
+
+}, 300);
+
+   function myStopFunction() {
+       clearInterval(interval);
+   }
+
+
+
+
+
+
+
 // function showSimpleSignupRow1() {
 //     $('#simpleSignupRow1').hide();
 //     $('#simpleSignupRow2').fadeIn('slow');
@@ -202,7 +315,7 @@ function showPortalExpressPage(src) {
     $('#simpleSignupRow1').hide();
     $(".stepsButtonWrap").hide();
     $('#portalExpressRow').fadeIn('slow');
-    var htm = '<center><div style="margin-top:170px"><img src="/images/loading.gif"><p style="color: brown;">Loading....</p></div></center>';
+    var htm = '<center><div style="margin-top:170px"><img src="sitefiles/images/loading.gif"><p style="color: brown;">Loading....</p></div></center>';
     $('#portalExpressRow').html(htm);
     $("html, body").animate({
         scrollTop: 0
@@ -623,7 +736,7 @@ function submitEmailRegistrationFormToAPI(apiurl, postPayload, formValidation) {
             formValidation.disableSubmitButtons(false);
         });
 
-        showRegistrationErrorInner("Error encountered");
+        //showRegistrationErrorInner("Error encountered");
 }
 
 function submitEmailLoginFormToAPI(apiurl, postPayload, formValidation) {
@@ -1311,27 +1424,28 @@ function attachBootstrapValidatorsToRegistrationForm() {
                 var $form = $('#emailRegistrationForm');
                 var formValidation = $form.data('formValidation');
                 var formObject = $form.serializeObject();
-                //console.log(formObject.domain);
+                //console.log(formObject.enumText);
                 var d = new Date();
                 var n = d.getTime();
-                var username = "demozazagrill" + n;
-                var min = 1000000000;
-                var max = 9999999999;
-                var rnd = Math.floor(Math.random() * (max - min + 1)) + min;
+                //var username = "demozazagrill" + n;
+                //var min = 1000000000;
+                //var max = 9999999999;
+
+
+                //var rnd = Math.floor(Math.random() * (max - min + 1)) + min;
                 var data = {
 
-
-                    "firstName": "Joseph",
-                    "lastName": "Malhotra",
-                    "username": username,
+                    "firstName": "",
+                    "lastName": "",
+                    "username": "",
                     "email": formObject.emailForRegistration,
-                    "mobile": rnd,
+                    "mobile": "",
                     "password": formObject.passwordForRegistration,
-                    "securityQuestion": "what is the temperature",
-                    "hint": "cool",
-                    "securityAnswer": "cool",
+                    "securityQuestion": "",
+                    "hint": "",
+                    "securityAnswer": "",
                     "address": {
-                        "number": "818",
+                        "number": "",
                         "street": formObject.street,
                         "street2": formObject.street2,
                         "city": formObject.city,
@@ -1340,45 +1454,46 @@ function attachBootstrapValidatorsToRegistrationForm() {
                         "country": formObject.country
                     },
                     "businessName": formObject.businessName,
-                    "briefDescription": "ZaZa Grill Restaurant",
-                    "businessEmail": "demo_zazagrill@gmail.com",
+                    "briefDescription": "",
+                    "businessEmail": formObject.emailForRegistration,
                     "businessPhoneNumber": formObject.businessPhoneNo,
-                    "friendlyURL": username,
+                    "friendlyURL": "",
                     "contactInfo": "",
                     "themeColor": "",
                     "themeId": "",
                     "domain": formObject.domain,
-                    "service_package": "PK_STANDARD",
+                    "service_package":formObject.enumText,
                     "visitorPassword": "",
-                    "hasVisitorPassword": "false",
-                    "isDemo": "true",
-                    "firstName": "Demo",
-                    "lastName": "zazagrill",
+                    "hasVisitorPassword": false,
+                    "isDemo": false,
+                    "firstName": "",
+                    "lastName": "",
                     "promoCodes": "",
                     "billingDetails": {
                         "agreementCheckboxSASLOwner": "",
-                        "collectpayment": "collect",
-                        "card_security_code": "143",
-                        "credit_card_number": "4242",
-                        "expirationYear": "2019",
-                        "expirationMonth": "6",
-                        "monthlyPriceInCents": "0",
-                        "setupPriceInCents": "0",
-                        "currencyCode": "USD",
-                        "firstName": "Joseph",
-                        "lastName": "Malhotra",
+                        "collectpayment": "",
+                        "card_security_code": formObject.card_security_code,
+                        "credit_card_number":formObject.credit_card_number,
+                        "expirationYear": formObject.expirationYear,
+                        "expirationMonth": formObject.expirationMonth,
+                        "monthlyPrice": formObject.monthlyPrice,
+                        "setupPrice": formObject.setupPriceInCents,
+                        "currencyCode": "",
+                        "firstName": formObject.firstName,
+                        "lastName": formObject.lastName,
                         "billingAddress": {
-                            "number": "818",
-                            "street": "Cowper Street",
-                            "street2": "Apt A",
-                            "city": "Palo Alto",
-                            "state": "CA",
-                            "zip": "94301",
-                            "country": "USA"
+                            "number": "",
+                            "street": "",
+                            "street2": "",
+                            "city": "",
+                            "state": "",
+                            "zip": "",
+                            "country": ""
                         }
                     }
                 };
                 var postPayload = JSON.stringify(data);
+                //console.log(data);
                 /*
                  * use our own function
                  */

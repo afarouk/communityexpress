@@ -85,7 +85,7 @@ module.exports = {
             createUserOrder: ['POST', '/retail/createUserOrderClient'],
             createUserPromoOrderSingleton: ['POST', '/retail/createUserOrderSingleton'],
             createUserEventOrderSingleton: ['POST', '/reservations/createUserOrderSingleton'],
-            getItemDetails: ['GET', '/retail/retreiveItemDetailsForPromo'],
+            getItemDetailsForPromoItem: ['GET', '/retail/retreiveItemDetailsForPromo'],
             getEventDetails: ['GET', '/reservations/retreiveEventDetailsForPurchase'],
 
             getOrderPrefillInfo: ['GET', '/retail/getOrderPrefillInfo'],
