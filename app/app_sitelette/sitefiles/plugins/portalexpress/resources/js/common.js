@@ -28,7 +28,8 @@ com.faralam.fire_count = 0;
 com.faralam.newsletterMembers = [];
 
 com.faralam.Editor_MaxLength = 1000;
-com.faralam.custom_img_path = com.faralam.base_url + '/resources/Image/';
+//com.faralam.custom_img_path = com.faralam.base_url + '/resources/Image/';
+com.faralam.custom_img_path ='resources/Image/';
 com.faralam.CongratsPageMsg = 'The new business has been submitted. You must login again to continue';
 com.faralam.CongratsPageMsgNote = 'NOTE: Your new business still needs to be approved. Once approved it will be live on the Community System. However, you can already start to edit, add photos etc.';
 com.faralam.plugin_path = com.faralam.base_url + '/resources/plugins/';
