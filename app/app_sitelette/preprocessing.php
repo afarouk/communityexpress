@@ -177,19 +177,19 @@ if (validateParams('number')) {
   $number = null;
 }
 
-if ((!is_null($city)) || (!is_null($street)) || (!is_null($number))) {
+if ((!is_null($city)) || (!is_null($street)) || (!is_null($number)) ) {
   $hasAddress = true;
 } else {
   $hasAddress = false;
 }
 
-if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
+if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId)) && !isset($pageAccess)) {
   $saslAccess = true;
 } else {
   $saslAccess = false;
 }
 
-if (!is_null($friendlyURL)) {
+if (!is_null($friendlyURL) && !isset($pageAccess)) {
   $urlKeyAccess = true;
 } else {
   $urlKeyAccess = false;
@@ -313,7 +313,7 @@ if (validateParams('debug')) {
   if(!is_null($type)){
     echo ' $og_title:'.$og_title.'</br>';
     echo ' $og_description:'.$og_description.'</br>'; ;
-    echo ' $og_image:'.$og_image.'</br>';  
+    echo ' $og_image:'.$og_image.'</br>';
   }
 
   exit();
