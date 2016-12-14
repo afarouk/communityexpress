@@ -1775,6 +1775,19 @@ a.get_started_btn:active {
     max-width: 355px;
 }
 
+
+.heading_block {
+    background: url(../images/landing/person-woman-apple-iphone.png) no-repeat right;
+    background-size: cover;
+    padding: 19% 0 18% 0;
+    text-align: center;
+}
+
+.heading_block h1{
+	padding-top:70px;
+	color:white;
+	font: 600 48px/48px Roboto;
+}
 /*Browse chalkboards section
 =============================================================*/
 
