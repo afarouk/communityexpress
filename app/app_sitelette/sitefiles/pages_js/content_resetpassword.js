@@ -5,8 +5,8 @@ var portalExpressIframeSrc;
 if (typeof api_server !== 'undefined') {
  console.log("Server overriden: " + api_server);
 } else {
- // api_server = 'communitylive.ws';
- api_server = 'simfel.com';
+  api_server = 'communitylive.ws';
+ //api_server = 'simfel.com';
  console.log("Server defaulting: " + api_server);
 }
 
@@ -96,6 +96,7 @@ $(document).ready(
     * 
     * 
     */
+     parseCommunityURL();
 
    if (typeof url.param('svc') !== 'undefined') {
     if (url.param('svc') == 'resetpassword') {
