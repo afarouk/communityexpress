@@ -1777,14 +1777,14 @@ a.get_started_btn:active {
 
 
 .heading_block {
-    background: url(../images/landing/person-woman-apple-iphone.png) no-repeat right;
+    background: url(../images/landing/hands-coffee-smartphone.jpg) no-repeat right;
     background-size: cover;
     padding: 19% 0 18% 0;
     text-align: center;
 }
 
 .heading_block h1{
-	padding-top:70px;
+	padding-top:80px;
 	color:white;
 	font: 600 48px/48px Roboto;
 }
