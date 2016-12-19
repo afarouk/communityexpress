@@ -5,6 +5,7 @@ var Vent = require('../../Vent'),
     loader = require('../../loader'),
     popupController = require('../../controllers/popupController'),
     h = require('../../globalHelpers'),
+    appCache = require('../../appCache'),
     template = require('ejs!../../templates/rosterOrder/summary.ejs');
 
 var SummaryView = Backbone.View.extend({
@@ -182,6 +183,7 @@ var SummaryView = Backbone.View.extend({
             this.model.toJSON()
         ).then(function() {
             loader.hide();
+            appCache.set('promoCode', null);
             appCache.set('updateDiscount', true);
             var callback = _.bind(this.triggerSingletonView, this);
             popupController.textPopup({
@@ -208,6 +210,7 @@ var SummaryView = Backbone.View.extend({
             loader.hide();
             params.basket.reset();
             params.backToRoster = false;
+            appCache.set('promoCode', null);
             appCache.set('updateDiscount', true);
             var callback;
             if (params.backToCatalog) {

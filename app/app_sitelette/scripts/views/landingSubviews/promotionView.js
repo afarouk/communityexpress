@@ -180,8 +180,9 @@ var PromotionView = Backbone.View.extend({
       var $target = $(e.currentTarget);
       var promoPrice = parseFloat($target.data('price'));
       //promoPrice=promoPrice.substr(1, $target.data('price').length - 1) * 100) / 100;
-      var promoUUID=$target.data('uuid');
-      console.log(" price:"+promoPrice+", uuid:"+promoUUID);
+      var promoUUID = $target.data('uuid');
+      console.log(" price:" + promoPrice + ", uuid:" + promoUUID);
+      appCache.fetch('promoUUID', promoUUID);
 
       Vent.trigger('viewChange', 'singleton', {
           type: 'PROMO',
@@ -190,7 +191,7 @@ var PromotionView = Backbone.View.extend({
           backToRoster: false,
           backToCatalogs: false,
           backToCatalog: false,
-          backToSingleton: true
+          backToSingleton: false
       });
   },
 

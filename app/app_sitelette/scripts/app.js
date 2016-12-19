@@ -345,7 +345,7 @@ App.prototype = {
     },
 
     checkIfDiscountShouldBeUpdated: function() {
-        // set true to update promo after discound was used 
+        // set true to update promo after discount was used 
         var updateDiscount = appCache.get('updateDiscount');
         if (updateDiscount) {
             appCache.set('updateDiscount', false);
@@ -372,6 +372,7 @@ App.prototype = {
                     return false;
                 } else {
                     if (viewName === 'restaurant') {
+                        appCache.set('promoCode', null);
                         this.checkIfDiscountShouldBeUpdated();
                     }
                     return true;

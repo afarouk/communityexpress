@@ -172,30 +172,27 @@ module.exports = {
             backToSingleton = options.backToSingleton,
             singletonItem = {
                 uuid: options.uuid || null,
-                type: options.type || null,
-                promoPrice: options.promoPrice || null
+                type: options.type || null
             };
-        if(options.type!=='PROMO'){
-          singletonItem = appCache.fetch('singletonItem', singletonItem);
-        }
+        singletonItem = appCache.fetch('singletonItem', singletonItem);
         var uuid = singletonItem.uuid,
-            type = singletonItem.type,
-            promoPrice = singletonItem.promoPrice;
+            type = singletonItem.type;
         return saslActions.getSasl()
         .then(function(ret) {
             sasl = ret;
             return type === 'PROMO'? catalogActions.getItemDetailsForPromoItem(uuid) :
                 catalogActions.getEventDetails(uuid);
         }).then(function(item) {
-            if (promoPrice) {
-                item.price = promoPrice;
-            }
             var basket = new CatalogBasketModel(),
             // Should we have isOpen and isOpenWarningMessage in response?
                 isOpen = true,
                 isOpenWarningMessage = 'message';
             basket.addItem(new Backbone.Model(item), 1);
-            appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
+            if (backToSingleton) {
+                basket = appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
+            } else {
+                appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
+            }
             return {
                 promoCode: promoCode,
                 promoUUID:uuid,
@@ -206,7 +203,7 @@ module.exports = {
                 backToRoster: backToRoster,
                 backToCatalog: backToCatalog,
                 backToCatalogs: backToCatalogs,
-                backToSingleton: backToSingleton,
+                backToSingleton: true,
                 item: item,
                 isOpen: isOpen,
                 isOpenWarningMessage: isOpenWarningMessage
@@ -225,7 +222,6 @@ module.exports = {
         var catalogId = options.catalogId;
         var navbarView = options.navbarView;
         var launchedViaURL = options.launchedViaURL;
-        var promoCode = options.promoCode || null;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
@@ -279,16 +275,14 @@ module.exports = {
                     navbarView: navbarView,
                     launchedViaURL :launchedViaURL,
                     isOpen: isOpen,
-                    isOpenWarningMessage: isOpenWarningMessage,
-                    promoCode: promoCode
+                    isOpenWarningMessage: isOpenWarningMessage
                 };
             });
     },
 
     catalogs: function(options) {
         var sasl,
-            id = options.id,
-            promoCode = options.promoCode || null;
+            id = options.id;
         return saslActions.getSasl(options)
             .then(function(ret) {
                 sasl = ret;
@@ -313,7 +307,6 @@ module.exports = {
 
                 } else {
                     return {
-                        promoCode: promoCode,
                         sasl: sasl,
                         catalogs: options,
                         isOpen: isOpen,
@@ -640,7 +633,7 @@ module.exports = {
             addresses,
             fundsource,
             discountPrice = options.discountPrice || 0,
-            promoCode = options.promoCode || null,
+            promoCode = appCache.get('promoCode') || null,
             promoUUID = options.promoUUID || null,
             type = options.type,
             uuid = options.uuid,

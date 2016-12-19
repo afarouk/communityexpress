@@ -1708,6 +1708,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     position: relative;
 }
 .home_tabs_list>li .body {
+    /*display: none;*/
     background-color: #464646;
     padding: 20px;
     margin-bottom: 20px;

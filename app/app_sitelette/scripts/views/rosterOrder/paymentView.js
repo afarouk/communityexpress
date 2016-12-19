@@ -272,6 +272,7 @@ var PaymentView = Backbone.View.extend({
             this.model.toJSON()
         ).then(function() {
             loader.hide();
+            appCache.set('promoCode', null);
             appCache.set('updateDiscount', true);
             var callback = _.bind(this.triggerSingletonView, this);
             popupController.textPopup({
@@ -298,6 +299,7 @@ var PaymentView = Backbone.View.extend({
             loader.hide();
             params.basket.reset();
             params.backToRoster = false;
+            appCache.set('promoCode', null);
             appCache.set('updateDiscount', true);
             var callback;
             if (params.backToCatalog) {

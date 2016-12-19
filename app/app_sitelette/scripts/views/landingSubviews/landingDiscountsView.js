@@ -4,6 +4,7 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
+    appCache = require('../../appCache'),
     discountsTemplate = require('ejs!../../templates/landingSubviews/discountsView.ejs'),
     orderActions = require('../../actions/orderActions'),
     contactActions = require('../../actions/contactActions');
@@ -101,6 +102,7 @@ var DiscountsView = Backbone.View.extend({
               return item.discountUUID === index;
           })[0],
           promoCode = promo.promoCode;
+      appCache.fetch('promoCode', promoCode);
  
       if (this.sasl) {
           switch (this.sasl.retailViewType) {

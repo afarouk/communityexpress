@@ -67,7 +67,7 @@ var AddressView = Backbone.View.extend({
     renderData: function() {
         //TODO check if it will work in all cases
         var favorites = this.model.additionalParams.userModel.favorites,
-            address = favorites.length !== 0 ? favorites.first().get('address') : undefined,
+            address = favorites.length !== 0 ? favorites.first().get('address') : this.getAddressFromSasl(),
             tmpData = _.extend({
                 address: address,
                 addrIsEmpty: this.model.additionalParams.addrIsEmpty,
@@ -76,6 +76,15 @@ var AddressView = Backbone.View.extend({
             }, this.model.toJSON());
 
         return tmpData;
+    },
+
+    getAddressFromSasl: function() {
+        var address = {
+            street: saslData.street,
+            number: saslData.number,
+            city: saslData.city
+        };
+        return address;
     },
 
     triggerNext: function() {

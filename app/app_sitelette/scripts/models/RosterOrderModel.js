@@ -1,7 +1,7 @@
 'use strict';
 
 var RosterOrderModel = Backbone.Model.extend({
- currencySymbols: {
+	currencySymbols: {
 	    'USD': '$',
 	    'EUR': '€',
 	    'GBP': '£',
