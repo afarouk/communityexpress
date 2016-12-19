@@ -2256,7 +2256,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding-right: 0;
 }
 .reviews_block .user_avatar {
-    background-image: url('http://static.tumblr.com/c172fd03bf2bedb77e13107cb22cdcc1/3rxa3xq/asBo7l3wr/tumblr_static_6fbdkgohxjgoc4c8o8kwoso4k.png');
+    background-image: url('images/obsolete_tumblr_static_6fbdkgohxjgoc4c8o8kwoso4k.png');
     display: inline-block;
     background-size: cover;
     width: 40px;
@@ -2334,20 +2334,20 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     border: solid 3px #464646;
 }
 .reviews_block .show_more_block .show_more_avatars_container .avatar1 {
-    background-image: url('http://jsymphony.com/wp-content/uploads/2016/09/avatar.jpg');
+    background-image: url('images/obsolete_avatar.jpg');
     margin-left: 0;
 }
 .reviews_block .show_more_block .show_more_avatars_container .avatar2 {
-    background-image: url('https://media.creativemornings.com/uploads/user/avatar/2195/allen_avatar_square.jpg');
+    background-image: url('images/obsolete_allen_avatar_square.jpg');
 }
 .reviews_block .show_more_block .show_more_avatars_container .avatar3 {
-    background-image: url('http://d38we5ntdyxyje.cloudfront.net/85557/profile/CYHUGAGT_avatar_medium_square.jpg');
+    background-image: url('images/obsolete_CYHUGAGT_avatar_medium_square.jpg');
 }
 .reviews_block .show_more_block .show_more_avatars_container .avatar4 {
-    background-image: url('https://media.creativemornings.com/uploads/user/avatar/15261/Matthew_Avatar_square.jpg');
+   background-image: url('images/obsolete_Matthew_Avatar_square.jpg');
 }
 .reviews_block .show_more_block .show_more_avatars_container .avatar5 {
-    background-image: url('https://media.creativemornings.com/uploads/user/avatar/47719/f27e6088bf4c921ac8a4609b4bb97226.jpeg');
+    background-image: url('images/obsolete_f27e6088bf4c921ac8a4609b4bb97226.jpeg');
 }
 .reviews_block .show_more_block .show_more_reviews_btn {
     display: inline-block;
