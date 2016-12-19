@@ -30,17 +30,21 @@ var LeftMenuView = PanelView.extend({
         this.PopupController = options.parent;
         this.saslData = appCache.get('saslData');
         this.sasl = new RestaurantModel(this.saslData);
-        this.model = new Backbone.Model(this.getActiveButtons());
+        this.model = new Backbone.Model(this.getActiveButtonsAndUser());
         setTimeout(this._onOpen.bind(this), 500);
     },
 
-    getActiveButtons: function() {
+    getActiveButtonsAndUser: function() {
+        var user = appCache.get('user');
         var buttons = _.filter(this.sasl.get('services'), function (option, key) {
             if (!option || !option.masterEnabled) return false;
             option.key = key;
             return true;
         }.bind(this));
-        return {buttons: buttons};
+        return {
+            buttons: buttons,
+            user: user
+        };
     },
 
     // render : function() {
