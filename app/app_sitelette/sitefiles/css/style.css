@@ -236,7 +236,13 @@ h5{
   margin-bottom: 30px;
   width: 100%;
 }
-
+.feature_icon{
+	width: 30%;
+  height: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+}
 .big_block{
 	padding-top:40px;
 }
