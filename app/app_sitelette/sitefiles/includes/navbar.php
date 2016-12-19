@@ -19,10 +19,12 @@
             <li <?php modifyUrlAndClass("") ?>>
               <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","slider-part") ?>>Home</a>
               </li>
+            <!--
             <li>
               <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","features") ?>>Features</a>
             </li>
-            <li class="li_demo"><a href="sendsample">How it works</a></li>
+            -->
+            <li class="li_demo"><a href="sendsample">Try It</a></li>
             <li>
               <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
             </li>
@@ -32,6 +34,8 @@
             <li class="li_login" <?php modifyUrlAndClass("portalexpress") ?> >
               <a href="portalexpress" class="login_btn">Log in</a>
             </li>
+            <li class="li_demo"><a href="support">Support</a></li>
+            <li>
           </ul>
         </div>
       </div>

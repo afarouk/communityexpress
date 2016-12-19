@@ -134,6 +134,9 @@ if (validateParams('friendlyURL')) {
       case 'signup':
         $pageAccess = 'common_signup.php';
         break;
+      case 'support':
+          $pageAccess = 'common_support.php';
+          break;
       default:
     }
   }
