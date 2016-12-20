@@ -80,9 +80,14 @@ var AddressView = Backbone.View.extend({
 
     getAddressFromSasl: function() {
         var address = {
+            name: saslData.saslName,
             street: saslData.street,
+            street2: saslData.street2,
             number: saslData.number,
-            city: saslData.city
+            city: saslData.city,
+            state: saslData.state,
+            zip: saslData.zip,
+            phone: saslData.telephoneNumber
         };
         return address;
     },

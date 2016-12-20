@@ -9,8 +9,28 @@
     <ul class="poll_gallery">
         <% _.each(contests, function(poll, poll_index){ %>
             <li class="poll_item" data-uuid="<%= poll.contestUUID %>">
-                <div class="contest_container">
+                <ul class="contest_prizes shown">
                     <div class="poll_block_title">&nbsp</div>
+                    <% _.each(poll.prizes, function(prize, index){ %>
+                        <li>
+                            <div class="prize_block">
+                                <div class="ui-grid-a prize_container">
+                                    <div class="ui-block-a">
+                                        <img src="<%= prize.imageUrl %>"></img>
+                                    </div>
+                                    <div class="ui-block-b ">
+                                        <div class="prize_text_block">
+                                            <span class="prize_text"><%= prize.contestPrizeName %></span>
+                                            <span class="prize_condition"><%= prize.displayText %></span>
+                                            <span class="prize_date"><%= prize.quantity %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+                <div class="contest_container">
                     <img class="poll_image" src="<%= poll.imageURL %>"></img>
                     <span class="poll_displaytext"><%= poll.displayText %>?</span>
 
