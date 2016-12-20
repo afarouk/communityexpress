@@ -55,7 +55,10 @@
         <% if (allowPickUp) { %>
             <div id="pick_up" class="ui-body-d ui-content">
                 <% if (address) { %>
-                    <p class="order_address">You can get your order at <%= address.street + ', ' + address.number + ', ' + address.city %></p>
+                    <p class="order_address">You can get your order at: <%= address.name %>
+                    </br><%= address.number + ', ' + address.street + ', ' + address.street2 %>
+                    </br><%= address.city + ', ' + address.state + ' - ' + address.zip %>
+                    </br>phone: <%= address.phone %></p>
                 <% } %>
                 <div id="shipping_map" class="map_container">
                 </div>

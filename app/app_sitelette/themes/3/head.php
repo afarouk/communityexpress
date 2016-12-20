@@ -40,6 +40,19 @@
 
     <link rel="icon" href="themes/3/favicon.ico?v=1.1">
 
+    <!-- TODO splash screen styles
+      temporary for demo
+    -->
+    <style type="text/css">
+        body {
+            background-color: black;
+            background-image: url("themes/3/splash/Default-portrait@2x~iphone5.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <!-- end -->
+
     <script>
         window.saslData = <?php
             if (!is_null($saslJSON)) {

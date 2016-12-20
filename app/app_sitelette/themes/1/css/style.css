@@ -3746,6 +3746,7 @@ a.cancel {
 .new_review_error {
     color: #D8000C;
     display: none;
+    font-size: 16px;
 }
 
 .price_list .discount {
