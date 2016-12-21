@@ -27,7 +27,7 @@ var getFeaturesAPI;
 var urlSuffixValidationAPI;
 var purchaseBetaSASL;
 //var portalExpressURL = 'http://sitelettes.com/sites/ext/portalexpress/';
-var portalExpressURL = 'http://chalkboardstoday.com/sitefiles/plugins/portalexpress/';
+var portalExpressURL = 'https://chalkboardstoday.com/sitefiles/plugins/portalexpress/';
 var varifyInovationCodeUrl;
 
 /*
