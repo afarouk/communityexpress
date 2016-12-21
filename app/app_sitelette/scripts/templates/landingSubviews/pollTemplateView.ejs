@@ -10,7 +10,7 @@
         <% _.each(contests, function(poll, poll_index){ %>
             <li class="poll_item" data-uuid="<%= poll.contestUUID %>">
                 <ul class="contest_prizes shown">
-                    <div class="poll_block_title">&nbsp</div>
+                    <div class="poll_block_title"><span>Enter to win</span>&nbsp</div>
                     <% _.each(poll.prizes, function(prize, index){ %>
                         <li>
                             <div class="prize_block">

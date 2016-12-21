@@ -29,7 +29,10 @@ var PromotionView = Backbone.View.extend({
     this.options = options || {};
     this.sasl = window.saslData;
 
-    this.initSlick();
+    var $el = this.$('.body'),
+        visible = $el.is(':visible');
+    this.slicked = false;
+    if (visible) this.initSlick();
     Vent.on('openPromotionByShareUrl', this.openPromotionByShareUrl, this);
     this.setLinksForEachPromotion();
     $( ".promotion_block .header #flag" ).before( "<style>.promotion_block #flag:after { border-bottom-color:" + $('.cmtyx_color_3').css('background-color') + "}</style>" );
@@ -37,6 +40,7 @@ var PromotionView = Backbone.View.extend({
   },
 
   initSlick: function() {
+    this.slicked = true;
     //slick init
     this.$el.find('.body ul').slick({
         dots: false,
@@ -54,10 +58,19 @@ var PromotionView = Backbone.View.extend({
   },
 
   onShow: function() {
+      this.unslick();
+
+      var $el = this.$('.body'),
+          visible = $el.is(':visible');
+
+      this.slicked = false;
+      if (visible) this.initSlick();
+  },
+
+  unslick: function() {
       var $el = this.$el.find('.body ul');
       $el.find('.slick-arrow-container').remove();
       $el.slick('unslick');
-      this.initSlick();
   },
 
   openPromotionByShareUrl: function(uuid) {
@@ -166,14 +179,15 @@ var PromotionView = Backbone.View.extend({
 
   toggleCollapse: function() {
     var $el = this.$('.body');
-    $el.slideToggle('slow', function(){
-        var visible = $(this).is(':visible');
+    $el.slideToggle('slow', _.bind(function() {
+        var visible = $el.is(':visible');
         if (visible) {
-            $(this).parent().find('.collapse_btn').html('&#9650;');
+            $el.parent().find('.collapse_btn').html('&#9650;');
+            if (!this.slicked) this.initSlick();
         } else {
-            $(this).parent().find('.collapse_btn').html('&#9660;');
+            $el.parent().find('.collapse_btn').html('&#9660;');
         }
-    });
+    }, this));
   },
 
   onBuyItem: function(e) {
