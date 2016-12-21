@@ -20,24 +20,31 @@ var GalleryView = Backbone.View.extend({
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
-    this.initSlick();
+    
+    var $el = this.$('.body'),
+        visible = $el.is(':visible');
+    this.slicked = false;
+    if (visible) this.initSlick();
+
     this.setLinksForEachPicture();
     this.resolved();
   },
 
   toggleCollapse: function() {
     var $el = this.$('.body');
-    $el.slideToggle('slow', function(){
-        var visible = $(this).is(':visible');
+    $el.slideToggle('slow', _.bind(function(){
+        var visible = $el.is(':visible');
         if (visible) {
-            $(this).parent().find('.collapse_btn').html('&#9650;');
+            $el.parent().find('.collapse_btn').html('&#9650;');
+            if (!this.slicked) this.initSlick();
         } else {
-            $(this).parent().find('.collapse_btn').html('&#9660;');
+            $el.parent().find('.collapse_btn').html('&#9660;');
         }
-    });
+    }, this));
   },
 
   initSlick: function() {
+    this.slicked = true;
     //slick init
     this.$el.find('.gallery').slick({
         dots: false,
@@ -55,10 +62,19 @@ var GalleryView = Backbone.View.extend({
   },
 
   onShow: function() {
+      this.unslick();
+
+      var $el = this.$('.body'),
+          visible = $el.is(':visible');
+
+      this.slicked = false;
+      if (visible) this.initSlick();
+  },
+
+  unslick: function() {
       var $el = this.$el.find('.body ul.gallery');
       $el.find('.slick-arrow-container').remove();
       $el.slick('unslick');
-      this.initSlick();
   },
 
   showShareBlock: function(e) {

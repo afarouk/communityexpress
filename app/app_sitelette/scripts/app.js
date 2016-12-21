@@ -131,7 +131,7 @@ App.prototype = {
         }
     },
 
-    initSubviews: function(){
+    initSubviews: function() {
         this.viewsInLanding = {
             loyaltyCard: this.createSubview( LoyaltyCardView ),
             events: this.createSubview( EventsView ),
@@ -145,7 +145,7 @@ App.prototype = {
             contactUs: this.createSubview( ContactUsInLandingView )
         };
 
-        // !!! We should render all views amd wait a little before scroll to block
+        // !!! We should render all views and wait a little before scroll to block
         var defrs = _.pluck(this.viewsInLanding, 'deferred');
         $.when.apply( this, defrs )
             .then( function(){
