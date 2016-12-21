@@ -68,7 +68,9 @@ var PromotionView = Backbone.View.extend({
   },
 
   unslick: function() {
-      var $el = this.$el.find('.body ul');
+      var $el = this.$el.find('.body ul'),
+          initialized = $el.hasClass('slick-initialized');
+      if (!initialized) return;
       $el.find('.slick-arrow-container').remove();
       $el.slick('unslick');
   },

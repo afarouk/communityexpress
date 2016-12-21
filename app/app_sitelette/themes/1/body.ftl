@@ -102,7 +102,7 @@
                 <li id="cmtyx_promocodes_block" class="promocodes_block">
 					<div class="header cmtyx_color_1">
 						<span class="title">Discounts</span> 
-						<span class="collapse_btn">&#9650;</span>
+						<span class="collapse_btn">&#9660;</span>
 						<span class="tag_icon"></span>
 					</div>
 					<#if (promoCodes)?has_content >
@@ -195,7 +195,7 @@
 
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
-						<span class="title">events</span> <span class="collapse_btn">&#9650;</span>
+						<span class="title">events</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<#if (eventsSummary.events)?has_content >
 						<div class="body">
@@ -291,7 +291,7 @@
 
 				<li id="cmtyx_gallery_block" class="gallery_block">
 					<div class="header cmtyx_color_1">
-						<span class="title">gallery</span> <span class="collapse_btn">&#9650;</span>
+						<span class="title">gallery</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
 						<ul class="gallery">
@@ -346,7 +346,7 @@
 				</li>
 				<li id="cmtyx_poll_block" class="poll_block">
 					<div class="header cmtyx_color_3">
-						<span class="title">Poll</span> <span class="collapse_btn">&#9650;</span>
+						<span class="title">Poll</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
 						<ul class="poll_gallery">
@@ -448,7 +448,7 @@
 				<li id="cmtyx_about_us_block" class="about_us_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">about us</span>
-						<div class="collapse_btn">&#9650;</div>
+						<div class="collapse_btn">&#9660;</div>
 					</div>
 					<div class="body">
 						<div class="text">${(sasl.detailedDescription)!"(no detailedDescription)"}</div>
@@ -460,7 +460,7 @@
 				<li id="cmtyx_reviews_block" class="reviews_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">reviews</span> <span
-							class="collapse_btn">&#9650;</span>
+							class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
 						<div class="review">
@@ -531,7 +531,7 @@
 				<li id="cmtyx_promotion_block" class="promotion_block">
 					<div class="header cmtyx_color_3">
     					<div id="flag"><span>sale</span></div>
-						<span class="title">Promotion</span> <span class="collapse_btn">&#9650;</span>
+						<span class="title">Promotion</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
 						<ul>
@@ -681,7 +681,7 @@
 				<li id="cmtyx_photo_contest_block" class="photo_contest_block">
 					<div class="header cmtyx_color_4">
 						<span class="title">Photo contest</span> <span
-							class="collapse_btn">&#9650;</span>
+							class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
 						<ul class="photo_gallery">
@@ -741,7 +741,7 @@
 				</li>
 				<li id="cmtyx_video_block" class="video_block">
 					<div class="header cmtyx_color_1">
-						<span class="title">video</span> <span class="collapse_btn">&#9650;</span>
+						<span class="title">video</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 				    <div class="body last">
 				    <#if (externalMedia)?has_content >

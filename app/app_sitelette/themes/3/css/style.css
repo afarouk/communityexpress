@@ -934,8 +934,9 @@ input[type=number]::-webkit-outer-spin-button {
     color: #fafafa;
     letter-spacing: 1px;
 }
-.close_cart_button {
+.cart_header .close_cart_button {
     float: right;
+    margin-top: -15px;
 }
 .cart_order_btn {
     font: 700 18px / 19px 'Open Sans', sans-serif !important;
@@ -1498,6 +1499,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     width: 28px;
     height: 21px;
 }
+.panel_username_text {
+    font: 400 18px 'Open Sans', sans-serif;
+    color: #fafafa;
+    line-height: 1.5;
+}
 .left_panel_menu {
     margin-top: 5px;
 }
@@ -1708,6 +1714,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     position: relative;
 }
 .home_tabs_list>li .body {
+    display: none;
     background-color: #464646;
     padding: 20px;
     margin-bottom: 20px;

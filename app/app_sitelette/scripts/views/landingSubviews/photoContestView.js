@@ -35,11 +35,6 @@ module.exports = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         Vent.on('openPhotoByShareUrl', this.openPhotoByShareUrl, this);
-
-        var $el = this.$('.body'),
-        visible = $el.is(':visible');
-        this.slicked = false;
-        if (visible) this.initSlick();
     },
 
     render: function(photos) {
@@ -49,7 +44,12 @@ module.exports = Backbone.View.extend({
             contests: photos
         }));
         this.setLinksForEachPhoto();
-        this.initSlick();
+        
+        var $el = this.$('.body'),
+        visible = $el.is(':visible');
+        this.slicked = false;
+        if (visible) this.initSlick();
+
         this.resolved();
         return this;
     },
@@ -65,7 +65,9 @@ module.exports = Backbone.View.extend({
     },
 
     unslick: function() {
-        var $el = this.$el.find('.body ul.photo_gallery');
+        var $el = this.$el.find('.body ul.photo_gallery'),
+            initialized = $el.hasClass('slick-initialized');
+        if (!initialized) return;
         $el.find('.slick-arrow-container').remove();
         $el.slick('unslick');
     },

@@ -24,11 +24,6 @@ var DiscountsView = Backbone.View.extend({
   initialize: function(options) {
     this.options = options || {};
     this.sasl = window.saslData;
-    
-    var $el = this.$('.body'),
-        visible = $el.is(':visible');
-    this.slicked = false;
-    if (visible) this.initSlick();
 
     this.setLinksForEachDiscount();
     Vent.on('openDiscountByShareUrl', this.openDiscountByShareUrl, this);
@@ -77,7 +72,9 @@ var DiscountsView = Backbone.View.extend({
   },
 
   unslick: function() {
-      var $el = this.$el.find('.body ul.gallery');
+      var $el = this.$el.find('.body ul.gallery'),
+          initialized = $el.hasClass('slick-initialized');
+      if (!initialized) return;
       $el.find('.slick-arrow-container').remove();
       $el.slick('unslick');
   },
@@ -99,7 +96,12 @@ var DiscountsView = Backbone.View.extend({
         this.$el.html(discountsTemplate({
             promoCodes: promoCodes
         }));
-        this.initSlick();
+        
+        var $el = this.$('.body'),
+        visible = $el.is(':visible');
+        this.slicked = false;
+        if (visible) this.initSlick();
+
         this.setLinksForEachDiscount();
         this.resolved();
         return this;

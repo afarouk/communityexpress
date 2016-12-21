@@ -28,7 +28,7 @@ var themes = function() {
             expand: true,
             cwd: '<%= yeoman.app %>/build',
             src: [
-                '*.{ico,txt,png,gif,ttf,svg,woff,eot}'
+                '*.{ico,txt,png,gif,ttf,svg,woff,woff2,eot}'
             ],
             dest: '<%= yeoman.dist %>/themes/' + i + '/css'
         });

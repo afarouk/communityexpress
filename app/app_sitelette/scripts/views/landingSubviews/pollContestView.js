@@ -50,11 +50,6 @@ module.exports = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         Vent.on('openPollByShareUrl', this.openPollByShareUrl, this);
-        
-        var $el = this.$('.body'),
-        visible = $el.is(':visible');
-        this.slicked = false;
-        if (visible) this.initSlick();
     },
 
     render: function(poll) {
@@ -64,7 +59,12 @@ module.exports = Backbone.View.extend({
             contests: poll
         }));
         this.setLinksForEachPoll();
-        this.initSlick();
+        
+        var $el = this.$('.body'),
+        visible = $el.is(':visible');
+        this.slicked = false;
+        if (visible) this.initSlick();
+
         this.resolved();
         return this;
     },
@@ -80,7 +80,9 @@ module.exports = Backbone.View.extend({
     },
 
     unslick: function() {
-        var $el = this.$el.find('.body ul.poll_gallery');
+        var $el = this.$el.find('.body ul.poll_gallery'),
+            initialized = $el.hasClass('slick-initialized');
+        if (!initialized) return;
         $el.find('.slick-arrow-container').remove();
         $el.slick('unslick');
     },
