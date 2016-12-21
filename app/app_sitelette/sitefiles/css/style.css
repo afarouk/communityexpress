@@ -1726,7 +1726,7 @@ a.get_started_btn:active {
     color: #EF6E12;
     margin-bottom: 25px;
 }
- 
+
 @supports (-webkit-background-clip: text) {
     .mobile_power_block .title,
     .contact_us_block .title,
@@ -2164,6 +2164,12 @@ span.icon-size {
 #contactUsSuccessDiv {
 	color: #EF6E12;
 	margin: 0;
+}
+.callUs_wrap{
+	margin: 40px 0;
+}
+a.callUsButton{
+    padding: 15px 80px;
 }
 
 
