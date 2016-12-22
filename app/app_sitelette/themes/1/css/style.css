@@ -4179,11 +4179,10 @@ input[name=promocode] {
 
 /*navbar png icons instead font icons*/
 .navbar_btn_icon {
-    width: 100px;
-    height: 100px;
-    zoom: .5;
-    -moz-transform: scale(.5);
+    width: 50px;
+    height: 50px;
 }
+
 .navbutton_menu {
     background: url('images/navbar-icons/menu.png') no-repeat top left;
 }
