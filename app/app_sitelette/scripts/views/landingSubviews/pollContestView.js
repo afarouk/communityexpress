@@ -31,13 +31,14 @@ module.exports = Backbone.View.extend({
         'click .sms_send_button': 'onSendSMS'
     },
 
-    toggleCollapse: function() {
+    toggleCollapse: function(callback) {
         var $el = this.$('.body');
         $el.slideToggle('slow', _.bind(function(){
             var visible = $el.is(':visible');
             if (visible) {
                 $el.parent().find('.collapse_btn').html('&#9650;');
                 if (!this.slicked) this.initSlick();
+                if (typeof callback === 'function') callback();
             } else {
                 $el.parent().find('.collapse_btn').html('&#9660;');
             }
@@ -106,11 +107,14 @@ module.exports = Backbone.View.extend({
     },
 
     openPollByShareUrl: function(uuid) {
-        var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
-            index = el.data('slick-index');
+        var callback = _.bind(function() {
+            var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
+                index = el.data('slick-index');
 
-        this.$el.find('.body ul.poll_gallery').slick('slickGoTo', index);
-        Vent.trigger('scrollToBlock', '.poll_block');
+            this.$el.find('.body ul.poll_gallery').slick('slickGoTo', index);
+            Vent.trigger('scrollToBlock', '.poll_block');
+        }, this);
+        this.toggleCollapse(callback);
     },
 
     showShareBlock: function(e) {
