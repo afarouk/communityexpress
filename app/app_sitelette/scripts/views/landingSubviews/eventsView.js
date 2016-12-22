@@ -32,13 +32,14 @@ var EventsView = Backbone.View.extend({
     this.resolved();
   },
 
-  toggleCollapse: function() {
+  toggleCollapse: function(callback) {
     var $el = this.$('.body');
     $el.slideToggle('slow', _.bind(function(){
         var visible = $el.is(':visible');
         if (visible) {
             $el.parent().find('.collapse_btn').html('&#9650;');
             if (!this.slicked) this.initSlick();
+            if (typeof callback === 'function') callback();
         } else {
             $el.parent().find('.collapse_btn').html('&#9660;');
         }
@@ -93,11 +94,14 @@ var EventsView = Backbone.View.extend({
   },
 
   openEventByShareUrl: function(uuid) {
-    var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
-        index = el.data('slick-index');
+    var callback = _.bind(function() {
+        var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
+            index = el.data('slick-index');
 
-    this.$el.find('.body ul').slick('slickGoTo', index);
-    Vent.trigger('scrollToBlock', '.events_block');
+        this.$el.find('.body ul').slick('slickGoTo', index);
+        Vent.trigger('scrollToBlock', '.events_block');
+    }, this);
+    this.toggleCollapse(callback);
   },
 
   showShareBlock: function(e) {

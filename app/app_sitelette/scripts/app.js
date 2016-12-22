@@ -148,7 +148,7 @@ App.prototype = {
         // !!! We should render all views and wait a little before scroll to block
         var defrs = _.pluck(this.viewsInLanding, 'deferred');
         $.when.apply( this, defrs )
-            .then( function(){
+            .then( function() {
                 // console.log(arguments);
                 if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
                     setTimeout(this.checkType.bind(this, window.community.type), 100);
