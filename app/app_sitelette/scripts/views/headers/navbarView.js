@@ -135,10 +135,11 @@ var NavbarView = Backbone.View.extend({
         loader.show();
         userController.logout(this.user.getUID()).then(function(){
             loader.showFlashMessage( 'signed out' );
-            $('.menu_button_5').removeClass('navbutton_sign_out').addClass('navbutton_sign_in');
-            $('.menu_button_5').removeClass('cmtyx_text_color_1');
-            $( ".menu_button_5" ).siblings().remove();
-            $( ".glyphicon-ok" ).hide();
+            $('.menu_button_5').removeClass('sign_out');
+            // $('.menu_button_5').removeClass('navbutton_sign_out').addClass('navbutton_sign_in');
+            // $('.menu_button_5').removeClass('cmtyx_text_color_1');
+            // $( ".menu_button_5" ).siblings().remove();
+            // $( ".glyphicon-ok" ).hide();
         }, function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });

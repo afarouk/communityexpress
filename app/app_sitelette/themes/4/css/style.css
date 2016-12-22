@@ -2717,7 +2717,7 @@ li.video_block .body {
     float: right;
     position: relative;
     right: 10px;
-    bottom: 2px;
+    bottom: 7px;
 }
 
 .promocodes_block .body {
@@ -4175,4 +4175,27 @@ input[name=promocode] {
     right: 0;
     position: absolute;
     margin: auto;
+}
+
+/*navbar png icons instead font icons*/
+.navbar_btn_icon {
+    width: 100px;
+    height: 100px;
+    zoom: .5;
+    -moz-transform: scale(.5);
+}
+.navbutton_menu {
+    background: url('images/navbar-icons/menu.png') no-repeat top left;
+}
+.navbutton_deals {
+    background: url('images/navbar-icons/promo.png') no-repeat top left;
+}
+.navbutton_about {
+    background: url('images/navbar-icons/info.png') no-repeat top left;
+}
+.menu_button_5 > div {
+    background: url('images/navbar-icons/Sign_in1.png') no-repeat top left;
+}
+.menu_button_5.sign_out > div {
+    background: url('images/navbar-icons/Sign_out1.png') no-repeat top left;
 }

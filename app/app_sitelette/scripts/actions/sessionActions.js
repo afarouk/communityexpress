@@ -16,11 +16,12 @@ var userController = require('../controllers/userController.js'),
 var onLoginSuccess = function (response) {
     var user = appCache.fetch('user', new User());
     user.initiate(response.uid, response.userName);
-    $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
-    $('.menu_button_5').addClass('cmtyx_text_color_1');
-    var color = $('.cmtyx_text_color_1').css("color");
-    $( ".menu_button_5" ).before( "<style>.icon-user:before{color:" + color + "}</style>" );
-    $( ".glyphicon-ok" ).show();
+    $('.menu_button_5').addClass('sign_out');
+    // $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
+    // $('.menu_button_5').addClass('cmtyx_text_color_1');
+    // var color = $('.cmtyx_text_color_1').css("color");
+    // $( ".menu_button_5" ).before( "<style>.icon-user:before{color:" + color + "}</style>" );
+    // $( ".glyphicon-ok" ).show();
     
     favoriteActions.getFavoritesForCurrentUser();
 

@@ -26,23 +26,23 @@
 			<ul>
 				<li><a href="#" class="menu_button_3 ui-btn">
 						<!-- <div class="navbar_btn_icon document_img"></div>  -->
-						<div class="navbar_btn_icon icon-document"></div>
+						<div class="navbar_btn_icon icon-document_ navbutton_menu"></div>
 						<br>Menu
 				</a></li>
 				<li><a href="#" class="menu_button_2">
 						<!-- <div class="navbar_btn_icon calendar_grey_img m-b-11"></div>  -->
-						<div class="navbar_btn_icon icon-deals"></div>
+						<div class="navbar_btn_icon icon-deals_ navbutton_deals"></div>
 						<br>Deals
 				</a></li>
 				<li><a href="#" class="menu_button_4">
 						<!-- <div class="navbar_btn_icon information_button_img m-b-7"></div>  -->
-						<div class="navbar_btn_icon icon-information"></div>
+						<div class="navbar_btn_icon icon-information_ navbutton_about"></div>
 						<br>About
 				</a></li>
 				<li><a href="#" class="menu_button_5">
 						<!-- <div class="navbar_btn_icon user_img m-b-9"></div>  -->
-						<div class="navbar_btn_icon icon-user"></div>
-						<span class="glyphicon glyphicon-ok .cmtyx_text_color_1" aria-hidden="true"></span>
+						<div class="navbar_btn_icon icon-user_"></div>
+						<!-- <span class="glyphicon glyphicon-ok .cmtyx_text_color_1" aria-hidden="true"></span> -->
 
 						<br>User
 				</a></li>
