@@ -2171,6 +2171,14 @@ span.icon-size {
 a.callUsButton{
     padding: 15px 80px;
 }
+.contactEmailText_wrap{
+	text-align: center;
+	padding-top: 10px;
+}
+.phoneNumberText{
+	text-align: center;
+	padding-top: 10px;
+}
 
 
 /*Footer section
