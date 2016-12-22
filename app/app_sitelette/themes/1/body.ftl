@@ -99,6 +99,227 @@
 	         </div>
 	        -->
 			<ul class="home_tabs_list">
+			
+			<!----- Promotions  ---------------->
+				<li id="cmtyx_promotion_block" class="promotion_block">
+					<div class="header cmtyx_color_3">
+    					<div id="flag"><span>sale</span></div>
+						<span class="title">Promotion</span> <span class="collapse_btn">&#9660;</span>
+					</div>
+					<div class="body">
+						<ul>
+							<!-- <#list promotions as promotion>
+							<li class="promotions-item" data-uuid="${promotion.uuid}">
+								<div class="promotion_item">
+									<div class="promotion_type">
+										${promotion.promoType.displayText}</div>
+									<img src="${promotion.URL}"></img>
+									<div class="promotion_details_container">
+										<div class="promotion_title">${promotion.title}</div>
+	                                    <#if promotion.buyable!false>
+		                                  <div class="promotions-originalprice" >
+		                                   Regular price: <span>$${promotion.originalPrice}</span></div>
+	                                    </#if>
+	                                    <#if promotion.buyable!false>
+		                                  <div class="promotions-promoprice">
+		                                   Special price: <span class="cmtyx_text_color_1">$${promotion.promoPrice}</span></div>
+	                                    </#if>
+										<div class="promotion_description">${promotion.message}</div>
+									</div>
+									<#if promotion.buyable!false>
+									<div class="ui-grid-a promotion_item_buttons">
+										<div class="ui-block-a share_btn_block"
+											uuid="${promotion.uuid}">
+											<span class="icon share_icon"></span> <span class="text">Share</span>
+										</div>
+										<div class="ui-block-b "
+											uuid="${promotion.uuid}">
+			                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
+			                                   Buy</button>
+										</div>
+									</div>
+									<#else>
+									<div class="ui-grid-solo promotion_item_buttons">
+										<div class="ui-block-a share_btn_block"
+											uuid="${promotion.uuid}">
+											<span class="icon share_icon"></span> <span class="text">Share</span>
+										</div>
+									</div>
+		                            </#if>
+								</div>
+								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
+									<div class="sms_input_block">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+									</div>
+									<div class="ui-block-a text sms_block">
+										<a href="" class="share_sms cmtyx_text_color_1">
+											<span class="share_icon sms_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-b text email_block">
+										<a href="" class="share_email cmtyx_text_color_1">
+											<span class="share_icon email_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-c text facebook_block">
+										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+											<span class="share_icon facebook_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-d text twitter_block">
+										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+											<span class="share_icon twitter_icon"></span>
+										</a>
+									</div>
+								</div>
+							</li> 
+							</#list>
+							 -->
+							<#list promotions as promotion>
+							<li class="promotions-item" data-uuid="${promotion.uuid}">
+								<div class="promotion_item">
+									<div class="promotion_type">
+ 										<div class="promotion_title">${promotion.title}</div>
+									</div>
+									<#if !promotion.buyable>
+									<div class="promotion_item_container_wrapper">
+										<div class="ui-grid-a promotion_item_container">
+											<div class="ui-block-a">
+												<img src="${promotion.URL}"></img>
+											</div>
+											<div class="ui-block-b">
+												<div class="promotion_details_container">
+				                                    <#if promotion.buyable!false>
+					                                  <div class="promotions-originalprice" >
+					                                   <span>$${promotion.originalPrice}</span></div>
+					                                  <div class="promotions-promoprice">
+					                                   <span class="cmtyx_text_color_1">$${promotion.promoPrice}</span>
+					                                   </div>
+				                                    </#if>
+
+													<div class="promotion_description">${promotion.message}</div>	
+				                                    <#if promotion.buyable!false>
+				                                    	<div class="promotions_buybutton_container"
+															uuid="${promotion.uuid}">
+							                                  <button class="promotions-buybutton cmtyx_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
+							                                   Buy</button>
+														</div>
+				                                    </#if>
+												</div>			
+											</div>
+										</div>
+									</div>
+									<#else>
+									<div class="promotion_item_container_wrapper">
+										<div class="promotion_item_container">
+											<div class="promoCode_image " >
+												<img src="${promotion.URL}" class="promotions-buybutton" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}"></img>
+											</div> 
+										</div>
+									</div>
+									</#if>
+								</div>
+								<div class="promotion_item_buttons">
+									<div class="share_btn_block"
+										uuid="${promotion.uuid}">
+										<span class="icon share_icon"></span> <span class="text">Share</span>
+									</div>
+								</div>
+								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
+									<div class="sms_input_block">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+									</div>
+									<div class="ui-block-a text sms_block">
+										<a href="" class="share_sms cmtyx_text_color_1">
+											<span class="share_icon sms_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-b text email_block">
+										<a href="" class="share_email cmtyx_text_color_1">
+											<span class="share_icon email_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-c text facebook_block">
+										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+											<span class="share_icon facebook_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-d text twitter_block">
+										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+											<span class="share_icon twitter_icon"></span>
+										</a>
+									</div>
+								</div>
+							</li> 
+							</#list>
+							<!--  
+ 							<#list promotions as promotion>
+							<li class="promotions-item" >
+								<div class="promotion_item">
+									<div class="promotion_type">
+ 										<div class="promotion_title">${promotion.title}</div>
+									</div>
+									<div class="promotion_item_container_wrapper">
+										<div class="promotion_item_container">
+											<div class="promoCode_image " >
+												<img src="${promotion.URL}" class="promotions-buybutton" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}"></img>
+											</div> 
+										</div>
+									</div>
+								</div>
+								<div class="promotion_item_buttons">
+									<div class="share_btn_block"
+										uuid="${promotion.uuid}">
+										<span class="icon share_icon"></span> <span class="text">Share</span>
+									</div>
+								</div>
+								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
+									<div class="sms_input_block">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+									</div>
+									<div class="ui-block-a text sms_block">
+										<a href="" class="share_sms cmtyx_text_color_1">
+											<span class="share_icon sms_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-b text email_block">
+										<a href="" class="share_email cmtyx_text_color_1">
+											<span class="share_icon email_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-c text facebook_block">
+										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+											<span class="share_icon facebook_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-d text twitter_block">
+										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+											<span class="share_icon twitter_icon"></span>
+										</a>
+									</div>
+								</div>
+							</li> 
+							</#list>
+							-->
+						</ul>
+					</div>
+				</li>
+			<!----- End of Promotions  ---------------->
+
+			<!----- Loyalty Program  ---------------->
+			
+			
+				<li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
+				</li>
+			<!----- End of Loyalty Program  ---------------->
+						
+			
+			<!----- Discount coupons  ---------------->
+			
+			
                 <li id="cmtyx_promocodes_block" class="promocodes_block">
 					<div class="header cmtyx_color_1">
 						<span class="title">Discounts</span> 
@@ -192,7 +413,257 @@
 						</div>
 					</#if>
 				</li>
+				
+			<!----- End of Discount coupons  ---------------->
+				
 
+				<!----- Gallery  ---------------->
+				<li id="cmtyx_gallery_block" class="gallery_block">
+					<div class="header cmtyx_color_1">
+						<span class="title">gallery</span> <span class="collapse_btn">&#9660;</span>
+					</div>
+					<div class="body">
+						<ul class="gallery">
+							<#list medias as media>
+							<li class="gallery_item" data-uuid="${media.uuid}">
+								<div class="gallery_container">
+									<span class="gallery_title gallery_item_title">${media.title}</span>
+									<div class="gallery_image">
+										<img src="${media.URL}"></img>
+									</div>
+									<div class="gallery_item_description">
+										<span class="gallery_item_undertitle">${media.message}</span>
+									</div>
+								</div>
+								<div class="gallery_item_buttons">
+									<div class="share_btn_block"
+										uuid="${media.uuid}">
+										<span class="icon share_icon"></span> <span class="text">Share</span>
+									</div>
+								</div>
+
+								<div class="ui-grid-c gallery-share-block" data-uuid="${media.uuid}">
+									<div class="sms_input_block">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+									</div>
+									<div class="ui-block-a text sms_block">
+										<a href="" class="share_sms cmtyx_text_color_1">
+											<span class="share_icon sms_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-b text email_block">
+										<a href="" class="share_email cmtyx_text_color_1">
+											<span class="share_icon email_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-c text facebook_block">
+										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+											<span class="share_icon facebook_icon"></span>
+										</a>
+									</div>
+									<div class="ui-block-d text twitter_block">
+										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+											<span class="share_icon twitter_icon"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							</#list>
+						</ul>
+					</div>
+				</li>
+				
+				<!----- End of Gallery  ---------------->
+				
+				<!----- Sweepstakes (Poll)  ---------------->
+				<li id="cmtyx_poll_block" class="poll_block">
+					<div class="header cmtyx_color_3">
+						<span class="title">Sweepstake</span> <span class="collapse_btn">&#9660;</span>
+					</div>
+					<div class="body">
+						<ul class="poll_gallery">
+        					<#list polls as poll>
+            					<li class="poll_item" data-uuid="${poll.contestUUID}">
+                					<div class="contest_container">
+                						<div class="poll_block_title">&nbsp</div>
+					                    <img class="poll_image" src="${poll.imageURL}"></img>
+					                    <span class="poll_displaytext">${poll.displayText}?</span>
+					                    <ul class="poll_ans_form <#if poll.answerStatus.enumText == 'ANSWERED'>answered</#if>">
+				                    		<#list poll.choices as choice>
+					                            <li>
+					                                <div class="ui-grid-a">
+					                                    <div class="ui-block-a">
+					                                        <input data-role="none" type="radio" name="radio-choice-ans" id="ans_${choice_index}-${poll.contestUUID}" data-uuid="${poll.contestUUID}" data-choice="${choice.choiceId}" class="ansRadioChoice" <#if choice_index == 0>checked="checked"</#if> >
+					                                        <label for="ans_${choice_index}-${poll.contestUUID}"><span><span></span></span></label>
+					                                        <div class="question_item">
+					                                            <div class="bar">
+					                                            	<div class="back cmtyx_color_${(choice_index % 4) + 1}"></div>
+                                                    				<span class="percent"></span>
+					                                            </div>
+					                                            <p class="question_text">${choice.displayText}</p>
+					                                        </div>
+					                                    </div>
+					                                </div>
+					                            </li>
+					                        </#list>
+					                    </ul>
+					                    <#if poll.answerStatus.enumText != "ANSWERED">
+					                        <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all" data-uuid="${poll.contestUUID}">submit</button>
+					                    </#if>
+					                    <div class="ui-grid-a prizes_title">
+						                    <div class="ui-block-a">
+						                        <div class="medal_icon"></div>
+						                    </div>
+						                    <div class="ui-block-b">All entries are entered into our mini sweepstakes!</div>
+						                </div>
+						                <ul class="contest_prizes <#if poll.answerStatus.enumText == 'ANSWERED'>shown</#if>">
+						                    <#list poll.prizes as prize>
+						                        <li>
+						                            <div class="prize_block">
+						                                <div class="ui-grid-a prize_container">
+						                                    <#if prize.imageUrl??>
+						                                      <div class="ui-block-a">
+						                                        <img src="${prize.imageUrl}"></img>
+						                                      </div>
+						                                    </#if>
+						                                    <div class="ui-block-b ">
+						                                        <div class="prize_text_block">
+						                                            <span class="prize_text">${prize.contestPrizeName}</span>
+						                                            <span class="prize_condition">${prize.displayText}</span>
+						                                            <span class="prize_date">${prize.quantity}</span>
+						                                        </div>
+						                                    </div>
+						                                </div>
+						                            </div>
+						                        </li>
+						                    </#list>
+						                </ul>
+						                <div class="share_container">
+						                    <div class="share_btn_block"
+						                        uuid="">
+						                        <span class="icon share_icon"></span> <span class="text">Share</span>
+						                    </div>
+						                    <div class="share_block" data-uuid="${poll.contestUUID}">
+						                        <div class="ui-grid-c">
+						                            <div class="sms_input_block" data-uuid="${poll.contestUUID}">
+						                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+						                                <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+						                            </div>
+						                            <div class="ui-block-a text sms_block">
+						                                <a href="" class="share_sms cmtyx_text_color_1">
+						                                    <span class="share_icon sms_icon"></span>
+						                                </a>
+						                            </div>
+						                            <div class="ui-block-b text email_block">
+						                                <a href="" class="share_email cmtyx_text_color_1">
+						                                    <span class="share_icon email_icon"></span>
+						                                </a>
+						                            </div>
+						                            <div class="ui-block-c text facebook_block">
+						                                <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+						                                    <span class="share_icon facebook_icon"></span>
+						                                </a>
+						                            </div>
+						                            <div class="ui-block-d text twitter_block">
+						                                <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+						                                    <span class="share_icon twitter_icon"></span>
+						                                </a>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </div>
+						            </div>
+						        </li>
+							</#list>
+						</ul>
+					</div>
+				</li>
+				
+			<!----- End of Sweepstakes (Poll)  ---------------->
+				
+			<!----- About Us  ---------------->	
+				<!--
+				<li id="cmtyx_about_us_block" class="about_us_block">
+					<div class="header cmtyx_color_2">
+						<span class="title">about us</span>
+						<div class="collapse_btn">&#9660;</div>
+					</div>
+					<div class="body">
+						<div class="text">${(sasl.detailedDescription)!"(no detailedDescription)"}</div>
+					</div>
+				</li>
+				-->
+			<!----- End of About Us  ---------------->	
+			<!----- Selfie Contest (Photo contest)  ---------------->				
+				
+				<li id="cmtyx_photo_contest_block" class="photo_contest_block">
+					<div class="header cmtyx_color_4">
+						<span class="title">Selfie contest</span> <span
+							class="collapse_btn">&#9660;</span>
+					</div>
+					<div class="body">
+						<ul class="photo_gallery">
+							<#list photocontests as photo>
+					            <li class="photo_item" data-uuid="${photo.contestUUID}">
+					                <div class="contest_container">
+					                    <div class="photo_block_title"><p>&nbsp</p></div>
+					                    <img src="${photo.imageURL}" class="photo_image"></img>
+					                    <span class="contest_task">${photo.displayText}</span>
+				                        <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
+				                        <div class="photo_contest_upload_image" data-uuid="${photo.contestUUID}">
+				                            <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
+				                            <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+				                                <input type="file" name="thumb" />
+				                            </div>
+				                        </div>
+
+					                    <div class="share_container">
+					                        <div class="share_btn_block"
+					                            uuid="">
+					                            <span class="icon share_icon"></span> <span class="text">Share</span>
+					                        </div>
+					                        <div class="share_block" data-uuid="${photo.contestUUID}">
+					                            <div class="ui-grid-c">
+					                                <div class="sms_input_block" data-uuid="${photo.contestUUID}">
+					                                    <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+					                                    <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+					                                </div>
+					                                <div class="ui-block-a text sms_block">
+					                                    <a href="" class="share_sms cmtyx_text_color_1">
+					                                        <span class="share_icon sms_icon"></span>
+					                                    </a>
+					                                </div>
+					                                <div class="ui-block-b text email_block">
+					                                    <a href="" class="share_email cmtyx_text_color_1">
+					                                        <span class="share_icon email_icon"></span>
+					                                    </a>
+					                                </div>
+					                                <div class="ui-block-c text facebook_block">
+					                                    <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+					                                        <span class="share_icon facebook_icon"></span>
+					                                    </a>
+					                                </div>
+					                                <div class="ui-block-d text twitter_block">
+					                                    <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+					                                        <span class="share_icon twitter_icon"></span>
+					                                    </a>
+					                                </div>
+					                            </div>
+					                        </div>
+					                    </div>
+					                </div>
+					            </li>
+					        </#list>
+					    </ul>
+					</div>
+				</li>
+				
+			<!----- End of Selfie Contest (Photo contest)  ---------------->		
+			
+			
+			<!----- Events  ---------------->
+		
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
 						<span class="title">events</span> <span class="collapse_btn">&#9660;</span>
@@ -289,174 +760,12 @@
 					</#if>
 				</li>
 
-				<li id="cmtyx_gallery_block" class="gallery_block">
-					<div class="header cmtyx_color_1">
-						<span class="title">gallery</span> <span class="collapse_btn">&#9660;</span>
-					</div>
-					<div class="body">
-						<ul class="gallery">
-							<#list medias as media>
-							<li class="gallery_item" data-uuid="${media.uuid}">
-								<div class="gallery_container">
-									<span class="gallery_title gallery_item_title">${media.title}</span>
-									<div class="gallery_image">
-										<img src="${media.URL}"></img>
-									</div>
-									<div class="gallery_item_description">
-										<span class="gallery_item_undertitle">${media.message}</span>
-									</div>
-								</div>
-								<div class="gallery_item_buttons">
-									<div class="share_btn_block"
-										uuid="${media.uuid}">
-										<span class="icon share_icon"></span> <span class="text">Share</span>
-									</div>
-								</div>
-
-								<div class="ui-grid-c gallery-share-block" data-uuid="${media.uuid}">
-									<div class="sms_input_block">
-										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-									</div>
-									<div class="ui-block-a text sms_block">
-										<a href="" class="share_sms cmtyx_text_color_1">
-											<span class="share_icon sms_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-b text email_block">
-										<a href="" class="share_email cmtyx_text_color_1">
-											<span class="share_icon email_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-c text facebook_block">
-										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-											<span class="share_icon facebook_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-d text twitter_block">
-										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-											<span class="share_icon twitter_icon"></span>
-										</a>
-									</div>
-								</div>
-							</li>
-							</#list>
-						</ul>
-					</div>
-				</li>
-				<li id="cmtyx_poll_block" class="poll_block">
-					<div class="header cmtyx_color_3">
-						<span class="title">Poll</span> <span class="collapse_btn">&#9660;</span>
-					</div>
-					<div class="body">
-						<ul class="poll_gallery">
-        					<#list polls as poll>
-            					<li class="poll_item" data-uuid="${poll.contestUUID}">
-                					<div class="contest_container">
-                						<div class="poll_block_title">&nbsp</div>
-					                    <img class="poll_image" src="${poll.imageURL}"></img>
-					                    <span class="poll_displaytext">${poll.displayText}?</span>
-					                    <ul class="poll_ans_form <#if poll.answerStatus.enumText == 'ANSWERED'>answered</#if>">
-				                    		<#list poll.choices as choice>
-					                            <li>
-					                                <div class="ui-grid-a">
-					                                    <div class="ui-block-a">
-					                                        <input data-role="none" type="radio" name="radio-choice-ans" id="ans_${choice_index}-${poll.contestUUID}" data-uuid="${poll.contestUUID}" data-choice="${choice.choiceId}" class="ansRadioChoice" <#if choice_index == 0>checked="checked"</#if> >
-					                                        <label for="ans_${choice_index}-${poll.contestUUID}"><span><span></span></span></label>
-					                                        <div class="question_item">
-					                                            <div class="bar">
-					                                            	<div class="back cmtyx_color_${(choice_index % 4) + 1}"></div>
-                                                    				<span class="percent"></span>
-					                                            </div>
-					                                            <p class="question_text">${choice.displayText}</p>
-					                                        </div>
-					                                    </div>
-					                                </div>
-					                            </li>
-					                        </#list>
-					                    </ul>
-					                    <#if poll.answerStatus.enumText != "ANSWERED">
-					                        <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all" data-uuid="${poll.contestUUID}">submit</button>
-					                    </#if>
-					                    <div class="ui-grid-a prizes_title">
-						                    <div class="ui-block-a">
-						                        <div class="medal_icon"></div>
-						                    </div>
-						                    <div class="ui-block-b">All entries are entered into our mini sweepstakes!</div>
-						                </div>
-						                <ul class="contest_prizes <#if poll.answerStatus.enumText == 'ANSWERED'>shown</#if>">
-						                    <#list poll.prizes as prize>
-						                        <li>
-						                            <div class="prize_block">
-						                                <div class="ui-grid-a prize_container">
-						                                    <div class="ui-block-a">
-						                                        <img src="<%= prize.imageUrl %>"></img>
-						                                    </div>
-						                                    <div class="ui-block-b ">
-						                                        <div class="prize_text_block">
-						                                            <span class="prize_text">${prize.contestPrizeName}</span>
-						                                            <span class="prize_condition">${prize.displayText}</span>
-						                                            <span class="prize_date">${prize.quantity}</span>
-						                                        </div>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                        </li>
-						                    </#list>
-						                </ul>
-						                <div class="share_container">
-						                    <div class="share_btn_block"
-						                        uuid="">
-						                        <span class="icon share_icon"></span> <span class="text">Share</span>
-						                    </div>
-						                    <div class="share_block" data-uuid="${poll.contestUUID}">
-						                        <div class="ui-grid-c">
-						                            <div class="sms_input_block" data-uuid="${poll.contestUUID}">
-						                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-						                                <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-						                            </div>
-						                            <div class="ui-block-a text sms_block">
-						                                <a href="" class="share_sms cmtyx_text_color_1">
-						                                    <span class="share_icon sms_icon"></span>
-						                                </a>
-						                            </div>
-						                            <div class="ui-block-b text email_block">
-						                                <a href="" class="share_email cmtyx_text_color_1">
-						                                    <span class="share_icon email_icon"></span>
-						                                </a>
-						                            </div>
-						                            <div class="ui-block-c text facebook_block">
-						                                <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-						                                    <span class="share_icon facebook_icon"></span>
-						                                </a>
-						                            </div>
-						                            <div class="ui-block-d text twitter_block">
-						                                <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-						                                    <span class="share_icon twitter_icon"></span>
-						                                </a>
-						                            </div>
-						                        </div>
-						                    </div>
-						                </div>
-						            </div>
-						        </li>
-							</#list>
-						</ul>
-					</div>
-				</li>
-				<!--
-				<li id="cmtyx_about_us_block" class="about_us_block">
-					<div class="header cmtyx_color_2">
-						<span class="title">about us</span>
-						<div class="collapse_btn">&#9660;</div>
-					</div>
-					<div class="body">
-						<div class="text">${(sasl.detailedDescription)!"(no detailedDescription)"}</div>
-					</div>
-				</li>
-				-->
-				<li id="cmtyx_loyalty_program_block" class="loyalty_program_block">
-				</li>
+				<!----- End of Events  ---------------->
+					
+				
+			<!----- User Reviews  ---------------->				
+								
+				
 				<li id="cmtyx_reviews_block" class="reviews_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">reviews</span> <span
@@ -528,217 +837,11 @@
 						</div>
 					</div>
 				</li>
-				<li id="cmtyx_promotion_block" class="promotion_block">
-					<div class="header cmtyx_color_3">
-    					<div id="flag"><span>sale</span></div>
-						<span class="title">Promotion</span> <span class="collapse_btn">&#9660;</span>
-					</div>
-					<div class="body">
-						<ul>
-							<!-- <#list promotions as promotion>
-							<li class="promotions-item" data-uuid="${promotion.uuid}">
-								<div class="promotion_item">
-									<div class="promotion_type">
-										${promotion.promoType.displayText}</div>
-									<img src="${promotion.URL}"></img>
-									<div class="promotion_details_container">
-										<div class="promotion_title">${promotion.title}</div>
+				
+				
+		<!----- End of User Reviews  ---------------->				
 
-
-	                                    <#if promotion.buyable!false>
-		                                  <div class="promotions-originalprice" >
-		                                   Regular price: <span>$${promotion.originalPrice}</span></div>
-	                                    </#if>
-
-	                                    <#if promotion.buyable!false>
-		                                  <div class="promotions-promoprice">
-		                                   Special price: <span class="cmtyx_text_color_1">$${promotion.promoPrice}</span></div>
-	                                    </#if>
-
-										<div class="promotion_description">${promotion.message}</div>
-
-									</div>
-									<#if promotion.buyable!false>
-									<div class="ui-grid-a promotion_item_buttons">
-										<div class="ui-block-a share_btn_block"
-											uuid="${promotion.uuid}">
-											<span class="icon share_icon"></span> <span class="text">Share</span>
-										</div>
-										<div class="ui-block-b "
-											uuid="${promotion.uuid}">
-			                                  <button class="promotions-buybutton cmtyx_text_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
-			                                   Buy</button>
-										</div>
-									</div>
-									<#else>
-									<div class="ui-grid-solo promotion_item_buttons">
-										<div class="ui-block-a share_btn_block"
-											uuid="${promotion.uuid}">
-											<span class="icon share_icon"></span> <span class="text">Share</span>
-										</div>
-									</div>
-		                            </#if>
-
-								</div>
-								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
-									<div class="sms_input_block">
-										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-									</div>
-									<div class="ui-block-a text sms_block">
-										<a href="" class="share_sms cmtyx_text_color_1">
-											<span class="share_icon sms_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-b text email_block">
-										<a href="" class="share_email cmtyx_text_color_1">
-											<span class="share_icon email_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-c text facebook_block">
-										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-											<span class="share_icon facebook_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-d text twitter_block">
-										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-											<span class="share_icon twitter_icon"></span>
-										</a>
-									</div>
-								</div>
-							</li> </#list> -->
-							<#list promotions as promotion>
-							<li class="promotions-item" data-uuid="${promotion.uuid}">
-								<div class="promotion_item">
-									<div class="promotion_type">
-										<!-- ${promotion.promoType.displayText} -->
-										<div class="promotion_title">${promotion.title}</div>
-									</div>
-									<div class="promotion_item_container_wrapper">
-										<div class="ui-grid-a promotion_item_container">
-											<div class="ui-block-a">
-												<img src="${promotion.URL}"></img>
-											</div>
-											<div class="ui-block-b">
-												<div class="promotion_details_container">
-				                                    <#if promotion.buyable!false>
-					                                  <div class="promotions-originalprice" >
-					                                   <span>$${promotion.originalPrice}</span></div>
-					                                  <div class="promotions-promoprice">
-					                                   <span class="cmtyx_text_color_1">$${promotion.promoPrice}</span>
-					                                   </div>
-				                                    </#if>
-
-													<div class="promotion_description">${promotion.message}</div>	
-				                                    <#if promotion.buyable!false>
-				                                    	<div class="promotions_buybutton_container"
-															uuid="${promotion.uuid}">
-							                                  <button class="promotions-buybutton cmtyx_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
-							                                   Buy</button>
-														</div>
-				                                    </#if>
-												</div>			
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="promotion_item_buttons">
-									<div class="share_btn_block"
-										uuid="${promotion.uuid}">
-										<span class="icon share_icon"></span> <span class="text">Share</span>
-									</div>
-								</div>
-								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
-									<div class="sms_input_block">
-										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-									</div>
-									<div class="ui-block-a text sms_block">
-										<a href="" class="share_sms cmtyx_text_color_1">
-											<span class="share_icon sms_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-b text email_block">
-										<a href="" class="share_email cmtyx_text_color_1">
-											<span class="share_icon email_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-c text facebook_block">
-										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-											<span class="share_icon facebook_icon"></span>
-										</a>
-									</div>
-									<div class="ui-block-d text twitter_block">
-										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-											<span class="share_icon twitter_icon"></span>
-										</a>
-									</div>
-								</div>
-							</li> </#list>
-						</ul>
-					</div>
-				</li>
-				<li id="cmtyx_photo_contest_block" class="photo_contest_block">
-					<div class="header cmtyx_color_4">
-						<span class="title">Photo contest</span> <span
-							class="collapse_btn">&#9660;</span>
-					</div>
-					<div class="body">
-						<ul class="photo_gallery">
-							<#list photocontests as photo>
-					            <li class="photo_item" data-uuid="${photo.contestUUID}">
-					                <div class="contest_container">
-					                    <div class="photo_block_title"><p>&nbsp</p></div>
-					                    <img src="${photo.imageURL}" class="photo_image"></img>
-					                    <span class="contest_task">${photo.displayText}</span>
-				                        <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
-				                        <div class="photo_contest_upload_image" data-uuid="${photo.contestUUID}">
-				                            <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
-				                            <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
-				                                <input type="file" name="thumb" />
-				                            </div>
-				                        </div>
-
-					                    <div class="share_container">
-					                        <div class="share_btn_block"
-					                            uuid="">
-					                            <span class="icon share_icon"></span> <span class="text">Share</span>
-					                        </div>
-					                        <div class="share_block" data-uuid="${photo.contestUUID}">
-					                            <div class="ui-grid-c">
-					                                <div class="sms_input_block" data-uuid="${photo.contestUUID}">
-					                                    <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-					                                    <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-					                                </div>
-					                                <div class="ui-block-a text sms_block">
-					                                    <a href="" class="share_sms cmtyx_text_color_1">
-					                                        <span class="share_icon sms_icon"></span>
-					                                    </a>
-					                                </div>
-					                                <div class="ui-block-b text email_block">
-					                                    <a href="" class="share_email cmtyx_text_color_1">
-					                                        <span class="share_icon email_icon"></span>
-					                                    </a>
-					                                </div>
-					                                <div class="ui-block-c text facebook_block">
-					                                    <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-					                                        <span class="share_icon facebook_icon"></span>
-					                                    </a>
-					                                </div>
-					                                <div class="ui-block-d text twitter_block">
-					                                    <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-					                                        <span class="share_icon twitter_icon"></span>
-					                                    </a>
-					                                </div>
-					                            </div>
-					                        </div>
-					                    </div>
-					                </div>
-					            </li>
-					        </#list>
-					    </ul>
-					</div>
-				</li>
+		<!----- Videos  ---------------->		
 				<li id="cmtyx_video_block" class="video_block">
 					<div class="header cmtyx_color_1">
 						<span class="title">video</span> <span class="collapse_btn">&#9660;</span>
@@ -779,10 +882,12 @@
 						  (No videos available)
 					  </div>
 					  </#if>
-
 					</div>
-
 				</li>
+				
+			<!----- End of Videos  ---------------->		
+				
+				
 			</ul>
 			<ul class="cmtyx_bottom_block" id="cmtyx_contact_us_block">
 				<li id="cmtyx_driving_directions_block"
