@@ -90,7 +90,8 @@ var NavbarView = Backbone.View.extend({
 
     openPromotion: function(pid) {
         // loader.show('retrieving promotions');
-        Vent.trigger('scrollToBlock', '.promotion_block');
+        Vent.trigger('showPromotions');
+        // Vent.trigger('scrollToBlock', '.promotion_block');
         // promotionsController.fetchPromotionUUIDsBySasl(
         //     this.sa,
         //     this.sl,

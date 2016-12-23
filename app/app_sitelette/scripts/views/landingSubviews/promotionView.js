@@ -33,7 +33,10 @@ var PromotionView = Backbone.View.extend({
         visible = $el.is(':visible');
     this.slicked = false;
     if (visible) this.initSlick();
+
     Vent.on('openPromotionByShareUrl', this.openPromotionByShareUrl, this);
+    Vent.on('showPromotions', this.showPromotions, this);
+
     this.setLinksForEachPromotion();
     $( ".promotion_block .header #flag" ).before( "<style>.promotion_block #flag:after { border-bottom-color:" + $('.cmtyx_color_3').css('background-color') + "}</style>" );
     this.resolved();
@@ -73,6 +76,11 @@ var PromotionView = Backbone.View.extend({
       if (!initialized) return;
       $el.find('.slick-arrow-container').remove();
       $el.slick('unslick');
+  },
+
+  showPromotions: function() {
+      this.toggleCollapse();
+      Vent.trigger('scrollToBlock', '.promotion_block');
   },
 
   openPromotionByShareUrl: function(uuid) {
