@@ -79,7 +79,9 @@ var PromotionView = Backbone.View.extend({
   },
 
   showPromotions: function() {
-      this.toggleCollapse();
+      var $el = this.$('.body'),
+          visible = $el.is(':visible');
+      if (!visible) this.toggleCollapse();
       Vent.trigger('scrollToBlock', '.promotion_block');
   },
 
