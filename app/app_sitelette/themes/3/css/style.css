@@ -2183,18 +2183,29 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding: 0;
 }
 .photo_contest_block .photo_block_title {
-    padding: 10px;
-    color: #ececec;
-    font: 400 16px/16px 'Open Sans', sans-serif;
-    text-transform: uppercase;
     text-align: center;
+    color: #ddd;
+    font: 400 16px/24px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 15px;
     /* display: none; */
 }
-.photo_contest_block .photo_block_title p {
+.photo_contest_block .photo_block_title span {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     margin: 0;
+}
+.photo_contest_block .contest_prizes {
+    display: none;
+    padding: 15px 20px 0 20px;
+    border-bottom: solid 1px #636363;
+}
+.photo_contest_block .contest_prizes.shown {
+    display: block;
+}
+.photo_contest_block .contest_prizes.shown .prize_block {
+    display: block;
 }
 
 .alert_sign_icon {

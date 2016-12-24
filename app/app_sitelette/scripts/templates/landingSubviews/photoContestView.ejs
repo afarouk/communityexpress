@@ -9,8 +9,28 @@
     <ul class="photo_gallery">
         <% _.each(contests, function(photo, index){ %>
             <li class="photo_item" data-uuid="<%= photo.contestUUID %>">
+                <ul class="contest_prizes shown">
+                    <div class="photo_block_title"><span>Enter to win</span></div>
+                    <% _.each(photo.prizes, function(prize, index){ %>
+                        <li>
+                            <div class="prize_block">
+                                <div class="ui-grid-a prize_container">
+                                    <div class="ui-block-a">
+                                        <div class="prize_text_block">
+                                            <span class="prize_text"><%= prize.contestPrizeName %></span>
+                                            <span class="prize_condition"><%= prize.displayText %></span>
+                                            <span class="prize_date"><%= prize.quantity %></span>
+                                        </div>
+                                    </div>
+                                    <div class="ui-block-b ">
+                                        <img src="<%= prize.imageUrl %>"></img>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
                 <div class="contest_container">
-                    <div class="photo_block_title"><p>&nbsp</p></div>
                     <img src="<%= photo.imageURL %>" class="photo_image" data-index="<%= index %>"></img>
                     <span class="contest_task"><%= photo.displayText %></span>
                     <% if (photo.responseStatus.enumText !== "ANSWERED") { %>
