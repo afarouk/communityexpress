@@ -37,6 +37,9 @@ module.exports = {
 				exclude: /node_modules/
 			},
 			{
+				test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'
+			},
+			{
 				test: /vendor\/.+\.(jsx|js)$/,
 				loader: 'imports?jQuery=jquery,$=jquery,this=>window',
 				exclude: /node_modules/
@@ -62,7 +65,6 @@ module.exports = {
 		modulesDirectories: ['node_modules'],
 		extensions: ['', '.js', '.es6', '.jsx'],
 		alias: {
-			'jqm': 'jquery-mobile/dist/jquery.mobile'
 		},
 	},
 };
