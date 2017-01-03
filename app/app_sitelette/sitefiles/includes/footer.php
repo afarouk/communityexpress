@@ -76,12 +76,6 @@
           </div>
           <div class="col-sm-4 col-md-4">
             <ul>
-              <a href="developer"><li>Developer</li></a>
-              <a href="apiLicensing"><li>API Licensing</li></a>
-            </ul>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <ul>
               <a href="/privacypolicy"><li>Privacy Policy</li></a>
               <a href="/termsandconditions"><li>Terms &amp; Conditions </li></a>
             </ul>
@@ -89,7 +83,7 @@
         </div>
         <div class="col-sm-12 col-md-12 footer_last_line p-r-0">
           <div class="col-md-11 col-md-offset-1 p-r-0">
-            <a href="#"><p>©  2016. All rights reserved.  | by Orinoco Inc.</p></a>
+            <a href="http://orinoco.us" target="_blank"><p>©  2016. All rights reserved.  | by Orinoco Inc.</p></a>
           </div>
         </div>
       </div>
