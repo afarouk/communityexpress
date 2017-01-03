@@ -1307,7 +1307,7 @@ h5{
 }
 
 
-a.invitCodeButton{
+/*a.invitCodeButton{
 	color: #fff !important;
 	font-weight: 400 !important;
 	position: absolute;
@@ -1315,7 +1315,17 @@ a.invitCodeButton{
 	left: 50%;
 	margin-top: -40px;
 	margin-left: -106px;
+}*/
+.two_button_wrapper{
+	text-align: center;
+  padding-top: 20px;
 }
+.commonCodeButton{
+	color: #fff !important;
+	font-weight: 400 !important;
+	margin: 10px 5px;
+}
+
 h1.formHeading{
 	font-size: 22px;
 	position: relative;
@@ -1902,6 +1912,10 @@ a.get_started_btn:active {
 .package_block {
     padding: 70px 0 100px 0;
     text-align: center;
+}
+#signup_root .package_block {
+    padding-top: 20px;
+		padding-bottom: 60px;
 }
 .package_block .title {
     display: inline-block;

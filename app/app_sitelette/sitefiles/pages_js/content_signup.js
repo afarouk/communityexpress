@@ -142,6 +142,7 @@ var interval =  setInterval(function(){
   for(var i=0; i< globalplancounter; i++) {
      if(window.location.href.indexOf("#"+i) > -1) {
      $('.package_block').hide();
+     $('.two_button_wrapper').hide();
      $('#simpleSignupRow1').show();
      $(".steps1").addClass("successStep").removeClass("currentStep");
      $(".steps2").addClass("currentStep");
@@ -396,14 +397,21 @@ function retrieveDomains(packageEnum, $selection) {
 }
 
 function open_vrfyinvcd_sec() {
-    $('#simpleSignupRow1').hide();
+    $('#signup_root .package_block').hide();
     $('#VrfyInvCd').show();
     $("#signup_root").removeClass("force-min-height");
 }
 
+// function open_vrfyinvcd_sec() {
+//     $('#simpleSignupRow1').hide();
+//     $('#VrfyInvCd').show();
+//     $("#signup_root").removeClass("force-min-height");
+// }
+
 function close_vrfyinvcd_sec(evt) {
     evt.preventDefault();
-    $('#simpleSignupRow1').show();
+    //$('#simpleSignupRow1').show();
+    $('#signup_root .package_block').show();
     $('#VrfyInvCd').hide();
     $("#signup_root").addClass("force-min-height");
 }
