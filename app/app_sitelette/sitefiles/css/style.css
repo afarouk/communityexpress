@@ -1729,7 +1729,7 @@ a.get_started_btn:active {
 
 .mobile_power_block .title,
 .contact_us_block .title,
- #demo .sec-title {
+ #demo .sec-title, #flyer1 .sec-title {
     display: inline-block;
     text-transform: uppercase;
     font: 700 28px Roboto;
@@ -1814,6 +1814,7 @@ a.get_started_btn:active {
 	color:white;
 	font: 600 48px/48px Roboto;
 }
+
 /*Browse chalkboards section
 =============================================================*/
 
@@ -2374,7 +2375,7 @@ a.callUsButton{
 	background-color: #f6f6f6;
 }
 
-#demo .sec-title {
+#demo .sec-title, #flyer1 .sec-title{
 	padding: 0;
 	margin: 60px 0 20px 0;
 }
@@ -2645,5 +2646,40 @@ nav.navbar {
 	button#submit_email,
 	button#submit_mobile {
 	    min-width: 260px;
+	}
+}
+
+/*Flyer section
+=============================================================*/
+
+.flyer_carousal_container{
+	font-size: 0;
+	padding-bottom: 60px;
+}
+.flyer_carousal_container a.flyer_pic{
+	display: inline-block;
+	width: 20%;
+	padding: 10px;
+}
+a.flyer_pic img{
+	display: block;
+	max-width: 100%;
+}
+@media (max-width: 768px) {
+		#flyer1 .sec-title {
+	    margin-top: 0;
+	}
+	.flyer_carousal_container a.flyer_pic{
+		width: 33%;
+	}
+}
+@media (max-width: 480px) {
+	.flyer_carousal_container a.flyer_pic{
+		width: 50%;
+	}
+}
+@media (max-width: 360px) {
+	.flyer_carousal_container a.flyer_pic{
+		width: 50%;
 	}
 }

@@ -39,9 +39,17 @@ $(window).load(function() { // makes sure the whole site is loaded
 				$('nav.navbar').css('background-color','#363636');
 				$('.li_login').addClass('active');
 			}
-			if (window.location.pathname == "/common_signup.php") {
+			if (window.location.pathname == "/signup") {
 				$('nav.navbar').css('background-color','#363636');
 				$('.li_signin').addClass('active');
+			}
+			if (window.location.pathname == "/testflyer") {
+				$('nav.navbar').css('background-color','#363636');
+				$('.li_flayer').addClass('active');
+			}
+			if (window.location.pathname == "/support") {
+				$('nav.navbar').css('background-color','#363636');
+				$('.li_support').addClass('active');
 			}
 		}
 	}
@@ -243,6 +251,9 @@ $(document).ready(
 		    //         error.insertBefore(element);
 		    //     }
 		    // });
+				$('a[data-rel^=lightcase]').lightcase({
+					swipe: true
+				});
 
 		});
 
