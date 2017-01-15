@@ -11,10 +11,10 @@
     <!-- themes specific css -->
     <style  type="text/css">
     <?php
-     if (isset($themeColors)) {
-      echo $themeColors;
+     if (isset($barFontColors)) {
+      echo $barFontColors;
      } else {
-      include_once 'themes/1/css/theme_colors.css';
+      include_once 'themes/1/css/barFontColors.css';
      }
     ?>
     </style>
