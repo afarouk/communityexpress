@@ -9,6 +9,15 @@
     <!-- combined common css -->
     <link href="build/styles.css" rel="stylesheet">
     <!-- themes specific css -->
+    <style  type="text/css">
+    <?php
+     if (isset($themeColors)) {
+      echo $themeColors;
+     } else {
+      include_once 'themes/2/css/theme_colors.css';
+     }
+    ?>
+    </style>
     <link href="themes/2/css/style.css" rel="stylesheet">
 
     <script src="build/mobile.js"></script>

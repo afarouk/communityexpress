@@ -9,7 +9,16 @@
     <!-- combined common css -->
     <link href="build/styles.css" rel="stylesheet">
     <!-- themes specific css -->
-    <link href="themes/1/css/style.css" rel="stylesheet">
+    <style  type="text/css">
+    <?php
+     if (isset($themeColors)) {
+      echo $themeColors;
+     } else {
+      include_once 'themes/1/css/theme_colors.css';
+     }
+    ?>
+    </style>
+    <link href="themes/1/css/style.css?version=3" rel="stylesheet">
 
     <script src="build/mobile.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
