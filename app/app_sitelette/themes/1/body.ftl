@@ -419,7 +419,7 @@
 
 				<!----- Gallery  ---------------->
 				<li id="cmtyx_gallery_block" class="gallery_block">
-					<div class="header cmtyx_color_1">
+					<div class="header cmtyx_color_3">
 						<span class="title">gallery</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
@@ -478,7 +478,7 @@
 				
 				<!----- Sweepstakes (Poll)  ---------------->
 				<li id="cmtyx_poll_block" class="poll_block">
-					<div class="header cmtyx_color_3">
+					<div class="header cmtyx_color_2">
 						<span class="title">Sweepstake</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
