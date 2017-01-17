@@ -35,9 +35,6 @@ include 'sitefiles/includes/scriptfiles.html';
   <!-- insert page specific javascript here -->
   <script src="sitefiles/js/bootstrap-select.min.js"></script>
 <!--  <script src="sitefiles/pages_js/content_senddemo.js"></script>-->
-<link rel="stylesheet" type="text/css" href="sitefiles/css/lightcase.css">
-<script type="text/javascript" src="sitefiles/js/jquery.events.touch.js"></script>
-<script type="text/javascript" src="sitefiles/js/lightcase.js"></script>
 
   <?php
 include 'sitefiles/includes/footer.php';
