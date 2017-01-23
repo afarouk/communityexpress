@@ -42,9 +42,15 @@ var SummaryView = Backbone.View.extend({
             'click .nav_next_btn': 'triggerNext',
             'click .nav_back_btn': 'goBack'
         });
+
+        if (this.options.futureOrRegular === "FUTURE") {
+            this.$('.leftBtn').addClass('disabled');
+            this.$('.leftBtn').css('pointer-events', 'none');
+            this.$('.rightBtn').click();
+        }
     },
 
-    renderContent: function (options){
+    renderContent: function (){
         return this.$el;
     },
 
@@ -52,7 +58,8 @@ var SummaryView = Backbone.View.extend({
         var number = this.model.get('creditCard').cardNumber;
 
     	return _.extend(this.model.toJSON(), {
-    		futureOrRegular: true
+            future: this.options.future,
+    		futureOrRegular: this.options.futureOrRegular
         });
     },
 

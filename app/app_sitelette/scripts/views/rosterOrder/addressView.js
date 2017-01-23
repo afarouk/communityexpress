@@ -15,6 +15,11 @@ var AddressView = Backbone.View.extend({
 
     initialize: function(options) {
         this.options = options || {};
+
+        //TODO future order info
+        this.options.future = this.getFuture();
+        this.options.futureOrRegular = 'FUTURE';
+
         this.addresses = options.addresses;
         this.allowPickUp = this.model.additionalParams.allowPickUp;
         this.allowDelivery = this.model.additionalParams.allowDelivery;
@@ -60,7 +65,7 @@ var AddressView = Backbone.View.extend({
         $label.html(tpl);
     },
 
-    renderContent: function (options){
+    renderContent: function (){
         return this.$el;
     },
 
@@ -76,6 +81,67 @@ var AddressView = Backbone.View.extend({
             }, this.model.toJSON());
 
         return tmpData;
+    },
+
+    getFuture: function() {
+        var future = [
+            {
+                id: 1,
+                day: 'Mon, 23 Jan',
+                hours: [
+                    {
+                        time: 13,
+                        text: '1pm'
+                    },
+                    {
+                        time: 14,
+                        text: '2pm'
+                    },
+                    {
+                        time: 15,
+                        text: '3pm'
+                    }
+                ]    
+            },
+            {
+                id: 2,
+                day: 'Tue, 24 Jan',
+                hours: [
+                    {
+                        time: 13,
+                        text: '1pm'
+                    },
+                    {
+                        time: 14,
+                        text: '2pm'
+                    },
+                    {
+                        time: 15,
+                        text: '3pm'
+                    },
+                    {
+                        time: 16,
+                        text: '3pm'
+                    }
+                ]    
+            },
+            {
+                id: 1,
+                day: 'Wen, 25 Jan',
+                hours: [
+                    {
+                        time: 10,
+                        text: '10am'
+                    },
+                    {
+                        time: 11,
+                        text: '11am'
+                    }
+                ]    
+            }
+        ];
+
+        return future;
     },
 
     getAddressFromSasl: function() {
@@ -107,10 +173,11 @@ var AddressView = Backbone.View.extend({
 
     triggerPayment: function() {
         //temporary for testing
-        var futureOrRegular = true;
-        if (futureOrRegular) {
+        if (this.options.futureOrRegular && this.options.futureOrRegular !== 'REGULAR') {
             Vent.trigger('viewChange', 'order_time', {
                 model: this.model,
+                future: this.options.future,
+                futureOrRegular: this.options.futureOrRegular,
                 backTo: 'address'
             });
         } else {

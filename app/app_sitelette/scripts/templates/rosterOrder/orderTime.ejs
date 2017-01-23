@@ -14,51 +14,47 @@
     <div data-role="tabs" id="tabs">
         <div data-role="navbar">
             <ul>
-                <li><a href="#regular" data-id="regular" data-ajax="false" class="leftBtn ui-btn-active cmtyx_border_color_1 cmtyx_text_color_1 cmtyx_color_1">Regular</a></li>
+                <li><a href="#regular" data-id="regular" data-ajax="false" class="leftBtn ui-btn-active 
+                cmtyx_border_color_1 cmtyx_text_color_1 cmtyx_color_1">Regular</a></li>
                 <li><a href="#future" data-id="future" data-ajax="false" class="rightBtn cmtyx_border_color_1 cmtyx_text_color_1">Future</a></li>
             </ul>
         </div>
-        <% if (futureOrRegular) { %>
-            <% if (futureOrRegular !== "FUTURE") { %>
-                <div id="regular" class="ui-body-d ui-content">
-                    <div class="ui-grid-a back_next_btns">
-                        <div class="ui-block-a p-r-10">
-                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
-                        </div>
-                        <div class="ui-block-b p-l-10">
-                            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
-                        </div>
-                    </div>
+        <div id="regular" class="ui-body-d ui-content">
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
                 </div>
-            <% } %>
-            <% if (futureOrRegular !== "REGULAR") { %>
-                <div id="future" class="ui-body-d ui-content">
-                    <form>
-                        <fieldset data-role="controlgroup" data-type="horizontal">
-                            <label for="select-native-11">Date</label>
-                            <select name="select-native-11" id="select-native-11">
-                                <option value="#">Mon, Jan 12</option>
-                                <option value="#">Mon, Jan 12</option>
-                                <option value="#">Mon, Jan 12</option>
-                            </select>
-                            <label for="select-native-12">Time</label>
-                            <select name="select-native-12" id="select-native-12">
-                                <option value="#">1:00</option>
-                                <option value="#">2:00</option>
-                                <option value="#">3:00</option>
-                            </select>
-                        </fieldset>
-                    </form>
-                    <div class="ui-grid-a back_next_btns">
-                        <div class="ui-block-a p-r-10">
-                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
-                        </div>
-                        <div class="ui-block-b p-l-10">
-                            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
-                        </div>
-                    </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
                 </div>
-            <% } %>
-        <% } %>
+            </div>
+        </div>
+        <div id="future" class="ui-body-d ui-content">
+            <form>
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <label for="select-date">Date</label>
+                    <select name="select-date" id="select-date">
+                        <% _.each(future, function(day) { %>
+                            <option value="#"><%= day.day %></option>
+                        <% }); %>
+                    </select>
+                    <label for="select-time">Time</label>
+                    <select name="select-time" id="select-time">
+                        <% _.each(future[0].hours, function(hour) { %>
+                            <option value="#"><%= hour.text %></option>
+                        <% }); %>
+                    </select>
+                </fieldset>
+            </form>
+            <h3>NOTE: You have chosen a future date for your order.</h3>
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
