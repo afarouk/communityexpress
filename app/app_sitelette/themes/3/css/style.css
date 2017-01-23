@@ -103,6 +103,7 @@ body {
 }
 #address.ui-page,
 #shipping_page.ui-page,
+#order_time_page.ui-page,
 #payment_page.ui-page,
 #payment_card_page.ui-page,
 #summary.ui-page {

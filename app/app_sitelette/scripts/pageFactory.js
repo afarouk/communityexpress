@@ -27,6 +27,7 @@ var LandingView = require('./views/landingView'), //
     RosterOrderModel = require('./models/RosterOrderModel'),
     AddressView = require('./views/rosterOrder/addressView'),
     AddAddressView = require('./views/rosterOrder/addAddressView'),
+    OrderTimeView = require('./views/rosterOrder/orderTimeView'),
     PaymentView = require('./views/rosterOrder/paymentView'),
     PaymentCardView = require('./views/rosterOrder/paymentCardView'),
     SummaryView = require('./views/rosterOrder/summaryView'),
@@ -208,6 +209,9 @@ module.exports = {
             break;
         case 'add_address':
             view = new AddAddressView(options);
+            break;
+        case 'order_time':
+            view = new OrderTimeView(options);
             break;
         case 'payment':
             view = new PaymentView(options);

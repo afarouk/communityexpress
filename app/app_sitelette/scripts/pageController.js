@@ -692,6 +692,10 @@ module.exports = {
         }).promise();
     },
 
+    order_time: function(options) {
+        return $.Deferred().resolve(options).promise();
+    },
+
     payment: function(options) {
         return $.Deferred().resolve(options).promise();
     },

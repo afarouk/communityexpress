@@ -106,10 +106,19 @@ var AddressView = Backbone.View.extend({
     },
 
     triggerPayment: function() {
-        Vent.trigger('viewChange', 'payment', {
-            model: this.model,
-            backTo: 'address'
-        });
+        //temporary for testing
+        var futureOrRegular = true;
+        if (futureOrRegular) {
+            Vent.trigger('viewChange', 'order_time', {
+                model: this.model,
+                backTo: 'address'
+            });
+        } else {
+            Vent.trigger('viewChange', 'payment', {
+                model: this.model,
+                backTo: 'address'
+            });
+        }
     },
 
     onDelivery: function() {
