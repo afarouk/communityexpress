@@ -28,8 +28,14 @@ var SummaryView = Backbone.View.extend({
 	render: function() {
 		console.log(this.renderData());
         this.$el.html(template(this.renderData()));
+        this.createCircles();
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    createCircles: function(){
+        var index = this.options.circles === 3 ? 3 : 4;
+        h().createCircles(this.$el.find('.circles_block'), this.options.circles, index);
     },
 
     reRender: function() {
@@ -268,7 +274,10 @@ var SummaryView = Backbone.View.extend({
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', this.options.backTo, this.model);
+        Vent.trigger('viewChange', this.options.backTo, {
+            model: this.model,
+            circles: this.options.circles
+        });
     }
 });
 

@@ -686,10 +686,8 @@ module.exports = {
             });
     },
 
-    add_address: function(orderModel) {
-        return $.Deferred().resolve({
-            model: orderModel
-        }).promise();
+    add_address: function(options) {
+        return $.Deferred().resolve(options).promise();
     },
 
     order_time: function(options) {
@@ -700,10 +698,8 @@ module.exports = {
         return $.Deferred().resolve(options).promise();
     },
 
-    payment_card: function(orderModel) {
-        return $.Deferred().resolve({
-            model: orderModel
-        }).promise();
+    payment_card: function(options) {
+        return $.Deferred().resolve(options).promise();
     },
 
     summary: function(options) {

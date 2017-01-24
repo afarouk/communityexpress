@@ -209,6 +209,20 @@ td {
 .right_arr_block img {
     margin-left: 10px;
 }
+.future-order .future-order-select {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+.future-order .future-order-note {
+    padding: 15px 30px;
+}
+.future-order .future-order-note h3 {
+    font-size: 20px;
+}
+li {
+    outline: none;
+}
 .ui-body-d {
     padding: 0;
 }

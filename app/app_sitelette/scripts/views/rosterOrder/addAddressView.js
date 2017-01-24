@@ -1,6 +1,7 @@
 'use strict';
 
 var Vent = require('../../Vent'),
+    h = require('../../globalHelpers'),
     template = require('ejs!../../templates/rosterOrder/addAddress.ejs');
 
 var AddAddressView = Backbone.View.extend({
@@ -22,8 +23,13 @@ var AddAddressView = Backbone.View.extend({
 	render: function() {
 		console.log(this.renderData());
         this.$el.html(template(this.renderData()));
+        this.createCircles();
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    createCircles: function(){
+        h().createCircles(this.$el.find('.circles_block'), this.options.circles, 1);
     },
 
     onShow: function() {
@@ -191,10 +197,20 @@ var AddAddressView = Backbone.View.extend({
     triggerPayment: function() {
         if (this.validate()) {
             this.model.trigger('change');
-            Vent.trigger('viewChange', 'payment', {
-                model: this.model,
-                backTo: 'add_address'
-            });
+            if (this.options.futureOrRegular && this.options.futureOrRegular !== 'REGULAR') {
+                Vent.trigger('viewChange', 'order_time', {
+                    model: this.model,
+                    future: this.options.future,
+                    futureOrRegular: this.options.futureOrRegular,
+                    backTo: 'add_address'
+                });
+            } else {
+                Vent.trigger('viewChange', 'payment', {
+                    circles: this.options.circles,
+                    model: this.model,
+                    backTo: 'add_address'
+                });
+            }
         } else {
             //TODO show errors
         }
@@ -224,7 +240,10 @@ var AddAddressView = Backbone.View.extend({
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', 'address', this.model);
+        Vent.trigger('viewChange', 'address', {
+            model: this.model,
+            circles: this.options.circles
+        });
     },
 
     onAptBldgChanged: function(e) {

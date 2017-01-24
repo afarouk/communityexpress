@@ -1,9 +1,5 @@
-<div data-role="page" id="order_time_page">
+<div data-role="page" id="order_time_page" class="page">
     <div class="circles_block">
-        <div class="circle cmtyx_border_color_1 cmtyx_color_1"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle last"></div>
     </div>
     <div class="navigation">
         <div class="left_arr_block nav_back_btn"><span>Back</span></div>
@@ -29,24 +25,24 @@
                 </div>
             </div>
         </div>
-        <div id="future" class="ui-body-d ui-content">
+        <div id="future" class="ui-body-d ui-content future-order">
             <form>
-                <fieldset data-role="controlgroup" data-type="horizontal">
-                    <label for="select-date">Date</label>
+                <fieldset data-role="controlgroup" data-type="horizontal" class="future-order-select">
                     <select name="select-date" id="select-date">
                         <% _.each(future, function(day) { %>
-                            <option value="#"><%= day.day %></option>
+                            <option value="day.day"><%= day.day %></option>
                         <% }); %>
                     </select>
-                    <label for="select-time">Time</label>
                     <select name="select-time" id="select-time">
                         <% _.each(future[0].hours, function(hour) { %>
-                            <option value="#"><%= hour.text %></option>
+                            <option value="hour.text"><%= hour.text %></option>
                         <% }); %>
                     </select>
                 </fieldset>
             </form>
-            <h3>NOTE: You have chosen a future date for your order.</h3>
+            <div class="future-order-note">
+                <h3>NOTE: You have chosen a future date for your order.</h3>
+            </div>
             <div class="ui-grid-a back_next_btns">
                 <div class="ui-block-a p-r-10">
                     <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>

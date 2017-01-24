@@ -34,8 +34,14 @@ var PaymentView = Backbone.View.extend({
 	render: function() {
 		console.log(this.renderData());
         this.$el.html(template(this.renderData()));
+        this.createCircles();
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    createCircles: function(){
+        var index = this.options.circles === 3 ? 2 : 3;
+        h().createCircles(this.$el.find('.circles_block'), this.options.circles, index);
     },
 
     reRender: function() {
@@ -173,6 +179,7 @@ var PaymentView = Backbone.View.extend({
         if (this.validateInfo()) {
             Vent.trigger('viewChange', 'summary', {
                 model: this.model,
+                circles: this.options.circles,
                 backTo: 'payment'
             });
         } else {
@@ -194,7 +201,10 @@ var PaymentView = Backbone.View.extend({
     },
 
     triggerPaymentCard: function() {
-        Vent.trigger('viewChange', 'payment_card', this.model);
+        Vent.trigger('viewChange', 'payment_card', {
+            circles: this.options.circles,
+            model: this.model
+        });
     },
 
     incrementTip: function() {
@@ -357,7 +367,12 @@ var PaymentView = Backbone.View.extend({
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', this.options.backTo , this.model);
+        Vent.trigger('viewChange', this.options.backTo , {
+            model: this.model,
+            circles: this.options.circles,
+            future: this.options.future,
+            futureOrRegular: this.options.futureOrRegular
+        });
     }
 });
 

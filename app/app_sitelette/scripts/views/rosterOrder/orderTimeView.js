@@ -8,7 +8,7 @@ var Vent = require('../../Vent'),
     appCache = require('../../appCache'),
     template = require('ejs!../../templates/rosterOrder/orderTime.ejs');
 
-var SummaryView = Backbone.View.extend({
+var OrderTimeView = Backbone.View.extend({
 
 	name: 'order_time',
 
@@ -24,8 +24,13 @@ var SummaryView = Backbone.View.extend({
 	render: function() {
 		console.log(this.renderData());
         this.$el.html(template(this.renderData()));
+        this.createCircles();
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    createCircles: function(){
+        h().createCircles(this.$el.find('.circles_block'), this.options.circles, 2);
     },
 
     reRender: function() {
@@ -40,7 +45,9 @@ var SummaryView = Backbone.View.extend({
             'click .leftBtn': 'onRegularSelected',
             'click .rightBtn': 'onFutureSelected',
             'click .nav_next_btn': 'triggerNext',
-            'click .nav_back_btn': 'goBack'
+            'click .nav_back_btn': 'goBack',
+            'change #select-date': 'onSelectDate',
+            'change #select-time': 'onSelectTime'
         });
 
         if (this.options.futureOrRegular === "FUTURE") {
@@ -48,6 +55,9 @@ var SummaryView = Backbone.View.extend({
             this.$('.leftBtn').css('pointer-events', 'none');
             this.$('.rightBtn').click();
         }
+
+        //this.$('select').selectmenu();
+        this.$('.ui-select > div').addClass('cmtyx_border_color_1 cmtyx_text_color_1');
     },
 
     renderContent: function (){
@@ -77,16 +87,43 @@ var SummaryView = Backbone.View.extend({
         this.$('.leftBtn').addClass('cmtyx_text_color_1');
     },
 
+    onSelectDate: function(e) {
+        var $target = $(e.currentTarget),
+            index = $target.get(0).options.selectedIndex,
+            $time = this.$('#select-time'),
+            date = this.options.future[index],
+            initial = date.hours[0].text,
+            template = '';
+        _.each(date.hours, function(hour){
+            template += '<option value="' + hour.text + '">' + hour.text + '</option>';
+        });
+        $time.html(template);
+        $time.val(initial);
+        $time.selectmenu('refresh', true);
+    },
+    onSelectTime: function(e) {
+        var $target = $(e.currentTarget),
+            index = $target.get(0).options.selectedIndex;
+            //time = this.options.future[this.dayIndex].hours[index];
+        console.log(index);
+    },
     triggerNext: function() {
         Vent.trigger('viewChange', 'payment', {
+                future: this.options.future,
+                futureOrRegular: this.options.futureOrRegular,
+                circles: this.options.circles,
                 model: this.model,
                 backTo: 'order_time'
             });
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', this.options.backTo, this.model);
+        //todo fix back to
+        Vent.trigger('viewChange', this.options.backTo || 'address', {
+            model: this.model,
+            circles: this.options.circles
+        });
     }
 });
 
-module.exports = SummaryView;
+module.exports = OrderTimeView;

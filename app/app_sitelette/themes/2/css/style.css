@@ -190,6 +190,20 @@ td {
     background: url('images/arrow-point-to-right.png') no-repeat top right;
     text-align: right;
 }
+.future-order .future-order-select {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+.future-order .future-order-note {
+    padding: 15px 30px;
+}
+.future-order .future-order-note h3 {
+    font-size: 20px;
+}
+li {
+    outline: none;
+}
 .right_arr_block span {
     padding-right: 15px;
 }

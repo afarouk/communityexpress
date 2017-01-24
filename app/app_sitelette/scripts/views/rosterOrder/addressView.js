@@ -1,6 +1,7 @@
 'use strict';
 
 var Vent = require('../../Vent'),
+    h = require('../../globalHelpers'),
     template = require('ejs!../../templates/rosterOrder/address.ejs');
 
 var AddressView = Backbone.View.extend({
@@ -19,6 +20,7 @@ var AddressView = Backbone.View.extend({
         //TODO future order info
         this.options.future = this.getFuture();
         this.options.futureOrRegular = 'FUTURE';
+        this.options.circles = this.options.futureOrRegular ? 4 : 3;
 
         this.addresses = options.addresses;
         this.allowPickUp = this.model.additionalParams.allowPickUp;
@@ -50,8 +52,13 @@ var AddressView = Backbone.View.extend({
 
     render: function() {
         this.$el.html(template(this.renderData()));
+        this.createCircles();
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    createCircles: function(){
+        h().createCircles(this.$el.find('.circles_block'), this.options.circles, 1);
     },
 
     updateAddress: function() {
@@ -74,6 +81,7 @@ var AddressView = Backbone.View.extend({
         var favorites = this.model.additionalParams.userModel.favorites,
             address = favorites.length !== 0 ? favorites.first().get('address') : this.getAddressFromSasl(),
             tmpData = _.extend({
+                circles: this.options.circles,
                 address: address,
                 addrIsEmpty: this.model.additionalParams.addrIsEmpty,
                 allowPickUp: this.allowPickUp,
@@ -121,7 +129,7 @@ var AddressView = Backbone.View.extend({
                     },
                     {
                         time: 16,
-                        text: '3pm'
+                        text: '4pm'
                     }
                 ]    
             },
@@ -168,7 +176,12 @@ var AddressView = Backbone.View.extend({
     },
 
     triggerAddAddress: function() {
-        Vent.trigger('viewChange', 'add_address', this.model);
+        Vent.trigger('viewChange', 'add_address', {
+            future: this.options.future,
+            futureOrRegular: this.options.futureOrRegular,
+            circles: this.options.circles,
+            model: this.model
+        });
     },
 
     triggerPayment: function() {
@@ -176,12 +189,14 @@ var AddressView = Backbone.View.extend({
         if (this.options.futureOrRegular && this.options.futureOrRegular !== 'REGULAR') {
             Vent.trigger('viewChange', 'order_time', {
                 model: this.model,
+                circles: this.options.circles,
                 future: this.options.future,
                 futureOrRegular: this.options.futureOrRegular,
                 backTo: 'address'
             });
         } else {
             Vent.trigger('viewChange', 'payment', {
+                circles: this.options.circles,
                 model: this.model,
                 backTo: 'address'
             });
