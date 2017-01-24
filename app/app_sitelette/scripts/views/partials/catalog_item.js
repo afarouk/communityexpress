@@ -20,7 +20,9 @@ var CatalogItemView = Backbone.View.extend({
         'click .catalog_item_counter': 'preventClick',
         'click .plus_button': 'incrementQuantity',
         'click .minus_button': 'decrementQuantity',
-        'click .item_name': 'openItemDetails'
+        'click .item_name': 'openItemDetails',
+        'click .versions_buttons': 'preventClick',
+        'click .plus_version_button': 'onVersionAdded',
     },
 
     showAddToBusketView: function() {
@@ -45,6 +47,7 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     render: function() {
+        console.log(this.model.toJSON());
         this.$el.html(this.template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity || 0
@@ -58,6 +61,11 @@ var CatalogItemView = Backbone.View.extend({
 
     preventClick: function() {
         return false;
+    },
+
+    onVersionAdded: function() {
+        //TODO add item version
+        console.log('add version');
     },
 
     expandDetails: function() {

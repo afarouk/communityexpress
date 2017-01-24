@@ -24,6 +24,29 @@
         </div>
         <!-- <div class="sides_extras_expand_icon">▼</div> -->
     </div>
+    <% if (hasVersions) { %>
+        <div class="sides_extras_item_added_versions"></div>
+        <div class="sides_extras_item_versions">
+            <fieldset data-role="controlgroup" data-type="horizontal" class="versions_buttons">
+                <% _.each(selectorOptions, function(selector, index){ %>
+                    <select name="select-version-<%= index %>" id="select-version-<%= index %>">
+                        <% _.each(selector, function(version){ %>
+                            <option value="<%= version %>"><%= version %></option>
+                        <% }) %>
+                    </select>
+                <% }) %>
+            </fieldset>
+            <div class="float_right">
+                <div class="select_container catalog_item_counter">
+                    <div class="ui-grid-b">
+                        <div class="ui-block-c quantity_plus incrementQuantity">
+                            <a class="left plus_version_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } %>
 </div>
 <div class="sides_extras_detailed">
     <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>

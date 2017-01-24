@@ -1169,6 +1169,36 @@ li.build_combo, li.choose_extras {
     font: 700 18px 'Open Sans', sans-serif;
     color: #ffffff;
 }
+
+/* item versions */
+.sides_extras_item_versions {
+    margin: 10px 3px 0 10px;
+    height: 55px;
+}
+.sides_extras_item_versions .versions_buttons {
+    width: 60%;
+    float: left;
+}
+.sides_extras_item_versions .versions_buttons .ui-select {
+    background-color: #3c3b3b !important;
+}
+.sides_extras_item_versions .versions_buttons .ui-select > div {
+    border-color: #3c3b3b !important;
+}
+.sides_extras_item_versions .catalog_item_counter a {
+    border-radius: 5px!important;
+    background-color: black!important;
+    width: 65px;
+}
+.sides_extras_item_versions .catalog_item_counter a.left.plus_version_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after {
+    background-size: 14px 14px !important;
+    width: 31px !important;
+    left: 28px !important;
+    top: 15px !important;
+    background: url('images/plus.png') no-repeat center center !important;
+}
+/* end of versions */
+
 .sides_extras_input {
     border-color: #e1e1e1 !important;
     position: relative;
