@@ -22,6 +22,7 @@ var CatalogItemView = Backbone.View.extend({
         'click .minus_button': 'decrementQuantity',
         'click .item_name': 'openItemDetails',
         'click .versions_buttons': 'preventClick',
+        'change .versions_buttons select': 'updateAddVersionButton',
         'click .plus_version_button': 'onVersionAdded',
     },
 
@@ -43,6 +44,8 @@ var CatalogItemView = Backbone.View.extend({
         this.catalogDisplayText=options.catalogDisplayText;
         this.withExpandedDetails = false;
 
+        this.versions = [];
+
         this.listenTo(this.basket, 'reset change add remove', this.updateQuantity, this);
     },
 
@@ -50,7 +53,8 @@ var CatalogItemView = Backbone.View.extend({
         console.log(this.model.toJSON());
         this.$el.html(this.template(_.extend({}, this.model.attributes, {
             color: this.color,
-            quantity: this.quantity || 0
+            quantity: this.quantity || 0,
+            selectorVersions: this.getSelectorVersions()
         })));
         return this;
     },
@@ -63,9 +67,60 @@ var CatalogItemView = Backbone.View.extend({
         return false;
     },
 
+    getSelectorVersions: function() {
+        var selectorOptions = this.model.get('selectorOptions'),
+            length = Object.keys(selectorOptions).length,
+            versions = [];
+        for (var i = 1; i <= length; i++) {
+            versions.push(selectorOptions['selectors' + i]);
+        }
+        return versions
+    },
+
+    updateAddVersionButton: function() {
+        var itemVersions = this.model.get('itemVersions'),
+            $selectors = this.$('.versions_buttons select'),
+            $selected = $selectors.find(':selected'),
+            search = {},
+            exists,
+            selectedValues = [];
+        $selected.each(function(){
+            selectedValues.push(this.value);
+        });
+        for (var i = 1; i <= selectedValues.length; i++) {
+            search['version' + i + 'DisplayText'] = selectedValues[i - 1];
+        }
+        exists = _.findWhere(itemVersions, search);
+        if (exists) {
+            this.$('.plus_version_button').removeClass('disabled');
+            this.savedVersion = {
+                version: exists,
+                selected: selectedValues
+            };
+        } else {
+            this.$('.plus_version_button').addClass('disabled');
+        }
+    },
+
     onVersionAdded: function() {
         //TODO add item version
         console.log('add version');
+        this.versions.push(this.savedVersion);
+        this.renderVersions();
+    },
+
+    renderVersions: function() {
+        //todo
+        var versionsContainer = this.$('.sides_extras_item_added_versions'),
+            template = '',
+            //todo should be template for this
+            //also manage + - buttons etc
+            buttons = '<div class="float_right"><div class="select_container catalog_item_counter"><div class="ui-grid-b"><div class="ui-block-a quantity_minus decrementQuantity"><a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a></div><div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field"><span class="quantity">1</span></div><div class="ui-block-c quantity_plus incrementQuantity"><a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a></div></div></div></div>';
+        _.each(this.versions, function(version){
+            var details = version.selected.join(' ,');
+            template += '<div class="item_version"><span class="version-description">' + details + '</span>' + buttons + '</div>';
+        });
+        versionsContainer.html(template);
     },
 
     expandDetails: function() {
