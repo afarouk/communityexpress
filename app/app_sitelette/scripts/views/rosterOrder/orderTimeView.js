@@ -19,6 +19,9 @@ var OrderTimeView = Backbone.View.extend({
         this.on('show', this.onShow, this);
         this.model.on('change', _.bind(this.reRender, this));
         this.render();
+        this.orderDay = this.options.future[0];
+        this.orderTime = this.orderDay.hours[0];
+        this.delivery = this.options.futureOrRegular === 'FUTURE' ? 'FUTURE' : 'REGULAR';
 	},
 
 	render: function() {
@@ -78,6 +81,7 @@ var OrderTimeView = Backbone.View.extend({
         this.$('.leftBtn').removeClass('cmtyx_text_color_1');
         this.$('.rightBtn').removeClass('cmtyx_color_1');
         this.$('.rightBtn').addClass('cmtyx_text_color_1');
+        this.delivery = 'REGULAR';
     },
 
     onFutureSelected: function() {
@@ -85,6 +89,7 @@ var OrderTimeView = Backbone.View.extend({
         this.$('.rightBtn').removeClass('cmtyx_text_color_1');
         this.$('.leftBtn').removeClass('cmtyx_color_1');
         this.$('.leftBtn').addClass('cmtyx_text_color_1');
+        this.delivery = 'FUTURE';
     },
 
     onSelectDate: function(e) {
@@ -100,14 +105,25 @@ var OrderTimeView = Backbone.View.extend({
         $time.html(template);
         $time.val(initial);
         $time.selectmenu('refresh', true);
+        this.orderDay = date;
     },
     onSelectTime: function(e) {
         var $target = $(e.currentTarget),
             index = $target.get(0).options.selectedIndex;
             //time = this.options.future[this.dayIndex].hours[index];
         console.log(index);
+        this.orderTime = this.orderDay.hours[index];
+    },
+    getDeliveryDate: function() {
+        if (this.delivery === 'REGULAR') return null;
+        var deliveryDate = {
+            day: this.orderDay.date,
+            time: this.orderTime
+        };
+        return deliveryDate;
     },
     triggerNext: function() {
+        console.log(this.getDeliveryDate());
         Vent.trigger('viewChange', 'payment', {
                 future: this.options.future,
                 futureOrRegular: this.options.futureOrRegular,

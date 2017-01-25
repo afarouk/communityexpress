@@ -35,7 +35,7 @@
                     </select>
                     <select name="select-time" id="select-time">
                         <% _.each(future[0].hours, function(hour) { %>
-                            <option value="hour.text"><%= hour.text %></option>
+                            <option value="hour.text"><%= hour.displayString %></option>
                         <% }); %>
                     </select>
                 </fieldset>

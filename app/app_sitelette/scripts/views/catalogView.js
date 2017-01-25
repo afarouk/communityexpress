@@ -61,6 +61,7 @@ var CatalogView = Backbone.View.extend({
 
     initialize: function(options) {
         var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color_4' ];
+        this.options = options || {};
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
@@ -183,6 +184,7 @@ var CatalogView = Backbone.View.extend({
                 id : this.sasl.getUrlKey(),
                 promoCode: this.promoCode,
                 catalogId : this.catalogId,
+                deliveryPickupOptions: this.options.catalog.collection.deliveryPickupOptions,
                 backToCatalog : true,// /* This will always be true */
                 backToCatalogs : this.backToCatalogs, /*
                                                          * not used by order,

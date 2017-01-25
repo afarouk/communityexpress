@@ -204,7 +204,8 @@ module.exports = {
         case 'address':
             var orderModel = new RosterOrderModel({}, options);
             view = new AddressView({
-                model: orderModel
+                model: orderModel,
+                deliveryPickupOptions: options.deliveryPickupOptions
             });
             break;
         case 'add_address':

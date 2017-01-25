@@ -17,10 +17,7 @@ var AddressView = Backbone.View.extend({
     initialize: function(options) {
         this.options = options || {};
 
-        //TODO future order info
         this.options.future = this.getFuture();
-        this.options.futureOrRegular = 'FUTURE';
-        this.options.circles = this.options.futureOrRegular ? 4 : 3;
 
         this.addresses = options.addresses;
         this.allowPickUp = this.model.additionalParams.allowPickUp;
@@ -92,64 +89,20 @@ var AddressView = Backbone.View.extend({
     },
 
     getFuture: function() {
-        var future = [
-            {
-                id: 1,
-                day: 'Mon, 23 Jan',
-                hours: [
-                    {
-                        time: 13,
-                        text: '1pm'
-                    },
-                    {
-                        time: 14,
-                        text: '2pm'
-                    },
-                    {
-                        time: 15,
-                        text: '3pm'
-                    }
-                ]    
-            },
-            {
-                id: 2,
-                day: 'Tue, 24 Jan',
-                hours: [
-                    {
-                        time: 13,
-                        text: '1pm'
-                    },
-                    {
-                        time: 14,
-                        text: '2pm'
-                    },
-                    {
-                        time: 15,
-                        text: '3pm'
-                    },
-                    {
-                        time: 16,
-                        text: '4pm'
-                    }
-                ]    
-            },
-            {
-                id: 1,
-                day: 'Wen, 25 Jan',
-                hours: [
-                    {
-                        time: 10,
-                        text: '10am'
-                    },
-                    {
-                        time: 11,
-                        text: '11am'
-                    }
-                ]    
-            }
-        ];
-
-        return future;
+        console.log(this.options);
+        var deliveryPickupOptions = this.options.deliveryPickupOptions || {},
+            futureOrRegular = deliveryPickupOptions.futureOrRegular,
+            future;
+            
+        if (!futureOrRegular || futureOrRegular === 'REGULAR') {
+            this.options.circles = 3;
+            this.options.futureOrRegular = null;
+            return;
+        } else {
+            this.options.circles = 4;
+            this.options.futureOrRegular = futureOrRegular;
+            return deliveryPickupOptions.options;
+        }
     },
 
     getAddressFromSasl: function() {
