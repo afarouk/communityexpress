@@ -2,20 +2,19 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/catalog-item.ejs'),
+var regularTemplate = require('ejs!../../templates/partials/catalog-item.ejs'),
+    versionsTemplate = require('ejs!../../templates/partials/catalog-versions-item.ejs'),
+    VersionsView = require('./catalog_item_versions'),
     h = require('../../globalHelpers'),
     Vent = require('../../Vent');
 
 var CatalogItemView = Backbone.View.extend({
-
-    template: template,
 
     tagName: 'li',
 
     className: 'cmntyex-catalog-item sides_extras_container color1 sides_extras_color',
 
     events: {
-        // 'click': 'showAddToBusketView'
         'click': 'onClick',
         'click .catalog_item_counter': 'preventClick',
         'click .plus_button': 'incrementQuantity',
@@ -24,10 +23,6 @@ var CatalogItemView = Backbone.View.extend({
         'click .versions_buttons': 'preventClick',
         'change .versions_buttons select': 'updateAddVersionButton',
         'click .plus_version_button': 'onVersionAdded',
-    },
-
-    showAddToBusketView: function() {
-        this.onClick();
     },
 
     initialize: function (options) {
@@ -50,12 +45,15 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     render: function() {
+        var hasVersion = this.model.get('hasVersions'),
+            template = hasVersion ? versionsTemplate : regularTemplate;
         console.log(this.model.toJSON());
-        this.$el.html(this.template(_.extend({}, this.model.attributes, {
+        this.$el.html(template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity || 0,
-            selectorVersions: this.getSelectorVersions()
+            selectorVersions: hasVersion ? this.getSelectorVersions() : null
         })));
+        if (hasVersion) this.updateAddVersionButton();
         return this;
     },
 
@@ -71,10 +69,12 @@ var CatalogItemView = Backbone.View.extend({
         var selectorOptions = this.model.get('selectorOptions'),
             length = Object.keys(selectorOptions).length,
             versions = [];
-        for (var i = 1; i <= length; i++) {
-            versions.push(selectorOptions['selectors' + i]);
-        }
-        return versions
+        _.each(selectorOptions, function(version){
+            if (version.second && version.second.length > 0) {
+                versions.push(version.second);
+            }
+        });
+        return versions;
     },
 
     updateAddVersionButton: function() {
@@ -92,46 +92,54 @@ var CatalogItemView = Backbone.View.extend({
         }
         exists = _.findWhere(itemVersions, search);
         if (exists) {
-            this.$('.plus_version_button').removeClass('disabled');
-            this.savedVersion = {
-                version: exists,
-                selected: selectedValues
-            };
+            if(this.isAlreadyAdded(exists)) {
+                this.$('.plus_version_button').addClass('disabled');
+            } else {
+                this.$('.plus_version_button').removeClass('disabled');
+                this.savedVersion = {
+                    version: exists,
+                    selected: selectedValues,
+                    quantity: 1
+                };
+            }
         } else {
             this.$('.plus_version_button').addClass('disabled');
         }
     },
 
+    isAlreadyAdded: function(version) {
+        var exists = _.find(this.versions, {version: version});
+        return exists ? true : false;
+    },
+
+    onRemoveVersion: function() {
+        this.updateAddVersionButton();
+    },
+
     onVersionAdded: function() {
-        //TODO add item version
-        console.log('add version');
         this.versions.push(this.savedVersion);
         this.renderVersions();
+        this.$('.plus_version_button').addClass('disabled');
     },
 
     renderVersions: function() {
-        //todo
-        var versionsContainer = this.$('.sides_extras_item_added_versions'),
-            template = '',
-            //todo should be template for this
-            //also manage + - buttons etc
-            buttons = '<div class="float_right"><div class="select_container catalog_item_counter"><div class="ui-grid-b"><div class="ui-block-a quantity_minus decrementQuantity"><a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a></div><div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field"><span class="quantity">1</span></div><div class="ui-block-c quantity_plus incrementQuantity"><a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a></div></div></div></div>';
-        _.each(this.versions, function(version){
-            var details = version.selected.join(' ,');
-            template += '<div class="item_version"><span class="version-description">' + details + '</span>' + buttons + '</div>';
-        });
-        versionsContainer.html(template);
+        var versionsContainer = this.$('.sides_extras_item_added_versions');
+        if (!this.versionsView) {
+            this.versionsView = new VersionsView({
+                el: versionsContainer
+            });
+            this.versionsView.listenTo(this.versionsView, 'removeVersion', this.onRemoveVersion.bind(this));
+        }
+        this.versionsView.render(this.versions)
     },
 
     expandDetails: function() {
         this.$('.sides_extras_detailed').slideDown();
-        // this.$('.sides_extras_expand_icon').text('▲');
         this.withExpandedDetails = true;
     },
 
     collapseDetails: function() {
         this.$('.sides_extras_detailed').slideUp();
-        // this.$('.sides_extras_expand_icon').text('▼');
         this.withExpandedDetails = false;
     },
 
