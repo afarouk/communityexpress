@@ -8,7 +8,7 @@ var global_sl="";
 function update_url() {
   loadBusinessurl = communityRequestProfile.protocol +
       communityRequestProfile.api_server +
-      '/apptsvc/sasl/getSASLByURLkey?urlKey=';
+      '/apptsvc/rest/sasl/getSASLByURLkey?urlKey=';
   retriveBannerUrl = communityRequestProfile.protocol +
           communityRequestProfile.api_server +
           '/apptsvc/rest/sasl/retrieveSASLbanner?serviceAccommodatorId=&serviceLocationId=';
@@ -17,7 +17,7 @@ function update_url() {
               '/apptsvc/rest/sasl/retrieveATC192bySASL?serviceAccommodatorId=&serviceLocationId=';
   applyThemeUrl = communityRequestProfile.protocol +
                   communityRequestProfile.api_server +
-                '/apptsvc/sasl/setThemeColors?serviceAccommodatorId=&serviceLocationId=&UID=';
+                '/apptsvc/rest/sasl/setThemeColors?serviceAccommodatorId=&serviceLocationId=&UID=';
 }
 update_url();
 $(document).ready(function() {
