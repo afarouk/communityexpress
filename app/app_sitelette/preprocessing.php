@@ -137,6 +137,9 @@ if (validateParams('friendlyURL')) {
       case 'testflyer':
         $pageAccess = 'common_testflyer.php';
         break;
+      case 'themeoption':
+        $pageAccess = 'common_themeoption.php';
+        break;
       case 'support':
           $pageAccess = 'common_support.php';
           break;
