@@ -642,6 +642,7 @@ module.exports = {
             backToRoster = options.backToRoster || false,
             backToCatalogs = options.backToCatalogs || false,
             backToSingleton = options.backToSingleton,
+            deliveryPickupOptions = options.deliveryPickupOptions,
             editModel=options.editModel,
             launchedViaURL=options.launchedViaURL;
         options.rosterId ? basketType = ':rosterbasket' : basketType = ':catalogbasket';
@@ -681,25 +682,26 @@ module.exports = {
                     launchedViaURL: launchedViaURL,
                     promoCode: promoCode,
                     promoUUID: promoUUID,
-                    discountPrice: discountPrice
+                    discountPrice: discountPrice,
+                    deliveryPickupOptions: deliveryPickupOptions
                 };
             });
     },
 
-    add_address: function(orderModel) {
-        return $.Deferred().resolve({
-            model: orderModel
-        }).promise();
+    add_address: function(options) {
+        return $.Deferred().resolve(options).promise();
+    },
+
+    order_time: function(options) {
+        return $.Deferred().resolve(options).promise();
     },
 
     payment: function(options) {
         return $.Deferred().resolve(options).promise();
     },
 
-    payment_card: function(orderModel) {
-        return $.Deferred().resolve({
-            model: orderModel
-        }).promise();
+    payment_card: function(options) {
+        return $.Deferred().resolve(options).promise();
     },
 
     summary: function(options) {

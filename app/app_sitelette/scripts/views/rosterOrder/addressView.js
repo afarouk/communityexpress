@@ -1,6 +1,7 @@
 'use strict';
 
 var Vent = require('../../Vent'),
+    h = require('../../globalHelpers'),
     template = require('ejs!../../templates/rosterOrder/address.ejs');
 
 var AddressView = Backbone.View.extend({
@@ -15,6 +16,9 @@ var AddressView = Backbone.View.extend({
 
     initialize: function(options) {
         this.options = options || {};
+
+        this.options.deliveryPickupOptions = this.getDeliveryPickupOptions();
+
         this.addresses = options.addresses;
         this.allowPickUp = this.model.additionalParams.allowPickUp;
         this.allowDelivery = this.model.additionalParams.allowDelivery;
@@ -45,8 +49,13 @@ var AddressView = Backbone.View.extend({
 
     render: function() {
         this.$el.html(template(this.renderData()));
+        this.createCircles();
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    createCircles: function(){
+        h().createCircles(this.$el.find('.circles_block'), this.options.circles, 1);
     },
 
     updateAddress: function() {
@@ -60,7 +69,7 @@ var AddressView = Backbone.View.extend({
         $label.html(tpl);
     },
 
-    renderContent: function (options){
+    renderContent: function (){
         return this.$el;
     },
 
@@ -69,6 +78,7 @@ var AddressView = Backbone.View.extend({
         var favorites = this.model.additionalParams.userModel.favorites,
             address = favorites.length !== 0 ? favorites.first().get('address') : this.getAddressFromSasl(),
             tmpData = _.extend({
+                circles: this.options.circles,
                 address: address,
                 addrIsEmpty: this.model.additionalParams.addrIsEmpty,
                 allowPickUp: this.allowPickUp,
@@ -76,6 +86,23 @@ var AddressView = Backbone.View.extend({
             }, this.model.toJSON());
 
         return tmpData;
+    },
+
+    getDeliveryPickupOptions: function() {
+        console.log(this.options);
+        var deliveryPickupOptions = this.options.deliveryPickupOptions || {},
+            futureOrRegular = deliveryPickupOptions.futureOrRegular,
+            future;
+            
+        if (!futureOrRegular || futureOrRegular === 'REGULAR') {
+            this.options.circles = 3;
+            this.options.futureOrRegular = null;
+            return null;
+        } else {
+            this.options.circles = 4;
+            this.options.futureOrRegular = futureOrRegular;
+            return deliveryPickupOptions;
+        }
     },
 
     getAddressFromSasl: function() {
@@ -102,14 +129,31 @@ var AddressView = Backbone.View.extend({
     },
 
     triggerAddAddress: function() {
-        Vent.trigger('viewChange', 'add_address', this.model);
+        Vent.trigger('viewChange', 'add_address', {
+            deliveryPickupOptions: this.options.deliveryPickupOptions,
+            futureOrRegular: this.options.futureOrRegular,
+            circles: this.options.circles,
+            model: this.model
+        });
     },
 
     triggerPayment: function() {
-        Vent.trigger('viewChange', 'payment', {
-            model: this.model,
-            backTo: 'address'
-        });
+        //temporary for testing
+        if (this.options.futureOrRegular && this.options.futureOrRegular !== 'REGULAR') {
+            Vent.trigger('viewChange', 'order_time', {
+                model: this.model,
+                circles: this.options.circles,
+                deliveryPickupOptions: this.options.deliveryPickupOptions,
+                futureOrRegular: this.options.futureOrRegular,
+                backTo: 'address'
+            });
+        } else {
+            Vent.trigger('viewChange', 'payment', {
+                circles: this.options.circles,
+                model: this.model,
+                backTo: 'address'
+            });
+        }
     },
 
     onDelivery: function() {

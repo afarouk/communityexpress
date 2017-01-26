@@ -103,6 +103,7 @@ body {
 }
 #address.ui-page,
 #shipping_page.ui-page,
+#order_time_page.ui-page,
 #payment_page.ui-page,
 #payment_card_page.ui-page,
 #summary.ui-page {
@@ -188,6 +189,35 @@ td {
 .right_arr_block {
     background: url('images/arrow-point-to-right.png') no-repeat top right;
     text-align: right;
+}
+.future-order .future-order-select {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+.future-order .future-order-note {
+    text-align: center;
+    padding: 15px 30px;
+}
+.future-order .future-order-note h3 {
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+}
+.regular-order .regular-order-delay {
+    padding: 20px 5px;
+    text-align: center;
+}
+.future-order .future-order-delay {
+    padding: 5px;
+    text-align: center;
+}
+.future-order .future-order-warning {
+    color: #FFCC00;
+    text-align: center;
+}
+li {
+    outline: none;
 }
 .right_arr_block span {
     padding-right: 15px;

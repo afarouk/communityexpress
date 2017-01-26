@@ -272,6 +272,23 @@ var helpers = function() {
                     break;
                 default:
             }
+        },
+
+        createCircles: function($el, number, index) {
+            var template = '';
+
+            for (var i = 1; i <= number; i++) {
+                var addClass = 'circle';
+                if (i === number) {
+                    addClass += ' last';
+                }
+                if (index === i) {
+                    addClass += ' cmtyx_border_color_1 cmtyx_color_1';
+                }
+
+                template += '<div class="' + addClass + '"></div>';
+            }
+            $el.html(template);
         }
 
     };

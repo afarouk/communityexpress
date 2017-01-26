@@ -362,12 +362,13 @@ App.prototype = {
                 viewName === 'businessHours' ||
                 viewName === 'upload_photo' ||
                 viewName === 'reviews' ||
+                viewName === 'order_time' ||
                 (viewName === 'address' && this.previousViewName === 'roster' ) ||
                 (viewName === 'address' && this.previousViewName === 'catalog' ) ||
                 (viewName === 'address' && this.previousViewName === 'singleton' ) ||
                 (viewName === 'address' && this.previousViewName === 'restaurant')) {
                     if (viewName === 'address') {
-                        this.removeCashedViews(['add_address', 'payment','payment_card', 'summary']);
+                        this.removeCashedViews(['add_address', 'order_time', 'payment','payment_card', 'summary']);
                     }
                     return false;
                 } else {

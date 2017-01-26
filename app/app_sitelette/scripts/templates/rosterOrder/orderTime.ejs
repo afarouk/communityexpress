@@ -1,0 +1,71 @@
+<div data-role="page" id="order_time_page" class="page">
+    <div class="circles_block">
+    </div>
+    <div class="navigation">
+        <div class="left_arr_block nav_back_btn"><span>Back</span></div>
+        <div class="page_title">Order time</div>
+        <div class="right_arr_block nav_next_btn"><span>Next</span></div>
+    </div>
+
+    <div data-role="tabs" id="tabs">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#regular" data-id="regular" data-ajax="false" class="leftBtn ui-btn-active 
+                cmtyx_border_color_1 cmtyx_text_color_1 cmtyx_color_1">Regular</a></li>
+                <li><a href="#future" data-id="future" data-ajax="false" class="rightBtn cmtyx_border_color_1 cmtyx_text_color_1">Future</a></li>
+            </ul>
+        </div>
+        <div id="regular" class="ui-body-d ui-content regular-order">
+            <% if(deliveryPickupOptions.minimumDelayMinutes) { %>
+                <div class="regular-order-delay">
+                    <h4>The order will be ready after <%=deliveryPickupOptions.minimumDelayMinutes %> minutes</h4>
+                </div>
+            <% } %>
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                </div>
+            </div>
+        </div>
+        <div id="future" class="ui-body-d ui-content future-order">
+            <form>
+                <fieldset data-role="controlgroup" data-type="horizontal" class="future-order-select">
+                    <select name="select-date" id="select-date">
+                        <% _.each(deliveryPickupOptions.options, function(day) { %>
+                            <option value="day.day"><%= day.day %></option>
+                        <% }); %>
+                    </select>
+                    <select name="select-time" id="select-time">
+                        <% _.each(deliveryPickupOptions.options[0].hours, function(hour) { %>
+                            <option value="hour.text"><%= hour.displayString %></option>
+                        <% }); %>
+                    </select>
+                </fieldset>
+            </form>
+            <div class="future-order-note">
+                <h3><%= deliveryPickupOptions.displayText %></h3>
+            </div>
+            <% if(deliveryPickupOptions.minimumDelayMinutes) { %>
+                <div class="future-order-delay">
+                    <h4>The order will be ready after <%=deliveryPickupOptions.minimumDelayMinutes %> minutes</h4>
+                </div>
+            <% } %>
+            <% if(deliveryPickupOptions.showWarningOnce) { %>
+                <div class="future-order-warning">
+                    <h4><%= deliveryPickupOptions.warningMessage %></h4>
+                </div>
+            <% } %>
+            <div class="ui-grid-a back_next_btns">
+                <div class="ui-block-a p-r-10">
+                    <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                </div>
+                <div class="ui-block-b p-l-10">
+                    <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

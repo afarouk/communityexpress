@@ -1,6 +1,7 @@
 'use strict';
 
 var Vent = require('../../Vent'),
+    h = require('../../globalHelpers'),
     template = require('ejs!../../templates/rosterOrder/paymentCard.ejs');
 
 var PaymentCardView = Backbone.View.extend({
@@ -26,9 +27,15 @@ var PaymentCardView = Backbone.View.extend({
 	render: function() {
 		console.log(this.renderData());
         this.$el.html(template(this.renderData()));
+        this.createCircles();
         this.setElement(this.$el.children().eq(0));
 
         return this;
+    },
+
+    createCircles: function(){
+        var index = this.options.circles === 3 ? 2 : 3;
+        h().createCircles(this.$el.find('.circles_block'), this.options.circles, index);
     },
 
     prefillCard: function() {
@@ -148,6 +155,7 @@ var PaymentCardView = Backbone.View.extend({
     triggerSummary: function() {
         if (this.validateInfo()) {
             Vent.trigger('viewChange', 'summary', {
+                circles: this.options.circles,
                 model: this.model,
                 backTo: 'payment_card'
             });
@@ -165,7 +173,10 @@ var PaymentCardView = Backbone.View.extend({
     },
 
     goBack : function() {
-        Vent.trigger('viewChange', 'payment', this.model);
+        Vent.trigger('viewChange', 'payment', {
+            model: this.model,
+            circles: this.options.circles
+        });
     }
 });
 
