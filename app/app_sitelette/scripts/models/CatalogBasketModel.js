@@ -3,7 +3,7 @@
 'use strict';
 
 var CatalogBasketItem = require('../models/CatalogBasketItem'); //
-
+var CatalogBasketVersionItem = require('../models/CatalogBasketVersionItem'); //
 
 var CatalogBasketModel = Backbone.Collection.extend({
 

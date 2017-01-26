@@ -18,7 +18,10 @@ var CatalogItemVersionsView = Backbone.View.extend({
         'click .decrementQuantity': 'decrementQuantity'
     },
 
-    initialize: function () {
+    initialize: function (options) {
+        this.basket = options.basket;
+        this.catalogId = options.catalogId;
+        this.groupId = options.groupId;
     },
 
     render: function(versions) {
@@ -45,10 +48,8 @@ var CatalogItemVersionsView = Backbone.View.extend({
         h().playSound('addToCart');
         version.quantity ++;
         this.updateIndex(versionIndex, version.quantity);
-        // this.addItem = true;
-        // this.quantity = this.quantity + 1;
-        // this.addToBasket();
-        // return false;
+
+        this.addToBasket();
     },
 
     decrementQuantity: function (e) {
@@ -65,16 +66,9 @@ var CatalogItemVersionsView = Backbone.View.extend({
             this.updateIndex(versionIndex, version.quantity);
         }
 
-        // this.addItem = false;
-        // var qty = this.quantity;
-
-        // if (qty === 0) return false;
-
         h().playSound('removeFromCart');
 
-        // this.quantity = this.quantity - 1;
-        // this.addToBasket();
-        // return false;
+        this.addToBasket();
     },
 
     updateQuantity: function () {
@@ -95,11 +89,30 @@ var CatalogItemVersionsView = Backbone.View.extend({
         // this.$('.quantity').text(this.quantity);
     },
 
+    getVerions: function() {
+        var versions = {
+            totalPrice: 0,
+            selectedVersions: []
+        };
+        _.each(this.versions, function(version) {
+            var shortVersion = {
+                itemId: version.version.itemId,
+                itemVersion: version.version.itemVersion,
+                price: version.version.price,
+                priceId: version.version.priceId,
+                quantity: version.quantity
+            };
+            versions.selectedVersions.push(shortVersion);
+            versions.totalPrice += shortVersion.price * shortVersion.quantity;
+        });
+        console.log(versions);
+        return versions;
+    },
+
     addToBasket: function () {
-    	// var count;
-     //    this.addItem ? count = 1 : count = -1;
-     //    this.model.set('quantity', this.model.get('quantity') + count);
-     //    this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+    	console.log(this.model.toJSON());
+        this.model.set('verions', this.getVerions());
+        //this.basket.addItem(this.model, 1, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     }
 });
 

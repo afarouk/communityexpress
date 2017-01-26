@@ -126,7 +126,11 @@ var CatalogItemView = Backbone.View.extend({
         var versionsContainer = this.$('.sides_extras_item_added_versions');
         if (!this.versionsView) {
             this.versionsView = new VersionsView({
-                el: versionsContainer
+                el: versionsContainer,
+                basket: this.basket,
+                catalogId: this.catalogId,
+                groupId: this.groupId,
+                model: this.model
             });
             this.versionsView.listenTo(this.versionsView, 'removeVersion', this.onRemoveVersion.bind(this));
         }
