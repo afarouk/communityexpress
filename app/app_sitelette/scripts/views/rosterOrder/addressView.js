@@ -17,7 +17,7 @@ var AddressView = Backbone.View.extend({
     initialize: function(options) {
         this.options = options || {};
 
-        this.options.future = this.getFuture();
+        this.options.deliveryPickupOptions = this.getDeliveryPickupOptions();
 
         this.addresses = options.addresses;
         this.allowPickUp = this.model.additionalParams.allowPickUp;
@@ -88,7 +88,7 @@ var AddressView = Backbone.View.extend({
         return tmpData;
     },
 
-    getFuture: function() {
+    getDeliveryPickupOptions: function() {
         console.log(this.options);
         var deliveryPickupOptions = this.options.deliveryPickupOptions || {},
             futureOrRegular = deliveryPickupOptions.futureOrRegular,
@@ -97,11 +97,11 @@ var AddressView = Backbone.View.extend({
         if (!futureOrRegular || futureOrRegular === 'REGULAR') {
             this.options.circles = 3;
             this.options.futureOrRegular = null;
-            return;
+            return null;
         } else {
             this.options.circles = 4;
             this.options.futureOrRegular = futureOrRegular;
-            return deliveryPickupOptions.options;
+            return deliveryPickupOptions;
         }
     },
 
@@ -130,7 +130,7 @@ var AddressView = Backbone.View.extend({
 
     triggerAddAddress: function() {
         Vent.trigger('viewChange', 'add_address', {
-            future: this.options.future,
+            deliveryPickupOptions: this.options.deliveryPickupOptions,
             futureOrRegular: this.options.futureOrRegular,
             circles: this.options.circles,
             model: this.model
@@ -143,7 +143,7 @@ var AddressView = Backbone.View.extend({
             Vent.trigger('viewChange', 'order_time', {
                 model: this.model,
                 circles: this.options.circles,
-                future: this.options.future,
+                deliveryPickupOptions: this.options.deliveryPickupOptions,
                 futureOrRegular: this.options.futureOrRegular,
                 backTo: 'address'
             });

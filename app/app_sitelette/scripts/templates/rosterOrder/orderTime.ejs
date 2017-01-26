@@ -15,7 +15,12 @@
                 <li><a href="#future" data-id="future" data-ajax="false" class="rightBtn cmtyx_border_color_1 cmtyx_text_color_1">Future</a></li>
             </ul>
         </div>
-        <div id="regular" class="ui-body-d ui-content">
+        <div id="regular" class="ui-body-d ui-content regular-order">
+            <% if(deliveryPickupOptions.minimumDelayMinutes) { %>
+                <div class="regular-order-delay">
+                    <h4>The order will be ready after <%=deliveryPickupOptions.minimumDelayMinutes %> minutes</h4>
+                </div>
+            <% } %>
             <div class="ui-grid-a back_next_btns">
                 <div class="ui-block-a p-r-10">
                     <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
@@ -29,20 +34,30 @@
             <form>
                 <fieldset data-role="controlgroup" data-type="horizontal" class="future-order-select">
                     <select name="select-date" id="select-date">
-                        <% _.each(future, function(day) { %>
+                        <% _.each(deliveryPickupOptions.options, function(day) { %>
                             <option value="day.day"><%= day.day %></option>
                         <% }); %>
                     </select>
                     <select name="select-time" id="select-time">
-                        <% _.each(future[0].hours, function(hour) { %>
+                        <% _.each(deliveryPickupOptions.options[0].hours, function(hour) { %>
                             <option value="hour.text"><%= hour.displayString %></option>
                         <% }); %>
                     </select>
                 </fieldset>
             </form>
             <div class="future-order-note">
-                <h3>NOTE: You have chosen a future date for your order.</h3>
+                <h3><%= deliveryPickupOptions.displayText %></h3>
             </div>
+            <% if(deliveryPickupOptions.minimumDelayMinutes) { %>
+                <div class="future-order-delay">
+                    <h4>The order will be ready after <%=deliveryPickupOptions.minimumDelayMinutes %> minutes</h4>
+                </div>
+            <% } %>
+            <% if(deliveryPickupOptions.showWarningOnce) { %>
+                <div class="future-order-warning">
+                    <h4><%= deliveryPickupOptions.warningMessage %></h4>
+                </div>
+            <% } %>
             <div class="ui-grid-a back_next_btns">
                 <div class="ui-block-a p-r-10">
                     <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>

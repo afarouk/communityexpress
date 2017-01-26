@@ -6,6 +6,7 @@ var Vent = require('../../Vent'),
     popupController = require('../../controllers/popupController'),
     h = require('../../globalHelpers'),
     appCache = require('../../appCache'),
+    moment = require('moment'),
     template = require('ejs!../../templates/rosterOrder/orderTime.ejs');
 
 var OrderTimeView = Backbone.View.extend({
@@ -14,14 +15,15 @@ var OrderTimeView = Backbone.View.extend({
 
     id: 'cmtyx_order_time',
 
+    moment: moment,
+
 	initialize: function(options) {
 		this.options = options || {};
         this.on('show', this.onShow, this);
         this.model.on('change', _.bind(this.reRender, this));
         this.render();
-        this.orderDay = this.options.future[0];
-        this.orderTime = this.orderDay.hours[0];
-        this.delivery = this.options.futureOrRegular === 'FUTURE' ? 'FUTURE' : 'REGULAR';
+
+        this.deliveryDateInit();
 	},
 
 	render: function() {
@@ -32,7 +34,14 @@ var OrderTimeView = Backbone.View.extend({
         return this;
     },
 
-    createCircles: function(){
+    deliveryDateInit: function() {
+        //deliveryPickupOptions
+        this.orderDay = this.options.deliveryPickupOptions.options[0];
+        this.orderTime = this.orderDay.hours[0];
+        this.delivery = this.options.futureOrRegular === 'FUTURE' ? 'FUTURE' : 'REGULAR';
+    },
+
+    createCircles: function() {
         h().createCircles(this.$el.find('.circles_block'), this.options.circles, 2);
     },
 
@@ -71,7 +80,7 @@ var OrderTimeView = Backbone.View.extend({
         var number = this.model.get('creditCard').cardNumber;
 
     	return _.extend(this.model.toJSON(), {
-            future: this.options.future,
+            deliveryPickupOptions: this.options.deliveryPickupOptions,
     		futureOrRegular: this.options.futureOrRegular
         });
     },
@@ -96,7 +105,7 @@ var OrderTimeView = Backbone.View.extend({
         var $target = $(e.currentTarget),
             index = $target.get(0).options.selectedIndex,
             $time = this.$('#select-time'),
-            date = this.options.future[index],
+            date = this.options.deliveryPickupOptions.options[index],
             initial = date.hours[0].text,
             template = '';
         _.each(date.hours, function(hour){
@@ -110,22 +119,31 @@ var OrderTimeView = Backbone.View.extend({
     onSelectTime: function(e) {
         var $target = $(e.currentTarget),
             index = $target.get(0).options.selectedIndex;
-            //time = this.options.future[this.dayIndex].hours[index];
-        console.log(index);
+
         this.orderTime = this.orderDay.hours[index];
     },
     getDeliveryDate: function() {
         if (this.delivery === 'REGULAR') return null;
         var deliveryDate = {
-            day: this.orderDay.date,
+            date: this.orderDay.date,
             time: this.orderTime
         };
         return deliveryDate;
     },
+    setDeliveryDate: function() {
+        var date = this.getDeliveryDate(),
+            requestedDeliveryDate = date ? this.moment(date.date)
+                                        .hour(date.time.hour)
+                                        .minute(date.time.minute)
+                                        .utc().format().replace('Z', ':UTC') : null;
+        console.log(requestedDeliveryDate);
+        this.model.set('requestedDeliveryDate', requestedDeliveryDate);
+        //requestedDeliveryDate:"2017-01-26T08:00:58:UTC"
+    },
     triggerNext: function() {
-        console.log(this.getDeliveryDate());
+        this.setDeliveryDate();
         Vent.trigger('viewChange', 'payment', {
-                future: this.options.future,
+                deliveryPickupOptions: this.options.deliveryPickupOptions,
                 futureOrRegular: this.options.futureOrRegular,
                 circles: this.options.circles,
                 model: this.model,

@@ -370,7 +370,7 @@ var PaymentView = Backbone.View.extend({
         Vent.trigger('viewChange', this.options.backTo , {
             model: this.model,
             circles: this.options.circles,
-            future: this.options.future,
+            deliveryPickupOptions: this.options.deliveryPickupOptions,
             futureOrRegular: this.options.futureOrRegular
         });
     }

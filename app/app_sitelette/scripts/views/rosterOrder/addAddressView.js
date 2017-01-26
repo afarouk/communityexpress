@@ -200,7 +200,7 @@ var AddAddressView = Backbone.View.extend({
             if (this.options.futureOrRegular && this.options.futureOrRegular !== 'REGULAR') {
                 Vent.trigger('viewChange', 'order_time', {
                     model: this.model,
-                    future: this.options.future,
+                    deliveryPickupOptions: this.options.deliveryPickupOptions,
                     futureOrRegular: this.options.futureOrRegular,
                     backTo: 'add_address'
                 });
