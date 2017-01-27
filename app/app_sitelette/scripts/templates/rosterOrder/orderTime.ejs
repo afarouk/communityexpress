@@ -45,9 +45,11 @@
                     </select>
                 </fieldset>
             </form>
-            <div class="future-order-note">
-                <h3><%= deliveryPickupOptions.displayText %></h3>
-            </div>
+            <% if(deliveryPickupOptions.displayText) { %>
+                <div class="future-order-note">
+                    <h3><%= deliveryPickupOptions.displayText %></h3>
+                </div>
+            <% } %>
             <% if(deliveryPickupOptions.minimumDelayMinutes) { %>
                 <div class="future-order-delay">
                     <h4>The order will be ready after <%=deliveryPickupOptions.minimumDelayMinutes %> minutes</h4>
