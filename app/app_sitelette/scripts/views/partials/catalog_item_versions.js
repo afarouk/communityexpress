@@ -72,7 +72,6 @@ var CatalogItemVersionsView = Backbone.View.extend({
     },
 
     updateQuantity: function () {
-        console.log('update qantity');
         var inModelVersions = this.model.get('versions'),
             selected = inModelVersions.selectedVersions;
         _.each(this.versions, function(version, index){
@@ -82,7 +81,6 @@ var CatalogItemVersionsView = Backbone.View.extend({
                     return item.version.itemVersion === itemVersion &&
                            item.version.itemId === itemId;
                 });
-            console.log(changed);
             if (changed) {
                 if (changed.quantity === 0) {
                     this.versions.splice(index, 1);
@@ -110,12 +108,10 @@ var CatalogItemVersionsView = Backbone.View.extend({
             versions.totalPrice += longVersion.version.price * longVersion.quantity;
             versions.totalQuantity += longVersion.quantity;
         });
-        console.log(versions);
         return versions;
     },
 
     addToBasket: function () {
-    	console.log(this.model.toJSON());
         this.model.set('versions', this.getVersions());
         this.basket.addVersionItem(this.model, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     }

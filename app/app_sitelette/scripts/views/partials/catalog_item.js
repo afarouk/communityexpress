@@ -48,7 +48,6 @@ var CatalogItemView = Backbone.View.extend({
     render: function() {
         var hasVersion = this.model.get('hasVersions'),
             template = hasVersion ? versionsTemplate : regularTemplate;
-        console.log(this.model.toJSON());
         this.$el.html(template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity || 0,
@@ -109,7 +108,10 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     isAlreadyAdded: function(version) {
-        var exists = _.find(this.versions, {version: version});
+        var exists = _.find(this.versions, function(item){
+            return item.version.itemId === version.itemId &&
+                   item.version.itemVersion === version.itemVersion;
+        });
         return exists ? true : false;
     },
 
@@ -182,7 +184,6 @@ var CatalogItemView = Backbone.View.extend({
 
     updateVersionsTotalPrice: function() {
         var totalPrice = this.model.get('versions').totalPrice;
-        console.log(totalPrice);
         this.$('.order_price').text('$' + totalPrice);
     },
 
@@ -195,6 +196,8 @@ var CatalogItemView = Backbone.View.extend({
             _.each(v.selectedVersions, function(version) {
                 this.versions.push(_.clone(version));
             }.bind(this));
+            this.renderVersions();
+            this.updateAddVersionButton();
         }
     },
 
