@@ -3,7 +3,6 @@
 'use strict';
 
 var CatalogBasketItem = require('../models/CatalogBasketItem'); //
-var CatalogBasketVersionItem = require('../models/CatalogBasketVersionItem'); //
 
 var CatalogBasketModel = Backbone.Collection.extend({
 
@@ -121,38 +120,29 @@ var CatalogBasketModel = Backbone.Collection.extend({
         this.dumpCartToConsole();
     },
 
-    changeVersionItem: function(item) {
+    changeVersionItem: function(item, count) {
         var itemModel = this.get(item.get('uuid'));
+        itemModel.set('quantity', count);
         itemModel.trigger('updateVersions');
+        if (!itemModel.get('quantity') || itemModel.get('quantity') === 0) {
+            this.removeItem(itemModel);
+        }
     },
 
-    addVersionItem : function(item, groupId, groupDisplayText,catalogId,catalogDisplayText) {
-        var itemModel = this.get(item.get('uuid'));
-        if (itemModel) {
-            var itemVersions = item.get('versions'),
-                modelVersions = itemModel.get('versions');
-            if (itemVersions.selectedVersions.length === 0) {
-                this.removeItem(itemModel);
-            } else {
-                //debugger;
-                itemModel.set('versions', itemVersions);
-                itemModel.set('quantity', itemVersions.totalQuantity);
-            }
-        } else {
-            //debugger;
-            var itemOptions = _.extend({}, item.attributes, {
-                quantity : 1,
-                groupId : groupId,
-                groupDisplayText:groupDisplayText,
-                catalogId : catalogId,
-                catalogDisplayText:catalogDisplayText
-            });
-
-            var itemModel = new CatalogBasketVersionItem(itemOptions);
-
-            this.add(itemModel);
+    setBasketVersions: function(model, versions) {
+        if (typeof this.versions !== 'object') {
+            this.versions = {};
         }
-        this.dumpCartToConsole();
+        var uuid = model.get('uuid');
+        this.versions[uuid] = versions;
+    },
+
+    getBasketVersions: function(model) {
+        if (typeof this.versions !== 'object') {
+            return null;
+        }
+        var uuid = model.get('uuid');
+        return this.versions[uuid];
     },
 
     addItemRaw : function(itemRaw, count, groupId,groupDisplayText, catalogId,catalogDisplayText) {

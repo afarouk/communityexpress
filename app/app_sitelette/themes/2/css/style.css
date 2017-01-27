@@ -1172,7 +1172,7 @@ li.build_combo, li.choose_extras {
 
 /* item versions */
 .sides_extras_item_versions {
-    margin: 10px 3px 0 10px;
+    margin: 10px 3px 5px 10px;
     height: 55px;
 }
 .sides_extras_item_versions .versions_buttons {
@@ -1238,6 +1238,9 @@ li.build_combo, li.choose_extras {
     color: #fafafa;
     margin-top: 12px;
     display: inline-block;
+}
+.popup_container .ui-panel-inner .versions-price {
+    margin-right: 10px;
 }
 /* end of versions */
 

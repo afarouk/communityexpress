@@ -4,6 +4,7 @@
 
 var template = require('ejs!../../templates/partials/catalog-versions.ejs'),
     h = require('../../globalHelpers'),
+    appCache = require('../../appCache'),
     Vent = require('../../Vent');
 
 var CatalogItemVersionsView = Backbone.View.extend({
@@ -49,7 +50,7 @@ var CatalogItemVersionsView = Backbone.View.extend({
         version.quantity ++;
         this.updateIndex(versionIndex, version.quantity);
 
-        this.addToBasket();
+        this.addToBasket(versionIndex, 1);
     },
 
     decrementQuantity: function (e) {
@@ -57,6 +58,7 @@ var CatalogItemVersionsView = Backbone.View.extend({
             versionIndex = $target.data('version'),
             version = this.versions[versionIndex];
 
+        this.addToBasket(versionIndex, -1);
         if (version.quantity === 1) {
             this.versions.splice(versionIndex, 1);
             this.render(this.versions);
@@ -68,30 +70,26 @@ var CatalogItemVersionsView = Backbone.View.extend({
 
         h().playSound('removeFromCart');
 
-        this.addToBasket();
     },
 
-    updateQuantity: function () {
-        var inModelVersions = this.model.get('versions'),
-            selected = inModelVersions.selectedVersions;
+    updateQuantity: function (modelChanged) {
+        var inModelVersions = this.basket.getBasketVersions(this.model);
         _.each(this.versions, function(version, index){
-            var itemVersion = version.version.itemVersion,
-                itemId = version.version.itemId,
-                changed = _.find(selected, function(item) {
-                    return item.version.itemVersion === itemVersion &&
-                           item.version.itemId === itemId;
-                });
-            if (changed) {
-                if (changed.quantity === 0) {
+            var itemVersion = version.version.get('itemVersion'),
+                itemId = version.version.get('itemId');
+            if (modelChanged.get('itemVersion') === itemVersion &&
+                modelChanged.get('itemId') === itemId) {
+                var quantity = modelChanged.get('quantity');
+                if (quantity === 0) {
                     this.versions.splice(index, 1);
                     this.trigger('removeVersion');
                 } else {
-                    version.quantity = changed.quantity;
+                    version.quantity = quantity;
                 }
             }
         }.bind(this));
         this.render(this.versions);
-        this.addToBasket();
+        //this.addToBasket();
     },
 
     getVersions: function() {
@@ -105,15 +103,23 @@ var CatalogItemVersionsView = Backbone.View.extend({
                 displayText: version.selected.join(' ,')
             });
             versions.selectedVersions.push(longVersion);
-            versions.totalPrice += longVersion.version.price * longVersion.quantity;
+            versions.totalPrice += longVersion.version.get('price') * longVersion.quantity;
             versions.totalQuantity += longVersion.quantity;
         });
         return versions;
     },
 
-    addToBasket: function () {
-        this.model.set('versions', this.getVersions());
-        this.basket.addVersionItem(this.model, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+    addToBasket: function (versionIndex, count) {
+        var index = versionIndex || this.versions.length - 1,
+            versions = this.getVersions(),
+            uuid = this.model.get('uuid'),
+            basketItem = this.versions.length > 0 ? this.versions[index].version : null;
+
+        this.basket.setBasketVersions(this.model, versions);
+        if (!basketItem) return;
+        basketItem.set('isVersion', true, {silent: true});
+        basketItem.set('uuid', uuid + '_' + basketItem.get('itemVersion'), {silent: true});
+        this.basket.addItem(basketItem, count || 1,this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     }
 });
 

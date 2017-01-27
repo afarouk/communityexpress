@@ -13,8 +13,6 @@ var EditCatalogBasketItem = Backbone.View.extend({
     events: {
         'click .incrementQuantity': 'incrementQuantity',
         'click .decrementQuantity': 'decrementQuantity',
-        'click .incrementVersionQuantity': 'incrementVersionQuantity',
-        'click .decrementVersionQuantity': 'decrementVersionQuantity'
     },
 
     initialize: function (options) {
@@ -23,8 +21,14 @@ var EditCatalogBasketItem = Backbone.View.extend({
         this.changedItems = this.parent.parent.changedItems;
         this.basket = options.parent.parent.basket;
         this.template = options.template || template;
-        if (this.model.get('hasVersions')) {
+        if (this.model.get('isVersion')) {
             this.template = versionTemplate;
+            var t1 = this.model.get('version1DisplayText'),
+                t2 = this.model.get('version2DisplayText'),
+                t3 = this.model.get('version3DisplayText');
+
+            this.versionText = (t1 ? t1 : '') + (t2 ? ' ,' + t2 : '') + (t3 ? ' ,' + t3 : '');
+            this.totalPrice = this.model.get('quantity') * this.model.get('price');
         } 
         this.editable = this.basket.catalogType === 'COMBO' ? false : true;
         this.listenTo(this.model, 'change:quantity', this.updateQuantity, this);
@@ -32,7 +36,9 @@ var EditCatalogBasketItem = Backbone.View.extend({
 
     render: function() {
         this.$el.html(this.template(_.extend({}, this.model.attributes, {
-            editable: this.editable
+            editable: this.editable,
+            versionText: this.versionText || '',
+            totalPrice: this.totalPrice || 0
         })));
         return this;
     },
@@ -66,50 +72,7 @@ var EditCatalogBasketItem = Backbone.View.extend({
         if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED' || !this.basket.catalogType) {
             this.changedItems[this.model.get('uuid')] = changedItem;
         }
-    },
-
-    incrementVersionQuantity: function(e) {
-        var $target = $(e.currentTarget),
-            index = $target.data('index');
-        h().playSound('addToCart');
-        
-        this.updateVersionQuantity(index, 1);
-    },
-
-    decrementVersionQuantity: function(e) {
-        var $target = $(e.currentTarget),
-            index = $target.data('index');
-        h().playSound('removeFromCart');
-        
-        this.updateVersionQuantity(index, -1);
-    },
-
-    getVersionsPrice: function() {
-        var versions = this.model.get('versions'),
-            totalPrice = 0;
-        _.each(versions.selectedVersions, function(version){
-            totalPrice += version.version.price * version.quantity;
-        });
-        return totalPrice;
-    },
-
-    updateVersionQuantity: function(index, quantity) {
-        var version = this.model.get('versions').selectedVersions[index],
-            vQuantity = version.quantity;
-        version.quantity = vQuantity === 0 && quantity === -1 ? 0 : version.quantity + quantity;
-        this.$('.order_price').text('$' + this.getVersionsPrice());
-        this.$('.quantity[data-index="' + index + '"]').text(version.quantity);
-        this.addToVersionBasket();
-    },
-
-    addToVersionBasket: function() {
-        var changedItem = {
-            model: this.model
-        }
-        if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED' || !this.basket.catalogType) {
-            this.changedItems[this.model.get('uuid')] = changedItem;
-        }
-    },
+    }
 
 });
 

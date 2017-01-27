@@ -298,6 +298,7 @@ var PaymentView = Backbone.View.extend({
         ).then(function(e) {
             loader.hide();
             params.basket.reset();
+            params.basket.versions = undefined;
             params.backToRoster = false;
             appCache.set('promoCode', null);
             appCache.set('updateDiscount', true);

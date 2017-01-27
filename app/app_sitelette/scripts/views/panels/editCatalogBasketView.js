@@ -56,8 +56,8 @@ var EditCatalogBasketView = PanelView.extend({
     saveBasket: function() {
         if (this.changedItems.length === 0) return;
         _.each(this.changedItems, _.bind(function(item) {
-            if (item.model.get('hasVersions')) {
-                this.basket.changeVersionItem(item.model);
+            if (item.model.get('isVersion')) {
+                this.basket.changeVersionItem(item.model, item.count);
             } else {
                 this.basket.changeItem(item.model, item.count);
             }

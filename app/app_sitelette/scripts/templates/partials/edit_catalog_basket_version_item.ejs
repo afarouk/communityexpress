@@ -1,24 +1,22 @@
-<span class="order_name"><%=  itemName %></span>
-<span class="order_price cmtyx_text_color_1">$ <%= versions.totalPrice %></span>
+<span class="order_name"><%=  shortDescription %></span>
+<span class="versions-price order_price cmtyx_text_color_1">$ <%= totalPrice %></span>
 <div class="versions-container">
-    <% _.each(versions.selectedVersions, function(version, index){ %>
-        <div class="item-version">
-            <span class="version_name"><%=  version.displayText %></span>
-            <div class="float_right">
-                <div class="select_container">
-                    <div class="ui-grid-b">
-                        <div class="ui-block-a quantity_minus decrementVersionQuantity" data-index="<%= index %>">
-                            <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogId="<%=catalogId%>"></a>
-                        </div>
-                        <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
-                             <span class="quantity" id="itemCount_<%=catalogId%>" data-index="<%= index %>"><%= version.quantity %></span>
-                        </div>
-                        <div class="ui-block-c quantity_plus incrementVersionQuantity" data-index="<%= index %>">
-                            <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"  catalogId="<%=catalogId%>"></a>
-                        </div>
+    <div class="item-version">
+        <span class="version_name"><%=  versionText %></span>
+        <div class="float_right">
+            <div class="select_container">
+                <div class="ui-grid-b">
+                    <div class="ui-block-a quantity_minus decrementQuantity">
+                        <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext"></a>
+                    </div>
+                    <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
+                         <span class="quantity"><%= quantity %></span>
+                    </div>
+                    <div class="ui-block-c quantity_plus incrementQuantity">
+                        <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext"></a>
                     </div>
                 </div>
             </div>
         </div>
-    <% }) %>
+    </div>
 </div>
