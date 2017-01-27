@@ -118,6 +118,7 @@ var CatalogItemVersionsView = Backbone.View.extend({
         this.basket.setBasketVersions(this.model, versions);
         if (!basketItem) return;
         basketItem.set('isVersion', true, {silent: true});
+        basketItem.set('itemName', this.model.get('itemName'), {silent: true});
         basketItem.set('uuid', uuid + '_' + basketItem.get('itemVersion'), {silent: true});
         this.basket.addItem(basketItem, count || 1,this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     }

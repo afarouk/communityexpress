@@ -1236,11 +1236,27 @@ li.build_combo, li.choose_extras {
 }
 .popup_container .ui-panel-inner .versions-container .item-version .version_name {
     color: #fafafa;
+    display: block;
+}
+.popup_container .ui-panel-inner .versions-container .item-version .version_items {
+    color: #fafafa;
     margin-top: 12px;
     display: inline-block;
 }
 .popup_container .ui-panel-inner .versions-price {
-    margin-right: 10px;
+    // margin-right: 10px;
+}
+.popup_container .ui-panel-inner .versions-container .versions_texts {
+    display: inline-block;
+}
+.popup_container .ui-panel-inner .versions-container .versions-description {
+    margin-top: 7px;
+}
+.popup_container .ui-panel-inner .versions-container .versions-description span {
+    font-size: 0.85em;
+    font-weight: 400;
+    white-space: normal;
+    line-height: 20px;
 }
 /* end of versions */
 
