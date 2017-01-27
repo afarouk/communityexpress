@@ -42,6 +42,7 @@ var CatalogItemView = Backbone.View.extend({
         this.versions = [];
 
         this.listenTo(this.basket, 'reset change add remove', this.updateQuantity, this);
+        this.listenTo(this.basket, 'updateVersions', this.updateVersions, this);
     },
 
     render: function() {
@@ -134,7 +135,8 @@ var CatalogItemView = Backbone.View.extend({
             });
             this.versionsView.listenTo(this.versionsView, 'removeVersion', this.onRemoveVersion.bind(this));
         }
-        this.versionsView.render(this.versions)
+        this.versionsView.render(this.versions);
+        this.versionsView.addToBasket();
     },
 
     expandDetails: function() {
@@ -170,12 +172,47 @@ var CatalogItemView = Backbone.View.extend({
         return false;
     },
 
+    updateVersions: function() {
+        var modelChanged = this.basket.get(this.model.get('uuid'));
+        if (modelChanged && this.versionsView) {
+            this.versionsView.updateQuantity();
+            this.updateVersionsTotalPrice();
+        }
+    },
+
+    updateVersionsTotalPrice: function() {
+        var totalPrice = this.model.get('versions').totalPrice;
+        console.log(totalPrice);
+        this.$('.order_price').text('$' + totalPrice);
+    },
+
+    checkIfVersionsInModel: function(modelChanged) {
+        var versions = this.model.get('versions');
+        if (!versions) {
+            var v = modelChanged.get('versions')
+            this.model.set('versions', v);
+            this.versions = [];
+            _.each(v.selectedVersions, function(version) {
+                this.versions.push(_.clone(version));
+            }.bind(this));
+        }
+    },
+
+    onBackVersionsUpdate: function(modelChanged) {
+        this.checkIfVersionsInModel(modelChanged);
+        this.updateVersionsTotalPrice();
+    },
+
     updateQuantity: function () {
         if (this.basket.length === 0) {
             this.$('.quantity').text(0);
             this.quantity = 0;
         } else {
             var modelChanged = this.basket.get(this.model.get('uuid'));
+            if (modelChanged && modelChanged.get('hasVersions')) {
+                setTimeout(this.onBackVersionsUpdate.bind(this, modelChanged), 1);
+                return;
+            }
             if (modelChanged) {
                 this.quantity = modelChanged.get('quantity');
                 this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));

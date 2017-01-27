@@ -1227,6 +1227,18 @@ li.build_combo, li.choose_extras {
 .sides_extras_item_added_versions .item_version .cmntyex-add_to_basket_quantity .quantity {
     margin-top: 0
 }
+/* versions in basket */
+.popup_container .ui-panel-inner .versions-container {
+    padding-top: 10px;
+}
+.popup_container .ui-panel-inner .versions-container .item-version {
+    min-height: 50px;
+}
+.popup_container .ui-panel-inner .versions-container .item-version .version_name {
+    color: #fafafa;
+    margin-top: 12px;
+    display: inline-block;
+}
 /* end of versions */
 
 .sides_extras_input {

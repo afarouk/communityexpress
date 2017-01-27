@@ -3,6 +3,7 @@
 'use strict';
 
 var template = require('ejs!../../templates/partials/edit_catalog_basket_item.ejs'),
+    versionTemplate = require('ejs!../../templates/partials/edit_catalog_basket_version_item.ejs'),
     h = require('../../globalHelpers');
 
 var EditCatalogBasketItem = Backbone.View.extend({
@@ -10,22 +11,23 @@ var EditCatalogBasketItem = Backbone.View.extend({
     tagName: 'li',
 
     events: {
-        // 'click': 'toggleSelected',
-        'click .plus_button': 'incrementQuantity',
-        'click .minus_button': 'decrementQuantity'
+        'click .incrementQuantity': 'incrementQuantity',
+        'click .decrementQuantity': 'decrementQuantity',
+        'click .incrementVersionQuantity': 'incrementVersionQuantity',
+        'click .decrementVersionQuantity': 'decrementVersionQuantity'
     },
 
     initialize: function (options) {
-        // debugger;
         this.parent = options.parent;
         this.quantity = this.model.get('quantity');
         this.changedItems = this.parent.parent.changedItems;
         this.basket = options.parent.parent.basket;
         this.template = options.template || template;
+        if (this.model.get('hasVersions')) {
+            this.template = versionTemplate;
+        } 
         this.editable = this.basket.catalogType === 'COMBO' ? false : true;
         this.listenTo(this.model, 'change:quantity', this.updateQuantity, this);
-        // this.listenTo(this.model, 'change:selected', this._update, this);
-        // this.listenTo(this.parent, 'close:all', this.remove, this);
     },
 
     render: function() {
@@ -40,17 +42,14 @@ var EditCatalogBasketItem = Backbone.View.extend({
         this.quantity = this.quantity + 1;
         this.count = 1;
         this.updateQuantity();
-        // this.model.set('quantity', this.model.get('quantity') + 1);
     },
 
     decrementQuantity: function() {
-        // var quantity = this.model.get('quantity');
         if (this.quantity === 0) return;
         h().playSound('removeFromCart');
         this.quantity = this.quantity - 1;
         this.count = -1;
         this.updateQuantity();
-        // this.model.set('quantity', this.model.get('quantity') - 1);
     },
 
     updateQuantity: function() {
@@ -67,30 +66,50 @@ var EditCatalogBasketItem = Backbone.View.extend({
         if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED' || !this.basket.catalogType) {
             this.changedItems[this.model.get('uuid')] = changedItem;
         }
-        // var catalog = this.model.toJSON(),
-        //     quantity = this.model.get('quantity'),
-        //     catalogId = this.model.get('catalogId');
-        // var changedCatalog = {
-        //     catalog: catalog,
-        //     quantity: quantity,
-        //     catalogId: catalogId
-        // };
-        // if (catalogId === 'BUILDYOURCOMBO') {
-        //     this.changedCatalogs[catalog.ownComboItemText] = changedCatalog;
-        // } else if (catalogId === 'SIDES') {
-        //     this.changedCatalogs[catalog.displayText] = changedCatalog;
-        // } else {
-        //     this.changedCatalogs[catalogId] = changedCatalog;
-        // }
     },
 
-    // toggleSelected: function () {
-    //     this.model.set('selected', !this.model.get('selected'));
-    // },
+    incrementVersionQuantity: function(e) {
+        var $target = $(e.currentTarget),
+            index = $target.data('index');
+        h().playSound('addToCart');
+        
+        this.updateVersionQuantity(index, 1);
+    },
 
-    // _update: function () {
-    //     this.$('a').toggleClass('ui-icon-delete', 'ui-icon-none');
-    // },
+    decrementVersionQuantity: function(e) {
+        var $target = $(e.currentTarget),
+            index = $target.data('index');
+        h().playSound('removeFromCart');
+        
+        this.updateVersionQuantity(index, -1);
+    },
+
+    getVersionsPrice: function() {
+        var versions = this.model.get('versions'),
+            totalPrice = 0;
+        _.each(versions.selectedVersions, function(version){
+            totalPrice += version.version.price * version.quantity;
+        });
+        return totalPrice;
+    },
+
+    updateVersionQuantity: function(index, quantity) {
+        var version = this.model.get('versions').selectedVersions[index],
+            vQuantity = version.quantity;
+        version.quantity = vQuantity === 0 && quantity === -1 ? 0 : version.quantity + quantity;
+        this.$('.order_price').text('$' + this.getVersionsPrice());
+        this.$('.quantity[data-index="' + index + '"]').text(version.quantity);
+        this.addToVersionBasket();
+    },
+
+    addToVersionBasket: function() {
+        var changedItem = {
+            model: this.model
+        }
+        if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED' || !this.basket.catalogType) {
+            this.changedItems[this.model.get('uuid')] = changedItem;
+        }
+    },
 
 });
 

@@ -72,38 +72,43 @@ var CatalogItemVersionsView = Backbone.View.extend({
     },
 
     updateQuantity: function () {
-        // if (this.basket.length === 0) {
-        //     this.$('.quantity').text(0);
-        //     this.quantity = 0;
-        // } else {
-        //     var modelChanged = this.basket.get(this.model.get('uuid'));
-        //     if (modelChanged) {
-        //         this.quantity = modelChanged.get('quantity');
-        //         this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
-        //     } else {
-        //         this.quantity = 0;
-        //         this.$('.order_price').text('$' + this.model.get('price'));
-        //     }
-        // }
-        // this.model.set('quantity', this.quantity);
-        // this.$('.quantity').text(this.quantity);
+        console.log('update qantity');
+        var inModelVersions = this.model.get('versions'),
+            selected = inModelVersions.selectedVersions;
+        _.each(this.versions, function(version, index){
+            var itemVersion = version.version.itemVersion,
+                itemId = version.version.itemId,
+                changed = _.find(selected, function(item) {
+                    return item.version.itemVersion === itemVersion &&
+                           item.version.itemId === itemId;
+                });
+            console.log(changed);
+            if (changed) {
+                if (changed.quantity === 0) {
+                    this.versions.splice(index, 1);
+                    this.trigger('removeVersion');
+                } else {
+                    version.quantity = changed.quantity;
+                }
+            }
+        }.bind(this));
+        this.render(this.versions);
+        this.addToBasket();
     },
 
-    getVerions: function() {
+    getVersions: function() {
         var versions = {
             totalPrice: 0,
+            totalQuantity: 0,
             selectedVersions: []
         };
         _.each(this.versions, function(version) {
-            var shortVersion = {
-                itemId: version.version.itemId,
-                itemVersion: version.version.itemVersion,
-                price: version.version.price,
-                priceId: version.version.priceId,
-                quantity: version.quantity
-            };
-            versions.selectedVersions.push(shortVersion);
-            versions.totalPrice += shortVersion.price * shortVersion.quantity;
+            var longVersion = _.extend(version, {
+                displayText: version.selected.join(' ,')
+            });
+            versions.selectedVersions.push(longVersion);
+            versions.totalPrice += longVersion.version.price * longVersion.quantity;
+            versions.totalQuantity += longVersion.quantity;
         });
         console.log(versions);
         return versions;
@@ -111,8 +116,8 @@ var CatalogItemVersionsView = Backbone.View.extend({
 
     addToBasket: function () {
     	console.log(this.model.toJSON());
-        this.model.set('verions', this.getVerions());
-        //this.basket.addItem(this.model, 1, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+        this.model.set('versions', this.getVersions());
+        this.basket.addVersionItem(this.model, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     }
 });
 

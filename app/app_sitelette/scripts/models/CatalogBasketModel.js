@@ -121,6 +121,40 @@ var CatalogBasketModel = Backbone.Collection.extend({
         this.dumpCartToConsole();
     },
 
+    changeVersionItem: function(item) {
+        var itemModel = this.get(item.get('uuid'));
+        itemModel.trigger('updateVersions');
+    },
+
+    addVersionItem : function(item, groupId, groupDisplayText,catalogId,catalogDisplayText) {
+        var itemModel = this.get(item.get('uuid'));
+        if (itemModel) {
+            var itemVersions = item.get('versions'),
+                modelVersions = itemModel.get('versions');
+            if (itemVersions.selectedVersions.length === 0) {
+                this.removeItem(itemModel);
+            } else {
+                //debugger;
+                itemModel.set('versions', itemVersions);
+                itemModel.set('quantity', itemVersions.totalQuantity);
+            }
+        } else {
+            //debugger;
+            var itemOptions = _.extend({}, item.attributes, {
+                quantity : 1,
+                groupId : groupId,
+                groupDisplayText:groupDisplayText,
+                catalogId : catalogId,
+                catalogDisplayText:catalogDisplayText
+            });
+
+            var itemModel = new CatalogBasketVersionItem(itemOptions);
+
+            this.add(itemModel);
+        }
+        this.dumpCartToConsole();
+    },
+
     addItemRaw : function(itemRaw, count, groupId,groupDisplayText, catalogId,catalogDisplayText) {
 
         /*
@@ -164,7 +198,11 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
     getTotalPrice : function() {
         return this.reduce(function(sum, item, id) {
-            return sum += item.get('quantity') * item.get('price');
+            if (item.get('hasVersions')) {
+                return sum += item.get('versions').totalPrice;
+            } else {
+                return sum += item.get('quantity') * item.get('price');
+            }
         }.bind(this), 0);
     },
 
