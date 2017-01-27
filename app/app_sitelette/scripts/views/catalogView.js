@@ -247,34 +247,7 @@ var CatalogView = Backbone.View.extend({
         } else {
             this.$('.cart_items_number').text(this.basket.getItemsNumber());
             this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
-            // if (!this.rosterBasket) {
-            //     this.basket.getItemsNumber() === 0 ?
-            //     this.$('#roster_order_button').prop('disabled', true) :
-            //     this.$('#roster_order_button').prop('disabled', false);
-            // }
         }
-        //
-        // if (this.basket.hasCombo()) {
-        //     /* update combo count */
-        //     $('#catalog_combo_count_div').show();
-        //     $('.num-of-combo-items').text(this.basket.getComboCount());
-        //     $('.combo-total-price').text(this.basket.getComboPrice());
-        // } else {
-        //     /* hide the combo line */
-        //     $('#catalog_combo_count_div').hide();
-        // }
-        //
-        // /*
-        //  * update the items
-        //  */
-        // if (this.basket.hasCombo()) {
-        //     $('.num-of-items').text(this.basket.nonComboItemCount());
-        //     $('.total-price').text(this.basket.getNonComboPrice());
-        // } else {
-        //     $('.num-of-items').text(this.basket.count());
-        //     $('.total-price').text(this.basket.getTotalPrice());
-        // }
-
     },
 
     expandCollapseDetails: function(view) {

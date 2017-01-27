@@ -56,80 +56,13 @@ var EditCatalogBasketView = PanelView.extend({
     saveBasket: function() {
         if (this.changedItems.length === 0) return;
         _.each(this.changedItems, _.bind(function(item) {
-            this.basket.changeItem(item.model, item.count);
+            if (item.model.get('isVersion')) {
+                this.basket.changeVersionItem(item.model, item.count);
+            } else {
+                this.basket.changeItem(item.model, item.count);
+            }
         }, this));
     },
-
-    // removeSelected : function(e) {
-    //
-    //     loader.show('deleting items');
-    //     var selected = this.collection.where({
-    //         selected : true
-    //     });
-    //     $.when(this.actions.removeItem(selected)).then(function() {
-    //         loader.hide();
-    //     }.bind(this), function() {
-    //         loader.showFlashMessage(h().getErrorMessage(e, 'error deleting'));
-    //     });
-    //
-    //     this.basket = this.options.parent.basket;
-    //     console.log(this.basket.getComboCount());
-    //     // $('.cart_items_number').text(this.basket.getComboCount());
-    //
-    //     this.shut();
-    //
-    // },
-
-    // addOrDeleteItem: function(e, action) {
-    //     var catalogId = e.target.attributes.catalogid.value;
-    //     var catalog_quantity = parseInt($('#itemCount_'+catalogId).text());
-    //     console.log(catalog_quantity);
-    //
-    //     var count = (action == 'add') ? catalog_quantity + 1 : catalog_quantity - 1,
-    //         currentModel;
-    //
-    //     console.log(count);
-    //
-    //     if(count === 0){
-    //         $('#itemCount_'+catalogId).text(count);
-    //         $('#ComboItemCount_'+catalogId).text(count);
-    //         this.removeSelected(e);
-    //     }
-    //     else{
-    //         console.log(this.options.parent);
-    //
-    //         this.basket = this.options.parent.basket;
-    //         var initialCnt=this.basket.getComboCount();
-    //
-    //         this.catalogId = e.target.attributes.catalogid.value;
-    //
-    //         console.log( this.catalogId);
-    //
-    //         this.catalogDisplayText=e.target.attributes.catalogdisplaytext.value;
-    //
-    //         currentModel = this.model.findWhere({catalogId: this.catalogId});
-    //         this.basket.addCatalog(currentModel.toJSON(), count,  this.catalogId,this.catalogDisplayText);
-    //
-    //         this.listenTo(initialCnt, 'change:value', initialCnt+count, this);
-    //
-    //         console.log(this.basket.getComboCount());
-    //
-    //         // $('.cart_items_number').text(this.basket.getComboCount());
-    //
-    //         $('#itemCount_'+catalogId).text(count);
-    //         $('#ComboItemCount_'+catalogId).text(count);
-    //
-    //         return;
-    //     }
-    // },
-
-    // incrementQuantity: function (e) {
-    //     this.addOrDeleteItem(e, 'add');
-    // },
-    //
-    // decrementQuantity: function (e) {
-    //     this.addOrDeleteItem(e, 'remove');
-    // },
 
     _update : function() {
         this.render(true);

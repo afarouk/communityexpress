@@ -4,7 +4,6 @@
 
 var CatalogBasketItem = require('../models/CatalogBasketItem'); //
 
-
 var CatalogBasketModel = Backbone.Collection.extend({
 
     model : CatalogBasketItem,
@@ -121,6 +120,31 @@ var CatalogBasketModel = Backbone.Collection.extend({
         this.dumpCartToConsole();
     },
 
+    changeVersionItem: function(item, count) {
+        var itemModel = this.get(item.get('uuid'));
+        itemModel.set('quantity', count);
+        itemModel.trigger('updateVersions');
+        if (!itemModel.get('quantity') || itemModel.get('quantity') === 0) {
+            this.removeItem(itemModel);
+        }
+    },
+
+    setBasketVersions: function(model, versions) {
+        if (typeof this.versions !== 'object') {
+            this.versions = {};
+        }
+        var uuid = model.get('uuid');
+        this.versions[uuid] = versions;
+    },
+
+    getBasketVersions: function(model) {
+        if (typeof this.versions !== 'object') {
+            return null;
+        }
+        var uuid = model.get('uuid');
+        return this.versions[uuid];
+    },
+
     addItemRaw : function(itemRaw, count, groupId,groupDisplayText, catalogId,catalogDisplayText) {
 
         /*
@@ -164,7 +188,11 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
     getTotalPrice : function() {
         return this.reduce(function(sum, item, id) {
-            return sum += item.get('quantity') * item.get('price');
+            if (item.get('hasVersions')) {
+                return sum += item.get('versions').totalPrice;
+            } else {
+                return sum += item.get('quantity') * item.get('price');
+            }
         }.bind(this), 0);
     },
 
