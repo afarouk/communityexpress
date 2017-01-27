@@ -1,81 +1,76 @@
 <section id="themeop" class="push-down-for-menu">
-  <div class="bg-overlay pattern"></div>
+    <div class="bg-overlay pattern"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-            <div class="text-center">
-                <h2 class="sec-title font_color_white">Choose Theme Color</h2>
-                <div class="line-btm c-white" style="color:#FFF;"></div>
-                <p class="seeForYrslfText">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h2 class="sec-title font_color_white">Choose Theme Color</h2>
+                    <div class="line-btm c-white" style="color:#FFF;"></div>
+                    <p class="seeForYrslfText"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                </div>
             </div>
         </div>
-      </div>
-      <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-              <div class="themeSelectionConty">
-                  <form id="loadUrl">
-                      <div class="checkbox chkbox_label sectionDiv">
-                          <label><input type="checkbox" id="theme_demo_true_switch">Demo</label>
-                      </div>
-                      <div class="theme_inner_block sectionDiv">
-                          <p class="theme_f_heding">Enter the URL prefix for your business</p>
-                          <div class="col-md-9">
-                              <div class="form-group frmeL">
-                                  <input type="text" class="form-control" id="load_url">
-                              </div>
-                          </div>
-                          <div class="col-md-3">
-                              <div class="form-group frmeR">
-                                  <button type="button" id="loadBannerIcon" class="load_btn">Load</button>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="theme_inner_block sectionDiv">
-                          <div class="row">
-                              <div class="col-md-9">
-                                  <p class="theme_f_heding">Banner</p>
-                                  <div class="theme_bannerAr"></div>
-                              </div>
-                              <div class="col-md-3">
-                                  <p class="theme_f_heding">App Icon</p>
-                                  <div class="theme_appiconAr"></div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="theme_inner_block sectionDiv valNo">
-                          <p class="theme_f_heding">Pick Theme Color</p>
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <input type="text" class="form-control jscolor">
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <input type="text" class="form-control jscolor">
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <input type="text" class="form-control jscolor">
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <input type="text" class="form-control jscolor">
-                                  </div>
-                              </div>
-                              <div class="col-md-12 alignCenter">
-                                   <!-- <button type="submit" class="btn btn-default theme_btn_space">Apply</button> -->
-                                   <button type="submit" class="send_message_btn wow fadeInUp animated animated">Apply</button>
-                              </div>
-                          </div>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="themeSelectionConty">
+                    <form id="loadUrl">
+                        <div class="checkbox chkbox_label sectionDiv">
+                            <label>
+                                <input type="checkbox" id="theme_demo_true_switch">Demo</label>
+                        </div>
+                        <div class="theme_inner_block sectionDiv">
+                            <p class="theme_f_heding">Enter the URL prefix for your business</p>
+                            <div class="col-md-9">
+                                <div class="form-group frmeL">
+                                    <input type="text" class="form-control" id="load_url"> </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group frmeR">
+                                    <button type="button" id="loadBannerIcon" class="load_btn">Load</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="theme_inner_block sectionDiv">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="theme_f_heding">Banner</p>
+                                    <div class="theme_bannerAr" style="min-height:50px" id="theme_banner"></div>
+                                </div>
+                                <div class="col-md-1"> </div>
+                                <div class="col-md-4">
+                                    <p class="theme_f_heding">App Icon</p>
+                                    <div class="theme_appiconAr" id="theme_appicon" style="width:100px"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="theme_inner_block sectionDiv valNo">
+                            <p class="theme_f_heding">Pick Theme Color</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="color1" class="form-control jscolor"> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="color2" class="form-control jscolor"> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="color3" class="form-control jscolor"> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="color4" class="form-control jscolor"> </div>
+                                </div>
+                                <div class="col-md-12 alignCenter">
+                                    <!-- <button type="submit" class="btn btn-default theme_btn_space">Apply</button> -->
+                                    <button type="button" id="colorApply" class="send_message_btn wow fadeInUp animated animated">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
