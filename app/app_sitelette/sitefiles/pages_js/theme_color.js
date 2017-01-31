@@ -73,10 +73,10 @@ $(document).ready(function () {
         else {
             last_part = "serviceAccommodatorId=" + serviceAccommodatorId + "&serviceLocationId=" + serviceLocationId + "&UID=UID";
             new_applyThemeUrl = applyThemeUrl + last_part;
-            var color1 = $("#color1").val();
-            var color2 = $("#color2").val();
-            var color3 = $("#color3").val();
-            var color4 = $("#color4").val();
+            var color1 = '#'+$("#color1").val();
+            var color2 = '#'+$("#color2").val();
+            var color3 = '#'+$("#color3").val();
+            var color4 = '#'+$("#color4").val();
             var allcolor = ".cmtyx_color_1 { background-color:" + color1 + " !important; }" + ".cmtyx_border_color_1 { border-color: " + color1 + " !important; }" + ".cmtyx_text_color_1 { color: " + color1 + " !important; }" + ".cmtyx_color_2 { background-color:" + color2 + " !important; }" + ".cmtyx_border_color_2 { border-color: " + color2 + " !important; }" + ".cmtyx_text_color_2 { color: " + color2 + " !important; }" + ".cmtyx_color_3 { background-color:" + color3 + " !important; }" + ".cmtyx_border_color_3 { border-color: " + color3 + " !important; }" + ".cmtyx_text_color_3 { color: " + color3 + " !important; }" + ".cmtyx_color_4 { background-color:" + color4 + " !important; }" + ".cmtyx_border_color_4 { border-color: " + color4 + " !important; }" + ".cmtyx_text_color_4 { color: " + color4 + " !important; }"
             var dataobj = {
                 "barFontColors": "" + allcolor
