@@ -13,7 +13,7 @@ var CatalogItemView = Backbone.View.extend({
 
     tagName: 'li',
 
-    className: 'cmntyex-catalog-item sides_extras_container color1 sides_extras_color',
+    className: 'cmntyex-catalog-item sides_extras_container color1 cmtyx_color_3',
 
     events: {
         'click': 'onClick',

@@ -1,6 +1,6 @@
 $(function () {
     //card = new Skeuocard($("#skeuocard"));
-    
+
 //    BUTTON CLICKS
     $("#choose_shipping_address_page .nav_back_btn").click(function () {
         location.href = '#sitelette';
@@ -59,17 +59,17 @@ $(function () {
         location.href = '#choose_shipping_address_page';
     });
 
-   
-    
+
+
 //    OTHER
     $('input[type="text"]').on("focus", function () {
         $(".back_next_btns").hide();
     });
-    
+
     $('input[type="text"]').on("blur", function () {
         $(".back_next_btns").show();
     });
-    
+
     $("#left-panel.cart").css("height", $(window).height() + "px");
 
 //    BUILD COMBO COLOR PANELS
@@ -78,9 +78,9 @@ $(function () {
     $(".collapsibleSet div:nth-child(3)").addClass("color3");
     $(".collapsibleSet div:nth-child(4)").addClass("color4");
     $(".combo_item_container div").addClass("combo_item_color");
-    $(".sides_extras_container").addClass("sides_extras_color");
-    
-    
+    $(".sides_extras_container").addClass("cmtyx_color_3");
+
+
 //    if ($('.combo_item_input').is(':checked')) {
 //        $('.tickImg').show();
 //    }
