@@ -206,7 +206,7 @@ var CatalogItemView = Backbone.View.extend({
     updateVersionsTotalPrice: function() {
         var versions = this.basket.getBasketVersions(this.model),
             totalPrice = versions ? versions.totalPrice : 0;
-        this.$('.order_price').text('$' + totalPrice);
+        this.$('.order_price').text('$' + totalPrice.toFixed(2));
     },
 
     onBackVersionsUpdate: function(modelChanged) {

@@ -6,9 +6,8 @@
     <% } %>
     <div class="sides_extras_item_details">
         <span class="item_name"><%= itemName %></span>
-        <div class="order_price">$0</div>
+        <div class="order_price">$<%= price %></div>
     </div>
-    <div class="sides_extras_item_added_versions"></div>
     <div class="sides_extras_item_versions">
         <div class="ui-field-contain versions_buttons">
             <% _.each(selectorVersions, function(selector, index){ %>
@@ -29,6 +28,7 @@
             </div>
         </div>
     </div>
+    <div class="sides_extras_item_added_versions"></div>
 </div>
 <div class="sides_extras_detailed">
     <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>

@@ -1202,19 +1202,33 @@ li.build_combo, li.choose_extras {
 
 /* item versions */
 .sides_extras_item_versions {
-    margin: 10px 3px 5px 10px;
-    height: 55px;
+    margin: 0 3px 5px 10px;
+    height: 40px;
 }
 .sides_extras_item_versions .versions_buttons {
     width: 75%;
     float: left;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    pointer-events: none;
+    border: none;
 }
 .sides_extras_item_versions .versions_buttons .ui-select {
-    width: 30.0%;
+    width: 50%;
     margin-right: 1%;
+    margin-left: 0;
     float: left;
     border-radius: 4px;
     background-color: #3c3b3b !important;
+    pointer-events: all;
+}
+.sides_extras_item_versions .float_right {
+    pointer-events: all;
+}
+.sides_extras_item_versions .versions_buttons .ui-select .ui-btn:hover {
+    color: white;
 }
 .sides_extras_item_versions .versions_buttons .ui-select > div {
     border-color: #3c3b3b !important;
@@ -1225,7 +1239,7 @@ li.build_combo, li.choose_extras {
     width: 65px;
 }
 .sides_extras_item_versions .catalog_item_counter a.left.plus_version_button {
-    margin: 17px 10px 0 0;
+    margin: 5px 10px 0 0;
 }
 .sides_extras_item_versions .catalog_item_counter a.left.plus_version_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.ui-icon-plus.ui-btn-icon-notext:after {
     background-size: 14px 14px !important;
@@ -1240,19 +1254,27 @@ li.build_combo, li.choose_extras {
     pointer-events: none;
 }
 .sides_extras_item_added_versions {
-    margin: 10px 5px;
+    margin: 0 5px 0 10px;
     color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 15px;
 }
 .sides_extras_item_added_versions .item_version {
     margin: 0;
     clear: both;
-    min-height: 55px;
+    width: 100%;
+}
+.sides_extras_item_added_versions .item_version .float_right {
+    max-height: 55px;
 }
 .sides_extras_item_added_versions .item_version .version-description {
     margin-left: 10px;
     font-size: 15px;
     float: left;
     margin-top: 16px;
+    width: 55%;
 }
 .sides_extras_item_added_versions .item_version .cmntyex-add_to_basket_quantity .quantity {
     margin-top: 0
@@ -1289,6 +1311,9 @@ li.build_combo, li.choose_extras {
     line-height: 20px;
 }
 /* end of versions */
+.cmntyex-items_placeholder .ui-collapsible-themed-content {
+    margin-bottom: 10px;
+}
 
 .sides_extras_input {
     border-color: #e1e1e1 !important;
