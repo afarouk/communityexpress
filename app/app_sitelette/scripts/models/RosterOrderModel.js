@@ -145,6 +145,8 @@ var RosterOrderModel = Backbone.Model.extend({
 		} else if (options.catalogId) {
 			options.basket.each(function(item, index) {
 				combinedItems.push({
+					isVersion: item.get('isVersion'),
+					versionText: item.get('version1DisplayText'),
 	    			quantity: item.get('quantity'),
 	    			displayText: item.get('itemName'),
 	    			price: (item.get('quantity') * item.get('price')).toFixed(2)

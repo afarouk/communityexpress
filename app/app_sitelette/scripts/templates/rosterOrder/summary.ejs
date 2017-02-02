@@ -21,6 +21,9 @@
                 <% _.each(combinedItems, function(item) { %>
                     <li>
                         <span class="order_name"><%= item.quantity %>X <%= item.displayText %></span>
+                        <% if (item.isVersion) { %>
+                            <span class="order_version">(<%= item.versionText %>)</span>
+                        <% } %>
                         <span class="order_price cmtyx_text_color_1"><%= cs + item.price %></span>
                     </li>
                 <% }) %>
