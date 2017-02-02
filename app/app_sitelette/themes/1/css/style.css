@@ -1265,6 +1265,9 @@ li.build_combo, li.choose_extras {
 .sides_extras_item_added_versions .item_version .float_right {
     max-height: 55px;
 }
+.sides_extras_item_added_versions .item_version .float_right .versions-price {
+    color: #333;
+}
 .sides_extras_item_added_versions .item_version .version-description {
     margin-left: 10px;
     font-size: 15px;
