@@ -62,7 +62,7 @@ var AddressView = Backbone.View.extend({
         if (this.model.additionalParams.addrIsEmpty) return;
         var $label = this.$('label[for="saved_address"]'),
             address = this.model.get('deliveryAddress'),
-            tpl = address.street + ' ,' + address.number + ' ,' + address.city;
+            tpl = address.number + ' ' + address.street + ', ' + address.city + ', ' + address.state;
 
         $label.removeClass('hidden');
         $label.siblings().first().removeClass('hidden').click();

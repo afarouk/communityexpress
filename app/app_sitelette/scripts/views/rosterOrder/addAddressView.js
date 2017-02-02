@@ -13,6 +13,7 @@ var AddAddressView = Backbone.View.extend({
     number: '#aptBldgInput',
     street: '#streetInput',
     city: '#cityInput',
+    state: '#stateInput',
 
 	initialize: function(options) {
 		this.options = options || {};
@@ -40,6 +41,7 @@ var AddAddressView = Backbone.View.extend({
             'change #aptBldgInput': 'onAptBldgChanged',
             'change #streetInput': 'onStreetChanged',
             'change #cityInput': 'onCityChanged',
+            'change #stateInput': 'onStateChanged',
             'focus .material-textfield input': 'hideError'
         });
         this.getMapCoordinates();
@@ -60,13 +62,13 @@ var AddAddressView = Backbone.View.extend({
             geocoder = new google.maps.Geocoder(),
             location;
         geocoder.geocode({
-            "address": address.city + ' ' + address.street + ' ' + address.number
+            "address": address.state + ' ' + address.city + ' ' + address.street + ' ' + address.number
         }, _.bind(function(results) {
             if (results.length === 0 && !this.map) {
                 this.mapResultEmpty();
                 return;
             }
-            if (results.lenght === 0) return;
+            if (results.length === 0) return;
             location = results[0].geometry.location;
             if (this.map) {
                 this.changeMapCenter(location.lat(), location.lng());
@@ -86,8 +88,6 @@ var AddAddressView = Backbone.View.extend({
     },
 
     mapResultEmpty: function() {
-        //TODO empty map
-        // this.$(this.order_address).html('');
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(_.bind(function(position) {
@@ -134,7 +134,7 @@ var AddAddressView = Backbone.View.extend({
         google.maps.event.addListener(this.map, 'dblclick', function(e) {
             var positionDoubleclick = e.latLng;
             this.marker.setPosition(positionDoubleclick);
-            e.stopPropagation();
+            this.dragendMarker(e);
         }.bind(this));
     },
 
@@ -158,7 +158,7 @@ var AddAddressView = Backbone.View.extend({
             cNumber = 0,
             formatted = result.formatted_address,
             components = result.address_components;
-
+console.log(components);
         components.forEach(function(component){
             var type = component.types[0];
             switch (type) {
@@ -174,13 +174,23 @@ var AddAddressView = Backbone.View.extend({
                 address.city = component.short_name;
                 cNumber++;
                 break;
+                case 'administrative_area_level_1':
+                address.state = component.short_name;
+                cNumber++;
+                break;
             }
         });
-        if (cNumber !== 3) {
-            components = formatted.split(',');
-            address.street = components[0];
-            address.number = components[1].replace(' ', '');
-            address.city = components[2];
+        if (cNumber !== 4) {
+            //try to parse if components wrong
+            try {
+                components = formatted.split(',');
+                address.number = components[0].split(' ')[0];
+                address.street = components[0].split(' ').slice(1);
+                address.city = components[1].replace(' ', '');
+                address.state = components[2].replace(' ', '');
+            } catch(e) {
+
+            }
         }
         return address;
     },
@@ -192,6 +202,7 @@ var AddAddressView = Backbone.View.extend({
         this.$(this.number).val(address.number);
         this.$(this.street).val(address.street);
         this.$(this.city).val(address.city);
+        this.$(this.state).val(address.state);
     },
 
     triggerPayment: function() {
@@ -220,7 +231,8 @@ var AddAddressView = Backbone.View.extend({
         var address = this.model.get('deliveryAddress');
         if (address.number &&
             address.street &&
-            address.city) {
+            address.city &&
+            address.state) {
             this.model.additionalParams.addrIsEmpty = false;
             return true;
         } else {
@@ -264,10 +276,15 @@ var AddAddressView = Backbone.View.extend({
         this.onChangeAddress();
     },
 
+    onStateChanged: function(e) {
+        var value = this.getValue(e);
+        this.model.get('deliveryAddress').state = value;
+        this.onChangeAddress();
+    },
+
     onChangeAddress: function() {
         var address = this.model.get('deliveryAddress'),
             tpl = 'Your address is ' + address.street + ' ,' + address.number + ' ,' + address.city;
-        // this.$(this.order_address).html(tpl);
         this.getMapCoordinates();
     },
 

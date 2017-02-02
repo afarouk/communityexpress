@@ -92,7 +92,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			addr = {
 					street: address.street,
 					city: address.city,
-					number: address.number
+					number: address.number,
+					state: address.state
 				};
 		}
 
