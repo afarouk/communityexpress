@@ -1,7 +1,7 @@
 <div class="catalog_item_main_view">
-    <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
+    <% if (thumbnailBase64) { %>
         <div class="sides_item_image_small_container">
-            <img src="<%= mediaURLs[0] %>" alt="" />
+            <img src="data:image/gif;base64,<%= thumbnailBase64 %>" alt="" />
         </div>
     <% } %>
     <div class="sides_extras_item_details">
