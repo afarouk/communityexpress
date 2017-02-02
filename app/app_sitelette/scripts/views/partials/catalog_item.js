@@ -43,7 +43,6 @@ var CatalogItemView = Backbone.View.extend({
         this.versions = this.getVersionsFromBasket();
 
         this.listenTo(this.basket, 'reset change add remove', this.updateQuantity, this);
-        this.listenTo(this.basket, 'updateVersions', this.updateVersions, this);
     },
 
     render: function() {
@@ -195,14 +194,6 @@ var CatalogItemView = Backbone.View.extend({
         return false;
     },
 
-    updateVersions: function() {
-        var modelChanged = this.getChangedModel();
-        if (modelChanged && this.versionsView) {
-            this.versionsView.updateQuantity(modelChanged);
-            this.updateVersionsTotalPrice();
-        }
-    },
-
     updateVersionsTotalPrice: function() {
         var versions = this.basket.getBasketVersions(this.model),
             totalPrice = versions ? versions.totalPrice : 0;
@@ -210,26 +201,30 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     onBackVersionsUpdate: function(modelChanged) {
-        this.updateVersionsTotalPrice();
+        if (modelChanged && this.versionsView) {
+            this.versionsView.updateQuantity(modelChanged);
+        }
     },
 
-    getChangedModel: function() {
-        var modelChanged = this.basket.get(this.model.get('uuid'));
-        if (modelChanged) return modelChanged;
-        _.each(this.versions, function(version) {
-            var itemVersion = version.version.get('itemVersion'),
-                model = this.basket.get(this.model.get('uuid') + '_' + itemVersion);
-            if (model) modelChanged = model;
-        }.bind(this));
-        return modelChanged;
+    getChangedModel: function(model) {
+        if (!model) return;
+        var uuid = model.get('uuid'),
+            viewModelUuid = this.model.get('uuid');
+        if (model.get('isVersion')) {
+            if (uuid.indexOf(viewModelUuid) === -1) return;
+
+            return this.basket.get(uuid);
+        } else {
+            return this.basket.get(viewModelUuid);
+        }
     },
 
-    updateQuantity: function () {
+    updateQuantity: function (model) {
         if (this.basket.length === 0) {
             this.$('.quantity').text(0);
             this.quantity = 0;
         } else {
-            var modelChanged = this.getChangedModel();
+            var modelChanged = this.getChangedModel(model);
             if (modelChanged && modelChanged.get('isVersion')) {
                 setTimeout(this.onBackVersionsUpdate.bind(this, modelChanged), 1);
                 return;

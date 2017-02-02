@@ -89,7 +89,6 @@ var CatalogItemVersionsView = Backbone.View.extend({
             }
         }.bind(this));
         this.render(this.versions);
-        //this.addToBasket();
     },
 
     getVersions: function() {
@@ -110,7 +109,7 @@ var CatalogItemVersionsView = Backbone.View.extend({
     },
 
     addToBasket: function (versionIndex, count) {
-        var index = versionIndex || this.versions.length - 1,
+        var index = versionIndex === undefined ? this.versions.length - 1 : versionIndex,
             versions = this.getVersions(),
             uuid = this.model.get('uuid'),
             basketItem = this.versions.length > 0 ? this.versions[index].version : null;
