@@ -105,6 +105,8 @@ var DiscountsView = Backbone.View.extend({
 
         this.setLinksForEachDiscount();
         this.resolved();
+        
+        this.toggleCollapse();
         return this;
     },
 

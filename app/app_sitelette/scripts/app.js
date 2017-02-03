@@ -50,9 +50,9 @@ var App = function() {
 
     $.mobile.initializePage();
     this.navbarView = new NavbarView();
-		this.headerView = new HeaderView({
-            navbarView: this.navbarView
-        });
+	this.headerView = new HeaderView({
+        navbarView: this.navbarView
+    });
 
     this.landingView = new LandingView();
 
@@ -60,10 +60,6 @@ var App = function() {
 
     this.currentView = this.landingView;
     this.saveInstance('restaurant', this.landingView);
-
-    // if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
-    //     this.checkType(window.community.type);
-    // }
 
     Backbone.View.prototype.addEvents = function(eventObj) {
         var events = _.extend( {}, eventObj, this.pageEvents );
@@ -85,9 +81,6 @@ App.prototype = {
           //console.log(vid);
           $(this).html('<iframe width="320"height="240" src="https://www.youtube.com/embed/'+vid+'?playsinline=1" frameborder="0"allowfullscreen></iframe>').css('background','none');});
         });
-
-
-
 
         if (window.saslData.error) {
             loader.showFlashMessage(window.saslData.error.message);
@@ -149,7 +142,6 @@ App.prototype = {
         var defrs = _.pluck(this.viewsInLanding, 'deferred');
         $.when.apply( this, defrs )
             .then( function() {
-                // console.log(arguments);
                 if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
                     setTimeout(this.checkType.bind(this, window.community.type), 100);
                 }

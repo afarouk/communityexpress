@@ -51,12 +51,6 @@ var LandingView = Backbone.View.extend({
         });
         Vent.on('scrollToBlock', this.scrollToBlock, this);
 
-        /*
-        _.extend( {}, this.model.attributes, {
-            imagePath: config.imagePath,
-            isFavorite: this.user.hasFavorite(this.model.get('serviceAccommodatorId'), this.model.get('serviceLocationId'))
-        });
-        */
         // Check if user launches event URL or photoContest URL
         // and open page with current event/photoContest
 
