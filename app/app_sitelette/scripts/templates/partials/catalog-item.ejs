@@ -1,5 +1,5 @@
 <div class="catalog_item_main_view">
-    <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
+    <% if (mediaURLs.length > 0 && (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined') ) { %>
         <div class="sides_item_image_small_container">
             <img src="<%= mediaURLs[0] %>" alt="" />
         </div>

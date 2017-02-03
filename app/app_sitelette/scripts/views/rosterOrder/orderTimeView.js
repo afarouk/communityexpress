@@ -106,10 +106,10 @@ var OrderTimeView = Backbone.View.extend({
             index = $target.get(0).options.selectedIndex,
             $time = this.$('#select-time'),
             date = this.options.deliveryPickupOptions.options[index],
-            initial = date.hours[0].text,
+            initial = date.hours[0].displayString,
             template = '';
         _.each(date.hours, function(hour){
-            template += '<option value="' + hour.text + '">' + hour.text + '</option>';
+            template += '<option value="' + hour.displayString + '">' + hour.displayString + '</option>';
         });
         $time.html(template);
         $time.val(initial);

@@ -122,8 +122,10 @@ var CatalogItemView = Backbone.View.extend({
                     quantity: 1
                 };
             }
+            this.$('.order_price').text('$' + exists.price);
         } else {
             this.$('.plus_version_button').addClass('disabled');
+            this.$('.order_price').html('<br>');
         }
     },
 

@@ -31,20 +31,18 @@
             </div>
         </div>
         <div id="future" class="ui-body-d ui-content future-order">
-            <form>
-                <fieldset data-role="controlgroup" data-type="horizontal" class="future-order-select">
-                    <select name="select-date" id="select-date">
-                        <% _.each(deliveryPickupOptions.options, function(day) { %>
-                            <option value="day.day"><%= day.day %></option>
-                        <% }); %>
-                    </select>
-                    <select name="select-time" id="select-time">
-                        <% _.each(deliveryPickupOptions.options[0].hours, function(hour) { %>
-                            <option value="hour.text"><%= hour.displayString %></option>
-                        <% }); %>
-                    </select>
-                </fieldset>
-            </form>
+            <fieldset data-role="controlgroup" data-type="horizontal" class="future-order-select">
+                <select name="select-date" id="select-date">
+                    <% _.each(deliveryPickupOptions.options, function(day) { %>
+                        <option value="<%= day.day %>"><%= day.day %></option>
+                    <% }); %>
+                </select>
+                <select name="select-time" id="select-time">
+                    <% _.each(deliveryPickupOptions.options[0].hours, function(hour) { %>
+                        <option value="<%= hour.displayString %>"><%= hour.displayString %></option>
+                    <% }); %>
+                </select>
+            </fieldset>
             <% if(deliveryPickupOptions.displayText) { %>
                 <div class="future-order-note">
                     <h3><%= deliveryPickupOptions.displayText %></h3>
