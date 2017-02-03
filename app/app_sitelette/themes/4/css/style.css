@@ -209,6 +209,8 @@ td {
 .right_arr_block img {
     margin-left: 10px;
 }
+
+/* future order */
 .future-order .future-order-select {
     width: 100%;
     text-align: center;
@@ -220,6 +222,38 @@ td {
 .future-order .future-order-note h3 {
     font-size: 20px;
 }
+.future-order .ui-controlgroup-controls {
+    display: flex;
+    justify-content: center;
+}
+.future-order .ui-controlgroup-controls .ui-select {
+    width: 47%
+}
+/* future oredr end */
+
+.regular-order .regular-order-delay {
+    padding: 20px 5px;
+    text-align: center;
+}
+.future-order .future-order-delay {
+    padding: 5px;
+    text-align: center;
+}
+.future-order .future-order-warning {
+    color: #FFCC00;
+    text-align: center;
+}
+
+/* roster order state selector*/
+#delivery .state-selector .ui-select .ui-btn:hover {
+    color: #fafafa;
+}
+#delivery .state-selector .state-selector-message {
+    color: #fafafa;
+    opacity: 0.7;
+}
+/* roster order state selector end*/
+
 li {
     outline: none;
 }
@@ -1223,6 +1257,9 @@ li.build_combo, li.choose_extras {
     background-color: #3c3b3b !important;
     pointer-events: all;
 }
+.sides_extras_item_versions .versions_buttons .ui-select .ui-btn select {
+    font-size: 16px!important;
+}
 .sides_extras_item_versions .float_right {
     pointer-events: all;
 }
@@ -1264,9 +1301,12 @@ li.build_combo, li.choose_extras {
     margin: 0;
     clear: both;
     width: 100%;
+    display: flex;
 }
 .sides_extras_item_added_versions .item_version .float_right {
     max-height: 55px;
+    min-width: 210px;
+    margin-left: auto;
 }
 .sides_extras_item_added_versions .item_version .float_right .versions-price {
     color: #333;
@@ -1276,7 +1316,6 @@ li.build_combo, li.choose_extras {
     font-size: 15px;
     float: left;
     margin-top: 16px;
-    width: 45%;
 }
 .sides_extras_item_added_versions .item_version .cmntyex-add_to_basket_quantity .quantity {
     margin-top: 0

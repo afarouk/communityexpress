@@ -63,7 +63,7 @@ var LandingView = Backbone.View.extend({
     onShow: function() {
         if (this.viewsInLanding) {
             _.each(this.viewsInLanding, function(view) {
-                if (typeof view.onShow === 'function') {
+                if (view && typeof view.onShow === 'function') {
                     view.onShow();
                 }
             });

@@ -231,6 +231,19 @@ td {
 }
 /* future oredr end */
 
+.regular-order .regular-order-delay {
+    padding: 20px 5px;
+    text-align: center;
+}
+.future-order .future-order-delay {
+    padding: 5px;
+    text-align: center;
+}
+.future-order .future-order-warning {
+    color: #FFCC00;
+    text-align: center;
+}
+
 /* roster order state selector*/
 #delivery .state-selector .ui-select .ui-btn:hover {
     color: #fafafa;
