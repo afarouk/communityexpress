@@ -231,6 +231,16 @@ td {
 }
 /* future oredr end */
 
+/* roster order state selector*/
+#delivery .state-selector .ui-select .ui-btn:hover {
+    color: #fafafa;
+}
+#delivery .state-selector .state-selector-message {
+    color: #fafafa;
+    opacity: 0.7;
+}
+/* roster order state selector end*/
+
 li {
     outline: none;
 }

@@ -30,9 +30,13 @@
                 <div class="roster_order_error error_city">
                     Please, fill this field
                 </div>
-                <div class="material-textfield yellow">
-                    <input type="text" id="stateInput" name="state" value="<%= deliveryAddress.state %>" required data-role="none" />
-                    <label data-content="State">State</label>
+                <div class="state-selector">
+                    <span class="state-selector-message">State</span>
+                    <select name="state-selector" id="stateSelector">
+                    <% _.each(states, function(state, key) { %>
+                        <option <% if (key === selectedState) { %>selected<% } %> value="<%= key %>"><%= state %></option>
+                    <% }); %>
+                </select>
                 </div>
                 <div class="roster_order_error error_state">
                     Please, fill this field

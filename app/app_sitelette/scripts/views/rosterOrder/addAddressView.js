@@ -2,6 +2,7 @@
 
 var Vent = require('../../Vent'),
     h = require('../../globalHelpers'),
+    states = require('../../states'),
     template = require('ejs!../../templates/rosterOrder/addAddress.ejs');
 
 var AddAddressView = Backbone.View.extend({
@@ -13,16 +14,16 @@ var AddAddressView = Backbone.View.extend({
     number: '#aptBldgInput',
     street: '#streetInput',
     city: '#cityInput',
-    state: '#stateInput',
+    state: '#stateSelector',
 
 	initialize: function(options) {
 		this.options = options || {};
+        this.states = this.getStatesData();
         this.on('show', this.onShow, this);
         this.render();
 	},
 
 	render: function() {
-		console.log(this.renderData());
         this.$el.html(template(this.renderData()));
         this.createCircles();
         this.setElement(this.$el.children().eq(0));
@@ -41,7 +42,7 @@ var AddAddressView = Backbone.View.extend({
             'change #aptBldgInput': 'onAptBldgChanged',
             'change #streetInput': 'onStreetChanged',
             'change #cityInput': 'onCityChanged',
-            'change #stateInput': 'onStateChanged',
+            'change #stateSelector': 'onStateChanged',
             'focus .material-textfield input': 'hideError'
         });
         this.getMapCoordinates();
@@ -53,7 +54,9 @@ var AddAddressView = Backbone.View.extend({
 
     renderData: function() {
     	return _.extend(this.model.toJSON(), {
-    		cs: this.model.additionalParams.symbol
+    		cs: this.model.additionalParams.symbol,
+            states: this.states,
+            selectedState: this.getSelectedState()
     	});
     },
 
@@ -136,6 +139,32 @@ var AddAddressView = Backbone.View.extend({
             this.marker.setPosition(positionDoubleclick);
             this.dragendMarker(e);
         }.bind(this));
+
+        //.......
+        // Bounds for North America
+        var strictBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(28.70, -127.50), 
+            new google.maps.LatLng(48.85, -55.90)
+        );
+        google.maps.event.addListener(this.map, 'dragend', function() {
+            if (strictBounds.contains(this.map.getCenter())) return;
+
+            var c = this.map.getCenter(),
+                x = c.lng(),
+                y = c.lat(),
+                maxX = strictBounds.getNorthEast().lng(),
+                maxY = strictBounds.getNorthEast().lat(),
+                minX = strictBounds.getSouthWest().lng(),
+                minY = strictBounds.getSouthWest().lat();
+
+            if (x < minX) x = minX;
+            if (x > maxX) x = maxX;
+            if (y < minY) y = minY;
+            if (y > maxY) y = maxY;
+
+            this.map.setCenter(new google.maps.LatLng(y, x));
+        }.bind(this));
+        //.......
     },
 
     dragendMarker: function(event) {
@@ -158,7 +187,7 @@ var AddAddressView = Backbone.View.extend({
             cNumber = 0,
             formatted = result.formatted_address,
             components = result.address_components;
-console.log(components);
+
         components.forEach(function(component){
             var type = component.types[0];
             switch (type) {
@@ -167,7 +196,7 @@ console.log(components);
                 cNumber++;
                 break;
                 case 'route':
-                address.street = component.short_name;
+                address.street = typeof component.short_name === 'string' ? component.short_name : '';
                 cNumber++;
                 break;
                 case 'locality':
@@ -175,7 +204,7 @@ console.log(components);
                 cNumber++;
                 break;
                 case 'administrative_area_level_1':
-                address.state = component.short_name;
+                address.state = component.short_name.split(' ')[0];
                 cNumber++;
                 break;
             }
@@ -185,9 +214,9 @@ console.log(components);
             try {
                 components = formatted.split(',');
                 address.number = components[0].split(' ')[0];
-                address.street = components[0].split(' ').slice(1);
+                address.street = components[0].split(' ').slice(1).toString();
                 address.city = components[1].replace(' ', '');
-                address.state = components[2].replace(' ', '');
+                address.state = components[2].replace(' ', '').split(' ')[0];
             } catch(e) {
 
             }
@@ -196,13 +225,14 @@ console.log(components);
     },
 
     setNewAddress: function(address) {
-        console.log(address);
+        var state = this.states[address.state] ? address.state : 'CA';
         this.model.set('deliveryAddress', address);
 
         this.$(this.number).val(address.number);
         this.$(this.street).val(address.street);
         this.$(this.city).val(address.city);
-        this.$(this.state).val(address.state);
+        this.$(this.state).val(state);
+        this.$(this.state).selectmenu('refresh', true);
     },
 
     triggerPayment: function() {
@@ -276,8 +306,8 @@ console.log(components);
         this.onChangeAddress();
     },
 
-    onStateChanged: function(e) {
-        var value = this.getValue(e);
+    onStateChanged: function() {
+        var value = this.$('#stateSelector').val()
         this.model.get('deliveryAddress').state = value;
         this.onChangeAddress();
     },
@@ -291,6 +321,15 @@ console.log(components);
     getValue: function(e) {
         var target = $(e.currentTarget);
         return target.val();
+    },
+
+    getStatesData: function() {
+        return states;
+    },
+    getSelectedState: function() {
+        var selected = this.model.get('deliveryAddress').state || null;
+
+        return this.states[selected] ? selected : 'CA';
     }
 
 });
