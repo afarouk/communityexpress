@@ -70,7 +70,7 @@
                     </li>
                     <li >
                         <span class="order_name">Tax (<%= taxState %>%)</span>
-                        <span class="order_price cmtyx_text_color_1"><%= cs + taxAmount %></span>
+                        <span class="order_price cmtyx_text_color_1"><%= cs + taxAmount.toFixed(2) %></span>
                     </li>
                     <li class="tip_price">
                         <span class="order_name">Tip</span>
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="order_price tip_price_value cmtyx_text_color_1"><%= cs + tipSum %></span>
+                            <span class="order_price tip_price_value cmtyx_text_color_1"><%= cs + tipSum.toFixed(2) %></span>
                         </div>
                     </li>
                     <li class="discount <%= backToSingleton ? 'hidden' : '' %>">
@@ -103,7 +103,7 @@
                     </li>
                     <li class="total_price">
                         <span class="order_name">Total</span>
-                        <span class="order_price cmtyx_text_color_1"><%= cs + totalAmount %></span>
+                        <span class="order_price cmtyx_text_color_1"><%= cs + totalAmount.toFixed(2) %></span>
                     </li>
                 </ul>
                 <div class="ui-grid-a back_next_btns">

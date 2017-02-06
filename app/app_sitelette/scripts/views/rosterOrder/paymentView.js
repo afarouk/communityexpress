@@ -121,8 +121,8 @@ var PaymentView = Backbone.View.extend({
     	return _.extend(this.model.toJSON(), {
     		cs: this.model.additionalParams.symbol,
             combinedItems: this.model.additionalParams.combinedItems,
-            taxState: this.model.additionalParams.taxState,
-            subTotal: this.model.additionalParams.subTotal,
+            taxState: this.model.additionalParams.taxState.toFixed(2),
+            subTotal: this.model.additionalParams.subTotal.toFixed(2),
             cardNumber: this.model.get('creditCard').cardNumber,
             tip: this.tip,
             tipSum: this.tipSum,
@@ -130,7 +130,7 @@ var PaymentView = Backbone.View.extend({
             allowCash: this.allowCash,
             paymentOnlineAccepted: this.paymentOnlineAccepted,
             allowDelivery: this.allowDelivery,
-            discount: this.model.additionalParams.discountDisplay,
+            discount: this.model.additionalParams.discountDisplay.toFixed(2),
             promoCode: this.model.additionalParams.promoCode,
             backToSingleton: this.model.additionalParams.backToSingleton
     	});
@@ -227,7 +227,7 @@ var PaymentView = Backbone.View.extend({
         this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
         var totalAmount = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
         this.$('.tip_quantity').text(this.tip + '%');
-        this.$('.tip_price_value').text(this.tipSum);
+        this.$('.tip_price_value').text(this.tipSum.toFixed(2));
         this.model.additionalParams.tipSum = this.tipSum;
         this.model.additionalParams.tip = this.tip;
         var discountType = this.model.additionalParams.discountType;

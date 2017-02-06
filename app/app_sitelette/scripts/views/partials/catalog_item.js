@@ -231,6 +231,7 @@ var CatalogItemView = Backbone.View.extend({
                 setTimeout(this.onBackVersionsUpdate.bind(this, modelChanged), 1);
                 return;
             }
+            if (model.get('isVersion')) return;
             if (modelChanged) {
                 this.quantity = modelChanged.get('quantity');
                 this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
