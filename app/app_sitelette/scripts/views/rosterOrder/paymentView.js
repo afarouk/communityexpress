@@ -95,6 +95,8 @@ var PaymentView = Backbone.View.extend({
                 this.currencySymbol = this.model.currencySymbols[resp.currencyCode];
                 this.model.additionalParams.discount = resp.discount;
                 this.model.additionalParams.discountType = resp.discountType;
+                this.model.additionalParams.maximumDiscount = resp.maximumDiscount;
+                this.model.additionalParams.minimumPurchase = resp.minimumPurchase;
                 this.model.additionalParams.promoCodeActive = true;
                 this.setTotalPriceWithTip();
             }, this), function(jqXHR) {
@@ -130,7 +132,7 @@ var PaymentView = Backbone.View.extend({
             allowCash: this.allowCash,
             paymentOnlineAccepted: this.paymentOnlineAccepted,
             allowDelivery: this.allowDelivery,
-            discount: this.model.additionalParams.discountDisplay.toFixed(2),
+            discount: this.model.additionalParams.discountDisplay,
             promoCode: this.model.additionalParams.promoCode,
             backToSingleton: this.model.additionalParams.backToSingleton
     	});
@@ -222,6 +224,29 @@ var PaymentView = Backbone.View.extend({
     },
 
     setTotalPriceWithTip: function() {
+        //TODO make changes here
+        /*
+            'Sub Total', 'Tax', 'Tip' , 'Discount' and 'Total' Show in 2 digits
+             I. If discount object has "minimumPurchase" value , please display the Text  on Order Summary page as
+
+            " Minimum purchase for discount  : "+ minimumPurchase value
+            {
+                "promoCode": "FIFP2016",
+                "serviceAccommodatorId": "DEMFFF1",
+                "serviceLocationId": "DEMFFF1",
+                "minimumPurchase": 50.0,
+                "maximumDiscount": 10.0,
+                "title": "10% off on all toys till dec31!",
+                ....
+            }
+
+            ( You can test with this business : https://chalkboardstoday.com/demohairstylist?demo=true), I have setup minimum purchase required in this discount
+            a. If user purchases more than that , remove the text
+
+            b. Do not apply the discount if the user is purchasing less than minimumPurchase value.
+
+            c. We need to apply discount  after subtotal then add Tax.
+        */
         var totalAmount,
             tipPortion = this.tip/100;
         this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));

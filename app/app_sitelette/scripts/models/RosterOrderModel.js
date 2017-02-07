@@ -21,6 +21,8 @@ var RosterOrderModel = Backbone.Model.extend({
 	},
 
 	setAdditionalParams: function(options) {
+		//FIFP2016
+		//localhost/demohairstylist?demo=true&desktopiframe=true
 		_.extend(this.additionalParams, {
 			symbol: this.currencySymbols[options.priceAddons.currencyCode] || '$',
 			backToCatalog: options.backToCatalog,
@@ -46,6 +48,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			allowDelivery: options.sasl.get('services').catalog['allowDelivery'],
 			allowCash: options.sasl.get('services').catalog['allowCash'],
 			discount: 0,
+			maximumDiscount: 0,
+			minimumPurchase: 0,
 			discountDisplay: options.discountPrice,
 			promoCode: options.promoCode,
 			promoCodeActive: false

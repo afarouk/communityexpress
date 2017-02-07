@@ -109,7 +109,7 @@ var SummaryView = Backbone.View.extend({
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty,
             allowDelivery: this.allowDelivery,
-            discount: this.model.additionalParams.discountDisplay.toFixed(2),
+            discount: this.model.additionalParams.discountDisplay,
             promoCode: this.model.additionalParams.promoCode,
             backToSingleton: this.model.additionalParams.backToSingleton
         });
