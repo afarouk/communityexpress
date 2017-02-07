@@ -144,9 +144,13 @@ var RosterOrderModel = Backbone.Model.extend({
 	    	});
 		} else if (options.catalogId) {
 			options.basket.each(function(item, index) {
+				var text1 = item.get('version1DisplayText') || '',
+					text2 = item.get('version2DisplayText'),
+					text3 = item.get('version3DisplayText'),
+					displayText = text1 + (text2 ? ', ' + text2 : '') + (text3 ? ', ' + text3 : '');
 				combinedItems.push({
 					isVersion: item.get('isVersion'),
-					versionText: item.get('version1DisplayText'),
+					versionText: displayText,
 	    			quantity: item.get('quantity'),
 	    			displayText: item.get('itemName'),
 	    			price: (item.get('quantity') * item.get('price')).toFixed(2)
