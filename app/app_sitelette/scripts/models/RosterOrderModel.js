@@ -67,6 +67,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			creditCardSelected: true,
 			fundSourceId: fundsource.fundSourceId || null,
 			items: this.getItems(options),
+			tipAmount: 0,
+			subTotal: this.getPriceWithoutTaxes(options),
 			taxAmount: this.calculateTaxes(options),
 			totalAmount: this.getTotalPriceWithTax(options),
 			currencyCode: options.priceAddons.currencyCode,

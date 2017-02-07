@@ -271,7 +271,8 @@ var PaymentView = Backbone.View.extend({
         loader.show('placing your order');
         this.model.set({
             itemUUID: this.model.additionalParams.itemUUID,
-            quantity: items[0].quantity
+            quantity: items[0].quantity,
+            tipAmount: this.tipSum
         });
         this.model.unset('items');
         request = params.type === 'PROMO'? orderActions.placePromoSingletonOrder :
@@ -300,6 +301,10 @@ var PaymentView = Backbone.View.extend({
     onPlaceMultipleOrder: function() {
         var params = this.model.additionalParams;
         loader.show('placing your order');
+
+        this.model.set({
+            tipAmount: this.tipSum
+        });
 
         return orderActions.placeOrder(
             params.sasl.sa(),
