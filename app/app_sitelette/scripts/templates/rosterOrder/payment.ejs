@@ -92,6 +92,7 @@
                         </div>
                     </li>
                     <li class="discount <%= backToSingleton ? 'hidden' : '' %>">
+                        <span class="minimum_purchase_error <% if ( minimumPurchase > totalAmount ) { %>visible<% } %>">Minimum purchase for discount : <%= cs + minimumPurchase %></span>
                         <span class="order_name">Discount</span>
                         <div class="float_right">
                             <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />

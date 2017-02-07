@@ -50,7 +50,7 @@ var PaymentView = Backbone.View.extend({
             $cash = this.$('#cash'),
             html = $.parseHTML(template(this.renderData())),
             tpl = $(html).find('#cash').html();
-
+        console.log(this.renderData());
         if (number) {
             $label.removeClass('hidden');
             $label.siblings().first().removeClass('hidden').click();
@@ -134,6 +134,7 @@ var PaymentView = Backbone.View.extend({
             allowDelivery: this.allowDelivery,
             discount: this.model.additionalParams.discountDisplay,
             promoCode: this.model.additionalParams.promoCode,
+            minimumPurchase: this.model.additionalParams.minimumPurchase,
             backToSingleton: this.model.additionalParams.backToSingleton
     	});
     },
@@ -247,7 +248,8 @@ var PaymentView = Backbone.View.extend({
 
             c. We need to apply discount  after subtotal then add Tax.
         */
-        var totalAmount,
+        var cs = this.model.additionalParams.symbol,
+            totalAmount,
             tipPortion = this.tip/100;
         this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
         var totalAmount = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
@@ -258,10 +260,22 @@ var PaymentView = Backbone.View.extend({
         var discountType = this.model.additionalParams.discountType;
         switch (discountType) {
             case 'PERCENT':
-                var percent = this.model.additionalParams.discount,
+                var maximumDiscount = this.model.additionalParams.maximumDiscount,
+                    minimumPurchase = this.model.additionalParams.minimumPurchase,
+                    percent = this.model.additionalParams.discount,
+                    discount;
+
+                if (totalAmount < minimumPurchase) {
+                    //this.$('.minimum_purchase_error').text(cs + minimumPurchase);
+                    this.model.trigger('change');
+                    this.$('.minimum_purchase_error').addClass('visible');
+                } else {
+                    this.$('.minimum_purchase_error').removeClass('visible');
                     discount = parseFloat(percent * totalAmount / 100).toFixed(2);
-                this.model.additionalParams.discountDisplay = discount;
-                totalAmount = parseFloat((100 - percent) * totalAmount / 100).toFixed(2);
+                    discount = discount <= maximumDiscount ? discount : maximumDiscount;
+                    this.model.additionalParams.discountDisplay = discount;
+                    totalAmount = parseFloat((100 - percent) * totalAmount / 100).toFixed(2);
+                }
                 break;
             case 'AMOUNT':
                 this.model.additionalParams.discountDisplay = this.model.additionalParams.discount;

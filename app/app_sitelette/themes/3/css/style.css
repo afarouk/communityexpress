@@ -3932,6 +3932,15 @@ a.cancel {
     border-bottom: solid 1px #636363;
 }
 
+.price_list .discount .minimum_purchase_error {
+    display: none;
+    padding: 5px 0 10px;
+    color: #FFCC00;
+}
+.price_list .discount .minimum_purchase_error.visible {
+    display: block;
+}
+
 input[name=promocode] {
     width: 90px;
     background: none;
