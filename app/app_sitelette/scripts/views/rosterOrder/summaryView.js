@@ -77,7 +77,6 @@ var SummaryView = Backbone.View.extend({
                 this.model.additionalParams.maximumDiscount = resp.maximumDiscount;
                 this.model.additionalParams.minimumPurchase = resp.minimumPurchase;
                 this.model.additionalParams.promoCodeActive = true;
-                debugger;
                 this.model.set({'promoCode': promoCode}, {silent: true});
                 this.setTotalPriceWithTip();
             }, this), _.bind(function(jqXHR) {
