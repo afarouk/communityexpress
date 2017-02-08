@@ -1220,6 +1220,15 @@ li.build_combo, li.choose_extras {
 }
 
 /* item versions */
+.sides_extras_item_not_available_versions {
+    color: #FFCC00;
+    clear: both;
+    padding: 3px 0 3px 10px;
+    display: none;
+}
+.sides_extras_item_not_available_versions.visible {
+    display: block;
+}
 .sides_extras_item_versions {
     margin: 0 3px 5px 10px;
     height: 40px;
@@ -3930,6 +3939,15 @@ a.cancel {
     padding: 15px 0;
     margin-bottom: 15px;
     border-bottom: solid 1px #636363;
+}
+
+.price_list .discount .minimum_purchase_error {
+    display: none;
+    padding: 5px 0 10px;
+    color: #FFCC00;
+}
+.price_list .discount .minimum_purchase_error.visible {
+    display: block;
 }
 
 input[name=promocode] {

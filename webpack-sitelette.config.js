@@ -48,6 +48,10 @@ module.exports = {
 				test   : /vendor\/.+\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
 				loader : 'file-loader',
 				exclude: /node_modules/
+			},
+			{
+				include: /\.json$/, 
+				loaders: ["json-loader"]
 			}
 		]
 	},
@@ -63,7 +67,7 @@ module.exports = {
 	],
 	resolve: {
 		modulesDirectories: ['node_modules'],
-		extensions: ['', '.js', '.es6', '.jsx'],
+		extensions: ['', '.js', '.es6', '.jsx', '.json'],
 		alias: {
 		},
 	},

@@ -74,6 +74,8 @@ var SummaryView = Backbone.View.extend({
                 this.currencySymbol = this.model.currencySymbols[resp.currencyCode];
                 this.model.additionalParams.discount = resp.discount;
                 this.model.additionalParams.discountType = resp.discountType;
+                this.model.additionalParams.maximumDiscount = resp.maximumDiscount;
+                this.model.additionalParams.minimumPurchase = resp.minimumPurchase;
                 this.model.additionalParams.promoCodeActive = true;
                 this.setTotalPriceWithTip();
             }, this), _.bind(function(jqXHR) {
@@ -106,11 +108,13 @@ var SummaryView = Backbone.View.extend({
             subTotal: this.model.additionalParams.subTotal.toFixed(2),
             tip: this.tip,
             tipSum: this.tipSum,
+            totalWithoutTax: this.totalWithoutTax,
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty,
             allowDelivery: this.allowDelivery,
             discount: this.model.additionalParams.discountDisplay.toFixed(2),
             promoCode: this.model.additionalParams.promoCode,
+            minimumPurchase: this.model.additionalParams.minimumPurchase,
             backToSingleton: this.model.additionalParams.backToSingleton
         });
     },
@@ -131,31 +135,49 @@ var SummaryView = Backbone.View.extend({
 
     setTotalPriceWithTip: function() {
         var totalAmount,
-            tipPortion = this.tip/100;
-        this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
-        var totalAmount = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
+            tax,
+            tipPortion = this.tip/100,
+            subTotal = this.model.additionalParams.subTotal,
+            minimumPurchase = this.model.additionalParams.minimumPurchase;
+
+        this.tipSum = parseFloat((subTotal * tipPortion).toFixed(2));
+        totalAmount = parseFloat((subTotal + this.tipSum).toFixed(2));
         this.$('.tip_quantity').text(this.tip + '%');
         this.$('.tip_price_value').text(this.tipSum.toFixed(2));
         this.model.additionalParams.tipSum = this.tipSum;
         this.model.additionalParams.tip = this.tip;
         var discountType = this.model.additionalParams.discountType;
-        switch (discountType) {
-            case 'PERCENT':
-                var percent = this.model.additionalParams.discount,
-                    discount = parseFloat(percent * totalAmount / 100).toFixed(2);
-                this.model.additionalParams.discountDisplay = discount;
-                totalAmount = parseFloat((100 - percent) * totalAmount / 100).toFixed(2);
-                break;
-            case 'AMOUNT':
-                this.model.additionalParams.discountDisplay = this.model.additionalParams.discount;
-                totalAmount = parseFloat((totalAmount - this.model.additionalParams.discount).toFixed(2));
-                break;
-            default:
+        this.totalWithoutTax = totalAmount;
+        if (totalAmount < minimumPurchase) {
+            this.model.additionalParams.discountDisplay = 0;
+            this.$('.minimum_purchase_error').addClass('visible');
+        } else {
+            this.$('.minimum_purchase_error').removeClass('visible');
+            switch (discountType) {
+                case 'PERCENT':
+                    var maximumDiscount = this.model.additionalParams.maximumDiscount,
+                        percent = this.model.additionalParams.discount,
+                        discount;
+
+                    this.$('.minimum_purchase_error').removeClass('visible');
+                    discount = parseFloat(percent * totalAmount / 100);
+                    discount = discount <= maximumDiscount ? discount : maximumDiscount;
+                    this.model.additionalParams.discountDisplay = discount;
+                    totalAmount = parseFloat((100 - percent) * totalAmount / 100);
+                    break;
+                case 'AMOUNT':
+                    this.model.additionalParams.discountDisplay = this.model.additionalParams.discount;
+                    totalAmount = parseFloat((totalAmount - this.model.additionalParams.discount).toFixed(2));
+                    break;
+                default:
+            }
         }
         if (totalAmount < 0) {
             totalAmount = 0
         }
-        this.model.set('totalAmount', totalAmount);
+        totalAmount = this.model.getTotalPriceWithTaxAfterAll(totalAmount);
+        this.model.set({'totalAmount': totalAmount.toFixed(2)}, {silent:true});
+        this.model.trigger('change');
     },
 
     onPlaceOrder: function() {
@@ -178,7 +200,8 @@ var SummaryView = Backbone.View.extend({
         loader.show('placing your order');
         this.model.set({
             itemUUID: this.model.additionalParams.itemUUID,
-            quantity: this.model.get('items')[0].quantity
+            quantity: this.model.get('items')[0].quantity,
+            tipAmount: this.tipSum
         });
         this.model.unset('items');
         request = params.type === 'PROMO'? orderActions.placePromoSingletonOrder :
@@ -207,6 +230,10 @@ var SummaryView = Backbone.View.extend({
     onPlaceMultipleOrder: function() {
         var params = this.model.additionalParams;
         loader.show('placing your order');
+
+        this.model.set({
+            tipAmount: this.tipSum
+        });
 
         return orderActions.placeOrder(
             params.sasl.sa(),

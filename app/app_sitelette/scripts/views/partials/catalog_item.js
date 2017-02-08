@@ -114,8 +114,10 @@ var CatalogItemView = Backbone.View.extend({
         if (exists) {
             if(this.isAlreadyAdded(exists)) {
                 this.$('.plus_version_button').addClass('disabled');
+                this.$('.sides_extras_item_not_available_versions').addClass('visible');
             } else {
                 this.$('.plus_version_button').removeClass('disabled');
+                this.$('.sides_extras_item_not_available_versions').removeClass('visible');
                 this.savedVersion = {
                     version: new Backbone.Model(exists),
                     selected: selectedValues,
@@ -125,6 +127,7 @@ var CatalogItemView = Backbone.View.extend({
             this.$('.order_price').text('$' + exists.price);
         } else {
             this.$('.plus_version_button').addClass('disabled');
+            this.$('.sides_extras_item_not_available_versions').addClass('visible');
             this.$('.order_price').html('<br>');
         }
     },
@@ -146,6 +149,7 @@ var CatalogItemView = Backbone.View.extend({
         this.renderVersions();
         this.versionsView.addToBasket();
         this.$('.plus_version_button').addClass('disabled');
+        this.$('.sides_extras_item_not_available_versions').addClass('visible');
     },
 
     renderVersions: function() {
@@ -231,7 +235,8 @@ var CatalogItemView = Backbone.View.extend({
                 setTimeout(this.onBackVersionsUpdate.bind(this, modelChanged), 1);
                 return;
             }
-            if (model.get('isVersion')) return;
+            if (model && model.get('isVersion')) return;
+            modelChanged = this.basket.get(this.model.get('uuid'));
             if (modelChanged) {
                 this.quantity = modelChanged.get('quantity');
                 this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));

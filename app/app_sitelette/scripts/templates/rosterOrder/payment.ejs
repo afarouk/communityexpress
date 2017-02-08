@@ -92,6 +92,7 @@
                         </div>
                     </li>
                     <li class="discount <%= backToSingleton ? 'hidden' : '' %>">
+                        <span class="minimum_purchase_error <% if ( minimumPurchase > totalWithoutTax ) { %>visible<% } %>">Minimum purchase for discount : <%= cs + minimumPurchase %></span>
                         <span class="order_name">Discount</span>
                         <div class="float_right">
                             <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />
@@ -103,7 +104,7 @@
                     </li>
                     <li class="total_price">
                         <span class="order_name">Total</span>
-                        <span class="order_price cmtyx_text_color_1"><%= cs + totalAmount.toFixed(2) %></span>
+                        <span class="order_price cmtyx_text_color_1"><%= cs + totalAmount %></span>
                     </li>
                 </ul>
                 <div class="ui-grid-a back_next_btns">

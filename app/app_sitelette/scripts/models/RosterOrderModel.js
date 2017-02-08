@@ -16,11 +16,13 @@ var RosterOrderModel = Backbone.Model.extend({
 	initialize: function(attr, options) {
 		_.extend(this.attributes, this.getDefaults(options));
 		this.setAdditionalParams(options);
-    this.set('promoCode',options.promoCode);
-    this.set('promoUUID',options.promoUUID);
+	    this.set('promoCode',options.promoCode);
+	    this.set('promoUUID',options.promoUUID);
 	},
 
 	setAdditionalParams: function(options) {
+		//FIFP2016
+		//localhost/demohairstylist?demo=true&desktopiframe=true
 		_.extend(this.additionalParams, {
 			symbol: this.currencySymbols[options.priceAddons.currencyCode] || '$',
 			backToCatalog: options.backToCatalog,
@@ -46,6 +48,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			allowDelivery: options.sasl.get('services').catalog['allowDelivery'],
 			allowCash: options.sasl.get('services').catalog['allowCash'],
 			discount: 0,
+			maximumDiscount: 0,
+			minimumPurchase: 0,
 			discountDisplay: options.discountPrice,
 			promoCode: options.promoCode,
 			promoCodeActive: false
@@ -67,6 +71,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			creditCardSelected: true,
 			fundSourceId: fundsource.fundSourceId || null,
 			items: this.getItems(options),
+			tipAmount: 0,
+			subTotal: this.getPriceWithoutTaxes(options),
 			taxAmount: this.calculateTaxes(options),
 			totalAmount: this.getTotalPriceWithTax(options),
 			currencyCode: options.priceAddons.currencyCode,
@@ -128,6 +134,21 @@ var RosterOrderModel = Backbone.Model.extend({
         return parseFloat((this.calculateTaxes(options) + priceWithoutTaxes).toFixed(2));
     },
 
+    //TODO check if all works fine and then remove old calc code
+    //now we calculate tax after tip and discount
+    //I should know right order
+    getTotalPriceWithTaxAfterAll: function(sum) {
+    	var tax = this.getTaxesAfterAll(sum);
+    	return parseFloat((tax + sum).toFixed(2));
+    },
+
+    getTaxesAfterAll: function(sum) {
+    	var tax = parseInt(sum * this.additionalParams.taxState) / 100;
+    	this.set({'taxAmount': tax}, {silent: true});
+    	return tax;
+    },
+    //...............
+
     calculateTaxes: function(options) {
         return parseInt(options.basket.getTotalPrice() * options.priceAddons.taxState) / 100;
     },
@@ -144,9 +165,13 @@ var RosterOrderModel = Backbone.Model.extend({
 	    	});
 		} else if (options.catalogId) {
 			options.basket.each(function(item, index) {
+				var text1 = item.get('version1DisplayText') || '',
+					text2 = item.get('version2DisplayText'),
+					text3 = item.get('version3DisplayText'),
+					displayText = text1 + (text2 ? ', ' + text2 : '') + (text3 ? ', ' + text3 : '');
 				combinedItems.push({
 					isVersion: item.get('isVersion'),
-					versionText: item.get('version1DisplayText'),
+					versionText: displayText,
 	    			quantity: item.get('quantity'),
 	    			displayText: item.get('itemName'),
 	    			price: (item.get('quantity') * item.get('price')).toFixed(2)
