@@ -128,11 +128,12 @@ var PaymentView = Backbone.View.extend({
             cardNumber: this.model.get('creditCard').cardNumber,
             tip: this.tip,
             tipSum: this.tipSum,
+            totalWithoutTax: this.totalWithoutTax,
             addrIsEmpty: this.model.additionalParams.addrIsEmpty,
             allowCash: this.allowCash,
             paymentOnlineAccepted: this.paymentOnlineAccepted,
             allowDelivery: this.allowDelivery,
-            discount: this.model.additionalParams.discountDisplay,
+            discount: this.model.additionalParams.discountDisplay.toFixed(2),
             promoCode: this.model.additionalParams.promoCode,
             minimumPurchase: this.model.additionalParams.minimumPurchase,
             backToSingleton: this.model.additionalParams.backToSingleton
@@ -225,69 +226,51 @@ var PaymentView = Backbone.View.extend({
     },
 
     setTotalPriceWithTip: function() {
-        //TODO make changes here
-        /*
-            'Sub Total', 'Tax', 'Tip' , 'Discount' and 'Total' Show in 2 digits
-             I. If discount object has "minimumPurchase" value , please display the Text  on Order Summary page as
-
-            " Minimum purchase for discount  : "+ minimumPurchase value
-            {
-                "promoCode": "FIFP2016",
-                "serviceAccommodatorId": "DEMFFF1",
-                "serviceLocationId": "DEMFFF1",
-                "minimumPurchase": 50.0,
-                "maximumDiscount": 10.0,
-                "title": "10% off on all toys till dec31!",
-                ....
-            }
-
-            ( You can test with this business : https://chalkboardstoday.com/demohairstylist?demo=true), I have setup minimum purchase required in this discount
-            a. If user purchases more than that , remove the text
-
-            b. Do not apply the discount if the user is purchasing less than minimumPurchase value.
-
-            c. We need to apply discount  after subtotal then add Tax.
-        */
         var cs = this.model.additionalParams.symbol,
             totalAmount,
-            tipPortion = this.tip/100;
-        this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
-        var totalAmount = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
+            tax,
+            tipPortion = this.tip/100,
+            subTotal = this.model.additionalParams.subTotal,
+            minimumPurchase = this.model.additionalParams.minimumPurchase;
+
+        this.tipSum = parseFloat((subTotal * tipPortion).toFixed(2));
+        totalAmount = parseFloat((subTotal + this.tipSum).toFixed(2));
         this.$('.tip_quantity').text(this.tip + '%');
         this.$('.tip_price_value').text(this.tipSum.toFixed(2));
         this.model.additionalParams.tipSum = this.tipSum;
         this.model.additionalParams.tip = this.tip;
         var discountType = this.model.additionalParams.discountType;
-        switch (discountType) {
-            case 'PERCENT':
-                var maximumDiscount = this.model.additionalParams.maximumDiscount,
-                    minimumPurchase = this.model.additionalParams.minimumPurchase,
-                    percent = this.model.additionalParams.discount,
-                    discount;
+        this.totalWithoutTax = totalAmount;
+        if (totalAmount < minimumPurchase) {
+            this.model.additionalParams.discountDisplay = 0;
+            this.$('.minimum_purchase_error').addClass('visible');
+        } else {
+            this.$('.minimum_purchase_error').removeClass('visible');
+            switch (discountType) {
+                case 'PERCENT':
+                    var maximumDiscount = this.model.additionalParams.maximumDiscount,
+                        percent = this.model.additionalParams.discount,
+                        discount;
 
-                if (totalAmount < minimumPurchase) {
-                    //this.$('.minimum_purchase_error').text(cs + minimumPurchase);
-                    this.model.additionalParams.discountDisplay = 0;
-                    this.model.trigger('change');
-                    this.$('.minimum_purchase_error').addClass('visible');
-                } else {
                     this.$('.minimum_purchase_error').removeClass('visible');
-                    discount = parseFloat(percent * totalAmount / 100).toFixed(2);
+                    discount = parseFloat(percent * totalAmount / 100);
                     discount = discount <= maximumDiscount ? discount : maximumDiscount;
                     this.model.additionalParams.discountDisplay = discount;
-                    totalAmount = parseFloat((100 - percent) * totalAmount / 100).toFixed(2);
-                }
-                break;
-            case 'AMOUNT':
-                this.model.additionalParams.discountDisplay = this.model.additionalParams.discount;
-                totalAmount = parseFloat((totalAmount - this.model.additionalParams.discount).toFixed(2));
-                break;
-            default:
+                    totalAmount = parseFloat((100 - percent) * totalAmount / 100);
+                    break;
+                case 'AMOUNT':
+                    this.model.additionalParams.discountDisplay = this.model.additionalParams.discount;
+                    totalAmount = parseFloat((totalAmount - this.model.additionalParams.discount).toFixed(2));
+                    break;
+                default:
+            }
         }
         if (totalAmount < 0) {
             totalAmount = 0
         }
-        this.model.set('totalAmount', totalAmount);
+        totalAmount = this.model.getTotalPriceWithTaxAfterAll(totalAmount);
+        this.model.set({'totalAmount': totalAmount.toFixed(2)}, {silent:true});
+        this.model.trigger('change');
     },
 
     onPlaceOrder: function() {

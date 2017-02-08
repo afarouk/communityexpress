@@ -108,10 +108,11 @@ var SummaryView = Backbone.View.extend({
             subTotal: this.model.additionalParams.subTotal.toFixed(2),
             tip: this.tip,
             tipSum: this.tipSum,
+            totalWithoutTax: this.totalWithoutTax,
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty,
             allowDelivery: this.allowDelivery,
-            discount: this.model.additionalParams.discountDisplay,
+            discount: this.model.additionalParams.discountDisplay.toFixed(2),
             promoCode: this.model.additionalParams.promoCode,
             minimumPurchase: this.model.additionalParams.minimumPurchase,
             backToSingleton: this.model.additionalParams.backToSingleton
@@ -134,43 +135,49 @@ var SummaryView = Backbone.View.extend({
 
     setTotalPriceWithTip: function() {
         var totalAmount,
-            tipPortion = this.tip/100;
-        this.tipSum = parseFloat((this.totalAmount * tipPortion).toFixed(2));
-        var totalAmount = parseFloat((this.totalAmount + this.tipSum).toFixed(2));
+            tax,
+            tipPortion = this.tip/100,
+            subTotal = this.model.additionalParams.subTotal,
+            minimumPurchase = this.model.additionalParams.minimumPurchase;
+
+        this.tipSum = parseFloat((subTotal * tipPortion).toFixed(2));
+        totalAmount = parseFloat((subTotal + this.tipSum).toFixed(2));
         this.$('.tip_quantity').text(this.tip + '%');
         this.$('.tip_price_value').text(this.tipSum.toFixed(2));
         this.model.additionalParams.tipSum = this.tipSum;
         this.model.additionalParams.tip = this.tip;
         var discountType = this.model.additionalParams.discountType;
-        switch (discountType) {
-            case 'PERCENT':
-                var maximumDiscount = this.model.additionalParams.maximumDiscount,
-                    minimumPurchase = this.model.additionalParams.minimumPurchase,
-                    percent = this.model.additionalParams.discount,
-                    discount;
+        this.totalWithoutTax = totalAmount;
+        if (totalAmount < minimumPurchase) {
+            this.model.additionalParams.discountDisplay = 0;
+            this.$('.minimum_purchase_error').addClass('visible');
+        } else {
+            this.$('.minimum_purchase_error').removeClass('visible');
+            switch (discountType) {
+                case 'PERCENT':
+                    var maximumDiscount = this.model.additionalParams.maximumDiscount,
+                        percent = this.model.additionalParams.discount,
+                        discount;
 
-                if (totalAmount < minimumPurchase) {
-                    //this.$('.minimum_purchase_error').text(cs + minimumPurchase);
-                    this.model.additionalParams.discountDisplay = 0;
-                    this.model.trigger('change');
-                    this.$('.minimum_purchase_error').addClass('visible');
-                } else {
                     this.$('.minimum_purchase_error').removeClass('visible');
-                    discount = parseFloat(percent * totalAmount / 100).toFixed(2);
+                    discount = parseFloat(percent * totalAmount / 100);
                     discount = discount <= maximumDiscount ? discount : maximumDiscount;
                     this.model.additionalParams.discountDisplay = discount;
-                    totalAmount = parseFloat((100 - percent) * totalAmount / 100).toFixed(2);
-                }
-            case 'AMOUNT':
-                this.model.additionalParams.discountDisplay = this.model.additionalParams.discount;
-                totalAmount = parseFloat((totalAmount - this.model.additionalParams.discount).toFixed(2));
-                break;
-            default:
+                    totalAmount = parseFloat((100 - percent) * totalAmount / 100);
+                    break;
+                case 'AMOUNT':
+                    this.model.additionalParams.discountDisplay = this.model.additionalParams.discount;
+                    totalAmount = parseFloat((totalAmount - this.model.additionalParams.discount).toFixed(2));
+                    break;
+                default:
+            }
         }
         if (totalAmount < 0) {
             totalAmount = 0
         }
-        this.model.set('totalAmount', totalAmount);
+        totalAmount = this.model.getTotalPriceWithTaxAfterAll(totalAmount);
+        this.model.set({'totalAmount': totalAmount.toFixed(2)}, {silent:true});
+        this.model.trigger('change');
     },
 
     onPlaceOrder: function() {

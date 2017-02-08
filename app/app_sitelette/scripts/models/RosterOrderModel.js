@@ -16,8 +16,8 @@ var RosterOrderModel = Backbone.Model.extend({
 	initialize: function(attr, options) {
 		_.extend(this.attributes, this.getDefaults(options));
 		this.setAdditionalParams(options);
-    this.set('promoCode',options.promoCode);
-    this.set('promoUUID',options.promoUUID);
+	    this.set('promoCode',options.promoCode);
+	    this.set('promoUUID',options.promoUUID);
 	},
 
 	setAdditionalParams: function(options) {
@@ -133,6 +133,21 @@ var RosterOrderModel = Backbone.Model.extend({
         var priceWithoutTaxes = this.getPriceWithoutTaxes(options);
         return parseFloat((this.calculateTaxes(options) + priceWithoutTaxes).toFixed(2));
     },
+
+    //TODO check if all works fine and then remove old calc code
+    //now we calculate tax after tip and discount
+    //I should know right order
+    getTotalPriceWithTaxAfterAll: function(sum) {
+    	var tax = this.getTaxesAfterAll(sum);
+    	return parseFloat((tax + sum).toFixed(2));
+    },
+
+    getTaxesAfterAll: function(sum) {
+    	var tax = parseInt(sum * this.additionalParams.taxState) / 100;
+    	this.set({'taxAmount': tax}, {silent: true});
+    	return tax;
+    },
+    //...............
 
     calculateTaxes: function(options) {
         return parseInt(options.basket.getTotalPrice() * options.priceAddons.taxState) / 100;
