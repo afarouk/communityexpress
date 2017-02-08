@@ -114,8 +114,10 @@ var CatalogItemView = Backbone.View.extend({
         if (exists) {
             if(this.isAlreadyAdded(exists)) {
                 this.$('.plus_version_button').addClass('disabled');
+                this.$('.sides_extras_item_not_available_versions').addClass('visible');
             } else {
                 this.$('.plus_version_button').removeClass('disabled');
+                this.$('.sides_extras_item_not_available_versions').removeClass('visible');
                 this.savedVersion = {
                     version: new Backbone.Model(exists),
                     selected: selectedValues,
@@ -125,6 +127,7 @@ var CatalogItemView = Backbone.View.extend({
             this.$('.order_price').text('$' + exists.price);
         } else {
             this.$('.plus_version_button').addClass('disabled');
+            this.$('.sides_extras_item_not_available_versions').addClass('visible');
             this.$('.order_price').html('<br>');
         }
     },
@@ -146,6 +149,7 @@ var CatalogItemView = Backbone.View.extend({
         this.renderVersions();
         this.versionsView.addToBasket();
         this.$('.plus_version_button').addClass('disabled');
+        this.$('.sides_extras_item_not_available_versions').addClass('visible');
     },
 
     renderVersions: function() {

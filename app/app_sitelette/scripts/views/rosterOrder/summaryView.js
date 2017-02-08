@@ -74,6 +74,8 @@ var SummaryView = Backbone.View.extend({
                 this.currencySymbol = this.model.currencySymbols[resp.currencyCode];
                 this.model.additionalParams.discount = resp.discount;
                 this.model.additionalParams.discountType = resp.discountType;
+                this.model.additionalParams.maximumDiscount = resp.maximumDiscount;
+                this.model.additionalParams.minimumPurchase = resp.minimumPurchase;
                 this.model.additionalParams.promoCodeActive = true;
                 this.setTotalPriceWithTip();
             }, this), _.bind(function(jqXHR) {
@@ -111,6 +113,7 @@ var SummaryView = Backbone.View.extend({
             allowDelivery: this.allowDelivery,
             discount: this.model.additionalParams.discountDisplay,
             promoCode: this.model.additionalParams.promoCode,
+            minimumPurchase: this.model.additionalParams.minimumPurchase,
             backToSingleton: this.model.additionalParams.backToSingleton
         });
     },
@@ -141,11 +144,23 @@ var SummaryView = Backbone.View.extend({
         var discountType = this.model.additionalParams.discountType;
         switch (discountType) {
             case 'PERCENT':
-                var percent = this.model.additionalParams.discount,
+                var maximumDiscount = this.model.additionalParams.maximumDiscount,
+                    minimumPurchase = this.model.additionalParams.minimumPurchase,
+                    percent = this.model.additionalParams.discount,
+                    discount;
+
+                if (totalAmount < minimumPurchase) {
+                    //this.$('.minimum_purchase_error').text(cs + minimumPurchase);
+                    this.model.additionalParams.discountDisplay = 0;
+                    this.model.trigger('change');
+                    this.$('.minimum_purchase_error').addClass('visible');
+                } else {
+                    this.$('.minimum_purchase_error').removeClass('visible');
                     discount = parseFloat(percent * totalAmount / 100).toFixed(2);
-                this.model.additionalParams.discountDisplay = discount;
-                totalAmount = parseFloat((100 - percent) * totalAmount / 100).toFixed(2);
-                break;
+                    discount = discount <= maximumDiscount ? discount : maximumDiscount;
+                    this.model.additionalParams.discountDisplay = discount;
+                    totalAmount = parseFloat((100 - percent) * totalAmount / 100).toFixed(2);
+                }
             case 'AMOUNT':
                 this.model.additionalParams.discountDisplay = this.model.additionalParams.discount;
                 totalAmount = parseFloat((totalAmount - this.model.additionalParams.discount).toFixed(2));

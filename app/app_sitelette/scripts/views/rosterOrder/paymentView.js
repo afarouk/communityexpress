@@ -267,6 +267,7 @@ var PaymentView = Backbone.View.extend({
 
                 if (totalAmount < minimumPurchase) {
                     //this.$('.minimum_purchase_error').text(cs + minimumPurchase);
+                    this.model.additionalParams.discountDisplay = 0;
                     this.model.trigger('change');
                     this.$('.minimum_purchase_error').addClass('visible');
                 } else {

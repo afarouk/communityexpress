@@ -1234,6 +1234,15 @@ li.build_combo, li.choose_extras {
 }
 
 /* item versions */
+.sides_extras_item_not_available_versions {
+    color: #FFCC00;
+    clear: both;
+    padding: 3px 0 3px 10px;
+    display: none;
+}
+.sides_extras_item_not_available_versions.visible {
+    display: block;
+}
 .sides_extras_item_versions {
     margin: 0 3px 5px 10px;
     height: 40px;
