@@ -98,6 +98,7 @@ var PaymentView = Backbone.View.extend({
                 this.model.additionalParams.maximumDiscount = resp.maximumDiscount;
                 this.model.additionalParams.minimumPurchase = resp.minimumPurchase;
                 this.model.additionalParams.promoCodeActive = true;
+                this.model.set({'promoCode': promoCode}, {silent: true});
                 this.setTotalPriceWithTip();
             }, this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
@@ -233,13 +234,8 @@ var PaymentView = Backbone.View.extend({
             subTotal = this.model.additionalParams.subTotal,
             minimumPurchase = this.model.additionalParams.minimumPurchase;
 
-        this.tipSum = parseFloat((subTotal * tipPortion).toFixed(2));
-        totalAmount = parseFloat((subTotal + this.tipSum).toFixed(2));
-        this.$('.tip_quantity').text(this.tip + '%');
-        this.$('.tip_price_value').text(this.tipSum.toFixed(2));
-        this.model.additionalParams.tipSum = this.tipSum;
-        this.model.additionalParams.tip = this.tip;
         var discountType = this.model.additionalParams.discountType;
+        totalAmount = parseFloat(subTotal);
         this.totalWithoutTax = totalAmount;
         if (totalAmount < minimumPurchase) {
             this.model.additionalParams.discountDisplay = 0;
@@ -269,6 +265,14 @@ var PaymentView = Backbone.View.extend({
             totalAmount = 0
         }
         totalAmount = this.model.getTotalPriceWithTaxAfterAll(totalAmount);
+
+        this.tipSum = parseFloat((totalAmount * tipPortion).toFixed(2));
+        totalAmount = parseFloat((totalAmount + this.tipSum).toFixed(2));
+        this.$('.tip_quantity').text(this.tip + '%');
+        this.$('.tip_price_value').text(this.tipSum.toFixed(2));
+        this.model.additionalParams.tipSum = this.tipSum;
+        this.model.additionalParams.tip = this.tip;
+
         this.model.set({'totalAmount': totalAmount.toFixed(2)}, {silent:true});
         this.model.trigger('change');
     },
