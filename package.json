@@ -52,7 +52,6 @@
     "less-loader": "^2.2.3",
     "load-grunt-tasks": "^3.4.0",
     "moment": "^2.11.1",
-    "moment-timezone": "^0.5.11",
     "node-sass": "^3.3.3",
     "sass-loader": "^3.0.0",
     "script-loader": "^0.6.1",

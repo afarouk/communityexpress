@@ -6,7 +6,7 @@ var Vent = require('../../Vent'),
     popupController = require('../../controllers/popupController'),
     h = require('../../globalHelpers'),
     appCache = require('../../appCache'),
-    moment = require('moment-timezone'),
+    moment = require('moment'),
     template = require('ejs!../../templates/rosterOrder/orderTime.ejs');
 
 var OrderTimeView = Backbone.View.extend({
@@ -131,13 +131,11 @@ var OrderTimeView = Backbone.View.extend({
         return deliveryDate;
     },
     setDeliveryDate: function() {
-        var tz = saslData.timeZone,
-            date = this.getDeliveryDate(),
-            requestedDeliveryDate = date ? this.moment.tz(date.date, tz)
-                                                      .hour(date.time.hour)
-                                                      .minute(date.time.minute)
-                                                      .utc().format()
-                                                      .replace('Z', ':UTC') : null;
+        var date = this.getDeliveryDate(),
+            requestedDeliveryDate = date ? this.moment(date.date)
+                                           .hour(date.time.hour)
+                                           .minute(date.time.minute)
+                                           .utc().format().replace('Z', ':UTC') : null;
         console.log(requestedDeliveryDate);
         this.model.set('requestedDeliveryDate', requestedDeliveryDate);
     },
