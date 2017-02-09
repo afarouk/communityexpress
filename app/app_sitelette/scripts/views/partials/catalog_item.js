@@ -51,7 +51,8 @@ var CatalogItemView = Backbone.View.extend({
         this.$el.html(template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity || 0,
-            selectorVersions: hasVersion ? this.getSelectorVersions() : null
+            selectorVersions: hasVersion ? this.getSelectorVersions() : null,
+            availableVersion: hasVersion ? this.getFirstAvailableVersion() : null
         })));
         if (hasVersion) {
             this.updateAddVersionButton();
@@ -60,6 +61,18 @@ var CatalogItemView = Backbone.View.extend({
             }
         }
         return this;
+    },
+
+    getFirstAvailableVersion: function() {
+        var version = this.model.get('itemVersions')[0],
+            available = [],
+            text1 = version.version1DisplayText,
+            text2 = version.version2DisplayText,
+            text3 = version.version3DisplayText;
+        if (text1) available.push(text1);
+        if (text2) available.push(text2);
+        if (text3) available.push(text3);
+        return available;
     },
 
     onClick: function() {
@@ -112,12 +125,11 @@ var CatalogItemView = Backbone.View.extend({
         }
         exists = _.findWhere(itemVersions, search);
         if (exists) {
+            this.$('.sides_extras_item_not_available_versions').removeClass('visible');
             if(this.isAlreadyAdded(exists)) {
                 this.$('.plus_version_button').addClass('disabled');
-                this.$('.sides_extras_item_not_available_versions').addClass('visible');
             } else {
                 this.$('.plus_version_button').removeClass('disabled');
-                this.$('.sides_extras_item_not_available_versions').removeClass('visible');
                 this.savedVersion = {
                     version: new Backbone.Model(exists),
                     selected: selectedValues,
@@ -149,7 +161,6 @@ var CatalogItemView = Backbone.View.extend({
         this.renderVersions();
         this.versionsView.addToBasket();
         this.$('.plus_version_button').addClass('disabled');
-        this.$('.sides_extras_item_not_available_versions').addClass('visible');
     },
 
     renderVersions: function() {

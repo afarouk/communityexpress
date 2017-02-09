@@ -13,7 +13,7 @@
             <% _.each(selectorVersions, function(selector, index){ %>
                 <select name="select-version-<%= index %>" id="select-version-<%= index %>" data-mini="true">
                     <% _.each(selector, function(version){ %>
-                        <option value="<%= version %>"><%= version %></option>
+                        <option value="<%= version %>" <% if (availableVersion[index] === version) { %>selected<% } %> ><%= version %></option>
                     <% }) %>
                 </select>
             <% }) %>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="sides_extras_item_not_available_versions">
-        <span>Item is not available</span>
+        <span>This combination is not available</span>
     </div>
     <div class="sides_extras_item_added_versions"></div>
 </div>
