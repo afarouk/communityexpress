@@ -12,9 +12,12 @@
                 <p class="card_text">Card</p>
                 <p class="card_number"><%= cardNumber %></p>
             <% } %>
-            <% if (!addrIsEmpty && allowDelivery) { %>
+            <% if (!addrIsEmpty && deliverySelected) { %>
                 <p class="delivery_address_text">Delivery address</p>
                 <p class="address"><%= deliveryAddress.number + ' ' + deliveryAddress.street + ', ' + deliveryAddress.city + ', ' + deliveryAddress.state%></p>
+            <% } else if (pickupAddress && pickupSelected) { %>
+                <p class="delivery_address_text">Pickup address</p>
+                <p class="address"><%= pickupAddress.number + ' ' + pickupAddress.street + ', ' + pickupAddress.city + ', ' + pickupAddress.state%></p>
             <% } %>
             <p class="your_order_text">Your order</p>
             <ul class="order_list">

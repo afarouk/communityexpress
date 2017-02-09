@@ -100,7 +100,9 @@ var SummaryView = Backbone.View.extend({
     },
 
     renderData: function() {
-        var number = this.model.get('creditCard').cardNumber;
+        var number = this.model.get('creditCard').cardNumber,
+            favorites = this.model.additionalParams.userModel.favorites,
+            pickupAddress = favorites.length !== 0 ? favorites.first().get('address') : this.getAddressFromSasl();
 
     	return _.extend(this.model.toJSON(), {
     		cs: this.model.additionalParams.symbol,
@@ -113,11 +115,26 @@ var SummaryView = Backbone.View.extend({
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty,
             allowDelivery: this.allowDelivery,
+            pickupAddress: pickupAddress,
             discount: this.model.additionalParams.discountDisplay.toFixed(2),
             promoCode: this.model.additionalParams.promoCode,
             minimumPurchase: this.model.additionalParams.minimumPurchase,
             backToSingleton: this.model.additionalParams.backToSingleton
         });
+    },
+
+    getAddressFromSasl: function() {
+        var address = {
+            name: saslData.saslName,
+            street: saslData.street,
+            street2: saslData.street2,
+            number: saslData.number,
+            city: saslData.city,
+            state: saslData.state,
+            zip: saslData.zip,
+            phone: saslData.telephoneNumber
+        };
+        return address;
     },
 
     incrementTip: function() {
