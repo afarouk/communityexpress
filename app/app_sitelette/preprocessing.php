@@ -235,6 +235,8 @@ if ($saslAccess || $urlKeyAccess) {
     } else {
       $saslJSON                 = json_decode($siteletteJSON['saslJSON'], true);
       $themeId                  = $saslJSON['themeId'];
+      $foregroundDark            = $saslJSON['themeColors']['foregroundDark'];
+      $foregroundLight           = $saslJSON['themeColors']['foregroundLight'];
       $barFontColors            = $saslJSON['themeColors']['barFontColors'];
       $domain                   = $saslJSON['domainEnum'];
       $serviceAccommodatorId    = $saslJSON['serviceAccommodatorId'];

@@ -12,6 +12,8 @@
     <style  type="text/css">
     <?php
      if (isset($barFontColors)) {
+       echo '.foregroundDark{color:'.$foregroundLight.';}';
+       echo '.foregroundLight{color:'.$foregroundDark.';}';
       echo $barFontColors;
      } else {
       include_once 'themes/2/css/barFontColors.css';
