@@ -75,7 +75,7 @@ var SummaryView = Backbone.View.extend({
                 this.model.additionalParams.discount = resp.discount;
                 this.model.additionalParams.discountType = resp.discountType;
                 this.model.additionalParams.maximumDiscount = resp.maximumDiscount;
-                this.model.additionalParams.minimumPurchase = resp.minimumPurchase;
+                this.model.additionalParams.minimumPurchase = resp.minimumPurchase || 0;
                 this.model.additionalParams.promoCodeActive = true;
                 this.model.set({'promoCode': promoCode}, {silent: true});
                 this.setTotalPriceWithTip();
@@ -174,7 +174,9 @@ var SummaryView = Backbone.View.extend({
 
                     this.$('.minimum_purchase_error').removeClass('visible');
                     discount = parseFloat(percent * totalAmount / 100);
-                    discount = discount <= maximumDiscount ? discount : maximumDiscount;
+                    if (maximumDiscount) {
+                        discount = discount <= maximumDiscount ? discount : maximumDiscount;
+                    }
                     this.model.additionalParams.discountDisplay = discount;
                     totalAmount = parseFloat((100 - percent) * totalAmount / 100);
                     break;
