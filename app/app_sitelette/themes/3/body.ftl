@@ -7,7 +7,7 @@
 
 	<div id="cmtyx_header" data-role="header" class="header common_header">
 		<div id="cmtyx_header_menu_button" class="menu_btn">
-			<div class="menu_btn_img"></div>
+			<div class="menu_btn_hamburger cmtyx_special_text_color cmtyx_special_background_color">&#9776;</div>
 			<span class="messages_counter" style="display:none;"></span>
 		</div>
 		<div id="cmtyx_header_back_button" data-role="button" data-icon="back">
@@ -79,7 +79,7 @@
 					    </#if>
 					  </#if>
 						<button
-								class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 menu_button_3">
+								class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_special_text_color cmtyx_special_border_color menu_button_3">
 		            <#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" >
 							    open menu
 							  <#else>

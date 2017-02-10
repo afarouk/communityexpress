@@ -1663,12 +1663,24 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 #cmytx_landingView>.header .menu_btn:active {
     opacity: 0.7;
 }
-.menu_btn_img {
+/*.menu_btn_img {
     display: inline-block;
     background: url('images/bars.png');
     width: 28px;
     height: 21px;
+}*/
+.menu_btn_hamburger {
+    display: inline-block;
+    font-size: 32px;
+    line-height: 22px;
+    padding: 3px;
+    border-radius: 2px;
+    /*
+     font-size: 34px;
+    line-height: 24px;
+    */
 }
+
 .panel_username_text {
     font: 400 18px 'Open Sans', sans-serif;
     color: #fafafa;
