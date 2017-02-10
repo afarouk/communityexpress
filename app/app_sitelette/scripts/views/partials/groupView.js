@@ -20,6 +20,7 @@ var GroupView = Backbone.View.extend({
         this.itemView = options.itemView;
         this.color = options.color;
         this.onClick = options.onClick;
+        this.preopenAllPictures = options.preopenAllPictures;
         this.listenTo(options.parent, 'close:all', this.onClose, this);
     },
 
@@ -44,7 +45,8 @@ var GroupView = Backbone.View.extend({
                 groupId: this.groupId,
                 groupDisplayText: this.groupDisplayText,
                 catalogId: this.catalogId,
-                catalogDisplayText: this.catalogDisplayText
+                catalogDisplayText: this.catalogDisplayText,
+                preopenAllPictures: this.preopenAllPictures
             },
             className: 'ui-listview cmntyex-catalog',
             collection: new Backbone.Collection(this.model.unSubgroupedItems),

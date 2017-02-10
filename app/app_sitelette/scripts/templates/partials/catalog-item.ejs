@@ -25,7 +25,7 @@
         <!-- <div class="sides_extras_expand_icon">▼</div> -->
     </div>
 </div>
-<div class="sides_extras_detailed">
+<div class="sides_extras_detailed" <% if (preopenAllPictures) { %>style="display: block;"<% } %>>
     <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
         <img src="<%= mediaURLs[0] %>" alt="" />
     <% } %>

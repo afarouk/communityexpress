@@ -39,7 +39,10 @@ var CatalogItemView = Backbone.View.extend({
         this.groupDisplayText=options.groupDisplayText;
         this.catalogDisplayText=options.catalogDisplayText;
         this.withExpandedDetails = false;
-
+        this.preopenAllPictures = options.preopenAllPictures;
+        if (this.preopenAllPictures) {
+            this.withExpandedDetails = true;
+        }
         this.versions = this.getVersionsFromBasket();
 
         this.listenTo(this.basket, 'reset change add remove', this.updateQuantity, this);
@@ -52,7 +55,8 @@ var CatalogItemView = Backbone.View.extend({
             color: this.color,
             quantity: this.quantity || 0,
             selectorVersions: hasVersion ? this.getSelectorVersions() : null,
-            availableVersion: hasVersion ? this.getFirstAvailableVersion() : null
+            availableVersion: hasVersion ? this.getFirstAvailableVersion() : null,
+            preopenAllPictures: this.preopenAllPictures
         })));
         if (hasVersion) {
             this.updateAddVersionButton();

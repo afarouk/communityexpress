@@ -81,6 +81,10 @@ var CatalogView = Backbone.View.extend({
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
         this.launchedViaURL = options.launchedViaURL;
+
+        this.preopenAllPictures = this.options.catalog.data ? 
+            this.options.catalog.data.open_ALL_PICTURES_BY_DEFAULT : null;
+console.log('Preopen: ', this.preopenAllPictures);
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
         this.render();
@@ -253,7 +257,7 @@ var CatalogView = Backbone.View.extend({
     expandCollapseDetails: function(view) {
         if (!view.withExpandedDetails) {
             view.expandDetails();
-            if (this.viewWithExpandedDetails) {
+            if (this.viewWithExpandedDetails && !this.preopenAllPictures) {
                 this.viewWithExpandedDetails.collapseDetails();
             }
             this.viewWithExpandedDetails = view;
@@ -362,7 +366,8 @@ var CatalogView = Backbone.View.extend({
                     model : group,
                     parent : this,
                     basket: this.basket,
-                    itemView: ItemView
+                    itemView: ItemView,
+                    preopenAllPictures: this.preopenAllPictures
                 }).render().el;
 
                 this.$('.cmntyex-items_placeholder').append(el);
