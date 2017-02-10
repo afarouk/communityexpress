@@ -25,6 +25,7 @@ var RosterOrderModel = Backbone.Model.extend({
 		//localhost/demohairstylist?demo=true&desktopiframe=true
 		_.extend(this.additionalParams, {
 			symbol: this.currencySymbols[options.priceAddons.currencyCode] || '$',
+			catalogId: options.catalogId,
 			backToCatalog: options.backToCatalog,
 			backToCatalogs: options.backToCatalogs,
 			backToRoster: options.backToRoster,
