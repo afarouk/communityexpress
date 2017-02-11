@@ -100,6 +100,106 @@
 	        -->
 			<ul class="home_tabs_list">
 			
+						<!----- Discount coupons  ---------------->
+			
+			
+                <li id="cmtyx_promocodes_block" class="promocodes_block">
+					<div class="header cmtyx_color_1">
+						<span class="title">Discounts</span> 
+						<span class="collapse_btn">&#9660;</span>
+						<span class="tag_icon"></span>
+					</div>
+					<#if (promoCodes)?has_content >
+						<div class="body">
+							<ul class="gallery event_block_overlay">
+								<#list promoCodes as promoCode>
+									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
+										<div class="promocode_inner_wrapper">
+											<div class="promoCode-container">
+						                        <!-- <span class="promoCode_title">${promoCode.title}</span> -->
+												<#if promoCode.imageURL??>
+													<div class="promoCode_image">
+														<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
+													</div>
+												</#if>
+												<!-- <div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
+					                                <div class="promoCode_expiration_date">
+						                                <div class="promoCode_container"> 
+						                                     Expires: ${promoCode.expirationDate?date}
+						                                </div>
+					                                </div>
+					                               
+					                                <#if promoCode.type.name()=="AMOUNT">
+					                                  <div class="promoCode_details">
+					                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
+					                                    <span class="promoCode_discount">${promoCode.discount}</span>
+					                                  </div>
+					                                <#else>
+					                                  <div class="promoCode_details">
+					                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
+					                                  </div>
+					                                </#if>
+												</div> -->
+											</div>
+				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
+					                            <div class="promoCode-buybutton-container">
+			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
+			                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
+			                                           Shop</button>
+					                            </div>
+	                                        </#if>
+										</div>
+
+										<div class="promoCode_item_buttons">
+											<div class="share_btn_block"
+												data-promoCode="${promoCode.promoCode}">
+												<span class="icon share_icon"></span> <span class="text">Share</span>
+											</div>
+										</div>
+
+										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
+											<div class="sms_input_block">
+												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+											</div>
+											<div class="ui-block-a text sms_block">
+												<a href="" class="share_sms cmtyx_text_color_1">
+													<span class="share_icon sms_icon"></span>
+												</a>
+											</div>
+											<div class="ui-block-b text email_block">
+												<a href="" class="share_email cmtyx_text_color_1">
+													<span class="share_icon email_icon"></span>
+												</a>
+											</div>
+											<div class="ui-block-c text facebook_block">
+												<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+													<span class="share_icon facebook_icon"></span>
+												</a>
+											</div>
+											<div class="ui-block-d text twitter_block">
+												<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+													<span class="share_icon twitter_icon"></span>
+												</a>
+											</div>
+										</div>
+
+									</li>
+								</#list>
+							</ul>
+						</div>
+					<#else>
+						<div class="body">
+							<div class="no_discounts">
+								(No Discounts)
+							</div>
+						</div>
+					</#if>
+				</li>
+				
+			<!----- End of Discount coupons  ---------------->
+			
+			
 			<!----- Promotions  ---------------->
 				<li id="cmtyx_promotion_block" class="promotion_block">
 					<div class="header cmtyx_color_3">
@@ -317,104 +417,6 @@
 			<!----- End of Loyalty Program  ---------------->
 						
 			
-			<!----- Discount coupons  ---------------->
-			
-			
-                <li id="cmtyx_promocodes_block" class="promocodes_block">
-					<div class="header cmtyx_color_1">
-						<span class="title">Discounts</span> 
-						<span class="collapse_btn">&#9660;</span>
-						<span class="tag_icon"></span>
-					</div>
-					<#if (promoCodes)?has_content >
-						<div class="body">
-							<ul class="gallery event_block_overlay">
-								<#list promoCodes as promoCode>
-									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
-										<div class="promocode_inner_wrapper">
-											<div class="promoCode-container">
-						                        <!-- <span class="promoCode_title">${promoCode.title}</span> -->
-												<#if promoCode.imageURL??>
-													<div class="promoCode_image">
-														<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
-													</div>
-												</#if>
-												<!-- <div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
-					                                <div class="promoCode_expiration_date">
-						                                <div class="promoCode_container"> 
-						                                     Expires: ${promoCode.expirationDate?date}
-						                                </div>
-					                                </div>
-					                               
-					                                <#if promoCode.type.name()=="AMOUNT">
-					                                  <div class="promoCode_details">
-					                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
-					                                    <span class="promoCode_discount">${promoCode.discount}</span>
-					                                  </div>
-					                                <#else>
-					                                  <div class="promoCode_details">
-					                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
-					                                  </div>
-					                                </#if>
-												</div> -->
-											</div>
-				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
-					                            <div class="promoCode-buybutton-container">
-			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
-			                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
-			                                           Shop</button>
-					                            </div>
-	                                        </#if>
-										</div>
-
-										<div class="promoCode_item_buttons">
-											<div class="share_btn_block"
-												data-promoCode="${promoCode.promoCode}">
-												<span class="icon share_icon"></span> <span class="text">Share</span>
-											</div>
-										</div>
-
-										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
-											<div class="sms_input_block">
-												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-											</div>
-											<div class="ui-block-a text sms_block">
-												<a href="" class="share_sms cmtyx_text_color_1">
-													<span class="share_icon sms_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-b text email_block">
-												<a href="" class="share_email cmtyx_text_color_1">
-													<span class="share_icon email_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-c text facebook_block">
-												<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-													<span class="share_icon facebook_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-d text twitter_block">
-												<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-													<span class="share_icon twitter_icon"></span>
-												</a>
-											</div>
-										</div>
-
-									</li>
-								</#list>
-							</ul>
-						</div>
-					<#else>
-						<div class="body">
-							<div class="no_discounts">
-								(No Discounts)
-							</div>
-						</div>
-					</#if>
-				</li>
-				
-			<!----- End of Discount coupons  ---------------->
 				
 
 				<!----- Gallery  ---------------->
