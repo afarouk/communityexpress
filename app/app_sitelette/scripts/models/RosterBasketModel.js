@@ -285,7 +285,7 @@ var RosterBasketModel = Backbone.Model.extend({
             itemVersion: item.get('itemVersion'),
             quantity: item.get('quantity'),
             intraOrderAssociationTag:item.get('catalogId')+intraOrderAssociationIndex,
-            intraOrderQuantity: catalog.quantity
+            intraOrderQuantity: catalog.quantity || item.get('quantity') // for sides catalog quantity is zero
           };
           orderItems.push(orderItem);
           //console.log('orderItems : '+_(orderItems).size());
