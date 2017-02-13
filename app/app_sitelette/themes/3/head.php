@@ -14,7 +14,7 @@
      if (isset($barFontColors)) {
       echo '.cmtyx_special_text_color{color:'.$foregroundLight.'!important;}';
       echo '.cmtyx_special_border_color{border-color:'.$foregroundLight.'!important;}';
-      echo '.cmtyx_special_background_color{background-color:'.$foregroundDark.'!important;}';
+      echo '.cmtyx_special_background_color{background-color:'.$background2.'!important;}';
       echo $barFontColors;
      } else {
       include_once 'themes/3/css/barFontColors.css';

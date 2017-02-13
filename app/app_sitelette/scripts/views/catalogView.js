@@ -82,8 +82,8 @@ var CatalogView = Backbone.View.extend({
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
         this.launchedViaURL = options.launchedViaURL;
 
-        this.preopenAllPictures = this.options.catalog.data ? 
-            this.options.catalog.data.open_ALL_PICTURES_BY_DEFAULT : null;
+        this.preopenAllPictures = this.options.catalog.data ?
+            this.options.catalog.data.preExpandItemsOnUI : null;
 console.log('Preopen: ', this.preopenAllPictures);
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
