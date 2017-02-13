@@ -352,7 +352,8 @@ var CatalogBasketModel = Backbone.Collection.extend({
                     catalogId: item.get('catalogId'),
                     itemVersion: item.get('itemVersion'),
                     quantity: item.get('quantity'),
-                    intraOrderAssociationTag: item.get('catalogId') + intraOrderAssociationIndex
+                    intraOrderAssociationTag: item.get('catalogId') + intraOrderAssociationIndex,
+                    intraOrderQuantity: item.get('quantity')
                 };
                 orderItems.push(orderItem);
             });

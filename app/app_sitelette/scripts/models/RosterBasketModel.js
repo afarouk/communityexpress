@@ -261,7 +261,8 @@ var RosterBasketModel = Backbone.Model.extend({
               catalogId: catalogId,
               itemVersion: item.itemVersion,
               quantity: catalog.get('quantity'), //item.quantity,
-              intraOrderAssociationTag:catalogId+intraOrderAssociationIndex
+              intraOrderAssociationTag:catalogId+intraOrderAssociationIndex,
+              intraOrderQuantity: catalog.get('quantity')
             };
             orderItems.push(orderItem);
             //console.log('orderItems : '+_(orderItems).size());
@@ -283,7 +284,8 @@ var RosterBasketModel = Backbone.Model.extend({
             catalogId: item.get('catalogId'),
             itemVersion: item.get('itemVersion'),
             quantity: item.get('quantity'),
-            intraOrderAssociationTag:item.get('catalogId')+intraOrderAssociationIndex
+            intraOrderAssociationTag:item.get('catalogId')+intraOrderAssociationIndex,
+              intraOrderQuantity: catalog.get('quantity')
           };
           orderItems.push(orderItem);
           //console.log('orderItems : '+_(orderItems).size());
