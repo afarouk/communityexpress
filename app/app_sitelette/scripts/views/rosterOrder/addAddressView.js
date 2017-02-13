@@ -328,7 +328,9 @@ var AddAddressView = Backbone.View.extend({
     },
     getSelectedState: function() {
         var selected = this.model.get('deliveryAddress').state || null;
-
+        if (!selected) {
+            this.model.get('deliveryAddress').state = 'CA';
+        }
         return this.states[selected] ? selected : 'CA';
     }
 
