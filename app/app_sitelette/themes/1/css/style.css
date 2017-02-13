@@ -561,6 +561,11 @@ li {
 .price_list li.tip_price {
     padding: 10px 0;
 }
+.price_list li.total_price {
+    border-top: solid 1px #636363;
+    margin-top: 20px;
+    padding-top: 10px;
+}
 .price_list li.total_price span {
     font-size: 18px;
     font-weight: 400;
@@ -3951,7 +3956,6 @@ a.cancel {
 .price_list .discount {
     padding: 15px 0;
     margin-bottom: 15px;
-    border-bottom: solid 1px #636363;
 }
 
 .price_list .discount .minimum_purchase_error {
