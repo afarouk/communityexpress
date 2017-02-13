@@ -8,6 +8,10 @@
     </div>
     <div data-role="tabs" id="tabs">
         <div id="summary_info" class="ui-body-d ui-content">
+            <% if (deliveryDate) { %>
+                <p class="delivery_address_text">Selected date</p>
+                <p class="address"><%= deliveryDate.day + ' ' + deliveryDate.time.displayString %></p>
+            <% } %>
             <% if (cardNumber) { %>
                 <p class="card_text">Card</p>
                 <p class="card_number"><%= cardNumber %></p>

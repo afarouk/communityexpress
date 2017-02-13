@@ -130,6 +130,7 @@ var PaymentView = Backbone.View.extend({
             combinedItems: this.model.additionalParams.combinedItems,
             taxState: this.model.additionalParams.taxState.toFixed(2),
             subTotal: this.model.additionalParams.subTotal.toFixed(2),
+            deliveryDate: this.model.additionalParams.deliveryDate,
             cardNumber: this.model.get('creditCard').cardNumber,
             tip: this.tip,
             tipSum: this.tipSum,

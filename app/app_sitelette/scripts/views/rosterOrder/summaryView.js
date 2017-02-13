@@ -112,6 +112,7 @@ var SummaryView = Backbone.View.extend({
             tip: this.tip,
             tipSum: this.tipSum,
             totalWithoutTax: this.totalWithoutTax,
+            deliveryDate: this.model.additionalParams.deliveryDate,
             cardNumber: number ? 'XXXXXXXXXXXXXX' + number.substring(number.length-2,number.length) : undefined,
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty,
             allowDelivery: this.allowDelivery,

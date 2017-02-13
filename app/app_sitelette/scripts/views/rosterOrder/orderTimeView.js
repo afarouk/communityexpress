@@ -126,6 +126,7 @@ var OrderTimeView = Backbone.View.extend({
         if (this.delivery === 'REGULAR') return null;
         var deliveryDate = {
             date: this.orderDay.date,
+            day: this.orderDay.day,
             time: this.orderTime
         };
         return deliveryDate;
@@ -138,6 +139,7 @@ var OrderTimeView = Backbone.View.extend({
                                            .utc().format().replace('Z', ':UTC') : null;
         console.log(requestedDeliveryDate);
         this.model.set('requestedDeliveryDate', requestedDeliveryDate);
+        this.model.additionalParams.deliveryDate = date;
     },
     triggerNext: function() {
         this.setDeliveryDate();
