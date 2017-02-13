@@ -45,8 +45,8 @@
         <% if (allowCash) { %>
             <div id="cash" class="ui-body-d ui-content">
                 <% if (deliveryDate) { %>
-                    <p class="delivery_address_text">Selected date</p>
-                    <p class="address"><%= deliveryDate.day + ' ' + deliveryDate.time.displayString %></p>
+                    <p class="delivery_date_text">Selected date</p>
+                    <p class="selected_date"><%= deliveryDate.day + ' ' + deliveryDate.time.displayString %></p>
                 <% } %>
                 <% if (!addrIsEmpty && deliverySelected) { %>
                     <p class="delivery_address_text">Delivery address</p>

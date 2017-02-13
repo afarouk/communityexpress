@@ -493,6 +493,7 @@ p.card_text {
     margin-bottom: 10px;
 }
 p.your_order_text,
+p.delivery_date_text,
 p.card_text,
 p.delivery_address_text {
     margin: 15px 0 5px 0;
@@ -503,7 +504,12 @@ p.delivery_address_text {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+p.delivery_address_text {
+    color: #fafafa;
+    font-weight: bold;
+}
 p.card_number,
+p.selected_date,
 p.address {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
@@ -3946,7 +3952,6 @@ a.cancel {
     padding: 4px;
     vertical-align: middle;
     margin: 0;
-
 }
 
 .roster_order_error,

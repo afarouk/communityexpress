@@ -494,6 +494,7 @@ p.card_text {
 }
 p.your_order_text,
 p.card_text,
+p.delivery_date_text,
 p.delivery_address_text {
     margin: 15px 0 5px 0;
     font-family: 'Open Sans', sans-serif;
@@ -503,7 +504,12 @@ p.delivery_address_text {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+p.delivery_address_text {
+    color: #fafafa;
+    font-weight: bold;
+}
 p.card_number,
+p.selected_date,
 p.address {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
@@ -560,6 +566,11 @@ li {
 }
 .price_list li.tip_price {
     padding: 10px 0;
+}
+.price_list li.total_price {
+    border-top: solid 1px #636363;
+    margin-top: 20px;
+    padding-top: 10px;
 }
 .price_list li.total_price span {
     font-size: 18px;
@@ -3930,7 +3941,6 @@ a.cancel {
     padding: 4px;
     vertical-align: middle;
     margin: 0;
-
 }
 
 .roster_order_error,
@@ -3943,7 +3953,6 @@ a.cancel {
 .price_list .discount {
     padding: 15px 0;
     margin-bottom: 15px;
-    border-bottom: solid 1px #636363;
 }
 
 .price_list .discount .minimum_purchase_error {
