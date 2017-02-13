@@ -11,7 +11,7 @@
 			<span class="messages_counter" style="display:none;"></span>
 		</div>
 		<div id="cmtyx_header_back_button" data-role="button" data-icon="back">
-			<span class="back_arr_icon"></span>
+			<span class="glyphicon glyphicon-arrow-left cmtyx_special_text_color cmtyx_special_background_color"></span>
 		</div>
 		<div class="logo_container"
 			style="background-color: ${sasl.themeColors.background}">

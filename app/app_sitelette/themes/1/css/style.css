@@ -1627,6 +1627,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     padding: 11px;
     position: absolute;
 }
+.common_header #cmtyx_header_back_button span.glyphicon {
+    font-size: 20px;
+}
 .common_header .menu_btn {
     height: 26px;
     width: 50px;
