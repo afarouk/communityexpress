@@ -26,11 +26,30 @@ var GroupView = Backbone.View.extend({
 
     render: function () {
         var el = document.createElement('div');
-        el.innerHTML = this.template(_.extend({}, this.model, {color: this.color}));
+        this.direction = this.model.scrollDirection ? this.model.scrollDirection.enumText : null;
+        el.innerHTML = this.template(_.extend({}, this.model, {
+            color: this.color,
+            direction: this.direction
+        }));
         this.renderItems(el);
         $(el).enhanceWithin();
         this.el = el;
+        setTimeout(this.afterRender.bind(this), 1000);
         return this;
+    },
+
+    afterRender: function() {
+        if (this.direction === 'HORIZONTAL') {
+            this.initOwlGallery();
+        }
+    },
+
+    initOwlGallery: function() {
+        var $el = $(this.el).find('.cmntyex-list_placeholder ul');
+        $el.owlCarousel({
+          margin: 20,
+          items: 1
+        });
     },
 
     renderItems: function (el) {

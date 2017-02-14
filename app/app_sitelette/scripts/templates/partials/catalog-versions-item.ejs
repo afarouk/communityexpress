@@ -35,7 +35,9 @@
 </div>
 <div class="sides_extras_detailed" <% if (preopenAllPictures) { %>style="display: block;"<% } %>>
     <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
-        <img src="<%= mediaURLs[0] %>" alt="" />
+        <div class="sides_extras_detailed_image">
+            <img src="<%= mediaURLs[0] %>" alt="" />
+        </div>
     <% } %>
     <div class="catalog_item_attributes">
         <div class="short_description"><%= shortDescription %></div>
