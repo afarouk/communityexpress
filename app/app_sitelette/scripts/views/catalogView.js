@@ -84,6 +84,8 @@ var CatalogView = Backbone.View.extend({
 
         this.preopenAllPictures = this.options.catalog.data ?
             this.options.catalog.data.preExpandItemsOnUI : null;
+        this.direction = this.options.catalog.data ?
+            this.options.catalog.data.scrollDirection.enumText : null;
 console.log('Preopen: ', this.preopenAllPictures);
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
@@ -255,6 +257,7 @@ console.log('Preopen: ', this.preopenAllPictures);
     },
 
     expandCollapseDetails: function(view) {
+        if (this.direction === 'HORIZONTAL') return;
         if (!view.withExpandedDetails) {
             view.expandDetails();
             if (this.viewWithExpandedDetails && !this.preopenAllPictures) {
