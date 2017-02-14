@@ -267,8 +267,8 @@ module.exports = Backbone.View.extend({
             $questions = $container.find('.poll_ans_form');
 
         $questions.addClass('answered');
-        $container.parent().find('.contest_prizes').show();
-        $container.parent().find('.prize_block').show();
+        // $container.parent().find('.contest_prizes').show();
+        // $container.parent().find('.prize_block').show();
         $questions.find('li').each(function(index, element){
             var choice = result.choices[index],
                 percent = Math.round(choice.percentOfTotalResponses),
@@ -293,8 +293,8 @@ module.exports = Backbone.View.extend({
         //     options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
         //     options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;
         //     $.jqplot('pollBar-' + (result.contestUUID || result.uuid), [array], options);
-        height = $container.parent().find('.contest_prizes').height() - 30;
-        this.changeSlideHeight($container, height, true);
+        // height = $container.parent().find('.contest_prizes').height() - 30;
+        // this.changeSlideHeight($container, height, true);
     },
 
     getPollContests: function() {

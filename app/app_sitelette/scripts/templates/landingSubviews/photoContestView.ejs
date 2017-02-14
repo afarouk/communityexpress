@@ -11,6 +11,13 @@
             <li class="photo_item" data-uuid="<%= photo.contestUUID %>">
                 <ul class="contest_prizes shown">
                     <div class="photo_block_title"><span>Enter to win</span></div>
+                    <div class="ui-grid-a prizes_title">
+                        <div class="ui-block-a">
+                            <!-- <div class="medal_icon"></div> -->
+                            <span class="prize_cup_icon"></span>
+                        </div>
+                        <div class="ui-block-b">All entries are entered into our mini sweepstakes!</div>
+                    </div>
                     <% _.each(photo.prizes, function(prize, index){ %>
                         <li>
                             <div class="prize_block">
@@ -48,36 +55,6 @@
                         You have already sent a photo
                     </div>
                 <% } %>
-                    <div class="ui-grid-a prizes_title">
-                        <div class="ui-block-a">
-                            <!-- <div class="medal_icon"></div> -->
-                            <span class="prize_cup_icon"></span>
-                        </div>
-                        <div class="ui-block-b">All entries are entered into our mini sweepstakes!</div>
-                    </div>
-                    <div class="prizes_container">
-                        <div class="prizes_title">All submissions are entered into our mini-sweepstake!</div>
-                        <ul>
-                            <% _.each(photo.prizes, function(prize, index){ %>
-                                <li>
-                                    <div class="prize_block">
-                                        <div class="ui-grid-a prize_container">
-                                            <div class="ui-block-a">
-                                                <div class="prize_text_block">
-                                                    <span class="prize_text"><%= prize.contestPrizeName %></span>
-                                                    <span class="prize_condition"><%= prize.displayText %></span>
-                                                    <span class="prize_date"><%= prize.quantity %></span>
-                                                </div>
-                                            </div>
-                                            <div class="ui-block-b ">
-                                                <img src="<%= prize.imageUrl %>"></img>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            <% }) %>
-                        </ul>
-                    </div>
                     <div class="share_container">
                         <div class="share_btn_block"
                             uuid="">
