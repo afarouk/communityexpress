@@ -40,6 +40,7 @@ var CatalogItemView = Backbone.View.extend({
         this.catalogDisplayText=options.catalogDisplayText;
         this.withExpandedDetails = false;
         this.preopenAllPictures = options.preopenAllPictures;
+        this.direction = options.direction;
         if (this.preopenAllPictures) {
             this.withExpandedDetails = true;
         }
@@ -64,8 +65,33 @@ var CatalogItemView = Backbone.View.extend({
                 this.renderVersions();
             }
         }
+        this.listenLoadImage();
         return this;
     },
+
+    // for horizontal carousel
+    listenLoadImage: function() {
+        if (this.direction !== 'HORIZONTAL') return;
+        var container = this.$el.find('.sides_extras_detailed_image');
+        var img = container.find('img');
+        img.on('load', function(e){
+            var image = e.target,
+                ratio = image.naturalWidth / image.naturalHeight;
+            this.ratio = ratio;
+            setTimeout(function(){
+                var containerHeight = container.height();
+                container.width(containerHeight * ratio + 'px');
+            }, 10);
+        }.bind(this));
+    },
+
+    adjustImageContainer: function() {
+        if (this.direction !== 'HORIZONTAL') return;
+        var container = this.$el.find('.sides_extras_detailed_image'),
+            containerHeight = container.height();
+        container.width(containerHeight * this.ratio + 'px');
+    },
+    //....................
 
     getFirstAvailableVersion: function() {
         var version = this.model.get('itemVersions')[0],
@@ -158,6 +184,7 @@ var CatalogItemView = Backbone.View.extend({
 
     onRemoveVersion: function() {
         this.updateAddVersionButton();
+        this.adjustImageContainer();
     },
 
     onVersionAdded: function() {
@@ -165,6 +192,7 @@ var CatalogItemView = Backbone.View.extend({
         this.renderVersions();
         this.versionsView.addToBasket();
         this.$('.plus_version_button').addClass('disabled');
+        this.adjustImageContainer();
     },
 
     renderVersions: function() {

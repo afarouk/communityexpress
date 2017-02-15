@@ -1384,6 +1384,81 @@ li.build_combo, li.choose_extras {
     white-space: normal;
 }
 
+/* horizontal carousel */
+.cmntyex-group.horizontal {
+    height: calc(100vh - 88px);
+    min-height: calc(100vh - 88px);
+    max-height: calc(100vh - 88px);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.cmntyex-group.horizontal.ui-collapsible-collapsed {
+    min-height: inherit;
+    height: inherit;
+    margin-bottom: 5px;
+}
+.cmntyex-group.horizontal .ui-collapsible-content {
+    display: -webkit-flex;
+    display: flex;
+}
+.cmntyex-group.horizontal .ui-collapsible-content.ui-collapsible-content-collapsed {
+    display: none;
+}
+.cmntyex-group.horizontal .ui-collapsible-content .cmntyex-list_placeholder {
+    width: 100%;
+}
+.cmntyex-group.horizontal .ui-collapsible-content ul {
+    max-height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+.cmntyex-group.horizontal .ui-collapsible-content ul .owl-stage-outer {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+.cmntyex-group.horizontal .ui-collapsible-content ul .owl-stage-outer .owl-stage {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    height: 100%;
+}
+.cmntyex-group.horizontal .ui-collapsible-content ul .owl-stage-outer .owl-stage .owl-item {
+    height: 100%;
+}
+.cmntyex-group.horizontal .ui-collapsible-content ul li {
+    margin: 0;
+    max-height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.cmntyex-group.horizontal .ui-collapsible-content ul li .sides_extras_detailed {
+    display: -webkit-flex!important;
+    display: flex!important;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.cmntyex-group.horizontal .ui-collapsible-content ul li .sides_extras_detailed .sides_extras_detailed_image {
+    max-height: 100%;
+    max-width: 100%;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.cmntyex-group.horizontal .ui-collapsible-content ul li .sides_extras_detailed .sides_extras_detailed_image img {
+    /*...*/
+}
+/* end of horizontal carousel */
+
 .build_combo_collapse .ui-collapsible-content.ui-body-inherit {
     margin-bottom: -20px;
 }
