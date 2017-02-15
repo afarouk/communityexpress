@@ -12,10 +12,10 @@
     <style  type="text/css">
     <?php
      if (isset($barFontColors)) {
-      echo '.cmtyx_special_text_color{color:'.$foregroundLight.'!important;}';
-      echo '.cmtyx_special_border_color{border-color:'.$foregroundLight.'!important;}';
-      echo '.cmtyx_special_background_color{background-color:'.$foregroundDark.'!important;}';
-      echo '.cmtyx_special_background2_color{background-color:'.$background2.'!important;}';
+      echo '.cmtyx_special_icon_color{color:'.$foregroundLight.'!important;}';
+      echo '.cmtyx_special_text_color{color:'.$foregroundDark.'!important;}';
+      echo '.cmtyx_special_border_color{border-color:'.$foregroundDark.'!important;}';
+      echo '.cmtyx_special_background_color{background-color:'.$background.'!important;}';
       echo $barFontColors;
      } else {
       include_once 'themes/2/css/barFontColors.css';

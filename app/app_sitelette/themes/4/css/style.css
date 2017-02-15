@@ -1758,14 +1758,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .menu_btn_hamburger {
     display: inline-block;
-    font-size: 32px;
-    line-height: 22px;
-    padding: 3px;
-    border-radius: 2px;
-    /*
-     font-size: 34px;
+    font-size: 34px;
     line-height: 24px;
-    */
 }
 .panel_username_text {
     font: 400 18px 'Open Sans', sans-serif;

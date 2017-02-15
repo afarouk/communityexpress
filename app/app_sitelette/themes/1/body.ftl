@@ -7,14 +7,13 @@
 
 	<div id="cmtyx_header" data-role="header" class="header common_header">
 		<div id="cmtyx_header_menu_button" class="menu_btn">
-			<div class="menu_btn_hamburger cmtyx_special_text_color cmtyx_special_background_color">&#9776;</div>
+			<div class="menu_btn_hamburger cmtyx_special_icon_color">&#9776;</div>
 			<span class="messages_counter" style="display:none;"></span>
 		</div>
 		<div id="cmtyx_header_back_button" data-role="button" data-icon="back">
-			<span class="glyphicon glyphicon-arrow-left cmtyx_special_text_color"></span>
+			<span class="glyphicon glyphicon-arrow-left cmtyx_special_icon_color"></span>
 		</div>
-		<div class="logo_container"
-			style="background-color: ${sasl.themeColors.background}">
+		<div class="logo_container cmtyx_special_background_color">
 			<!--  <img src="themes/1/placeholder_images/ZAZA-Grill.png" /> -->
 			<img src="${bannerImageURL}" />
 		</div>
