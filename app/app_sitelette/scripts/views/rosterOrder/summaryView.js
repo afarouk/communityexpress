@@ -66,7 +66,7 @@ var SummaryView = Backbone.View.extend({
     onCommentChanged: function(e) {
         var target = $(e.currentTarget),
             comment = target.val();
-        //this.model.set('comment', comment);
+        this.model.set('comment', comment);
     },
 
     onGetDiscount: function() {

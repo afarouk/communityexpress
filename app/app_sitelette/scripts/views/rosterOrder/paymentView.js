@@ -87,7 +87,7 @@ var PaymentView = Backbone.View.extend({
     onCommentChanged: function(e) {
         var target = $(e.currentTarget),
             comment = target.val();
-        //this.model.set('comment', comment);
+        this.model.set('comment', comment);
     },
 
     onGetDiscount: function() {
@@ -327,7 +327,7 @@ var PaymentView = Backbone.View.extend({
             });
             return;
         }
-        
+
         loader.show('placing your order');
         this.model.set({
             itemUUID: this.model.additionalParams.itemUUID,
