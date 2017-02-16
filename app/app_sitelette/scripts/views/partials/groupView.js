@@ -45,10 +45,36 @@ var GroupView = Backbone.View.extend({
     },
 
     initOwlGallery: function() {
-        var $el = $(this.el).find('.cmntyex-list_placeholder ul');
+        var $el = $(this.el).find('.cmntyex-list_placeholder ul'),
+            navigation = $(this.el).find('.carousel-navigation');
         $el.owlCarousel({
           margin: 20,
-          items: 1
+          items: 1,
+          // loop:true,
+          nav: false
+        });
+        if (this.model.unSubgroupedItems.length === 1) {
+            navigation.hide();
+        } else {
+            navigation.find('.navigation-prev').click(function(){
+                $el.trigger('prev.owl.carousel');
+            });
+            navigation.find('.navigation-next').click(function(){
+                $el.trigger('next.owl.carousel');
+            });
+        }
+        $el.on('changed.owl.carousel', function(e){
+            console.log(e.item);
+            if (e.item.index === 0) {
+                navigation.find('.navigation-prev').addClass('disabled');
+            } else {
+                navigation.find('.navigation-prev').removeClass('disabled');
+            }
+            if (e.item.index === e.item.count - 1) {
+                navigation.find('.navigation-next').addClass('disabled');
+            } else {
+                navigation.find('.navigation-next').removeClass('disabled');
+            }
         });
     },
 
