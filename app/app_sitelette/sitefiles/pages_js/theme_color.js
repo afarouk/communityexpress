@@ -8,6 +8,8 @@ function update_url() {
     retriveBannerUrl = communityRequestProfile.protocol + communityRequestProfile.api_server + '/apptsvc/rest/sasl/retrieveSASLbanner?';
     retriveIconUrl = communityRequestProfile.protocol + communityRequestProfile.api_server + '/apptsvc/rest/sasl/retrieveATC192bySASL?';
     applyThemeUrl = communityRequestProfile.protocol + communityRequestProfile.api_server + '/apptsvc/rest/sasl/setThemeColors?';
+  
+
     //    console.log("$serviceAccommodatorId" + serviceAccommodatorId);
     //    console.log("$serviceLocationId" + serviceLocationId);
 }
@@ -77,9 +79,21 @@ $(document).ready(function () {
             var color2 = '#'+$("#color2").val();
             var color3 = '#'+$("#color3").val();
             var color4 = '#'+$("#color4").val();
+            var color5 = '#'+$("#color5").val();
+            var color6 = '#'+$("#color6").val();
+            var color7 = '#'+$("#color7").val();
+            var color8 = '#'+$("#color8").val();
+
+
+
+
             var allcolor = ".cmtyx_color_1 { background-color:" + color1 + " !important; }" + ".cmtyx_border_color_1 { border-color: " + color1 + " !important; }" + ".cmtyx_text_color_1 { color: " + color1 + " !important; }" + ".cmtyx_color_2 { background-color:" + color2 + " !important; }" + ".cmtyx_border_color_2 { border-color: " + color2 + " !important; }" + ".cmtyx_text_color_2 { color: " + color2 + " !important; }" + ".cmtyx_color_3 { background-color:" + color3 + " !important; }" + ".cmtyx_border_color_3 { border-color: " + color3 + " !important; }" + ".cmtyx_text_color_3 { color: " + color3 + " !important; }" + ".cmtyx_color_4 { background-color:" + color4 + " !important; }" + ".cmtyx_border_color_4 { border-color: " + color4 + " !important; }" + ".cmtyx_text_color_4 { color: " + color4 + " !important; }"
             var dataobj = {
-                "barFontColors": "" + allcolor
+                          "barFontColors": "" + allcolor,
+                          "background": color5,
+                          "foregroundLight":color6,
+                          "foregroundDark": color7,
+                          "background2": color8
             };
             $.ajax({
                 url: new_applyThemeUrl
