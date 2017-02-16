@@ -585,6 +585,28 @@ li {
     top: 6px;
 }
 
+.order-note-container {
+    position: fixed;
+    bottom: 100px;
+    width: 98%;
+    z-index: 999;
+}
+.order-note-container .add-note {
+    font-size: 18px;
+}
+.order-note-container .add-note i {
+    font-size: 14px;
+}
+.order-note-container .note-text {
+    display: none;
+    padding: 1px;
+    width: 100%;
+}
+.order-note-container .note-text textarea {
+    width: 100%;
+    background-color: transparent;
+    resize: none;
+}
 
 /*************************** SKEUOCARD ***************************/
 

@@ -71,12 +71,23 @@ var PaymentView = Backbone.View.extend({
             'click .leftBtn': 'onCreditSelected',
             'click .plus_button': 'incrementTip',
             'click .minus_button': 'decrementTip',
+            'click .add-note': 'toggleAddNote',
+            'change .note-text > textarea': 'onCommentChanged',
             'click .get_discount_button': 'onGetDiscount'
         });
 
         if (!this.paymentOnlineAccepted && this.allowCash && !this.cashSelected) {
             this.onCashSelected();
         }
+    },
+
+    toggleAddNote: function() {
+        this.$('.note-text').toggle('slow');
+    },
+    onCommentChanged: function(e) {
+        var target = $(e.currentTarget),
+            comment = target.val();
+        //this.model.set('comment', comment);
     },
 
     onGetDiscount: function() {
