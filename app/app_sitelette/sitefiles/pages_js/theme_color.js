@@ -8,7 +8,10 @@ function update_url() {
     retriveBannerUrl = communityRequestProfile.protocol + communityRequestProfile.api_server + '/apptsvc/rest/sasl/retrieveSASLbanner?';
     retriveIconUrl = communityRequestProfile.protocol + communityRequestProfile.api_server + '/apptsvc/rest/sasl/retrieveATC192bySASL?';
     applyThemeUrl = communityRequestProfile.protocol + communityRequestProfile.api_server + '/apptsvc/rest/sasl/setThemeColors?';
-  
+    getAppliedThemeColor = communityRequestProfile.protocol + communityRequestProfile.api_server + '/apptsvc/rest/sasl/retrieveThemeColors?';
+
+
+
 
     //    console.log("$serviceAccommodatorId" + serviceAccommodatorId);
     //    console.log("$serviceLocationId" + serviceLocationId);
@@ -54,8 +57,11 @@ $(document).ready(function () {
                 serviceLocationId = data.serviceLocationId;
                 serviceAccommodatorId = data.serviceAccommodatorId;
                 last_part = "serviceAccommodatorId=" + serviceAccommodatorId + "&serviceLocationId=" + serviceLocationId;
+                appliedColor(last_part);
                 $("#theme_banner").html('<img src="' + retriveBannerUrl + last_part + '">');
                 $("#theme_appicon").html('<img src="' + retriveIconUrl + last_part + '">');
+
+
             }
             else {
                 alert('This is not a valid URL prefix.');
@@ -67,6 +73,45 @@ $(document).ready(function () {
             alert('This is not a valid URL prefix.');
         });
     });
+
+    function appliedColor(lastpart){
+      var request = $.get(getAppliedThemeColor + lastpart);
+      request.success(function (data) {
+        if(data.error){
+
+        }else{
+           $("#color1").val(data.background);
+           $("#color2").val(data.foregroundLight);
+           $("#color3").val(data.foregroundDark);
+           $("#color4").val(data.background2);
+
+           if(data.barFontColors){
+             arr=data.barFontColors.split("background-color:");
+             $("#color5").val(arr[1].split(" ")[0]);
+             $("#color6").val(arr[2].split(" ")[0]);
+             $("#color7").val(arr[3].split(" ")[0]);
+             $("#color8").val(arr[4].split(" ")[0]);
+
+           }
+           $("#color1").focus();
+           $("#color2").focus();
+           $("#color3").focus();
+           $("#color4").focus();
+           $("#color5").focus();
+           $("#color6").focus();
+           $("#color7").focus();
+           $("#color8").focus();
+           $("#color9").focus();
+
+
+
+        }
+
+      });
+      request.error(function (data) {
+
+      });
+    }
     $("#colorApply").on('click', function () {
         if (!serviceLocationId || !serviceAccommodatorId) {
             alert('Please load the url prefix');
@@ -87,13 +132,14 @@ $(document).ready(function () {
 
 
 
-            var allcolor = ".cmtyx_color_1 { background-color:" + color1 + " !important; }" + ".cmtyx_border_color_1 { border-color: " + color1 + " !important; }" + ".cmtyx_text_color_1 { color: " + color1 + " !important; }" + ".cmtyx_color_2 { background-color:" + color2 + " !important; }" + ".cmtyx_border_color_2 { border-color: " + color2 + " !important; }" + ".cmtyx_text_color_2 { color: " + color2 + " !important; }" + ".cmtyx_color_3 { background-color:" + color3 + " !important; }" + ".cmtyx_border_color_3 { border-color: " + color3 + " !important; }" + ".cmtyx_text_color_3 { color: " + color3 + " !important; }" + ".cmtyx_color_4 { background-color:" + color4 + " !important; }" + ".cmtyx_border_color_4 { border-color: " + color4 + " !important; }" + ".cmtyx_text_color_4 { color: " + color4 + " !important; }"
+            var allcolor = ".cmtyx_color_1 { background-color:" + color5 + " !important; }" + ".cmtyx_border_color_1 { border-color: " + color5 + " !important; }" + ".cmtyx_text_color_1 { color: " + color5 + " !important; }" + ".cmtyx_color_2 { background-color:" + color6 + " !important; }" + ".cmtyx_border_color_2 { border-color: " + color6 + " !important; }" + ".cmtyx_text_color_2 { color: " + color6 + " !important; }" + ".cmtyx_color_3 { background-color:" + color7 + " !important; }" + ".cmtyx_border_color_3 { border-color: " + color7 + " !important; }" + ".cmtyx_text_color_3 { color: " + color7 + " !important; }" + ".cmtyx_color_4 { background-color:" + color8 + " !important; }" + ".cmtyx_border_color_4 { border-color: " + color8 + " !important; }" + ".cmtyx_text_color_4 { color: " + color8 + " !important; }"
+
             var dataobj = {
                           "barFontColors": "" + allcolor,
-                          "background": color5,
-                          "foregroundLight":color6,
-                          "foregroundDark": color7,
-                          "background2": color8
+                          "background": color1,
+                          "foregroundLight":color2,
+                          "foregroundDark": color3,
+                          "background2": color4
             };
             $.ajax({
                 url: new_applyThemeUrl
