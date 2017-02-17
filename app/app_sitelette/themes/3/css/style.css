@@ -586,10 +586,10 @@ li {
 }
 
 .order-note-container {
-    position: fixed;
-    bottom: 100px;
-    width: 98%;
-    z-index: 999;
+    width: 100%;
+    margin-top: 50px;
+    padding-top: 10px;
+    border-top: 1px solid #636363;
 }
 .order-note-container .add-note {
     font-size: 18px;
