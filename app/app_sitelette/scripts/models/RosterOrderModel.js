@@ -66,6 +66,7 @@ var RosterOrderModel = Backbone.Model.extend({
 			serviceLocationId: options.sasl.get('serviceLocationId'),
 			// deliveryEmail: '',
 			// deliveryPhone: '',
+			comment: '',
 			pickupSelected: false,
 			deliverySelected: true,
 			cashSelected: false,
