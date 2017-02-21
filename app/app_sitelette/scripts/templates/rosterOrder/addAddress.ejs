@@ -8,23 +8,27 @@
     </div>
     <div data-role="tabs" id="tabs">
         <div id="delivery" class="ui-body-d ui-content">
+            <div class="wrapper-title">ADD Address</div>
             <div class="wrapper">
                 <div class="material-textfield yellow">
-                    <input type="text" id="aptBldgInput" name="number" value="<%= deliveryAddress.number %>" required data-role="none" />
+                    <!-- <input type="text" id="aptBldgInput" name="number" value="<%= deliveryAddress.number %>" required data-role="none" /> -->
+                    <input type="text" id="aptBldgInput" name="number" value="" required data-role="none" />
                     <label data-content="Apt/Bldg">Apt/Bldg</label>
                 </div>
                 <div class="roster_order_error error_number">
                     Please, fill this field
                 </div>
                 <div class="material-textfield yellow">
-                    <input type="text" id="streetInput" name="street" value="<%= deliveryAddress.street %>" required data-role="none" />
+                    <!-- <input type="text" id="streetInput" name="street" value="<%= deliveryAddress.street %>" required data-role="none" /> -->
+                    <input type="text" id="streetInput" name="street" value="" required data-role="none" />
                     <label data-content="Street">Street</label>
                 </div>
                 <div class="roster_order_error error_street">
                     Please, fill this field
                 </div>
                 <div class="material-textfield yellow">
-                    <input type="text" id="cityInput" name="city" value="<%= deliveryAddress.city %>" required data-role="none" />
+                    <!-- <input type="text" id="cityInput" name="city" value="<%= deliveryAddress.city %>" required data-role="none" /> -->
+                    <input type="text" id="cityInput" name="city" value="" required data-role="none" />
                     <label data-content="City">City</label>
                 </div>
                 <div class="roster_order_error error_city">

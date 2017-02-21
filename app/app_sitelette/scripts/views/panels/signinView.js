@@ -32,7 +32,8 @@ var SigninView = PopupView.extend({
             'click .submit_button': 'submitForm',
             'click .signup_button': 'openSignupView',
             'click .forgot_password_button': 'forgotPassword',
-            'click .login_with_facebook span': 'loginWithFacebook'
+            'click .login_with_facebook span': 'loginWithFacebook',
+            'click #show_password': 'showPassword'
         });
 
         FB.getLoginStatus(function (response) {
@@ -140,6 +141,15 @@ var SigninView = PopupView.extend({
             username: $(this.username).val(),
             password: $(this.password).val()
         };
+    },
+
+    showPassword: function () {
+        if( this.$el.find('#show_password')[0].checked ) {
+            $(this.password)[0].type = "text";
+        }
+        else {
+            $(this.password)[0].type = "password";
+        }
     }
 
 });

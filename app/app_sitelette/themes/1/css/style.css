@@ -66,6 +66,9 @@ html {}
 
 .popup_container { background-color: #363636; }
 
+i.fa {
+    margin-right: 5px;
+}
 
 [data-role=page] {
     height: 100% !important;
@@ -244,6 +247,19 @@ td {
     text-align: center;
 }
 
+#delivery .wrapper-title {
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    color: #fefefe;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#delivery .wrapper {
+    border: solid 1px;
+    padding: 10px;
+}
+
 /* roster order state selector*/
 #delivery .state-selector .ui-select .ui-btn:hover {
     color: #fafafa;
@@ -325,11 +341,14 @@ textarea:focus {
 }
 .ui-page-theme-a a.ui-btn:hover,
 .common_footer a.ui-btn:hover {
-    border-width: 0;
+    /* border-width: 0; */
     border-style: solid;
     outline: none;
     font: 400 18px 'Open Sans', sans-serif;
     text-shadow: none;
+}
+.common_footer a.ui-btn:hover {
+    border-width: 0;
 }
 .ui-page-theme-a a.ui-btn.ui-btn-active {
     border-width: 1px;
@@ -542,6 +561,7 @@ li {
 .cart .cmntyex-list_container ul li span.order_price {
     font: 700 14px 'Open Sans', sans-serif;
     float: right;
+    color: #fafafa;
 }
 .price_list li span {
     font: 300 14px 'Open Sans', sans-serif;
@@ -781,7 +801,7 @@ label.checkbox_save_card {
 }
 .header .total_price,
 .sub_header .total_price {
-    font: 400 14px 'Open Sans', sans-serif;
+    font: 600 14px 'Open Sans', sans-serif;
 }
 #roster .header>.total_price,
 .sub_header>.total_price {
@@ -934,7 +954,7 @@ a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.u
     margin-bottom: 20px;
 }
 .menu_body li .item_name {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font: 700 14px 'Open Sans', sans-serif;
     color: #ddd;
     display: inline-block;
@@ -2911,6 +2931,10 @@ li.promotion_block .body {
     /*width: 90%;*/
     /*margin: 0 30px 20px 0;*/
 }
+.promoCode-buybutton.ui-btn:hover {
+    color: white;
+    border-color: white; 
+}
 
 
 /********************** PHOTO CONTEST BLOCK ***********************/
@@ -3230,6 +3254,7 @@ li.video_block .body {
     text-align: center;
     padding: 0;
     margin: 0;
+    margin-top: 10px;
 }
 .login_with_facebook span {
     background: url('images/login-with-facebook.png');
@@ -3840,9 +3865,9 @@ color: #acacac;
     outline: none;
 }
 .ui-popup .ui-controlgroup-controls .ui-input-text input {
-    background-color: transparent;
     -webkit-box-shadow: 0 0 0px 1000px #363636 inset;
-    border-bottom: 0.1rem solid rgba(250, 250, 250, 0.7);
+    background-color: #363636;
+    border: 1px solid rgba(250, 250, 250, 0.7);
     -webkit-text-fill-color: rgba(250, 250, 250, 0.7);
     text-shadow: none;
     outline: none;
@@ -3857,9 +3882,16 @@ color: #acacac;
     right: 0px;
     z-index: 1;
 }
+.signin-popup-title {
+    font-size: 22px;
+    font-family: 'Open Sans', sans-serif;
+    color: #fefefe;
+    font-weight: 600;
+}
 .signin_links a.forgot_password_button {
     float: right;
     text-decoration: none;
+    padding: 0;
 }
 .signin_links a {
     display: inline-block;
@@ -3868,6 +3900,42 @@ color: #acacac;
 }
 .signin_links a:hover {
     cursor: pointer;
+}
+a.submit_button.popup_btn.ui-link.ui-btn.ui-shadow.ui-corner-all,
+a.signup_button.ui-link.ui-btn.ui-btn-c.ui-shadow {
+    margin: 10px 0;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    padding: 10px;
+}
+input#show_password+label {
+    height: auto;
+    width: auto;
+    overflow: auto;
+    display: inline-block;
+    clip: auto;
+    margin-left: 5px;
+    font-size: 15px;
+}
+.new-title {
+    text-align: center;
+    font: 500 14px 'Open Sans', sans-serif;
+    margin: 15px 0 10px 0;
+}
+.new-title:before,
+.new-title:after {
+    content: "";
+    border-bottom: solid 1px #fff;
+    width: 20%;
+    display: inline-block;
+    position: relative;
+    top: 8px;
+} 
+.new-title:before {
+    float: left;
+}
+.new-title:after {
+    float: right;
 }
 .ui-popup .signin_alert_header {
     background-color: #363636;
