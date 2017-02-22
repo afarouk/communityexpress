@@ -12,7 +12,7 @@ var CatalogsItemView = Backbone.View.extend({
 
     tagName: 'li',
 
-    className: 'catalogs_item',
+    className: 'catalogs_item multicatalogs',
 
     events: {
         'click': 'triggerCatalogView'
@@ -26,8 +26,16 @@ var CatalogsItemView = Backbone.View.extend({
 
     render: function() {
         var viewModel = h().toViewModel( this.model.toJSON() );
-        this.$el.html(this.template(_.extend( viewModel )));
+        this.$el.html(this.template(_.extend({
+                color: this.getColor()
+            }, viewModel )));
         return this;
+    },
+
+    getColor: function() {
+        var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3' ],
+            index = this.model.collection.indexOf(this.model);
+        return colors[index % colors.length];
     },
 
     triggerCatalogView: function() {
