@@ -1,7 +1,11 @@
 <!-- <div><%= displayText + ' ' + description %></div> -->
-<a href="">
-	<div class="ui-grid-a catalog_container" style="padding: 10px;">
-		<div class="ui-block-a catalog_menu"><%= displayText %></div>
-		<div class="ui-block-b catalog_description"><%= description %></div>
+<a href="#" class="multi-catalogs <%= color %>">
+	<div class="ui-grid-a catalog_container">
+		<span class="catalog_menu"><%= displayText %></span>
+		<span class="catalog_description"><%= description %></span>
+	</div>
+	<div class="catalog-icons">
+		<div class="left_arrow_icon flip-it"></div>
+		<div class="right-arrow">&#8594;</div>
 	</div>
 </a>
