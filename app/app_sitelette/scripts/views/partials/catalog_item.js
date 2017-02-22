@@ -66,6 +66,9 @@ var CatalogItemView = Backbone.View.extend({
             }
         }
         this.listenLoadImage();
+        if (this.preopenAllPictures) {
+            this.checkImageURL();
+        }
         return this;
     },
 
@@ -212,8 +215,25 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     expandDetails: function() {
-        this.$('.sides_extras_detailed').slideDown();
-        this.withExpandedDetails = true;
+        this.checkImageURL(function(){
+            this.$('.sides_extras_detailed').slideDown();
+            this.withExpandedDetails = true;
+        }.bind(this));
+    },
+
+    checkImageURL: function(callback) {
+        var $img = $(this.el).find('.sides_extras_detailed_image img'),
+            urls = this.model.get('mediaURLs'),
+            src = urls ? urls[0] : '';
+
+        if ($img.length && !$img.attr('src')) {
+            $img.on('load', function(){
+                if (typeof callback === 'function') callback();
+            }.bind(this));
+            $img.attr('src', src);
+        } else {
+            if (typeof callback === 'function') callback();
+        }
     },
 
     collapseDetails: function() {
