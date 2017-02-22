@@ -1438,7 +1438,6 @@ li.build_combo, li.choose_extras {
 .cmntyex-group.horizontal .carousel-navigation {
     display: block;
     position: absolute;
-    bottom: 200px;
     color: white;
     z-index: 99999;
     width: 100%;
@@ -1464,6 +1463,7 @@ li.build_combo, li.choose_extras {
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
+    position: relative;
 }
 .cmntyex-group.horizontal.ui-collapsible-collapsed {
     min-height: inherit;
@@ -1473,6 +1473,7 @@ li.build_combo, li.choose_extras {
 .cmntyex-group.horizontal .ui-collapsible-content {
     display: -webkit-flex;
     display: flex;
+    height: 100%;
 }
 .cmntyex-group.horizontal .ui-collapsible-content.ui-collapsible-content-collapsed {
     display: none;
@@ -1486,6 +1487,7 @@ li.build_combo, li.choose_extras {
     display: flex;
     -webkit-flex-direction: row;
     flex-direction: row;
+    height: 100%;
 }
 .cmntyex-group.horizontal .ui-collapsible-content ul .owl-stage-outer {
     display: -webkit-flex;
@@ -1510,12 +1512,14 @@ li.build_combo, li.choose_extras {
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
+    height: 100%;
 }
 .cmntyex-group.horizontal .ui-collapsible-content ul li .sides_extras_detailed {
     display: -webkit-flex!important;
     display: flex!important;
     -webkit-flex-direction: column;
     flex-direction: column;
+    height: 100%;
 }
 .cmntyex-group.horizontal .ui-collapsible-content ul li .sides_extras_detailed .sides_extras_detailed_image {
     max-height: 100%;

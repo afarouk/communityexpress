@@ -76,7 +76,17 @@ var GroupView = Backbone.View.extend({
                 navigation.find('.navigation-next').removeClass('disabled');
             }
         });
+        this.adjustNavPosition();
     },
+
+    adjustNavPosition: function () {
+        var $el = $(this.el).find('.cmntyex-list_placeholder ul'),
+            pos = $el.find('li').first().find('.sides_extras_detailed').position(),
+            navigation = $(this.el).find('.carousel-navigation');
+        navigation.css('top', pos.top + 'px');
+    },
+
+    adjustCallback: function() {},
 
     renderItems: function (el) {
         $(el).find('.cmntyex-list_placeholder').html(new ListView({
@@ -92,7 +102,8 @@ var GroupView = Backbone.View.extend({
                 catalogId: this.catalogId,
                 catalogDisplayText: this.catalogDisplayText,
                 preopenAllPictures: this.preopenAllPictures,
-                direction: this.direction
+                direction: this.direction,
+                //adjustCallback: this.adjustCallback.bind(this)
             },
             className: 'ui-listview cmntyex-catalog',
             collection: new Backbone.Collection(this.model.unSubgroupedItems),

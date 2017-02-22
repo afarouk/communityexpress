@@ -90,6 +90,7 @@ var CatalogItemView = Backbone.View.extend({
         var container = this.$el.find('.sides_extras_detailed_image'),
             containerHeight = container.height();
         container.width(containerHeight * this.ratio + 'px');
+        //use adjustCallback from group view if we will have version with horizontal direction
     },
     //....................
 
