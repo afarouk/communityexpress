@@ -64,6 +64,7 @@ var CatalogItemView = Backbone.View.extend({
             if (this.versions.length > 0) {
                 this.renderVersions();
             }
+            this.$el.find('.sides_extras_item_details').css('width','100%');
         }
         this.listenLoadImage();
         return this;

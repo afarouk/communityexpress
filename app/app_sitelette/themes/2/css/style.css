@@ -1255,7 +1255,7 @@ li.build_combo, li.choose_extras {
     text-shadow: none;
     background-color: transparent;
     margin-left: 10px;
-    width: 31%;
+    width: 55%;
     padding: 0;
 }
 .sides_extras_item_details .item_name {
@@ -1283,7 +1283,7 @@ li.build_combo, li.choose_extras {
     height: 40px;
 }
 .sides_extras_item_versions .versions_buttons {
-    width: 75%;
+    width: 73%;
     float: left;
     margin: 0;
     padding: 0;
@@ -3875,6 +3875,10 @@ color: #acacac;
     font-family: 'Open Sans', sans-serif;
     color: #fefefe;
     font-weight: 600;
+    margin-bottom: -10px;
+}
+.signin_links {
+    margin-bottom: -8px;
 }
 .signin_links a.forgot_password_button {
     float: right;
@@ -3896,6 +3900,12 @@ a.signup_button.ui-link.ui-btn.ui-btn-c.ui-shadow {
     font-weight: 600 !important;
     padding: 10px;
 }
+a.signup_button.ui-link.ui-btn.ui-btn-c.ui-shadow {
+    margin: 10px 0;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding: 5px;
+}
 input#show_password+label {
     height: auto;
     width: auto;
@@ -3914,7 +3924,7 @@ input#show_password+label {
 .new-title:after {
     content: "";
     border-bottom: solid 1px #fff;
-    width: 20%;
+    width: 18%;
     display: inline-block;
     position: relative;
     top: 8px;
