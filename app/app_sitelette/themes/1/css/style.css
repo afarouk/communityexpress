@@ -956,7 +956,7 @@ a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.u
 .menu_body li .item_name {
     /* text-transform: uppercase; */
     font: 700 14px 'Open Sans', sans-serif;
-    color: #ddd;
+    color: #fff;
     display: inline-block;
     white-space: normal;
 }
@@ -1037,7 +1037,7 @@ li.build_combo, li.choose_extras {
 .menu_body li.choose_extras .item_name {
     text-transform: uppercase;
     font: 700 16px 'Open Sans', sans-serif;
-    color: #dddddd;
+    color: #ffffff;
     display: inline-block;
     max-width: 240px;
 }
@@ -1049,7 +1049,7 @@ li.build_combo, li.choose_extras {
 .menu_body li.choose_extras .under_item_name_text {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
-    color: #dddddd;
+    color: #ffffff;
     font-weight: 300;
     display: block;
     margin-bottom: 15px;
@@ -1058,7 +1058,7 @@ li.build_combo, li.choose_extras {
 .menu_body li.choose_extras .combo_items {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
-    color: #dddddd;
+    color: #ffffff;
     font-weight: 300;
     display: inline-block;
 }
@@ -1640,7 +1640,7 @@ li.catalogs_item.multicatalogs {
 .combo_items_list {
     margin-top: 0;
     font: 300 12px 'Open Sans', sans-serif;
-    color: #dddddd;
+    color: #ffffff;
     clear: both;
 }
 #credit .select_container,
@@ -2998,7 +2998,7 @@ li.promotion_block .body {
 }
 .promoCode-buybutton.ui-btn:hover {
     color: white;
-    border-color: white; 
+    border-color: white;
 }
 
 
@@ -4010,7 +4010,7 @@ input#show_password+label {
     display: inline-block;
     position: relative;
     top: 8px;
-} 
+}
 .new-title:before {
     float: left;
 }
