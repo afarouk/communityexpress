@@ -76,7 +76,7 @@ var GroupView = Backbone.View.extend({
                 navigation.find('.navigation-next').removeClass('disabled');
             }
         });
-        this.adjustNavPosition();
+        setTimeout(this.adjustNavPosition.bind(this), 2);
     },
 
     adjustNavPosition: function () {

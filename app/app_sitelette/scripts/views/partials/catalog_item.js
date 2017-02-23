@@ -57,7 +57,8 @@ var CatalogItemView = Backbone.View.extend({
             quantity: this.quantity || 0,
             selectorVersions: hasVersion ? this.getSelectorVersions() : null,
             availableVersion: hasVersion ? this.getFirstAvailableVersion() : null,
-            preopenAllPictures: this.preopenAllPictures
+            preopenAllPictures: this.preopenAllPictures,
+            direction: this.direction
         })));
         if (hasVersion) {
             this.updateAddVersionButton();

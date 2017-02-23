@@ -1243,6 +1243,9 @@ li.build_combo, li.choose_extras {
 }
 .sides_extras_container .float_right {
     position: relative;
+    padding-right: 1px;
+    padding-bottom: 4px;
+    width: 121px;
 }
 .combo_item_container label {
     font: 400 18px 'Open Sans', sans-serif !important;
@@ -1255,8 +1258,8 @@ li.build_combo, li.choose_extras {
     display: inline-block;
     text-shadow: none;
     background-color: transparent;
-    margin-left: 10px;
-    width: 55%;
+    margin-left: 5px;
+    width: 50%;
     padding: 0;
 }
 .sides_extras_item_details .item_name {
@@ -1441,6 +1444,10 @@ li.build_combo, li.choose_extras {
     width: 100%;
     font-size: 40px;
 }
+.cmntyex-group.horizontal .carousel-navigation .glyphicon {
+    background: rgba(1,1,1,0.2);
+    border-radius: 5px;
+}
 .cmntyex-group.horizontal .carousel-navigation .navigation-prev {
     position: absolute;
     left: 0;
@@ -1473,12 +1480,17 @@ li.build_combo, li.choose_extras {
     display: flex;
     position: relative;
     height: 100%;
+    max-height: 100%;
+    position: relative;
 }
 .cmntyex-group.horizontal .ui-collapsible-content.ui-collapsible-content-collapsed {
     display: none;
 }
 .cmntyex-group.horizontal .ui-collapsible-content .cmntyex-list_placeholder {
     width: 100%;
+    height: 100%;
+    max-height: 100%;
+    position: absolute;
 }
 .cmntyex-group.horizontal .ui-collapsible-content ul {
     max-height: 100%;
@@ -1493,6 +1505,8 @@ li.build_combo, li.choose_extras {
     display: flex;
     -webkit-flex-direction: row;
     flex-direction: row;
+    height: 100%;
+    max-height: 100%;
 }
 .cmntyex-group.horizontal .ui-collapsible-content ul .owl-stage-outer .owl-stage {
     display: -webkit-flex;
@@ -1500,9 +1514,11 @@ li.build_combo, li.choose_extras {
     -webkit-flex-direction: row;
     flex-direction: row;
     height: 100%;
+    max-height: 100%;
 }
 .cmntyex-group.horizontal .ui-collapsible-content ul .owl-stage-outer .owl-stage .owl-item {
     height: 100%;
+    max-height: 100%;
 }
 .cmntyex-group.horizontal .ui-collapsible-content ul li {
     margin: 0;
@@ -4190,12 +4206,15 @@ a.cancel {
 
 .catalog_item_main_view {
     white-space: normal;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .catalog_item_main_view .sides_item_image_small_container {
     display: inline-block;
     vertical-align: top;
-    padding: 0 0 .7em .7em;
+    padding: 0 0 .7em .2em;
 }
 
 .catalog_item_main_view .sides_item_image_small_container img {

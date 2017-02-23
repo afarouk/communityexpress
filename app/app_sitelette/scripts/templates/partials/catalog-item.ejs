@@ -28,7 +28,7 @@
 <div class="sides_extras_detailed" <% if (preopenAllPictures) { %>style="display: block;"<% } %>>
     <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
         <div class="sides_extras_detailed_image">
-            <img alt="" />
+            <img alt="" <% if (direction === 'HORIZONTAL') { %>src="<%= mediaURLs[0] %>"<% } %> />
         </div>
     <% } %>
     <div class="catalog_item_attributes">
