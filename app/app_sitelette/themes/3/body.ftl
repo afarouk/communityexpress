@@ -19,26 +19,25 @@
 		</div>
 	</div>
 
-	<div id="cmtyx_navbar" data-role="footer" data-position="fixed"
-		class="ui-footer ui-bar-a ui-footer-fixed slideup common_footer">
+	<div id="cmtyx_navbar" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup common_footer ui-navbar" role="navigation">
 		<div data-role="navbar">
-			<ul>
-				<li><a href="#" class="menu_button_3 ui-btn">
+			<ul class="ui-grid-c">
+				<li class="ui-block-a"><a href="#" class="menu_button_3 ui-btn">
 						<!-- <div class="navbar_btn_icon document_img"></div>  -->
 						<div class="navbar_btn_icon icon-document_ navbutton_menu"></div>
 						<br>Menu
 				</a></li>
-				<li><a href="#" class="menu_button_2">
+				<li class="ui-block-b"><a href="#" class="menu_button_2 ui-btn">
 						<!-- <div class="navbar_btn_icon calendar_grey_img m-b-11"></div>  -->
 						<div class="navbar_btn_icon icon-deals_ navbutton_deals"></div>
 						<br>Deals
 				</a></li>
-				<li><a href="#" class="menu_button_4">
+				<li class="ui-block-c"><a href="#" class="menu_button_4 ui-btn">
 						<!-- <div class="navbar_btn_icon information_button_img m-b-7"></div>  -->
 						<div class="navbar_btn_icon icon-information_ navbutton_about"></div>
 						<br>About
 				</a></li>
-				<li><a href="#" class="menu_button_5">
+				<li class="ui-block-d"><a href="#" class="menu_button_5 ui-btn sign_out">
 						<!-- <div class="navbar_btn_icon user_img m-b-9"></div>  -->
 						<div class="navbar_btn_icon icon-user_"></div>
 						<!-- <span class="glyphicon glyphicon-ok .cmtyx_text_color_1" aria-hidden="true"></span> -->
