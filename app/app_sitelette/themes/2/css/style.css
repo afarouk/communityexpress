@@ -1240,11 +1240,12 @@ li.build_combo, li.choose_extras {
     padding: 10px 20px;
     margin: 5px;
 }
-.sides_extras_container .float_right {
+.sides_extras_container .catalog_item_main_view:not(.version) .float_right {
     position: relative;
     padding-right: 1px;
     padding-bottom: 4px;
     width: 121px;
+    /*little tweak*/
 }
 .combo_item_container label {
     font: 400 18px 'Open Sans', sans-serif !important;
@@ -1282,7 +1283,7 @@ li.build_combo, li.choose_extras {
     display: block;
 }
 .sides_extras_item_versions {
-    margin: 0 3px 5px 10px;
+    margin: 0 3px 5px 5px;
     height: 40px;
 }
 .sides_extras_item_versions .versions_buttons {
@@ -4192,7 +4193,7 @@ a.cancel {
     padding-right: 20px;
 }
 
-.catalog_item_main_view {
+.catalog_item_main_view:not(.version) {
     white-space: normal;
     display: flex;
     flex-direction: row;
