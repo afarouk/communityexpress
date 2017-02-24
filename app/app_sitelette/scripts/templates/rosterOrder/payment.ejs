@@ -66,14 +66,14 @@
                             <% if (item.isVersion) { %>
                                 <span class="order_version">(<%= item.versionText %>)</span>
                             <% } %>
-                            <span class="order_price cmtyx_text_color_1"><%= cs + item.price %></span>
+                            <span class="order_price"><%= cs + item.price %></span>
                         </li>
                     <% }) %>
                 </ul>
                 <ul class="price_list">
                     <li>
                         <span class="order_name">Subtotal</span>
-                        <span class="order_price cmtyx_text_color_1"><%= cs + subTotal %></span>
+                        <span class="order_price"><%= cs + subTotal %></span>
                     </li>
                     <li class="discount <%= backToSingleton ? 'hidden' : '' %>">
                         <span class="minimum_purchase_error <% if ( minimumPurchase > totalWithoutTax ) { %>visible<% } %>">Minimum purchase for discount : <%= cs + minimumPurchase %></span>
@@ -83,12 +83,12 @@
                             <% if (!promoCode) { %>
                                 <a class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</a>
                             <% } %>
-                            <span class="order_price discount_value cmtyx_text_color_1"><%= cs + discount %></span>
+                            <span class="order_price discount_value"><%= cs + discount %></span>
                         </div>
                     </li>
                     <li >
                         <span class="order_name">Tax (<%= taxState %>%)</span>
-                        <span class="order_price cmtyx_text_color_1"><%= cs + taxAmount.toFixed(2) %></span>
+                        <span class="order_price"><%= cs + taxAmount.toFixed(2) %></span>
                     </li>
                     <li class="tip_price">
                         <span class="order_name">Tip</span>
@@ -106,12 +106,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="order_price tip_price_value cmtyx_text_color_1"><%= cs + tipSum.toFixed(2) %></span>
+                            <span class="order_price tip_price_value"><%= cs + tipSum.toFixed(2) %></span>
                         </div>
                     </li>
                     <li class="total_price">
                         <span class="order_name">Total</span>
-                        <span class="order_price cmtyx_text_color_1"><%= cs + totalAmount %></span>
+                        <span class="order_price"><%= cs + totalAmount %></span>
                     </li>
                 </ul>
                 <div class="order-note-container ui-body-d ui-content">
