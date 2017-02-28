@@ -182,7 +182,7 @@ var CatalogOrderView = Backbone.View.extend({
             options
         ).then(function () {
             this.basket.reset();
-            loader.showFlashMessage('order successful');
+            loader.showFlashMessage('order placed');
             setTimeout(function () {
                 this.triggerCatalogView();
             }.bind(this), 20000);

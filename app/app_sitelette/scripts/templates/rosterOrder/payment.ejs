@@ -52,7 +52,7 @@
                     <p class="delivery_address_text">Delivery address</p>
                     <p class="address"><%= deliveryAddress.number + ' ' + deliveryAddress.street + ', ' + deliveryAddress.city + ', ' + deliveryAddress.state%></p>
                 <% } else if (pickupAddress && pickupSelected) { %>
-                    <p class="delivery_address_text">Pickup address</p>
+                    <p class="delivery_address_text">Pickup location</p>
                     <p class="address"><%= pickupAddress.number + ' ' + pickupAddress.street + ', ' + pickupAddress.city + ', ' + pickupAddress.state%></p>
                 <% } %>
                 <% if (!paymentOnlineAccepted) { %>

@@ -347,7 +347,7 @@ var PaymentView = Backbone.View.extend({
             appCache.set('updateDiscount', true);
             var callback = _.bind(this.triggerSingletonView, this);
             popupController.textPopup({
-                text: 'order successful'
+                text: 'order placed'
             }, callback);
         }.bind(this), function(e) {
             loader.hide();
@@ -384,7 +384,7 @@ var PaymentView = Backbone.View.extend({
                 callback = _.bind(this.triggerRosterView, this);
             }
             popupController.textPopup({
-                text: 'order successful'
+                text: 'order placed'
             }, callback);
         }.bind(this), function(e) {
             loader.hide();

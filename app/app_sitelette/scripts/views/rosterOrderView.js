@@ -266,7 +266,7 @@ var RosterOrderView = Backbone.View.extend({
           this.backToRoster = false;
           var callback = _.bind(this.triggerRosterView, this);
           popupController.textPopup({
-            text: 'order successful'
+            text: 'order placed'
           }, callback);
         }.bind(this), function(e) {
           var text = h().getErrorMessage(e, 'Error placing your order');
