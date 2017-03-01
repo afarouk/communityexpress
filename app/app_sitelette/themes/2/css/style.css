@@ -1357,7 +1357,7 @@ li.build_combo, li.choose_extras {
     margin-left: auto;
 }
 .sides_extras_item_added_versions .item_version .float_right .versions-price {
-    color: #333;
+    color: #000;
 }
 .sides_extras_item_added_versions .item_version .version-description {
     margin-left: 10px;
