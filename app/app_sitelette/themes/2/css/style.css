@@ -1271,6 +1271,9 @@ li.build_combo, li.choose_extras {
     font: 700 18px 'Open Sans', sans-serif;
     color: #ffffff;
 }
+.sides_extras_item_details .order_price {
+    color: #fafafa;
+}
 
 /* item versions */
 .sides_extras_item_not_available_versions {
@@ -1357,7 +1360,7 @@ li.build_combo, li.choose_extras {
     margin-left: auto;
 }
 .sides_extras_item_added_versions .item_version .float_right .versions-price {
-    color: #000;
+    color: #fafafa;
 }
 .sides_extras_item_added_versions .item_version .version-description {
     margin-left: 10px;
