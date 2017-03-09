@@ -37,7 +37,7 @@
 						<div class="navbar_btn_icon icon-information_ navbutton_about"></div>
 						<br>About
 				</a></li>
-				<li class="ui-block-d"><a href="#" class="menu_button_5 ui-btn sign_out">
+				<li class="ui-block-d"><a href="#" class="menu_button_5 ui-btn">
 						<!-- <div class="navbar_btn_icon user_img m-b-9"></div>  -->
 						<div class="navbar_btn_icon icon-user_"></div>
 						<!-- <span class="glyphicon glyphicon-ok .cmtyx_text_color_1" aria-hidden="true"></span> -->
