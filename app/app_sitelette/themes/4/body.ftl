@@ -416,13 +416,13 @@
 			<!----- End of Promotions  ---------------->
 
 
+	    <#if (externalMedia)?has_content >
 		<!----- Videos  ---------------->		
 				<li id="cmtyx_video_block" class="video_block">
 					<div class="header cmtyx_color_1">
 						<span class="title">video</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 				    <div class="body last">
-				    <#if (externalMedia)?has_content >
 		            <ul>
 				      <#list externalMedia as media>
 				          <li>
@@ -456,9 +456,9 @@
 					  <div style="text-align:center;">
 						  (No videos available)
 					  </div>
-					  </#if>
 					</div>
 				</li>
+			    </#if>
 				
 			<!----- End of Videos  ---------------->		
 				
@@ -720,12 +720,12 @@
 			
 			
 			<!----- Events  ---------------->
+			<#if (eventsSummary.events)?has_content >
 		
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
 						<span class="title">events</span> <span class="collapse_btn">&#9660;</span>
 					</div>
-					<#if (eventsSummary.events)?has_content >
 						<div class="body">
 							<ul class="gallery event_block_overlay">
 								<#list eventsSummary.events as event>
@@ -811,18 +811,18 @@
 								</#list>
 							</ul>
 						</div>
-					<#else>
-						<div class="body" style="text-align: center;">(No events
-							scheduled)</div>
-					</#if>
+						<!-- <div class="body" style="text-align: center;">
+							(No events scheduled)
+						</div> -->
 				</li>
+				</#if>
 
 				<!----- End of Events  ---------------->
 					
 				
 			<!----- User Reviews  ---------------->				
 								
-				
+				<#if (reviewsSummary.events)?has_content >
 				<li id="cmtyx_reviews_block" class="reviews_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">reviews</span> <span
@@ -894,10 +894,9 @@
 						</div>
 					</div>
 				</li>
+				</#if>
 				
-				
-		<!----- End of User Reviews  ---------------->				
-
+		    <!----- End of User Reviews  ---------------->				
 				
 			</ul>
 			<ul class="cmtyx_bottom_block" id="cmtyx_contact_us_block">

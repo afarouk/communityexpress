@@ -671,12 +671,12 @@
 			
 			
 			<!----- Events  ---------------->
+			<#if (eventsSummary.events)?has_content >
 		
 				<li id="cmtyx_events_block" class="events_block">
 					<div class="header cmtyx_color_3">
 						<span class="title">events</span> <span class="collapse_btn">&#9660;</span>
 					</div>
-					<#if (eventsSummary.events)?has_content >
 						<div class="body">
 							<ul class="gallery event_block_overlay">
 								<#list eventsSummary.events as event>
@@ -762,18 +762,18 @@
 								</#list>
 							</ul>
 						</div>
-					<#else>
-						<div class="body" style="text-align: center;">(No events
-							scheduled)</div>
-					</#if>
+						<!-- <div class="body" style="text-align: center;">
+							(No events scheduled)
+						</div> -->
 				</li>
+				</#if>
 
 				<!----- End of Events  ---------------->
 					
 				
 			<!----- User Reviews  ---------------->				
 								
-				
+				<#if (reviewsSummary.events)?has_content >
 				<li id="cmtyx_reviews_block" class="reviews_block">
 					<div class="header cmtyx_color_2">
 						<span class="title">reviews</span> <span
@@ -845,17 +845,17 @@
 						</div>
 					</div>
 				</li>
-				
+				</#if>
 				
 		<!----- End of User Reviews  ---------------->				
 
 		<!----- Videos  ---------------->		
+		<#if (externalMedia)?has_content >
 				<li id="cmtyx_video_block" class="video_block">
 					<div class="header cmtyx_color_1">
 						<span class="title">video</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 				    <div class="body last">
-				    <#if (externalMedia)?has_content >
 		            <ul>
 				      <#list externalMedia as media>
 				          <li>
@@ -863,7 +863,7 @@
 	 						<#if videoNeedsPlaceholder>
 			                    <div id="externalvideo${media.idMedia}" class="embedded_videos external" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
 			                      <a href="#">
-			                        <img src="themes/2/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
+			                        <img src="themes/1/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
 			                      </a>
 			                    </div>
 			                    <div class="video_item_message">
@@ -885,13 +885,12 @@
                           </li>
 						</#list>
 				      </ul>
-					  <#else>
-					  <div style="text-align:center;">
+					  <!-- <div style="text-align:center;">
 						  (No videos available)
-					  </div>
-					  </#if>
+					  </div> -->
 					</div>
 				</li>
+			</#if>
 				
 			<!----- End of Videos  ---------------->		
 				
