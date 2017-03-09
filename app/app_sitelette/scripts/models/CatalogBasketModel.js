@@ -360,7 +360,24 @@ var CatalogBasketModel = Backbone.Collection.extend({
         }
 
         return orderItems;
+    },
+
+    // quick solution for dynamic subtotal in basket
+    getBasketItemsForSubtotal: function(changedItems) {
+        var itemsForSubtotal = [];
+        this.models.map(function (item) {
+            var uuid = item.get('uuid');
+            var quantity = changedItems[uuid] ? changedItems[uuid].count : item.get('quantity');
+            var item = {
+                quantity: quantity,
+                price: item.get('price')
+            };
+            itemsForSubtotal.push(item);
+        });
+
+        return itemsForSubtotal;
     }
+    // end
 
 });
 

@@ -808,12 +808,17 @@ label.checkbox_save_card {
 }
 .header .header_order_btn,
 .sub_header .header_order_btn {
-    font: 700 14px 'Open Sans', sans-serif;
-    color: #1991fa;
-    border: solid 1px #1991fa;
-    padding: 5px 10px;
+    font: 900 16px 'Open Sans', sans-serif;
+    color: #fafafa;
+    border: solid 1px #fafafa;
+    padding: 4px 10px;
     border-radius: 5px;
     margin-left: 10px;
+    cursor: pointer;
+}
+.header .header_order_btn:hover,
+.sub_header .header_order_btn:hover {
+    color: #fafafa;
 }
 #roster .header .header_order_btn {
     border: none;
@@ -993,6 +998,26 @@ input[type=number]::-webkit-outer-spin-button {
 #left-panel .cmntyex-list_container ul {
     margin-bottom: 20px;
 }
+#left-panel .subtotal_price_container {
+    float: left;
+    font: 500 15px 'Open Sans', sans-serif;
+    color: #fafafa;
+    position: relative;
+    top: 4px;
+}
+#left-panel .total_price {
+    font-weight: 700;
+}
+#left-panel .order_btn {
+    font: 900 14px 'Open Sans', sans-serif;
+    color: #fafafa;
+    border: solid 1px #fafafa;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    float: right;
+}
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay {
     -webkit-transform: translate3d(-28em, 0, 0);
     -moz-transform: translate3d(-28em, 0, 0);
@@ -1104,7 +1129,7 @@ li.build_combo, li.choose_extras {
 .order_btn:active,
 .order_btn:focus,
 .order_btn:hover {
-    color: #1991fa;
+    color: #fafafa;
 }
 .ui-page-theme-a a:hover {
     color: #1991fa;
@@ -1743,10 +1768,10 @@ span.select2-container--default .select2-selection--single:focus {
 }
 
 .shopping_icon {
-    background: url('images/shopping-cart.png') no-repeat;
-    background-size: 21px 21px;
-    height: 21px;
-    width: 21px;
+    background: url(images/shopping-cart.png) no-repeat;
+    background-size: 27px 27px;
+    height: 27px;
+    width: 27px;
     display: inline-block;
 }
 .left_arrow_icon {
@@ -3204,7 +3229,8 @@ li.video_block .body {
     height: 20px;
 }
 
-.no_discounts {
+.no_discounts,
+.no_promotions {
     text-align: center;
     padding: 20px;
 }
@@ -4118,8 +4144,7 @@ a.cancel {
 
 .basket_icon_container {
     display: inline-block;
-    padding: 10px;
-    padding-left: 5%;
+    padding: 7px 5px 1px 5%;
 }
 .catalog_sub_item_img {
     display: none;

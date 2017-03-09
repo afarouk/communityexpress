@@ -71,6 +71,7 @@ var EditCatalogBasketItem = Backbone.View.extend({
         }
         if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED' || !this.basket.catalogType) {
             this.changedItems[this.model.get('uuid')] = changedItem;
+            this.changedItems.onChanged();
         }
     }
 

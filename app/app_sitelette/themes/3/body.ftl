@@ -157,7 +157,7 @@
 
 										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
 											<div class="sms_input_block">
-												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
 												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 											</div>
 											<div class="ui-block-a text sms_block">
@@ -204,6 +204,7 @@
     					<div id="flag"><span>sale</span></div>
 						<span class="title">Promotion</span> <span class="collapse_btn">&#9660;</span>
 					</div>
+					<#if (promotions)?has_content >
 					<div class="body">
 						<ul>
 							<!-- <#list promotions as promotion>
@@ -326,7 +327,7 @@
 								</div>
 								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
 									<div class="sms_input_block">
-										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
 										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 									</div>
 									<div class="ui-block-a text sms_block">
@@ -404,6 +405,13 @@
 							-->
 						</ul>
 					</div>
+					<#else>
+						<div class="body">
+							<div class="no_promotions">
+								(No Promotions)
+							</div>
+						</div>
+					</#if>
 				</li>
 			<!----- End of Promotions  ---------------->
 
@@ -444,7 +452,7 @@
 
 								<div class="ui-grid-c gallery-share-block" data-uuid="${media.uuid}">
 									<div class="sms_input_block">
-										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+										<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
 										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 									</div>
 									<div class="ui-block-a text sms_block">
@@ -547,7 +555,7 @@
 						                    <div class="share_block" data-uuid="${poll.contestUUID}">
 						                        <div class="ui-grid-c">
 						                            <div class="sms_input_block" data-uuid="${poll.contestUUID}">
-						                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+						                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
 						                                <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 						                            </div>
 						                            <div class="ui-block-a text sms_block">
@@ -626,7 +634,7 @@
 					                        <div class="share_block" data-uuid="${photo.contestUUID}">
 					                            <div class="ui-grid-c">
 					                                <div class="sms_input_block" data-uuid="${photo.contestUUID}">
-					                                    <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+					                                    <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
 					                                    <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 					                                </div>
 					                                <div class="ui-block-a text sms_block">
@@ -725,7 +733,7 @@
 
 										<div class="ui-grid-c events-share-block" data-uuid="${event.uuid}">
 											<div class="sms_input_block">
-												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
 												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 											</div>
 											<div class="ui-block-a text sms_block">
@@ -908,7 +916,7 @@
 					class="title"> Share this site </span>
 					<div class="ui-grid-c">
 						<div class="sms_input_block">
-							<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+							<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
 							<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 						</div>
 						<div class="ui-block-a text sms_block">

@@ -296,6 +296,66 @@ var RosterBasketModel = Backbone.Model.extend({
     return orderItems;
   },
 
+  // quick solution for dynamic subtotal in basket
+    getBasketItemsForSubtotal: function(changedItems) {
+        // var orderItems = [];
+        // this.catalogs.map(function (item) {
+        //     var uuid = item.get('uuid');
+        //     var quantity = changedItems[uuid] ? changedItems[uuid].quantity : item.get('quantity');
+        //     var orderItem = {
+        //         quantity: quantity,
+        //         price: item.get('price'),
+        //         uuid: uuid
+        //     };
+        //     orderItems.push(orderItem);
+        // });
+
+        // return orderItems;
+
+
+      var itemsForSubtotal = [];
+    console.log(changedItems);
+    this.catalogs.each(function(catalog, tt, ee) {
+      
+      if (typeof catalog.quantity === 'undefined') {
+        var catalogId = catalog.get('id');
+        var quantity = changedItems[catalogId] ? changedItems[catalogId].quantity : catalog.get('quantity');
+      
+        var item = {
+              quantity: quantity, 
+              price: catalog.get('price')
+        };
+        itemsForSubtotal.push(item);
+      } else {
+        if(catalog.catalogType === "ITEMIZED") {
+          _.each(catalog.models, function(item) {
+            var itemName = item.get('itemName');
+            var quantity = changedItems[itemName] ? changedItems[itemName].quantity : item.get('quantity');
+
+            var item = {
+              quantity: quantity, 
+              price: item.get('price')
+            };
+            
+            itemsForSubtotal.push(item);
+          })
+        }
+        else {
+          var catalogItemsList = catalog.itemsList;
+          var quantity = changedItems[catalogItemsList] ? changedItems[catalogItemsList].quantity : catalog.quantity;
+          // debugger;
+          var item = {
+              quantity: quantity,
+              price: catalog.price
+          };
+          itemsForSubtotal.push(item);
+        }
+      }
+    });
+    console.log(itemsForSubtotal);
+    return itemsForSubtotal;
+    },
+    // end
 
   dumpCartToConsole: function() {
     console.log("************----- current RosterBasketModel --------");

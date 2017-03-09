@@ -14,13 +14,14 @@ var EditCatalogBasketView = PanelView.extend({
     template : template,
 
     addedEvents : {
-        'click .cart_add_delete_item': 'addOrDeleteItem'
+        'click .cart_add_delete_item': 'addOrDeleteItem',
+        'click .order_btn': 'triggerOrder'
     },
 
     initialize : function(options) {
         this.options = options;
         options = options || {};
-        this.changedItems = {};
+        this.createChangeItems();
         this.basket = this.model;
 
         this.itemTemplate = options.template;
@@ -50,8 +51,29 @@ var EditCatalogBasketView = PanelView.extend({
             parent : this
         }).render().el);
         this.afterRender(); // call it for each panel if you replaced render
+        this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
         return this;
     },
+
+    //  we need this strange logic because in other case we should make serious changes in our application 
+    //  it can take a lot of time
+    createChangeItems: function() {
+        function ChangedItems() {
+
+        }
+        ChangedItems.prototype.onChanged = this.updateTotalPrice.bind(this);
+        this.changedItems = new ChangedItems();
+    },
+
+    updateTotalPrice: function() {
+        var temporaryBasket = this.basket.getBasketItemsForSubtotal(this.changedItems);
+        var subTotalPrice = 0;
+        _.each(temporaryBasket, function(item) {
+            subTotalPrice += item.quantity * item.price;
+        })
+        this.$('.total_price').text('$ ' + subTotalPrice.toFixed(2));
+    },
+    // end
 
     saveBasket: function() {
         if (this.changedItems.length === 0) return;
@@ -67,8 +89,12 @@ var EditCatalogBasketView = PanelView.extend({
     _update : function() {
         this.render(true);
         this.enhance();
-    }
+    },
 
+    triggerOrder: function() {
+        this.saveBasket();
+        this.parent.triggerOrder();
+    }
 });
 
 module.exports = EditCatalogBasketView;

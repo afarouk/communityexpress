@@ -64,10 +64,13 @@ var EditRosterViewItem = Backbone.View.extend({
         };
         if (catalogId === 'BUILDYOURCOMBO') {
             this.changedCatalogs[catalog.ownComboItemText] = changedCatalog;
+            this.changedCatalogs.onChanged();
         } else if (catalogId === 'SIDES') {
             this.changedCatalogs[catalog.displayText] = changedCatalog;
+            this.changedCatalogs.onChanged();
         } else {
             this.changedCatalogs[catalogId] = changedCatalog;
+            this.changedCatalogs.onChanged();
         }
     },
 
