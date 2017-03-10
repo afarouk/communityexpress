@@ -128,7 +128,7 @@ var PaymentCardView = Backbone.View.extend({
             if (number.hasClass('invalid')) {
                 error.text('Please, enter card number').slideDown();
             } else  if (exp.hasClass('invalid') || !expMonth.val() || !expYear.val()) {
-                error.text('Please, enter valid month and year').slideDown();
+                error.text('Please, enter valid expiration date MM/YY').slideDown();
             }
             else {
                 error.text('Please, enter your first name and last name').slideDown();
