@@ -17,10 +17,16 @@ var PaymentCardView = Backbone.View.extend({
 
         //Fix for AMEX card (bug in skeuocard)
         Skeuocard.prototype.isValid = function() {
-            var names = this._getUnderlyingValue('name').split(' ');
+            var names = [],
+                nameString = this._getUnderlyingValue('name'),
+                firstName = (nameString.substr(0, nameString.indexOf(' ') == -1 ? nameString.length : nameString.indexOf(' '))),
+                lastName = (nameString.substr(nameString.indexOf(' ') == -1 ? nameString.length : nameString.indexOf(' ') + 1));
+
+            names.push(firstName);
+            names.push(lastName);
             return !this.el.front.hasClass('invalid')
             && (!this.el.back.hasClass('invalid') || !this._inputViewsByFace['back'].length)
-            && ((names.length < 2 ? false : true) || !(!names[0] || !names[1]));
+            && ((names[0] === "" ? false : true) || !( names[0].length < 2 ));
         };
 	},
 
@@ -104,17 +110,21 @@ var PaymentCardView = Backbone.View.extend({
     },
 
     showError: function() {
-        var names = this.$('.cc-name').val().split(' '),
+        var names = [],
+            nameString = this.$('.cc-name').val(),
+            firstName = (nameString.substr(0, nameString.indexOf(' ') == -1 ? nameString.length : nameString.indexOf(' '))),
+            lastName = (nameString.substr(nameString.indexOf(' ') == -1 ? nameString.length : nameString.indexOf(' ') + 1)),
             error = this.$('.roster_order_error'),
             front = this.$('.front'),
             number = this.$('.cc-number'),
             exp = this.$('.cc-exp'),
             expMonth = this.$('.cc-exp-field-m'),
             expYear = this.$('.cc-exp-field-y');
-
+            names.push(firstName);
+            names.push(lastName);
         if (!this.card._inputViewsByFace.front.length) {
             error.text('Please, fill card fields').slideDown();
-        } else if (front.hasClass('invalid') || (names.length < 2 || (!names[0] || !names[1]))) {
+        } else if (front.hasClass('invalid') || names[0] === "" || names[0].length < 2 ) {
             if (number.hasClass('invalid')) {
                 error.text('Please, enter card number').slideDown();
             } else  if (exp.hasClass('invalid') || !expMonth.val() || !expYear.val()) {
@@ -124,7 +134,7 @@ var PaymentCardView = Backbone.View.extend({
                 error.text('Please, enter your first name and last name').slideDown();
             }
         } else {
-            error.text('Please, enter cvc').slideDown();
+            error.text('Please, enter CVV').slideDown();
         }
     },
 

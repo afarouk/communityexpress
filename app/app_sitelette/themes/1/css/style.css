@@ -811,10 +811,10 @@ label.checkbox_save_card {
 }
 .header .header_order_btn,
 .sub_header .header_order_btn {
-    font: 900 16px 'Open Sans', sans-serif;
+    font: 900 15px 'Open Sans', sans-serif;
     color: #fafafa;
     border: solid 1px #fafafa;
-    padding: 4px 10px;
+    padding: 3px 10px 5px 10px;
     border-radius: 5px;
     margin-left: 10px;
     cursor: pointer;
