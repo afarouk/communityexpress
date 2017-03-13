@@ -649,6 +649,9 @@ li {
 .skeuocard.js .card-body .face.front {
     position: relative;
 }
+.skeuocard.js .card-body .separator + .separator {
+    display: none;
+}
 .skeuocard.js .cc-number input.group19 {
     width: 14em;
 }
@@ -3534,7 +3537,7 @@ li.driving_directions_block {
 #upload_photo .body .material-textfield,
 #contact_us .body .material-textfield {
     width: 100%;
-    padding-top: 10px;
+    padding-top: 14px;
 }
 
 #upload_photo .material-textfield textarea,
@@ -3558,7 +3561,7 @@ li.driving_directions_block {
 #contact_us  .material-textfield input+label::before,
 #contact_us  .material-textfield input[required]:focus ~ label::before {
     font-size: 12px;
-    top: -4rem;
+    top: -8rem;
 }
 
 #upload_photo .material-textfield textarea+label::before,
@@ -3566,7 +3569,7 @@ li.driving_directions_block {
 #contact_us  .material-textfield textarea+label::before,
 #contact_us  .material-textfield textarea[required]:focus ~ label::before {
     font-size: 12px;
-    top: -8.5rem;
+    top: -8em;
 }
 
 #upload_photo .material-textfield input:invalid ~ label::before,
