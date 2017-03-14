@@ -128,6 +128,7 @@ var SummaryView = Backbone.View.extend({
     	    addrIsEmpty: this.model.additionalParams.addrIsEmpty,
             allowDelivery: this.allowDelivery,
             pickupAddress: pickupAddress,
+            showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
             discount: this.model.additionalParams.discountDisplay.toFixed(2),
             promoCode: this.model.additionalParams.promoCode,
             minimumPurchase: this.model.additionalParams.minimumPurchase,
