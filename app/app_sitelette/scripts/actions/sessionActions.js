@@ -168,9 +168,9 @@ module.exports = {
 
     facebookLoginStatus: function(status) {
         var def = $.Deferred();
-        // if (status === 'connected') {
-        //     this.getPublicProfile(def);
-        // } else {
+        var isMobile = !window.community.desktop;
+        console.log('isMobile: ', isMobile);
+        if (!isMobile) {
             FB.login(function(response) {
                 if (response.authResponse) {
                     this.getPublicProfile(def);
@@ -178,8 +178,26 @@ module.exports = {
                     def.resolve({error:'User cancelled login or did not fully authorize.'});
                 }
             }.bind(this), { scope: 'email' });
-        // }
+        } else {
+            //temporary, I will change it if it will work
+            var permissionUrl = "https://m.facebook.com/dialog/oauth?client_id=" + '163685094028796' + "&response_type=code&redirect_uri=" + window.location + "&scope=" + 'email';
+            window.location = permissionUrl;
+        }
         return $.when(def);
+
+        //old code commented
+        // if (status === 'connected') {
+        //     this.getPublicProfile(def);
+        // } else {
+            // FB.login(function(response) {
+            //     if (response.authResponse) {
+            //         this.getPublicProfile(def);
+            //     } else {
+            //         def.resolve({error:'User cancelled login or did not fully authorize.'});
+            //     }
+            // }.bind(this), { scope: 'email' });
+        // }
+        // return $.when(def);
     },
 
     getPublicProfile: function(def) {
