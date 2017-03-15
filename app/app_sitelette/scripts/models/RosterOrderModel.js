@@ -49,7 +49,7 @@ var RosterOrderModel = Backbone.Model.extend({
 			allowDelivery: options.sasl.get('services').catalog['allowDelivery'],
 			allowCash: options.sasl.get('services').catalog['allowCash'],
 			//temporary true , because I can't find that it is in SASL 
-			showTipOnSummaryPage: true || options.sasl.get('services').catalog['showTipOnSummaryPage'],
+			showTipOnSummaryPage: options.sasl.get('services').catalog['showTipOnSummaryPage'],
 			discount: 0,
 			maximumDiscount: 0,
 			minimumPurchase: 0,
