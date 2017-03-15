@@ -28,10 +28,12 @@ com.faralam.fire_count = 0;
 com.faralam.newsletterMembers = [];
 
 com.faralam.Editor_MaxLength = 1000;
-com.faralam.custom_img_path = com.faralam.base_url + '/resources/Image/';
+//com.faralam.custom_img_path = com.faralam.base_url + '/resources/Image/';
+com.faralam.custom_img_path ='resources/Image/';
 com.faralam.CongratsPageMsg = 'The new business has been submitted. You must login again to continue';
 com.faralam.CongratsPageMsgNote = 'NOTE: Your new business still needs to be approved. Once approved it will be live on the Community System. However, you can already start to edit, add photos etc.';
 com.faralam.plugin_path = com.faralam.base_url + '/resources/plugins/';
+//com.faralam.plugin_path = 'resources/plugins/';
 
 //com.faralam.uploadURL = "http://appointment-service.com/apptsvc/rest/";
 
@@ -851,7 +853,7 @@ com.faralam.getServiceConfigurations = function (URL) {
         var settingMenu = [];
 
         //var config_arr = ['reservationService', 'mediaservice', 'messagingService', 'promotionService', 'appointmentService', 'userSASLService', 'emailService', 'smsService', 'addEditSASL', 'catalog', 'onlineOrder', 'openingHours', 'saslLogoIcon', 'saslAppIcon', 'saslMetadata', 'saslPreview', 'customerCare', 'userSettings', 'servicestatus' , 'adAlertService','htmlEmailService','widgetService','pollingContestService','photoContestService','checkinContestService','wallService','orderSiteCardsService','drivingDirectionsService','clickToCallService','version'];
-        var config_arr = ['mediaservice', 'promotionService', 'userSASLService', 'messagingService', 'onlineOrder', 'openingHours', 'saslMetadata', 'saslLogoIcon', 'saslAppIcon', 'emailService', 'smsService', 'servicestatus', 'catalog', 'pollingContestService', 'photoContestService', 'wallService', 'adAlertService', 'htmlEmailService', 'widgetService', 'orderSiteCardsService', 'drivingDirectionsService', 'clickToCallService', 'qrCodeScanService', 'themeSelectionService', 'loyaltyService', 'eventsService', 'videoService', 'customerCare', 'userSettings','saslPreview','discountPromoCodeService'];//,'itemsForSaleService'
+        var config_arr = ['mediaservice', 'promotionService', 'userSASLService', 'messagingService', 'onlineOrder', 'openingHours', 'saslMetadata', 'saslLogoIcon', 'saslAppIcon', 'emailService', 'smsService', 'servicestatus', 'catalog', 'pollingContestService', 'photoContestService', 'wallService', 'adAlertService', 'htmlEmailService', 'widgetService', 'orderSiteCardsService', 'drivingDirectionsService', 'clickToCallService', 'qrCodeScanService', 'themeSelectionService', 'loyaltyService', 'eventsService', 'videoService', 'customerCare', 'userSettings','saslPreview','discountPromoCodeService','itemsForSaleService'];//,''
 
         for (var i = 0; i < config_arr.length; i++) {
             if (data['' + config_arr[i] + '']) {
@@ -1381,14 +1383,15 @@ com.faralam.StartScreenNavigate = function (config) {
             Ext.getCmp('discountOrPromoCodeService_pageHeader').update('<span style="color:#fff;font-size:20px; font-weight: bold;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');
             Ext.getCmp('main_tab').setActiveTab(51);
         }
-    }/*else if (config == 'itemsForSaleService') {
+    }
+    else if (config == 'itemsForSaleService') {
         if (sessionStorage.SASLNAME) {
             Ext.getCmp('main_tab').down('#start_screen').setDisabled(true);
             Ext.getCmp('main_tab').down('#CreateSaleItem').setDisabled(false);
             Ext.getCmp('CreateSaleItem_pageHeader').update('<span style="color:#E5FFFF;font-size:20px; font-weight: bold;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');
-            Ext.getCmp('main_tab').setActiveTab(52);
+            Ext.getCmp('main_tab').setActiveTab(53);
         }
-    }*/
+    }
     
 }
 
@@ -2786,7 +2789,16 @@ com.faralam.dragStart = function (ev) {
         ev.dataTransfer.setData('data_value', ev.target.getAttribute('data-value'));
         ev.target.className = 'after_dragging';
         com.faralam.fire_count = 0;
+    }else if(ev.target.className=='items_list_saleitem'){
+        ev.dataTransfer.setData('Text', 'items_list_saleitem');
+        ev.dataTransfer.setData('itemVersion', ev.target.getAttribute('itemVersion'));
+        ev.dataTransfer.setData('price', ev.target.getAttribute('price'));
+        ev.dataTransfer.setData('priceId', ev.target.getAttribute('priceId'));
+        ev.dataTransfer.setData('itemId', ev.target.getAttribute('itemId'));    
+        ev.dataTransfer.setData('imgsrc', ev.target.getAttribute('imgsrc'));    
+        ev.dataTransfer.setData('itemName', ev.target.getAttribute('itemName'));    
     }
+    
 }
 
 com.faralam.ChangeGalleryImageOrder = function (id, insertafterid, source_index, destiny_index, sa, sl, total_count) {
@@ -2823,7 +2835,6 @@ com.faralam.ChangeGalleryImageOrder = function (id, insertafterid, source_index,
 }
 
 com.faralam.drop = function (ev) {
-
     ev.preventDefault();
     var drag_data = ev.dataTransfer.getData('Text');
 
@@ -2837,7 +2848,8 @@ com.faralam.drop = function (ev) {
             var del_id = ev.dataTransfer.getData('img_param').split('~');
             com.faralam.common.RemoveGalleryImage(img_params[0], img_params[1], img_params[2], drag_data, del_id[0]);
         }
-    } else if (ev.target.id == 'deactivate_zone') {
+    } 
+    else if (ev.target.id == 'deactivate_zone') {
         if (drag_data == 'gallery_drag_zone_active') {
             var img_params = ev.dataTransfer.getData('img_params').split(',');
             if (img_params[3] == 'GALLERY_OWNER') {
@@ -2846,7 +2858,8 @@ com.faralam.drop = function (ev) {
                 com.faralam.registration.showPopup('Status', 'You can not drop image to this section as it is Member image.');
             }
         }
-    } else if (ev.target.id == 'member_scroll') {
+    }
+    else if (ev.target.id == 'member_scroll') {
         if (drag_data == 'gallery_drag_zone_active') {
             var img_params = ev.dataTransfer.getData('img_params').split(',');
             if (img_params[3] == 'GALLERY_MEMBER') {
@@ -2855,7 +2868,8 @@ com.faralam.drop = function (ev) {
                 com.faralam.registration.showPopup('Status', 'You can not drop image to this section as it is Owner Image.');
             }
         }
-    } else if (ev.target.id == 'mobile_gallery') {
+    }
+    else if (ev.target.id == 'mobile_gallery') {
         if (drag_data == 'gallery_drag_zone_owner') {
             var img_param = ev.dataTransfer.getData('img_param').split(',');
 
@@ -2878,7 +2892,8 @@ com.faralam.drop = function (ev) {
             }
             com.faralam.common.activateMedia(img_param[1], img_param[2], img_param[0], target_id);
         }
-    } else if (ev.target.id == 'gallery_drag_zone_active' && com.faralam.fire_count == 0) {
+    }
+    else if (ev.target.id == 'gallery_drag_zone_active' && com.faralam.fire_count == 0) {
         if (drag_data == 'gallery_drag_zone_owner') {
             var img_param = ev.dataTransfer.getData('img_param').split(',');
             var target_id;
@@ -2909,6 +2924,7 @@ com.faralam.drop = function (ev) {
         }
         com.faralam.fire_count++;
     }
+    
 }
 
 com.faralam.dragEnd = function (ev) {
@@ -7654,26 +7670,33 @@ com.faralam.common.retrieveGroups_func = function () {
         //console.log(response);
         var html = '';
         if (response.length > 0) {
+            
             for (var i = 0; i < response.length; i++) {
-                var edtbtn='<img id="all_group_move_icon"  ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" src="'+com.faralam.custom_img_path+'icon_move.png" data-qtip=' + response[i].status.enumText + ' GroupId="' + response[i].groupId + '" style="position:absolute;right:1px;cursor:move;z-index:999">';
-                html += '<li style="border:2px solid black;border-radious:5px"><img id="allGroup_catalog_drag_zone_active" class="before_dragging" ondragend="com.faralam.dragEnd_catalog(event)" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetAllItemDescEdit(this)" width="90" height="110" data-qtip=' + response[i].status.enumText + ' GroupId="' + response[i].groupId + '" src="' + com.faralam.custom_img_path + 'trans_img.jpg">'+edtbtn+'<span style="line-height:80px;font-size:14px;font-weight:bold">' + response[i].groupDisplayText + '</span></li>';
+                var status="";
+                if(response[i].status && response[i].status!=null){
+                   status="data-qtip="+response[i].status.enumText; 
+                }
+                var edtbtn='<img id="all_group_move_icon"  ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" src="'+com.faralam.custom_img_path+'icon_move.png" "' + status + '" GroupId="' + response[i].groupId + '" style="position:absolute;right:1px;cursor:move;z-index:999">';
+                html += '<li style="border:2px solid black;border-radious:5px"><img id="allGroup_catalog_drag_zone_active" class="before_dragging" ondragend="com.faralam.dragEnd_catalog(event)" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetAllItemDescEdit(this)" width="90" height="110" "' + status + '" GroupId="' + response[i].groupId + '" src="' + com.faralam.custom_img_path + 'trans_img.jpg">'+edtbtn+'<span style="line-height:80px;font-size:14px;font-weight:bold">' + response[i].groupDisplayText + '</span></li>';
                 /*<li style="height:110px;width:20px"><div  ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" id="all_groups_rearrange" style="height:100%; width:100%"></div></li>*/
 
             }
         }
         if (html) {
-            html = '<ul id="all_groups_scroll" class="images" style="white-space: nowrap;height:94px;overflow:hidden">' + html + '</ul>';
+            html = '<ul id="all_groups_scroll" class="images" style="white-space: nowrap;height:94px;">' + html + '</ul>';
         } else {
             html = '<ul class="images" style="text-align:center;height:87px;"><li>No group(s) available</li></ul>';
         }
 
         Ext.getCmp('slide_panel1_catalog').update(html);
-        $("#all_groups_scroll").perfectScrollbar('destroy');
-        $("#all_groups_scroll").perfectScrollbar();
+        /*$("#all_groups_scroll").perfectScrollbar('destroy');
+        $("#all_groups_scroll").perfectScrollbar();*/
+        /*$("#slide_panel1_catalog-innerCt-outerCt").perfectScrollbar('destroy');
+        $("#slide_panel1_catalog-innerCt").perfectScrollbar();*/
          
-        /*$("div#slide_panel1_catalog-innerCt").perfectScrollbar('destroy');
-        $("div#slide_panel1_catalog-innerCt").perfectScrollbar();
-*/
+        $("#slide_panel1_catalog-innerCt").perfectScrollbar('destroy');
+        $("#slide_panel1_catalog-innerCt").perfectScrollbar();
+
     }
     var onerror = function (jqXHR, textStatus, errorThrown) {}
     com.faralam.common.sendAjaxRequest(com.faralam.retrieveGroups_func, "GET", {}, onsuccess, onerror);
@@ -7780,7 +7803,7 @@ com.faralam.common.RetrieveCatalogInfo = function (p_id,txt,coi) {
                     var editbtn='';
                             editbtn='<img src="'+com.faralam.custom_img_path+'icon_pencil.png" onclick="com.faralam.common.CATALOGS_EDIT_ITEMS(this)" itemId="'+response.items[j].itemId+'" itemVersion='+response.items[j].itemVersion+' priceId='+response.items[j].priceId+' price="'+response.items[j].price+'" shortDescription="'+response.items[j].shortDescription+'" longDescription="'+response.items[j].longDescription+'" itemType="'+response.items[j].itemType.enumText+'" itemName="'+response.items[j].itemName+'" itemTag="'+response.items[j].itemTag+'" '+attr+' imgUrl="' + response.items[j].mediaURLs[0]+'" style="position:absolute;left:92px;top:2;z-index:9999;cursor:pointer;left:0">';
                             
-                    var movebtn='<img src="'+com.faralam.custom_img_path+'icon_move.png" data-qtip=' + response.items[j].itemStatus.enumText + ' params=' + del_params + ' src="' + response.items[j].mediaURLs[0] + '" itemName="' + response.items[j].itemName + '" longDescription="' + response.items[j].longDescription + '" itemVersion="' + response.items[j].itemVersion + '" price="' + response.items[j].price + '" priceId="' + response.items[j].priceId + '" itemId="' + response.items[j].itemId + '" itemTag="' + response.items[j].itemTag + '" imgUrl="' + response.items[j].mediaURLs[0] + '" shortDescription="' + response.items[j].shortDescription + '" ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" id="all_item_rearrange_icon"  style="position:absolute;z-index:99;top:2;border:none;right:0;cursor:move" >';
+                    var movebtn='<img src="'+com.faralam.custom_img_path+'icon_move.png" data-qtip="' + response.items[j].itemStatus.enumText + '" params="' + del_params + '" src="' + response.items[j].mediaURLs[0] + '" itemName="' + response.items[j].itemName + '" longDescription="' + response.items[j].longDescription + '" itemVersion="' + response.items[j].itemVersion + '" price="' + response.items[j].price + '" priceId="' + response.items[j].priceId + '" itemId="' + response.items[j].itemId + '" itemTag="' + response.items[j].itemTag + '" imgUrl="' + response.items[j].mediaURLs[0] + '" shortDescription="' + response.items[j].shortDescription + '" ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" id="all_item_rearrange_icon"  style="position:absolute;z-index:99;top:2;border:none;right:0;cursor:move" >';
                             
                     html += '<li  style="border:2px solid black"><img id="mainItems_catalog_drag_zone_active" class="before_dragging" onclick="com.faralam.SetAllItemDescEdit(this)" width="110" height="100" data-qtip=' + response.items[j].itemStatus.enumText + ' params=' + del_params + ' src="' + response.items[j].mediaURLs[0] + '" itemName="' + response.items[j].itemName + '" longDescription="' + response.items[j].longDescription + '" itemVersion="' + response.items[j].itemVersion + '" price="' + response.items[j].price + '" priceId="' + response.items[j].priceId + '" itemId="' + response.items[j].itemId + '" itemTag="' + response.items[j].itemTag + '" imgUrl="' + response.items[j].mediaURLs[0] + '" shortDescription="' + response.items[j].shortDescription + '" >'+editbtn+movebtn+'<div class="gallery_overlay" style="width:110px;overflow:hidden;line-height: 20px;"><center><span style="font-size:12px">'+itemName+'</span></center></div></li><li></li>';
                     /*'<div class="item_drop_zone" id="all_item_drop_zone"></div>'*/
@@ -7865,6 +7888,7 @@ com.faralam.common.RetrieveCatalogInfo = function (p_id,txt,coi) {
     com.faralam.common.sendAjaxRequest(com.faralam.retrieve_catalog_info, "GET", {}, onsuccess, onerror);
 
 }
+
 com.faralam.common.enablecheck= function (e,field) {
         if (e != '') {
             console.log(field);
@@ -8981,7 +9005,7 @@ com.faralam.common.addCatalog = function () {
         com.faralam.addCatalog = com.faralam.serverURL + 'retail/createCatalog';
         catalog = Ext.getCmp('catalog_title').getValue();
         var data = {
-        "timeRange": {
+        /*"timeRange": {
             "isExpired": "false",
             "expirationDate": "2013-01-05T23:00:00Z",
             "openingDays": ["THU"],
@@ -8996,7 +9020,7 @@ com.faralam.common.addCatalog = function () {
                 }
             },
             "activationDate": "2013-09-25T16:37:03Z"
-        },
+        },*/
         "displayText": Ext.getCmp('catalog_title').getValue(),
         "description": Ext.getCmp('catalog_description').getValue(),
         "catalogId": catalog,
@@ -10383,22 +10407,25 @@ com.faralam.drop_catalog = function (ev) {
                       "serviceAccommodatorId": sessionStorage.SA,
                       "serviceLocationId": sessionStorage.SL
                     };
-                    
+            
             com.faralam.common.positionItemByIdAfterId(data);
         }
     }
     if (ev.target.id == 'delete_zone_catalogGroupItem_img') {
         if (drag_data == 'groupedItemList_catalog_drag_zone_move_active') {
-                Ext.MessageBox.confirm('Confirm', 'Are you sure you want to remove the selected item?', function (e) {
+            sessionStorage.GR_itemId = ev.dataTransfer.getData('itemId');
+            sessionStorage.GR_itemVersion = ev.dataTransfer.getData('itemVersion');
+            sessionStorage.GR_priceId = ev.dataTransfer.getData('priceId');
+                Ext.MessageBox.confirm('Confirm', 'Are you sure you want to remove the selected item?', function (e,data) {
         if (e == 'yes') {
             var data={  
                         "serviceAccommodatorId": sessionStorage.SA,
                         "serviceLocationId": sessionStorage.SL,
                         "groupId": Ext.getCmp("groupId").getValue(),
                         "item":{
-                        "itemVersion": ev.dataTransfer.getData("itemVersion"),
-                        "priceId": ev.dataTransfer.getData("priceId"),
-                        "itemId": ev.dataTransfer.getData("itemId")
+                        "itemVersion": sessionStorage.GR_itemVersion,
+                        "priceId": sessionStorage.GR_priceId,
+                        "itemId": sessionStorage.GR_itemId
                       }};
             com.faralam.common.removeItemFromGroup(data);
         } });
@@ -10445,6 +10472,7 @@ com.faralam.dragStart_catalog = function (ev) {
         ev.dataTransfer.setData('priceId', ev.target.getAttribute('priceId'));
         ev.target.className = 'after_dragging';
         com.faralam.fire_count = 0;
+        
     }
     //if (ev.target.id == 'mainItems_catalog_drag_zone_active') 
     if (ev.target.id == 'all_item_rearrange_icon'){
@@ -10479,7 +10507,7 @@ com.faralam.dragEnd_catalog = function (ev) {
     }
 com.faralam.common.removeItemFromGroup = function(data){
     var groupId = Ext.getCmp('groupId').getValue();
-    console.log(groupId);
+    console.log(data);
    com.faralam.removeItemFromGroup=com.faralam.serverURL +"retail/removeItemFromGroup?";
    com.faralam.removeItemFromGroup=com.faralam.removeItemFromGroup+encodeURI("UID="+ sessionStorage.UID);
     data = JSON.stringify(data);
@@ -10743,7 +10771,11 @@ com.faralam.getSliderPicURLs = function (step, itemId) {
                     //console.log(position);
                 }
                 var itemOrder = j + 1;
-                html += '<li id="item-' + itemOrder + '" itemName="' + response.items[j].itemName + '" price="' + response.items[j].price + '" itemVersion="' + response.items[j].itemVersion + '" priceId="' + response.items[j].priceId + '" itemId="' + response.items[j].itemId + '"><img src="' + response.items[j].mediaURLs[0] + '" width="170" height="87" /><div style="width:170px;"><span class="item_name">' + response.items[j].itemName + '</span><span class="item_price">$ ' + response.items[j].price + '</span></div></li>';
+                var mdurl="";
+                if(response.items[j].mediaURLs[0]){
+                 var mdurl=response.items[j].mediaURLs[0];   
+                }
+                html += '<li id="item-' + itemOrder + '" itemName="' + response.items[j].itemName + '" price="' + response.items[j].price + '" itemVersion="' + response.items[j].itemVersion + '" priceId="' + response.items[j].priceId + '" itemId="' + response.items[j].itemId + '"><img src="' + mdurl + '" width="170" height="87" /><div style="width:170px;"><span class="item_name">' + response.items[j].itemName + '</span><span class="item_price">$ ' + response.items[j].price + '</span></div></li>';
             }
             slider_tail = '</ul></div></div>';
         }
@@ -12165,9 +12197,11 @@ com.faralam.common.getMemberList_func = function (section) {
             for (var i = 0; i < response.length; i++) {
                 if (section == 'MyAppMembers') {
                     html += '<tr><td style="color:#000 !important;padding: 10px 10px;height: 38px;" width="200px"><span onclick="com.faralam.common.ShowMemberInfo(this)" email="'+response[i].email+'" mobile="'+response[i].mobileNumber+'" userName="' + response[i].userName + '" style="cursor:pointer;">' + response[i].userName + '</span></td></tr>';
-                } else if (section == 'HtmlEmailService') {
+                }
+                else if (section == 'HtmlEmailService') {
                     html += '<tr><td style="padding: 0  5px;height: 38px;" width="200px"><input type="checkbox" class="check_style" name="member" value="1"><span style="color: #fff !important;padding-left: 5px;font-size: 16px;">' + response[i].userName + '</span></td></tr>';
-                } else if (section == 'NewsletterService') {
+                }
+                else if (section == 'NewsletterService') {
                     if(response[i].isEmailAvailable==true)
                         {
                           html += '<tr><td style="padding: 0  5px;height: 38px;border-bottom: 1px solid #bbb;" width="190px"><input type="checkbox" class="check_style" name="member" value="' + response[i].userName + '" id="newsletterMemberId[' + i + ']" onclick="com.faralam.common.setNewsletterMembers(this)"><span style="color: #000 !important;padding-left: 5px;font-size: 14px;">' + response[i].userName + '</span></td></tr>';  
@@ -12178,6 +12212,18 @@ com.faralam.common.getMemberList_func = function (section) {
                         }
                     
                 }
+                else if (section == 'discount_share') {
+                    if(response[i].isEmailAvailable==true)
+                        {
+                          html += '<tr><td style="padding: 0  5px;height: 38px;border-bottom: 1px solid #bbb;" width="190px"><input type="checkbox" class="check_style" name="member" value="' + response[i].userName + '" id="newsletterMemberId[' + i + ']" onclick="com.faralam.common.setDiscountShareMembers(this)"><span style="color: #000 !important;padding-left: 5px;font-size: 14px;">' + response[i].userName + '</span></td></tr>';  
+                        }
+                    else
+                        {
+                            html += '<tr><td title="Email is not available of this user" style="padding: 0  5px;height: 38px;opacity:0.5;border-bottom: 1px solid #bbb;" width="190px"><input type="checkbox" disabled class="check_style" name="member" value="' + response[i].userName + '" id="newsletterMemberId[' + i + ']" ><span style="color: #000 !important;padding-left: 5px;font-size: 14px;">' + response[i].userName + '</span></td></tr>';
+                        }
+                    
+                }
+                
             }
         }
         if (section == 'MyAppMembers') {
@@ -12186,17 +12232,25 @@ com.faralam.common.getMemberList_func = function (section) {
             Ext.getCmp('slide_panel_members').update(html);
             $('#MyAppMembers_memberList_table').perfectScrollbar('destroy');
             $('#MyAppMembers_memberList_table').perfectScrollbar();
-        } else if (section == 'HtmlEmailService') {
+        }
+        else if (section == 'HtmlEmailService') {
             html = '<table border="0" id="HtmlEmailService_memberList_table">' + html + '</table>';
             Ext.getCmp('slide_panel_HtmlEmailService').update(html);
             $('#HtmlEmailService_memberList_table').perfectScrollbar('destroy');
             $('#HtmlEmailService_memberList_table').perfectScrollbar();
-        } else if (section == 'NewsletterService') {
+        } 
+        else if (section == 'NewsletterService') {
             html = '<table border="0" style="height: 290px !important;overflow:hidden;border-top:2px solid white;" id="NewsletterService_memberList_table"><tr><td style="padding: 0  5px;height: 38px; text-align:center;" width="200px"><h3 style="color:#FFFFFF; border-bottom: 2px solid #fff;font-size:18px;">Members</h3></td></tr>' + html + '</table>';
             Ext.getCmp('slide_panel_NewsletterService').update(html);
             $('#NewsletterService_memberList_table').perfectScrollbar('destroy');
             $('#NewsletterService_memberList_table').perfectScrollbar();
         }
+        else if(section == 'discount_share'){
+            html = '<table border="0" style="height: 290px !important;overflow:hidden;border-top:2px solid white;" id="discount_share_memberList_table"><tr><td style="height: 38px; text-align:center;" width="200px"><h3 style="padding: 5px 0px  5px 0px;color:#FFFFFF; border-bottom: 2px solid #fff;font-size:13px;">Members</h3></td></tr>' + html + '</table>';
+            Ext.getCmp('slide_panel_discount').update(html);
+            $('#discount_share_memberList_table').perfectScrollbar('destroy');
+            $('#discount_share_memberList_table').perfectScrollbar();        
+                }
     }
     var onerror = function (jqXHR, textStatus, errorThrown) {}
     com.faralam.common.sendAjaxRequest(com.faralam.getMemberList_func, "GET", {}, onsuccess, onerror);
@@ -19468,9 +19522,9 @@ var splitString = "";
          AllPromoCode=data;   
          com.faralam.common.setRetrieveRetailPromoCodes(data[0].promoCode.toString());  
         }
-        $("#discountOrPromoCodeService_layer").remove();
+        /*$("#discountOrPromoCodeService_layer").remove();
         var layer='<div id="discountOrPromoCodeService_layer" style="z-index: 9999;height: 400px;width: 965px;position: fixed;background-color: rgba(0,0,0,0.3);top:243px;left:17px"></div>';
-        $("#view_promo_frst_container").append(layer);    
+        $("#view_promo_frst_container").append(layer);*/    
     }
  
  	var onerror =function(jqXHR, textStatus, errorThrown){
@@ -19490,6 +19544,7 @@ var splitString = "";
      Ext.getCmp('promo_discount_details').setValue(data[i].description);
      Ext.getCmp('promo_discount_show').setValue(data[i].discount);
      Ext.getCmp('promo_discount_type').setValue(data[i].type);
+     Ext.getCmp('hid_discountUUID').setValue(data[i].discountUUID);
      var d=new Date(data[i].expirationDate);
      var dd = d.getDate();
      var mm = d.getMonth()+1;
@@ -19508,6 +19563,45 @@ var splitString = "";
      
   }   
  }
+ 
+ com.faralam.common.open_video_modal = function (src) {
+            var play_video_modal;
+            if (Ext.getCmp('play_video_modal')) {
+                var modal = Ext.getCmp('play_video_modal');
+                modal.destroy(modal, new Object());
+            }
+            if (!play_video_modal) {
+                play_video_modal = Ext.widget('window', {
+                    title: '',
+                    id: 'play_video_modal',
+                    closeAction: 'destroy',
+                    layout: 'fit',
+                    resizable: false,
+                    modal: true,
+                    width: 540,
+                    cls: 'blue_modal',
+                    height: 335,
+                    items: [{
+                        xtype: 'container',
+                        layout: {
+                            type: 'vbox',
+                            align: 'stretch'
+                        },
+                        bodyPadding: 10,
+                        height: 300,
+                        width: 530,
+                        items: [],
+                        html: '<video style="margin-left: 30px;box-shadow: 1px 1px 10px 1px #999 inset;" width="470" height="270" controls><source src="'+src+'" type="video/mp4"></video>'
+                    }],
+                    listeners: {
+                        close: function () {},
+                        show: function () {}
+                    }
+                });
+            }
+            play_video_modal.show();
+            
+        }
  
  com.faralam.common.deactivateRetailPromoCode = function(promoCode){
   console.log("fnpro="+promoCode);   
@@ -19610,8 +19704,373 @@ var splitString = "";
     
  }
  
+ com.faralam.DiscountShareMembers=[];
+
+ com.faralam.common.setDiscountShareMembers = function (field) {
+        //console.log(field.checked);
+        if (field.checked == true) {
+            var index = com.faralam.DiscountShareMembers.indexOf(field.value);
+            if (index > -1) {
+                com.faralam.DiscountShareMembers.splice(index, 1);
+            }
+            com.faralam.DiscountShareMembers.push(field.value);
+        } else {
+            var index = com.faralam.DiscountShareMembers.indexOf(field.value);
+            com.faralam.DiscountShareMembers.splice(index, 1);
+        }
+    }
  
+ com.faralam.common.shareFromIPAD = function (modal,discountUUID) {
+    var members = "";
+    for (i = 0; i < com.faralam.DiscountShareMembers.length; i++) {
+        members += com.faralam.DiscountShareMembers[i] + ',';
+    }
+    members = members.substring(0, members.length - 1);
+
+    com.faralam.shareFromIPAD = com.faralam.serverURL + 'html/shareFromIPAD';
+    com.faralam.shareFromIPAD = com.faralam.shareFromIPAD + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
+    var nonMember=Ext.getCmp('discount_nonmember_section').getValue();
+    var nonMember_arr2=nonMember.split(",");
+    var final_arr_nonMember=new Array();
+    for (var i=0;i<nonMember_arr2.length;i++){
+                    if(nonMember_arr2[i].trim()!='')
+                        {
+                        final_arr_nonMember.push(nonMember_arr2[i]);
+                        }
+                }
+    var data={
+   "shareType":"DISCOUNT",
+   "uuid":discountUUID,
+   "usernames": [members],
+   "nonMemberEmails": final_arr_nonMember
+   };
+      
+    data = JSON.stringify(data);
+    var onsuccess = function (response, textStatus, jqXHR) {
+        Ext.MessageBox.alert('Success', " Sent successfully",function(){
+           // Ext.getCmp('HtmlEmail_modal').close();
+            modal.close();
+        });
+    }
+    var onerror = function (jqXHR, textStatus, errorThrown) {}
+
+    com.faralam.common.sendAjaxRequest(com.faralam.shareFromIPAD, "POST", data, onsuccess, onerror);
+}
  /*=========================================================================*/
+ 
+ /*======================== Create Sale Item =============================*/
+ com.faralam.common.retrieveItems_forsale = function () {
+    com.faralam.retrieveItems = com.faralam.serverURL + 'retail/retrieveItems';
+    com.faralam.retrieveItems = com.faralam.retrieveItems + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
+    var onsuccess = function (response, textStatus, jqXHR) {
+        var html = '';
+        var arr = new Array();
+        var count = 0;
+        var overlay_img = '';
+        if (response.items.length > 0) {
+            var flg = 0;
+            var fl = 0;
+            for (var j = 0; j < response.items.length; j++) {
+                if (response.items[j].itemStatus.enumText == "ACTIVE") {
+                    
+                    html +='<div ondragstart="com.faralam.dragStart(event)" ondragend="" itemVersion="' + response.items[j].itemVersion + '" price="' + response.items[j].price + '" priceId="' + response.items[j].priceId + '" itemId="' + response.items[j].itemId + '" itemName ="'+response.items[j].itemName+'" imgsrc="'+response.items[j].mediaURLs[0]+'" draggable="true" class="items_list_saleitem"><div style="width: 100px;float:left;margin:4px;"><img src="'+response.items[j].mediaURLs[0]+'" alt="dress" style=" width: 100px;    border: 1px solid black;"></div><div style="color: black;width: 86px;float: left;margin-top: 40px;">Price :'+response.items[j].price+' <br><br>'+response.items[j].itemName+'</div><div class="clear"></div></div>';
+                     
+                    
+                    fl++;
+                }
+            }
+        }
+        if (html) {
+            html = '<div id="create_sale_items_dv">' + html + '</div>';
+        }
+        else {
+            html = '<ul class="images" style="text-align:center;height:87px;"><li>No image(s) available</li></ul>';
+        }
+        Ext.getCmp('create_sale_items_list_container').update(html);
+        $('#create_sale_items_dv').perfectScrollbar('destroy');
+        $("#create_sale_items_dv").perfectScrollbar();
+    }
+    var onerror = function (jqXHR, textStatus, errorThrown) {}
+    com.faralam.common.sendAjaxRequest(com.faralam.retrieveItems, "GET", {}, onsuccess, onerror);
+}
+ 
+ com.faralam.common.createNewSaleItem = function (obj) {
+    console.log(obj);
+    var createNewSaleItem_modal;
+    if (Ext.getCmp('createNewSaleItem_modal')) {
+        var modal = Ext.getCmp('createNewSaleItem_modal');
+        modal.destroy(modal, new Object());
+    }
+    if (!createNewSaleItem_modal) {
+        createNewSaleItem_modal = Ext.widget('window', {
+            title: '<h3>Create New Sale Item</h3>',
+            id: 'createNewSaleItem_modal',
+            closeAction: 'destroy',
+            layout: 'fit',
+            resizable: false,
+            modal: true,
+            width: 600,
+            cls: 'blue_modal',
+            height: 420,
+            items: [{
+                xtype: 'container',
+                layout: 'vbox',
+                bodyPadding: 10,
+                height: 450,
+                width: 580,
+                margin:'10 0 0 0',
+                items: [{
+                        xtype: 'container',
+                        layout: 'hbox',
+                        items: [
+                                
+                                {
+                                xtype: 'image',
+                                padding: '2 2 2 2',
+                                width: 120,
+                                height: 140,
+                                margin: '5 5 5 5',
+                                src: obj.imgsrc,
+                                id: 'saleItem_img',
+                                style:'border:1px solid black'
+                                },
+                            {
+                                xtype:'container',
+                                layout:'vbox',
+                                width:150,
+                                margin:'5 5 5 10',
+                                items:[{
+                                        xtype: 'displayfield',
+                                        labelStyle: 'color: #000 !important; width: 200px !important; font-weight: bold !important;',
+                                        name: 'bank_account',
+                                        id: 'sale_item_price',
+                                        value: obj.price
+                                    },
+                                       {
+                                        xtype: 'displayfield',
+                                        labelStyle: 'color: #000 !important; width: 200px !important; font-weight: bold !important;',
+                                        name: 'bank_account',
+                                        id: 'sale_item_code',
+                                        value: obj.itemName
+                                    }
+                                      ]
+                                
+                            },
+                            {
+                            xtype: 'container',
+                            layout: 'vbox',
+                            margin:'5 5 5 5',
+                            items: [{
+                                xtype: 'textfield',
+                                id: 'saleItem_title',
+                                name: 'saleItem_title',
+                                editable: true,
+                                labelWidth: 60,
+                                labelAlign: 'left',
+                                labelSeparator: '  ',
+                                allowBlank: false,
+                                emptyText: '',
+                                inputWidth: 200,
+                                inputHeight: 20,
+                                value: '',
+                                fieldLabel: '<h4 style="color: #000000 ; margin-right: 12px;">Title</h4>'
+                            }, {
+                                xtype: 'textfield',
+                                id: 'saleItem_price',
+                                name: 'saleItem_price',
+                                editable: true,
+                                labelWidth: 60,
+                                labelAlign: 'left',
+                                labelSeparator: '  ',
+                                allowBlank: false,
+                                emptyText: '',
+                                inputWidth: 200,
+                                inputHeight: 20,
+                                value: '',
+                                fieldLabel: '<h4 style="color: #000000 ; margin-right: 10px;">price</h4>'
+                            }, 
+                                    {
+                                xtype: 'datefield',
+                                anchor: '100%',
+                                fieldLabel: '<h4 style="color: #000000 ; margin-right: 12px;">expires</h4>',
+                                inputType: 'text',
+                                name: 'saleItem_expires',
+                                allowBlank: false,
+                                emptyText: '',
+                                id: 'saleItem_expires',
+                                msgTarget: 'none',
+                                minValue: new Date(),
+                                inputWidth: 200,
+                                inputHeight: 20,
+                                labelAlign: 'left',
+                                labelWidth: 60,
+                                labelSeparator: '  ',
+                                style: ' border-radius: 3px !important;padding-right: 5px !important;',
+                                format: 'Y-m-d',
+                                value: new Date()
+                            },{
+                                xtype: 'hiddenfield',
+                                id: 'saleitem_itemId',
+                                name: 'saleitem_itemId',
+                                value: obj.itemId
+                                },{
+                                xtype: 'hiddenfield',
+                                id: 'saleitem_itemVersion',
+                                name: 'saleitem_itemVersion',
+                                value: obj.itemVersion
+                                },{
+                                xtype: 'hiddenfield',
+                                id: 'hid_saleitem_price',
+                                name: 'hid_saleitem_price',
+                                value: obj.price
+                                },{
+                                xtype: 'hiddenfield',
+                                id: 'saleitem_priceId',
+                                name: 'saleitem_priceId',
+                                value: obj.priceId
+                                }]
+                        }]
+                    }, {
+                        xtype: 'textarea',
+                        fieldLabel: '<p style="color: #000;font-size: 12px;font-weight: bold;">Display Text</p>',
+                        labelStyle: 'color:#000 !important;',
+                        labelSeparator: '',
+                        labelAlign: 'left',
+                        id: 'item_display_text',
+                        style: 'width:300px !important;color:#000 important',
+                        emptyText: '',
+                        margin: '5 0 5 5',
+                        height: 100,
+                        labelWidth: 80,
+                        width:485,
+                        value: ''
+                    },{
+                        xtype: 'button',
+                        name: 'create_sale_item_btn',
+                        id: 'create_sale_item_btn',
+                        text: '<span style="color:#fff">Create</span>',
+                        margin:'5 5 5 250',
+                        width:150,
+                        padding:5,
+                        style:'background-color:#3459A0 !important;width:200px !important',
+                        handler:function(){
+                            com.faralam.common.createPromotionForPriceSASLItem();
+                        }
+                    }
+                       /* ,{
+                        xtype: 'container',
+                        defaultType: 'button',
+                        height: 40,
+                        width:200,
+                        style: 'text-align:center;',
+                        margin:'5 5 5 230',
+                        items: [{
+                            text: '<span style="color:#fff !important;font-weight:bold">Create</span>',
+                            style: 'cursor:pointer;background:#006FC0 !important;border:2px solid #000 !important;box-shadow:none !important;',
+                            width: 200,
+                            name: 'create_sale_item_btn',
+                            id: 'create_sale_item_btn',
+                            handler: function () {
+                                
+                            }
+                        }]
+                    }*/
+
+                ]
+            }],
+            listeners: {
+                close: function () {},
+                show: function () {}
+            }
+        });
+    }
+    createNewSaleItem_modal.show();
+
+}
+ var itemsForSale={}; 
+
+ com.faralam.item_ondragenter = function(event){
+  event.preventDefault(); 
+  $('#item_for_sale_dropzone').addClass('item_sale_drop_zone_over_cls'); 
+  $('#item_for_sale_dropzone').html('<h3 style="color: #999;line-height: 470px;margin-left: 125px;font-size: 30px;letter-spacing: 5px;">Drop Here...</h3>');   
+ }
+ 
+ com.faralam.item_ondragleave = function(event){ 
+  event.preventDefault();     
+  $('#item_for_sale_dropzone').removeClass('item_sale_drop_zone_over_cls'); 
+  $('#item_for_sale_dropzone').html('');
+ }
+ 
+ com.faralam.item_ondrop = function(ev){
+        ev.preventDefault(); 
+        itemsForSale.itemVersion = ev.dataTransfer.getData('itemVersion');
+        itemsForSale.price = ev.dataTransfer.getData('price');
+        itemsForSale.priceId = ev.dataTransfer.getData('priceId');
+        itemsForSale.itemId = ev.dataTransfer.getData('itemId');
+        itemsForSale.imgsrc = ev.dataTransfer.getData('imgsrc');
+        itemsForSale.itemName = ev.dataTransfer.getData('itemName');
+        $('#item_for_sale_dropzone').removeClass('item_sale_drop_zone_over_cls'); 
+        $('#item_for_sale_dropzone').html('');
+        com.faralam.common.createNewSaleItem(itemsForSale); 
+        
+ }
+ 
+ com.faralam.item_ondragover = function(event){
+  event.preventDefault();
+  $('#item_for_sale_dropzone').addClass('item_sale_drop_zone_over_cls'); 
+  $('#item_for_sale_dropzone').html('<h3 style="color: #999;line-height: 470px;margin-left: 125px;font-size: 30px;letter-spacing: 5px;">Drop Here...</h3>');    
+ }
+
+com.faralam.common.createPromotionForPriceSASLItem = function () {
+    com.faralam.createPromotionForPriceSASLItem = com.faralam.serverURL + 'promotions/createPromotionForPriceSASLItem';
+    com.faralam.createPromotionForPriceSASLItem = com.faralam.createPromotionForPriceSASLItem + "?" + encodeURI('UID=' + sessionStorage.UID );
+    var promo_expires=Ext.getCmp('saleItem_expires').getValue();
+    var saleprice=Ext.getCmp('saleItem_price').getValue();
+    var orgprice=Ext.getCmp('hid_saleitem_price').getValue();
+    var title = Ext.getCmp('saleItem_title').getValue();
+    var d=new Date();
+    var exDt=getDtStr(promo_expires);
+    var actDt=getDtStr(d);
+    if(saleprice.trim()==""){
+      Ext.MessageBox.alert('Error', "Sale price should not be blank.",function(){}); 
+      return false;  
+    }
+    else if(parseInt(orgprice)<parseInt(saleprice)){
+       Ext.MessageBox.alert('Error', "Sale price should be less than the original price.",function(){}); 
+        return false;
+    }else if(promo_expires.getTime()<d.getTime()){
+      Ext.MessageBox.alert('Error', "Expire date  should be greater than current date.",function(){}); 
+        return false;  
+    }
+    else if(title.trim()==""){
+      Ext.MessageBox.alert('Error', "Title should be filled up.",function(){}); 
+        return false;  
+    }
+    var data={
+    "itemId" :Ext.getCmp('saleitem_itemId').getValue(), 
+    "itemVersion" :Ext.getCmp('saleitem_itemVersion').getValue(),
+    "idPrice" :Ext.getCmp('saleitem_priceId').getValue(),
+    "serviceAccommodatorId":sessionStorage.SA,
+    "serviceLocationId":sessionStorage.SL,
+    "price":saleprice,
+    "title": title,
+    "activationDate": actDt,
+    "expirationDate": exDt,
+    "displayText": Ext.getCmp('item_display_text').getValue()
+    };
+      
+    data = JSON.stringify(data);
+    var onsuccess = function (response, textStatus, jqXHR) {
+       Ext.MessageBox.alert('Success', "success",function(){
+       Ext.getCmp('createNewSaleItem_modal').close();
+           
+        });
+    }
+    var onerror = function (jqXHR, textStatus, errorThrown) {}
+    com.faralam.common.sendAjaxRequest(com.faralam.createPromotionForPriceSASLItem, "POST", data, onsuccess, onerror);
+}
+
+ /*======================== Create Sale Item =============================*/
  /*-----------------------------Appoinment screen ------------------------------*/
  /*............................. js for calender  ..............................*/
 /* var Calendar = function(o) {
