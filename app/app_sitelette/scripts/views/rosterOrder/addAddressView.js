@@ -19,6 +19,7 @@ var AddAddressView = Backbone.View.extend({
 	initialize: function(options) {
 		this.options = options || {};
         this.states = this.getStatesData();
+        this.options.deliveryPickupOptions = this.getDeliveryPickupOptions();
         this.on('show', this.onShow, this);
         this.render();
 	},
@@ -58,6 +59,23 @@ var AddAddressView = Backbone.View.extend({
             states: this.states,
             selectedState: this.getSelectedState()
     	});
+    },
+
+    getDeliveryPickupOptions: function() {
+        console.log(this.options);
+        var deliveryPickupOptions = this.options.deliveryPickupOptions || {};
+        var futureOrRegular = deliveryPickupOptions.futureOrRegular,
+            future;
+        if (!futureOrRegular || futureOrRegular === 'UNDEFINED' ||  
+            !deliveryPickupOptions.options || deliveryPickupOptions.options.length === 0 ) {
+            this.options.circles = 3;
+            this.options.futureOrRegular = null;
+            return null;
+        } else {
+            this.options.circles = 4;
+            this.options.futureOrRegular = futureOrRegular;
+            return deliveryPickupOptions;
+        }
     },
 
     getMapCoordinates: function() {
@@ -238,18 +256,19 @@ var AddAddressView = Backbone.View.extend({
     triggerPayment: function() {
         if (this.validate()) {
             this.model.trigger('change');
-            if (this.options.futureOrRegular && this.options.futureOrRegular !== 'REGULAR') {
-                Vent.trigger('viewChange', 'order_time', {
-                    model: this.model,
-                    deliveryPickupOptions: this.options.deliveryPickupOptions,
-                    futureOrRegular: this.options.futureOrRegular,
-                    backTo: 'add_address'
-                });
-            } else {
+            if (!this.options.futureOrRegular) {
                 Vent.trigger('viewChange', 'payment', {
                     circles: this.options.circles,
                     model: this.model,
-                    backTo: 'add_address'
+                    backTo: 'address'
+                });
+            } else {
+                Vent.trigger('viewChange', 'order_time', {
+                    model: this.model,
+                    circles: this.options.circles,
+                    deliveryPickupOptions: this.options.deliveryPickupOptions,
+                    futureOrRegular: this.options.futureOrRegular,
+                    backTo: 'address'
                 });
             }
         } else {

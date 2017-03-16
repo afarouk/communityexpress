@@ -90,11 +90,11 @@ var AddressView = Backbone.View.extend({
 
     getDeliveryPickupOptions: function() {
         console.log(this.options);
-        var deliveryPickupOptions = this.options.deliveryPickupOptions || {},
-            futureOrRegular = deliveryPickupOptions.futureOrRegular,
+        var deliveryPickupOptions = this.options.deliveryPickupOptions || {};
+        var futureOrRegular = deliveryPickupOptions.futureOrRegular,
             future;
-            
-        if (!futureOrRegular || futureOrRegular === 'REGULAR') {
+        if (!futureOrRegular || futureOrRegular === 'UNDEFINED' ||  
+            !deliveryPickupOptions.options || deliveryPickupOptions.options.length === 0 ) {
             this.options.circles = 3;
             this.options.futureOrRegular = null;
             return null;
@@ -139,18 +139,18 @@ var AddressView = Backbone.View.extend({
 
     triggerPayment: function() {
         //temporary for testing
-        if (this.options.futureOrRegular && this.options.futureOrRegular !== 'REGULAR') {
+        if (!this.options.futureOrRegular) {
+            Vent.trigger('viewChange', 'payment', {
+                circles: this.options.circles,
+                model: this.model,
+                backTo: 'address'
+            });
+        } else {
             Vent.trigger('viewChange', 'order_time', {
                 model: this.model,
                 circles: this.options.circles,
                 deliveryPickupOptions: this.options.deliveryPickupOptions,
                 futureOrRegular: this.options.futureOrRegular,
-                backTo: 'address'
-            });
-        } else {
-            Vent.trigger('viewChange', 'payment', {
-                circles: this.options.circles,
-                model: this.model,
                 backTo: 'address'
             });
         }

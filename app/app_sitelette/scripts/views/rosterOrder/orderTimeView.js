@@ -61,11 +61,15 @@ var OrderTimeView = Backbone.View.extend({
             'change #select-date': 'onSelectDate',
             'change #select-time': 'onSelectTime'
         });
-
         if (this.options.futureOrRegular === "FUTURE") {
             this.$('.leftBtn').addClass('disabled');
             this.$('.leftBtn').css('pointer-events', 'none');
             this.$('.rightBtn').click();
+        }
+        else if (this.options.futureOrRegular === "REGULAR") {
+            this.$('.rightBtn').addClass('disabled');
+            this.$('.rightBtn').css('pointer-events', 'none');
+            this.$('.leftBtn').click();
         }
 
         //this.$('select').selectmenu();
