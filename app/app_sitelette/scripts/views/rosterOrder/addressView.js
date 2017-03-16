@@ -89,10 +89,8 @@ var AddressView = Backbone.View.extend({
     },
 
     getDeliveryPickupOptions: function() {
-        console.log(this.options);
         var deliveryPickupOptions = this.options.deliveryPickupOptions || {};
-        var futureOrRegular = deliveryPickupOptions.futureOrRegular,
-            future;
+        var futureOrRegular = deliveryPickupOptions.futureOrRegular;
         if (!futureOrRegular || futureOrRegular === 'UNDEFINED' ||  
             !deliveryPickupOptions.options || deliveryPickupOptions.options.length === 0 ) {
             this.options.circles = 3;
