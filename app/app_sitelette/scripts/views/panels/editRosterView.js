@@ -55,6 +55,11 @@ var EditRosterView = PanelView.extend({
         }).render().el);
         this.afterRender(); // call it for each panel if you replaced render
         this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
+        if(this.parent.backToRoster === true){
+          this.$('.subtotal_price_container + .order_btn').hide();
+        } else {
+          this.$('.subtotal_price_container + .order_btn').show();
+        }
         return this;
     },
 
