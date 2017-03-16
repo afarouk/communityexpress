@@ -260,7 +260,7 @@ var AddAddressView = Backbone.View.extend({
                 Vent.trigger('viewChange', 'payment', {
                     circles: this.options.circles,
                     model: this.model,
-                    backTo: 'address'
+                    backTo: 'add_address'
                 });
             } else {
                 Vent.trigger('viewChange', 'order_time', {
@@ -268,7 +268,7 @@ var AddAddressView = Backbone.View.extend({
                     circles: this.options.circles,
                     deliveryPickupOptions: this.options.deliveryPickupOptions,
                     futureOrRegular: this.options.futureOrRegular,
-                    backTo: 'address'
+                    backTo: 'add_address'
                 });
             }
         } else {
