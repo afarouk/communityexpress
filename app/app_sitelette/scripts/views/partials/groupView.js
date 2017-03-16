@@ -50,7 +50,7 @@ var GroupView = Backbone.View.extend({
         $el.owlCarousel({
           margin: 20,
           items: 1,
-          // loop:true,
+          lazyLoad: true,
           nav: false
         });
         if (this.model.unSubgroupedItems.length === 1) {
@@ -76,15 +76,15 @@ var GroupView = Backbone.View.extend({
                 navigation.find('.navigation-next').removeClass('disabled');
             }
         });
-        setTimeout(this.adjustNavPosition.bind(this), 2);
+        // setTimeout(this.adjustNavPosition.bind(this), 2);
     },
 
-    adjustNavPosition: function () {
-        var $el = $(this.el).find('.cmntyex-list_placeholder ul'),
-            pos = $el.find('li').first().find('.sides_extras_detailed').position(),
-            navigation = $(this.el).find('.carousel-navigation');
-        navigation.css('top', pos.top + 'px');
-    },
+    // adjustNavPosition: function () {
+    //     var $el = $(this.el).find('.cmntyex-list_placeholder ul'),
+    //         pos = $el.find('li').first().find('.sides_extras_detailed').position(),
+    //         navigation = $(this.el).find('.carousel-navigation');
+    //     navigation.css('top', pos.top + 'px');
+    // },
 
     adjustCallback: function() {},
 

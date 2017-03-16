@@ -1461,8 +1461,9 @@ li.build_combo, li.choose_extras {
     color: white;
     z-index: 99999;
     width: 100%;
-    font-size: 40px;
-    height: 48px;
+    font-size: 30px;
+    height: 35px;
+    margin-top: -1px;
 }
 .cmntyex-group.horizontal .carousel-navigation .glyphicon {
     background: rgba(1,1,1,0.1);
@@ -1507,9 +1508,9 @@ li.build_combo, li.choose_extras {
 }
 .cmntyex-group.horizontal .ui-collapsible-content .cmntyex-list_placeholder {
     width: 100%;
-    height: calc(100% - 48px);
+    height: calc(100% - 34px);
     position: absolute;
-    top: 48px;
+    top: 33px;
 }
 .cmntyex-group.horizontal .ui-collapsible-content ul {
     max-height: 100%;
