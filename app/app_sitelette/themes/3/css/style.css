@@ -234,6 +234,8 @@ td {
 }
 /* future oredr end */
 
+.regular-order .regular-order-note,
+.regular-order .regular-order-warning,
 .regular-order .regular-order-delay {
     padding: 20px 5px;
     text-align: center;
@@ -242,6 +244,7 @@ td {
     padding: 5px;
     text-align: center;
 }
+.regular-order .regular-order-warning,
 .future-order .future-order-warning {
     color: #FFCC00;
     text-align: center;
