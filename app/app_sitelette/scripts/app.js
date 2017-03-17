@@ -87,6 +87,8 @@ App.prototype = {
             return;
         }
 
+        this.checkParamsCode(); //temporary for testing on fb issue
+
         //Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
 
@@ -123,6 +125,18 @@ App.prototype = {
             return;
         }
     },
+
+    //only for facebook from webapp
+    // when we have redirect url
+    //maybe should be removed after tests
+    checkParamsCode: function() {
+        var search = window.location.search.replace('?', ''),
+            params = h().parseQueryString(search);
+        if (params && params.code) {
+            debugger;
+        }
+    },
+    //.........................
 
     initSubviews: function() {
         this.viewsInLanding = {

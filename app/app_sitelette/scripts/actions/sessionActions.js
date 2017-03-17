@@ -167,28 +167,24 @@ module.exports = {
     },
 
     facebookLoginStatus: function(status) {
-        var def = $.Deferred();
-        // var isMobile = !window.community.desktop;
-        // console.log('isMobile: ', isMobile);
-        // if (!isMobile) {
-        //     FB.login(function(response) {
-        //         if (response.authResponse) {
-        //             this.getPublicProfile(def);
-        //         } else {
-        //             def.resolve({error:'User cancelled login or did not fully authorize.'});
-        //         }
-        //     }.bind(this), { scope: 'email' });
-        // } else {
-        //     //temporary, I will change it if it will work
-        //     var permissionUrl = "https://m.facebook.com/dialog/oauth?client_id=" + '163685094028796' + "&response_type=code&redirect_uri=" + window.location + "&scope=" + 'email';
-        //     window.location = permissionUrl;
-        // }
-        // return $.when(def);
-
-        //old code commented
-        // if (status === 'connected') {
-        //     this.getPublicProfile(def);
-        // } else {
+        var def = $.Deferred(),
+            isMobile = !window.community.desktop,
+            standalone = window.navigator.standalone,
+            appId = window.community.fbAppId;
+        console.log('isMobile: ', isMobile);
+        console.log('standalone: ', standalone);
+        if (isMobile && standalone === true) {
+            if (status === 'connected') {
+                this.getPublicProfile(def);
+            } else if (appId) {
+                //TODO check if it happens sometimes
+                //in that case use code for oauth
+                //otherwise remove that
+                var permissionUrl = "https://m.facebook.com/dialog/oauth?client_id=" + appId + "&response_type=code&redirect_uri=" + window.location + "&scope=" + 'email';
+                window.location = permissionUrl;
+                //.................
+            }
+        } else {
             FB.login(function(response) {
                 if (response.authResponse) {
                     this.getPublicProfile(def);
@@ -196,7 +192,7 @@ module.exports = {
                     def.resolve({error:'User cancelled login or did not fully authorize.'});
                 }
             }.bind(this), { scope: 'email' });
-        // }
+        }
         return $.when(def);
     },
 
