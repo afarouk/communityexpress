@@ -23,13 +23,6 @@
      }
     ?>
     </style>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css" />
-    <link href="themes/1/desktop/styles/colors.css" rel="stylesheet">
-    <link href="themes/1/desktop/styles/loader.css" rel="stylesheet">
-    <link href="themes/1/desktop/styles/style.css" rel="stylesheet">
-
     <link href="themes/1/desktop/styles/styles.css?version=3" rel="stylesheet">
 
     <script src="build/desktop.js"></script>

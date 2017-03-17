@@ -70,12 +70,12 @@ module.exports = [{
 		alias: {
 		},
 	},
-}, {
+ }, 
+ {
 	name: 'desktop',
 	entry: {
-		styles: [
-	    	'./app/app_sitelette/themes/1/desktop/_scss/main.scss'
-	    ]
+	    '1/desktop/styles/styles': './app/app_sitelette/themes/1/desktop/_scss/main.scss',
+	    '2/desktop/styles/styles': './app/app_sitelette/themes/2/desktop/_scss/main.scss',
 	},
 	// watch: true,
 	// keepalive: true,
@@ -89,11 +89,11 @@ module.exports = [{
 		]
 	},
 	output: {
-		path: './app/app_sitelette/themes/1/desktop/styles',
-		filename: 'styles.css'
+		path: path.resolve(__dirname, './app/app_sitelette/themes/'),
+		filename: "[name].css"
 	},
 	plugins: [
-		new ExtractTextPlugin('styles.css')
+		new ExtractTextPlugin('[name].css')
 	]
 	//sudo npm rebuild node-sass
 	//npm run sitelettes-dev
