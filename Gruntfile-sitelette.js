@@ -22,7 +22,7 @@ var themes = function() {
     for (var i = 1; i <= themeNumber; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
             distFile='<%= yeoman.dist %>/themes/'+ i +'/css/style.css',
-            themeName='<%= yeoman.app %>/themes/'+ i +'/css/style.css';
+            themeName='<%= yeoman.app %>/themes/'+ i +'/mobile/css/style.css';
         distStyle[distFile] = [styles, themeName];
         copyImages.push({
             expand: true,
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
         yeoman: yeomanConfig,
 
         webpack: {
-            options: webpackConfig,
+            options: webpackConfig[0],
             'prod': {
                 devtool: null // production
             },
@@ -216,7 +216,7 @@ module.exports = function (grunt) {
         replace: {
             dist: {
                 overwrite: true,
-                src: ['<%= yeoman.dist %>/themes/*/head.php'],
+                src: ['<%= yeoman.dist %>/themes/*/mobile/head.php'],
                 replacements: [{
                     from: '<link href="build/styles.css" rel="stylesheet">',
                     to: ''

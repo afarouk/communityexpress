@@ -5,18 +5,20 @@ var path = require('path'),
 	webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
+module.exports = [{
+	name: 'mobile',
 	entry: {
+		'desktop': './app/app_sitelette/sitelette-desktop.js',
 		'bundle': './app/app_sitelette/sitelette.js',
-		'mobile': './app/app_sitelette/mobile.js'
+		'mobile': './app/app_sitelette/mobile.js',
 	},
 	output: {
 		path: './app/app_sitelette/build/',
 		filename: '[name].js'
 	},
 	devtool: 'cheap-module-eval-source-map', // development
-	watch: true,
-	keepalive: true,
+	// watch: true,
+	// keepalive: true,
 	module: {
 		loaders: [
 			{
@@ -58,7 +60,8 @@ module.exports = {
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
 			'_': 'underscore',
-			'Backbone': 'backbone'
+			'Backbone': 'backbone',
+			'Mn': 'backbone.marionette'
 		}),
 	],
 	resolve: {
@@ -67,4 +70,31 @@ module.exports = {
 		alias: {
 		},
 	},
-};
+}, {
+	name: 'desktop',
+	entry: {
+		styles: [
+	    	'./app/app_sitelette/themes/1/desktop/_scss/main.scss'
+	    ]
+	},
+	// watch: true,
+	// keepalive: true,
+	module: {
+		loaders: [
+			{
+				test: /\.scss$/,
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader?sourceMap'),
+				exclude: /node_modules/
+			}
+		]
+	},
+	output: {
+		path: './app/app_sitelette/themes/1/desktop/styles',
+		filename: 'styles.css'
+	},
+	plugins: [
+		new ExtractTextPlugin('styles.css')
+	]
+	//sudo npm rebuild node-sass
+	//npm run sitelettes-dev
+}];

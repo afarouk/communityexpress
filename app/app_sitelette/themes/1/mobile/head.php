@@ -19,17 +19,17 @@
       echo '.cmtyx_special_background_color{background-color:'.$background.'!important;}';
       echo $barFontColors;
      } else {
-      include_once 'themes/1/css/barFontColors.css';
+      include_once 'themes/1/mobile/css/barFontColors.css';
      }
     ?>
     </style>
-    <link href="themes/1/css/style.css?version=3" rel="stylesheet">
+    <link href="themes/1/mobile/css/style.css?version=3" rel="stylesheet">
 
     <script src="build/mobile.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
     <script src="https://connect.facebook.net/en_US/sdk.js"></script>
 
-    <link rel="apple-touch-startup-image" href="themes/1/splash/Default-portrait@2x~iphone5.jpg">
+    <link rel="apple-touch-startup-image" href="themes/1/mobile/splash/Default-portrait@2x~iphone5.jpg">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -59,7 +59,7 @@
     <style type="text/css">
         body {
             background-color: black;
-            background-image: url("themes/1/splash/Default-portrait@2x~iphone5.jpg");
+            background-image: url("themes/1/mobile/splash/Default-portrait@2x~iphone5.jpg");
             background-size: 100% 100%;
             background-repeat: no-repeat;
         }

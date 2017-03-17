@@ -6,3 +6,4 @@ app/app_pree/build/*
 dist/*
 dist.zip
 .project
+npm-debug.log
