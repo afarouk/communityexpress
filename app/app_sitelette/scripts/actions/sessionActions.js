@@ -169,21 +169,11 @@ module.exports = {
     facebookLoginStatus: function(status) {
         var def = $.Deferred(),
             isMobile = !window.community.desktop,
-            standalone = window.navigator.standalone,
-            appId = window.community.fbAppId;
+            standalone = window.navigator.standalone;
         console.log('isMobile: ', isMobile);
         console.log('standalone: ', standalone);
-        if (isMobile && standalone === true) {
-            if (status === 'connected') {
-                this.getPublicProfile(def);
-            } else if (appId) {
-                //TODO check if it happens sometimes
-                //in that case use code for oauth
-                //otherwise remove that
-                var permissionUrl = "https://m.facebook.com/dialog/oauth?client_id=" + appId + "&response_type=code&redirect_uri=" + window.location + "&scope=" + 'email';
-                window.location = permissionUrl;
-                //.................
-            }
+        if (isMobile && standalone === true && status === 'connected') {
+            this.getPublicProfile(def);
         } else {
             FB.login(function(response) {
                 if (response.authResponse) {
