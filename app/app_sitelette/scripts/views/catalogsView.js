@@ -20,7 +20,6 @@ var CatalogsView = Backbone.View.extend({
         this.promoCode = options.promoCode;
         this.options = options || {};
         this.isOpen = options.isOpen;
-        this.isOpenWarningMessage = options.isOpenWarningMessage;
         if (options.catalogs.collection.length !== 0) {
             this.catalogs = options.catalogs.collection;
             this.render();
@@ -76,7 +75,6 @@ var CatalogsView = Backbone.View.extend({
         }).render().el;
 
         this.$('.cmntyex-items_placeholder').append(el);
-
     }
 
 });
