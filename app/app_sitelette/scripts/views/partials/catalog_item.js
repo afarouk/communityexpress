@@ -13,7 +13,7 @@ var CatalogItemView = Backbone.View.extend({
 
     tagName: 'li',
 
-    className: 'cmntyex-catalog-item sides_extras_container color1 cmtyx_color_3',
+    className: 'cmntyex-catalog-item sides_extras_container color1',
 
     events: {
         'click': 'onClick',
@@ -31,6 +31,7 @@ var CatalogItemView = Backbone.View.extend({
         this.onClick = function () {
             options.onClick(this);
         }.bind(this);
+        this.index = options.index;
         this.color = options.color;
         this.basket = options.basket;
         this.updateQuantity();
@@ -71,7 +72,16 @@ var CatalogItemView = Backbone.View.extend({
         if (this.preopenAllPictures) {
             this.checkImageURL();
         }
+
+        this.$el.addClass(this.generateColor());
+
         return this;
+    },
+
+    generateColor: function(index) {
+        var colors = [ 'cmtyx_color_2', 'cmtyx_color_4' ],
+            index = this.index - 1;
+        return colors[index % colors.length];
     },
 
     // for horizontal carousel
