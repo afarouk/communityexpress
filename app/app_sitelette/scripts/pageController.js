@@ -288,34 +288,10 @@ module.exports = {
                 sasl = ret;
                 return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
             }).then(function(options) {
-                //!!! TODO ask Ravi about isOpen and warning etc.
-
-
-                // var isOpen = options.data[0].isOpen,
-                //     isOpenWarningMessage = options.data[0].isOpenWarningMessage;
-                // if (options.data.length === 1) {
-                //     return {
-                //         promoCode: promoCode,
-                //         catalog: {
-                //             id: id,
-                //             catalogId: options.data.catalogId,
-                //             backToCatalogs: false,
-                //             backToRoster: false
-                //         },
-                //         sasl: sasl,
-                //         catalogs: options,
-                //         isOpen: isOpen,
-                //         isOpenWarningMessage: isOpenWarningMessage
-                //     };
-
-                // } else {
                     return {
                         sasl: sasl,
-                        catalogs: options,//,
-                        isOpen: true //isOpen,
-                        //isOpenWarningMessage: isOpenWarningMessage
+                        catalogs: options
                     };
-                // };
             });
     },
     roster: function(options) {
