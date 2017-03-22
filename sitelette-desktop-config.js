@@ -4,7 +4,7 @@ var path = require('path'),
 	webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin'),
 	themesConfig = [],
-	themesCount = 1;
+	themesCount = 2;
 
 for (var counter = 1; counter <= themesCount; counter ++) {
 	var themeConfig = {

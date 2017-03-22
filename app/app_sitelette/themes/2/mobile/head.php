@@ -19,11 +19,11 @@
       echo '.cmtyx_special_background_color{background-color:'.$background.'!important;}';
       echo $barFontColors;
      } else {
-      include_once 'themes/2/css/barFontColors.css';
+      include_once 'themes/2/mobile/css/barFontColors.css';
      }
     ?>
     </style>
-    <link href="themes/2/css/style.css" rel="stylesheet">
+    <link href="themes/2/mobile/css/style.css" rel="stylesheet">
 
     <script src="build/mobile.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
