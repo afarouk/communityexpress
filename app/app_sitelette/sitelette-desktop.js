@@ -3,6 +3,7 @@
 require('../vendor/codecanyon/assets/js/html5imageupload');
 require('owl.carousel');
 require('moment');
+require('packery');
 
 define([
     './desktop_app/app.js',

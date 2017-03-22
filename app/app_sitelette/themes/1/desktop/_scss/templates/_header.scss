@@ -1,0 +1,51 @@
+header {
+  height: 70px;
+  background-color: $header-background;
+  padding: 15px 50px 15px 45px;
+
+  .logo-container { 
+  	display: inline-block; 
+	
+	.logo {
+	  position: relative;
+	  top: 5px;
+	  cursor: pointer;
+	}
+  }
+
+  .links-conatiner { 
+	  display: inline-block; 
+	  list-style-type: none;
+	  float: right;
+	  position: relative;
+	  bottom: 15px;
+	  margin: 11px 0 0 0;
+
+	  .link { 
+		display: inline-block; 
+		color: $white;
+		font-size: $size-normal;
+		font-weight: $style-normal;
+		text-transform: uppercase;
+		margin-left: 30px;
+		cursor: pointer;
+
+		&:hover {
+		  color: $cmtyx_color_4;
+		}
+
+		&.last {
+		  font-weight: $style-semi-bold;
+		  color: $cmtyx_color_4;
+		  border: 1px solid $cmtyx_color_4;
+		  border-radius: 5px;
+		  padding: 15px 25px;
+
+		  &:hover {
+		  	background-color: $cmtyx_color_4;
+  			color: $white;
+		  }	
+		}
+	  }
+	}
+}

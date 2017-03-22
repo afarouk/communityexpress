@@ -1,0 +1,18 @@
+// Core
+@import 'core/reset';
+@import 'core/colors';
+@import 'core/fonts';
+@import 'core/global';
+@import 'core/typography';
+@import 'core/helpers';
+
+// Components
+@import 'components/buttons';
+@import 'components/lists';
+@import 'components/tabs';
+@import 'components/loader';
+
+// Templates
+@import 'templates/main';
+@import 'templates/header';
+@import 'templates/footer';
