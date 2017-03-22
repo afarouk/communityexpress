@@ -19,8 +19,6 @@ var CatalogsView = Backbone.View.extend({
         this.sasl = options.sasl;
         this.promoCode = options.promoCode;
         this.options = options || {};
-        this.isOpen = options.isOpen;
-        this.isOpenWarningMessage = options.isOpenWarningMessage;
         if (options.catalogs.collection.length !== 0) {
             this.catalogs = options.catalogs.collection;
             this.render();
@@ -40,7 +38,6 @@ var CatalogsView = Backbone.View.extend({
     },
 
     onShow:  function () {
-        this.checkIfOpened();
         if (this.options.catalogs.collection.length === 0 && !this.options.catalog) {
             this.goBack();
             return;
@@ -50,12 +47,6 @@ var CatalogsView = Backbone.View.extend({
         this.addEvents({
             'click .back': 'goBack'
         });
-    },
-
-    checkIfOpened: function() {
-        if (!this.isOpen) {
-            popupController.textPopup({ text: this.isOpenWarningMessage }, _.bind(this.goBack, this));
-        }
     },
 
     triggerCatalogView: function() {
@@ -76,7 +67,6 @@ var CatalogsView = Backbone.View.extend({
         }).render().el;
 
         this.$('.cmntyex-items_placeholder').append(el);
-
     }
 
 });

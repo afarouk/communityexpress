@@ -60,7 +60,7 @@ var CatalogView = Backbone.View.extend({
     },
 
     initialize: function(options) {
-        var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color_4' ];
+        var colors = [ 'cmtyx_color_1', 'cmtyx_color_3' ];
         this.options = options || {};
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
@@ -76,7 +76,6 @@ var CatalogView = Backbone.View.extend({
         this.isOpen = options.isOpen;
         this.isOpenWarningMessage = options.isOpenWarningMessage;
         this.promoCode = options.promoCode;
-        //this.colors = options.catalog.data.colors;
         this.colors = colors;
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
@@ -271,8 +270,6 @@ console.log('Preopen: ', this.preopenAllPictures);
     },
 
     generateColor: function(index) {
-        // var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
-        var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3', 'cmtyx_color1' ];
         return this.colors[index % this.colors.length];
     },
 

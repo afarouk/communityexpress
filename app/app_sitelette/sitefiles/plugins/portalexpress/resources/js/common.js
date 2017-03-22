@@ -829,7 +829,7 @@ com.faralam.getServiceConfigurations = function (URL) {
     if (sessionStorage.SASLNAME) {
         Ext.getCmp('with_img_header_logo').show();
         Ext.getCmp('without_img_header_logo').hide();
-        Ext.getCmp('start_screen_business_name').setSrc(com.faralam.serverURL + 'sasl/retrieveLogoJPGbySASL?serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&ver=' + timestamp);
+        Ext.getCmp('start_screen_business_name').setSrc(com.faralam.serverURL + 'sasl/retrieveSASLbanner?serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
         /*Ext.getCmp('start_screen_combo').getStore().removeAll();
          Ext.getCmp('start_screen_combo').getStore().proxy.url = com.faralam.serverURL+'liveupdate/getServiceStatusOptions?&serviceAccommodatorId='+sessionStorage.SA+'&serviceLocationId='+sessionStorage.SL;
          Ext.getCmp('start_screen_combo').getStore().reload();
@@ -1246,7 +1246,7 @@ com.faralam.StartScreenNavigate = function (config) {
         if (sessionStorage.SASLNAME) {
             Ext.getCmp('main_tab').down('#start_screen').setDisabled(true);
             Ext.getCmp('main_tab').down('#OnlineOrder').setDisabled(false);
-            Ext.getCmp('OnlineOrder_pageHeader').update('<span style="color:#000;font-size:20px; font-weight: bold;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');
+            /*Ext.getCmp('OnlineOrder_pageHeader').update('<span style="color:#000;font-size:20px; font-weight: bold;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');*/
             Ext.getCmp('main_tab').setActiveTab(22);
         }
     } else if (config == 'userSASLService') {
@@ -7571,7 +7571,8 @@ com.faralam.common.retrieveCatalog_func = function (catalogId) {
 }
 com.faralam.common.retrieveCatalogs_func = function () {
 
-    com.faralam.retrieveCatalogs_func = com.faralam.serverURL + 'retail/retrieveCatalogs';
+    /*com.faralam.retrieveCatalogs_func = com.faralam.serverURL + 'retail/retrieveCatalogs';*/
+    com.faralam.retrieveCatalogs_func = com.faralam.serverURL + 'retail/retrieveCatalogsIds';
     com.faralam.retrieveCatalogs_func = com.faralam.retrieveCatalogs_func + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&UID=' + sessionStorage.UID);
 
     var onsuccess = function (response, textStatus, jqXHR) {
@@ -7580,9 +7581,12 @@ com.faralam.common.retrieveCatalogs_func = function () {
         var arr = new Array();
         if (response.length > 0) {
             for (var i = 0; i < response.length; i++) {
-				html += '<li class="catalog_li menu_list_li_set_bg" id="menu_li_'+i+'" style="background-color:#f6f6ff;border:1px solid #ffffdc; width: 98%;margin-left: 1%;border-radius:3px"><img mnid="menu_li_'+i+'" id="catalog_drag_zone_active" class="before_dragging catalog_drag_zone_active_overlay" onclick="com.faralam.SetCatalogDescEdit(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" style="height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 220px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important;width:100%;height:30px;">' + response[i].displayText + '</span><img class="edit_catalog_icon_panel1" onclick="com.faralam.common.EditCatalog(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" description="' + response[i].description + '" catalogType="'+ response[i].catalogType.enumText+'" src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="26" height="26" border="0"><img src="' + com.faralam.custom_img_path + 'icon_move.png" width="26" id="menu_rearrange" ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" catalogId="'+response[i].catalogId+'" displayText="' + response[i].displayText + '" height="26" border="0" style="right: 41px;top: 2px;position: absolute;cursor:move;z-index:999" ></li><li style="height:20px"><div catalogId="'+response[i].catalogId+'"  ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" id="menu_drop_zone" style="height:100%; width:100%"></div></li>';
-                /*<div catalogId="'+response[i].catalogId+'"  ondrop="com.faralam.drop_catalog(event)" id="menu_drop_zone" style="height:10px; width:100%"></div>*/
-               /* html += '<li class="catalog_li" ><img id="catalog_drag_zone_active"  class="before_dragging catalog_drag_zone_active_overlay" ondragend="com.faralam.dragEnd_catalog(event)" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetCatalogDescEdit(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" style="margin-left:35px;height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 190px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important; width:100%;height:30px;">' + response[i].displayText + '</span><img onclick="com.faralam.common.EditCatalog(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" description="' + response[i].description + '" src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="26" height="26" border="0"><img style="float:right" src="' + com.faralam.custom_img_path + 'icon_move.png" width="26" height="26" border="0"></li>';*/
+				/*html += '<li class="catalog_li menu_list_li_set_bg" id="menu_li_'+i+'" style="background-color:#f6f6ff;border:1px solid #ffffdc; width: 98%;margin-left: 1%;border-radius:3px"><img mnid="menu_li_'+i+'" id="catalog_drag_zone_active" class="before_dragging catalog_drag_zone_active_overlay" onclick="com.faralam.SetCatalogDescEdit(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" style="height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 220px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important;width:100%;height:30px;">' + response[i].displayText + '</span><img class="edit_catalog_icon_panel1" onclick="com.faralam.common.EditCatalog(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" description="' + response[i].description + '" catalogType="'+ response[i].catalogType.enumText+'" src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="26" height="26" border="0"><img src="' + com.faralam.custom_img_path + 'icon_move.png" width="26" id="menu_rearrange" ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" catalogId="'+response[i].catalogId+'" displayText="' + response[i].displayText + '" height="26" border="0" style="right: 41px;top: 2px;position: absolute;cursor:move;z-index:999" ></li><li style="height:20px"><div catalogId="'+response[i].catalogId+'"  ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" id="menu_drop_zone" style="height:100%; width:100%"></div></li>';*/
+                
+                /*var enumText= (typeof response[i].catalogType.enumText === 'undefined') ? '' : response[i].catalogType.enumText;*/
+                var enumText ="";
+                html += '<li class="catalog_li menu_list_li_set_bg" id="menu_li_'+i+'" style="background-color:#f6f6ff;border:1px solid #ffffdc; width: 98%;margin-left: 1%;border-radius:3px"><img mnid="menu_li_'+i+'" id="catalog_drag_zone_active" class="before_dragging catalog_drag_zone_active_overlay" onclick="com.faralam.SetCatalogDescEdit(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" style="height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 220px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important;width:100%;height:30px;">' + response[i].displayText + '</span><img class="edit_catalog_icon_panel1" onclick="com.faralam.common.EditCatalog(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" description="' + response[i].description + '" catalogType="'+ enumText+'" src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="26" height="26" border="0"><img src="' + com.faralam.custom_img_path + 'icon_move.png" width="26" id="menu_rearrange" ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" catalogId="'+response[i].catalogId+'" displayText="' + response[i].displayText + '" height="26" border="0" style="right: 41px;top: 2px;position: absolute;cursor:move;z-index:999" ></li><li style="height:20px"><div catalogId="'+response[i].catalogId+'"  ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" id="menu_drop_zone" style="height:100%; width:100%"></div></li>';
+                
             }
         }
         if (html) {
@@ -10614,6 +10618,50 @@ com.faralam.common.updateOrderStatus_new= function (e){
     com.faralam.common.sendAjaxRequest(com.faralam.updateOrderStatus, "PUT", data, onsuccess, onerror);
  
 }
+com.faralam.viewOrderDetails = function(e){
+    var json=$(e).attr('data');
+    var obj='';
+    
+     Ext.getCmp('main_tab').down('#Order_Details_Screen').setDisabled(false);
+     Ext.getCmp('main_tab').down('#OnlineOrder').setDisabled(true);
+     Ext.getCmp('main_tab').setActiveTab(54);
+     if(json){
+      obj=JSON.parse(json);
+         
+      Ext.getCmp('display_order_id').setValue(obj.orderId);    
+      Ext.getCmp('display_order_customer').setValue(obj.userName);    
+      Ext.getCmp('display_order_price').setValue(obj.totalAmount);    
+      Ext.getCmp('display_order_placed_date').setValue(obj.dateTimeOrderPlacedOn);    
+      Ext.getCmp('display_order_status').setValue(obj.orderStatus.displayText);    
+      Ext.getCmp('display_scheduled_for').setValue(obj.requestedDeliveryDate);    
+      Ext.getCmp('display_delivery_address').setValue(obj.deliveryAddress.number +" "+ obj.deliveryAddress.street +" "+ obj.deliveryAddress.city +" "+ obj.deliveryAddress.state);    
+      Ext.getCmp('display_item_notes').setValue(obj.comment);
+       var html='<table id="display_item_order_table"  border="1" style="width:830px !important;height:auto"><tr class="cusTr"><th width="20%">Qty</th><th width="60%">Items</th><th width="20%">Price</th></tr>'; 
+         
+     var b=obj.orderStatus.displayText;
+         if(b!="" && b.toLowerCase()=='new'){
+          $('#display_order_status-inputEl').css('color','#4caf50');   
+         }else if(b!="" && b.toLowerCase()=='inprocess'){
+          $('#display_order_status-inputEl').css('color','#4caf92');   
+         }else{
+          $('#display_order_status-inputEl').css('color','#999999');   
+         }
+         
+         
+         
+         
+      for(var i=0;i<obj.items.length;i++){
+         html+='<tr class="cusTr"><td align="center" width="20%">'+obj.items[i].quantity+'</td><td width="60%" >'+obj.items[i].item.itemName+'</td><td align="center" width="20%"> $'+obj.items[i].item.price+'</td></tr>'; 
+      }
+         html+='</table>';
+         console.log(html);
+         Ext.getCmp('display_item_order_pannel').update(html);
+         $('#display_item_order_pannel-targetEl').perfectScrollbar('destroy');
+        $('#display_item_order_pannel-targetEl').perfectScrollbar();
+         
+    }
+     
+}
 
 com.faralam.common.retrieveOrders_func = function (sort) {
     var s_type=sort;
@@ -10621,52 +10669,91 @@ if(sort.trim()!='')
     {
      s_type="&sortby="+sort;
     }
+    day = Ext.getCmp('orders_from_days').getValue();
+    day = (typeof day === 'undefined') ? 'LAST_ONE_DAY' : day;
     com.faralam.retrieveOrders_func = com.faralam.serverURL + 'retail/retrieveOrdersBySASL';
-    com.faralam.retrieveOrders_func = com.faralam.retrieveOrders_func + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&UID=' + sessionStorage.UID+s_type);
-
+    com.faralam.retrieveOrders_func = com.faralam.retrieveOrders_func + "?daysFrom="+day+"&" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&UID=' + sessionStorage.UID+s_type);
+    
     var onsuccess = function (response, textStatus, jqXHR) {
         var html = '';
         var arr = new Array();
         var edit_img = com.faralam.custom_img_path + 'icon_pencil.png';
         var count = 1;
         var className = 'order_table_row_odd';
+        
+        com.faralam.getOrderStatusOptions = com.faralam.serverURL + 'retail/getOrderStatusOptions';
+    com.faralam.getOrderStatusOptions = com.faralam.getOrderStatusOptions + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
+        
+     var options =$.ajax({                                            
+     url: com.faralam.getOrderStatusOptions,
+     dataType: 'json',
+     type:'GET',
+     async:false,                    
+     success: function(data)          
+     {   
+     },
+    complete: function (data) {
+     return data;
+     }
+    });
+   
+        option=options.responseJSON;
         if (response.length > 0) {
             for (var i = 0; i < response.length; i++) {
-                if (count % 2 == 0) {
+                if (count % 2 != 0) {
                     className = 'order_table_row_even';
                 } else {
                     className = 'order_table_row_odd';
                 }
                 var items = '';
                 var price = 0;
+                var select='<select style="background-color: #20ff03;padding: 3px 2px;">';
+                for(var op=0;op<option.length;op++){
+                    if(response[i].orderStatus.displayText==option[op].displayText){
+                select+='<option selected value="'+option[op].enumText+'">'+option[op].displayText+'</option>';    
+                    }else{
+                select+='<option value="'+option[op].enumText+'">'+option[op].displayText+'</option>';        
+                    }
+                    
+                }
+                select+='</select>';
                 for (var j = 0; j < response[i].items.length; j++) {
-                    items += '<li>' + response[i].items[j].item.itemName + '</li>'
+                    
                     var sprice = response[i].items[j].item.price;
                     var quantity = response[i].items[j].quantity;
                     var item_price = sprice * quantity;
                     price += parseFloat(item_price);
+                    
+                    items += '<li>QTY:'+quantity+'--' + response[i].items[j].item.itemName + '</li>';
                 }
                 price = parseFloat(price);
                 price = parseFloat(Math.round(price * 100) / 100).toFixed(2);
-                var ack="";
+                
+                
+                
+                /*var ack="";
                 if(response[i].orderStatus.enumText=="PROPOSED")
                     {
                     ack='<img src="'+com.faralam.custom_img_path+'green_star.png" style="height:22px;width:25px;float:left"><input orderUUID="' + response[i].orderUUID + '" onClick="com.faralam.common.updateOrderStatus_new(this)" type="button" style="padding: 2px 9px; background-color: rgb(52, 89, 160); border: 2px solid black; border-radius: 5px; margin-right: 3px; color: rgb(255, 255, 255); font-weight: 600;cursor:pointer" value="ACK">';
                     }
                 
-                html += '<tr id="orrw_'+response[i].localId+'"><td width="110px" class="' + className + '">' +ack+ response[i].localId + '</td><td width="90px" class="' + className + '">' + response[i].orderRecordLocator + '</td><td width="90px" class="' + className + '">' + response[i].userName + '</td><td width="198px" class="' + className + '"><div style="float:left;text-align:left;padding-left: 30px;"><ul class="order_table_row_ul">' + items + '</ul></div><div style="float:right;"><img style="cursor:pointer" src="' + edit_img + '" width="25" height="26" onclick="com.faralam.common.ShowOnlineOrderList(this)" order="'+response[i].orderRecordLocator+'" customer="'+response[i].userName+'" localId="' + response[i].localId + '" orderUUID="' + response[i].orderUUID + '"/></div></td><td width="108px" class="' + className + '">$ ' + price + '</td><td width="125px" class="' + className + '"><div style="float:left; padding-left: 10px;">' + response[i].orderStatus.displayText + '</div><div style="float:right;"><img style="cursor:pointer" src="' + edit_img + '" width="25" height="26" onclick="com.faralam.common.EditOrderStatus(this)" orderId="' + response[i].orderId + '" orderUUID="' + response[i].orderUUID + '" orderRecordLocator="' + response[i].orderRecordLocator + '" userName="' + response[i].userName + '" comment="' + response[i].comment + '" /></div></td><td width="134px" class="' + className + '"><div style="float:left; padding-left: 10px;">' + response[i].deliveryStatus.displayText + '</div><div style="float:right;"><img style="cursor:pointer" src="' + edit_img + '" width="25" height="26" onclick="com.faralam.common.EditOrderDeliveryStatus(this)" deliveryContactName="' + response[i].deliveryContactName + '" orderRecordLocator="' + response[i].orderRecordLocator + '" orderId="' + response[i].orderId + '" orderUUID="' + response[i].orderUUID + '"	userName="' + response[i].userName + '" comment="' + response[i].comment + '"  /></div></td><td width="135px" class="' + className + '"><div style="float:left;padding-left:10px;">' + response[i].comment + '</div><div style="float:right;"><img style="cursor:pointer" src="' + edit_img + '" width="25" height="26" onclick="com.faralam.common.EditNote(this)" orderUUID="' + response[i].orderUUID + '" orderRecordLocator="' + response[i].orderRecordLocator + '" comment="' + response[i].comment + '" /></div></td></tr>';
+                html += '<tr id="orrw_'+response[i].localId+'"><td width="110px" class="' + className + '">' +ack+ response[i].localId + '</td><td width="90px" class="' + className + '">' + response[i].orderRecordLocator + '</td><td width="90px" class="' + className + '">' + response[i].userName + '</td><td width="198px" class="' + className + '"><div style="float:left;text-align:left;padding-left: 30px;"><ul class="order_table_row_ul">' + items + '</ul></div><div style="float:right;"><img style="cursor:pointer" src="' + edit_img + '" width="25" height="26" onclick="com.faralam.common.ShowOnlineOrderList(this)" order="'+response[i].orderRecordLocator+'" customer="'+response[i].userName+'" localId="' + response[i].localId + '" orderUUID="' + response[i].orderUUID + '"/></div></td><td width="108px" class="' + className + '">$ ' + price + '</td><td width="125px" class="' + className + '"><div style="float:left; padding-left: 10px;">' + response[i].orderStatus.displayText + '</div><div style="float:right;"><img style="cursor:pointer" src="' + edit_img + '" width="25" height="26" onclick="com.faralam.common.EditOrderStatus(this)" orderId="' + response[i].orderId + '" orderUUID="' + response[i].orderUUID + '" orderRecordLocator="' + response[i].orderRecordLocator + '" userName="' + response[i].userName + '" comment="' + response[i].comment + '" /></div></td><td width="134px" class="' + className + '"><div style="float:left; padding-left: 10px;">' + response[i].deliveryStatus.displayText + '</div><div style="float:right;"><img style="cursor:pointer" src="' + edit_img + '" width="25" height="26" onclick="com.faralam.common.EditOrderDeliveryStatus(this)" deliveryContactName="' + response[i].deliveryContactName + '" orderRecordLocator="' + response[i].orderRecordLocator + '" orderId="' + response[i].orderId + '" orderUUID="' + response[i].orderUUID + '"	userName="' + response[i].userName + '" comment="' + response[i].comment + '"  /></div></td><td width="135px" class="' + className + '"><div style="float:left;padding-left:10px;">' + response[i].comment + '</div><div style="float:right;"><img style="cursor:pointer" src="' + edit_img + '" width="25" height="26" onclick="com.faralam.common.EditNote(this)" orderUUID="' + response[i].orderUUID + '" orderRecordLocator="' + response[i].orderRecordLocator + '" comment="' + response[i].comment + '" /></div></td></tr>';*/
+                
+                html += '<tr id="orrw_'+response[i].localId+'"><td width="110px" class="' + className + '">' +select + '</td><td width="80px" class="' + className + '">' + response[i].orderRecordLocator + '</td><td width="80px" class="' + className + '">' + response[i].totalAmount + '</td><td width="125px" class="' + className + '">' + response[i].userName + '</td><td width="110px" class="' + className + '"><span style="padding: 8px 15px;background-color: #996633;border: 2px solid black;border-radius: 6px;font-weight: bold">' + response[i].paymentString + '</span></td><td width="110px" class="' + className + '">' + response[i].requestedDeliveryDate + '</td><td width="345px" class="' + className + '"><div style="float:left;text-align:left;padding-left: 30px;"><ul class="order_table_row_ul">' + items + '</ul></div><div style="float:right;margin: 10px;"><span style="padding: 5px 7px;background-color: #005fc7;border: 2px solid black;border-radius: 5px;font-weight: bold;cursor:pointer" data="'+com.faralam.common.htmlEntities(JSON.stringify(response[i]))+'" onclick="com.faralam.viewOrderDetails(this)">View Details</span></div></td></tr>';
                 count++;
             }
         }
 
 
-        var header = '<table width="900px" height="45px" border="0" bgcolor="#324f85"><tr><td width="110px" align="left" valign="top" class="order_table_header">Number <span class="up-triangle" onClick="com.faralam.common.rearrangr_by_num()"></span></td><td width="110px" align="left" valign="top" class="order_table_header">Order <span class="up-triangle" onClick="com.faralam.common.retrieveOrders_func(\'SORT_BY_ORDER\')"></span></td><td width="100px" align="left" valign="top" class="order_table_header"><i style="font-size:13px;">Customer</i><span class="up-triangle" onClick="com.faralam.common.retrieveOrders_func(\'SORT_BY_USER_NAME\')"></span></td><td width="215px" align="left" valign="top" class="order_table_header">Items</td><td width="108px" align="left" valign="top" class="order_table_header">Due</td><td width="135px" align="left" valign="top" class="order_table_header">Order Status <span class="up-triangle" onClick="com.faralam.common.retrieveOrders_func(\'SORT_BY_ORDER_STATUS\')"></span></td><td width="144px" align="left" valign="top" class="order_table_header">Delivery status <span class="up-triangle" onClick="com.faralam.common.retrieveOrders_func(\'SORT_BY_DELIVERY_STATUS\')"></span></td><td width="135px" align="left" valign="top" class="order_table_header">Notes</td></tr></table>';
+        var header = '<table style="margin-top:10px" width="960px" height="45px" border="0" bgcolor="#324f85"><tr><td width="110px" align="left" valign="top" class="order_table_header">Status <span class="up-triangle" onClick="com.faralam.common.rearrangr_by_num(\'SORT_BY_STATUS\')"></span></td><td width="80px" align="left" valign="top" class="order_table_header">Order <span class="up-triangle" onClick="com.faralam.common.retrieveOrders_func(\'SORT_BY_ORDER\')"></span></td><td width="80px" align="left" valign="top" class="order_table_header">Total</td><td width="125px" align="left" valign="top" class="order_table_header"><i style="font-size:13px;">Customer</i><span class="up-triangle" onClick="com.faralam.common.retrieveOrders_func(\'SORT_BY_USER_NAME\')"></span></td><td width="110px" align="left" valign="top" class="order_table_header">Payment</td><td width="110px" align="left" valign="top" class="order_table_header">Scheduled for</td><td width="345px" align="left" valign="top" class="order_table_header">items</td></tr></table>';
         if (html) {
-            html = header + '<table id="order_sum_tab" width="900px" style="border: 1px solid white;border-collapse: collapse;height:12px;">' + html + '</table>';
+            html = header + '<div id="order_table_scr_dv" style="height: 530px;position: relative;overflow: hidden;"><table id="order_sum_tab" width="960px" style="border: 1px solid white;border-collapse: collapse;height:12px;">' + html + '</table></div>';
         } else {
-            html = '';
+            html = header;
         }
         Ext.getCmp('slide_panel_order').update(html);
+        $('#order_table_scr_dv').perfectScrollbar('destroy');
+        $('#order_table_scr_dv').perfectScrollbar();
 
     }
     var onerror = function (jqXHR, textStatus, errorThrown) {}

@@ -33,7 +33,7 @@ var CatalogsItemView = Backbone.View.extend({
     },
 
     getColor: function() {
-        var colors = [ 'cmtyx_color_1', 'cmtyx_color_2', 'cmtyx_color_3' ],
+        var colors = [ 'cmtyx_color_1', 'cmtyx_color_3' ],
             index = this.model.collection.indexOf(this.model);
         return colors[index % colors.length];
     },

@@ -100,14 +100,13 @@
             window.community.deliveryAddress.street = '<?php echo $street ?>';
             window.community.deliveryAddress.number = '<?php echo $number ?>';
         }
-
         window.fbAsyncInit = function() {
           FB.init({
-            appId      : '163685094028796',
+            appId      : '163685094028796', //425779044421467 works with my app
             cookie     : true,
             status     : true,
             xfbml      : true,
-            version    : 'v2.6'
+            version    : 'v2.6' //v2.8
           });
         }
     </script>

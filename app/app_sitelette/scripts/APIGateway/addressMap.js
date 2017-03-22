@@ -80,7 +80,7 @@ module.exports = {
             getSASLFilterOptions: ['GET', '/sasl/getSASLFilterOptions'],
 
             getCatalog: ['GET', '/retail/retrieveCatalog'],
-            getCatalogs: ['GET', '/retail/retrieveCatalogs'],
+            getCatalogs: ['GET', '/retail/retrieveCatalogsIds'],
             getRoster: ['GET', '/retail/retrieveRoster'],
             createUserOrder: ['POST', '/retail/createUserOrderClient'],
             createUserPromoOrderSingleton: ['POST', '/retail/createUserOrderSingleton'],
