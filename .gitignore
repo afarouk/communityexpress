@@ -7,3 +7,7 @@ dist/*
 dist.zip
 .project
 npm-debug.log
+app/app_sitelette/themes/1/desktop/styles/*
+app/app_sitelette/themes/2/desktop/styles/*
+app/app_sitelette/themes/3/desktop/styles/*
+app/app_sitelette/themes/4/desktop/styles/*

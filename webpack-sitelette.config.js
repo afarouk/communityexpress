@@ -3,7 +3,8 @@
 
 var path = require('path'),
 	webpack = require('webpack'),
-	ExtractTextPlugin = require('extract-text-webpack-plugin');
+	ExtractTextPlugin = require('extract-text-webpack-plugin'),
+	desktopConfig = require('./sitelette-desktop-config');
 
 module.exports = [{
 	name: 'mobile',
@@ -70,43 +71,4 @@ module.exports = [{
 		alias: {
 		},
 	},
- }, 
- {
-	name: 'desktop',
-	entry: {
-	    '1/desktop/styles/styles': './app/app_sitelette/themes/1/desktop/_scss/app.scss',
-	    // '2/desktop/styles/styles': './app/app_sitelette/themes/2/desktop/_scss/main.scss',
-	},
-	// watch: true,
-	// keepalive: true,
-	module: {
-		loaders: [
-			{
-				test: /\.(jpe?g|png|gif|svg)$/i,
-				loaders: [
-					'file?hash=sha512&digest=hex&name=[hash].[ext]',
-					'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-				]
-			},
-			{
-				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader?sourceMap'),
-				exclude: /node_modules/
-			},
-			{
-				test: /\.css$/,
-				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap'),
-				exclude: /node_modules/
-			}
-		]
-	},
-	output: {
-		path: path.resolve(__dirname, './app/app_sitelette/themes/'),
-		filename: "[name].css"
-	},
-	plugins: [
-		new ExtractTextPlugin('[name].css')
-	]
-	//sudo npm rebuild node-sass
-	//npm run dev
-}];
+ }].concat(desktopConfig);
