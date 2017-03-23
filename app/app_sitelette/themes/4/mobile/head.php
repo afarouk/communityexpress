@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <!-- combined common css -->
     <link href="build/styles.css" rel="stylesheet">
@@ -19,17 +19,18 @@
       echo '.cmtyx_special_background_color{background-color:'.$background.'!important;}';
       echo $barFontColors;
      } else {
-      include_once 'themes/3/css/barFontColors.css';
+      include_once 'themes/4/mobile/css/barFontColors.css';
      }
     ?>
     </style>
-    <link href="themes/3/css/style.css" rel="stylesheet">
+    <link href="themes/4/mobile/css/style.css" rel="stylesheet">
 
     <script src="build/mobile.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
     <script src="https://connect.facebook.net/en_US/sdk.js"></script>
 
-    <link rel="apple-touch-startup-image" href="themes/3/splash/Default-portrait@2x~iphone5.jpg">
+    <link rel="apple-touch-startup-image" href="themes/4/splash/Default-portrait@2x~iphone5.jpg">
+
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -52,7 +53,7 @@
     }
     ?>">
 
-    <link rel="icon" href="themes/3/favicon.ico?v=1.1">
+    <link rel="icon" href="themes/4/favicon.ico?v=1.1">
 
     <!-- TODO splash screen styles
       temporary for demo
@@ -60,7 +61,7 @@
     <style type="text/css">
         body {
             background-color: black;
-            background-image: url("themes/3/splash/Default-portrait@2x~iphone5.jpg");
+            background-image: url("themes/4/splash/Default-portrait@2x~iphone5.jpg");
             background-size: 100% 100%;
             background-repeat: no-repeat;
         }
@@ -112,7 +113,6 @@
           });
         }
     </script>
-
 
         <!-- Sharing meta data -->
         <meta name="description" content="A Chalkboards App">

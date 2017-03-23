@@ -21,7 +21,7 @@ var themes = function() {
     var copyImages = [];
     for (var i = 1; i <= themeNumber; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
-            distFile='<%= yeoman.dist %>/themes/'+ i +'/css/style.css',
+            distFile='<%= yeoman.dist %>/themes/'+ i +'/mobile/css/style.css',
             themeName='<%= yeoman.app %>/themes/'+ i +'/mobile/css/style.css';
         distStyle[distFile] = [styles, themeName];
         copyImages.push({
@@ -30,7 +30,7 @@ var themes = function() {
             src: [
                 '*.{ico,txt,png,gif,ttf,svg,woff,woff2,eot}'
             ],
-            dest: '<%= yeoman.dist %>/themes/' + i + '/css'
+            dest: '<%= yeoman.dist %>/themes/' + i + '/mobile/css'
         });
     };
     themesConf['distStyle'] = distStyle;

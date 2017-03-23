@@ -88,7 +88,6 @@
 
         img.promotion-image {
           width: 100%;
-          background-image: url('../images/dog.png');
         }
 
         .promotion-btns { 
@@ -292,12 +291,18 @@
                     border: none;
                     text-transform: uppercase;
                     cursor: pointer;
+                    border-radius: 2px;
                   }
                 }
 
                 .right_block {
                   width: 20%;
                   text-align: right;
+                  display: flex;
+                  flex-wrap: wrap;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  align-items: flex-end;
 
                   .quantity_container {
                     display: inline-block;
@@ -328,10 +333,14 @@
 
                       &.minus {
                         margin-right: -4px;
+                        border-top-left-radius: 2px;
+                        border-bottom-left-radius: 2px;
                       }
 
                       &.plus {
                         margin-left: -4px;
+                        border-top-right-radius: 2px;
+                        border-bottom-right-radius: 2px;
                       }
                     }
                   }
@@ -344,14 +353,16 @@
                     font-weight: $style-semi-bold;
                     border: none;
                     text-transform: uppercase;
-                    margin-bottom: 15px;
+                    // margin-bottom: 15px;
                     cursor: pointer;
+                    border-radius: 2px;
                   }
 
                   .item_price {
                     color: $cart-text;
                     font-size: $size-lg-normal;
                     font-weight: $style-normal;
+                    margin-bottom: 10px;
                   }
                 }
               }
@@ -423,9 +434,83 @@
               border-bottom: none;
             }
 
-            .item_price {
-              font-weight: $style-semi-bold;
+            .left_block {
+              width: 50%;
             }
+
+            .right_block {
+              width: 50%;
+              display: flex;
+              justify-content: space-between;
+              flex-direction: row;
+              align-items: baseline;
+
+              .quantity_container {
+                display: inline-block;
+                width: 89px;
+                height: 30px;
+                margin-bottom: 10px;
+
+                .block {
+                  display:inline-flex;
+                  width: 29px;
+                  height: 100%;
+                  justify-content: center;
+                  align-items: center;
+
+                  &.number {
+                    background-color: $cart-text;
+                    color: $cart-cards;
+                    font-size: $size-normal;
+                    font-weight: $style-normal;
+                  }
+
+                  &.minus,
+                  &.plus {
+                    border: solid 1px $cart-scroll;
+                    cursor: pointer;
+                    color: $cart-text;
+                  }
+
+                  &.minus {
+                    margin-right: -4px;
+                    border-top-left-radius: 2px;
+                    border-bottom-left-radius: 2px;
+                  }
+
+                  &.plus {
+                    margin-left: -4px;
+                    border-top-right-radius: 2px;
+                    border-bottom-right-radius: 2px;
+                  }
+                }
+              }
+              
+              .item_price {
+                font-weight: $style-semi-bold;
+              }
+            }
+          }
+        }
+
+        .additional_prices {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          color: $cart-text;
+          font-size: $size-normal;
+          margin-bottom: 15px;
+
+          .left_block {
+            width: 50%;
+          }
+
+          .right_block {
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: baseline;
 
             .quantity_container {
               display: inline-block;
@@ -435,7 +520,7 @@
 
               .block {
                 display:inline-flex;
-                width: 27px;
+                width: 29px;
                 height: 100%;
                 justify-content: center;
                 align-items: center;
@@ -456,63 +541,25 @@
 
                 &.minus {
                   margin-right: -4px;
+                  border-top-left-radius: 2px;
+                  border-bottom-left-radius: 2px;
                 }
 
                 &.plus {
                   margin-left: -4px;
+                  border-top-right-radius: 2px;
+                  border-bottom-right-radius: 2px;
                 }
               }
             }
-          }
-        }
 
-        .additional_prices {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          color: $cart-text;
-          font-size: $size-normal;
-          margin-bottom: 15px;
+            .price {
+              font-weight: $style-semi-bold;
+            }
+          }
 
           .price {
             font-weight: $style-semi-bold;
-          }
-
-          .quantity_container {
-            display: inline-block;
-            width: 89px;
-            height: 30px;
-            margin-bottom: 10px;
-
-            .block {
-              display:inline-flex;
-              width: 29px;
-              height: 100%;
-              justify-content: center;
-              align-items: center;
-
-              &.number {
-                background-color: $cart-text;
-                color: $cart-cards;
-                font-size: $size-normal;
-                font-weight: $style-normal;
-              }
-
-              &.minus,
-              &.plus {
-                border: solid 1px $cart-scroll;
-                cursor: pointer;
-                color: $cart-text;
-              }
-
-              &.minus {
-                margin-right: -4px;
-              }
-
-              &.plus {
-                margin-left: -4px;
-              }
-            }
           }
         }
 
@@ -549,6 +596,7 @@
           letter-spacing: 2px;
           text-transform: uppercase;
           cursor: pointer;
+          border-radius: 2px;
         }
       }
     }
@@ -726,10 +774,8 @@
               padding-right: 0;
 
               .add_to_calendar_btn {
-                display: block;
                 width: 40px;
                 height: 40px;
-                background: url('../images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png');
                 cursor: pointer;
               }
             }
@@ -903,7 +949,8 @@
               }
 
               .prize-picture-container {
-                display: inline-block;
+                display: inline-flex;
+                align-items: center;
                 width: 48%;
                 vertical-align: top;
                 height: 113px;
@@ -912,8 +959,9 @@
                 background-position: center;
                 background-repeat: no-repeat;
 
-                &.pic1 { background-image: url('../images/discount_coffee.png') }
-                &.pic2 { background-image: url('../images/discount_burger.png') }
+                img {
+                  height: 80%;
+                }
               }
             }
           }
@@ -932,20 +980,8 @@
           .slide { 
             height: 380px;
 
-            &.slide1 { 
-              background: url(../images/pic.png);
-              background-repeat: no-repeat;
-              background-size: cover; 
-            }
-            &.slide2 { 
-              background: url(../images/14593877-Conceptual-making-of-burger-Stock-Photo.png);
-              background-repeat: no-repeat; 
-              background-size: cover;
-            }
-            &.slide3 { 
-              background: url(../images/1006p120-eggs-barbacoa_0.png);
-              background-repeat: no-repeat; 
-              background-size: cover;
+            img {
+              height: 100%;
             }
             
             .slide_description {
@@ -1059,12 +1095,13 @@
                 padding-right: 0;
 
                 &.user_avatar {
-                  display: inline-block;
-                  width: 40px;
-                  height: 40px;
-                  border-radius: 50%;
-                  background: url('../images/guy-912229_960_720.png') no-repeat;
-                  vertical-align: top;
+                  img {
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    vertical-align: top;
+                  }
                 }
 
                 &.review_section { 
@@ -1134,17 +1171,10 @@
               height: 40px;
               border-radius: 50%;
               margin-left: -20px;
-              background-size: cover;
-              background-repeat: no-repeat;
 
-              &.avatar1 {
-                background: url('../images/landscape_nrm_1416942794-chris-prat-cover.png');
+              &:first-child {
                 margin-left: 0;
               }
-              &.avatar2 { background: url('../images/guy-912229_960_720-copy.png'); }
-              &.avatar3 { background: url('../images/girl-03.png'); }
-              &.avatar4 { background: url('../images/images.png'); }
-              &.avatar5 { background: url('../images/guy-912229_960_720-copy.png'); }
             }
           }
 
