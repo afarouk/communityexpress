@@ -9,7 +9,7 @@ define([
 				Backbone.history.start({pushState: true});
 
 				$(document).ready(function(){
-					this.test();
+					this.options.test();
 				}.bind(this));
 			},
 

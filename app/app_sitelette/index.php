@@ -11,7 +11,11 @@ if (isset($pageAccess)) {
   if ($isDesktop) {
     // include_once('sitefiles/pages/' . 'common_desktop.php');
     include_once 'themes/'.$themeId.'/desktop/head.php';
-    include_once 'themes/'.$themeId.'/desktop/body.html';
+    if ($ftlfile) { //temporary
+      echo $siteletteJSON['landingViewHTML'];
+    } else {
+      include_once 'themes/'.$themeId.'/desktop/body.html';
+    }
     echo '</html>';
   } else {
     if (!is_null($errorMessage)) {

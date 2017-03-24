@@ -38,3 +38,5 @@ for (var counter = 1; counter <= themesCount; counter ++) {
 }
 
 module.exports = themesConfig;
+//sudo npm rebuild node-sass
+//http://chalkboardstoday.com/template
