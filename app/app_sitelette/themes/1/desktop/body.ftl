@@ -418,58 +418,60 @@
                     </div>
                 </div>
 
-                <div class="grid-item grid-item--height3 cmtyx_events_block">
-                    <div class="header cmtyx_color_4">
-                        <div class="title">events <span class="collapse_btn"></span></div>
-                    </div>
-                    <div class="body">
-                        <img src="themes/1/desktop/images/red-hot-band.png" alt="event image">
-                          <table>
-                              <tr>
-                                  <td class="event_date first">
-                                      <span class="event_day">28</span>
-                                      <span class="event_month">jun</span>
-                                  </td>
-                                  <td class="event_info first">
-                                      <span class="event_title">Live acoustic concert</span>
-                                      <span class="event_time">21:00-00:00</span>
-                                      <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
-                                  </td>
-                                  <td class="add_to_calendar_btn_container first">
-                                      <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td class="event_date">
-                                      <span class="event_day">29</span>
-                                      <span class="event_month">jun</span>
-                                  </td>
-                                  <td class="event_info">
-                                      <span class="event_title">Live acoustic concert</span>
-                                      <span class="event_time">21:00-00:00</span>
-                                      <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
-                                  </td>
-                                  <td class="add_to_calendar_btn_container">
-                                      <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
-                                  </td>
-                              </tr>
-                              <tr class="last">
-                                  <td class="event_date last">
-                                      <span class="event_day">30</span>
-                                      <span class="event_month">jun</span>
-                                  </td>
-                                  <td class="event_info last">
-                                      <span class="event_title">Live acoustic concert</span>
-                                      <span class="event_time">21:00-00:00</span>
-                                      <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
-                                  </td>
-                                  <td class="add_to_calendar_btn_container last">
-                                      <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
-                                  </td>
-                              </tr>
-                          </table>
-                    </div>
-                </div>
+                <#if (eventsSummary.events)?has_content >
+                  <div class="grid-item grid-item--height3 cmtyx_events_block">
+                      <div class="header cmtyx_color_4">
+                          <div class="title">events <span class="collapse_btn"></span></div>
+                      </div>
+                      <div class="body">
+                          <img src="themes/1/desktop/images/red-hot-band.png" alt="event image">
+                            <table>
+                                <tr>
+                                    <td class="event_date first">
+                                        <span class="event_day">28</span>
+                                        <span class="event_month">jun</span>
+                                    </td>
+                                    <td class="event_info first">
+                                        <span class="event_title">Live acoustic concert</span>
+                                        <span class="event_time">21:00-00:00</span>
+                                        <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
+                                    </td>
+                                    <td class="add_to_calendar_btn_container first">
+                                        <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="event_date">
+                                        <span class="event_day">29</span>
+                                        <span class="event_month">jun</span>
+                                    </td>
+                                    <td class="event_info">
+                                        <span class="event_title">Live acoustic concert</span>
+                                        <span class="event_time">21:00-00:00</span>
+                                        <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
+                                    </td>
+                                    <td class="add_to_calendar_btn_container">
+                                        <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
+                                    </td>
+                                </tr>
+                                <tr class="last">
+                                    <td class="event_date last">
+                                        <span class="event_day">30</span>
+                                        <span class="event_month">jun</span>
+                                    </td>
+                                    <td class="event_info last">
+                                        <span class="event_title">Live acoustic concert</span>
+                                        <span class="event_time">21:00-00:00</span>
+                                        <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
+                                    </td>
+                                    <td class="add_to_calendar_btn_container last">
+                                        <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
+                                    </td>
+                                </tr>
+                            </table>
+                      </div>
+                  </div>
+                </#if>
                 
                 <div class="grid-item cmtyx_sale_block">
                     <div class="header cmtyx_color_6">
@@ -560,16 +562,18 @@
                     </div>
                 </div>
 
-                <div class="grid-item cmtyx_video_block">
-                    <div class="header cmtyx_color_7">
-                        <div class="title">video <span class="collapse_btn"></span></div>
-                    </div>
-                    <div class="body">
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/Co1oj3o4tbE" frameborder="0" allowfullscreen></iframe>
+                <#if (externalMedia)?has_content >
+                    <div class="grid-item cmtyx_video_block">
+                        <div class="header cmtyx_color_7">
+                            <div class="title">video <span class="collapse_btn"></span></div>
+                        </div>
+                        <div class="body">
+                            <div class="video-container">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/Co1oj3o4tbE" frameborder="0" allowfullscreen></iframe>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </#if>
 
                 <div class="grid-item cmtyx_about_us">
                     <div class="header cmtyx_color_4">
@@ -577,7 +581,7 @@
                     </div>
                     <div class="body">
                         <div class="about-text">
-                            We are passionate about coffee. Our founder has a PhD in Coffiology, from the Columbian Beverage Science Academy. Most of the people here have some advanced degree in Coffee Science. Bill is our new intern, but he is from Columbia and knows all about coffee without going to school.
+                            ${(sasl.detailedDescription)!"(no detailedDescription)"}
                         </div>
                         <div class="about-address"><img src="themes/1/desktop/images/marker-icon.png" alt="marker icon">1086 North 1st Street, San jose CA 95112</div>
                         <div class="about-phone"><img src="themes/1/desktop/images/phone-icon.png" alt="phone icon">123-456-789</div>
