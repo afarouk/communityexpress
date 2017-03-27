@@ -29,7 +29,6 @@
 
     <link href="themes/1/desktop/styles/main.css?version=3" rel="stylesheet">
 
-    <script src="build/desktop.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
     <!-- <script src="https://connect.facebook.net/en_US/sdk.js"></script> -->
 

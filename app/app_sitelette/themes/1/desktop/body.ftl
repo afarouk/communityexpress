@@ -660,4 +660,6 @@
 
     </div>
 
+    <script src="build/desktop.js"></script>
+    
 </body>

@@ -9,5 +9,7 @@ define([
     './desktop_app/app.js',
     ], function(App){
     console.log('Starting desktop...');
-    App.start();
+    $(document).ready(function(){
+    	App.start();
+    });
 });

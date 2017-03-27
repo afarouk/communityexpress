@@ -2,18 +2,71 @@
 
 define([
     'packery/js/packery',
-    'jquery-bridget/jquery-bridget'
-	], function(Packery, jQueryBridget){
+    'jquery-bridget/jquery-bridget',
+    '../scripts/appCache.js',
+    '../../vendor/scripts/js.cookie',
+    '../scripts/actions/configurationActions',
+    '../scripts/actions/sessionActions',
+    './controllers/catalog-controller'
+	], function(Packery, jQueryBridget, appCache, Cookies,
+		configurationActions, sessionActions, catalogController){
 		var App = new Mn.Application({
 			onStart: function() {
-				Backbone.history.start({pushState: true});
+				this.initAnimationsOnPage();
+				//Get sasl data for busineses
+				if (window.saslData) {
+			        appCache.set('saslData', window.saslData);
+			    }
+			    if (window.saslData.error) {
+		            loader.showFlashMessage(window.saslData.error.message);
+		            return;
+		        }
 
-				$(document).ready(function(){
-					this.options.test();
-				}.bind(this));
+		        this.initSubviews();
+
+				var conf = configurationActions.getConfigurations();
+
+				this.params = window.community;
+		        if (this.params.demo) {
+		            configurationActions.toggleSimulate(true);
+		        };
+		        if (this.params.embedded) {
+		            conf.set('embedded', true);
+		        };
+		        if (this.params.UID) {
+		            Cookies.set("cmxUID", this.params.UID, {expires:365});
+		            sessionActions.authenticate(this.params.UID)
+		                .always(function() {
+		                    Backbone.history.start({
+		                        pushState: true
+		                    });
+		                });
+		        } else if (Cookies.get('cmxUID')) {
+		            sessionActions.getSessionFromLocalStorage().then(function() {
+		                Backbone.history.start({
+		                    pushState: true
+		                });
+		            });
+		        } else if (this.params.canCreateAnonymousUser) {
+		            $.when(sessionActions.createAnonymousUser()).done(function() {
+		                sessionActions.getSessionFromLocalStorage().then(function() {
+		                    Backbone.history.start({
+		                        pushState: true
+		                    });
+		                });
+		            });
+		        } else {
+		        	debugger;
+		            // this.afterTriedToLogin();
+		            return;
+		        }
 			},
 
-			test: function() {
+			initSubviews: function() {
+				catalogController.manageCatalog();
+			},
+
+			initAnimationsOnPage: function() {
 				jQueryBridget( 'packery', Packery, $ );
 		        var $grid = $('.grid').packery({
 		          itemSelector: '.grid-item',
@@ -25,8 +78,8 @@ define([
 		        setTimeout(function() { 
 		          $('.cssload-thecube').hide();
 		          $grid.show();
-		          $grid.packery(); 
-		        }, 1200)
+		          $grid.packery();
+		        }.bind(this), 1200)
 
 		        $(".owl-carousel").owlCarousel({
 		          items: 1,
