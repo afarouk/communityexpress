@@ -37,54 +37,11 @@
                 <div class="gutter-sizer"></div>
 
                 <!-- there is catalogs block -->
-                <div class="grid-item cmtyx_menu_block">
+                <div id="catalogs-layout" class="grid-item cmtyx_menu_block">
                     <div class="header cmtyx_color_6">
                         <div class="title">menu <span class="collapse_btn"></span></div>
                     </div>
-                    <div class="body">
-                        <div class="catalog_main_container">
-                          <div class="title">
-                            Catalog
-                          </div>
-                          <ul class="days_list">
-                            <li class="day">
-                              <div class="day_name">Monday</div>
-                              <div class="day_description">For pickup on Monday only</div>
-                              <img src="themes/1/desktop/images/day-right-arrow.png" alt="right arrow">
-                            </li>
-                            <li class="day">
-                              <div class="day_name">Tuesday</div>
-                              <div class="day_description">For pickup on Tuesday only</div>
-                              <img src="themes/1/desktop/images/day-right-arrow.png" alt="right arrow">
-                            </li>
-                            <li class="day">
-                              <div class="day_name">Wednesday</div>
-                              <div class="day_description">For pickup on Wednesday only</div>
-                              <img src="themes/1/desktop/images/day-right-arrow.png" alt="right arrow">
-                            </li>
-                            <li class="day">
-                              <div class="day_name">Thursday</div>
-                              <div class="day_description">For pickup on Thursday only</div>
-                              <img src="themes/1/desktop/images/day-right-arrow.png" alt="right arrow">
-                            </li>
-                            <li class="day">
-                              <div class="day_name">Friday</div>
-                              <div class="day_description">For pickup on Friday only</div>
-                              <img src="themes/1/desktop/images/day-right-arrow.png" alt="right arrow">
-                            </li>
-                            <li class="day">
-                              <div class="day_name">Saturday</div>
-                              <div class="day_description">For pickup on Saturday only</div>
-                              <img src="themes/1/desktop/images/day-right-arrow.png" alt="right arrow">
-                            </li>
-                            <li class="day">
-                              <div class="day_name">Sunday</div>
-                              <div class="day_description">For pickup on Sunday only</div>
-                              <img src="themes/1/desktop/images/day-right-arrow.png" alt="right arrow">
-                            </li>
-                          </ul>
-                        </div>
-      
+                    <div class="body">      
                         <div class="tabs">
                           <button class="tablinks">Lunch</button>
                           <button class="tablinks">Dinner</button>
@@ -661,5 +618,5 @@
     </div>
 
     <script src="build/desktop.js"></script>
-    
+
 </body>

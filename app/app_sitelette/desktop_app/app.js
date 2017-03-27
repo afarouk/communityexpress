@@ -7,12 +7,12 @@ define([
     '../../vendor/scripts/js.cookie',
     '../scripts/actions/configurationActions',
     '../scripts/actions/sessionActions',
-    './controllers/catalog-controller'
+    './controllers/catalogs-controller'
 	], function(Packery, jQueryBridget, appCache, Cookies,
-		configurationActions, sessionActions, catalogController){
+		configurationActions, sessionActions, catalogsController){
 		var App = new Mn.Application({
 			onStart: function() {
-				this.initAnimationsOnPage();
+				this.options.initAnimationsOnPage();
 				//Get sasl data for busineses
 				if (window.saslData) {
 			        appCache.set('saslData', window.saslData);
@@ -22,7 +22,7 @@ define([
 		            return;
 		        }
 
-		        this.initSubviews();
+		        this.options.initSubviews();
 
 				var conf = configurationActions.getConfigurations();
 
@@ -63,7 +63,7 @@ define([
 			},
 
 			initSubviews: function() {
-				catalogController.manageCatalog();
+				catalogsController.manageCatalog();
 			},
 
 			initAnimationsOnPage: function() {
