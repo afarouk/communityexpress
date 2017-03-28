@@ -1,0 +1,77 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px $day-border;
+  margin: 10px 0;
+  padding: 1.5rem 10px 10px 10px; 
+
+  .material-textfield {
+    display: inline-block;
+    height: 3rem;
+
+    input {
+      background: none;
+      border: none;
+      display: block;
+      font-size: 1rem;
+      width: 100%;
+      border-bottom: 0.1rem solid $review-user-name;
+      color: $review-user-name;
+
+      &:invalid {
+        box-shadow: none; 
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &[required]:focus ~ label::before {
+        font-size: 0.75rem;
+        top: -2.75rem;
+        color: $review-user-name;
+      }
+
+      &:focus ~ label::after {
+        left: 0%;
+        width: 100%;
+      }
+
+      &:invalid ~ label::before {
+        font-size: 1rem;
+        top: -1.5rem;
+        color: $review-user-name;
+      }
+    }
+
+    label {
+      display: inline-block;
+      font-size: 0;
+      pointer-events: none;
+      position: relative;
+      width: 100%;
+
+      &::before {
+        content: attr(data-content);
+        position: relative;
+        transition: all 0.2s ease;
+        will-change: font-size, top;
+        font-size: 0.75rem;
+        top: -2.75rem;
+        color: $review-user-name;
+      }
+    }
+  }
+}
+
+select {
+   border: 1px solid $review-user-name;
+   overflow: hidden;
+   padding: 5px 10px 5px 0;
+   color: $review-user-name;
+   background-color: $cart-cards;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
+   outline: none;
+}

@@ -6,7 +6,7 @@ define([
 	], function(appCache, CartLayoutView){
 	var CartController = Mn.Object.extend({
 		initialize: function() {
-			//this.layout = new CartLayoutView();
+			this.layout = new CartLayoutView();
 		}
 	});
 	return new CartController();

@@ -6,12 +6,16 @@ body {
 }
 
 body::-webkit-scrollbar,
-.catalog-container::-webkit-scrollbar {
+.body::-webkit-scrollbar,
+.catalog-container::-webkit-scrollbar,
+.tabcontent::-webkit-scrollbar {
   width: 5px;
 }
 
 body::-webkit-scrollbar-thumb, 
-.catalog-container::-webkit-scrollbar-thumb {
+.body::-webkit-scrollbar-thumb, 
+.catalog-container::-webkit-scrollbar-thumb,
+.tabcontent::-webkit-scrollbar-thumb {
   background-color: $cart-scroll;
   border-radius: 2px;
   opacity: 0.5;
