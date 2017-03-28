@@ -33,8 +33,10 @@ if ($iPhoneVersion) {
 
 if ((!$detect->isMobile() && !$detect->isTablet()) && !$desktopIFrame) {
   $isDesktop=true;
+  $userAgent='d';
 }else{
   $isDesktop=false;
+  $userAgent='m';
 }
 
 if (validateParams('demo')) {
@@ -218,9 +220,9 @@ if ($saslAccess || $urlKeyAccess) {
   $isPrivate              = false;
   $canCreateAnonymousUser = false;
   if ($urlKeyAccess) {
-    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') . '&ftl=' . $ftlfile;
+    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false').'&ua='.$userAgent. '&ftl=' . $ftlfile;
   } else {
-    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') . '&ftl=' . $ftlfile;
+    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') .'&ua='.$userAgent. '&ftl=' . $ftlfile;
   }
 
   $siteletteJSON = makeApiCall($apiURL);
