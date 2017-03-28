@@ -9,9 +9,9 @@
                 <img class="logo" src="${bannerImageURL}" alt="logo">
             </div>
             <ul class="links-conatiner">
-                <li class="link">catalog</li>
+                <!-- <li class="link">catalog</li>
                 <li class="link">promotions</li>
-                <li class="link">about us</li>
+                <li class="link">about us</li> -->
                 <li class="link last">sign up/log in</li>
             </ul>
         </header>
@@ -39,7 +39,7 @@
                 <!-- there is catalogs block -->
                 <div id="catalogs-layout" class="grid-item cmtyx_menu_block"></div>
                 <!-- there is cart/order block -->
-                <div class="grid-item cmtyx_cart_block">
+                <div id="cart-layout" class="grid-item cmtyx_cart_block">
                   <div class="header cmtyx_color_3">
                     <div class="title">shopping cart <span class="collapse_btn"></span></div>
                   </div>
@@ -228,7 +228,7 @@
                   </div>
                 </#if>
                 
-                <div class="grid-item cmtyx_sale_block">
+                <!-- <div class="grid-item cmtyx_sale_block">
                     <div class="header cmtyx_color_6">
                         <div class="title">sale <span class="collapse_btn"></span></div>
                     </div>
@@ -238,9 +238,9 @@
                             <button>now on sale!</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="grid-item grid-item--height3 cmtyx_poll_block">
+                <!-- <div class="grid-item grid-item--height3 cmtyx_poll_block">
                     <div class="header cmtyx_color_5">
                         <div class="title">sweepstake <span class="collapse_btn"></span></div>
                     </div>
@@ -296,7 +296,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="grid-item cmtyx_gallery_block">
                     <div class="header cmtyx_color_1">
@@ -330,7 +330,7 @@
                     </div>
                 </#if>
 
-                <div class="grid-item cmtyx_about_us">
+                <!-- <div class="grid-item cmtyx_about_us">
                     <div class="header cmtyx_color_4">
                         <div class="title">about us <span class="collapse_btn"></span></div>
                     </div>
@@ -343,9 +343,9 @@
                         <div class='about-business-hours'>Business hours 16.00-02:00</div>
                         <img src="themes/1/desktop/images/map.png" alt="map" class="map-img">
                     </div>
-                </div>
+                </div> -->
 
-                <div class="grid-item cmtyx_reviews_block">
+                <!-- <div class="grid-item cmtyx_reviews_block">
                     <div class="header cmtyx_color_9">
                         <div class="title">user's reviews <span class="collapse_btn"></span></div>
                     </div>
@@ -380,7 +380,7 @@
                             <span class="show_more_reviews_btn cmtyx_text_color_4">show more reviews</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
               </div>
           </div>

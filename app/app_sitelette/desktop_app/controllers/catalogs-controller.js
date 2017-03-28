@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 define([
 	'../../scripts/appCache',
  //    CatalogBasketItem = require('./models/CatalogBasketItem.js'),

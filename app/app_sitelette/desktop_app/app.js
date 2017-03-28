@@ -7,9 +7,10 @@ define([
     '../../vendor/scripts/js.cookie',
     '../scripts/actions/configurationActions',
     '../scripts/actions/sessionActions',
-    './controllers/catalogs-controller'
+    './controllers/catalogs-controller',
+    './controllers/cart-controller'
 	], function(Packery, jQueryBridget, appCache, Cookies,
-		configurationActions, sessionActions, catalogsController){
+		configurationActions, sessionActions, catalogsController, cartController){
 		var App = new Mn.Application({
 			onStart: function() {
 				this.options.initAnimationsOnPage();
