@@ -4,8 +4,9 @@ define([
 	'../../scripts/appCache',
 	'../views/popupsLayout',
 	'../views/loginView',
-	'../views/signin'
-	], function(appCache, PopupsLayoutView, LoginView, SigninView){
+	'../views/signin',
+	'../views/signup'
+	], function(appCache, PopupsLayoutView, LoginView, SigninView, SignupView){
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
@@ -16,6 +17,7 @@ define([
 		onUserLogin: function() {
 			var signin = new SigninView();
 			this.layout.showChildView('popupsContainer', signin);
+			this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
 			this.initializeDialog(signin.$el);
 			signin.onShow();
 		},
@@ -27,6 +29,13 @@ define([
 				resizable: false,
 				modal: true
 			});
+		},
+		onUserSignup: function () {
+			var signup = new SignupView();
+			this.layout.showChildView('popupsContainer', signup);
+			// this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
+			this.initializeDialog(signup.$el);
+			signup.onShow();
 		}
 	});
 	return new PopupsController();

@@ -20,8 +20,8 @@ define([
 			});
 
 			$('#cmntyex_signin_panel-popup .signup_btn').click(function() {
-				$( "#cmntyex_signin_panel-popup" ).dialog( "close" );
-				$('#signup_panel-popup').dialog('open');
+				// $( "#cmntyex_signin_panel-popup" ).dialog( "close" );
+				// $('#signup_panel-popup').dialog('open');
 			});
 
 			$('#cmntyex_signin_panel-popup .forgot_btn').click(function(e) {
