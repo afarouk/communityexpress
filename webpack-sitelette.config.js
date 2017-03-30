@@ -9,7 +9,6 @@ var path = require('path'),
 module.exports = [{
 	name: 'mobile',
 	entry: {
-		'desktop': './app/app_sitelette/sitelette-desktop.js',
 		'bundle': './app/app_sitelette/sitelette.js',
 		'mobile': './app/app_sitelette/mobile.js',
 	},
@@ -70,5 +69,5 @@ module.exports = [{
 		extensions: ['', '.js', '.es6', '.jsx'],
 		alias: {
 		},
-	},
+	}
  }].concat(desktopConfig);

@@ -1,10 +1,15 @@
 'use strict';
 
-//TODO add all styles to desktop webpack build
-// require('../vendor/skeuocard-master/styles/skeuocard.reset.css');
-// require('../vendor/skeuocard-master/styles/skeuocard.css');
+require('../vendor/css/fonts.css');
+require('../vendor/skeuocard-master/styles/skeuocard.reset.css');
+require('../vendor/skeuocard-master/styles/skeuocard.css');
+require('../vendor/star-rating-svg-master/src/css/star-rating-svg.css');
+require('!style!css!owl.carousel/dist/assets/owl.carousel.css');
+// require('!style!css!jquery-ui-dist/jquery-ui.min.css');
+require('!style!css!font-awesome/css/font-awesome.min.css');
+
+require('jquery-ui-dist/jquery-ui');
 require('../vendor/skeuocard-master/javascripts/skeuocard.min.js');
-require('../vendor/codecanyon/assets/js/html5imageupload');
 require('owl.carousel');
 require('moment');
 require('packery');
