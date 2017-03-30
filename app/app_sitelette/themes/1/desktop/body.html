@@ -742,7 +742,7 @@
 
                   <div class="checkbox_save_card_container">
                     <label class="checkbox_save_card">
-                      <input id="save_reference" type="checkbox" name="checkbox_save_card" data-role="none">Save for future reference
+                      <input id="save_reference" type="checkbox" name="checkbox_save_card">Save for future reference
                     </label>
                   </div>
 
@@ -1131,7 +1131,56 @@
         </div>
     </footer>
 
-        <script src="build/desktop.js"></script>
+    <div id="cmntyex_signin_panel-popup" title="Sign in">
+      <a class="forgot_btn">Forgot password?</a>
+      <div class="material-textfield">
+        <input type="text" name="username" value="" required="" />
+        <label data-content="Username / Email"></label>
+      </div>
+      
+      <div class="material-textfield">
+        <input type="password" name="password" value="" required="" />
+        <label data-content="Password"></label>
+      </div>
+      
+      <label class="show_password">
+        <input id="show_password" type="checkbox" name="show_password">Show password
+      </label>
+
+      <button class="signin_btn">sign in</button>
+      <div class="new-title">New to chalkboards?</div>
+      <button class="signup_btn">create account</button>
+    </div>
+
+    <div id="signup_panel-popup">
+      <div class="material-textfield">
+        <input type="email" name="email" value="" required="" />
+        <label data-content="Email"></label>
+      </div>
+      
+      <div class="material-textfield">
+        <input type="password" name="password" value="" required="" />
+        <label data-content="Password"></label>
+      </div>
+
+      <div class="material-textfield">
+        <input type="password" name="password_confirmation" value="" required="" />
+        <label data-content="Confirm password"></label>
+      </div>
+
+      <button class="submit_signup_btn">Create account</button>
+    </div>
+
+    <div id="cmntyex_forgot_panel-popup" title="Forgot password">
+      <div class="material-textfield">
+        <input type="text" name="username" value="" required="" />
+        <label data-content="Username / Email"></label>
+      </div>
+
+      <button class="submit_forgot_btn">ok</button>
+    </div>
+
+    <script src="build/desktop.js"></script>
 
     </div>
 

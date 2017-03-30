@@ -5,6 +5,33 @@ define([
 	], function() {
 	var TemporaryComponent = Mn.Object.extend({
 		init: function() {
+			$.ui.dialog.prototype._focusTabbable = function(){};
+
+			$("#cmntyex_signin_panel-popup, #signup_panel-popup, #cmntyex_forgot_panel-popup").dialog({ 
+				autoOpen: false,
+				closeOnEscape: true,
+				draggable: false,
+				resizable: false,
+				modal: true
+			});
+
+			$('.link.last').click(function() {
+				$('#cmntyex_signin_panel-popup').dialog('open');
+			});
+
+			$('#cmntyex_signin_panel-popup .signup_btn').click(function() {
+				$( "#cmntyex_signin_panel-popup" ).dialog( "close" );
+				$('#signup_panel-popup').dialog('open');
+			});
+
+			$('#cmntyex_signin_panel-popup .forgot_btn').click(function(e) {
+				e.preventDefault();
+				$( "#cmntyex_signin_panel-popup" ).dialog( "close" );
+				$('#cmntyex_forgot_panel-popup').dialog('open');
+			});
+
+			$('#signup_panel-popup').prev().find('.ui-dialog-title').hide();
+			
 			var card = new Skeuocard($("#skeuocard"));
 
 			var $grid = $('.grid').packery({

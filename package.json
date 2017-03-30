@@ -17,6 +17,7 @@
     "jquery": "^2.1.4",
     "jquery-bridget": "^2.0.1",
     "jquery-mobile": "^1.4.1",
+    "jquery-ui-dist": "^1.12.1",
     "lodash": "^3.5.0",
     "packery": "^2.1.1",
     "strftime": "^0.7.0",

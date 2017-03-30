@@ -1,0 +1,128 @@
+.ui-dialog {
+	background-color: $body-background !important;
+	border-radius: 2px;
+
+	&.ui-widget-content {
+		border: none;	
+	}
+
+
+	.ui-dialog-titlebar {
+		background-color: transparent;
+		border: none;
+		color: $cart-text;
+
+		.ui-dialog-title {
+			display: inline-block;
+			margin-top: 10px;
+			font-size: $size-medium;
+			line-height: 24px;
+		}
+
+		button {
+			background: transparent;
+    		border: none;
+    		top: 10px;
+		}
+	}
+
+	.ui-dialog-content {
+		padding-top: 0;
+
+		a.forgot_btn {
+			color: $href-color;
+			outline: none;
+			float: right;
+			display: inline-block;
+    		margin-bottom: 20px;
+    		font-size: $size-normal-small;
+    		cursor: pointer;
+
+			&:hover {
+				color: $href-hover-color;
+			}
+		}
+
+		.material-textfield {
+			width: 100%;
+			height: 2em;
+			margin-bottom: 15px;
+		}
+
+		& > label {
+			color: $cart-text;
+			font-size: $size-normal;
+			display: block;
+			margin-top: -10px;
+			margin-bottom: 15px;
+			cursor: pointer;
+
+			input {
+				outline: none;
+				margin-right: 5px;
+				position: relative;
+				top: 1px;
+				cursor: pointer;
+			}
+		}
+
+		button {
+			width: 100%;
+			border-radius: 2px;
+			background-color: transparent;
+			border: solid 1px $cart-text;
+			color: $cart-text;
+			text-transform: uppercase;
+			padding: 10px 0;
+			font-weight: $style-semi-bold;
+			cursor: pointer;
+			margin: 10px 0;
+		}
+	}
+
+	#cmntyex_signin_panel-popup {
+		button.signup_btn {
+			padding: 5px 0;
+			font-size: $size-normal;
+		}
+
+		.new-title {
+			text-align: center;
+		    font-weight: $style-normal-strong;
+		    font-size: $size-normal;
+		    margin: 5px 0;
+		    color: $cart-text;
+
+		    &:before,
+		    &:after {
+	    	    content: "";
+			    border-bottom: solid 1px #fff;
+			    width: 18%;
+			    display: inline-block;
+			    position: relative;
+			    top: 7px;
+			    float: left;
+		    }
+
+		    &:after {
+		    	float: right;
+		    }
+		}
+	}
+
+	#signup_panel-popup {
+		padding-top: 20px;
+
+		.submit_signup_btn {
+			margin-top: 0;
+		}
+	}
+
+	#cmntyex_forgot_panel-popup {
+		padding-top: 20px;
+
+		.submit_forgot_btn {
+			margin-top: 0;
+		}
+	}
+}

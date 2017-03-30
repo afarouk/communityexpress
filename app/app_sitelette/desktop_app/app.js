@@ -9,7 +9,8 @@ define([
     '../scripts/actions/sessionActions',
     './controllers/catalogs-controller',
     './controllers/cart-controller',
-    './temporary-component'
+    './temporary-component',
+    'jquery-ui-dist/jquery-ui'
 	], function(Packery, jQueryBridget, appCache, Cookies,
 		configurationActions, sessionActions, catalogsController, cartController,
 		temporaryComponent){
