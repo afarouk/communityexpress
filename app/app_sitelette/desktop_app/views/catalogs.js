@@ -7,7 +7,7 @@ define([
 
 	var CatalogsItemView = Mn.View.extend({
 		template: itemTemplate,
-		className: 'day',
+		className: 'catalog',
 		tagName: 'li',
 		triggers: {
 			'click': 'select:catalog'
@@ -17,7 +17,7 @@ define([
 
 	var CatalogsCollectionView = Mn.CollectionView.extend({
 		childView: CatalogsItemView,
-		className: 'days_list',
+		className: 'catalogs_list',
 		tagName: 'ul',
 		initialize: function() {
 			console.log(this.collection.toJSON());

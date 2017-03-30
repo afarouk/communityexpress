@@ -21,7 +21,6 @@ require('imports?this=>window!../vendor/jquery-mobile/jquery.mobile-1.4.5');
 require('../vendor/slick/slick.min');
 require('../vendor/skeuocard-master/javascripts/skeuocard.min.js');
 require('../vendor/star-rating-svg-master/src/jquery.star-rating-svg.js');
-//require('../vendor/scripts/owl.carousel.min');
 require('../vendor/codecanyon/assets/js/html5imageupload');
 require('../vendor/scripts/jquery.jqplot.min');
 require('../vendor/scripts/jqplot.barRenderer.min');
