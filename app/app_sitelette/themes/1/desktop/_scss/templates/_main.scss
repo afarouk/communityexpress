@@ -255,6 +255,7 @@
 
               li.catalog_item {
                 display: flex;
+                flex-wrap: wrap;
                 padding: 10px 0 15px 0;
                 border-bottom: solid 1px $cart-divider;
 
@@ -372,7 +373,86 @@
                     color: $cart-text;
                     font-size: $size-lg-normal;
                     font-weight: $style-normal;
-                    margin-bottom: 10px;
+                    margin-bottom: 10px !important;
+                  }
+                }
+
+                &.item_with_versions {
+                  .left_block {
+                    .versions_selectors_container {
+                      select {
+                        margin-right: 10px;
+                        border: solid 1px $cart-scroll;
+                        color: $cart-text;
+                      }
+                    }
+                  }
+                  .right_block {
+                    justify-content: flex-end;
+                  }
+
+                  .item_added_versions {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    margin: 10px 0 -10px 0;
+                    display: none;
+
+                    .quantity_container {
+                      display: inline-block;
+                      width: 89px;
+                      height: 30px;
+                      margin-bottom: 10px;
+                      -webkit-touch-callout: none;
+                      -webkit-user-select: none;
+                      -khtml-user-select: none;
+                      -moz-user-select: none;
+                      -ms-user-select: none;
+                      user-select: none;
+
+                      .block {
+                        display:inline-flex;
+                        width: 27px;
+                        height: 100%;
+                        justify-content: center;
+                        align-items: center;
+
+                        &.number {
+                          background-color: $cart-text;
+                          color: $cart-cards;
+                          font-size: $size-normal;
+                          font-weight: $style-normal;
+                        }
+
+                        &.minus,
+                        &.plus {
+                          border: solid 1px $cart-scroll;
+                          cursor: pointer;
+                          color: $cart-text;
+                        }
+
+                        &.minus {
+                          margin-right: -4px;
+                          border-top-left-radius: 2px;
+                          border-bottom-left-radius: 2px;
+                        }
+
+                        &.plus {
+                          margin-left: -4px;
+                          border-top-right-radius: 2px;
+                          border-bottom-right-radius: 2px;
+                        }
+                      }
+                    }
+
+                    .version_price,
+                    .version_description {
+                      color: $cart-text;
+                      font-size: $size-lg-normal;
+                      font-weight: $style-normal;
+                    }
                   }
                 }
               }
