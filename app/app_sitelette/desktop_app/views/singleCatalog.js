@@ -32,7 +32,9 @@ define([
 			var groupItemsCollection = new Backbone.Collection(groupItems);
 
 			var catalogGroup = new CatalogGroupView({
-				collection: groupItemsCollection
+				collection: groupItemsCollection,
+				basket: this.options.basket,
+				groupId: selectedGroup.get('groupId')
 			})
 			this.showChildView('group', catalogGroup);
 			console.log(groupItemsCollection.toJSON());
@@ -42,7 +44,9 @@ define([
 			var groupItemsCollection = new Backbone.Collection(groupItems);
 
 			var catalogGroup = new CatalogGroupView({
-				collection: groupItemsCollection
+				collection: groupItemsCollection,
+				basket: this.options.basket,
+				groupId: model.get('groupId')
 			})
 			this.showChildView('group', catalogGroup);
 		}, 

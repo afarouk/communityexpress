@@ -16,11 +16,15 @@ define([
 		},
 		className: 'cmtyx_catalog',
 		tagName: 'ul',
-		initialize: function() {
+		initialize: function(options) {
 			console.log(this.collection.toJSON());
+			this.basket = options.basket;
+			this.groupId = options.groupId;
 		},
-		onChildviewSelectGroup: function(childView) {
-			this.trigger('group:selected', childView.model.get('catalogId'));
+		onChildviewItemsAdded: function(childView) {
+			var model = childView.model;
+			this.basket.addItem(model, model.get('quantity'), this.groupId);
+			console.log(this.basket.getTotalPrice());
 		}
 	});
 	return CatalogGroupView;
