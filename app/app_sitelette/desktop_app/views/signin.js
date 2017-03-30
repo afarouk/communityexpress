@@ -10,10 +10,13 @@ define([
 			username: '[name="username"]',
 			password: '[name="password"]',
 			show_password: '[name="show_password"]',
-			signup_btn: '[name="signup_btn"]'
+			signup_btn: '[name="signup_btn"]',
+			signin_btn: '[name="signin_btn"]',
+			forgot_btn: '[name="forgot_btn"]'
 		},
 		events: {
-			'click @ui.signup_btn': 'onSignup'
+			'click @ui.signup_btn': 'onSignup',
+			'click @ui.forgot_btn': 'onForgot'
 		},
 		initialize: function() {
 			
@@ -23,6 +26,10 @@ define([
      	},
      	onSignup: function() {
      		this.trigger('user:signup');
+     	}
+     	,
+     	onForgot: function() {
+     		this.trigger('user:forgot');
      	}
 	});
 	return SigninView;
