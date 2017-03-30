@@ -117,24 +117,46 @@
                               <button class="add_to_cart_btn">add to cart</button>
                             </div>
                           </li>
-                          <li class="catalog_item">
+                          <li class="catalog_item item_with_versions">
                             <div class="left_block">
                               <div class="item_title">
                                 byriani
                               </div>
                               <div class="item_description">
-                                Green Salad, Cauliflower Manchurian, Veg Fried Rice and Fresh Fruits
+                                Item with versions
                               </div>
-                              <button class="customize_btn">customize</button>
+                              <!-- <button class="customize_btn">customize</button> -->
+                              <div class="versions_selectors_container">
+                                <select name="select-version" class="select-version">
+                                  <option value="8oz">8oz</option>
+                                  <option value="16oz">16oz</option>
+                                  <option value="32oz">32oz</option>
+                                </select>
+                                <select name="select-version" class="select-version">
+                                  <option value="8oz">8oz</option>
+                                  <option value="16oz">16oz</option>
+                                  <option value="32oz">32oz</option>
+                                </select>
+                                <select name="select-version" class="select-version">
+                                  <option value="8oz">8oz</option>
+                                  <option value="16oz">16oz</option>
+                                  <option value="32oz">32oz</option>
+                                </select>
+                              </div>
+
                             </div>
                             <div class="right_block">
-                              <div class="item_price">$9.75</div>
+                              <!-- <div class="item_price">$9.75</div> -->
+                              <button class="add_to_cart_btn">add to cart</button>
+                            </div>
+                            <div class="item_added_versions">
+                              <div class="version_description">8oz</div>
                               <div class="quantity_container">
                                 <div class="block minus">-</div>
                                 <div class="block number">1</div>
                                 <div class="block plus">+</div>
                               </div>
-                              <button class="add_to_cart_btn">add to cart</button>
+                              <div class="version_price">$2.5</div>
                             </div>
                           </li>
                           <li class="catalog_item">
@@ -1178,6 +1200,14 @@
       </div>
 
       <button class="submit_forgot_btn">ok</button>
+    </div>
+
+     <div id="signout_panel-popup">
+      <div class="text">Are you sure you want to sign out?</div>
+      <div class="btns_container">
+        <button class="cancel_btn">no</button>
+        <button class="signout_btn">yes</button>
+      </div>
     </div>
 
     <script src="build/desktop.js"></script>

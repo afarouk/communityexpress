@@ -7,7 +7,7 @@ define([
 		init: function() {
 			$.ui.dialog.prototype._focusTabbable = function(){};
 
-			$("#cmntyex_signin_panel-popup, #signup_panel-popup, #cmntyex_forgot_panel-popup").dialog({ 
+			$("#cmntyex_signin_panel-popup, #signup_panel-popup, #cmntyex_forgot_panel-popup, #signout_panel-popup").dialog({ 
 				autoOpen: false,
 				closeOnEscape: true,
 				draggable: false,
@@ -30,7 +30,13 @@ define([
 				$('#cmntyex_forgot_panel-popup').dialog('open');
 			});
 
+			$('#cmntyex_signin_panel-popup .signin_btn').click(function(e) {
+				$( "#cmntyex_signin_panel-popup" ).dialog( "close" );
+				$( '#signout_panel-popup' ).dialog('open');
+			});
+
 			$('#signup_panel-popup').prev().find('.ui-dialog-title').hide();
+			$('#signout_panel-popup').prev().find('.ui-dialog-title').hide();
 
 			var $grid = $('.grid').packery({
 			  itemSelector: '.grid-item',
@@ -222,6 +228,10 @@ define([
 				$('#skeuocard.js').height(height);
 				$('#skeuocard .face').height(height);
 			}
+
+			$('li.catalog_item.item_with_versions .add_to_cart_btn').click(function(event) {
+				$(this).parent().next().css('display', 'flex');
+			});
 		}
 	});
 

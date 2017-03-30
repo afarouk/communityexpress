@@ -1,13 +1,13 @@
 'use strict';
 
 define([
-	'ejs!../templates/cartLayout.ejs',
+	'ejs!../templates/orderLayout.ejs',
 	], function(template){
-	var CartLayoutView = Mn.View.extend({
-		el: '#cart-layout',
+	var OrderLayoutView = Mn.View.extend({
+		el: '#order-layout',
 		template: template,
 		regions: {
-			cartContainer: '#cart-region'
+			cartContainer: '#order-region'
 		},
 		initialize: function() {
 			this.render();
@@ -18,5 +18,5 @@ define([
 			return this;
      	}
 	});
-	return CartLayoutView;
+	return OrderLayoutView;
 });

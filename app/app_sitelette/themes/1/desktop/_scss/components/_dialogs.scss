@@ -28,6 +28,7 @@
 
 	.ui-dialog-content {
 		padding-top: 0;
+		min-height: auto !important;
 
 		a.forgot_btn {
 			color: $href-color;
@@ -123,6 +124,23 @@
 
 		.submit_forgot_btn {
 			margin-top: 0;
+		}
+	}
+
+	#signout_panel-popup {
+		.text {
+		    font-size: $size-normal;
+		    color: $cart-text;
+		}
+
+		.btns_container {
+			display: flex;
+			justify-content: space-between;
+
+			button {
+				width: 48%;
+				margin-bottom: 0;
+			}
 		}
 	}
 }

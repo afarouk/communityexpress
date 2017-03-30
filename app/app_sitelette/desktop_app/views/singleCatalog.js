@@ -3,7 +3,7 @@
 define([
 	'ejs!../templates/singleCatalog.ejs',
 	'./catalogTabs',
-	'./catalogGroup'
+	'./partials/catalogGroup'
 	], function(template, CatalogTabsView, CatalogGroupView){
 	var SingleCatalogView = Mn.View.extend({
 		template: template,

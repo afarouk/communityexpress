@@ -8,10 +8,10 @@ define([
     '../scripts/actions/configurationActions',
     '../scripts/actions/sessionActions',
     './controllers/catalogs-controller',
-    './controllers/cart-controller',
+    './controllers/order-controller',
     './temporary-component'
 	], function(Packery, jQueryBridget, appCache, Cookies,
-		configurationActions, sessionActions, catalogsController, cartController,
+		configurationActions, sessionActions, catalogsController, orderController,
 		temporaryComponent){
 		var App = new Mn.Application({
 			onStart: function() {
