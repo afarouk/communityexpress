@@ -315,7 +315,7 @@
             <div class="contacts-block">
                 <p class="title">Contacts</p>
                 <p class="text">zaza.grill@gmail.com</p>
-                <p class="text">123-456-789</p>
+                <p class="text">${telephoneNumber}</p>
             </div>
             <div class="visit-block">
                 <p class="title">Visit</p>

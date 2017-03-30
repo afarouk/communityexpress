@@ -31,8 +31,6 @@ define([
 			});
 
 			$('#signup_panel-popup').prev().find('.ui-dialog-title').hide();
-			
-			var card = new Skeuocard($("#skeuocard"));
 
 			var $grid = $('.grid').packery({
 			  itemSelector: '.grid-item',

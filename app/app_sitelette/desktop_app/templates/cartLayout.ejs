@@ -4,9 +4,15 @@
 <div id="cart-region" class="body">
 
 	<!-- templete -->
-	<ul class="order_list">
+	<div class="page cart_page">
+    <div class="title">
+      Your order
+    </div>
+
+    <ul class="order_list">
       <li class="order_list_item">
         <div class="left_block">
+          <span class="remove_item_btn">&times;</span>
           <div class="item_name">Combo 1</div>
         </div>
         <div class="right_block">
@@ -20,6 +26,7 @@
       </li>
       <li class="order_list_item">
         <div class="left_block">
+          <span class="remove_item_btn">&times;</span>
           <div class="item_name">Ginger beer</div>
         </div>
         <div class="right_block">
@@ -33,6 +40,7 @@
       </li>
       <li class="order_list_item">
         <div class="left_block">
+          <span class="remove_item_btn">&times;</span>
           <div class="item_name">Fresh fruits</div>
         </div>
         <div class="right_block">
@@ -75,6 +83,480 @@
       <div class="price cmtyx_text_color_4">$35.00</div>
     </div>
     <button class="order_btn">order</button>
+  </div>
+
+  <div class="page choose_address_page">
+    <div class="circles_block">
+      <div class="circle active"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+
+    <div class="navigation_block">
+      <div class="nav_back_btn">
+        <img src="themes/1/desktop/images/arrow-point-to-left.png" alt="">back
+      </div>
+      <div class="page_title">
+        Pickup/Delivery<br>details
+      </div>
+      <div class="nav_next_btn">
+        next<img src="themes/1/desktop/images/arrow-point-to-right.png" alt="">
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tablinks left"><i class="fa fa-car" aria-hidden="true"></i>Delivery</button>
+      <button class="tablinks right"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Pick up</button>
+    </div>
+
+    <div id="delivery" class="tabcontent">
+      <div class="title">
+        Choose address:
+      </div>
+
+      <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked="checked">
+      <label for="add_another" class="">Add another address</label>
+      
+    </div>
+
+    <div id="pick_up" class="tabcontent">
+      <p class="order_address">Your order pickup location: Vibha Fashion
+        <br>1764, Scott Blvd, Suite 204
+        <br>Santa clara, CA - 95053
+        <br>phone: 4083202102
+      </p>
+      <img src="themes/1/desktop/images/map.png" alt="map" class="map-img">
+    </div>
+
+    <div class="bottom_btns_block">
+      <button type="" class="back_btn">Back</button>
+      <button type="" class="next_btn">Next</button>
+    </div>
+  </div>
+
+  <div class="page add_address_page">
+    <div class="circles_block">
+      <div class="circle active"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+
+    <div class="navigation_block">
+      <div class="nav_back_btn">
+        <img src="themes/1/desktop/images/arrow-point-to-left.png" alt="">back
+      </div>
+      <div class="page_title">
+        Pickup/Delivery<br>details
+      </div>
+      <div class="nav_next_btn">
+        next<img src="themes/1/desktop/images/arrow-point-to-right.png" alt="">
+      </div>
+    </div>
+    <div class="body">
+      <div class="title">
+        ADD Address:
+      </div>
+      <div class="wrapper">
+        <div class="material-textfield">
+          <input type="text" id="aptBldgInput" name="number" value="" required="" />
+          <label data-content="Apt/Bldg"></label>
+        </div>
+        
+        <div class="material-textfield">
+          <input type="text" id="streetInput" name="street" value="" required="" />
+          <label data-content="Street"></label>
+        </div>
+
+        <div class="material-textfield">
+          <input type="text" id="cityInput" name="city" value="" required="" />
+          <label data-content="City"></label>
+        </div>
+      
+        <div class="state-selector">
+          <p class="state-selector-message">State</p>
+          <select name="state-selector" id="stateSelector">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AS">American Samoa</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option selected="" value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FM">Federated States Of Micronesia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="GU">Guam</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MH">Marshall Islands</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="MP">Northern Mariana Islands</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PW">Palau</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="PR">Puerto Rico</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VI">Virgin Islands</option>
+            <option value="VA">Virginia</option> 
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </div>
+      </div>
+
+      <img src="themes/1/desktop/images/map.png" alt="map" class="map-img">
+    </div>
+
+    <div class="bottom_btns_block">
+      <button type="" class="back_btn">Back</button>
+      <button type="" class="next_btn">Next</button>
+    </div>
+  </div>
+
+  <div class="page order_time_page">
+    <div class="circles_block">
+      <div class="circle"></div>
+      <div class="circle active"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+
+    <div class="navigation_block">
+      <div class="nav_back_btn">
+        <img src="themes/1/desktop/images/arrow-point-to-left.png" alt="">back
+      </div>
+      <div class="page_title">
+        order time 
+      </div>
+      <div class="nav_next_btn">
+        next<img src="themes/1/desktop/images/arrow-point-to-right.png" alt="">
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tablinks left">Today</button>
+      <button class="tablinks right">Future</button>
+    </div>
+
+    <div id="today" class="tabcontent regular">
+      <div class="regular-order-delay">
+        <h3>DisplayString</h3>
+      </div> 
+      <div class="regular-order-note">
+        <h4>The order will be ready after 30 minutes</h4>
+      </div> 
+      <div class="regular-order-warning">
+        <h4>This is a warning message</h4>
+      </div>
+    </div>
+
+    <div id="future" class="tabcontent future">
+      <div class="selects-container">
+        <select name="select-date" id="select-date">
+          <option value="Sun, Apr 2">Sun, Apr 2</option>
+        </select>
+        <select name="select-time" id="select-time">
+          <option value="11am to 12pm">11am to 12pm</option>
+          <option value="12pm to 1pm">12pm to 1pm</option>
+          <option value="1pm to 2pm">1pm to 2pm</option>
+          <option value="6pm to 7pm">6pm to 7pm</option>
+          <option value="7pm to 8pm">7pm to 8pm</option>
+          <option value="8pm to 9pm">8pm to 9pm</option>
+          <option value="9pm to 10pm">9pm to 10pm</option>
+        </select>
+      </div>
+      <h4>Please note: Your order will be ready on Sun, Apr 2</h4>
+    </div>
+    
+    <div class="bottom_btns_block">
+      <button type="" class="back_btn">Back</button>
+      <button type="" class="next_btn">Next</button>
+    </div>
+  </div>
+
+  <div class="page choose_payment_page">
+    <div class="circles_block">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle active"></div>
+      <div class="circle"></div>
+    </div>
+
+    <div class="navigation_block">
+      <div class="nav_back_btn">
+        <img src="themes/1/desktop/images/arrow-point-to-left.png" alt="">back
+      </div>
+      <div class="page_title">
+        payment 
+      </div>
+      <div class="nav_next_btn">
+        next<img src="themes/1/desktop/images/arrow-point-to-right.png" alt="">
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tablinks left">Credit</button>
+      <button class="tablinks right">Cash</button>
+    </div>
+
+    <div id="credit" class="tabcontent card">
+      <div class="title">
+        Choose card:
+      </div>
+
+      <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice" checked="checked">
+      <label for="use_another" class="">Add another card</label>
+    </div>
+
+    <div id="cash" class="tabcontent cash">
+      <!-- <div class="title">
+        Your order
+      </div> -->
+
+      <ul class="order_list">
+        <li class="order_list_item">
+          <div class="left_block">
+            <div class="item_name">Combo 1</div>
+          </div>
+          <div class="right_block">
+            <div class="item_price cmtyx_text_color_4">$9.75</div>
+          </div>
+        </li>
+        <li class="order_list_item">
+          <div class="left_block">
+            <div class="item_name">Ginger beer</div>
+          </div>
+          <div class="right_block">
+            <div class="item_price cmtyx_text_color_4">$9.75</div>
+          </div>
+        </li>
+        <li class="order_list_item">
+          <div class="left_block">
+            <div class="item_name">Fresh fruits</div>
+          </div>
+          <div class="right_block">
+            <div class="item_price cmtyx_text_color_4">$9.75</div>
+          </div>
+        </li>
+      </ul>
+      <div class="additional_prices">
+        <div class="subtotal_price price_name">Subtotal</div>
+        <div class="price cmtyx_text_color_4">$30.00</div>
+      </div>
+      <div class="additional_prices">
+        <div class="subtotal_price price_name">Shipping</div>
+        <div class="price cmtyx_text_color_4">$5.00</div>
+      </div>
+      <div class="additional_prices">
+        <div class="subtotal_price price_name">Tax</div>
+        <div class="price cmtyx_text_color_4">$2.00</div>
+      </div>
+      <div class="additional_prices">
+        <div class="left_block">
+          <div class="subtotal_price price_name">Tip</div>
+        </div>  
+        <div class="right_block">
+          <div class="quantity_container">
+            <div class="block minus">-</div>
+            <div class="block number tip_number">20%</div>
+            <div class="block plus">+</div>
+          </div>
+          <div class="price cmtyx_text_color_4">$3.00</div>
+        </div>
+      </div>
+      <div class="total_price">
+        <div class="name">total</div>
+        <div class="price cmtyx_text_color_4">$35.00</div>
+      </div>
+    </div>
+
+    <div class="bottom_btns_block">
+      <button type="" class="back_btn">Back</button>
+      <button type="" class="next_btn">Next</button>
+    </div>
+  </div>
+
+  <div class="page add_card_page">
+    <div class="circles_block">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle active"></div>
+      <div class="circle"></div>
+    </div>
+
+    <div class="navigation_block">
+      <div class="nav_back_btn">
+        <img src="themes/1/desktop/images/arrow-point-to-left.png" alt="">back
+      </div>
+      <div class="page_title">
+        payment 
+      </div>
+      <div class="nav_next_btn">
+        next<img src="themes/1/desktop/images/arrow-point-to-right.png" alt="">
+      </div>
+    </div>
+    <div class="card_container credit_card_container">
+      <div class="credit-card-input no-js credit_card" id="skeuocard">
+        <p class="no-support-warning">
+          Either you have Javascript disabled, or you're using an unsupported browser, amigo! That's why you're seeing this old-school credit card input form instead of a fancy new Skeuocard. On the other hand, at least you know it gracefully degrades...
+        </p>
+        <label for="cc_type">Card Type</label>
+        <select name="cc_type">
+          <option value="">...</option>
+          <option value="visa">Visa</option>
+          <option value="discover">Discover</option>
+          <option value="mastercard">MasterCard</option>
+          <option value="maestro">Maestro</option>
+          <option value="jcb">JCB</option>
+          <option value="unionpay">China UnionPay</option>
+          <option value="amex">American Express</option>
+          <option value="dinersclubintl">Diners Club</option>
+        </select>
+        <label for="cc_number">Card Number</label>
+        <input type="text" name="cc_number" id="cc_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19">
+        <label for="cc_exp_month">Expiration Month</label>
+        <input type="text" name="cc_exp_month" id="cc_exp_month" placeholder="00">
+        <label for="cc_exp_year">Expiration Year</label>
+        <input type="text" name="cc_exp_year" id="cc_exp_year" placeholder="00">
+        <label for="cc_name">Cardholder's Name</label>
+        <input type="text" name="cc_name" id="cc_name" placeholder="John Doe">
+        <label for="cc_cvc">Card Validation Code</label>
+        <input type="text" name="cc_cvc" id="cc_cvc" placeholder="123" maxlength="3" size="3">
+      </div>
+    </div>
+
+    <div class="checkbox_save_card_container">
+      <label class="checkbox_save_card">
+        <input id="save_reference" type="checkbox" name="checkbox_save_card">Save for future reference
+      </label>
+    </div>
+
+    <div class="bottom_btns_block">
+      <button type="" class="back_btn">Back</button>
+      <button type="" class="next_btn">Next</button>
+    </div>
+  </div>
+
+  <div class="page summary_page">
+    <div class="circles_block">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle active"></div>
+    </div>
+
+    <div class="navigation_block">
+      <div class="nav_back_btn">
+        <img src="themes/1/desktop/images/arrow-point-to-left.png" alt="">back
+      </div>
+      <div class="page_title">
+        order summary 
+      </div>
+      <div class="nav_next_btn">
+        next<img src="themes/1/desktop/images/arrow-point-to-right.png" alt="">
+      </div>
+    </div>
+
+    <!-- <div class="title">
+      Your order
+    </div> -->
+
+    <ul class="order_list">
+      <li class="order_list_item">
+        <div class="left_block">
+          <div class="item_name">Combo 1</div>
+        </div>
+        <div class="right_block">
+          <div class="item_price cmtyx_text_color_4">$9.75</div>
+        </div>
+      </li>
+      <li class="order_list_item">
+        <div class="left_block">
+          <div class="item_name">Ginger beer</div>
+        </div>
+        <div class="right_block">
+          <div class="item_price cmtyx_text_color_4">$9.75</div>
+        </div>
+      </li>
+      <li class="order_list_item">
+        <div class="left_block">
+          <div class="item_name">Fresh fruits</div>
+        </div>
+        <div class="right_block">
+          <div class="item_price cmtyx_text_color_4">$9.75</div>
+        </div>
+      </li>
+    </ul>
+    <div class="additional_prices">
+      <div class="subtotal_price price_name">Subtotal</div>
+      <div class="price cmtyx_text_color_4">$30.00</div>
+    </div>
+    <div class="additional_prices">
+      <div class="subtotal_price price_name">Shipping</div>
+      <div class="price cmtyx_text_color_4">$5.00</div>
+    </div>
+    <div class="additional_prices">
+      <div class="subtotal_price price_name">Tax</div>
+      <div class="price cmtyx_text_color_4">$2.00</div>
+    </div>
+    <div class="additional_prices">
+      <div class="left_block">
+        <div class="subtotal_price price_name">Tip</div>
+      </div>  
+      <div class="right_block">
+        <div class="quantity_container">
+          <div class="block minus">-</div>
+          <div class="block number tip_number">20%</div>
+          <div class="block plus">+</div>
+        </div>
+        <div class="price cmtyx_text_color_4">$3.00</div>
+      </div>
+    </div>
+    <div class="total_price">
+      <div class="name">total</div>
+      <div class="price cmtyx_text_color_4">$35.00</div>
+    </div>
+    <div class="bottom_btns_block">
+      <button type="" class="back_btn">Back</button>
+      <button type="" class="place_order_btn">Place order</button>
+    </div>
+  </div>
 	<!-- end -->
 	
 </div>

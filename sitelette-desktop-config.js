@@ -12,7 +12,7 @@ var path = require('path'),
 			path: './app/app_sitelette/build/',
 			filename: 'desktop.js'
 		},
-		devtool: 'cheap-module-eval-source-map',
+		devtool: 'source-map',//'cheap-module-eval-source-map',
 		module: {
 			loaders: [
 				{
