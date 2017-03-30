@@ -16,7 +16,7 @@ define([
 			});
 
 			$('.link.last').click(function() {
-				$('#cmntyex_signin_panel-popup').dialog('open');
+				// $('#cmntyex_signin_panel-popup').dialog('open');
 			});
 
 			$('#cmntyex_signin_panel-popup .signup_btn').click(function() {
@@ -36,7 +36,7 @@ define([
 			});
 
 			$('#signup_panel-popup').prev().find('.ui-dialog-title').hide();
-
+			
 			$('#signout_panel-popup').prev().find('.ui-dialog-title').hide();
 
 			var $grid = $('.grid').packery({

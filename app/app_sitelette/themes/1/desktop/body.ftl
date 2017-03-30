@@ -12,7 +12,7 @@
                 <!-- <li class="link">catalog</li>
                 <li class="link">promotions</li>
                 <li class="link">about us</li> -->
-                <li class="link last">sign up/log in</li>
+                <li id="login-btn" class="link last">sign up/log in</li>
             </ul>
         </header>
 
@@ -39,7 +39,7 @@
                 <!-- there is catalogs block -->
                 <div id="catalogs-layout" class="grid-item cmtyx_menu_block"></div>
                 <!-- there is cart/order block -->
-                <div id="cart-layout" class="grid-item cmtyx_cart_block"></div>
+                <div id="order-layout" class="grid-item cmtyx_cart_block"></div>
                 <!-- there is welcome block -->
                 <div class="grid-item cmtyx_welcome_block">
                   <div class="body">
@@ -332,6 +332,65 @@
                 <p class="link"><img src="themes/1/desktop/images/twitter-icon.png" alt="twitter icon">Twitter</p>
             </div>
         </footer>
+
+        <div id="cmntyex_signin_panel-popup" title="Sign in">
+          <a class="forgot_btn">Forgot password?</a>
+          <div class="material-textfield">
+            <input type="text" name="username" value="" required="" />
+            <label data-content="Username / Email"></label>
+          </div>
+          
+          <div class="material-textfield">
+            <input type="password" name="password" value="" required="" />
+            <label data-content="Password"></label>
+          </div>
+          
+          <label class="show_password">
+            <input id="show_password" type="checkbox" name="show_password">Show password
+          </label>
+
+          <button class="signin_btn">sign in</button>
+          <div class="new-title">New to chalkboards?</div>
+          <button class="signup_btn">create account</button>
+        </div>
+
+        <div id="signup_panel-popup">
+          <div class="material-textfield">
+            <input type="email" name="email" value="" required="" />
+            <label data-content="Email"></label>
+          </div>
+          
+          <div class="material-textfield">
+            <input type="password" name="password" value="" required="" />
+            <label data-content="Password"></label>
+          </div>
+
+          <div class="material-textfield">
+            <input type="password" name="password_confirmation" value="" required="" />
+            <label data-content="Confirm password"></label>
+          </div>
+
+          <button class="submit_signup_btn">Create account</button>
+        </div>
+
+        <div id="cmntyex_forgot_panel-popup" title="Forgot password">
+          <div class="material-textfield">
+            <input type="text" name="username" value="" required="" />
+            <label data-content="Username / Email"></label>
+          </div>
+
+          <button class="submit_forgot_btn">ok</button>
+        </div>
+
+        <div id="signout_panel-popup">
+          <div class="text">Are you sure you want to sign out?</div>
+          <div class="btns_container">
+            <button class="cancel_btn">no</button>
+            <button class="signout_btn">yes</button>
+          </div>
+        </div>
+
+        <div id="popups-layout">
 
     </div>
 

@@ -1,19 +1,19 @@
 'use strict';
 
 define([
-	'ejs!../templates/catalogGroupItem.ejs',
-	], function(itemTemplate){
-	var CatalogGroupItemView = Mn.View.extend({
-		template: itemTemplate,
-		className: 'catalog_item',
-		tagName: 'li',
-		triggers: {
-			
-		}
-	});
+	'./catalogItem',
+	'./catalogItemVersions'
+	], function(CatalogItemView, CatalogItemVersionsView){
 
 	var CatalogGroupView = Mn.CollectionView.extend({
-		childView: CatalogGroupItemView,
+		childView: function(model){
+			var hasVersions = model.get('hasVersions');
+			if (hasVersions) {
+				return CatalogItemVersionsView;
+			} else {
+				return CatalogItemView;
+			}
+		},
 		className: 'cmtyx_catalog',
 		tagName: 'ul',
 		initialize: function() {
