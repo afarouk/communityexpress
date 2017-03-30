@@ -315,13 +315,13 @@
             <div class="contacts-block">
                 <p class="title">Contacts</p>
                 <p class="text">zaza.grill@gmail.com</p>
-                <p class="text">${telephoneNumber}</p>
+                <p class="text">${sasl.telephoneNumber}</p>
             </div>
             <div class="visit-block">
                 <p class="title">Visit</p>
-                <p class="text">1086 North 1st Street, </p>
-                <p class="text">San jose CA 95112,</p>
-                <p class="text">ZazaGrill Restaurant</p>
+                <p class="text">${sasl.number} ${sasl.street} ${sasl.street2}, </p>
+                <p class="text">${sasl.city} ${sasl.state} ${sasl.zip},</p>
+                <p class="text">${sasl.saslName}</p>
             </div>
             <div class="share-block">
                 <p class="title">Share this site</p>

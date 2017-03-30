@@ -52,7 +52,7 @@ define([
 			                popupsController.onLoginStatusChanged();
 		            });
 		        }
-
+		        popupsController.onLoginStatusChanged();
 		        this.options.initSubviews();
 			},
 
