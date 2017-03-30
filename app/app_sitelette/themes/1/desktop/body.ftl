@@ -390,6 +390,8 @@
           </div>
         </div>
 
+        <div id="popups-layout">
+
     </div>
 
     <script src="build/desktop.js"></script>

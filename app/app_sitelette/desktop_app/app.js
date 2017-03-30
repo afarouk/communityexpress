@@ -9,9 +9,10 @@ define([
     '../scripts/actions/sessionActions',
     './controllers/catalogs-controller',
     './controllers/order-controller',
+    './controllers/popups-controller',
     './temporary-component'
 	], function(Packery, jQueryBridget, appCache, Cookies,
-		configurationActions, sessionActions, catalogsController, orderController,
+		configurationActions, sessionActions, catalogsController, orderController, popupsController,
 		temporaryComponent){
 		var App = new Mn.Application({
 			onStart: function() {
