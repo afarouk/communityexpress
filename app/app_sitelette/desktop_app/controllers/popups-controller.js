@@ -10,9 +10,10 @@ define([
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
+		},
+		onLoginStatusChanged: function() {
 			this.loginView = new LoginView();
 			this.listenTo(this.loginView, 'user:login', this.onUserLogin.bind(this));
-			// this.layout.showChildView('popupsContainer', null);
 		},
 		onUserLogin: function() {
 			var signin = new SigninView();

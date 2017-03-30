@@ -26,8 +26,6 @@ define([
 		            return;
 		        }
 
-		        this.options.initSubviews();
-
 				var conf = configurationActions.getConfigurations();
 
 				this.params = window.community;
@@ -46,24 +44,16 @@ define([
 		                    });
 		                });
 		        } else if (Cookies.get('cmxUID')) {
-		            sessionActions.getSessionFromLocalStorage().then(function() {
-		                Backbone.history.start({
-		                    pushState: true
-		                });
+		            sessionActions.getSessionFromLocalStorage()
+		            	.then(function(response) {
+			                Backbone.history.start({
+			                    pushState: true
+			                });
+			                popupsController.onLoginStatusChanged();
 		            });
-		        } else if (this.params.canCreateAnonymousUser) {
-		            $.when(sessionActions.createAnonymousUser()).done(function() {
-		                sessionActions.getSessionFromLocalStorage().then(function() {
-		                    Backbone.history.start({
-		                        pushState: true
-		                    });
-		                });
-		            });
-		        } else {
-		        	debugger;
-		            // this.afterTriedToLogin();
-		            return;
 		        }
+
+		        this.options.initSubviews();
 			},
 
 			initSubviews: function() {
