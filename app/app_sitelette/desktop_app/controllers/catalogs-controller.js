@@ -79,6 +79,7 @@ define([
                     var basket = new CatalogBasketModel();
                     basket.setCatalogDetails(catalogDetails);
                     appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + catalog.data.catalogId + ':catalogbasket', basket);
+                    // appCache.set('basket', basket);
 	         
 	                basket.each(function(item, index, list) {
 	                    var quantity = item.get('quantity');
@@ -87,7 +88,7 @@ define([
 	                    console.log("retrieved catalog from cache ### " + itemName + ":[" + quantity + "] from Group:" + group);
 	                });
 
-	                basket.on('add change', this.onBasketChange.bind(this));
+	                basket.on('add change', this.onBasketChange.bind(this, basket, sasl));
 
 	                var singleCatalogView = new SingleCatalogView({
 	                        sasl: sasl,
@@ -104,9 +105,8 @@ define([
 	            }.bind(this));
 		},
 
-		onBasketChange: function(model, basket) {
-			//TODO order controller renders etc...
-			orderController.renderOrder(basket);
+		onBasketChange: function(basket, sasl) {
+			orderController.renderOrder(basket, sasl);
 		},
 
 		onBackToCatalog: function() {

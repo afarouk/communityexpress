@@ -15,7 +15,6 @@ define([
 		events: {
 			'click @ui.increase': 'onIncrease',
 			'click @ui.decrease': 'onDecrease',
-			// 'click @ui.addToCard': 'onAddToCard'
 		},
 		triggers: {
 			'click @ui.addToCard': 'items:added'
@@ -36,10 +35,6 @@ define([
 		changeItemsPrice: function() {
 			var price = this.model.get('price') * this.quantity;
 			this.ui.price.text(price.toFixed(2));
-		},
-		onAddToCard: function() {
-			console.log('add to card ' + this.quantity + ' ' + this.model.get('itemName'));
-			this.trigger('items:added')
 		}
 	});
 

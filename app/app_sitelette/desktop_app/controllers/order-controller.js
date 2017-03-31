@@ -15,9 +15,10 @@ define([
 		initialize: function() {
 			this.layout = new OrderLayoutView();
 		},
-		renderOrder: function(basket) {
+		renderOrder: function(basket, sasl) {
 			var cartPage = new CartPageView({
-				collection:basket
+				basket: basket, 
+				sasl: sasl
 			});
 			this.layout.showChildView('orderContainer', cartPage);
 			//TODO cart view collecton
