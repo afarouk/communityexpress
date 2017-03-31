@@ -42,6 +42,7 @@ define([
 		                    Backbone.history.start({
 		                        pushState: true
 		                    });
+		                    popupsController.onLoginStatusChanged();
 		                });
 		        } else if (Cookies.get('cmxUID')) {
 		            sessionActions.getSessionFromLocalStorage()
@@ -51,8 +52,9 @@ define([
 			                });
 			                popupsController.onLoginStatusChanged();
 		            });
+		        } else {
+		        	popupsController.onLoginStatusChanged();
 		        }
-		        popupsController.onLoginStatusChanged();
 		        this.options.initSubviews();
 			},
 
