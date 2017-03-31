@@ -10,9 +10,10 @@ define([
 	'../views/popups/signin',
 	'../views/popups/signup',
 	'../views/popups/signout',
-	'../views/popups/forgotPassword'
+	'../views/popups/forgotPassword',
+	'../views/popups/message'
 	], function(appCache, h, userController, sessionActions,
-		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView){
+		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView){
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
@@ -45,6 +46,11 @@ define([
             .then(function(response){
                 this.onLoginStatusChanged();
                 onClose();
+
+                var message = new MessageView();
+    			this.layout.showChildView('popupsContainer', message);
+				this.initializeDialog(message.$el);
+				message.onShow('user is logging in', true);
             }.bind(this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'Error signin in');
                 console.log(text);
@@ -94,10 +100,16 @@ define([
 		},
 		onUserSubmitLogout: function() {
 			var user = appCache.get('user');
+			
 			// loader.show();
         	userController.logout(user.getUID()).then(function(){
         		this.onLoginStatusChanged();
         		console.log('user logged out');
+        		
+				var message = new MessageView();
+    			this.layout.showChildView('popupsContainer', message);
+				this.initializeDialog(message.$el);
+				message.onShow('user logged out');
         	}.bind(this));
 		}
 	});

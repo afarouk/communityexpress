@@ -7,13 +7,13 @@ define([
 		init: function() {
 			$.ui.dialog.prototype._focusTabbable = function(){};
 
-			$("#cmntyex_signin_panel-popup, #signup_panel-popup, #cmntyex_forgot_panel-popup, #signout_panel-popup").dialog({ 
-				autoOpen: false,
-				closeOnEscape: true,
-				draggable: false,
-				resizable: false,
-				modal: true
-			});
+			// $("#cmntyex_signin_panel-popup, #signup_panel-popup, #cmntyex_forgot_panel-popup, #signout_panel-popup").dialog({ 
+			// 	autoOpen: false,
+			// 	closeOnEscape: true,
+			// 	draggable: false,
+			// 	resizable: false,
+			// 	modal: true
+			// });
 
 			$('.link.last').click(function() {
 				// $('#cmntyex_signin_panel-popup').dialog('open');
@@ -24,20 +24,20 @@ define([
 				// $('#signup_panel-popup').dialog('open');
 			});
 
-			$('#cmntyex_signin_panel-popup .forgot_btn').click(function(e) {
-				e.preventDefault();
-				$( "#cmntyex_signin_panel-popup" ).dialog( "close" );
-				$('#cmntyex_forgot_panel-popup').dialog('open');
-			});
+			// $('#cmntyex_signin_panel-popup .forgot_btn').click(function(e) {
+			// 	e.preventDefault();
+			// 	$( "#cmntyex_signin_panel-popup" ).dialog( "close" );
+			// 	$('#cmntyex_forgot_panel-popup').dialog('open');
+			// });
 
-			$('#cmntyex_signin_panel-popup .signin_btn').click(function(e) {
-				$( "#cmntyex_signin_panel-popup" ).dialog( "close" );
-				$( '#signout_panel-popup' ).dialog('open');
-			});
+			// $('#cmntyex_signin_panel-popup .signin_btn').click(function(e) {
+			// 	$( "#cmntyex_signin_panel-popup" ).dialog( "close" );
+			// 	$( '#signout_panel-popup' ).dialog('open');
+			// });
 
-			$('#signup_panel-popup').prev().find('.ui-dialog-title').hide();
+			// $('#signup_panel-popup').prev().find('.ui-dialog-title').hide();
 			
-			$('#signout_panel-popup').prev().find('.ui-dialog-title').hide();
+			// $('#signout_panel-popup').prev().find('.ui-dialog-title').hide();
 
 			var $grid = $('.grid').packery({
 			  itemSelector: '.grid-item',

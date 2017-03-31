@@ -5,6 +5,7 @@ define([
 	], function(template){
 	var SignupView = Mn.View.extend({
 		template: template,
+		className: 'signup-popup',
 		ui: {
 			email: '[name="email"]',
 			password: '[name="password"]',
@@ -19,6 +20,7 @@ define([
 		},
      	onShow: function () {
      		this.$el.dialog('open');
+     		this.$el.prev().find('.ui-dialog-title').hide();
      	},
      	onClose: function() {
      		this.$el.dialog('close');
