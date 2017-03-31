@@ -99,6 +99,15 @@ define([
         		this.onLoginStatusChanged();
         		console.log('user logged out');
         	}.bind(this));
+		},
+		requireLogIn: function(callback) {
+			var user = appCache.get('user'),
+				logged = user && user.getUID() ? true : false;
+			if (logged) {
+				callback();
+			} else {
+				//TODO show signin
+			}
 		}
 	});
 	return new PopupsController();

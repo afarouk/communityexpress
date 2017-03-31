@@ -88,7 +88,11 @@ define([
 	                    console.log("retrieved catalog from cache ### " + itemName + ":[" + quantity + "] from Group:" + group);
 	                });
 
-	                basket.on('add change', this.onBasketChange.bind(this, basket, sasl));
+	                basket.on('add change', this.onBasketChange.bind(this, {
+	                	basket: basket, 
+	                	sasl: sasl,
+	                	catalogId: catalogId
+	                }));
 
 	                var singleCatalogView = new SingleCatalogView({
 	                        sasl: sasl,
@@ -105,8 +109,8 @@ define([
 	            }.bind(this));
 		},
 
-		onBasketChange: function(basket, sasl) {
-			orderController.renderOrder(basket, sasl);
+		onBasketChange: function(options) {
+			orderController.renderOrder(this, options);
 		},
 
 		onBackToCatalog: function() {

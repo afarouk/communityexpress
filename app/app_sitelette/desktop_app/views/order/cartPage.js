@@ -10,6 +10,12 @@ define([
 		regions: {
 			orderListContainer: '#order-list-region'
 		},
+		ui: {
+			order: '[name="order"]'
+		},
+		triggers: {
+			'click @ui.order': 'order:proceed'
+		},
 		initialize: function(options) {
 			this.basket = options.basket;
 			this.sasl = options.sasl;
