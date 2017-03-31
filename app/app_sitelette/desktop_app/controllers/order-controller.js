@@ -16,7 +16,8 @@ define([
 	'../views/order/addCard',
 	'../views/order/summary',
 	], function(appCache, popupsController, orderActions, saslActions, sessionActions, RosterOrderModel,
-		OrderLayoutView, CartPageView, ChooseAddressView){
+		OrderLayoutView, CartPageView, ChooseAddressView, AddAddressView, 
+		OrderTimeView, ChoosePaymentView, AddCardView, SummaryView){
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
@@ -56,7 +57,8 @@ define([
                     priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     basket: options.basket,
-                    catalogId: options.catalogId
+                    catalogId: options.catalogId,
+                    deliveryPickupOptions: options.deliveryPickupOptions
             	};
                 //var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + basketType);
                 var orderModel = new RosterOrderModel({}, modelOptions);

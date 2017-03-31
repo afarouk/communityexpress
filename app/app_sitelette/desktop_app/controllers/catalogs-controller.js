@@ -91,7 +91,8 @@ define([
 	                basket.on('add change', this.onBasketChange.bind(this, {
 	                	basket: basket, 
 	                	sasl: sasl,
-	                	catalogId: catalogId
+	                	catalogId: catalogId,
+	                	deliveryPickupOptions: catalog.data.deliveryPickupOptions
 	                }));
 
 	                var singleCatalogView = new SingleCatalogView({

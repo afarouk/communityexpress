@@ -56,7 +56,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			discountDisplay: options.discountPrice,
 			promoCode: options.promoCode,
 			promoCodeActive: false,
-			deliveryDate: null
+			deliveryDate: null,
+			deliveryPickupOptions: options.deliveryPickupOptions || null
 			 // etc...
 		});
 
