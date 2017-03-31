@@ -10,8 +10,9 @@ define([
 	'../views/popups/signin',
 	'../views/popups/signup',
 	'../views/popups/signout',
+	'../views/popups/forgotPassword'
 	], function(appCache, h, userController, sessionActions,
-		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView){
+		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView){
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
@@ -26,6 +27,7 @@ define([
 			this.layout.showChildView('popupsContainer', signin);
 			this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
 			this.listenTo(signin, 'user:signin', this.onUserSignin.bind(this));
+			this.listenTo(signin, 'user:forgot', this.onUserForgot.bind(this));
 			this.initializeDialog(signin.$el);
 			signin.onShow();
 		},
@@ -55,6 +57,13 @@ define([
 			this.initializeDialog(signup.$el);
 			signup.onShow();
 		},
+		onUserForgot: function() {
+			var forgot = new ForgotView();
+			this.layout.showChildView('popupsContainer', forgot);
+			this.listenTo(forgot, 'user:remember', this.onRememberPassword.bind(this));
+			this.initializeDialog(forgot.$el);
+			forgot.onShow();
+		},
 		onCreateNewUser: function(creds, onClose) {
 			sessionActions.registerNewMember(
                 creds.email,
@@ -66,8 +75,15 @@ define([
                     }.bind(this), onClose);
 
 		},
-		onRememberPassword: function() {
-			
+		onRememberPassword: function(username, onClose) {
+			sessionActions.forgotPassword(username)
+	            .then(function(response){
+	                console.log('An email has been sent to let you change the password');
+	                onClose();
+	            }.bind(this), function(jqXHR) {
+	                var text = h().getErrorMessage(jqXHR, 'Error signin in');
+	                console.log(text);
+	            }.bind(this));
 		},
 		onUserLogout: function() {
 			var signout = new SignoutView();
