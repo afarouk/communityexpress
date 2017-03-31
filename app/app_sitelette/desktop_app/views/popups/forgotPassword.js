@@ -5,6 +5,8 @@ define([
 	], function(template){
 	var ForgotPasswordView = Mn.View.extend({
 		template: template,
+		className: 'forgot-popup',
+		attributes: { title: 'Forgot password' },
 		ui: {
 			username: '[name="username"]',
 			submit: '[name="submit"]'

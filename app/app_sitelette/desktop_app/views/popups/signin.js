@@ -5,6 +5,7 @@ define([
 	], function(template){
 	var SigninView = Mn.View.extend({
 		template: template,
+          className: 'signin-popup',
 		attributes: { title: 'Sign in' },
 		ui: {
 			username: '[name="username"]',

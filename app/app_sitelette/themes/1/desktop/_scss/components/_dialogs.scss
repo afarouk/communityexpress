@@ -81,7 +81,7 @@ div.ui-dialog.ui-widget {
 		}
 	}
 
-	#cmntyex_signin_panel-popup {
+	.signin-popup {
 		button.signup_btn {
 			padding: 5px 0;
 			font-size: $size-normal;
@@ -97,7 +97,7 @@ div.ui-dialog.ui-widget {
 		    &:before,
 		    &:after {
 	    	    content: "";
-			    border-bottom: solid 1px #fff;
+			    border-bottom: solid 1px $white;
 			    width: 18%;
 			    display: inline-block;
 			    position: relative;
@@ -111,7 +111,7 @@ div.ui-dialog.ui-widget {
 		}
 	}
 
-	#signup_panel-popup {
+	.signup-popup {
 		padding-top: 20px;
 
 		.submit_signup_btn {
@@ -119,7 +119,7 @@ div.ui-dialog.ui-widget {
 		}
 	}
 
-	#cmntyex_forgot_panel-popup {
+	.forgot-popup {
 		padding-top: 20px;
 
 		.submit_forgot_btn {
@@ -128,9 +128,12 @@ div.ui-dialog.ui-widget {
 	}
 
 	.signout-popup {
+		padding: 20px;
+		
 		.text {
-		    font-size: $size-normal;
+		    font-size: $size-lg-normal;
 		    color: $cart-text;
+		    margin-bottom: 10px;
 		}
 
 		.btns_container {
@@ -141,6 +144,43 @@ div.ui-dialog.ui-widget {
 				width: 48%;
 				margin-bottom: 0;
 			}
+		}
+	}
+
+	.message-popup {
+		padding: 15px 20px 20px 20px;
+		color: $cart-text;
+
+		&.with-loader {
+			display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		}
+
+		.loader {
+			border: 4px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 4px solid #363636;
+			width: 30px;
+			height: 30px;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+			margin-bottom: 10px;
+			display: none;
+		}
+
+		@-webkit-keyframes spin {
+			0% { -webkit-transform: rotate(0deg); }
+			100% { -webkit-transform: rotate(360deg); }
+		}
+
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		button {
+			margin: 15px 0 0 0;
 		}
 	}
 }
