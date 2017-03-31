@@ -314,7 +314,7 @@
             </div>
             <div class="contacts-block">
                 <p class="title">Contacts</p>
-                <p class="text">zaza.grill@gmail.com</p>
+                <p class="text">${sasl.email}</p>
                 <p class="text">${sasl.telephoneNumber}</p>
             </div>
             <div class="visit-block">

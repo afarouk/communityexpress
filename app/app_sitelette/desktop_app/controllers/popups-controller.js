@@ -2,12 +2,16 @@
 
 define([
 	'../../scripts/appCache',
+	'../../scripts/globalHelpers',
+	'../../scripts/controllers/userController',
+	'../../scripts/actions/sessionActions',
 	'../views/popupsLayout',
 	'../views/loginView',
-	'../views/signin',
-	'../views/signup',
-	'../views/signout',
-	], function(appCache, PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView){
+	'../views/popups/signin',
+	'../views/popups/signup',
+	'../views/popups/signout',
+	], function(appCache, h, userController, sessionActions,
+		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView){
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
@@ -21,6 +25,7 @@ define([
 			var signin = new SigninView();
 			this.layout.showChildView('popupsContainer', signin);
 			this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
+			this.listenTo(signin, 'user:signin', this.onUserSignin.bind(this));
 			this.initializeDialog(signin.$el);
 			signin.onShow();
 		},
@@ -33,12 +38,36 @@ define([
 				modal: true
 			});
 		},
+		onUserSignin: function(creds, onClose) {
+			sessionActions.startSession(creds.username, creds.password)
+            .then(function(response){
+                this.onLoginStatusChanged();
+                onClose();
+            }.bind(this), function(jqXHR) {
+                var text = h().getErrorMessage(jqXHR, 'Error signin in');
+                console.log(text);
+            }.bind(this));
+		},
 		onUserSignup: function () {
 			var signup = new SignupView();
 			this.layout.showChildView('popupsContainer', signup);
-			// this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
+			this.listenTo(signup, 'user:signup', this.onCreateNewUser.bind(this));
 			this.initializeDialog(signup.$el);
 			signup.onShow();
+		},
+		onCreateNewUser: function(creds, onClose) {
+			sessionActions.registerNewMember(
+                creds.email,
+                creds.password,
+                creds.password_confirmation)
+                    .then(function(){
+                    	this.onLoginStatusChanged();
+                    	onClose();
+                    }.bind(this), onClose);
+
+		},
+		onRememberPassword: function() {
+			
 		},
 		onUserLogout: function() {
 			var signout = new SignoutView();
@@ -48,7 +77,12 @@ define([
 			signout.onShow();
 		},
 		onUserSubmitLogout: function() {
-			console.log('user logged out');
+			var user = appCache.get('user');
+			// loader.show();
+        	userController.logout(user.getUID()).then(function(){
+        		this.onLoginStatusChanged();
+        		console.log('user logged out');
+        	}.bind(this));
 		}
 	});
 	return new PopupsController();

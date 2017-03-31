@@ -13,7 +13,7 @@ define([
 		initialize: function() {
 			var user = appCache.get('user');
 
-			this.logged = user ? true : false;
+			this.logged = user && user.getUID() ? true : false;
 			this.render();
 		},
 		render: function () {

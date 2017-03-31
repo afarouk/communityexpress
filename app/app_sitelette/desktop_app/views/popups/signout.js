@@ -1,7 +1,7 @@
 'use strict';
 
 define([
-	'ejs!../templates/signout.ejs',
+	'ejs!../../templates/popups/signout.ejs',
 	], function(template){
 	var SignoutView = Mn.View.extend({
 		template: template,
@@ -26,6 +26,7 @@ define([
      	},
      	onSignout: function() {
      		this.trigger('user:submitLogout');
+     		this.onClose();
      	}
 	});
 	return SignoutView;

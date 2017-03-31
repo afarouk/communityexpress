@@ -1,7 +1,7 @@
 'use strict';
 
 define([
-	'ejs!../templates/forgotPassword.ejs',
+	'ejs!../../templates/popups/forgotPassword.ejs',
 	], function(template){
 	var ForgotPasswordView = Mn.View.extend({
 		template: template,
