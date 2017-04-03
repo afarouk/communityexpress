@@ -27,21 +27,21 @@
     Choose address:
   </div>
 
-  <!-- <form>
+  <form>
       <% if (!addrIsEmpty) { %>
+          <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'">
           <label for="saved_address"><%= deliveryAddress.number + ' ' + deliveryAddress.street + ', ' + deliveryAddress.city + ', ' + deliveryAddress.state %></label>
-          <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'>
-          <label for="add_another">Add another address</label>
+          <br>
           <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice">
+          <label for="add_another" class="">Add another address</label>
       <% } else { %>
-          <label for="saved_address" class="hidden"></label>
-          <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice hidden">
-          <label for="add_another">Add another address</label>
-          <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked='checked'>
+          <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" hidden">
+          <label for="saved_address" class="hidden">Add another address</label>
+          <br>
+          <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked="checked">
+          <label for="add_another" class="">Add another address</label>
       <% } %>
-  </form> -->
-  <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked="checked">
-  <label for="add_another" class="">Add another address</label>
+  </form>
   
 </div>
 
