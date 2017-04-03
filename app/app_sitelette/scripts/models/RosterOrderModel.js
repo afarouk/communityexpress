@@ -45,8 +45,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			tipSum: 0,
 			cachedTotalAmount: this.get('totalAmount'),
 			paymentOnlineAccepted: options.sasl.get('services').catalog['paymentOnlineAccepted'],
-			allowPickUp: options.sasl.get('services').catalog['allowPickUp'],
-			allowDelivery: options.sasl.get('services').catalog['allowDelivery'],
+			allowPickUp: true,//options.sasl.get('services').catalog['allowPickUp'],
+			allowDelivery: true,//options.sasl.get('services').catalog['allowDelivery'],
 			allowCash: options.sasl.get('services').catalog['allowCash'],
 			//temporary true , because I can't find that it is in SASL 
 			showTipOnSummaryPage: options.sasl.get('services').catalog['showTipOnSummaryPage'],

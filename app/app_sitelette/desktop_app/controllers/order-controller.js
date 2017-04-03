@@ -66,7 +66,16 @@ define([
                 	model: orderModel
                 });
                 this.layout.showChildView('orderContainer', chooseAddress);
+                this.listenTo(chooseAddress, 'onNextStep', this.onChooseAddressNext.bind(this));
             }.bind(this));
+		},
+		onChooseAddressNext: function(state) {
+			console.log(state);
+			if (state === 'delivery') {
+
+			} else {
+				
+			}
 		},
 		showNoItemsPopup: function() {
 			console.log('no items selected');

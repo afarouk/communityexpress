@@ -2,13 +2,23 @@
 
 define([
 	'ejs!../../templates/order/chooseAddress.ejs',
-	], function(template){
+	'./switchTabsBehavior'
+	], function(template, SwitchTabsBehavior){
 	var ChooseAddressView = Mn.View.extend({
 		template: template,
+		behaviors: [SwitchTabsBehavior],
 		className: 'page choose_address_page',
+		ui: {
+			radio: '[name="radio-choice-address"]',
+			next: '.next_btn'
+		},
+		events: {
+			'click @ui.next': 'onNext'
+		},
 		initialize: function() {
 			console.log(this.model.additionalParams);
 			console.log(this.model.toJSON());
+			this.tabActive = this.model.additionalParams.allowDelivery ? 'delivery' : 'pick_up';
 		},
 		serializeData: function() {
 			var favorites = this.model.additionalParams.userModel.favorites,
@@ -31,6 +41,10 @@ define([
 	        };
 	        return address;
 	    },
+
+	    onNext: function() {
+	    	this.trigger('onNextStep', this.tabActive);
+	    }
 	});
 	return ChooseAddressView;
 });
