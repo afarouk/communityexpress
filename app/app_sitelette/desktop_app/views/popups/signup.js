@@ -15,7 +15,7 @@ define([
 			submit: '[name="submit"]'
 		},
 		events: {
-			'click @ui.submit': 'onSubmit'
+			// 'click @ui.submit': 'onSubmit'
 		},
 		initialize: function() {
 			

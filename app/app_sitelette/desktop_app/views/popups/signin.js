@@ -2,9 +2,11 @@
 
 define([
 	'ejs!../../templates/popups/signin.ejs',
-	], function(template){
+     './inputsValidationBehavior'
+	], function(template, InputsValidationBehavior){
 	var SigninView = Mn.View.extend({
 		template: template,
+          behaviors: [InputsValidationBehavior],
           className: 'signin-popup',
 		attributes: { title: 'Sign in' },
 		ui: {
@@ -18,7 +20,7 @@ define([
 		events: {
 			'click @ui.signup_btn': 'onSignup',
 			'click @ui.forgot_btn': 'onForgot',
-			'click @ui.signin_btn': 'onSignin',
+			// 'click @ui.signin_btn': 'onSignin',
 			'change @ui.show_password': 'onShowPasswordChange'
 		},
 		initialize: function() {
