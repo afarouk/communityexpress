@@ -27,21 +27,18 @@
     Choose card:
   </div>
 
-
-  <!-- <form>
+  <form>
       <% if (cardNumber) { %>
-          <label for="saved_card"><%= creditCard.cardNumber %></label>
           <input data-card="saved" type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice" checked='checked'>
-          <label for="use_another">Add another card</label>
+          <label for="saved_card"><%= creditCard.cardNumber %></label>
+          <br>
           <input data-card="another" type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice">
-      <% } else { %>
           <label for="use_another">Add another card</label>
+      <% } else { %>
           <input data-card="another" type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice" checked='checked'>
+          <label for="use_another">Add another card</label>
       <% } %>
-  </form> -->
-
-  <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice" checked="checked">
-  <label for="use_another" class="">Add another card</label>
+  </form>
 </div>
 
 <div id="cash" class="tabcontent cash">
