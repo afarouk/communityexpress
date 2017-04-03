@@ -6,12 +6,6 @@ define([
 	var LoaderView = Mn.View.extend({
 		template: template,
 		className: 'loader-popup',
-		ui: {
-
-		},
-		events: {
-
-		},
 		initialize: function() {
 			this.$el.dialog({ 
 				autoOpen: false,

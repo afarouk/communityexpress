@@ -19,11 +19,13 @@ define([
 		initialize: function(options) {
 			console.log(this.collection.toJSON());
 			this.basket = options.basket;
-			this.groupId = options.groupId;
+			this.options = options;
 		},
 		onChildviewItemsAdded: function(childView) {
 			var model = childView.model;
-			this.basket.addItem(model, model.get('quantity'), this.groupId);
+			this.basket.addItem(model, model.get('quantity'), 
+				 this.options.groupId, this.options.groupDisplayText, 
+				 this.options.catalogId,this.options.catalogDisplayText);
 			console.log(this.basket.getTotalPrice());
 		}
 	});

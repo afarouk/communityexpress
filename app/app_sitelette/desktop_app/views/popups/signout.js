@@ -25,8 +25,8 @@ define([
      		this.$el.dialog('close');
      	},
      	onSignout: function() {
-     		this.trigger('user:submitLogout');
      		this.onClose();
+     		this.trigger('user:submitLogout');
      	}
 	});
 	return SignoutView;
