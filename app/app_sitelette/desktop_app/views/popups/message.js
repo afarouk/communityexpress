@@ -12,27 +12,32 @@ define([
 		events: {
 			'click @ui.ok_btn': 'onClose'
 		},
-		initialize: function() {
-			
+		initialize: function(options) {
+			this.options = options || {};
+			this.callback = typeof this.options.callback === 'function' ? this.options.callback : function(){};
 		},
-     	onShow: function(messageText, withLoader) {
-     		var self = this;
+		serializeData: function() {
+			return {
+				loader: this.options.loader,
+				confirm: this.options.confirm,
+				message: this.options.message || ''
+			};
+		},
+     	onShow: function() {
      		this.$el.dialog('open');
-     		this.$el.find('.message-text').html(messageText);
      		this.$el.prev().find('.ui-dialog-title').hide();
      		this.$el.prev().find('button').hide();
 
-     		if( withLoader ) {
-     			this.$el.find('.ok_btn').hide();
-     			this.$el.find('.loader').show();
+     		if( this.options.loader ) {
      			this.$el.addClass('with-loader');
 		 		setTimeout(function(){
-				    self.onClose();
-				}, 3000);
+				    this.onClose();
+				}.bind(this), 3000);
      		}
      	},
      	onClose: function() {
      		this.$el.dialog('close');
+     		this.callback();
      	}
 	});
 	return MessageView;

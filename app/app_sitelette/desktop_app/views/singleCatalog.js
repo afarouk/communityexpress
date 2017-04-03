@@ -31,25 +31,26 @@ define([
 			var groupItems = selectedGroup.get('unSubgroupedItems');
 			var groupItemsCollection = new Backbone.Collection(groupItems);
 
-			var catalogGroup = new CatalogGroupView({
-				collection: groupItemsCollection,
-				basket: this.options.basket,
-				groupId: selectedGroup.get('groupId')
-			})
-			this.showChildView('group', catalogGroup);
+			this.showCatalogGroup(groupItemsCollection, selectedGroup);
 			console.log(groupItemsCollection.toJSON());
 		},
 		onGroupSelected: function(model) {
-			var groupItems = model.get('unSubgroupedItems');
-			var groupItemsCollection = new Backbone.Collection(groupItems);
+			var groupItems = model.get('unSubgroupedItems'),
+				groupItemsCollection = new Backbone.Collection(groupItems);
 
+			this.showCatalogGroup(groupItemsCollection, model);
+		},
+		showCatalogGroup: function (groupItemsCollection, selectedGroup) {
 			var catalogGroup = new CatalogGroupView({
 				collection: groupItemsCollection,
 				basket: this.options.basket,
-				groupId: model.get('groupId')
+				groupId: selectedGroup.get('groupId'),
+				groupDisplayText: selectedGroup.get('groupDisplayText'),
+				catalogId: this.options.catalog.data.catalogId,
+				catalogDisplayText: this.options.catalog.data.catalogDisplayText
 			})
 			this.showChildView('group', catalogGroup);
-		}, 
+		},
 		onBackToCatalog: function() {
 			this.trigger('backToCatalog');
 		}

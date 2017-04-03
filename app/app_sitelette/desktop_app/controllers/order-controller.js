@@ -191,9 +191,80 @@ define([
 		onPlaceOrder: function(model) {
 			console.log('place order');
 			console.log(model.toJSON());
+
+			var params = model.additionalParams;
+	        popupsController.showMessage({
+	        	message:'placing your order',
+	        	loader: true
+	        });
+
+	        return orderActions.placeOrder(
+	            params.sasl.sa(),
+	            params.sasl.sl(),
+	            model.toJSON()
+	        ).then(function(e) {
+	            params.basket.reset();
+	            popupsController.showMessage({
+	            	message: 'order placed',
+	            	confirm: true,
+	            	callback: this.afterOrder.bind(this, model)
+	            });
+	        }.bind(this), function(e) {
+	            var text = h().getErrorMessage(e, 'Error placing your order');
+	            popupsController.showMessage({
+	            	message: text,
+	            	loader: true
+	            });
+	        }.bind(this));
 		},
+
+		afterOrder: function() {
+			//TODO return to catalog
+		},
+
+		// onPlaceMultipleOrder: function() {
+	 //        var params = this.model.additionalParams;
+	 //        loader.show('placing your order');
+
+	 //        this.model.set({
+	 //            tipAmount: this.tipSum
+	 //        });
+
+	 //        return orderActions.placeOrder(
+	 //            params.sasl.sa(),
+	 //            params.sasl.sl(),
+	 //            this.model.toJSON()
+	 //        ).then(function(e) {
+	 //            loader.hide();
+	 //            params.basket.reset();
+	 //            params.basket.versions = undefined;
+	 //            params.backToRoster = false;
+	 //            appCache.set('promoCode', null);
+	 //            appCache.set('updateDiscount', true);
+	 //            var callback;
+	 //            if (params.backToCatalog) {
+	 //                callback = _.bind(this.triggerCatalogView, this);
+	 //            } else {
+	 //                callback = _.bind(this.triggerRosterView, this);
+	 //            }
+	 //            popupController.textPopup({
+	 //                text: 'order placed'
+	 //            }, callback);
+	 //        }.bind(this), function(e) {
+	 //            loader.hide();
+	 //            var text = h().getErrorMessage(e, 'Error placing your order');
+	 //            popupController.textPopup({
+	 //                text: text
+	 //            });
+	 //        }.bind(this));
+	 //    },
+
 		showNoItemsPopup: function() {
 			console.log('no items selected');
+			popupsController.showMessage({
+				message: 'no items selected',
+				confirm: true
+			});
 		},
 
 		triggerOrder: function() {

@@ -1,3 +1,7 @@
-<div class="loader"></div>
-<div class="message-text"></div>
-<button class="ok_btn">ok</button>
+<% if(loader) { %>
+	<div class="loader"></div>
+<% } %>
+<div class="message-text"><%= message %></div>
+<% if(confirm) { %>
+	<button class="ok_btn">ok</button>
+<% } %>

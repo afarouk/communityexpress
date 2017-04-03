@@ -15,8 +15,8 @@ define([
 	'../views/popups/loader'
 	], function(appCache, h, userController, sessionActions,
 		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView, LoaderView){
-	var loader = new LoaderView();
 	var PopupsController = Mn.Object.extend({
+		loader: new LoaderView(),
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
 		},
@@ -49,10 +49,10 @@ define([
                 this.onLoginStatusChanged();
                 onClose();
 
-                var message = new MessageView();
-    			this.layout.showChildView('popupsContainer', message);
-				this.initializeDialog(message.$el);
-				message.onShow('user is logging in', true);
+				this.showMessage({
+					message: 'user is logging in',
+					loader: true
+				});
             }.bind(this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'Error signin in');
                 console.log(text);
@@ -103,16 +103,15 @@ define([
 		onUserSubmitLogout: function() {
 			var user = appCache.get('user');
 			
-			debugger;
-			loader.show();
+			this.loader.show();
         	userController.logout(user.getUID()).then(function(){
+        		this.loader.hide();
         		this.onLoginStatusChanged();
         		console.log('user logged out');
-        		
-				var message = new MessageView();
-    			this.layout.showChildView('popupsContainer', message);
-				this.initializeDialog(message.$el);
-				message.onShow('user logged out');
+        		this.showMessage({
+        			message: 'user logged out',
+        			loader: true
+        		});
         	}.bind(this));
 		},
 		requireLogIn: function(callback) {
@@ -123,6 +122,12 @@ define([
 			} else {
 				//TODO show signin
 			}
+		},
+		showMessage: function(options) {
+			var messageView = new MessageView(options);
+			this.layout.showChildView('popupsContainer', messageView);
+			this.initializeDialog(messageView.$el);
+			messageView.onShow();
 		}
 	});
 	return new PopupsController();

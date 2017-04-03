@@ -25,7 +25,7 @@ define([
 		},
 		onNext: function() {
 			var checked = this.$('[name="radio-choice-card"]:checked'),
-	    		card = checked.data('address');
+	    		card = checked.data('card');
 
 	    	if (this.tabActive === 'cash') {
 	    		this.model.set('cashSelected', true);
