@@ -102,7 +102,7 @@ define([
 				this.model.set('pickupSelected', true);
         		this.model.set('deliverySelected', false);
 			}
-	    	this.trigger('onNextStep', address);
+	    	this.trigger('onNextStep', address, this.tabActive);
 	    },
 
 	    onBack: function() {

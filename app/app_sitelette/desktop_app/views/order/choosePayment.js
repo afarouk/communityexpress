@@ -18,8 +18,23 @@ define([
 		},
 		initialize: function() {
 		},
+		serializeData: function() {
+			return _.extend(this.model.toJSON(), this.model.additionalParams, {
+				cardNumber: this.model.get('creditCard').cardNumber
+			});
+		},
 		onNext: function() {
-	    	this.trigger('onNextStep');
+			var checked = this.$('[name="radio-choice-card"]:checked'),
+	    		card = checked.data('address');
+
+	    	if (this.tabActive === 'cash') {
+	    		this.model.set('cashSelected', true);
+        		this.model.set('creditCardSelected', false);
+			} else {
+				this.model.set('cashSelected', false);
+        		this.model.set('creditCardSelected', true);
+			}
+	    	this.trigger('onNextStep', card, this.tabActive);
 	    },
 
 	    onBack: function() {
