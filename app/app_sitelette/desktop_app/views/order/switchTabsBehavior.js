@@ -20,6 +20,8 @@ define([
 	    	$target.addClass('active');
 	    	this.ui.content.hide();
 	    	$tab.show();
+
+	    	if (typeof this.view.onTabShown === 'function') this.view.onTabShown();
 	    }
 	});
 	return SwitchTabsBehavior;

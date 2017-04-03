@@ -62,20 +62,74 @@ define([
             	};
                 //var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + basketType);
                 var orderModel = new RosterOrderModel({}, modelOptions);
-                var chooseAddress = new ChooseAddressView({
-                	model: orderModel
-                });
-                this.layout.showChildView('orderContainer', chooseAddress);
-                this.listenTo(chooseAddress, 'onNextStep', this.onChooseAddressNext.bind(this));
+                this.showChooseAddress(orderModel);
             }.bind(this));
 		},
-		onChooseAddressNext: function(state) {
-			console.log(state);
-			if (state === 'delivery') {
-
+		showChooseAddress: function(model) {
+			var chooseAddress = new ChooseAddressView({
+                	model: model
+                });
+            this.layout.showChildView('orderContainer', chooseAddress);
+            this.listenTo(chooseAddress, 'onNextStep', this.onChooseAddressNext.bind(this, model));
+            this.listenTo(chooseAddress, 'onBackStep', this.onChooseAddressBack.bind(this, model));
+		},
+		onChooseAddressNext: function(model, address) {
+			console.log(address);
+			if (address === 'saved') {
+				var deliveryPickupOptions = model.additionalParams.deliveryPickupOptions;
+				if (deliveryPickupOptions && deliveryPickupOptions.options && deliveryPickupOptions.options.length > 0) {
+					this.showOrderTime(model);
+				} else {
+					this.showChoosePayment(model);
+				}
 			} else {
-				
+				this.showAddAddress(model);
 			}
+		},
+		showOrderTime: function(model) {
+			var orderTime = new OrderTimeView({
+                	model: model
+                });
+            this.layout.showChildView('orderContainer', orderTime);
+            this.listenTo(orderTime, 'onNextStep', this.onOrderTimeNext.bind(this, model));
+            this.listenTo(orderTime, 'onBackStep', this.onOrderTimeBack.bind(this, model));
+		},
+		onOrderTimeNext: function(model) {
+			this.showChoosePayment(model);
+		},
+		onOrderTimeBack: function(model) {
+			
+		},
+		showChoosePayment: function(model) {
+			var choosePayment = new ChoosePaymentView({
+                	model: model
+                });
+            this.layout.showChildView('orderContainer', choosePayment);
+            this.listenTo(choosePayment, 'onNextStep', this.onChoosePaymentNext.bind(this, model));
+            this.listenTo(choosePayment, 'onBackStep', this.onChoosePaymentBack.bind(this, model));
+		},
+		onChoosePaymentNext: function(model) {
+			
+		},
+		onChoosePaymentBack: function(model) {
+			
+		},
+		showAddAddress: function(model) {
+			var addAddress = new AddAddressView({
+                	model: model
+                });
+            this.layout.showChildView('orderContainer', addAddress);
+            this.listenTo(addAddress, 'onNextStep', this.onAddAddressNext.bind(this, model));
+            this.listenTo(addAddress, 'onBackStep', this.onAddAddressBack.bind(this, model));
+		},
+		onAddAddressNext: function(model) {
+
+		},
+		onAddAddressBack: function(model) {
+			this.showChooseAddress(model);
+		},
+		onChooseAddressBack: function(model) {
+			console.log('back');
 		},
 		showNoItemsPopup: function() {
 			console.log('no items selected');
