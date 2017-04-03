@@ -29,16 +29,13 @@
 
   <form>
       <% if (!addrIsEmpty) { %>
-          <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'">
+          <input type="radio" data-address="saved" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'">
           <label for="saved_address"><%= deliveryAddress.number + ' ' + deliveryAddress.street + ', ' + deliveryAddress.city + ', ' + deliveryAddress.state %></label>
           <br>
-          <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice">
+          <input type="radio" data-address="another" name="radio-choice-address" id="add_another" class="cardRadioChoice">
           <label for="add_another" class="">Add another address</label>
       <% } else { %>
-          <input type="radio" name="radio-choice-address" id="saved_address" class="cardRadioChoice" hidden">
-          <label for="saved_address" class="hidden">Add another address</label>
-          <br>
-          <input type="radio" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked="checked">
+          <input type="radio" data-address="another" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked="checked">
           <label for="add_another" class="">Add another address</label>
       <% } %>
   </form>
@@ -53,7 +50,7 @@
       </br>phone: <%= address.phone %>
     </p>
   <% } %>
-  <img src="themes/1/desktop/images/map.png" alt="map" class="map-img">
+  <div id="shipping_map" class="map-img map_container"></div>
 </div>
 
 <div class="bottom_btns_block">
