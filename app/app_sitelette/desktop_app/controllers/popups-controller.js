@@ -11,9 +11,11 @@ define([
 	'../views/popups/signup',
 	'../views/popups/signout',
 	'../views/popups/forgotPassword',
-	'../views/popups/message'
+	'../views/popups/message',
+	'../views/popups/loader'
 	], function(appCache, h, userController, sessionActions,
-		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView){
+		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView, LoaderView){
+	var loader = new LoaderView();
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
@@ -101,7 +103,8 @@ define([
 		onUserSubmitLogout: function() {
 			var user = appCache.get('user');
 			
-			// loader.show();
+			debugger;
+			loader.show();
         	userController.logout(user.getUID()).then(function(){
         		this.onLoginStatusChanged();
         		console.log('user logged out');

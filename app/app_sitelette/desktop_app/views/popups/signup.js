@@ -2,9 +2,11 @@
 
 define([
 	'ejs!../../templates/popups/signup.ejs',
-	], function(template){
+	'./inputsValidationBehavior'
+	], function(template, InputsValidationBehavior){
 	var SignupView = Mn.View.extend({
 		template: template,
+		behaviors: [InputsValidationBehavior],
 		className: 'signup-popup',
 		ui: {
 			email: '[name="email"]',

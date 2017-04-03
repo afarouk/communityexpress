@@ -87,6 +87,16 @@ div.ui-dialog.ui-widget {
 			font-size: $size-normal;
 		}
 
+		.error {
+			color: $error-color;
+			margin: -10px 0 20px 0;
+		    font-size: $size-normal;
+
+		    &.hidden {
+		    	display: none;
+		    }
+		}
+
 		.new-title {
 			text-align: center;
 		    font-weight: $style-normal-strong;
@@ -113,6 +123,16 @@ div.ui-dialog.ui-widget {
 
 	.signup-popup {
 		padding-top: 20px;
+
+		.error {
+			color: $error-color;
+			margin: -15px 0 15px 0;
+		    font-size: $size-normal;
+
+		    &.hidden {
+		    	display: none;
+		    }
+		}
 
 		.submit_signup_btn {
 			margin-top: 0;
