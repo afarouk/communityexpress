@@ -28,7 +28,6 @@ define([
      		this.$el.dialog('close');
      	},
      	onProceedSubmit: function() {
-     		debugger;
      		var email = this.ui.email.val(),
      			password = this.ui.password.val(),
      			password_confirmation = this.ui.password_confirmation.val();

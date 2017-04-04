@@ -142,6 +142,16 @@ div.ui-dialog.ui-widget {
 	.forgot-popup {
 		padding-top: 20px;
 
+		.error {
+			color: $error-color;
+			margin: -10px 0 20px 0;
+		    font-size: $size-normal;
+
+		    &.hidden {
+		    	display: none;
+		    }
+		}
+
 		.submit_forgot_btn {
 			margin-top: 0;
 		}

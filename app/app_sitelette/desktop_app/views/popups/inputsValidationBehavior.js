@@ -7,10 +7,12 @@ define([
 			email: '[name="email"]',
 			password: '[name="password"]',
 			password_confirmation: '[name="password_confirmation"]',
+			username: '[name="username"]',
 			email_error: '.email_error',
 			password_error: '.password_error',
-			submit_btn: '.submit_signup_btn, .signin_btn',
-			
+			signin_error: '.signin_error',
+			forgot_error: '.forgot_error',
+			submit_btn: '.submit_signup_btn, .signin_btn, .submit_forgot_btn'
 		},
 		events: {
 			'click @ui.submit_btn': 'validateForm',
@@ -20,14 +22,16 @@ define([
 		validateForm: function() {
 			var email = this.ui.email,
      			password = this.ui.password,
-     			password_confirmation = this.ui.password_confirmation;
+     			password_confirmation = this.ui.password_confirmation,
+     			username = this.ui.username;
 
 	        var regexEmail = regexEmail = /^(([a-zA-Z]|[0-9])|([-]|[_]|[.]))+[@](([a-zA-Z0-9])|([-])){2,32}[.](([a-z]){2,32})+$/gi;
 	        
 	        if (email.data('validation') === 'valid' && !regexEmail.test(email.val())) {
 	            this.showError('email');
 	            return false;
-	        }  else if (password.val() !== password_confirmation.val() && password.data('validation') === 'valid') {
+	        }  
+	        else if (password.val() !== password_confirmation.val() && password.data('validation') === 'valid') {
 	            var text = 'Password does not match the confirm password';
 	            this.showError('password', text);
 	            return false;
@@ -35,7 +39,7 @@ define([
 	            var text = 'Please, enter password';
 	            this.showError('password', text);
 	            return false;
-	        } else if (password.val().length < 6 && password.data('validation') === 'valid') {
+	        } else if (password.val() && password.val().length < 6 && password.data('validation') === 'valid') {
 	            var text = 'Please, use more than 5 characters';
 	            this.showError('password', text);
 	            return false;
@@ -43,10 +47,12 @@ define([
 	            var text = 'Please, enter password and email';
 	            this.showError('signin', text);
 	            return false;
-	        }
-	        else if (email.val() === '' && password.data('validation') === 'required' ) {
+	        } else if (email.val() === '' && email.data('validation') === 'required' ) {
 	            var text = 'Please, enter password and email';
 	            this.showError('signin', text);
+	            return false;
+	        } else if (username.val() === '' && username.data('validation') === 'required' ) {
+	            this.showError('forgot', text);
 	            return false;
 	        }
             else {
@@ -65,6 +71,9 @@ define([
 	                break;
 	            case 'signin':
 	                this.$el.find('.signin_error').text(text).removeClass('hidden');
+	                break;
+	            case 'forgot':
+	                this.$el.find('.forgot_error').removeClass('hidden');
 	                break;
 	            default:
 
@@ -86,6 +95,7 @@ define([
 	                break;
 	             case 'text':
 	                this.$el.find('.signin_error').addClass('hidden');
+	                this.$el.find('.forgot_error').addClass('hidden');
 	                break;
 	            default:
 
