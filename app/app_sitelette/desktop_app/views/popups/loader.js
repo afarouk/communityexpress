@@ -17,6 +17,8 @@ define([
 		},
      	show: function() {
      		this.$el.dialog('open');
+     		this.$el.prev().find('.ui-dialog-title').hide();
+     		this.$el.prev().find('button').hide();
      	},
      	hide: function() {
      		this.$el.dialog('close');

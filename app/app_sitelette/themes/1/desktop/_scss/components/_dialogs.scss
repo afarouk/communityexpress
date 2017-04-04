@@ -182,12 +182,6 @@ div.ui-dialog.ui-widget {
 		color: $cart-text;
 		text-align: center;
 
-		&.with-loader {
-			display: flex;
-		    flex-direction: column;
-		    align-items: center;
-		}
-
 		.loader {
 			border: 4px solid #f3f3f3;
 			border-radius: 50%;
@@ -212,6 +206,23 @@ div.ui-dialog.ui-widget {
 
 		button {
 			margin: 15px 0 0 0;
+		}
+	}
+
+	.loader-popup {
+		padding: 15px 20px 20px 20px;
+		color: $cart-text;
+
+		.loader {
+			border: 4px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 4px solid #363636;
+			width: 30px;
+			height: 30px;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+			margin-bottom: 10px;
+			display: inline-block;
 		}
 	}
 }

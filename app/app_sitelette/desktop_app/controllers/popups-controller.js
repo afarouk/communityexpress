@@ -105,7 +105,7 @@ define([
 			
 			this.loader.show();
         	userController.logout(user.getUID()).then(function(){
-        		this.loader.hide();
+        		// this.loader.hide();
         		this.onLoginStatusChanged();
         		console.log('user logged out');
         		this.showMessage({
