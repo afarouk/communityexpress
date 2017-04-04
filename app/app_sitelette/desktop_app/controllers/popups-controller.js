@@ -103,9 +103,9 @@ define([
 		onUserSubmitLogout: function() {
 			var user = appCache.get('user');
 			
-			this.loader.show();
+			this.showLoader();
         	userController.logout(user.getUID()).then(function(){
-        		// this.loader.hide();
+        		this.hideLoader();
         		this.onLoginStatusChanged();
         		console.log('user logged out');
         		this.showMessage({
@@ -128,6 +128,14 @@ define([
 			this.layout.showChildView('popupsContainer', messageView);
 			this.initializeDialog(messageView.$el);
 			messageView.onShow();
+		},
+		showLoader: function() {
+			this.layout.showChildView('popupsContainer', this.loader);
+			this.initializeDialog(this.loader.$el);
+			this.loader.show();
+		},
+		hideLoader: function() {
+			this.loader.hide();
 		}
 	});
 	return new PopupsController();
