@@ -93,7 +93,8 @@ define([
 	                this.$el.find('.password_error').addClass('hidden');
 	                this.$el.find('.signin_error').addClass('hidden');
 	                break;
-	             case 'text':
+	            case 'text':
+	            	this.$el.find('.email_error').addClass('hidden');
 	                this.$el.find('.signin_error').addClass('hidden');
 	                this.$el.find('.forgot_error').addClass('hidden');
 	                break;

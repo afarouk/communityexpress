@@ -12,8 +12,8 @@
 </div>
 
 <div class="tabs">
-  <button data-activate="credit" class="tablinks left">Credit</button>
-  <button data-activate="cash" class="tablinks right">Cash</button>
+  <button data-activate="credit" class="tablinks left"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>Credit</button>
+  <button data-activate="cash" class="tablinks right"><i class="fa fa-money" aria-hidden="true"></i>Cash</button>
 </div>
 
 <div id="credit" class="tabcontent card">
@@ -105,6 +105,12 @@
   <div class="total_price">
     <div class="name">total</div>
     <div class="price cmtyx_text_color_4"><%= cs + totalAmount %></div>
+  </div>
+  <div class="order-note-container">
+    <span class="add-note">Add a note <i class="fa fa-pencil" aria-hidden="true"></i></span>
+    <div class="note-text">
+        <textarea required="" class="order-note" data-role="none" rows="3" autocapitalize="none" placeholder="your note about order"><%= comment %></textarea>
+    </div>
   </div>
 </div>
 
