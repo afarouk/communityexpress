@@ -45,10 +45,10 @@
     <input type="text" name="cc_cvc" id="cc_cvc" placeholder="123" maxlength="3" size="3">
   </div>
 </div>
-
+<div class="roster_order_error"></div>
 <div class="checkbox_save_card_container">
   <label class="checkbox_save_card">
-    <input id="save_reference" type="checkbox" name="checkbox_save_card">Save for future reference
+    <input id="save_reference" type="checkbox" name="checkbox_save_card" <% if (saveCreditCardForFutureReference) { %>checked="checked" <% } %> >Save for future reference
   </label>
 </div>
 

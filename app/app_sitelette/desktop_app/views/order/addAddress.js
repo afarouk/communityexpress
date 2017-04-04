@@ -35,7 +35,6 @@ define([
 
 		serializeData: function() {
 			return _.extend(this.model.toJSON(), {
-	    		cs: this.model.additionalParams.symbol,
 	            states: this.states,
 	            selectedState: this.getSelectedState()
 	    	});
