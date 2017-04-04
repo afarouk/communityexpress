@@ -27,12 +27,13 @@ define([
      	onClose: function() {
      		this.$el.dialog('close');
      	},
-     	onSubmit: function() {
+     	onProceedSubmit: function() {
+     		debugger;
      		var email = this.ui.email.val(),
      			password = this.ui.password.val(),
      			password_confirmation = this.ui.password_confirmation.val();
      		//TODO validate fields
-     		if (password !== password_confirmation) return; //temporary
+     		// if (password !== password_confirmation) return; //temporary
      		this.trigger('user:signup', {
      			email: email,
      			password: password,

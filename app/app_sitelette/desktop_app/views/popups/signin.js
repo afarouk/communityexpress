@@ -37,7 +37,7 @@ define([
      			this.ui.password.attr('type', 'password');
      		}
      	},
-     	onSignin: function() {
+     	onProceedSubmit: function() {
      		var username = this.ui.username.val(),
      			password = this.ui.password.val();
      		//TODO validate fields

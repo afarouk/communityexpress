@@ -1,11 +1,11 @@
 <div class="material-textfield">
-  <input type="email" name="email" value="" required="" />
+  <input type="email" name="email" data-validation="valid" value="" required="" />
   <label data-content="Email"></label>
 </div>
-<p class="signup_email_error hidden error">Please, enter a valid email</p>
+<p class="email_error hidden error">Please, enter a valid email</p>
 
 <div class="material-textfield">
-  <input type="password" name="password" value="" required="" />
+  <input type="password" name="password" data-validation="valid" value="" required="" />
   <label data-content="Password"></label>
 </div>
 
@@ -13,6 +13,6 @@
   <input type="password" name="password_confirmation" value="" required="" />
   <label data-content="Confirm password"></label>
 </div>
-<p class="signup_password_error hidden error">Password does not match the confirm password</p>
+<p class="password_error hidden error">Password does not match the confirm password</p>
 
 <button class="submit_signup_btn" name="submit">Create account</button>
