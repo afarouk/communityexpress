@@ -116,7 +116,7 @@ define([
 
 		onBackToCatalog: function() {
 			//TODO show confirm popup
-
+			// and empty basket
 			//temporary
 			//TODO get catalogs from cache
 			this.manageCatalog();

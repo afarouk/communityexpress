@@ -21,6 +21,7 @@ define([
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
+			this.renderOrder();
 		},
 		renderOrder: function(catalogsController, options) {
 			var cartPage = new CartPageView(options);
