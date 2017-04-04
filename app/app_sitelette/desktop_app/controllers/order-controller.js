@@ -26,7 +26,9 @@ define([
 			var cartPage = new CartPageView(options);
 			this.layout.showChildView('orderContainer', cartPage);
 			this.listenTo(cartPage, 'order:proceed', this.onOrder.bind(this, options));
-			//TODO cart view collecton
+			//TODO not sure that it is good idea
+			this.options = options;
+			this.catalogsController = catalogsController;
 		},
 		onOrder: function(options) {
 			options.basket.getItemsNumber() === 0 ?
@@ -88,6 +90,7 @@ define([
 		},
 		onChooseAddressBack: function(model) {
 			console.log('back');
+			this.renderOrder(this.catalogsController, this.options); //???
 		},
 		//add address part
 		showAddAddress: function(model) {
@@ -220,6 +223,7 @@ define([
 
 		afterOrder: function() {
 			//TODO return to catalog
+			this.renderOrder(this.catalogsController, this.options); //???
 		},
 
 		// onPlaceMultipleOrder: function() {

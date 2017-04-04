@@ -88,7 +88,7 @@ define([
 	                    console.log("retrieved catalog from cache ### " + itemName + ":[" + quantity + "] from Group:" + group);
 	                });
 
-	                basket.on('add change', this.onBasketChange.bind(this, {
+	                basket.on('add remove change', this.onBasketChange.bind(this, {
 	                	basket: basket, 
 	                	sasl: sasl,
 	                	catalogId: catalogId,

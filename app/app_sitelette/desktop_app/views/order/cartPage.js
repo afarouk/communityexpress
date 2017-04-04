@@ -2,10 +2,10 @@
 
 define([
 	'ejs!../../templates/order/cartPage.ejs',
+	'ejs!../../templates/order/cartIsEmpty.ejs',
 	'./orderList'
-	], function(template, OrderList){
+	], function(cartTemplate, emptyTemplate, OrderList){
 	var CartPageView = Mn.View.extend({
-		template: template,
 		className: 'page cart_page',
 		regions: {
 			orderListContainer: '#order-list-region'
@@ -19,12 +19,22 @@ define([
 		initialize: function(options) {
 			this.basket = options.basket;
 			this.sasl = options.sasl;
+			this.chooseTemplate();
+		},
+		chooseTemplate: function() {
+			if (this.basket.length > 0) {
+				this.template = cartTemplate;
+			} else {
+				this.template = emptyTemplate;
+			}
 		},
 		onRender: function() {
-			var orderList = new OrderList({
-				collection: this.basket
-			});
-			this.showChildView('orderListContainer', orderList);
+			if (this.basket.length > 0) {
+				var orderList = new OrderList({
+					collection: this.basket
+				});
+				this.showChildView('orderListContainer', orderList);
+			}
 		},
 		serializeData: function() {
 			return {
