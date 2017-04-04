@@ -2,23 +2,43 @@
 
 define([
 	'ejs!../../templates/order/addAddress.ejs',
-	], function(template){
+	'../../../scripts/states',
+	], function(template, states){
 	var AddAddressView = Mn.View.extend({
 		template: template,
 		className: 'page add_address_page',
 		ui: {
 			back: '.back_btn',
-			next: '.next_btn'
+			next: '.next_btn',
+			number: '#aptBldgInput',
+		    street: '#streetInput',
+		    city: '#cityInput',
+		    state: '#stateSelector',
 		},
 		events: {
 			'click @ui.back': 'onBack',
-			'click @ui.next': 'onNext'
+			'click @ui.next': 'onNext',
+            'click #addressOnMap': 'getMapCoordinates',
+            'change @ui.number': 'onAptBldgChanged',
+            'change @ui.street': 'onStreetChanged',
+            'change @ui.city': 'onCityChanged',
+            'change @ui.state': 'onStateChanged',
+            'focus .material-textfield input': 'hideError'
 		},
 		initialize: function() {
+			this.states = states;
 		},
 
 		onRender: function() {
 			this.getMapCoordinates();
+		},
+
+		serializeData: function() {
+			return _.extend(this.model.toJSON(), {
+	    		cs: this.model.additionalParams.symbol,
+	            states: this.states,
+	            selectedState: this.getSelectedState()
+	    	});
 		},
 
 		getMapCoordinates: function() {
@@ -189,15 +209,84 @@ define([
 	        var state = this.states[address.state] ? address.state : 'CA';
 	        this.model.set('deliveryAddress', address);
 
-	        this.$(this.number).val(address.number);
-	        this.$(this.street).val(address.street);
-	        this.$(this.city).val(address.city);
-	        this.$(this.state).val(state);
-	        this.$(this.state).selectmenu('refresh', true);
+	        this.ui.number.val(address.number);
+	        this.ui.street.val(address.street);
+	        this.ui.city.val(address.city);
+	        this.ui.state.val(state);
+	        this.ui.state.selectmenu('refresh', true);
+	    },
+
+	    getSelectedState: function() {
+	        var selected = this.model.get('deliveryAddress').state || null;
+	        if (!selected) {
+	            this.model.get('deliveryAddress').state = 'CA';
+	        }
+	        return this.states[selected] ? selected : 'CA';
+	    },
+
+	    onAptBldgChanged: function(e) {
+	        var value = this.getValue(e);
+	        this.model.get('deliveryAddress').number = value;
+	        this.onChangeAddress();
+	    },
+
+	    onStreetChanged: function(e) {
+	        var value = this.getValue(e);
+	        this.model.get('deliveryAddress').street = value;
+	        this.onChangeAddress();
+	    },
+
+	    onCityChanged: function(e) {
+	        var value = this.getValue(e);
+	        this.model.get('deliveryAddress').city = value;
+	        this.onChangeAddress();
+	    },
+
+	    onStateChanged: function() {
+	        var value = this.$('#stateSelector').val()
+	        this.model.get('deliveryAddress').state = value;
+	        this.onChangeAddress();
+	    },
+
+	    onChangeAddress: function() {
+	        var address = this.model.get('deliveryAddress'),
+	            tpl = 'Your address is ' + address.street + ' ,' + address.number + ' ,' + address.city;
+	        this.getMapCoordinates();
+	    },
+
+	    getValue: function(e) {
+	        var target = $(e.currentTarget);
+	        return target.val();
+	    },
+
+	    validate: function() {
+	        var address = this.model.get('deliveryAddress');
+	        if (address.number &&
+	            address.street &&
+	            address.city &&
+	            address.state) {
+	            this.model.additionalParams.addrIsEmpty = false;
+	            return true;
+	        } else {
+	            this.model.additionalParams.addrIsEmpty = true;
+	            _.each(address, _.bind(function(value, name) {
+	                if (!value) {
+	                    this.$('.roster_order_error.error_' + name).slideDown();
+	                }
+	            }, this));
+	            return false;
+	        }
+	    },
+
+	    hideError: function(e) {
+	        var name = e.target.name;
+	        this.$('.error_' + name).slideUp();
 	    },
 
 	    onNext: function() {
-	    	this.trigger('onNextStep');
+	    	if (this.validate()) {
+	    		this.trigger('onNextStep');
+	    	}
 	    },
 
 	    onBack: function() {
