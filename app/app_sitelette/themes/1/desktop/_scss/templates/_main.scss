@@ -688,7 +688,7 @@
           }
 
           .title {
-            margin-bottom: 25px;
+            margin-bottom: 0px;
           }
 
           ul.order_list {
@@ -796,6 +796,10 @@
 
             .left_block {
               width: 50%;
+
+              .minimum_purchase_error  {
+                display: none;
+              }
             }
 
             .right_block {
@@ -1016,8 +1020,25 @@
             &.cash {
               padding-right: 5px;
 
+              .title,
+              .delivery_date_text,
+              .delivery_address_text
+               {
+                font-size: $size-normal;
+                margin-bottom: 5px;
+                color: $summary-title;
+                text-transform: uppercase;
+              }
+
               .title {
-                margin-bottom: 25px;
+                margin-bottom: 0;
+              }
+
+              .selected_date,
+              .address {
+                font-size: $size-normal;
+                color: $cart-text;
+                margin-bottom: 15px;
               }
 
               ul.order_list {
@@ -1126,6 +1147,10 @@
 
                 .left_block {
                   width: 50%;
+
+                  .minimum_purchase_error {
+                    display: none;
+                  } 
                 }
 
                 .right_block {
@@ -1134,6 +1159,16 @@
                   justify-content: space-between;
                   flex-direction: row;
                   align-items: baseline;
+
+                  &.promocode_container {
+                    justify-content: flex-end;
+
+                    a,
+                    span {
+                      display: inline-block;
+                      margin-left: 10px;
+                    }
+                  }
 
                   .quantity_container {
                     display: inline-block;
@@ -1344,12 +1379,14 @@
           .roster_order_error {
             color: $error-color;
             font-size: $size-lg-normal;
+            margin-bottom: 10px;
           }
 
           .checkbox_save_card_container {
             label {
               font-size: $size-normal;
               color: $cart-text;
+              margin-bottom: 10px;
 
               input {
                 margin-right: 5px;
@@ -1362,8 +1399,26 @@
         }
 
         .summary_page {
+          .title,
+          .delivery_date_text,
+          .delivery_address_text,
+          .card_text {
+            font-size: $size-normal;
+            margin-bottom: 5px;
+            color: $summary-title;
+            text-transform: uppercase;
+          }
+
           .title {
-            margin-bottom: 25px;
+            margin-bottom: 0;
+          }
+
+          .selected_date,
+          .address,
+          .card_number {
+            font-size: $size-normal;
+            color: $cart-text;
+            margin-bottom: 15px;
           }
 
           ul.order_list {

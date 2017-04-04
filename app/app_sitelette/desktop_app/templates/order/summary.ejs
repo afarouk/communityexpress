@@ -50,11 +50,11 @@
   <div class="price cmtyx_text_color_4"><%= cs + subTotal %></div>
 </div>
 <div class="additional_prices">
-  <div class="subtotal_price price_name">Shipping</div>
+  <div class="subtotal_price price_name">Discount</div>
   <div class="price cmtyx_text_color_4">$5.00</div>
 </div>
 <div class="additional_prices">
-  <div class="subtotal_price price_name">Tax</div>
+  <div class="subtotal_price price_name">Tax (<%= taxState %>%)</div>
   <div class="price cmtyx_text_color_4"><%= cs + taxAmount.toFixed(2) %></div>
 </div>
 <div class="additional_prices">
