@@ -7,7 +7,8 @@ define([
 		el: '#catalogs-layout',
 		template: template,
 		regions: {
-			catalogsContainer: '#catalogs-region'
+			catalogsContainer: '#catalogs-region',
+			blinder: '#blinder-region'
 		},
 		initialize: function() {
 			this.render();

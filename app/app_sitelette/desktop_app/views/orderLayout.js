@@ -11,7 +11,6 @@ define([
 		},
 		initialize: function() {
 			this.render();
-			var card = new Skeuocard($("#skeuocard"));
 		},
 		render: function () {
 			this.$el.html(this.template());

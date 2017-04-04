@@ -17,6 +17,7 @@ define([
 			'click @ui.order': 'order:proceed'
 		},
 		initialize: function(options) {
+			options.basket = options.basket || [];
 			this.basket = options.basket;
 			this.sasl = options.sasl;
 			this.chooseTemplate();
@@ -37,13 +38,15 @@ define([
 			}
 		},
 		serializeData: function() {
-			return {
-				subtotal: this.basket.getTotalPrice().toFixed(2),
-				shipping: null,
-				tax: null,
-				tip: null,
-				total: null
-			};
+			if (this.basket.length > 0) {
+				return {
+					subtotal: this.basket.getTotalPrice().toFixed(2),
+					shipping: null,
+					tax: null,
+					tip: null,
+					total: null
+				};
+			}
 		}
 	});
 	return CartPageView;

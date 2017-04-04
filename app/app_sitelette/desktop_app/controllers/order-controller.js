@@ -21,6 +21,7 @@ define([
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
+			this.renderOrder();
 		},
 		renderOrder: function(catalogsController, options) {
 			var cartPage = new CartPageView(options);
@@ -29,11 +30,15 @@ define([
 			//TODO not sure that it is good idea
 			this.options = options;
 			this.catalogsController = catalogsController;
+			if (this.catalogsController) {
+				this.catalogsController.hideBlinder(); //<-- TODO find better way
+			}
 		},
 		onOrder: function(options) {
 			options.basket.getItemsNumber() === 0 ?
 	        this.showNoItemsPopup() : popupsController.requireLogIn(function() {
 	        	//TODO get prices and address
+	        	this.catalogsController.showBlinder();
 	        	this.getAdditionalOrderInfo(options);
 	        }.bind(this));
 		},
