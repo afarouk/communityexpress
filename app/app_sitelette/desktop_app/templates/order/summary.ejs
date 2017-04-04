@@ -17,39 +17,43 @@
   </div>
 </div>
 
-<!-- <div class="title">
+<% if (deliveryDate) { %>
+    <p class="delivery_date_text">Selected date</p>
+    <p class="selected_date"><%= deliveryDate.day + ' ' + deliveryDate.time.displayString %></p>
+<% } %>
+<% if (cardNumber) { %>
+    <p class="card_text">Card</p>
+    <p class="card_number"><%= cardNumber %></p>
+<% } %>
+<% if (!addrIsEmpty && deliverySelected) { %>
+    <p class="delivery_address_text">Delivery address</p>
+    <p class="address"><%= deliveryAddress.number + ' ' + deliveryAddress.street + ', ' + deliveryAddress.city + ', ' + deliveryAddress.state%></p>
+<% } else if (pickupAddress && pickupSelected) { %>
+    <p class="delivery_address_text">Pickup location</p>
+    <p class="address"><%= pickupAddress.number + ' ' + pickupAddress.street + ', ' + pickupAddress.city + ', ' + pickupAddress.state%></p>
+<% } %>
+<div class="title">
   Your order
-</div> -->
+</div>
 
 <ul class="order_list">
-  <li class="order_list_item">
-    <div class="left_block">
-      <div class="item_name">Combo 1</div>
-    </div>
-    <div class="right_block">
-      <div class="item_price cmtyx_text_color_4">$9.75</div>
-    </div>
-  </li>
-  <li class="order_list_item">
-    <div class="left_block">
-      <div class="item_name">Ginger beer</div>
-    </div>
-    <div class="right_block">
-      <div class="item_price cmtyx_text_color_4">$9.75</div>
-    </div>
-  </li>
-  <li class="order_list_item">
-    <div class="left_block">
-      <div class="item_name">Fresh fruits</div>
-    </div>
-    <div class="right_block">
-      <div class="item_price cmtyx_text_color_4">$9.75</div>
-    </div>
-  </li>
+  <% _.each(combinedItems, function(item) { %>
+      <li class="order_list_item">
+          <div class="left_block">
+            <div class="item_name"><%= item.quantity %>X <%= item.displayText %></div>
+          </div>
+          <!-- <% if (item.isVersion) { %>
+              <span class="order_version">(<%= item.versionText %>)</span>
+          <% } %> -->
+          <div class="right_block">
+            <div class="item_price cmtyx_text_color_4"><%= cs + item.price %></div>
+          </div>
+      </li>
+  <% }) %>
 </ul>
 <div class="additional_prices">
   <div class="subtotal_price price_name">Subtotal</div>
-  <div class="price cmtyx_text_color_4">$30.00</div>
+  <div class="price cmtyx_text_color_4"><%= cs + subTotal %></div>
 </div>
 <div class="additional_prices">
   <div class="subtotal_price price_name">Shipping</div>
@@ -57,7 +61,7 @@
 </div>
 <div class="additional_prices">
   <div class="subtotal_price price_name">Tax</div>
-  <div class="price cmtyx_text_color_4">$2.00</div>
+  <div class="price cmtyx_text_color_4"><%= cs + taxAmount.toFixed(2) %></div>
 </div>
 <div class="additional_prices">
   <div class="left_block">
@@ -74,7 +78,7 @@
 </div>
 <div class="total_price">
   <div class="name">total</div>
-  <div class="price cmtyx_text_color_4">$35.00</div>
+  <div class="price cmtyx_text_color_4"><%= cs + totalAmount %></div>
 </div>
 <div class="bottom_btns_block">
   <button type="" class="back_btn">Back</button>
