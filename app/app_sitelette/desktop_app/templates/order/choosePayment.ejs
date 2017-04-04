@@ -12,8 +12,8 @@
 </div>
 
 <div class="tabs">
-  <button data-activate="credit" class="tablinks left">Credit</button>
-  <button data-activate="cash" class="tablinks right">Cash</button>
+  <button data-activate="credit" class="tablinks left"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>Credit</button>
+  <button data-activate="cash" class="tablinks right"><i class="fa fa-money" aria-hidden="true"></i>Cash</button>
 </div>
 
 <div id="credit" class="tabcontent card">
@@ -72,12 +72,21 @@
     <div class="subtotal_price price_name">Subtotal</div>
     <div class="price cmtyx_text_color_4"><%= cs + subTotal %></div>
   </div>
-  <div class="additional_prices">
-    <div class="subtotal_price price_name">Shipping</div>
-    <div class="price cmtyx_text_color_4">$5.00</div>
+  <div class="additional_prices discount <%= backToSingleton ? 'hidden' : '' %>">
+    <div class="left_block">
+      <span class="minimum_purchase_error <% if ( minimumPurchase > totalWithoutTax ) { %>visible<% } %>">Minimum purchase for discount : <%= cs + minimumPurchase %></span>
+      <span class="subtotal_price price_name order_name">Discount</span>
+    </div>
+    <div class="right_block promocode_container">
+        <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />
+        <% if (!promoCode) { %>
+            <a class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</a>
+        <% } %>
+        <span class="price order_price discount_value cmtyx_text_color_4"><%= cs + discount %></span>
+    </div>
   </div>
   <div class="additional_prices">
-    <div class="subtotal_price price_name">Tax</div>
+    <div class="subtotal_price price_name">Tax (<%= taxState %>%)</div>
     <div class="price cmtyx_text_color_4"><%= cs + taxAmount.toFixed(2) %></div>
   </div>
   <div class="additional_prices">
@@ -96,6 +105,12 @@
   <div class="total_price">
     <div class="name">total</div>
     <div class="price cmtyx_text_color_4"><%= cs + totalAmount %></div>
+  </div>
+  <div class="order-note-container">
+    <span class="add-note">Add a note <i class="fa fa-pencil" aria-hidden="true"></i></span>
+    <div class="note-text">
+        <textarea required="" class="order-note" data-role="none" rows="3" autocapitalize="none" placeholder="your note about order"><%= comment %></textarea>
+    </div>
   </div>
 </div>
 

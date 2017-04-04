@@ -49,12 +49,21 @@
   <div class="subtotal_price price_name">Subtotal</div>
   <div class="price cmtyx_text_color_4"><%= cs + subTotal %></div>
 </div>
-<div class="additional_prices">
-  <div class="subtotal_price price_name">Shipping</div>
-  <div class="price cmtyx_text_color_4">$5.00</div>
+<div class="additional_prices discount <%= backToSingleton ? 'hidden' : '' %>">
+  <div class="left_block">
+    <span class="minimum_purchase_error <% if ( minimumPurchase > totalWithoutTax ) { %>visible<% } %>">Minimum purchase for discount : <%= cs + minimumPurchase %></span>
+    <span class="subtotal_price price_name order_name">Discount</span>
+  </div>
+  <div class="right_block promocode_container">
+      <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />
+      <% if (!promoCode) { %>
+          <a class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</a>
+      <% } %>
+      <span class="price order_price discount_value cmtyx_text_color_4"><%= cs + discount %></span>
+  </div>
 </div>
 <div class="additional_prices">
-  <div class="subtotal_price price_name">Tax</div>
+  <div class="subtotal_price price_name">Tax (<%= taxState %>%)</div>
   <div class="price cmtyx_text_color_4"><%= cs + taxAmount.toFixed(2) %></div>
 </div>
 <div class="additional_prices">
