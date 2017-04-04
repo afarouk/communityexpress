@@ -855,7 +855,7 @@
                 }
 
                 input {
-                  width: 40%;
+                  width: 50%;
                   text-align: center;
                   border: none;
                   border-bottom: solid 1px $cart-text;
@@ -1236,7 +1236,7 @@
                     }
 
                     input {
-                      width: 40%;
+                      width: 50%;
                       text-align: center;
                       border: none;
                       border-bottom: solid 1px $cart-text;
@@ -1323,7 +1323,26 @@
               }
 
               .order-note-container {
-                display: none;
+                margin-top: 20px;
+
+                .add-note {
+                  color: $cart-text;
+                }
+
+                .note-text {
+                  display: none;
+                  margin-top: 10px;
+
+                  textarea {
+                    width: 100%;
+                    background-color: transparent;
+                    color: #ddd;
+                    border: none;
+                    border-bottom: solid 1px;
+                    resize: none;
+                    outline: none;
+                  }
+                }
               }
             } 
           }
@@ -1722,6 +1741,29 @@
 
             .price {
               font-weight: $style-semi-bold;
+            }
+          }
+
+          .order-note-container {
+            margin-top: 20px;
+
+            .add-note {
+              color: $cart-text;
+            }
+
+            .note-text {
+              display: none;
+              margin-top: 10px;
+
+              textarea {
+                width: 100%;
+                background-color: transparent;
+                color: #ddd;
+                border: none;
+                border-bottom: solid 1px;
+                resize: none;
+                outline: none;
+              }
             }
           }
         }
