@@ -9,9 +9,11 @@ define([
     '../views/catalogsLayout',
     '../views/catalogs',
     '../views/singleCatalog',
-    '../../scripts/models/CatalogBasketModel.js'
+    '../../scripts/models/CatalogBasketModel.js',
+    '../views/blinderView'
 	], function(appCache, saslActions, catalogActions, sessionActions, orderController, 
-		CatalogsLayoutView, CatalogsView, SingleCatalogView, CatalogBasketModel){
+		CatalogsLayoutView, CatalogsView, SingleCatalogView, CatalogBasketModel,
+		BlinderView){
 	var CatalogsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new CatalogsLayoutView();
@@ -112,6 +114,16 @@ define([
 
 		onBasketChange: function(options) {
 			orderController.renderOrder(this, options);
+		},
+
+		showBlinder: function() {
+			var blinderView = new BlinderView();
+			this.layout.showChildView('blinder', blinderView);
+			this.layout.getRegion('blinder').$el.show();
+		},
+
+		hideBlinder: function() {
+			this.layout.getRegion('blinder').$el.hide();
 		},
 
 		onBackToCatalog: function() {

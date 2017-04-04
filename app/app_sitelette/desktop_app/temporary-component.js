@@ -224,11 +224,11 @@ define([
 				calcCardHeight();
 			});
 
-			// function calcCardHeight() {
-			// 	var height = $('#skeuocard .face').width() / 1.6;
-			// 	$('#skeuocard.js').height(height);
-			// 	$('#skeuocard .face').height(height);
-			// }
+			function calcCardHeight() {
+				var height = $('#skeuocard .face').width() / 1.6;
+				$('#skeuocard.js').height(height);
+				$('#skeuocard .face').height(height);
+			}
 
 			$('li.catalog_item.item_with_versions .add_to_cart_btn').click(function(event) {
 				$(this).parent().next().css('display', 'flex');
