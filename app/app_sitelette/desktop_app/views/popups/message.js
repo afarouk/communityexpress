@@ -28,12 +28,9 @@ define([
      		this.$el.prev().find('.ui-dialog-title').hide();
      		this.$el.prev().find('button').hide();
 
-     		if( this.options.loader ) {
-     			this.$el.addClass('with-loader');
-		 		setTimeout(function(){
-				    this.onClose();
-				}.bind(this), 3000);
-     		}
+	 		setTimeout(function(){
+			    this.onClose();
+			}.bind(this), 2000);
      	},
      	onClose: function() {
      		this.$el.dialog('close');

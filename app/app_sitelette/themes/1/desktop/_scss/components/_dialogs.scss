@@ -180,6 +180,7 @@ div.ui-dialog.ui-widget {
 	.message-popup {
 		padding: 15px 20px 20px 20px;
 		color: $cart-text;
+		text-align: center;
 
 		&.with-loader {
 			display: flex;
@@ -196,7 +197,7 @@ div.ui-dialog.ui-widget {
 			-webkit-animation: spin 2s linear infinite;
 			animation: spin 2s linear infinite;
 			margin-bottom: 10px;
-			/*display: none;*/
+			display: inline-block;
 		}
 
 		@-webkit-keyframes spin {
