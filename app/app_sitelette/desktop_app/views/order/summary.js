@@ -2,7 +2,10 @@
 
 define([
 	'ejs!../../templates/order/summary.ejs',
-	], function(template){
+	'../../../scripts/actions/orderActions',
+	'../../../scripts/globalHelpers',
+	'../../controllers/popups-controller'
+	], function(template, orderActions, h, popupsController){
 	var SummaryView = Mn.View.extend({
 		template: template,
 		className: 'page summary_page',
@@ -47,7 +50,8 @@ define([
 	            paymentOnlineAccepted: this.paymentOnlineAccepted,
 	            allowDelivery: this.allowDelivery,
 	            pickupAddress: pickupAddress,
-	            showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
+	            // showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
+	            showTipOnSummaryPage: true,
 	            // discount: this.model.additionalParams.discountDisplay.toFixed(2),
 	            promoCode: this.model.additionalParams.promoCode,
 	            minimumPurchase: this.model.additionalParams.minimumPurchase,
@@ -77,14 +81,14 @@ define([
 
 	    incrementTip: function() {
 	        if (this.tip === 20) return;
-	        h().playSound('addToCart');
+	        // h().playSound('addToCart');
 	        this.tip = this.tip + 5;
 	        this.setTotalPriceWithTip();
 	    },
 
 	    decrementTip: function() {
 	        if (this.tip === 0) return;
-	        h().playSound('removeFromCart');
+	        // h().playSound('removeFromCart');
 	        this.tip = this.tip - 5;
 	        this.setTotalPriceWithTip();
 	    },
@@ -134,7 +138,8 @@ define([
 	        this.tipSum = parseFloat((totalAmount * tipPortion).toFixed(2));
 	        totalAmount = parseFloat((totalAmount + this.tipSum).toFixed(2));
 	        this.$('.tip_quantity').text(this.tip + '%');
-	        this.$('.tip_price_value').text(this.tipSum.toFixed(2));
+	        this.$('.tip_price_value').text(cs + this.tipSum.toFixed(2));
+        	this.$('.total_amount').text(cs + totalAmount.toFixed(2));
 	        this.model.additionalParams.tipSum = this.tipSum;
 	        this.model.additionalParams.tip = this.tip;
 
@@ -174,8 +179,9 @@ define([
 	                this.setTotalPriceWithTip();
 	            }, this), function(jqXHR) {
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
-	                popupController.textPopup({
-	                    text: text
+	                popupsController.showMessage({
+	                	message: text,
+						confirm: true
 	                });
 	            });
 	    },

@@ -52,7 +52,7 @@
 
                 <#if (promotions)?has_content >
 	                <div class="grid-item cmtyx_promotion_block">
-	                    <div class="header cmtyx_color_1">
+	                    <div class="header cmtyx_color_3">
 	                        <div class="title">promotion <span class="collapse_btn"></span></div>
 	                    </div>
 	                    <div class="body">
@@ -78,7 +78,7 @@
 	            </#if>
 
                 <div class="grid-item cmtyx_promocodes_block">
-                    <div class="header cmtyx_color_3">
+                    <div class="header cmtyx_color_4">
                         <div class="title">discount <span class="collapse_btn"></span></div>
                     </div>
                     <div class="body">
@@ -95,7 +95,7 @@
 
                 <#if (eventsSummary.events)?has_content >
                   <div class="grid-item grid-item--height3 cmtyx_events_block">
-                      <div class="header cmtyx_color_4">
+                      <div class="header cmtyx_color_1">
                           <div class="title">events <span class="collapse_btn"></span></div>
                       </div>
                       <div class="body">
@@ -149,7 +149,7 @@
                 </#if>
                 
                 <!-- <div class="grid-item cmtyx_sale_block">
-                    <div class="header cmtyx_color_6">
+                    <div class="header cmtyx_color_2">
                         <div class="title">sale <span class="collapse_btn"></span></div>
                     </div>
                     <div class="body">
@@ -161,7 +161,7 @@
                 </div> -->
 
                 <!-- <div class="grid-item grid-item--height3 cmtyx_poll_block">
-                    <div class="header cmtyx_color_5">
+                    <div class="header cmtyx_color_3">
                         <div class="title">sweepstake <span class="collapse_btn"></span></div>
                     </div>
                     <div class="body">
@@ -219,7 +219,7 @@
                 </div> -->
 
                 <div class="grid-item cmtyx_gallery_block">
-                    <div class="header cmtyx_color_1">
+                    <div class="header cmtyx_color_4">
                         <div class="title">gallery <span class="collapse_btn"></span></div>
                     </div>
                     <div class="body">
@@ -239,7 +239,7 @@
 
                 <#if (externalMedia)?has_content >
                     <div class="grid-item cmtyx_video_block">
-                        <div class="header cmtyx_color_7">
+                        <div class="header cmtyx_color_1">
                             <div class="title">video <span class="collapse_btn"></span></div>
                         </div>
                         <div class="body">
@@ -251,7 +251,7 @@
                 </#if>
 
                 <!-- <div class="grid-item cmtyx_about_us">
-                    <div class="header cmtyx_color_4">
+                    <div class="header cmtyx_color_2">
                         <div class="title">about us <span class="collapse_btn"></span></div>
                     </div>
                     <div class="body">
@@ -266,7 +266,7 @@
                 </div> -->
 
                 <!-- <div class="grid-item cmtyx_reviews_block">
-                    <div class="header cmtyx_color_9">
+                    <div class="header cmtyx_color_3">
                         <div class="title">user's reviews <span class="collapse_btn"></span></div>
                     </div>
                     <div class="body">

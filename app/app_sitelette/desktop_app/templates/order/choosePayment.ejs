@@ -80,7 +80,7 @@
     <div class="right_block promocode_container">
         <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />
         <% if (!promoCode) { %>
-            <a class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</a>
+            <span class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="">Apply</span>
         <% } %>
         <span class="price order_price discount_value cmtyx_text_color_4"><%= cs + discount %></span>
     </div>
@@ -89,22 +89,24 @@
     <div class="subtotal_price price_name">Tax (<%= taxState %>%)</div>
     <div class="price cmtyx_text_color_4"><%= cs + taxAmount.toFixed(2) %></div>
   </div>
+  <% if(showTipOnSummaryPage) { %>
   <div class="additional_prices">
     <div class="left_block">
       <div class="subtotal_price price_name">Tip</div>
     </div>  
     <div class="right_block">
       <div class="quantity_container">
-        <div class="block minus">-</div>
-        <div class="block number tip_number">20%</div>
-        <div class="block plus">+</div>
+        <div class="block minus minus_button">-</div>
+        <div class="block number tip_number tip_quantity"><%= tip %>%</div>
+        <div class="block plus plus_button">+</div>
       </div>
-      <div class="price cmtyx_text_color_4">$3.00</div>
+      <div class="price tip_price_value cmtyx_text_color_4"><%= cs + tipSum.toFixed(2) %></div>
     </div>
   </div>
+  <% } %>
   <div class="total_price">
     <div class="name">total</div>
-    <div class="price cmtyx_text_color_4"><%= cs + totalAmount %></div>
+    <div class="price total_amount cmtyx_text_color_4"><%= cs + totalAmount %></div>
   </div>
   <div class="order-note-container">
     <span class="add-note">Add a note <i class="fa fa-pencil" aria-hidden="true"></i></span>

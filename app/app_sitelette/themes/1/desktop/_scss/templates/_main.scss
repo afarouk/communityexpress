@@ -1,32 +1,17 @@
-.cmtyx_color_1 { background-color: $cmtyx_color_1; }
-.cmtyx_color_2 { background-color: $cmtyx_color_2; }
-.cmtyx_color_3 { background-color: $cmtyx_color_3; }
-.cmtyx_color_4 { background-color: $cmtyx_color_4; }
-.cmtyx_color_5 { background-color: $cmtyx_color_5; }
-.cmtyx_color_6 { background-color: $cmtyx_color_6; }
-.cmtyx_color_7 { background-color: $cmtyx_color_7; }
-.cmtyx_color_8 { background-color: $cmtyx_color_8; }
-.cmtyx_color_9 { background-color: $cmtyx_color_9; }
+.cmtyx_color_1 { background-color: $cmtyx_color_1 !important; }
+.cmtyx_color_2 { background-color: $cmtyx_color_2 !important; }
+.cmtyx_color_3 { background-color: $cmtyx_color_3 !important; }
+.cmtyx_color_4 { background-color: $cmtyx_color_4 !important; }
 
-.cmtyx_text_color_1 { color: $cmtyx_color_1; }
-.cmtyx_text_color_2 { color: $cmtyx_color_2; }
-.cmtyx_text_color_3 { color: $cmtyx_color_3; }
-.cmtyx_text_color_4 { color: $cmtyx_color_4; }
-.cmtyx_text_color_5 { color: $cmtyx_color_5; }
-.cmtyx_text_color_6 { color: $cmtyx_color_6; }
-.cmtyx_text_color_7 { color: $cmtyx_color_7; }
-.cmtyx_text_color_8 { color: $cmtyx_color_8; }
-.cmtyx_text_color_9 { color: $cmtyx_color_9; }
+.cmtyx_text_color_1 { color: $cmtyx_color_1 !important; }
+.cmtyx_text_color_2 { color: $cmtyx_color_2 !important; }
+.cmtyx_text_color_3 { color: $cmtyx_color_3 !important; }
+.cmtyx_text_color_4 { color: $cmtyx_color_4 !important; }
 
-.cmtyx_border_color_1 { border-color: $cmtyx_color_1; }
-.cmtyx_border_color_2 { border-color: $cmtyx_color_2; }
-.cmtyx_border_color_3 { border-color: $cmtyx_color_3; }
-.cmtyx_border_color_4 { border-color: $cmtyx_color_4; }
-.cmtyx_border_color_5 { border-color: $cmtyx_color_5; }
-.cmtyx_border_color_6 { border-color: $cmtyx_color_6; }
-.cmtyx_border_color_7 { border-color: $cmtyx_color_7; }
-.cmtyx_border_color_8 { border-color: $cmtyx_color_9; }
-.cmtyx_border_color_9 { border-color: $cmtyx_color_9; }
+.cmtyx_border_color_1 { border-color: $cmtyx_color_1 !important; }
+.cmtyx_border_color_2 { border-color: $cmtyx_color_2 !important; }
+.cmtyx_border_color_3 { border-color: $cmtyx_color_3 !important; }
+.cmtyx_border_color_4 { border-color: $cmtyx_color_4 !important; }
 
 .breaking_news {
   background-color: $red-news;
@@ -105,7 +90,7 @@
 
             i.fa {
               margin-right: 5px;
-              color: $cmtyx_color_4;
+              color: $cmtyx_color_1;
               font-size: 18px;
             }
           }
@@ -125,7 +110,7 @@
             cursor: pointer;
 
             &:hover {
-              color: $cmtyx_color_4;
+              color: $cmtyx_color_1;
             }
           }
         }
@@ -315,7 +300,7 @@
                   }
 
                   .customize_btn {
-                    background-color: $cmtyx_color_4;
+                    background-color: $cmtyx_color_1;
                     color: $white;
                     padding: 10px;
                     font-size: $size-normal-small;
@@ -324,6 +309,8 @@
                     text-transform: uppercase;
                     cursor: pointer;
                     border-radius: 2px;
+
+                    visibility: hidden;
                   }
                 }
 
@@ -384,7 +371,7 @@
                   }
 
                   .add_to_cart_btn {
-                    background-color: $cmtyx_color_4;
+                    background-color: $cmtyx_color_1;
                     color: $white;
                     padding: 10px;
                     font-size: $size-normal-small;
@@ -516,8 +503,8 @@
           cursor: pointer;
 
           &:hover {
-            border-color: $cmtyx_color_4;
-            background-color: $cmtyx_color_4;
+            border-color: $cmtyx_color_1;
+            background-color: $cmtyx_color_1;
             color: $white;
           }
         }
@@ -550,7 +537,7 @@
             }
 
             &.active {
-              background-color: $cmtyx_color_4;
+              background-color: $cmtyx_color_1;
             }
           }
         }
@@ -610,8 +597,8 @@
           button {
             background-color: transparent;
             float: left;
-            border: solid 1px $cmtyx_color_4;
-            color: $cmtyx_color_4;
+            border: solid 1px $cmtyx_color_1;
+            color: $cmtyx_color_1;
             outline: none;
             padding: 10px 0;
             text-align: center;
@@ -636,7 +623,7 @@
             
             &:hover,
             &.active {
-              background-color: $cmtyx_color_4;
+              background-color: $cmtyx_color_1;
               color: $white;
             }
           }
@@ -670,8 +657,8 @@
           width: calc(100% - 20px);
 
           button {
-            background-color: $cmtyx_color_4;
-            border: solid 1px $cmtyx_color_4;
+            background-color: $cmtyx_color_1;
+            border: solid 1px $cmtyx_color_1;
             color: $white;
             padding: 10px;
             font-size: $size-lg-normal;
@@ -684,7 +671,7 @@
             &.back_btn {
               margin-right: 5px;
               background-color: transparent;
-              color: $cmtyx_color_4;
+              color: $cmtyx_color_1;
             }
 
             &.next_btn {
@@ -862,6 +849,7 @@
                   border-style: solid;
                   border-width: 1px;
                   border-radius: 2px;
+                  outline: none;
                 }
 
                 input {
@@ -958,7 +946,7 @@
             padding: 15px 0;
             text-align: center;
             border: none;
-            background-color: $cmtyx_color_4;
+            background-color: $cmtyx_color_1;
             color: $white;
             font-size: $size-sm-medium;
             font-weight: $style-semi-bold;
@@ -1056,8 +1044,8 @@
                 select {
                   width: 50%;
                   text-align: center;
-                  border-color: $cmtyx_color_4;
-                  color: $cmtyx_color_4;
+                  border-color: $cmtyx_color_1;
+                  color: $cmtyx_color_1;
                 }
 
                 #select-date {
@@ -1231,18 +1219,19 @@
                   &.promocode_container {
                     justify-content: flex-end;
 
-                    a,
-                    span {
+                    .get_discount_button,
+                    .discount_value {
                       display: inline-block;
                       margin-left: 10px;
                     }
 
-                    a {
-                      text-decoration: none;
+                    .get_discount_button {
                       padding: 3px 5px;
                       border-style: solid;
                       border-width: 1px;
                       border-radius: 2px;
+                      outline: none;
+                      cursor: pointer;
                     }
 
                     input {
@@ -1654,18 +1643,18 @@
               &.promocode_container {
                 justify-content: flex-end;
 
-                a,
-                span {
+                .get_discount_button,
+                .discount_value {
                   display: inline-block;
                   margin-left: 10px;
                 }
 
-                a {
-                  text-decoration: none;
+                .get_discount_button {
                   padding: 3px 5px;
                   border-style: solid;
                   border-width: 1px;
                   border-radius: 2px;
+                  cursor: pointer;
                 }
 
                 input {
@@ -1849,7 +1838,7 @@
         left: 25px;
 
         .discount-item-title {
-          color: $cmtyx_color_8;
+          color: $cmtyx_color_4;
           font-size: $size-normal;
           font-weight: $style-normal-strong;
           text-transform: uppercase;
@@ -2034,8 +2023,8 @@
               position: relative;
               bottom: 3px;
 
-              &.answer_color_1 { background-color: $cmtyx_color_4; }
-              &.answer_color_2 { background-color: $cmtyx_color_6; }
+              &.answer_color_1 { background-color: $cmtyx_color_1; }
+              &.answer_color_2 { background-color: $cmtyx_color_3; }
             }
           }
         }
@@ -2050,7 +2039,7 @@
             margin-bottom: 10px;
             margin-right: 10px;
 
-            &.answer_color_1 { background-color: $cmtyx_color_4; }
+            &.answer_color_1 { background-color: $cmtyx_color_1; }
           } 
 
           .b_ans_graph {
@@ -2059,7 +2048,7 @@
             height: 22px;
             margin-right: 10px;
 
-            &.answer_color_2 { background-color: $cmtyx_color_6; }
+            &.answer_color_2 { background-color: $cmtyx_color_3; }
           }
 
           .a_ans_percent_num,
@@ -2108,7 +2097,7 @@
                   display: block;
                   font-weight: $style-normal-strong;
                   font-size: $size-normal;
-                  color: $cmtyx_color_8;
+                  color: $cmtyx_color_4;
                   text-transform: uppercase;
                   margin-bottom: 10px;
                 }
