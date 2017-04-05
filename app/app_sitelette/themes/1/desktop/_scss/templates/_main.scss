@@ -516,6 +516,27 @@
     
      /***** CART *****/
     .cmtyx_cart_block {
+
+      #cart-loader-region {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.2);
+        display: none;
+
+        .loader-content {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: white;
+        }
+      }
+
       .body {
         height: 702px;
         padding: 0;

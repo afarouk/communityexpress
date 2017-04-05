@@ -7,7 +7,8 @@ define([
 		el: '#order-layout',
 		template: template,
 		regions: {
-			orderContainer: '#order-region'
+			orderContainer: '#order-region',
+			cartLoader: '#cart-loader-region'
 		},
 		initialize: function() {
 			this.render();
