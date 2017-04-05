@@ -2,7 +2,10 @@
 
 define([
 	'ejs!../../templates/order/summary.ejs',
-	], function(template){
+	'../../../scripts/actions/orderActions',
+	'../../../scripts/globalHelpers',
+	'../../controllers/popups-controller'
+	], function(template, orderActions, h, popupsController){
 	var SummaryView = Mn.View.extend({
 		template: template,
 		className: 'page summary_page',
@@ -47,7 +50,8 @@ define([
 	            paymentOnlineAccepted: this.paymentOnlineAccepted,
 	            allowDelivery: this.allowDelivery,
 	            pickupAddress: pickupAddress,
-	            showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
+	            // showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
+	            showTipOnSummaryPage: true,
 	            // discount: this.model.additionalParams.discountDisplay.toFixed(2),
 	            promoCode: this.model.additionalParams.promoCode,
 	            minimumPurchase: this.model.additionalParams.minimumPurchase,
@@ -77,14 +81,14 @@ define([
 
 	    incrementTip: function() {
 	        if (this.tip === 20) return;
-	        h().playSound('addToCart');
+	        // h().playSound('addToCart');
 	        this.tip = this.tip + 5;
 	        this.setTotalPriceWithTip();
 	    },
 
 	    decrementTip: function() {
 	        if (this.tip === 0) return;
-	        h().playSound('removeFromCart');
+	        // h().playSound('removeFromCart');
 	        this.tip = this.tip - 5;
 	        this.setTotalPriceWithTip();
 	    },
@@ -174,8 +178,9 @@ define([
 	                this.setTotalPriceWithTip();
 	            }, this), function(jqXHR) {
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
-	                popupController.textPopup({
-	                    text: text
+	                popupsController.showMessage({
+	                	message: text,
+						confirm: true
 	                });
 	            });
 	    },

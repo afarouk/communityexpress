@@ -2,8 +2,11 @@
 //TODO no full ready
 define([
 	'ejs!../../templates/order/choosePayment.ejs',
-	'./switchTabsBehavior'
-	], function(template, SwitchTabsBehavior){
+	'./switchTabsBehavior',
+	'../../../scripts/actions/orderActions',
+	'../../../scripts/globalHelpers',
+	'../../controllers/popups-controller'
+	], function(template, SwitchTabsBehavior, orderActions, h, popupsController){
 	var ChoosePaymentView = Mn.View.extend({
 		template: template,
 		behaviors: [SwitchTabsBehavior],
@@ -51,7 +54,8 @@ define([
 	            paymentOnlineAccepted: this.paymentOnlineAccepted,
 	            allowDelivery: this.allowDelivery,
 	            pickupAddress: pickupAddress,
-	            showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
+	            // showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
+	            showTipOnSummaryPage: true,
 	            // discount: this.model.additionalParams.discountDisplay.toFixed(2),
 	            promoCode: this.model.additionalParams.promoCode,
 	            minimumPurchase: this.model.additionalParams.minimumPurchase,
@@ -203,8 +207,9 @@ define([
 	                this.setTotalPriceWithTip();
 	            }, this), function(jqXHR) {
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
-	                popupController.textPopup({
-	                    text: text
+	                popupsController.showMessage({
+	                	message: text,
+						confirm: true
 	                });
 	            });
 	    },
