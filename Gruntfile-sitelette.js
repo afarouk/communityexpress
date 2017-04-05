@@ -9,9 +9,10 @@ grunt.log.write('compiling ','sitelette');
 var webpackConfig = require('./webpack-sitelette.config.js');
 
 // stop webpack watch and keepalive
-webpackConfig.watch = false;
-webpackConfig.keepalive = false;
-
+webpackConfig.forEach(function(config){
+    config.watch = false;
+    config.keepalive = false;
+});
 // Creating multiple stylesheet's paths with diff themes (for cssmin task)
 var themes = function() {
     // Number of themes
@@ -57,7 +58,7 @@ module.exports = function (grunt) {
         yeoman: yeomanConfig,
 
         webpack: {
-            options: webpackConfig[0],
+            options: webpackConfig,
             'prod': {
                 devtool: null // production
             },
@@ -167,20 +168,13 @@ module.exports = function (grunt) {
                         cwd: '<%= yeoman.app %>/themes',
                         src: '**',
                         dest: '<%= yeoman.dist %>/themes'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/build',
+                        src: ['_desktop_*.{ico,txt,png,gif,ttf,svg,woff,woff2,eot}'],
+                        dest: '<%= yeoman.dist %>/build'
                     }
-                    //,
-                    //{
-                    //    src: '<%= yeoman.app %>/sitelette-production.php',
-                    //    dest: '<%= yeoman.dist %>/sitelette.php'
-                    //}
-                    // {
-                    //     src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
-                    //     dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
-                    // },
-                    // {
-                    //     src: '<%= yeoman.app %>/styles/themes/theme2/sprite_buttons_theme9.png',
-                    //     dest: '<%= yeoman.dist %>/build/sprite_buttons_theme9.png'
-                    // }
                 ])
             }
         },
