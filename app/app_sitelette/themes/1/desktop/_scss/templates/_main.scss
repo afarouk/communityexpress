@@ -394,6 +394,11 @@
                     // margin-bottom: 15px;
                     cursor: pointer;
                     border-radius: 2px;
+                    &:disabled {
+                      opacity: 0.5;
+                      cursor: not-allowed;
+                      pointer-events: all;
+                    }
                   }
 
                   .item_price {
