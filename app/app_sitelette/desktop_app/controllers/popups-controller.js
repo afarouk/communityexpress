@@ -25,8 +25,10 @@ define([
 			this.listenTo(this.loginView, 'user:login', this.onUserLogin.bind(this));
 			this.listenTo(this.loginView, 'user:logout', this.onUserLogout.bind(this));
 		},
-		onUserLogin: function() {
-			var signin = new SigninView();
+		onUserLogin: function(callback) {
+			var signin = new SigninView({
+				callback: typeof callback === 'function' ? callback : function(){}
+			});
 			this.layout.showChildView('popupsContainer', signin);
 			this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
 			this.listenTo(signin, 'user:signin', this.onUserSignin.bind(this));
@@ -43,11 +45,12 @@ define([
 				modal: true
 			});
 		},
-		onUserSignin: function(creds, onClose) {
+		onUserSignin: function(creds, onClose, callback) {
 			sessionActions.startSession(creds.username, creds.password)
             .then(function(response){
                 this.onLoginStatusChanged();
                 onClose();
+                callback();
 
 				this.showMessage({
 					message: 'user is logging in',
@@ -125,7 +128,7 @@ define([
 			if (logged) {
 				callback();
 			} else {
-				//TODO show signin
+				this.onUserLogin(callback);
 			}
 		},
 		showMessage: function(options) {

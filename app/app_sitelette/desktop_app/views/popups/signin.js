@@ -23,8 +23,8 @@ define([
 			// 'click @ui.signin_btn': 'onSignin',
 			'change @ui.show_password': 'onShowPasswordChange'
 		},
-		initialize: function() {
-			
+		initialize: function(options) {
+			this.callback = options.callback;
 		},
      	onShow: function () {
      		this.$el.dialog('open');
@@ -39,12 +39,12 @@ define([
      	},
      	onProceedSubmit: function() {
      		var username = this.ui.username.val(),
-     			password = this.ui.password.val();
+     	         password = this.ui.password.val();
      		//TODO validate fields
      		this.trigger('user:signin', {
      			username: username,
      			password: password
-     		}, this.onClose.bind(this));
+     		}, this.onClose.bind(this), this.callback);
      	},
      	onSignup: function() {
      		this.trigger('user:signup');
