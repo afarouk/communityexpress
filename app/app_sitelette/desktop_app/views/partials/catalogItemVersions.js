@@ -13,8 +13,12 @@ define([
 			'click .add_to_cart_btn': 'onAddtoCart',
 			'change @ui.selector': 'updateAddVersionButton',
 		},
-		initialize: function() {
-			this.versions = [];
+		initialize: function(options) {
+			this.versions = options.versions || [];
+
+			if (this.versions.length > 0) {
+				debugger;
+			}
 		},
 		serializeData: function() {
 			return _.extend(this.model.toJSON(), {

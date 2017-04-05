@@ -145,6 +145,14 @@ var CatalogBasketModel = Backbone.Collection.extend({
         return this.versions[uuid];
     },
 
+    removeVersion: function(model) {
+        if (typeof this.versions !== 'object') {
+            return null;
+        }
+        var uuid = model.get('uuid').split('_._')[0];
+        delete this.versions[uuid];
+    },
+
     addItemRaw : function(itemRaw, count, groupId,groupDisplayText, catalogId,catalogDisplayText) {
 
         /*
