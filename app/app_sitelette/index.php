@@ -15,6 +15,7 @@ if (isset($pageAccess)) {
       echo $siteletteJSON['landingViewHTML'];
     } else {
       include_once 'themes/'.$themeId.'/desktop/body.html';
+      // echo $siteletteJSON['landingViewHTML'];
     }
     echo '</html>';
   } else {

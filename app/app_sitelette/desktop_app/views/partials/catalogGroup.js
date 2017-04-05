@@ -72,8 +72,11 @@ define([
 			}
 		},
 		onBasketReset: function() {
+			this.basket.versions = {}; //reset versions
 			this.children.each(function(view){
-				view.onResetVersions();
+				if (view.model.get('hasVersions')) {
+					view.onResetVersions();
+				}
 			})
 		}
 	});
