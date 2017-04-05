@@ -203,7 +203,8 @@ define([
 			var params = model.additionalParams;
 	        popupsController.showMessage({
 	        	message:'placing your order',
-	        	loader: true
+	        	loader: true,
+	        	infinite: true
 	        });
 
 	        return orderActions.placeOrder(
