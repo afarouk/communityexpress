@@ -31,18 +31,18 @@ header {
 		cursor: pointer;
 
 		&:hover {
-		  color: $cmtyx_color_4;
+		  color: $cmtyx_color_1;
 		}
 
 		&.last {
 		  font-weight: $style-semi-bold;
-		  color: $cmtyx_color_4;
-		  border: 1px solid $cmtyx_color_4;
+		  color: $cmtyx_color_1;
+		  border: 1px solid $cmtyx_color_1;
 		  border-radius: 5px;
 		  padding: 15px 25px;
 
 		  &:hover {
-		  	background-color: $cmtyx_color_4;
+		  	background-color: $cmtyx_color_1;
   			color: $white;
 		  }	
 		}

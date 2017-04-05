@@ -167,7 +167,8 @@ define([
 	        this.tipSum = parseFloat((totalAmount * tipPortion).toFixed(2));
 	        totalAmount = parseFloat((totalAmount + this.tipSum).toFixed(2));
 	        this.$('.tip_quantity').text(this.tip + '%');
-	        this.$('.tip_price_value').text(this.tipSum.toFixed(2));
+	        this.$('.tip_price_value').text(cs + this.tipSum.toFixed(2));
+        	this.$('.total_amount').text(cs + totalAmount.toFixed(2));
 	        this.model.additionalParams.tipSum = this.tipSum;
 	        this.model.additionalParams.tip = this.tip;
 

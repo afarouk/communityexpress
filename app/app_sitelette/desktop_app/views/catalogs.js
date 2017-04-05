@@ -3,7 +3,8 @@
 define([
 	'ejs!../templates/catalogs.ejs',
 	'ejs!../templates/catalogsItem.ejs',
-	], function(template, itemTemplate){
+	'../../scripts/globalHelpers',
+	], function(template, itemTemplate, h){
 
 	var CatalogsItemView = Mn.View.extend({
 		template: itemTemplate,
@@ -13,6 +14,15 @@ define([
 			'click': 'select:catalog'
 		},
 
+	    onRender: function() {
+	    	this.$el.addClass(this.getColor());
+	    },
+
+	    getColor: function() {
+	        var colors = [ 'cmtyx_color_1', 'cmtyx_color_3' ],
+	            index = this.model.collection.indexOf(this.model);
+	        return colors[index % colors.length];
+	    }
 	});
 
 	var CatalogsCollectionView = Mn.CollectionView.extend({

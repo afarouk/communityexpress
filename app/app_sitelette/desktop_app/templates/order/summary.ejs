@@ -57,7 +57,7 @@
   <div class="right_block promocode_container">
       <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />
       <% if (!promoCode) { %>
-          <a class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</a>
+          <span class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</span>
       <% } %>
       <span class="price order_price discount_value cmtyx_text_color_4"><%= cs + discount %></span>
   </div>
@@ -83,7 +83,7 @@
 <% } %>
 <div class="total_price">
   <div class="name">total</div>
-  <div class="price cmtyx_text_color_4"><%= cs + totalAmount %></div>
+  <div class="price total_amount cmtyx_text_color_4"><%= cs + totalAmount %></div>
 </div>
 <div class="order-note-container">
   <span class="add-note">Add a note <i class="fa fa-pencil" aria-hidden="true"></i></span>
