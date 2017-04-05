@@ -20,6 +20,9 @@ define([
 		onChildviewItemRemove: function(view) {
 			var model = view.model;
 			this.collection.remove(model);
+			if (model.get('isVersion')) {
+				this.collection.removeVersion(model);
+			}
 		}
 	});
 

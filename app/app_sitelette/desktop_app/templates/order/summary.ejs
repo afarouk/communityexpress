@@ -35,10 +35,10 @@
       <li class="order_list_item">
           <div class="left_block">
             <div class="item_name"><%= item.quantity %>X <%= item.displayText %></div>
+            <% if (item.isVersion) { %>
+                <div class="item_version">(<%= item.versionText %>)</div>
+            <% } %>
           </div>
-          <!-- <% if (item.isVersion) { %>
-              <span class="order_version">(<%= item.versionText %>)</span>
-          <% } %> -->
           <div class="right_block">
             <div class="item_price cmtyx_text_color_4"><%= cs + item.price %></div>
           </div>
