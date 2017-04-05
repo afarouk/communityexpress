@@ -116,11 +116,21 @@ define([
 
 	        basketItem.set('isVersion', true, {silent: true});
 	        basketItem.set('itemName', this.model.get('itemName'), {silent: true});
-	        basketItem.set('uuid', uuid + '_' + basketItem.get('itemVersion'), {silent: true});
+	        basketItem.set('uuid', uuid + '_._' + basketItem.get('itemVersion'), {silent: true});
 	        this.trigger('items:version:added', this.model, versions, basketItem);
 	    },
 
-	    onRemoveVersion: function() {
+	    onRemoveVersion: function(uuid) {
+	    	var removed = this.versions.find(function(version){
+		    		return uuid === version.version.get('uuid');
+		    	}),
+	    		index = this.versions.indexOf(removed);
+
+	    	this.versions.splice(index, 1);
+	        this.updateAddVersionButton();
+	    },
+	    onResetVersions: function() {
+	    	this.versions = [];
 	        this.updateAddVersionButton();
 	    },
 		onAddtoCart: function() {
