@@ -113,7 +113,7 @@ define([
 	            versions = this.getVersions(),
 	            uuid = this.model.get('uuid'),
 	            basketItem = this.versions[index].version;
-	   
+
 	        basketItem.set('isVersion', true, {silent: true});
 	        basketItem.set('itemName', this.model.get('itemName'), {silent: true});
 	        basketItem.set('uuid', uuid + '_' + basketItem.get('itemVersion'), {silent: true});
