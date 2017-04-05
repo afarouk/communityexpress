@@ -10,7 +10,9 @@ define([
 		className: 'page choose_payment_page',
 		ui: {
 			back: '.back_btn',
-			next: '.next_btn'
+			next: '.next_btn',
+			add_note_btn: '.add-note',
+			add_note_text: '.note-text'
 		},
 		events: {
 			'click @ui.back': 'onBack',
@@ -19,7 +21,8 @@ define([
             'click .minus_button': 'decrementTip',
             'click .add-note': 'toggleAddNote',
             'change .note-text > textarea': 'onCommentChanged',
-            'click .get_discount_button': 'onGetDiscount'
+            'click .get_discount_button': 'onGetDiscount',
+            'click @ui.add_note_btn': 'onShowNote'
 		},
 		initialize: function() {
 			this.getTipInfo();
@@ -222,6 +225,10 @@ define([
 
 	    onBack: function() {
 	    	this.trigger('onBackStep');
+	    },
+
+	    onShowNote: function() {
+	    	this.ui.add_note_text.slideToggle();
 	    }
 	});
 	return ChoosePaymentView;
