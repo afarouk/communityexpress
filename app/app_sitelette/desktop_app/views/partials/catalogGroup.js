@@ -27,6 +27,12 @@ define([
 				 this.options.groupId, this.options.groupDisplayText, 
 				 this.options.catalogId,this.options.catalogDisplayText);
 			console.log(this.basket.getTotalPrice());
+		},
+		onChildviewItemsVersionAdded: function(model, versions, basketItem) {
+			this.basket.setBasketVersions(model, versions);
+			this.basket.addItem(basketItem, 1,
+				 this.options.groupId, this.options.groupDisplayText, 
+				 this.options.catalogId,this.options.catalogDisplayText);
 		}
 	});
 	return CatalogGroupView;

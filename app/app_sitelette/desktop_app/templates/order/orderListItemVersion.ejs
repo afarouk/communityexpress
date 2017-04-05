@@ -1,0 +1,13 @@
+<div class="left_block">
+  <span class="remove_item_btn" name="remove_item">&times;</span>
+  <div class="item_name"><%= itemName %></div>
+  <span class="item_name"><%=  versionText %></span>
+</div>
+<div class="right_block">
+  <div class="quantity_container">
+    <div class="block minus" name="quantity_decrease">-</div>
+    <div class="block number"><%= quantity %></div>
+    <div class="block plus" name="quantity_increase">+</div>
+  </div>
+  <div class="item_price cmtyx_text_color_4">$<%= (price * quantity).toFixed(2) %></div>
+</div>

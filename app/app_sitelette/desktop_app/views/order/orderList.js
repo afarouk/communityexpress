@@ -1,10 +1,17 @@
 'use strict';
 
 define([
-	'./orderListItem'
-	], function(OrderListItemView){
+	'./orderListItem',
+	'./orderListItemVersion'
+	], function(OrderListItemView, OrderListItemVersionView){
 	var OrderListView = Mn.CollectionView.extend({
-		childView: OrderListItemView,
+		childView: function(model) {
+			if (model.get('isVersion')) {
+				return OrderListItemVersionView;
+			} else {
+				return OrderListItemView;
+			}
+		},
 		className: 'order_list',
 		tagName: 'ul',
 		initialize: function() {
