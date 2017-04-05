@@ -3,10 +3,10 @@
 .cmtyx_color_3 { background-color: $cmtyx_color_3 !important; }
 .cmtyx_color_4 { background-color: $cmtyx_color_4 !important; }
 
-.cmtyx_text_color_1 { color: $cmtyx_color_1 !important; }
-.cmtyx_text_color_2 { color: $cmtyx_color_2 !important; }
-.cmtyx_text_color_3 { color: $cmtyx_color_3 !important; }
-.cmtyx_text_color_4 { color: $cmtyx_color_4 !important; }
+.cmtyx_text_color_1 { color: $white !important; }
+.cmtyx_text_color_2 { color: $white !important; }
+.cmtyx_text_color_3 { color: $white !important; }
+.cmtyx_text_color_4 { color: $white !important; }
 
 .cmtyx_border_color_1 { border-color: $cmtyx_color_1 !important; }
 .cmtyx_border_color_2 { border-color: $cmtyx_color_2 !important; }
@@ -734,8 +734,8 @@
                 }
 
                 .item_version {
-                  display: block;
-                  margin-left: 20px;
+                  // display: block;
+                  margin-left: 5px;
                 }
 
                 .remove_item_btn {
@@ -1116,6 +1116,10 @@
 
                     .item_name {
                       display: inline-block;
+                    }
+
+                    .item_version {
+                      margin-left: 5px;
                     }
 
                     .remove_item_btn {
@@ -1541,6 +1545,10 @@
 
                 .item_name {
                   display: inline-block;
+                }
+
+                .item_version {
+                  margin-left: 5px;
                 }
 
                 .remove_item_btn {

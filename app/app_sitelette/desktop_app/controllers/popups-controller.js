@@ -56,6 +56,11 @@ define([
             }.bind(this), function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'Error signin in');
                 console.log(text);
+                this.showMessage({
+					message: text,
+					confirm: true,
+					callback: this.onUserLogin.bind(this)
+				});
             }.bind(this));
 		},
 		onUserSignup: function () {

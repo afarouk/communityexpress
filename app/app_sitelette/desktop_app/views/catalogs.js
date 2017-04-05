@@ -16,10 +16,18 @@ define([
 
 	    onRender: function() {
 	    	this.$el.addClass(this.getColor());
+	    	this.$el.find('.catalog_name').addClass(this.getTextColor());
+        	this.$el.find('.catalog_description').addClass(this.getTextColor());
 	    },
 
 	    getColor: function() {
 	        var colors = [ 'cmtyx_color_1', 'cmtyx_color_3' ],
+	            index = this.model.collection.indexOf(this.model);
+	        return colors[index % colors.length];
+	    },
+
+	    getTextColor: function(index) {
+	        var colors = [ 'cmtyx_text_color_1', 'cmtyx_text_color_3' ],
 	            index = this.model.collection.indexOf(this.model);
 	        return colors[index % colors.length];
 	    }

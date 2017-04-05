@@ -20,6 +20,23 @@ define([
 			'click @ui.addToCard': 'items:added'
 		},
 		quantity: 1,
+		// onRender: function() {
+	 //    	this.$el.addClass(this.getColor());
+	 //    	this.$el.find('.item_title').addClass(this.getTextColor());
+  //       	this.$el.find('.item_description').addClass(this.getTextColor());
+	 //    },
+	 //    getColor: function() {
+	 //        var colors = [ 'cmtyx_color_2', 'cmtyx_color_4' ],
+	 //            index = this.model.collection.indexOf(this.model);
+	 //        return colors[index % colors.length];
+	 //    },
+
+	 //    getTextColor: function(index) {
+	 //        var colors = [ 'cmtyx_text_color_2', 'cmtyx_text_color_4' ],
+	 //            index = this.model.collection.indexOf(this.model);
+	 //        return colors[index % colors.length];
+	 //    },
+	    
 		onIncrease: function() {
 			this.quantity++;
 			this.ui.quantity.text(this.quantity);
