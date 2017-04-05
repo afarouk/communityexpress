@@ -15,9 +15,10 @@ define([
 	'../views/order/choosePayment',
 	'../views/order/addCard',
 	'../views/order/summary',
+	'../views/cartLoader',
 	], function(appCache, popupsController, orderActions, saslActions, sessionActions, RosterOrderModel,
 		OrderLayoutView, CartPageView, ChooseAddressView, AddAddressView, 
-		OrderTimeView, ChoosePaymentView, AddCardView, SummaryView){
+		OrderTimeView, ChoosePaymentView, AddCardView, SummaryView, CartLoader){
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
@@ -34,6 +35,14 @@ define([
 				this.catalogsController.hideBlinder(); //<-- TODO find better way
 			}
 		},
+		showLoader: function() {
+			var cartLoader = new CartLoader();
+			this.layout.showChildView('cartLoader', cartLoader);
+			this.layout.getRegion('cartLoader').$el.show();
+		},
+		hideLoader: function() {
+			this.layout.getRegion('cartLoader').$el.hide();
+		},
 		onOrder: function(options) {
 			options.basket.getItemsNumber() === 0 ?
 	        this.showNoItemsPopup() : popupsController.requireLogIn(function() {
@@ -46,6 +55,7 @@ define([
 			var sasl, 
 				addresses, 
 				fundsource;
+			this.showLoader();
 			return saslActions.getSasl(options.sasl)
             .then(function(ret) {
                 sasl = ret;
@@ -77,6 +87,7 @@ define([
 			var chooseAddress = new ChooseAddressView({
                 	model: model
                 });
+			this.hideLoader();
             this.layout.showChildView('orderContainer', chooseAddress);
             this.listenTo(chooseAddress, 'onNextStep', this.onChooseAddressNext.bind(this, model));
             this.listenTo(chooseAddress, 'onBackStep', this.onChooseAddressBack.bind(this, model));
@@ -199,11 +210,12 @@ define([
 		onPlaceOrder: function(model) {
 			console.log('place order');
 			console.log(model.toJSON());
-
+			this.showLoader();
 			var params = model.additionalParams;
 	        popupsController.showMessage({
 	        	message:'placing your order',
-	        	loader: true
+	        	loader: true,
+	        	infinite: true
 	        });
 
 	        return orderActions.placeOrder(
@@ -212,6 +224,7 @@ define([
 	            model.toJSON()
 	        ).then(function(e) {
 	            params.basket.reset();
+	            this.hideLoader();
 	            popupsController.showMessage({
 	            	message: 'order placed',
 	            	confirm: true,

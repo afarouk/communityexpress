@@ -115,7 +115,7 @@ module.exports = {
             }, function onRequestError () {
                 console.log("not removing cookie, onRequestError ?");
                 //Cookies.remove('cmxUID');
-                dfd.resolve();
+                dfd.reject();
             });
         } else {
             dfd.resolve();

@@ -51,7 +51,9 @@ define([
 			                    pushState: true
 			                });
 			                popupsController.onLoginStatusChanged();
-		            });
+		            	}, function() {
+		            		Cookies.remove('cmxUID');
+		            	}.bind(this));
 		        } else {
 		        	popupsController.onLoginStatusChanged();
 		        }
