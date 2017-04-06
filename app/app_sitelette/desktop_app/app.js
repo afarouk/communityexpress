@@ -10,9 +10,10 @@ define([
     './controllers/catalogs-controller',
     './controllers/order-controller',
     './controllers/popups-controller',
+    './controllers/landing-controller',
     './temporary-component'
 	], function(Packery, jQueryBridget, appCache, Cookies,
-		configurationActions, sessionActions, catalogsController, orderController, popupsController,
+		configurationActions, sessionActions, catalogsController, orderController, popupsController, landingController, 
 		temporaryComponent){
 		var App = new Mn.Application({
 			onStart: function() {
@@ -62,6 +63,7 @@ define([
 
 			initSubviews: function() {
 				catalogsController.manageCatalog();
+				landingController.start();
 			},
 
 			initAnimationsOnPage: function() {

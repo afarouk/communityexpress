@@ -4,8 +4,9 @@ define([
 	'ejs!../../templates/order/summary.ejs',
 	'../../../scripts/actions/orderActions',
 	'../../../scripts/globalHelpers',
+	'../../../scripts/appCache',
 	'../../controllers/popups-controller'
-	], function(template, orderActions, h, popupsController){
+	], function(template, orderActions, h, appCache, popupsController){
 	var SummaryView = Mn.View.extend({
 		template: template,
 		className: 'page summary_page',
@@ -29,6 +30,11 @@ define([
 			this.getTipInfo();
 	        this.allowDelivery = this.model.additionalParams.allowDelivery;
 	        this.currencySymbol = this.model.currencySymbols['USD'];
+
+	        var promoCode = appCache.get('promoCode');
+	        if (promoCode) {
+	        	this.model.additionalParams.promoCode = promoCode;
+	        }
 	        this.onGetDiscount();
 		},
 		serializeData: function() {
@@ -52,7 +58,7 @@ define([
 	            pickupAddress: pickupAddress,
 	            // showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
 	            showTipOnSummaryPage: true,
-	            // discount: this.model.additionalParams.discountDisplay.toFixed(2),
+	            discount: this.model.additionalParams.discountDisplay ? this.model.additionalParams.discountDisplay.toFixed(2) : 0,
 	            promoCode: this.model.additionalParams.promoCode,
 	            minimumPurchase: this.model.additionalParams.minimumPurchase,
 			});
@@ -129,6 +135,7 @@ define([
 	                    break;
 	                default:
 	            }
+	            this.$('.discount_value').text(cs + this.model.additionalParams.discountDisplay.toFixed(2));
 	        }
 	        if (totalAmount < 0) {
 	            totalAmount = 0

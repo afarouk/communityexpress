@@ -77,7 +77,7 @@
 	                </div>
 	            </#if>
 
-                <div class="grid-item cmtyx_promocodes_block">
+                <!-- <div class="grid-item cmtyx_promocodes_block">
                     <div class="header cmtyx_color_4">
                         <div class="title">discount <span class="collapse_btn"></span></div>
                     </div>
@@ -91,7 +91,54 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
+
+                <!----- Discount coupons  ---------------->
+            
+                <div id="cmtyx_promocodes_block" class="grid-item cmtyx_promocodes_block">
+                  <div class="header cmtyx_color_4">
+                    <span class="title">Discounts</span> 
+                    <span class="tag_icon"></span>
+                  </div>
+                  <#if (promoCodes)?has_content >
+                    <div class="body">
+                      <div class="owl-carousel discount-item-container">
+                        <#list promoCodes as promoCode>
+                          <div class="slide promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
+                            <div class="promocode_inner_wrapper">
+                              <div class="promoCode-container">
+                                <#if promoCode.imageURL??>
+                                  <div class="promoCode_image">
+                                    <img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
+                                  </div>
+                                </#if>
+                              </div>
+                              <#if promoCode.applicationType.name()=="AUTO_APPLY">
+                                <div class="promoCode-buybutton-container">
+                                  <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
+                                  data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
+                                  Shop</button>
+                                </div>
+                              </#if>
+                            </div>
+                          </div>
+                        </#list>
+                      </div>
+                    </div>
+                    <div class="discount-used">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                      <span>Discount used</span>
+                    </div>
+                  <#else>
+                    <div class="body">
+                      <div class="no_discounts">
+                        (No Discounts)
+                      </div>
+                    </div>
+                  </#if>
                 </div>
+              
+                <!----- End of Discount coupons  ---------------->
 
                 <#if (eventsSummary.events)?has_content >
                   <div class="grid-item grid-item--height3 cmtyx_events_block">

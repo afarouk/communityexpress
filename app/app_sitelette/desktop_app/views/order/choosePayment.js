@@ -5,8 +5,9 @@ define([
 	'./switchTabsBehavior',
 	'../../../scripts/actions/orderActions',
 	'../../../scripts/globalHelpers',
+	'../../../scripts/appCache',
 	'../../controllers/popups-controller'
-	], function(template, SwitchTabsBehavior, orderActions, h, popupsController){
+	], function(template, SwitchTabsBehavior, orderActions, h, appCache, popupsController){
 	var ChoosePaymentView = Mn.View.extend({
 		template: template,
 		behaviors: [SwitchTabsBehavior],
@@ -33,7 +34,12 @@ define([
 	        this.paymentOnlineAccepted = this.model.additionalParams.paymentOnlineAccepted;
 	        this.allowDelivery = this.model.additionalParams.allowDelivery;
 	        this.currencySymbol = this.model.currencySymbols['USD'];
-	        this.onGetDiscount();
+
+	        var promoCode = appCache.get('promoCode');
+	        if (promoCode) {
+	        	this.model.additionalParams.promoCode = promoCode;
+	        }
+	        this.onGetDiscount(); //temporary
 		},
 		serializeData: function() {
 			var favorites = this.model.additionalParams.userModel.favorites,
@@ -56,7 +62,7 @@ define([
 	            pickupAddress: pickupAddress,
 	            // showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
 	            showTipOnSummaryPage: true,
-	            // discount: this.model.additionalParams.discountDisplay.toFixed(2),
+	            discount: this.model.additionalParams.discountDisplay ? this.model.additionalParams.discountDisplay.toFixed(2) : 0,
 	            promoCode: this.model.additionalParams.promoCode,
 	            minimumPurchase: this.model.additionalParams.minimumPurchase,
 			});
@@ -158,6 +164,7 @@ define([
 	                    break;
 	                default:
 	            }
+	            this.$('.discount_value').text(cs + this.model.additionalParams.discountDisplay.toFixed(2));
 	        }
 	        if (totalAmount < 0) {
 	            totalAmount = 0

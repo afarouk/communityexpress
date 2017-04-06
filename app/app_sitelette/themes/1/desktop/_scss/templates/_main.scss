@@ -122,6 +122,7 @@
     /***** MENU *****/
     .cmtyx_menu_block {
       width: 66%;
+      max-height: 768px;
 
       #blinder-region {
         width: 100%;
@@ -153,6 +154,7 @@
       .body {
         padding: 0;
         height: 702px;
+        overflow-y: auto;
 
         .catalog_main_container {
           padding: 25px 20px 0 20px;
@@ -259,7 +261,7 @@
           .catalog-container {
             padding: 0 20px 0 25px;
             height: calc(100% - 63px); 
-            overflow-y: scroll;
+            /*overflow-y: scroll;*/
 
             ul.cmtyx_catalog {
               margin: 0;
@@ -1867,6 +1869,29 @@
 
     /***** PROMOCODES *****/
     .grid-item.cmtyx_promocodes_block {
+      .discount-used {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.3);
+        color: red;
+        z-index: 9;
+        text-align: center;
+        padding: 25%;
+        display: none;
+        i {
+          font-size: 100px;
+          display: block;
+        }
+        span {
+          font-size: 30px;
+        }
+      }
+      &.used .discount-used {
+        display: block;
+      }
       .discount-item-container { 
         position: relative;
 
@@ -1898,6 +1923,18 @@
           color: $discount-text;
           font-size: $size-small;
           font-weight: $style-normal-strong;
+        }
+
+      }
+      .promoCode-buybutton-container {
+        margin-top: 15px;
+        .promoCode-buybutton {
+          font-weight: 700;
+          border: 1px solid white;
+          border-radius: 5px;
+          padding: 15px 25px;
+          width: 100%;
+          background-color: transparent;
         }
       }
     }
