@@ -145,7 +145,6 @@
                 <!----- End of Discount coupons  ---------------->
 
                 <!----- Promotions  ---------------->
-                <#if (promotions)?has_content >
                 <div id="cmtyx_promotion_block" class="grid-item cmtyx_promotion_block">
                   <div class="header cmtyx_color_3">
                     <span class="title">Promotion</span>
@@ -208,7 +207,6 @@
                     </div>
                   </#if>
                 </div>
-                </#if>
               <!----- End of Promotions  ---------------->
 
               <!-- events -->

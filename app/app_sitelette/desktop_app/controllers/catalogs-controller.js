@@ -190,7 +190,10 @@ define([
                 	basket: basket, 
                 	sasl: sasl,
                 	catalogId: null,
-                	deliveryPickupOptions: null
+                	deliveryPickupOptions: null,
+                	singlePromotion: true,
+                	promoUUID: options.uuid,
+                	uuid: item.uuid
                 }));
 
                 basket.addItem(new Backbone.Model(item), 1);
