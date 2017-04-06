@@ -10,10 +10,11 @@ define([
     '../views/catalogsLayout',
     '../views/catalogs',
     '../views/singleCatalog',
+    '../views/itemPromotion',
     '../../scripts/models/CatalogBasketModel.js',
     '../views/blinderView'
 	], function(appCache, saslActions, catalogActions, sessionActions, orderController, popupsController, 
-		CatalogsLayoutView, CatalogsView, SingleCatalogView, CatalogBasketModel,
+		CatalogsLayoutView, CatalogsView, SingleCatalogView, ItemPromotionView, CatalogBasketModel,
 		BlinderView){
 	var CatalogsController = Mn.Object.extend({
 		initialize: function() {
@@ -156,6 +157,56 @@ define([
 		    }
 
 		    return url;
+		},
+
+		onPromotionSelected: function(options) {
+			if (this.basket.length > 0) {
+				popupsController.showMessage({
+					message: 'Are you sure?<br> Your order will be lost.',
+					confirm: 'confirm',
+					callback: this.confirmedPromotion.bind(this, options)
+				});
+			} else {
+				this.confirmedPromotion(options);
+			}
+		},
+
+		confirmedPromotion: function(options) {
+			this.basket.reset();
+			this.singleItemPromotion(options);
+		},
+
+		singleItemPromotion: function(options) {
+			var sasl;
+			return saslActions.getSasl()
+	        .then(function(ret) {
+	            sasl = ret;
+	            return catalogActions.getItemDetailsForPromoItem(options.uuid);
+	        }).then(function(item) {
+	        	var basket = new CatalogBasketModel();
+
+	            basket.off('add remove change reset');
+                basket.on('add remove change reset', this.onBasketChange.bind(this, {
+                	basket: basket, 
+                	sasl: sasl,
+                	catalogId: null,
+                	deliveryPickupOptions: null
+                }));
+
+                basket.addItem(new Backbone.Model(item), 1);
+
+                this.basket = basket; //not sure that it is good solution ???
+
+                var itemPromotionView = new ItemPromotionView({
+                        promoUUID: options.uuid,
+		                uuid: item.uuid,
+		                sasl: sasl,
+		                basket: basket,
+		                item: item
+	                });
+            	this.layout.showChildView('catalogsContainer', itemPromotionView);
+            	this.listenTo(itemPromotionView, 'backToCatalog' , this.onBackToCatalogs.bind(this)); //todo
+	        }.bind(this));
 		},
 
 		// singleton: function(options) {

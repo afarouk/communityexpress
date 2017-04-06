@@ -211,8 +211,9 @@
                 </#if>
               <!----- End of Promotions  ---------------->
 
+              <!-- events -->
                 <#if (eventsSummary.events)?has_content >
-                  <div class="grid-item grid-item--height3 cmtyx_events_block">
+                  <!-- <div class="grid-item grid-item--height3 cmtyx_events_block">
                       <div class="header cmtyx_color_1">
                           <div class="title">events <span class="collapse_btn"></span></div>
                       </div>
@@ -263,7 +264,7 @@
                                 </tr>
                             </table>
                       </div>
-                  </div>
+                  </div> -->
                 </#if>
                 
                 <!-- <div class="grid-item cmtyx_sale_block">
@@ -356,7 +357,7 @@
                 </div>
 
                 <#if (externalMedia)?has_content >
-                    <div class="grid-item cmtyx_video_block">
+                    <!-- <div class="grid-item cmtyx_video_block">
                         <div class="header cmtyx_color_1">
                             <div class="title">video <span class="collapse_btn"></span></div>
                         </div>
@@ -365,7 +366,7 @@
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/Co1oj3o4tbE" frameborder="0" allowfullscreen></iframe>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </#if>
 
                 <!-- <div class="grid-item cmtyx_about_us">
