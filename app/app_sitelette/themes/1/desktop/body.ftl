@@ -152,9 +152,9 @@
                   </div>
                   <#if (promotions)?has_content >
                   <div class="body">
-                    <div class="promotion-container">
+                    <div class="owl-carousel promotion-container">
                       <#list promotions as promotion>
-                        <div class="promotions-item" data-uuid="${promotion.uuid}">
+                        <div class="slide promotions-item" data-uuid="${promotion.uuid}">
                           <div class="promotion_item">
                             <div class="promotion_type">
                               <div class="promotion_title">${promotion.title}</div>

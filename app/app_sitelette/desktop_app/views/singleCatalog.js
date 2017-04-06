@@ -22,6 +22,11 @@ define([
 			this.options.basket.on('remove', this.onRemoveFromBasket.bind(this));
 			this.options.basket.on('reset', this.onResetBasket.bind(this));
 		},
+		serializeData: function() {
+			return {
+				catalogId: this.options.catalogId
+			};
+		},
 		onRender: function() {
 			var groups = new Backbone.Collection(this.options.catalog.collection.groups);
 			var catalogTabs = new CatalogTabsView({
