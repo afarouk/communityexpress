@@ -38,8 +38,10 @@
 
                 <!-- there is catalogs block -->
                 <div id="catalogs-layout" class="grid-item cmtyx_menu_block"></div>
+
                 <!-- there is cart/order block -->
                 <div id="order-layout" class="grid-item cmtyx_cart_block"></div>
+
                 <!-- there is welcome block -->
                 <div class="grid-item cmtyx_welcome_block">
                   <div class="body">
@@ -50,7 +52,7 @@
                   </div>
                 </div>
 
-                <#if (promotions)?has_content >
+                <!-- <#if (promotions)?has_content >
 	                <div class="grid-item cmtyx_promotion_block">
 	                    <div class="header cmtyx_color_3">
 	                        <div class="title">promotion <span class="collapse_btn"></span></div>
@@ -75,7 +77,7 @@
 	                        </ul>
 	                    </div>
 	                </div>
-	            </#if>
+	              </#if> -->
 
                 <!-- <div class="grid-item cmtyx_promocodes_block">
                     <div class="header cmtyx_color_4">
@@ -126,8 +128,10 @@
                       </div>
                     </div>
                     <div class="discount-used">
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                      <span>Discount used</span>
+                      <div class="attention-sign">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <span>Discount used</span>
+                      </div>
                     </div>
                   <#else>
                     <div class="body">
@@ -139,6 +143,73 @@
                 </div>
               
                 <!----- End of Discount coupons  ---------------->
+
+                <!----- Promotions  ---------------->
+                <#if (promotions)?has_content >
+                <div id="cmtyx_promotion_block" class="grid-item cmtyx_promotion_block">
+                  <div class="header cmtyx_color_3">
+                    <span class="title">Promotion</span>
+                  </div>
+                  <#if (promotions)?has_content >
+                  <div class="body">
+                    <div class="promotion-container">
+                      <#list promotions as promotion>
+                        <div class="promotions-item" data-uuid="${promotion.uuid}">
+                          <div class="promotion_item">
+                            <div class="promotion_type">
+                              <div class="promotion_title">${promotion.title}</div>
+                            </div>
+                            <#if !promotion.buyable>
+                            <div class="promotion_item_container_wrapper">
+                              <div class="ui-grid-a promotion_item_container">
+                                <div class="ui-block-a">
+                                  <img src="${promotion.URL}"></img>
+                                </div>
+                                <div class="ui-block-b">
+                                  <div class="promotion_details_container">
+                                    <#if promotion.buyable!false>
+                                    <div class="promotions-originalprice" >
+                                     <span>$${promotion.originalPrice}</span></div>
+                                    <div class="promotions-promoprice">
+                                     <span class="cmtyx_text_color_1">$${promotion.promoPrice}</span>
+                                     </div>
+                                    </#if>
+
+                                    <div class="promotion_description">${promotion.message}</div> 
+                                      <#if promotion.buyable!false>
+                                        <div class="promotions_buybutton_container" uuid="${promotion.uuid}">
+                                          <button class="promotions-buybutton cmtyx_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
+                                           Buy</button>
+                                        </div>
+                                      </#if>
+                                  </div>      
+                                </div>
+                              </div>
+                            </div>
+                            <#else>
+                            <div class="promotion_item_container_wrapper">
+                              <div class="promotion_item_container">
+                                <div class="promoCode_image " >
+                                  <img src="${promotion.URL}" class="promotions-buybutton" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}"></img>
+                                </div> 
+                              </div>
+                            </div>
+                            </#if>
+                          </div>
+                        </div> 
+                      </#list>
+                    </div>
+                  </div>
+                  <#else>
+                    <div class="body">
+                      <div class="no_promotions">
+                        (No Promotions)
+                      </div>
+                    </div>
+                  </#if>
+                </div>
+                </#if>
+              <!----- End of Promotions  ---------------->
 
                 <#if (eventsSummary.events)?has_content >
                   <div class="grid-item grid-item--height3 cmtyx_events_block">

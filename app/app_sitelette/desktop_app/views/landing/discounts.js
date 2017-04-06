@@ -2,7 +2,7 @@
 
 define([
 	], function(){
-	var DiscountView = Mn.View.extend({
+	var DiscountsView = Mn.View.extend({
           el: '#cmtyx_promocodes_block',
 		ui: {
 			buy: '.promoCode-buybutton'
@@ -21,5 +21,5 @@ define([
                this.$el.addClass('used');
           }
 	});
-	return DiscountView;
+	return DiscountsView;
 });

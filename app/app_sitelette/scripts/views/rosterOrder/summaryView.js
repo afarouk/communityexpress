@@ -92,6 +92,7 @@ var SummaryView = Backbone.View.extend({
                 this.setTotalPriceWithTip();
             }, this), _.bind(function(jqXHR) {
                 var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
+                this.model.additionalParams.promoCode = null;
                 popupController.textPopup({
                     text: text
                 });

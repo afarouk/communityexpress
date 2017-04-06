@@ -215,11 +215,12 @@ define([
 	                this.setTotalPriceWithTip();
 	            }, this), function(jqXHR) {
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
+	                this.model.additionalParams.promoCode = null;
 	                popupsController.showMessage({
 	                	message: text,
 						confirm: 'ok'
 	                });
-	            });
+	            }.bind(this));
 	    },
 
 		onNext: function() {

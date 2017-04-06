@@ -1876,21 +1876,34 @@
         right: 0;
         bottom: 0;
         background-color: rgba(255, 255, 255, 0.3);
-        color: red;
+        color: $attention-sign;
         z-index: 9;
         text-align: center;
         padding: 25%;
         display: none;
-        i {
-          font-size: 100px;
-          display: block;
-        }
-        span {
-          font-size: 30px;
+
+        .attention-sign {
+          border-radius: 50%;
+          border: 3px $attention-sign solid;
+          background-color: rgba(255, 255 , 255, 0.5);
+          width: 14vw;
+          height: 14vw;
+          padding: 10%;
+
+          i {
+            font-size: 6vw;
+            display: block;
+          }
+          span {
+            font-size: 2vw;
+          }
         }
       }
       &.used .discount-used {
-        display: block;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
       }
       .discount-item-container { 
         position: relative;
