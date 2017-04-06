@@ -118,7 +118,7 @@ var LandingView = Backbone.View.extend({
         demo = window.community.demo ? 'demo=true&' : '',
         shareUrl = window.location.href.split('?')[0] +
           '?' + demo,
-        val = $target.prev().find('.sms_input').val();
+        val = $target.prev().val();
 
     loader.showFlashMessage('Sending message to... ' + val);
     $el.slideUp('slow');

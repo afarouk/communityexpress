@@ -3289,8 +3289,8 @@ li.video_block .body {
 
 #cmtyx_share_block.share_block {
     display: block;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #cmtyx_share_block.share_block .title {
