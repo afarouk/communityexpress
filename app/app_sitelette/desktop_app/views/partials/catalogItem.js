@@ -41,13 +41,13 @@ define([
 			this.quantity++;
 			this.ui.quantity.text(this.quantity);
 			this.model.set('quantity', this.quantity);
-			this.changeItemsPrice();
+			// this.changeItemsPrice(); //Ravi told that we don't need that
 		},
 		onDecrease: function() {
 			this.quantity = this.quantity > 1 ? this.quantity - 1 : 1;
 			this.ui.quantity.text(this.quantity);
 			this.model.set('quantity', this.quantity);
-			this.changeItemsPrice();
+			// this.changeItemsPrice();
 		},
 		changeItemsPrice: function() {
 			var price = this.model.get('price') * this.quantity;

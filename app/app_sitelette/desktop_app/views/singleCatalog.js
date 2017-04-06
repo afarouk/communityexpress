@@ -18,6 +18,9 @@ define([
 		initialize: function(options) {
 			console.log(options);
 			this.options = options;
+
+			this.options.basket.on('remove', this.onRemoveFromBasket.bind(this));
+			this.options.basket.on('reset', this.onResetBasket.bind(this));
 		},
 		onRender: function() {
 			var groups = new Backbone.Collection(this.options.catalog.collection.groups);
@@ -41,7 +44,10 @@ define([
 			this.showCatalogGroup(groupItemsCollection, model);
 		},
 		showCatalogGroup: function (groupItemsCollection, selectedGroup) {
-			var catalogGroup = new CatalogGroupView({
+			if (this.catalogGroup) {
+				this.catalogGroup.remove();
+			}
+			this.catalogGroup = new CatalogGroupView({
 				collection: groupItemsCollection,
 				basket: this.options.basket,
 				groupId: selectedGroup.get('groupId'),
@@ -49,7 +55,13 @@ define([
 				catalogId: this.options.catalog.data.catalogId,
 				catalogDisplayText: this.options.catalog.data.catalogDisplayText
 			})
-			this.showChildView('group', catalogGroup);
+			this.showChildView('group', this.catalogGroup);
+		},
+		onRemoveFromBasket: function(model) {
+			this.catalogGroup.triggerMethod('basketRemove', model);
+		},
+		onResetBasket: function() {
+			this.catalogGroup.triggerMethod('basketReset');
 		},
 		onBackToCatalog: function() {
 			this.trigger('backToCatalog');

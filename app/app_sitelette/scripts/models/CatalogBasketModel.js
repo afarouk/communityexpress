@@ -149,8 +149,16 @@ var CatalogBasketModel = Backbone.Collection.extend({
         if (typeof this.versions !== 'object') {
             return null;
         }
-        var uuid = model.get('uuid').split('_._')[0];
-        delete this.versions[uuid];
+        var uuid = model.get('uuid'),
+            version = this.versions[uuid.split('_._')[0]],
+            removed = version.selectedVersions.find(function(v) {
+                return v.version.get('uuid') === uuid;
+            }),
+            index = version.selectedVersions.indexOf(removed);
+            version.selectedVersions.splice(index, 1);
+            if (version.selectedVersions.length === 0) {
+                delete this.versions[uuid.split('_._')[0]];
+            }
     },
 
     addItemRaw : function(itemRaw, count, groupId,groupDisplayText, catalogId,catalogDisplayText) {

@@ -27,10 +27,6 @@ define([
 			console.log(this.collection.toJSON());
 			this.basket = options.basket;
 			this.options = options;
-
-			//TODO use some marionet feature for losten off basket
-			this.basket.on('remove', this.onBasketRemove.bind(this));
-			this.basket.on('reset', this.onBasketReset.bind(this));
 		},
 		getVersionsFromBasket: function(model) {
 	        var versionsFromBasket = this.basket.getBasketVersions(model) || null,
