@@ -227,7 +227,7 @@ define([
 	            this.hideLoader();
 	            popupsController.showMessage({
 	            	message: 'order placed',
-	            	confirm: true,
+	            	confirm: 'ok',
 	            	callback: this.afterOrder.bind(this, model)
 	            });
 	        }.bind(this), function(e) {
@@ -285,7 +285,7 @@ define([
 			console.log('no items selected');
 			popupsController.showMessage({
 				message: 'no items selected',
-				confirm: true
+				confirm: 'ok'
 			});
 		},
 

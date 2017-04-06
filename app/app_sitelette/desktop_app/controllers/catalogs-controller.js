@@ -6,12 +6,13 @@ define([
     '../../scripts/actions/catalogActions',
     '../../scripts/actions/sessionActions',
     './order-controller',
+    './popups-controller',
     '../views/catalogsLayout',
     '../views/catalogs',
     '../views/singleCatalog',
     '../../scripts/models/CatalogBasketModel.js',
     '../views/blinderView'
-	], function(appCache, saslActions, catalogActions, sessionActions, orderController, 
+	], function(appCache, saslActions, catalogActions, sessionActions, orderController, popupsController, 
 		CatalogsLayoutView, CatalogsView, SingleCatalogView, CatalogBasketModel,
 		BlinderView){
 	var CatalogsController = Mn.Object.extend({
@@ -91,12 +92,14 @@ define([
 	                });
 
 	                basket.off('add remove change reset');
-	                basket.on('add remove change', this.onBasketChange.bind(this, {
+	                basket.on('add remove change reset', this.onBasketChange.bind(this, {
 	                	basket: basket, 
 	                	sasl: sasl,
 	                	catalogId: catalogId,
 	                	deliveryPickupOptions: catalog.data.deliveryPickupOptions
 	                }));
+
+	                this.basket = basket; //not sure that it is good solution ???
 
 	                var singleCatalogView = new SingleCatalogView({
 	                        sasl: sasl,
@@ -109,7 +112,7 @@ define([
 		                    isOpenWarningMessage: isOpenWarningMessage
 		                });
 		            	this.layout.showChildView('catalogsContainer', singleCatalogView);
-		            	this.listenTo(singleCatalogView, 'backToCatalog' , this.onBackToCatalog.bind(this));
+		            	this.listenTo(singleCatalogView, 'backToCatalog' , this.onBackToCatalogs.bind(this));
 	            }.bind(this));
 		},
 
@@ -127,11 +130,20 @@ define([
 			this.layout.getRegion('blinder').$el.hide();
 		},
 
-		onBackToCatalog: function() {
-			//TODO show confirm popup
-			// and empty basket
-			//temporary
-			//TODO get catalogs from cache
+		onBackToCatalogs: function() {
+			if (this.basket.length > 0) {
+				popupsController.showMessage({
+					message: 'Are you sure?<br> Your order will be lost.',
+					confirm: 'confirm',
+					callback: this.confirmedBackToCatalogs.bind(this)
+				});
+			} else {
+				this.confirmedBackToCatalogs();
+			}
+		},
+
+		confirmedBackToCatalogs: function () {
+			this.basket.reset();
 			this.manageCatalog();
 		},
 

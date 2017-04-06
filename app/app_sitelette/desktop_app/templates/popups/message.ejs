@@ -2,6 +2,9 @@
 	<div class="loader"></div>
 <% } %>
 <div class="message-text"><%= message %></div>
-<% if(confirm) { %>
+<% if(confirm === "ok") { %>
 	<button class="ok_btn">ok</button>
+<% } else if (confirm === "confirm") { %>
+	<button class="confirm_btn">confirm</button>
+	<button class="cancel_btn">cancel</button>
 <% } %>

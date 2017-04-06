@@ -181,7 +181,7 @@ define([
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
 	                popupsController.showMessage({
 	                	message: text,
-						confirm: true
+						confirm: 'ok'
 	                });
 	            });
 	    },

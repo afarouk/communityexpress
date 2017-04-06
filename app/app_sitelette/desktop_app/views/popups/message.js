@@ -7,10 +7,14 @@ define([
 		template: template,
 		className: 'message-popup',
 		ui: {
-			ok_btn: '.ok_btn'
+			ok_btn: '.ok_btn',
+			confirm_btn: '.confirm_btn',
+			cancel_btn: '.cancel_btn'
 		},
 		events: {
-			'click @ui.ok_btn': 'onClose'
+			'click @ui.cancel_btn': 'onClose',
+			'click @ui.ok_btn': 'onConfirm',
+			'click @ui.confirm_btn': 'onConfirm'
 		},
 		initialize: function(options) {
 			this.options = options || {};
@@ -34,9 +38,12 @@ define([
 				}.bind(this), 2000);
 			}
      	},
+     	onConfirm: function() {
+     		this.onClose();
+     		this.callback();
+     	},
      	onClose: function() {
      		this.$el.dialog('close');
-     		this.callback();
      	}
 	});
 	return MessageView;
