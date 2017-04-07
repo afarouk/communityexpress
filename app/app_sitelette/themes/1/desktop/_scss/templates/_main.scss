@@ -753,6 +753,24 @@
         .cart_page {
           padding: 25px 20px 70px 20px;
 
+          .item-added {
+            color: white;
+            opacity: 0;
+            animation: 2s addedFadeOut;
+          }
+
+          @keyframes addedFadeOut {
+              0% {
+                opacity: 0;
+              }
+              50% {
+                opacity: 1;
+              }
+              100% {
+                opacity: 0;
+              }
+          }
+
           .emptycart-container {
             display: flex;
             flex-direction: column;

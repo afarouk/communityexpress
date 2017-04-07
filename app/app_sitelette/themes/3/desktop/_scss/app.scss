@@ -1,3 +1,19 @@
-.test {
-	color: red;
-}
+// Core
+@import 'core/reset';
+@import 'core/colors';
+@import 'core/fonts';
+@import 'core/global';
+@import 'core/typography';
+@import 'core/helpers';
+
+// Components
+@import 'components/buttons';
+@import 'components/inputs';
+@import 'components/tabs';
+@import 'components/loader';
+@import 'components/dialogs';
+
+// Templates
+@import 'templates/main';
+@import 'templates/header';
+@import 'templates/footer';

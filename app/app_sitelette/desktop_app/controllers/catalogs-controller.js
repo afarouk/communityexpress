@@ -117,8 +117,8 @@ define([
 	            }.bind(this));
 		},
 
-		onBasketChange: function(options) {
-			orderController.renderOrder(this, options);
+		onBasketChange: function(options, a, b, change) {
+			orderController.renderOrder(this, options, change);
 		},
 
 		showBlinder: function() {

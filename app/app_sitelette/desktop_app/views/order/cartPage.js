@@ -11,13 +11,15 @@ define([
 			orderListContainer: '#order-list-region'
 		},
 		ui: {
-			order: '[name="order"]'
+			order: '[name="order"]',
+			item_added: '[name="item-added"]'
 		},
 		triggers: {
 			'click @ui.order': 'order:proceed'
 		},
-		initialize: function(options) {
+		initialize: function(options, change) {
 			options.basket = options.basket || [];
+			this.change = change;
 			this.basket = options.basket;
 			this.sasl = options.sasl;
 			this.chooseTemplate();
@@ -44,7 +46,8 @@ define([
 					shipping: null,
 					tax: null,
 					tip: null,
-					total: null
+					total: null,
+					change: this.change
 				};
 			}
 		}

@@ -33,6 +33,7 @@ define([
 			this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
 			this.listenTo(signin, 'user:signin', this.onUserSignin.bind(this));
 			this.listenTo(signin, 'user:forgot', this.onUserForgot.bind(this));
+			this.listenTo(signin, 'user:facebook', this.onUserFacebookLogin.bind(this));
 			this.initializeDialog(signin.$el);
 			signin.onShow();
 		},
@@ -61,10 +62,28 @@ define([
                 console.log(text);
                 this.showMessage({
 					message: text,
-					confirm: true,
+					confirm: 'ok',
 					callback: this.onUserLogin.bind(this)
 				});
             }.bind(this));
+		},
+		onUserFacebookLogin: function(onClose) {
+			sessionActions.facebookLoginStatus(this.facebookStatus)
+                .then(function(response){
+             		onClose();
+                    if (response.success) {
+                    	this.showMessage({
+							message: 'Successfully Logged in with FB Login',
+							confirm: 'ok',
+							callback: this.onLoginStatusChanged.bind(this)
+						});
+                    } else {
+                    	this.showMessage({
+							message: response.error,
+							loader: true
+						});
+                    }
+                }.bind(this));
 		},
 		onUserSignup: function () {
 			var signup = new SignupView();
