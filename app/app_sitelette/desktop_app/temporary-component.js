@@ -61,11 +61,18 @@ define([
 				$grid.packery(); 
 			}, 1200)
 
-			$(".owl-carousel").owlCarousel({
+			$(".cmtyx_gallery_block .owl-carousel").owlCarousel({
 				items: 1,
 				loop: true,
-				// autoplay: true,
+				autoplay: true,
 				autoplayTimeout: 3000
+			});
+
+			$(".cmtyx_promotion_block .owl-carousel, .cmtyx_promocodes_block .owl-carousel").owlCarousel({
+				items: 1,
+				loop: true,
+				nav: true,
+				navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
 			});
 
 			// $(".my-rating").starRating({

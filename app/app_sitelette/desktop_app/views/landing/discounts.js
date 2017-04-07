@@ -17,7 +17,7 @@ define([
 			'click @ui.buy': 'onBuy',
                'click @ui.show_share_btn': 'showShareBlock',
                'click @ui.show_sms_block': 'showSMSInput',
-               'click .sms_send_button': 'onSendSms'
+               'click .sms_send_button': 'onSendSMS'
 		},
           onBuy: function(e) {
                var $target = $(e.currentTarget),

@@ -69,54 +69,65 @@
     /***** PROMOTION *****/
     .grid-item.cmtyx_promotion_block {
       .body {
-        padding: 0; 
-        padding-bottom: 20px;
+        padding: 5px 20px 20px 20px;
+
+        .owl-carousel {
+          .owl-nav {
+              top: 5px;
+          }
+        }
 
         img.promotion-image {
           width: 100%;
         }
 
-        .promotion-btns { 
-          height: 50px;
+        // .promotion-btns { 
+        //   height: 50px;
 
-           .left-block, 
-           .right-block {
-            height: 50px;
-            width: 49%;
-            display: inline-block;
-            color: $white;
-            font-size: $size-normal;
-            font-weight: $style-normal-strong;
-            position: relative;
+        //    .left-block, 
+        //    .right-block {
+        //     height: 50px;
+        //     width: 49%;
+        //     display: inline-block;
+        //     color: $white;
+        //     font-size: $size-normal;
+        //     font-weight: $style-normal-strong;
+        //     position: relative;
 
-            i.fa {
-              margin-right: 5px;
-              color: $cmtyx_color_1;
-              font-size: 18px;
-            }
-          }
+        //     i.fa {
+        //       margin-right: 5px;
+        //       color: $cmtyx_color_1;
+        //       font-size: 18px;
+        //     }
+        //   }
 
-          .left-block {
-            text-align: right;
-            padding: 0 10px 0 0;
-          }
+        //   .left-block {
+        //     text-align: right;
+        //     padding: 0 10px 0 0;
+        //   }
 
-          .right-block {
-            text-align: left;
-            padding: 0 0 0 10px;
-          }
+        //   .right-block {
+        //     text-align: left;
+        //     padding: 0 0 0 10px;
+        //   }
 
-          span {
-            line-height: 50px;
-            cursor: pointer;
+        //   span {
+        //     line-height: 50px;
+        //     cursor: pointer;
 
-            &:hover {
-              color: $cmtyx_color_1;
-            }
-          }
-        }
+        //     &:hover {
+        //       color: $cmtyx_color_1;
+        //     }
+        //   }
+        // }
 
         .promotion_item {
+          .promotion_type {
+            padding: 5px 0;
+            text-align: center;
+            color: $cart-text;
+          }
+
           .promotion_item_buttons {
             .share_btn_block {
               text-align: center;
@@ -128,6 +139,26 @@
           .sms_input_block {
             text-align: center;
             display: none;
+
+            .sms_input {
+              background-color: transparent;
+              border: solid 1px $cart-scroll;
+              padding: 5px;
+              border-top-left-radius: 2px;
+              border-bottom-left-radius: 2px;
+              color: $cart-text;
+            }
+
+            .sms_send_button {
+              height: 31px;
+              border: solid 1px;
+              position: relative;
+              right: 5px;
+              bottom: 1px;
+              border-top-right-radius: 2px;
+              border-bottom-right-radius: 2px;
+              color: $white;
+            }
           }
 
           .promotion-share-block {
@@ -356,7 +387,7 @@
                   align-items: flex-end;
 
                   .quantity_container {
-                    display: inline-block;
+                    display: none;
                     width: 89px;
                     height: 30px;
                     margin-bottom: 10px;
@@ -435,6 +466,7 @@
                         margin-right: 10px;
                         border: solid 1px $cart-scroll;
                         color: $cart-text;
+                        min-width: 100px;
                       }
                     }
                   }
@@ -752,23 +784,26 @@
 
         .cart_page {
           padding: 25px 20px 70px 20px;
+          position: relative;
 
           .item-added {
-            color: white;
+            position: absolute;
+            top: 15px;
+            color: $white;
             opacity: 0;
             animation: 2s addedFadeOut;
           }
 
           @keyframes addedFadeOut {
-              0% {
-                opacity: 0;
-              }
-              50% {
-                opacity: 1;
-              }
-              100% {
-                opacity: 0;
-              }
+            0% {
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+            }
           }
 
           .emptycart-container {
@@ -1930,6 +1965,114 @@
 
     /***** PROMOCODES *****/
     .grid-item.cmtyx_promocodes_block {
+      .body{
+        padding: 30px 20px 20px 20px;
+
+        .owl-carousel {
+          .owl-nav {
+              top: -20px;
+          }
+        }
+
+        .discount-item-container { 
+          position: relative;
+
+          .promoCode_item {
+            .promoCode_image {
+              img { width: 100%; }
+            }
+
+            .discount-item-info {
+              position: absolute;
+              top: 35px;
+              left: 25px;
+
+              .discount-item-title {
+                color: $cmtyx_color_4;
+                font-size: $size-normal;
+                font-weight: $style-normal-strong;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+              }
+
+              .discount-item-text {
+                color: $discount-text;
+                font-size: $size-normal;
+                font-weight: $style-normal-strong;
+                margin-bottom: 10px;
+              }
+
+              .discount-item-date {
+                opacity: 0.7;
+                color: $discount-text;
+                font-size: $size-small;
+                font-weight: $style-normal-strong;
+              }
+
+            }
+            .promoCode-buybutton-container {
+              margin-top: 15px;
+              .promoCode-buybutton {
+                font-weight: 700;
+                border: 1px solid white;
+                border-radius: 5px;
+                padding: 15px 25px;
+                width: 100%;
+                background-color: transparent;
+              }
+            }
+
+            .promoCode_item_buttons {
+              .share_btn_block {
+                text-align: center;
+                cursor: pointer;
+                margin: 20px 0 10px 0;
+              }
+            }
+
+            .sms_input_block {
+              text-align: center;
+              display: none;
+
+              .sms_input {
+                background-color: transparent;
+                border: solid 1px $cart-scroll;
+                padding: 5px;
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
+                color: $cart-text;
+              }
+
+              .sms_send_button {
+                height: 31px;
+                border: solid 1px;
+                position: relative;
+                right: 5px;
+                bottom: 1px;
+                border-top-right-radius: 2px;
+                border-bottom-right-radius: 2px;
+                color: $white;
+              }
+            }
+
+            .promoCode-share-block {
+              display: none;
+
+              .icons-container-wrapper {
+
+                .icons-container {
+                  display: flex;
+                  justify-content: space-around;
+                  align-items: center;
+                  padding: 20px 0;
+                }
+              }
+            }
+
+          }
+        }   
+      }
+
       .discount-used {
         position: absolute;
         top: 0;
@@ -1966,83 +2109,6 @@
         align-content: center;
         justify-content: center;
       }
-
-      .discount-item-container { 
-        position: relative;
-
-        .promoCode_item {
-          img { width: 100%; }
-
-          .discount-item-info {
-            position: absolute;
-            top: 35px;
-            left: 25px;
-
-            .discount-item-title {
-              color: $cmtyx_color_4;
-              font-size: $size-normal;
-              font-weight: $style-normal-strong;
-              text-transform: uppercase;
-              margin-bottom: 10px;
-            }
-
-            .discount-item-text {
-              color: $discount-text;
-              font-size: $size-normal;
-              font-weight: $style-normal-strong;
-              margin-bottom: 10px;
-            }
-
-            .discount-item-date {
-              opacity: 0.7;
-              color: $discount-text;
-              font-size: $size-small;
-              font-weight: $style-normal-strong;
-            }
-
-          }
-          .promoCode-buybutton-container {
-            margin-top: 15px;
-            .promoCode-buybutton {
-              font-weight: 700;
-              border: 1px solid white;
-              border-radius: 5px;
-              padding: 15px 25px;
-              width: 100%;
-              background-color: transparent;
-            }
-          }
-
-          .promoCode_item_buttons {
-            .share_btn_block {
-              text-align: center;
-              cursor: pointer;
-              margin: 20px 0 10px 0;
-            }
-          }
-
-          .sms_input_block {
-            text-align: center;
-            display: none;
-          }
-
-          .promoCode-share-block {
-            display: none;
-
-            .icons-container-wrapper {
-
-              .icons-container {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                padding: 20px 0;
-              }
-            }
-          }
-
-        }
-      }
-
     }
     /***** END OF PROMOCODES *****/
 
