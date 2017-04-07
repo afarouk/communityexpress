@@ -14,7 +14,7 @@ if (isset($pageAccess)) {
     } else {
     // include_once('sitefiles/pages/' . 'common_desktop.php');
       include_once 'themes/'.$themeId.'/desktop/head.php';
-      if ($ftlfile) { //temporary
+      if ($useTemplate) {  
         echo $siteletteJSON['landingViewHTML'];
       } else {
         include_once 'themes/'.$themeId.'/desktop/body.html';
