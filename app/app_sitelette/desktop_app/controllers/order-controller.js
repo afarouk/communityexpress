@@ -24,8 +24,8 @@ define([
 			this.layout = new OrderLayoutView();
 			this.renderOrder();
 		},
-		renderOrder: function(catalogsController, options) {
-			var cartPage = new CartPageView(options);
+		renderOrder: function(catalogsController, options, change) {
+			var cartPage = new CartPageView(options, change);
 			this.layout.showChildView('orderContainer', cartPage);
 			this.listenTo(cartPage, 'order:proceed', this.onOrder.bind(this, options));
 			//TODO not sure that it is good idea
