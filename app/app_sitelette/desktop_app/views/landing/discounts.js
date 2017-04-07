@@ -7,13 +7,17 @@ define([
 		ui: {
 			buy: '.promoCode-buybutton',
                show_share_btn: '.share_btn_block',
-               show_sms_block: '.sms_block'
-
+               show_sms_block: '.sms_block',
+               send_sms: '.sms_send_button', 
+               share_email: '[name="share_email"]',
+               share_facebook: '[name="share_facebook"]',
+               share_twitter: '[name="share_twitter"]'
 		},
 		events: {
 			'click @ui.buy': 'onBuy',
                'click @ui.show_share_btn': 'showShareBlock',
-               'click @ui.show_sms_block': 'showSMSInput'
+               'click @ui.show_sms_block': 'showSMSInput',
+               'click .sms_send_button': 'onSendSms'
 		},
           onBuy: function(e) {
                var $target = $(e.currentTarget),
@@ -38,7 +42,67 @@ define([
                    $el = $target.parent().parent().prev();
 
                $el.slideToggle();
-          }
+          },
+
+          onSendSMS: function(e) {
+               debugger;
+               var $el = this.$el.find('.sms_input_block'),
+                   $target = $(e.currentTarget),
+                   uuid = $target.parent().parent().data('uuid'),
+                   demo = window.community.demo ? 'demo=true&' : '',
+                   shareUrl = window.location.href.split('?')[0] +
+                     '?' + demo + 't=e&u=' + uuid,
+                   val = $target.prev().val();
+
+               // loader.showFlashMessage('Sending message to... ' + val);
+               this.showShareBlock();
+               debugger;
+               return
+               contactActions.shareURLviaSMS('DISCOUNT', this.sasl.serviceAccommodatorId,
+                this.sasl.serviceLocationId, val, uuid, shareUrl)
+                .then(function(res){
+                  // loader.showFlashMessage('Sending message success.');
+                }.bind(this))
+                .fail(function(res){
+                  if (res.responseJSON && res.responseJSON.error) {
+                    // loader.showFlashMessage(res.responseJSON.error.message);
+                  }
+                }.bind(this));
+          },
+
+          getLinks: function(uuid) {
+                var demo = window.community.demo ? 'demo=true&' : '',
+                      shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
+                      '?' + demo + 't=d&u=' + uuid),
+                    links = [
+                        '',
+                        'mailto:?subject=&body=' + shareUrl,
+                        'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl,
+                        'https://twitter.com/intent/tweet?text=' + shareUrl
+                    ];
+                return links;
+          },
+
+          setShareLinks: function($discount) {
+                var $block = $discount.find('.promoCode-share-block'),
+                    uuid = $block.data('uuid'),
+                    links = this.getLinks(uuid),
+                    $links = $block.find('a');
+
+                $links.each(function(index){
+                    var link = $(this);
+                    link.attr('href', links[index]);
+                });
+            },
+
+            setLinksForEachDiscount: function() {
+                var $discounts = this.$el.find('.promoCode_item');
+                $discounts.each(function(index, el){
+                  var $discount = $(el);
+                  this.setShareLinks($discount);
+                }.bind(this));
+            }
+
 	});
 	return DiscountsView;
 });
