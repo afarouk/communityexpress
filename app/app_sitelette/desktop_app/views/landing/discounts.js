@@ -19,6 +19,9 @@ define([
                'click @ui.show_sms_block': 'showSMSInput',
                'click @ui.send_sms': 'onSendSMS'
 		},
+          initialize: function() {
+               this.setLinksForEachDiscount();
+          },
           onBuy: function(e) {
                var $target = $(e.currentTarget),
                     uuid = $target.data('uuid'),
@@ -56,38 +59,38 @@ define([
                this.trigger('onSendSMS', 'DISCOUNT', val, uuid, shareUrl);
           },
 
-          // getLinks: function(uuid) {
-          //       var demo = window.community.demo ? 'demo=true&' : '',
-          //             shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
-          //             '?' + demo + 't=d&u=' + uuid),
-          //           links = [
-          //               '',
-          //               'mailto:?subject=&body=' + shareUrl,
-          //               'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl,
-          //               'https://twitter.com/intent/tweet?text=' + shareUrl
-          //           ];
-          //       return links;
-          // },
+          getLinks: function(uuid) {
+                var demo = window.community.demo ? 'demo=true&' : '',
+                      shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
+                      '?' + demo + 't=d&u=' + uuid),
+                    links = [
+                        '',
+                        'mailto:?subject=&body=' + shareUrl,
+                        'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl,
+                        'https://twitter.com/intent/tweet?text=' + shareUrl
+                    ];
+                return links;
+          },
 
-          // setShareLinks: function($discount) {
-          //       var $block = $discount.find('.promoCode-share-block'),
-          //           uuid = $block.data('uuid'),
-          //           links = this.getLinks(uuid),
-          //           $links = $block.find('a');
+          setShareLinks: function($discount) {
+                var $block = $discount.find('.promoCode-share-block'),
+                    uuid = $block.data('uuid'),
+                    links = this.getLinks(uuid),
+                    $links = $block.find('a');
 
-          //       $links.each(function(index){
-          //           var link = $(this);
-          //           link.attr('href', links[index]);
-          //       });
-          //   },
+                $links.each(function(index){
+                    var link = $(this);
+                    link.attr('href', links[index]);
+                });
+            },
 
-          //   setLinksForEachDiscount: function() {
-          //       var $discounts = this.$el.find('.promoCode_item');
-          //       $discounts.each(function(index, el){
-          //         var $discount = $(el);
-          //         this.setShareLinks($discount);
-          //       }.bind(this));
-          //   }
+          setLinksForEachDiscount: function() {
+               var $discounts = this.$el.find('.promoCode_item');
+                $discounts.each(function(index, el){
+                  var $discount = $(el);
+                  this.setShareLinks($discount);
+               }.bind(this));
+          }
 
 	});
 	return DiscountsView;

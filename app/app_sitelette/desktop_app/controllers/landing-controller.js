@@ -17,6 +17,7 @@ define([
 			this.listenTo(discountsView, 'onSendSMS', this.onSendSMS.bind(this));
 			var promotionsView = new PromotionsView();
 			this.listenTo(promotionsView, 'onPromotion', this.onPromotionSelected.bind(this));
+			this.listenTo(promotionsView, 'onSendSMS', this.onSendSMS.bind(this));
 		},
 		onDiscountSelected: function(options) {
 			console.log(options);
