@@ -42,16 +42,6 @@
                 <!-- there is cart/order block -->
                 <div id="order-layout" class="grid-item cmtyx_cart_block"></div>
 
-                <!-- there is welcome block -->
-                <div class="grid-item cmtyx_welcome_block">
-                  <div class="body">
-                    <div class="title">warm and cosy</div>
-                    <div class="undertitle">A quite room perfect for conversation with soft music in background</div>
-                    <span class="open_label">we are open</span>    
-                    <div class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></div>
-                  </div>
-                </div>
-
                 <!-- <#if (promotions)?has_content >
 	                <div class="grid-item cmtyx_promotion_block">
 	                    <div class="header cmtyx_color_3">
@@ -123,6 +113,43 @@
                                 </div>
                               </#if>
                             </div>
+
+                            <div class="promoCode_item_buttons">
+                              <div class="share_btn_block cmtyx_text_color_4" data-promoCode="<%=promoCode.promoCode %>" >
+                                  <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
+                              </div>
+                            </div>
+
+                            <div class="promoCode-share-block" data-promoCode="<%= promoCode.promoCode %>" data-uuid="<%=promoCode.discountUUID %>" >
+                              <div class="sms_input_block">
+                                  <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                                  <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+                              </div>
+                              <div class="icons-container-wrapper">
+                                <div class="icons-container">
+                                  <div class="text sms_block">
+                                      <a href="" class="share_sms cmtyx_text_color_1">
+                                          <img src="themes/1/desktop/images/sms-icon.png" alt="sms icon">
+                                      </a>
+                                  </div>
+                                  <div class="text email_block">
+                                      <a href="" class="share_email cmtyx_text_color_1">
+                                          <img src="themes/1/desktop/images/facebook-icon.png" alt="facebook icon">
+                                      </a>
+                                  </div>
+                                  <div class="text facebook_block">
+                                      <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                                          <img src="themes/1/desktop/images/email-icon.png" alt="email icon">
+                                      </a>
+                                  </div>
+                                  <div class="text twitter_block">
+                                      <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                                          <img src="themes/1/desktop/images/twitter-icon.png" alt="twitter icon">
+                                      </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </#list>
                       </div>
@@ -143,6 +170,33 @@
                 </div>
               
                 <!----- End of Discount coupons  ---------------->
+
+                <!-- there is welcome block -->
+                <div class="grid-item cmtyx_welcome_block">
+                  <div class="body">
+                    <#if (medias)?has_content >
+                      <img src="${medias[0].URL}" />
+                    <#else>
+                      <img src="themes/1/placeholder_images/welocome_img.png"></img>
+                    </#if>
+                    <div class="text-container">
+                      <#if (medias)?has_content >
+                        <#if (medias[0]??) >
+                          <div class="title">${medias[0].title}</div>
+                          <div class="undertitle">${medias[0].message}</div>
+                        <#else>
+                          <div class="title">(no title)</div>
+                          <div class="undertitle">(no message) </div>
+                        </#if>
+                      </#if>
+                      
+                      <!-- <span class="open_label">we are open</span>    
+                      <div class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></div> -->
+                    </div>
+                  </div>
+                </div>
+
+                <!----- End of welcome block  ---------------->
 
                 <!----- Promotions  ---------------->
                 <div id="cmtyx_promotion_block" class="grid-item cmtyx_promotion_block">
@@ -194,6 +248,42 @@
                               </div>
                             </div>
                             </#if>
+                            <div class="promotion_item_buttons">
+                              <div class="share_btn_block cmtyx_text_color_3"
+                                uuid="${promotion.uuid}">
+                                <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
+                              </div>
+                            </div>
+                            <div class="promotion-share-block" data-uuid="${promotion.uuid}">
+                              <div class="sms_input_block">
+                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                                <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+                              </div>
+                              <div class="icons-container-wrapper">
+                                <div class="icons-container">
+                                  <div class="text sms_block">
+                                      <a href="" class="share_sms cmtyx_text_color_1">
+                                          <img src="themes/1/desktop/images/sms-icon.png" alt="sms icon">
+                                      </a>
+                                  </div>
+                                  <div class="text email_block">
+                                      <a href="" class="share_email cmtyx_text_color_1">
+                                          <img src="themes/1/desktop/images/facebook-icon.png" alt="facebook icon">
+                                      </a>
+                                  </div>
+                                  <div class="text facebook_block">
+                                      <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                                          <img src="themes/1/desktop/images/email-icon.png" alt="email icon">
+                                      </a>
+                                  </div>
+                                  <div class="text twitter_block">
+                                      <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                                          <img src="themes/1/desktop/images/twitter-icon.png" alt="twitter icon">
+                                      </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div> 
                       </#list>

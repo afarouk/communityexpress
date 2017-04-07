@@ -1,17 +1,17 @@
-.cmtyx_color_1 { background-color: $cmtyx_color_1 !important; }
-.cmtyx_color_2 { background-color: $cmtyx_color_2 !important; }
-.cmtyx_color_3 { background-color: $cmtyx_color_3 !important; }
-.cmtyx_color_4 { background-color: $cmtyx_color_4 !important; }
+// .cmtyx_color_1 { background-color: $cmtyx_color_1 !important; }
+// .cmtyx_color_2 { background-color: $cmtyx_color_2 !important; }
+// .cmtyx_color_3 { background-color: $cmtyx_color_3 !important; }
+// .cmtyx_color_4 { background-color: $cmtyx_color_4 !important; }
 
-.cmtyx_text_color_1 { color: $white !important; }
-.cmtyx_text_color_2 { color: $white !important; }
-.cmtyx_text_color_3 { color: $white !important; }
-.cmtyx_text_color_4 { color: $white !important; }
+// .cmtyx_text_color_1 { color: $white !important; }
+// .cmtyx_text_color_2 { color: $white !important; }
+// .cmtyx_text_color_3 { color: $white !important; }
+// .cmtyx_text_color_4 { color: $white !important; }
 
-.cmtyx_border_color_1 { border-color: $cmtyx_color_1 !important; }
-.cmtyx_border_color_2 { border-color: $cmtyx_color_2 !important; }
-.cmtyx_border_color_3 { border-color: $cmtyx_color_3 !important; }
-.cmtyx_border_color_4 { border-color: $cmtyx_color_4 !important; }
+// .cmtyx_border_color_1 { border-color: $cmtyx_color_1 !important; }
+// .cmtyx_border_color_2 { border-color: $cmtyx_color_2 !important; }
+// .cmtyx_border_color_3 { border-color: $cmtyx_color_3 !important; }
+// .cmtyx_border_color_4 { border-color: $cmtyx_color_4 !important; }
 
 .breaking_news {
   background-color: $red-news;
@@ -70,6 +70,7 @@
     .grid-item.cmtyx_promotion_block {
       .body {
         padding: 0; 
+        padding-bottom: 20px;
 
         img.promotion-image {
           width: 100%;
@@ -111,6 +112,35 @@
 
             &:hover {
               color: $cmtyx_color_1;
+            }
+          }
+        }
+
+        .promotion_item {
+          .promotion_item_buttons {
+            .share_btn_block {
+              text-align: center;
+              cursor: pointer;
+              margin: 20px 0 10px 0;
+            }
+          }
+
+          .sms_input_block {
+            text-align: center;
+            display: none;
+          }
+
+          .promotion-share-block {
+            display: none;
+
+            .icons-container-wrapper {
+              
+              .icons-container {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 20px 0;
+              }
             }
           }
         }
@@ -1824,44 +1854,57 @@
         padding: 0;
         text-align: center;
         background-color: $welcome-block-background;
+        position: relative;
 
-        .title {
-          color: $white;
-          font-size: $size-large;
-          font-weight: $style-semi-bold;
-          text-transform: uppercase;
-          margin-top: 75px;
-          margin-bottom: 40px;
+        img {
+          width: 100%;
         }
 
-        .undertitle {
-          display: block;
-          color: $white;
-          font-size: $size-lg-normal-small;
-          font-weight: $style-normal-strong;
-          line-height: 26px;
-          margin: 0 auto;
-          margin-bottom: 30px;
-          width: 270px;
-        }
+        .text-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
 
-        .open_label {
-          display: inline-block;
-          background-color: $open-label;
-          border-radius: 2px;
-          padding: 12px 52px;
-          color: $white;
-          font-size: $size-normal-small;
-          font-weight: $style-normal-strong;
-          text-transform: uppercase;
-          margin-bottom: 30px;
-        }
+          .title {
+            color: $white;
+            font-size: $size-large;
+            font-weight: $style-semi-bold;
+            text-transform: uppercase;
+            margin-top: 75px;
+            margin-bottom: 40px;
+          }
 
-        .business_hours {
-          color: $welcome-block-text;
-          font-size: $size-normal;
-          font-weight: $style-normal-strong;
-          margin-bottom: 55px;
+          .undertitle {
+            display: block;
+            color: $white;
+            font-size: $size-lg-normal-small;
+            font-weight: $style-normal-strong;
+            line-height: 26px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            width: 270px;
+          }
+
+          .open_label {
+            display: inline-block;
+            background-color: $open-label;
+            border-radius: 2px;
+            padding: 12px 52px;
+            color: $white;
+            font-size: $size-normal-small;
+            font-weight: $style-normal-strong;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+          }
+
+          .business_hours {
+            color: $welcome-block-text;
+            font-size: $size-normal;
+            font-weight: $style-normal-strong;
+            margin-bottom: 55px;
+          }
         }
       }
     }
@@ -1905,51 +1948,83 @@
         align-content: center;
         justify-content: center;
       }
+
       .discount-item-container { 
         position: relative;
 
-         img { width: 100%; }
+        .promoCode_item {
+          img { width: 100%; }
+
+          .discount-item-info {
+            position: absolute;
+            top: 35px;
+            left: 25px;
+
+            .discount-item-title {
+              color: $cmtyx_color_4;
+              font-size: $size-normal;
+              font-weight: $style-normal-strong;
+              text-transform: uppercase;
+              margin-bottom: 10px;
+            }
+
+            .discount-item-text {
+              color: $discount-text;
+              font-size: $size-normal;
+              font-weight: $style-normal-strong;
+              margin-bottom: 10px;
+            }
+
+            .discount-item-date {
+              opacity: 0.7;
+              color: $discount-text;
+              font-size: $size-small;
+              font-weight: $style-normal-strong;
+            }
+
+          }
+          .promoCode-buybutton-container {
+            margin-top: 15px;
+            .promoCode-buybutton {
+              font-weight: 700;
+              border: 1px solid white;
+              border-radius: 5px;
+              padding: 15px 25px;
+              width: 100%;
+              background-color: transparent;
+            }
+          }
+
+          .promoCode_item_buttons {
+            .share_btn_block {
+              text-align: center;
+              cursor: pointer;
+              margin: 20px 0 10px 0;
+            }
+          }
+
+          .sms_input_block {
+            text-align: center;
+            display: none;
+          }
+
+          .promoCode-share-block {
+            display: none;
+
+            .icons-container-wrapper {
+
+              .icons-container {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 20px 0;
+              }
+            }
+          }
+
+        }
       }
 
-      .discount-item-info {
-        position: absolute;
-        top: 35px;
-        left: 25px;
-
-        .discount-item-title {
-          color: $cmtyx_color_4;
-          font-size: $size-normal;
-          font-weight: $style-normal-strong;
-          text-transform: uppercase;
-          margin-bottom: 10px;
-        }
-
-        .discount-item-text {
-          color: $discount-text;
-          font-size: $size-normal;
-          font-weight: $style-normal-strong;
-          margin-bottom: 10px;
-        }
-
-        .discount-item-date {
-          opacity: 0.7;
-          color: $discount-text;
-          font-size: $size-small;
-          font-weight: $style-normal-strong;
-        }
-
-      }
-      .promoCode-buybutton-container {
-        margin-top: 15px;
-        .promoCode-buybutton {
-          font-weight: 700;
-          border: 1px solid white;
-          border-radius: 5px;
-          padding: 15px 25px;
-          width: 100%;
-          background-color: transparent;
-        }
-      }
     }
     /***** END OF PROMOCODES *****/
 
