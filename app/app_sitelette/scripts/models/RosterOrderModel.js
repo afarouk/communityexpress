@@ -169,7 +169,7 @@ var RosterOrderModel = Backbone.Model.extend({
 	    			price: (item.get('quantity') * item.get('price')).toFixed(2)
 	    		});
 	    	});
-		} else if (options.catalogId) {
+		} else { //TODO check why was if (options.catalogId)
 			options.basket.each(function(item, index) {
 				var text1 = item.get('version1DisplayText') || '',
 					text2 = item.get('version2DisplayText'),
