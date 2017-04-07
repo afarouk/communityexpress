@@ -10,7 +10,7 @@ define([
     '../views/catalogsLayout',
     '../views/catalogs',
     '../views/singleCatalog',
-    '../views/itemPromotion',
+    '../views/ItemPromotion',
     '../../scripts/models/CatalogBasketModel.js',
     '../views/blinderView'
 	], function(appCache, saslActions, catalogActions, sessionActions, orderController, popupsController, 

@@ -1,14 +1,15 @@
 header {
   height: 70px;
   background-color: $header-background;
-  padding: 15px 50px 15px 45px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .logo-container { 
   	display: inline-block; 
 	
 	.logo {
-	  position: relative;
-	  top: 5px;
 	  cursor: pointer;
 	}
   }
@@ -16,10 +17,6 @@ header {
   .links-conatiner { 
 	  display: inline-block; 
 	  list-style-type: none;
-	  float: right;
-	  position: relative;
-	  bottom: 15px;
-	  margin: 11px 0 0 0;
 
 	  .link { 
 		display: inline-block; 
