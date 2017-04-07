@@ -115,7 +115,7 @@
                             </div>
 
                             <div class="promoCode_item_buttons">
-                              <div class="share_btn_block cmtyx_text_color_4" data-promoCode="${promoCode.promoCode}" >
+                              <div class="share_btn_block cmtyx_text_color_1" data-promoCode="${promoCode.promoCode}" >
                                   <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
                               </div>
                             </div>
@@ -129,22 +129,22 @@
                                 <div class="icons-container">
                                   <div class="text sms_block">
                                       <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
-                                          <img src="themes/1/desktop/images/sms-icon.png" alt="sms icon">
+                                          <i class="fa fa-mobile" aria-hidden="true"></i>
                                       </a>
                                   </div>
                                   <div class="text email_block">
                                       <a href="" name="share_email" class="share_email cmtyx_text_color_1">
-                                          <img src="themes/1/desktop/images/facebook-icon.png" alt="facebook icon">
+                                          <i class="fa fa-envelope" aria-hidden="true"></i>
                                       </a>
                                   </div>
                                   <div class="text facebook_block">
                                       <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-                                          <img src="themes/1/desktop/images/email-icon.png" alt="email icon">
+                                          <i class="fa fa-facebook" aria-hidden="true"></i>
                                       </a>
                                   </div>
                                   <div class="text twitter_block">
                                       <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-                                          <img src="themes/1/desktop/images/twitter-icon.png" alt="twitter icon">
+                                          <i class="fa fa-twitter" aria-hidden="true"></i>
                                       </a>
                                   </div>
                                 </div>
@@ -249,7 +249,7 @@
                             </div>
                             </#if>
                             <div class="promotion_item_buttons">
-                              <div class="share_btn_block cmtyx_text_color_3"
+                              <div class="share_btn_block cmtyx_text_color_1"
                                 uuid="${promotion.uuid}">
                                 <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
                               </div>
@@ -262,23 +262,23 @@
                               <div class="icons-container-wrapper">
                                 <div class="icons-container">
                                   <div class="text sms_block">
-                                      <a name="share_sms" href="" class="share_sms cmtyx_text_color_1">
-                                          <img src="themes/1/desktop/images/sms-icon.png" alt="sms icon">
+                                      <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
+                                          <i class="fa fa-mobile" aria-hidden="true"></i>
                                       </a>
                                   </div>
                                   <div class="text email_block">
-                                      <a name="share_email" href="" class="share_email cmtyx_text_color_1">
-                                          <img src="themes/1/desktop/images/facebook-icon.png" alt="facebook icon">
+                                      <a href="" name="share_email" class="share_email cmtyx_text_color_1">
+                                          <i class="fa fa-envelope" aria-hidden="true"></i>
                                       </a>
                                   </div>
                                   <div class="text facebook_block">
                                       <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-                                          <img src="themes/1/desktop/images/email-icon.png" alt="email icon">
+                                          <i class="fa fa-facebook" aria-hidden="true"></i>
                                       </a>
                                   </div>
                                   <div class="text twitter_block">
                                       <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-                                          <img src="themes/1/desktop/images/twitter-icon.png" alt="twitter icon">
+                                          <i class="fa fa-twitter" aria-hidden="true"></i>
                                       </a>
                                   </div>
                                 </div>
