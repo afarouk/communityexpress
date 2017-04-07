@@ -274,11 +274,12 @@
         
         .tabs {
           float: left;
-          background-color: $cart-tabs;
+          background-color: $cart-cards;
           width: 20%;
           height: 100%;
 
           button {
+            position: relative;
             display: block;
             background-color: inherit;
             padding: 22px 16px;
@@ -295,8 +296,25 @@
 
             &:hover,
             &.active {
-              background-color: $cart-cards;
+              background-color: $cart-tabs;
               color: $white;
+            }
+
+            &.active {
+              font-weight: $style-bold;
+
+              &:after {
+                display: inline-block;
+                position: absolute;
+                right: -10px;
+                top: 0;
+                content: "";
+                width: 0;
+                height: 0;
+                border-top: 31px solid transparent;
+                border-bottom: 31px solid transparent;
+                border-left: 10px solid $cart-tabs;
+              }
             }
           }
         }
@@ -799,21 +817,28 @@
 
           .item-added {
             position: absolute;
-            top: 15px;
-            color: $white;
-            opacity: 0;
+            top: 0px;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            color: white;
+            background-color: #0074D9;
             animation: 2s addedFadeOut;
           }
 
           @keyframes addedFadeOut {
             0% {
-              opacity: 0;
+              height: 0px;
             }
             50% {
-              opacity: 1;
+              height: 25px;
             }
             100% {
-              opacity: 0;
+              height: 0px;
             }
           }
 
