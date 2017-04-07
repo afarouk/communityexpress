@@ -17,8 +17,11 @@ define([
 			'click @ui.buy': 'onBuy',
                'click @ui.show_share_btn': 'showShareBlock',
                'click @ui.show_sms_block': 'showSMSInput',
-               'click .sms_send_button': 'onSendSMS'
+               'click @ui.send_sms': 'onSendSMS'
 		},
+          initialize: function() {
+               this.setLinksForEachDiscount();
+          },
           onBuy: function(e) {
                var $target = $(e.currentTarget),
                     uuid = $target.data('uuid'),
@@ -45,7 +48,6 @@ define([
           },
 
           onSendSMS: function(e) {
-               debugger;
                var $el = this.$el.find('.sms_input_block'),
                    $target = $(e.currentTarget),
                    uuid = $target.parent().parent().data('uuid'),
@@ -53,21 +55,8 @@ define([
                    shareUrl = window.location.href.split('?')[0] +
                      '?' + demo + 't=e&u=' + uuid,
                    val = $target.prev().val();
-
-               // loader.showFlashMessage('Sending message to... ' + val);
-               this.showShareBlock();
-               debugger;
-               return
-               contactActions.shareURLviaSMS('DISCOUNT', this.sasl.serviceAccommodatorId,
-                this.sasl.serviceLocationId, val, uuid, shareUrl)
-                .then(function(res){
-                  // loader.showFlashMessage('Sending message success.');
-                }.bind(this))
-                .fail(function(res){
-                  if (res.responseJSON && res.responseJSON.error) {
-                    // loader.showFlashMessage(res.responseJSON.error.message);
-                  }
-                }.bind(this));
+               //todo toggle block 
+               this.trigger('onSendSMS', 'DISCOUNT', val, uuid, shareUrl);
           },
 
           getLinks: function(uuid) {
@@ -95,13 +84,13 @@ define([
                 });
             },
 
-            setLinksForEachDiscount: function() {
-                var $discounts = this.$el.find('.promoCode_item');
+          setLinksForEachDiscount: function() {
+               var $discounts = this.$el.find('.promoCode_item');
                 $discounts.each(function(index, el){
                   var $discount = $(el);
                   this.setShareLinks($discount);
-                }.bind(this));
-            }
+               }.bind(this));
+          }
 
 	});
 	return DiscountsView;
