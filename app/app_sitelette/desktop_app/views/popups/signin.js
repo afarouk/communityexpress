@@ -15,16 +15,21 @@ define([
 			show_password: '[name="show_password"]',
 			signup_btn: '[name="signup_btn"]',
 			signin_btn: '[name="signin_btn"]',
-			forgot_btn: '[name="forgot_btn"]'
+			forgot_btn: '[name="forgot_btn"]',
+               facebook_login: '[name="facebook_btn"]'
 		},
 		events: {
 			'click @ui.signup_btn': 'onSignup',
 			'click @ui.forgot_btn': 'onForgot',
-			// 'click @ui.signin_btn': 'onSignin',
-			'change @ui.show_password': 'onShowPasswordChange'
+			'change @ui.show_password': 'onShowPasswordChange',
+               'click @ui.facebook_login': 'loginWithFacebook',
 		},
 		initialize: function(options) {
 			this.callback = options.callback;
+
+               FB.getLoginStatus(function (response) {
+                    this.facebookStatus = response.status;
+               }.bind(this), true);
 		},
      	onShow: function () {
      		this.$el.dialog('open');
@@ -46,6 +51,9 @@ define([
      			password: password
      		}, this.onClose.bind(this), this.callback);
      	},
+          loginWithFacebook: function() {
+               this.trigger('user:facebook', this.onClose.bind(this));
+          },
      	onSignup: function() {
      		this.trigger('user:signup');
      	},

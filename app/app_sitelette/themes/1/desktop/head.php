@@ -29,7 +29,7 @@
     <link href="themes/1/desktop/styles/main.css?version=3" rel="stylesheet">
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
-    <!-- <script src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+    <script src="https://connect.facebook.net/en_US/sdk.js"></script>
 
     <link rel="icon" href="themes/1/favicon.ico?v=1.1">
 
@@ -68,15 +68,15 @@
             window.community.deliveryAddress.number = '<?php echo $number ?>';
         }
 
-        // window.fbAsyncInit = function() {
-        //   FB.init({
-        //     appId      : '163685094028796',
-        //     cookie     : true,
-        //     status     : true,
-        //     xfbml      : true,
-        //     version    : 'v2.6'
-        //   });
-        // }
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '163685094028796',
+            cookie     : true,
+            status     : true,
+            xfbml      : true,
+            version    : 'v2.6'
+          });
+        }
     </script>
 
 
