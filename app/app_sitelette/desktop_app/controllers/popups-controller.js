@@ -4,6 +4,7 @@ define([
 	'../../scripts/appCache',
 	'../../scripts/globalHelpers',
 	'../../scripts/controllers/userController',
+	'./landing-controller',
 	'../../scripts/actions/sessionActions',
 	'../views/popupsLayout',
 	'../views/loginView',
@@ -13,17 +14,19 @@ define([
 	'../views/popups/forgotPassword',
 	'../views/popups/message',
 	'../views/popups/loader'
-	], function(appCache, h, userController, sessionActions,
+	], function(appCache, h, userController, landingController, sessionActions,
 		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView, LoaderView){
 	var PopupsController = Mn.Object.extend({
 		loader: new LoaderView(),
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
+			landingController.setPopupsController(this); //TODO this is not good solution
 		},
 		onLoginStatusChanged: function() {
 			this.loginView = new LoginView();
 			this.listenTo(this.loginView, 'user:login', this.onUserLogin.bind(this));
 			this.listenTo(this.loginView, 'user:logout', this.onUserLogout.bind(this));
+			landingController.onLoginStatusChanged();
 		},
 		onUserLogin: function(callback) {
 			var signin = new SigninView({

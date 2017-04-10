@@ -299,6 +299,10 @@
                 </div>
               <!----- End of Promotions  ---------------->
 
+              <!----- Loyalty Program  ---------------->
+                <div id="cmtyx_loyalty_program_block" class="grid-item cmtyx_loyalty_program_block"></div>
+              <!----- End of Loyalty Program  ---------------->
+
               <!-- events -->
                 <#if (eventsSummary.events)?has_content >
                   <!-- <div class="grid-item grid-item--height3 cmtyx_events_block">
