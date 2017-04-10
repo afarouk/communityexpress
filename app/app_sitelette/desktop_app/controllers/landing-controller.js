@@ -30,7 +30,7 @@ define([
 		},
 		onLoginStatusChanged: function() {
 			var user = appCache.get('user'),
-				uuid = user.getUID();
+				uuid = user ? user.getUID() : null;
 			if (uuid) this.retrieveLoyaltyStatus(uuid);
 		},
 		retrieveLoyaltyStatus: function(uuid) {
