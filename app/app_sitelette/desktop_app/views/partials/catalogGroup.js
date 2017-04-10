@@ -15,14 +15,6 @@ define([
 				return CatalogItemView;
 			}
 		},
-		childViewOptions: function(model) {
-			if (model.get('hasVersions')) {
-				var versions = this.getVersionsFromBasket(model);
-				return {
-					versions: versions
-				};
-			}
-		},
 		initialize: function(options) {
 			console.log(this.collection.toJSON());
 			this.basket = options.basket;
@@ -50,30 +42,10 @@ define([
 				 this.options.catalogId,this.options.catalogDisplayText);
 			console.log(this.basket.getTotalPrice());
 		},
-		onChildviewItemsVersionAdded: function(model, versions, basketItem) {
-			this.basket.setBasketVersions(model, versions);
+		onChildviewItemsVersionAdded: function(model,  basketItem) {
 			this.basket.addItem(basketItem, 1,
 				 this.options.groupId, this.options.groupDisplayText, 
 				 this.options.catalogId,this.options.catalogDisplayText);
-		},
-		onBasketRemove: function(model) {
-			if (model.get('isVersion')) {
-				var uuid = model.get('uuid').split('_._')[0],
-					view = this.children.find(function(view){
-				  return view.model.get('uuid') === uuid
-				});
-				if (view) {
-					view.onRemoveVersion(model.get('uuid'));
-				}
-			}
-		},
-		onBasketReset: function() {
-			this.basket.versions = {}; //reset versions
-			this.children.each(function(view){
-				if (view.model.get('hasVersions')) {
-					view.onResetVersions();
-				}
-			})
 		}
 	});
 	return CatalogGroupView;
