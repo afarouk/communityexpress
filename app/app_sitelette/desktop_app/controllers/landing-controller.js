@@ -6,14 +6,16 @@ define([
 	'../views/landing/discounts',
 	'../views/landing/promotions',
 	'../views/landing/loyaltyCard',
-	'./catalogs-controller',
 	'../../scripts/actions/contactActions',
 	'../../scripts/actions/loyaltyActions'
 	], function(appCache, h, 
-		DiscountsView, PromotionsView, LoyaltyCardView, catalogsController, contactActions, loyaltyActions){
+		DiscountsView, PromotionsView, LoyaltyCardView, contactActions, loyaltyActions){
 	var LandingController = Mn.Object.extend({
 		setPopupsController: function(popupsController) {
 			this.popupsController = popupsController;
+		},
+		setCalalogsContoller: function(catalogsController) {
+			this.catalogsController = catalogsController;
 		},
 		start: function() {
 			var discountsView = new DiscountsView();
@@ -47,7 +49,7 @@ define([
 		},
 		onPromotionSelected: function(options) {
 			console.log(options);
-			catalogsController.onPromotionSelected(options);
+			this.catalogsController.onPromotionSelected(options);
 		},
 		onSendSMS: function(type, phone, uuid, shareUrl) {
 			this.popupsController.showMessage({

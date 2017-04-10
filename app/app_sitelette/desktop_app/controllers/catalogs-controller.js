@@ -7,18 +7,20 @@ define([
     '../../scripts/actions/sessionActions',
     './order-controller',
     './popups-controller',
+    './landing-controller',
     '../views/catalogsLayout',
     '../views/catalogs',
     '../views/singleCatalog',
     '../views/ItemPromotion',
     '../../scripts/models/CatalogBasketModel.js',
     '../views/blinderView'
-	], function(appCache, saslActions, catalogActions, sessionActions, orderController, popupsController, 
+	], function(appCache, saslActions, catalogActions, sessionActions, orderController, popupsController, landingController,
 		CatalogsLayoutView, CatalogsView, SingleCatalogView, ItemPromotionView, CatalogBasketModel,
 		BlinderView){
 	var CatalogsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new CatalogsLayoutView();
+			landingController.setCalalogsContoller(this);
 		},
 		manageCatalog: function() {
 			var saslData = appCache.get('saslData');
