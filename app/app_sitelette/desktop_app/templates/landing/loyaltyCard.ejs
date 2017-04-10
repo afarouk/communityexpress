@@ -6,15 +6,13 @@
     <div class="loyalty_inner_wrapper">
         <div class="prize_block">
             <% if (hasLoyaltyProgram) { %>
-                <div class="ui-grid-a prize_container">
-                    <div class="ui-block-a">
-                        <div class="prize_text_block">
-                            <span class="prize_text"><%= displayText %></span>
-                            <span class="prize_condition"><%= conditions %></span>
-                            <span class="prize_date"><% if (expirationDate) { %> till <%= expirationDate %> <% } %></span>
-                        </div>
+                <div class="prize_container">
+                    <div class="prize_text_block">
+                        <span class="prize_text"><%= displayText %></span>
+                        <span class="prize_condition"><%= conditions %></span>
+                        <span class="prize_date"><% if (expirationDate) { %> till <%= expirationDate %> <% } %></span>
                     </div>
-                    <div class="ui-block-b ">
+                    <div class="prize_img">
                         <img src="<%= url %>"></img>
                     </div>
                 </div>
@@ -32,36 +30,41 @@
             </div>
         </div>
     </div>
+
     <div class="share_container">
-        <div class="share_btn_block"
-            uuid="">
-            <span class="icon share_icon"></span> <span class="text">Share</span>
+        <div class="item_buttons">
+          <div class="share_btn_block cmtyx_text_color_1" uuid="">
+              <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
+          </div>
         </div>
-        <div class="share_block">
-            <div class="ui-grid-c">
-                <div class="sms_input_block">
-                    <input data-role="none" class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-                    <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-                </div>
-                <div class="ui-block-a text sms_block">
-                    <a href="" class="share_sms cmtyx_text_color_1">
-                        <span class="share_icon sms_icon"></span>
-                    </a>
-                </div>
-                <div class="ui-block-b text email_block">
-                    <a href="" class="share_email cmtyx_text_color_1">
-                        <span class="share_icon email_icon"></span>
-                    </a>
-                </div>
-                <div class="ui-block-c text facebook_block">
-                    <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-                        <span class="share_icon facebook_icon"></span>
-                    </a>
-                </div>
-                <div class="ui-block-d text twitter_block">
-                    <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-                        <span class="share_icon twitter_icon"></span>
-                    </a>
+
+        <div class="share-block">
+            <div class="sms_input_block">
+              <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+              <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+            </div>
+            <div class="icons-container-wrapper">
+                <div class="icons-container">
+                    <div class="text sms_block">
+                        <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
+                            <i class="fa fa-mobile" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="text email_block">
+                        <a href="" name="share_email" class="share_email cmtyx_text_color_1">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="text facebook_block">
+                        <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="text twitter_block">
+                        <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
