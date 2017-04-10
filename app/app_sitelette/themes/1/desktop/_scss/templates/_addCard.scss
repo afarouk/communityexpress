@@ -1,0 +1,154 @@
+.add_card_page {
+  padding: 15px 10px 10px 10px;
+
+  .credit_card_container { 
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    .skeuocard.js {
+      width: 100%;
+      
+      .card-body {
+        .face {
+          width: 100%;
+          
+          .cc-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+
+            input {
+              text-align: center;
+
+              &.group19 {
+                width: 100%;
+                font-size: 1.5em;
+              } 
+
+              &.group4 {
+                width: 23%;
+                font-size: 1.2em;
+              }
+
+              &.group5 {
+                width: 29%;
+                font-size: 1.2em;
+              }
+
+              &.group6 {
+                width: 35%;
+                font-size: 1.2em;
+              }
+
+              & + input {
+                margin-left: 2%;
+              }
+            }
+          }
+
+          .cc-exp {
+            left: 45%;
+            top: 71%;
+
+            input {
+              font-size: 0.9em;
+            }
+
+            span + span {
+              display: none;
+            }
+          }
+
+          .cc-field {
+            .cc-name {
+              left: 5%;
+              top: 84%;
+              width: 65%;
+              font-size: 0.9em;
+            }
+
+            .cc-cvc {
+              top: 48%;
+              left: 75%;
+              width: 2em;
+            }
+          }
+        }
+      }
+    }
+
+    .skeuocard.js.product-dinersclubintl {
+      .card-body {
+        .face {
+          width: 100%;
+
+          .cc-exp {
+            left: 70%;
+            top: 85%;
+          }
+
+          .cc-field {
+            .cc-name {
+              left: 5%;
+              top: 74%;
+            }
+          }
+        }
+      }
+    } 
+
+    .skeuocard.js.product-amex {
+      .card-body {
+        .face {
+          width: 100%;
+
+          .cc-exp {
+            left: 5%;
+            top: 72%;
+          }
+
+          .cc-field {
+            .cc-name {
+              left: 5%;
+              top: 85%;
+            }
+
+            .cc-cvc {
+              top: 33%;
+              left: 80%;
+              width: 2.7em;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .roster_order_error {
+    color: $error-color;
+    font-size: $size-lg-normal;
+    margin-bottom: 10px;
+  }
+
+  .checkbox_save_card_container {
+    label {
+      font-size: $size-normal;
+      color: $cart-text;
+      margin-bottom: 10px;
+
+      input {
+        margin-right: 5px;
+        position: relative;
+        top: 1px;
+        outline: none;
+      }
+    }
+  }
+
+  .bottom_btns_block {
+    display: none;
+  }
+}
