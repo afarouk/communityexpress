@@ -11,7 +11,7 @@ define([
 		template: template,
 		className: 'page summary_page',
 		ui: {
-			back: '.back_btn',
+			back: '.nav_back_btn',
 			next: '.place_order_btn',
 			add_note_btn: '.add-note',
 			add_note_text: '.note-text'

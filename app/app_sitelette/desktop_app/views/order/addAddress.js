@@ -8,8 +8,8 @@ define([
 		template: template,
 		className: 'page add_address_page',
 		ui: {
-			back: '.back_btn',
-			next: '.next_btn',
+			back: '.nav_back_btn',
+			next: '.nav_next_btn',
 			number: '#aptBldgInput',
 		    street: '#streetInput',
 		    city: '#cityInput',

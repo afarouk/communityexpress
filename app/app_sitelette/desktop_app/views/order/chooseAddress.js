@@ -9,8 +9,8 @@ define([
 		behaviors: [SwitchTabsBehavior],
 		className: 'page choose_address_page',
 		ui: {
-			back: '.back_btn',
-			next: '.next_btn'
+			back: '.nav_back_btn',
+			next: '.nav_next_btn'
 		},
 		events: {
 			'click @ui.back': 'onBack',

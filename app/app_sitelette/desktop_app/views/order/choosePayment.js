@@ -13,10 +13,11 @@ define([
 		behaviors: [SwitchTabsBehavior],
 		className: 'page choose_payment_page',
 		ui: {
-			back: '.back_btn',
-			next: '.next_btn',
+			back: '.nav_back_btn',
+			next: '.nav_next_btn',
 			add_note_btn: '.add-note',
-			add_note_text: '.note-text'
+			add_note_text: '.note-text',
+			bottom_btns_block: '.bottom_btns_block'
 		},
 		events: {
 			'click @ui.back': 'onBack',
@@ -85,10 +86,13 @@ define([
 		},
 
 		onTabShown: function() {
-	    	if (this.tabActive === 'credit') {
-	    		this.ui.next.text('Next');
-	    	} else {
-	    		this.ui.next.text('Place order');
+	    	if (this.tabActive === 'cash') {
+	    		this.$el.find('.navigation_block .nav_next_btn').css('visibility', 'hidden');
+	    		this.ui.bottom_btns_block.show();
+	    	}
+	    	else {
+	    		this.ui.next.css('visibility', 'visible');
+	    		this.ui.bottom_btns_block.hide();
 	    	}
 	    },
 

@@ -163,7 +163,7 @@ define([
 			    $(this).addClass('active');
 			});
 
-			$('.cmtyx_cart_block .bottom_btns_block .back_btn').click(function() {
+			$('.add_card_page .navigation_block .nav_back_btn').click(function() {
 				var currentPage = $(this).parent().parent();
 				currentPage.hide();
 				currentPage.prev().show();
@@ -173,7 +173,7 @@ define([
 				calcCardHeight();
 			})
 
-			$('.cmtyx_cart_block .bottom_btns_block .next_btn').click(function() {
+			$('.add_card_page .navigation_block .nav_next_btn').click(function() {
 				var currentPage = $(this).parent().parent();
 				currentPage.hide();
 				currentPage.next().show();

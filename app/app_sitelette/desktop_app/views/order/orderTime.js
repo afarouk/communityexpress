@@ -11,8 +11,8 @@ define([
 		behaviors: [SwitchTabsBehavior],
 		className: 'page order_time_page',
 		ui: {
-			back: '.back_btn',
-			next: '.next_btn',
+			back: '.nav_back_btn',
+			next: '.nav_next_btn',
 			date: '#select-date',
 			time: '#select-time'
 		},
