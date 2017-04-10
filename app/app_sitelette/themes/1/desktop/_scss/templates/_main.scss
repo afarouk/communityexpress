@@ -150,6 +150,12 @@
             }
           }
         }
+
+        .no_promotions {
+          color: $cart-text;
+          text-align: center;
+          padding: 25px 0 10px 0;
+        }
       }
     }
     /***** END OF PROMOTION *****/
@@ -988,6 +994,12 @@
         align-content: center;
         justify-content: center;
       }
+
+      .no_discounts {
+        color: $cart-text;
+        padding: 0 0 10px 0;
+        text-align: center;
+      }
     }
     /***** END OF PROMOCODES *****/
 
@@ -1491,6 +1503,6 @@
     }
     /***** END OF REVIEWS *****/
 
-    
+
   }
 }
