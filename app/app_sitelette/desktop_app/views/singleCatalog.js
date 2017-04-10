@@ -18,9 +18,6 @@ define([
 		initialize: function(options) {
 			console.log(options);
 			this.options = options;
-
-			this.options.basket.on('remove', this.onRemoveFromBasket.bind(this));
-			this.options.basket.on('reset', this.onResetBasket.bind(this));
 		},
 		serializeData: function() {
 			return {
@@ -61,12 +58,6 @@ define([
 				catalogDisplayText: this.options.catalog.data.catalogDisplayText
 			})
 			this.showChildView('group', this.catalogGroup);
-		},
-		onRemoveFromBasket: function(model) {
-			this.catalogGroup.triggerMethod('basketRemove', model);
-		},
-		onResetBasket: function() {
-			this.catalogGroup.triggerMethod('basketReset');
 		},
 		onBackToCatalog: function() {
 			this.trigger('backToCatalog');
