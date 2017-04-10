@@ -181,6 +181,10 @@
                   border-radius: 50%;
                   background-color: #616161;
                   font-size: 20px;
+
+                  i {
+                    padding: 20px;
+                  }
                 }
               }
             }
@@ -827,10 +831,10 @@
             overflow: hidden;
             color: white;
             background-color: #0074D9;
-            animation: 2s addedFadeOut;
+            animation: 2s addedSlideDown;
           }
 
-          @keyframes addedFadeOut {
+          @keyframes addedSlideDown {
             0% {
               height: 0px;
             }
@@ -2111,6 +2115,10 @@
                     border-radius: 50%;
                     background-color: #616161;
                     font-size: 20px;
+
+                    i {
+                      padding: 20px;
+                    }
                   }
                 }
               }
