@@ -168,7 +168,9 @@ define([
 	                    break;
 	                default:
 	            }
-	            this.$('.discount_value').text(cs + this.model.additionalParams.discountDisplay.toFixed(2));
+	            if (this.model.additionalParams.discountDisplay) {
+	            	this.$('.discount_value').text(cs + this.model.additionalParams.discountDisplay.toFixed(2));
+	            }
 	        }
 	        if (totalAmount < 0) {
 	            totalAmount = 0
