@@ -56,6 +56,7 @@ define([
 		        	dispatcher.getPopupsController().onLoginStatusChanged();
 		        }
 		        this.options.initSubviews();
+		        this.options.checkType();
 			},
 
 			initSubviews: function() {
@@ -68,6 +69,40 @@ define([
 		        
 		        //Yuras temporary code
 				temporaryComponent.init();
+			}, 
+			checkType: function() {
+				//TODO not ready
+                var type = window.community.type,
+                	uuid = window.community.uuidURL;
+                if (!type) return;
+		        delete community.type;
+		        delete community.uuidURL;
+
+		        switch (type) {
+		            case 'd':
+		                //Discounts type
+		                //'openDiscountByShareUrl', uuid
+		                //&t=d&u=Ce9DJbTdR8ajRxmuZT7rHA&promoCode=TESTP
+
+		                //TODO how should it work???
+		                //maybe should be in saslData???
+		                
+		                dispatcher.getLandingController().onDiscountSelected({
+		                	uuid:uuid
+		                });
+		            	break;
+		            case 'p':
+		                //Promotions type
+		                dispatcher.getLandingController().onPromotionSelected({
+		                	uuid:uuid
+		                });
+		                //'openPromotionByShareUrl', uuid
+		                //&t=p&u=wtvngYZDQaKRcFZYfN2wCA
+		            	break;
+		            default:
+		            	throw new Error('Community type is wrong');
+		            	break;
+		        };
 			}
 		});
 
