@@ -18,9 +18,13 @@
 
         <div id="cmtyx_landingView">
         	<#if notification??>
-				<div class="breaking_news">
-					<span class="news_line">${notification.notificationBody}</span>
-				</div>
+    				<div class="breaking_news">
+    					<span class="news_line">${notification.notificationBody}</span>
+    				</div>
+          <#elseif (promoCodes)?has_content>
+            <div id="subheader-discount" class="subheader-discount">
+              <span class="discount-description">${promoCodes[0].description}</span>
+            </div>
        		</#if>
 
           <div class="grid-container cmtyx_desktop_application">

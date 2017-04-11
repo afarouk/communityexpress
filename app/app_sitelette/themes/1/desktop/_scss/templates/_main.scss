@@ -13,6 +13,7 @@
 // .cmtyx_border_color_3 { border-color: $cmtyx_color_3 !important; }
 // .cmtyx_border_color_4 { border-color: $cmtyx_color_4 !important; }
 
+.subheader-discount,
 .breaking_news {
   background-color: $red-news;
   padding: 10px;
@@ -21,6 +22,9 @@
   font-weight: $style-normal;
   text-transform: uppercase;
   text-align: center;
+}
+.subheader-discount {
+  cursor: pointer;
 }
 
 .cmtyx_desktop_application {

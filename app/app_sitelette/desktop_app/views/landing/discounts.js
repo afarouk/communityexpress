@@ -21,11 +21,17 @@ define([
 		},
     initialize: function() {
          this.setLinksForEachDiscount();
+         this.ui.sub_discount = $('#subheader-discount');
+         this.ui.sub_discount.click(this.onBuy.bind(this));
     },
     onBuy: function(e) {
       var $target = $(e.currentTarget),
           uuid = $target.data('uuid'),
           promoCode = $target.data('promocode');
+      if ( this.ui.sub_discount.length > 0) {
+        this.ui.sub_discount.find('.discount-description').text('The discount will be applied at the end of order screen');
+      }
+      this.ui.sub_discount.off('click');
       this.trigger('onDiscount', {
           uuid: uuid,
           promoCode: promoCode
