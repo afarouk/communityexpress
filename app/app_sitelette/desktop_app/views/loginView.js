@@ -17,19 +17,22 @@ define([
 			this.render();
 		},
 		render: function () {
-			var template = this.logged ? logoutTemplate : loginTemplate;
-			var userEmail = this.logged ? appCache.get('user').userName : '';
-			this.$el.html(template());
+			var template, userEmail;
 
 			if (this.logged) {
+				template = logoutTemplate;
+				userEmail = appCache.get('user').userName;
 				this.$el.prev().find('.logged_in .user_email').html(userEmail);
 				this.$el.prev().find('.logged_in').show();
 				this.$el.prev().find('.logged_out').hide();
 			}
 			else {
+				template = loginTemplate;
 				this.$el.prev().find('.logged_in').hide();
 				this.$el.prev().find('.logged_out').show();
 			}
+
+			this.$el.html(template());
 
 			return this;
      	},

@@ -28,6 +28,8 @@ header {
 		vertical-align: middle;
 
 		.logged_in {
+			display: none;
+
 			.user_email {
 			    margin-right: 5px;
 			    font-size: $size-normal-small;
@@ -51,6 +53,8 @@ header {
 		}
 
 		.logged_out {
+			display: none;
+			
 			.fa-user {
 			    font-size: 40px;
     			color: $user-icon;
