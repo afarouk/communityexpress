@@ -433,7 +433,7 @@
                     </div>
                 </div> -->
 
-                <div class="grid-item cmtyx_gallery_block">
+                <!-- <div class="grid-item cmtyx_gallery_block">
                     <div class="header cmtyx_color_4">
                         <div class="title">gallery <span class="collapse_btn"></span></div>
                     </div>
@@ -450,7 +450,7 @@
                             </#list>
                           </div>
                     </div>
-                </div>
+                </div> -->
 
                 <#if (externalMedia)?has_content >
                     <!-- <div class="grid-item cmtyx_video_block">
