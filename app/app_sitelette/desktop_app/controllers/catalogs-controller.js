@@ -17,6 +17,7 @@ define([
 	var CatalogsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new CatalogsLayoutView();
+			this.basket = null;
 		},
 		manageCatalog: function() {
 			var saslData = appCache.get('saslData');
@@ -130,7 +131,7 @@ define([
 		},
 
 		onBackToCatalogs: function() {
-			if (this.basket.length > 0) {
+			if (this.basket && this.basket.length > 0) {
 				this.dispatcher.getPopupsController().showMessage({
 					message: 'Are you sure?<br> Your order will be lost.',
 					confirm: 'confirm',
@@ -142,7 +143,7 @@ define([
 		},
 
 		confirmedBackToCatalogs: function () {
-			this.basket.reset();
+			if (this.basket) this.basket.reset();
 			this.manageCatalog();
 		},
 
@@ -158,7 +159,7 @@ define([
 		},
 
 		onPromotionSelected: function(options) {
-			if (this.basket.length > 0) {
+			if (this.basket && this.basket.length > 0) {
 				this.dispatcher.getPopupsController().showMessage({
 					message: 'Are you sure?<br> Your order will be lost.',
 					confirm: 'confirm',
@@ -170,7 +171,7 @@ define([
 		},
 
 		confirmedPromotion: function(options) {
-			this.basket.reset();
+			if (this.basket) this.basket.reset();
 			this.singleItemPromotion(options);
 		},
 
