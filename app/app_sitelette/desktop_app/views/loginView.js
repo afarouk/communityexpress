@@ -19,6 +19,16 @@ define([
 		render: function () {
 			var template = this.logged ? logoutTemplate : loginTemplate;
 			this.$el.html(template());
+
+			if (this.logged) {
+				this.$el.prev().find('.logged_in').show();
+				this.$el.prev().find('.logged_out').hide();
+			}
+			else {
+				this.$el.prev().find('.logged_in').hide();
+				this.$el.prev().find('.logged_out').show();
+			}
+
 			return this;
      	},
      	onLogin: function() {

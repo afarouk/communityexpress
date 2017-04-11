@@ -24,11 +24,11 @@ header {
 		font-size: $size-normal;
 		font-weight: $style-normal;
 		text-transform: uppercase;
-		margin-left: 10px;
 		cursor: pointer;
 		vertical-align: middle;
 
 		.logged_in {
+
 			.fa-user {
 			    font-size: 40px;
     			color: #d1d1d1;

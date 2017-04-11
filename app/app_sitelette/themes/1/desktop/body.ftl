@@ -14,6 +14,7 @@
                 <li class="link">about us</li> -->
                 <li class="link">
                   <span class="logged_in">
+                    <span class="user_email"></span>
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <i class="fa fa-check" aria-hidden="true"></i>
                   </span>
