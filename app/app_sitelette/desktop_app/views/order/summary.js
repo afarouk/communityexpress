@@ -5,8 +5,8 @@ define([
 	'../../../scripts/actions/orderActions',
 	'../../../scripts/globalHelpers',
 	'../../../scripts/appCache',
-	'../../controllers/popups-controller'
-	], function(template, orderActions, h, appCache, popupsController){
+	'../../controllers/dispatcher'
+	], function(template, orderActions, h, appCache, dispatcher){
 	var SummaryView = Mn.View.extend({
 		template: template,
 		className: 'page summary_page',
@@ -163,6 +163,17 @@ define([
 	        this.model.set({comment: comment}, {silent: true});
 	    },
 
+	    onDiscountUpdate: function() {
+	    	if (this.model.additionalParams.promoCodeActive) return;
+	    	var promoCode = appCache.get('promoCode');
+	        if (promoCode) {
+	        	this.model.additionalParams.promoCode = promoCode;
+	        	this.$('input[name=promocode]').val(promoCode);
+	        	this.$('input[name=promocode]').attr('disabled', true);
+	        	this.onGetDiscount();
+	        }
+	    },
+
 	    onGetDiscount: function() {
 	        if (this.model.additionalParams.promoCodeActive) return;
 	        var params = this.model.additionalParams,
@@ -187,7 +198,7 @@ define([
 	            }, this), function(jqXHR) {
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
 	                this.model.additionalParams.promoCode = null;
-	                popupsController.showMessage({
+	                dispatcher.getPopupsController().showMessage({
 	                	message: text,
 						confirm: 'ok'
 	                });

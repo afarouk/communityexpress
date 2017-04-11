@@ -2,9 +2,9 @@
 
 define([
 	'ejs!../../templates/popups/signout.ejs',
-	], function(template){
+	'ejs!../../templates/popups/signoutOnOrder.ejs',
+	], function(signoutTemplate, onOrderTemplate){
 	var SignoutView = Mn.View.extend({
-		template: template,
 		className: 'signout-popup',
 		ui: {
 			submit_signout_btn: '.submit_signout_btn',
@@ -14,8 +14,8 @@ define([
 			'click @ui.submit_signout_btn': 'onSignout',
 			'click @ui.cancel_btn': 'onClose'
 		},
-		initialize: function() {
-			
+		initialize: function(options) {
+			this.template = options.order ? onOrderTemplate : signoutTemplate;
 		},
      	onShow: function() {
      		this.$el.dialog('open');

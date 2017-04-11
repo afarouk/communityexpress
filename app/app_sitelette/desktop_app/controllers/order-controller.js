@@ -2,7 +2,6 @@
 
 define([
 	'../../scripts/appCache',
-	'./popups-controller',
 	'../../scripts/actions/orderActions',
 	'../../scripts/actions/saslActions',
 	'../../scripts/actions/sessionActions',
@@ -16,24 +15,22 @@ define([
 	'../views/order/addCard',
 	'../views/order/summary',
 	'../views/cartLoader',
-	], function(appCache, popupsController, orderActions, saslActions, sessionActions, RosterOrderModel,
+	], function(appCache, orderActions, saslActions, sessionActions, RosterOrderModel,
 		OrderLayoutView, CartPageView, ChooseAddressView, AddAddressView, 
 		OrderTimeView, ChoosePaymentView, AddCardView, SummaryView, CartLoader){
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
-			this.renderOrder();
+			// this.renderOrder();
 		},
-		renderOrder: function(catalogsController, options, change) {
+		renderOrder: function(options, change) {
 			var cartPage = new CartPageView(options, change);
 			this.layout.showChildView('orderContainer', cartPage);
 			this.listenTo(cartPage, 'order:proceed', this.onOrder.bind(this, options));
 			//TODO not sure that it is good idea
 			this.options = options;
-			this.catalogsController = catalogsController;
-			if (this.catalogsController) {
-				this.catalogsController.hideBlinder(); //<-- TODO find better way
-			}
+			this.dispatcher.getCatalogsController().hideBlinder();
+			appCache.set('orderInProcess', false);
 		},
 		showLoader: function() {
 			var cartLoader = new CartLoader();
@@ -43,11 +40,19 @@ define([
 		hideLoader: function() {
 			this.layout.getRegion('cartLoader').$el.hide();
 		},
+		onLoginStatusChanged: function() {
+			var user = appCache.get('user'),
+				uuid = user ? user.getUID() : null,
+				order = appCache.get('orderInProcess');
+			if (order && !uuid) {
+				var basket = appCache.get('basket');
+				if (basket) basket.reset();
+			}
+		},
 		onOrder: function(options) {
 			options.basket.getItemsNumber() === 0 ?
-	        this.showNoItemsPopup() : popupsController.requireLogIn(function() {
-	        	//TODO get prices and address
-	        	this.catalogsController.showBlinder();
+	        this.showNoItemsPopup() : this.dispatcher.getPopupsController().requireLogIn(function() {
+	        	this.dispatcher.getCatalogsController().showBlinder();
 	        	this.getAdditionalOrderInfo(options);
 	        }.bind(this));
 		},
@@ -81,7 +86,9 @@ define([
             	};
                 //var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + basketType);
                 var orderModel = new RosterOrderModel({}, modelOptions);
+                appCache.set('basket', options.basket);
                 this.showChooseAddress(orderModel);
+                appCache.set('orderInProcess', true);
             }.bind(this));
 		},
 		//choose address part
@@ -108,7 +115,7 @@ define([
 		},
 		onChooseAddressBack: function(model) {
 			console.log('back');
-			this.renderOrder(this.catalogsController, this.options); //???
+			this.renderOrder(this.options);
 		},
 		//add address part
 		showAddAddress: function(model) {
@@ -150,6 +157,11 @@ define([
 		},
 		onOrderTimeBack: function(model) {
 			this.showChooseAddress(model);
+		},
+		//on discount selected
+		onDiscountSelected: function() {
+			var currentView = this.layout.getRegion('orderContainer').currentView;
+			currentView.triggerMethod('discountUpdate'); 
 		},
 		//choose payment part
 		showChoosePayment: function(model) {
@@ -213,7 +225,7 @@ define([
 			console.log('place order');
 			console.log(model.toJSON());
 			this.showLoader();
-	        popupsController.showMessage({
+	        this.dispatcher.getPopupsController().showMessage({
 	        	message:'placing your order',
 	        	loader: true,
 	        	infinite: true
@@ -235,14 +247,14 @@ define([
 	        ).then(function(e) {
 	            params.basket.reset();
 	            this.hideLoader();
-	            popupsController.showMessage({
+	            this.dispatcher.getPopupsController().showMessage({
 	            	message: 'order placed',
 	            	confirm: 'ok',
 	            	callback: this.afterOrder.bind(this, model)
 	            });
 	        }.bind(this), function(e) {
 	            var text = h().getErrorMessage(e, 'Error placing your order');
-	            popupsController.showMessage({
+	            this.dispatcher.getPopupsController().showMessage({
 	            	message: text,
 	            	loader: true
 	            });
@@ -266,14 +278,14 @@ define([
 	        ).then(function() {
 	            params.basket.reset();
 	            this.hideLoader();
-	            popupsController.showMessage({
+	            this.dispatcher.getPopupsController().showMessage({
 	            	message: 'order placed',
 	            	confirm: 'ok',
 	            	callback: this.afterOrder.bind(this, model)
 	            });
 	        }.bind(this), function(e) {
 	            var text = h().getErrorMessage(e, 'Error placing your order');
-	            popupsController.showMessage({
+	            this.dispatcher.getPopupsController().showMessage({
 	            	message: text,
 	            	loader: true
 	            });
@@ -286,7 +298,7 @@ define([
 	            request;
 
 	        if (!items) {
-	            popupController.textPopup({
+	            this.dispatcher.getPopupsController().textPopup({
 	                text: 'Can\'t place order.'
 	            });
 	            return;
@@ -309,13 +321,13 @@ define([
 	            appCache.set('promoCode', null);
 	            appCache.set('updateDiscount', true);
 	            var callback = _.bind(this.triggerSingletonView, this);
-	            popupController.textPopup({
+	            this.dispatcher.getPopupsController().textPopup({
 	                text: 'order placed'
 	            }, callback);
 	        }.bind(this), function(e) {
 	            loader.hide();
 	            var text = h().getErrorMessage(e, 'Error placing your order');
-	            popupController.textPopup({
+	            this.dispatcher.getPopupsController().textPopup({
 	                text: text
 	            });
 	        });
@@ -323,7 +335,7 @@ define([
 
 		afterOrder: function() {
 			//TODO return to catalog
-			this.renderOrder(this.catalogsController, this.options); //???
+			this.renderOrder(this.options);
 		},
 
 		// onPlaceMultipleOrder: function() {
@@ -365,7 +377,7 @@ define([
 
 		showNoItemsPopup: function() {
 			console.log('no items selected');
-			popupsController.showMessage({
+			this.dispatcher.getPopupsController().showMessage({
 				message: 'no items selected',
 				confirm: 'ok'
 			});
@@ -374,7 +386,7 @@ define([
 		triggerOrder: function() {
 	        this.basket.getItemsNumber() === 0 ?
 	        this.showNoItemsPopup() :
-	        popupController.requireLogIn(this.sasl, function() {
+	        this.dispatcher.getPopupsController().requireLogIn(this.sasl, function() {
 	            this.$('.sub_header').hide();
 	            Vent.trigger('viewChange', 'address', {
 	                id : this.sasl.getUrlKey(),
@@ -395,5 +407,5 @@ define([
 	        }.bind(this));
 	    },
 	});
-	return new OrderController();
+	return OrderController;
 });

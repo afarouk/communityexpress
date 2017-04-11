@@ -5,22 +5,18 @@ define([
 	'../../scripts/actions/saslActions',
     '../../scripts/actions/catalogActions',
     '../../scripts/actions/sessionActions',
-    './order-controller',
-    './popups-controller',
-    './landing-controller',
     '../views/catalogsLayout',
     '../views/catalogs',
     '../views/singleCatalog',
     '../views/ItemPromotion',
     '../../scripts/models/CatalogBasketModel.js',
     '../views/blinderView'
-	], function(appCache, saslActions, catalogActions, sessionActions, orderController, popupsController, landingController,
+	], function(appCache, saslActions, catalogActions, sessionActions,
 		CatalogsLayoutView, CatalogsView, SingleCatalogView, ItemPromotionView, CatalogBasketModel,
 		BlinderView){
 	var CatalogsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new CatalogsLayoutView();
-			landingController.setCalalogsContoller(this);
 		},
 		manageCatalog: function() {
 			var saslData = appCache.get('saslData');
@@ -120,7 +116,7 @@ define([
 		},
 
 		onBasketChange: function(options, a, b, change) {
-			orderController.renderOrder(this, options, change);
+			this.dispatcher.getOrderController().renderOrder(options, change);
 		},
 
 		showBlinder: function() {
@@ -135,7 +131,7 @@ define([
 
 		onBackToCatalogs: function() {
 			if (this.basket.length > 0) {
-				popupsController.showMessage({
+				this.dispatcher.getPopupsController().showMessage({
 					message: 'Are you sure?<br> Your order will be lost.',
 					confirm: 'confirm',
 					callback: this.confirmedBackToCatalogs.bind(this)
@@ -163,7 +159,7 @@ define([
 
 		onPromotionSelected: function(options) {
 			if (this.basket.length > 0) {
-				popupsController.showMessage({
+				this.dispatcher.getPopupsController().showMessage({
 					message: 'Are you sure?<br> Your order will be lost.',
 					confirm: 'confirm',
 					callback: this.confirmedPromotion.bind(this, options)
@@ -333,5 +329,5 @@ define([
 	    //         });
 	    // },
 	});
-	return new CatalogsController();
+	return CatalogsController;
 });
