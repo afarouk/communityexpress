@@ -20,13 +20,20 @@ define([
 			this.listenTo(promotionsView, 'onPromotion', this.onPromotionSelected.bind(this));
 			this.listenTo(promotionsView, 'onSendSMS', this.onSendSMS.bind(this));
 
-			var loyaltyProgram = saslData.loyaltyProgram || {};
+			this.loyaltyProgram = saslData.loyaltyProgram || {};
 			this.loyaltyCardView = new LoyaltyCardView();
-			this.loyaltyCardView.render(loyaltyProgram);
+			this.loyaltyCardView.render(this.loyaltyProgram);
+			this.listenTo(this.loyaltyCardView, 'onRefresh', this.onLoyaltyRefresh.bind(this));
 		},
 		onLoginStatusChanged: function() {
 			var user = appCache.get('user'),
 				uuid = user ? user.getUID() : null;
+			this.loyaltyRender(uuid);
+		},
+		loyaltyRender: function(uuid) {
+			if (!uuid && this.loyaltyCardView) {
+				this.loyaltyCardView.render(this.loyaltyProgram);
+			}
 			if (uuid) this.retrieveLoyaltyStatus(uuid);
 		},
 		retrieveLoyaltyStatus: function(uuid) {
@@ -75,6 +82,10 @@ define([
 						});
                   }
                 }.bind(this));
+		},
+
+		onLoyaltyRefresh: function() {
+			this.dispatcher.getPopupsController().onUserLogin();
 		}
 	});
 	return LandingController;

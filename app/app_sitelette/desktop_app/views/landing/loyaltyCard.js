@@ -18,7 +18,8 @@ define([
     events: {
       'click @ui.show_share_btn': 'showShareBlock',
       'click @ui.show_sms_block': 'showSMSInput',
-      'click @ui.send_sms': 'onSendSMS'
+      'click @ui.send_sms': 'onSendSMS',
+      'click @ui.no_qrCode button': 'onRefresh'
     },
     initialize: function() {
       this.loyaltyProgram = saslData.loyaltyProgram || {};
@@ -30,6 +31,10 @@ define([
       this.$el.html(this.template(loyaltyProgram));
       this.bindUIElements();
       return this;
+    },
+
+    onRefresh: function() {
+      this.trigger('onRefresh');
     },
 
     renderQrCode: function(resp) {
