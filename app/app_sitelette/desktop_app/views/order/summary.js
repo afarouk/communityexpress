@@ -5,7 +5,7 @@ define([
 	'../../../scripts/actions/orderActions',
 	'../../../scripts/globalHelpers',
 	'../../../scripts/appCache',
-	'../../controllers/dispatcher'
+	'../../controllers/_dispatcher'
 	], function(template, orderActions, h, appCache, dispatcher){
 	var SummaryView = Mn.View.extend({
 		template: template,

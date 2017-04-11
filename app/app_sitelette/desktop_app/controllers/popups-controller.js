@@ -16,7 +16,6 @@ define([
 	], function(appCache, h, userController, sessionActions,
 		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView, LoaderView){
 	var PopupsController = Mn.Object.extend({
-		loader: new LoaderView(),
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
 		},
@@ -162,6 +161,7 @@ define([
 			messageView.onShow();
 		},
 		showLoader: function() {
+			this.loader = new LoaderView();
 			this.layout.showChildView('popupsContainer', this.loader);
 			this.initializeDialog(this.loader.$el);
 			this.loader.show();

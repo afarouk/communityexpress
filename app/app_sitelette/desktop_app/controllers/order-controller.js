@@ -21,13 +21,11 @@ define([
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
-			// this.renderOrder();
 		},
 		renderOrder: function(options, change) {
 			var cartPage = new CartPageView(options, change);
 			this.layout.showChildView('orderContainer', cartPage);
 			this.listenTo(cartPage, 'order:proceed', this.onOrder.bind(this, options));
-			//TODO not sure that it is good idea
 			this.options = options;
 			this.dispatcher.getCatalogsController().hideBlinder();
 			appCache.set('orderInProcess', false);
