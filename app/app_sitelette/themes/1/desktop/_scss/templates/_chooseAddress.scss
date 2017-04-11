@@ -1,26 +1,32 @@
-.choose_address_page {
-  padding: 15px 10px 10px 10px;
+.cmtyx_desktop_application {
+  .grid {
+    .cmtyx_cart_block {
+      .choose_address_page {
+        padding: 15px 10px 10px 10px;
 
-  #pick_up {
-    .order_address {
-      font-size: $size-normal;
-      line-height: 19px;
-      color: $review-user-name;
-      font-weight: $style-thin;
-      margin-bottom: 10px;
+        #pick_up {
+          .order_address {
+            font-size: $size-normal;
+            line-height: 19px;
+            color: $review-user-name;
+            font-weight: $style-thin;
+            margin-bottom: 10px;
+          }
+
+          .map_container {
+              height: 370px;
+              width: 100%;
+          }
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .bottom_btns_block {
+          display: none;
+        }
+      }
     }
-
-    .map_container {
-        height: 370px;
-        width: 100%;
-    }
-
-    img {
-      width: 100%;
-    }
-  }
-
-  .bottom_btns_block {
-    display: none;
   }
 }

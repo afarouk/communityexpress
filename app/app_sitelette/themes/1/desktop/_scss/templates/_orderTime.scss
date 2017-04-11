@@ -1,61 +1,67 @@
-.order_time_page {
-  padding: 15px 10px 10px 10px;
+.cmtyx_desktop_application {
+  .grid {
+    .cmtyx_cart_block {
+      .order_time_page {
+        padding: 15px 10px 10px 10px;
 
-  .tabcontent {
-    &.regular {
-      .regular-order-delay, 
-      .regular-order-note, 
-      .regular-order-warning {
-        padding: 20px 5px;
-        text-align: center;
-        color: $review-user-name;
-        font-size: $size-large;
-        font-weight: $style-normal-strong;
+        .tabcontent {
+          &.regular {
+            .regular-order-delay, 
+            .regular-order-note, 
+            .regular-order-warning {
+              padding: 20px 5px;
+              text-align: center;
+              color: $review-user-name;
+              font-size: $size-large;
+              font-weight: $style-normal-strong;
 
-        h4 {
-          font-size: $size-sm-medium;
+              h4 {
+                font-size: $size-sm-medium;
+              }
+            }
+
+            .regular-order-warning {
+              color: $warning-messages;
+            }
+          }
+
+          &.future {
+            .selects-container {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              margin-top: 20px;
+
+              select {
+                width: 50%;
+                text-align: center;
+                border-color: $cmtyx_color_1;
+                color: $cmtyx_color_1;
+              }
+
+              #select-date {
+                margin-right: 10px;
+              }
+
+              #select-time {
+                margin-left: 10px;
+              }
+            }
+
+            h4 {
+              font-size: $size-sm-medium;
+              font-weight: $style-normal-strong;
+              text-align: center;
+              color: $warning-messages;
+              margin-top: 10px;
+            }
+          }
         }
-      }
 
-      .regular-order-warning {
-        color: $warning-messages;
+        .bottom_btns_block {
+          display: none;
+        }
       }
     }
-
-    &.future {
-      .selects-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 20px;
-
-        select {
-          width: 50%;
-          text-align: center;
-          border-color: $cmtyx_color_1;
-          color: $cmtyx_color_1;
-        }
-
-        #select-date {
-          margin-right: 10px;
-        }
-
-        #select-time {
-          margin-left: 10px;
-        }
-      }
-
-      h4 {
-        font-size: $size-sm-medium;
-        font-weight: $style-normal-strong;
-        text-align: center;
-        color: $warning-messages;
-        margin-top: 10px;
-      }
-    }
-  }
-
-  .bottom_btns_block {
-    display: none;
   }
 }

@@ -1,37 +1,43 @@
-.add_address_page {
-  padding: 15px 10px 10px 10px;
+.cmtyx_desktop_application {
+  .grid {
+    .cmtyx_cart_block {
+      .add_address_page {
+        padding: 15px 10px 10px 10px;
 
-  .body {
-    height: calc(100% - 90px);
-    overflow-y: auto;
-    padding-right: 5px;
+        .body {
+          height: calc(100% - 90px);
+          overflow-y: auto;
+          padding-right: 5px;
 
-    .state-selector {
-      margin-top: -10px;
+          .state-selector {
+            margin-top: -10px;
 
-      .state-selector-message {
-        font-size: $size-normal-small;
-        color: $review-user-name;
-        margin-bottom: 5px;
+            .state-selector-message {
+              font-size: $size-normal-small;
+              color: $review-user-name;
+              margin-bottom: 5px;
+            }
+
+            select {
+              width: 100%;
+              outline: none;
+            }
+          }
+
+          img {
+            width: 100%;
+          }
+
+          .map_container {
+              height: 370px;
+              width: 100%;
+          }
+        }
+
+        .bottom_btns_block {
+          display: none;
+        }
       }
-
-      select {
-        width: 100%;
-        outline: none;
-      }
     }
-
-    img {
-      width: 100%;
-    }
-
-    .map_container {
-        height: 370px;
-        width: 100%;
-    }
-  }
-
-  .bottom_btns_block {
-    display: none;
   }
 }

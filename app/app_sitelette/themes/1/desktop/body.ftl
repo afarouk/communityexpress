@@ -14,7 +14,7 @@
                 <li class="link">about us</li> -->
                 <li class="link">
                   <span class="logged_in">
-                    <span class="user_email"></span>
+                    <span class="user_email cmtyx_text_color_1"></span>
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <i class="fa fa-check" aria-hidden="true"></i>
                   </span>
