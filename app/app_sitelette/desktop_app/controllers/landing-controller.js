@@ -8,15 +8,9 @@ define([
 	'../views/landing/loyaltyCard',
 	'../../scripts/actions/contactActions',
 	'../../scripts/actions/loyaltyActions'
-	], function(appCache, h, 
+	], function(appCache, h,
 		DiscountsView, PromotionsView, LoyaltyCardView, contactActions, loyaltyActions){
 	var LandingController = Mn.Object.extend({
-		setPopupsController: function(popupsController) {
-			this.popupsController = popupsController;
-		},
-		setCalalogsContoller: function(catalogsController) {
-			this.catalogsController = catalogsController;
-		},
 		start: function() {
 			var discountsView = new DiscountsView();
 			this.listenTo(discountsView, 'onDiscount', this.onDiscountSelected.bind(this));
@@ -49,10 +43,10 @@ define([
 		},
 		onPromotionSelected: function(options) {
 			console.log(options);
-			this.catalogsController.onPromotionSelected(options);
+			this.dispatcher.getCatalogsController().onPromotionSelected(options);
 		},
 		onSendSMS: function(type, phone, uuid, shareUrl) {
-			this.popupsController.showMessage({
+			this.dispatcher.getPopupsController().showMessage({
 				message: 'Sending message to... ' + phone,
 				loader: true,
 				infinite: true
@@ -61,12 +55,12 @@ define([
                 window.saslData.serviceLocationId, phone, uuid, shareUrl)
                 .then(function(res){
                 	if (res.success) {
-                		this.popupsController.showMessage({
+                		this.dispatcher.getPopupsController().showMessage({
 							message: 'Sending message success.',
 							loader: true
 						});
                 	} else {
-                		this.popupsController.showMessage({
+                		this.dispatcher.getPopupsController().showMessage({
 							message: res.explanation,
 							loader: true
 						});
@@ -74,7 +68,7 @@ define([
                 }.bind(this))
                 .fail(function(res){
                   if (res.responseJSON && res.responseJSON.error) {
-                    this.popupsController.showMessage({
+                    this.dispatcher.getPopupsController().showMessage({
 							message: res.responseJSON.error.message,
 							loader: true
 						});
@@ -82,5 +76,5 @@ define([
                 }.bind(this));
 		}
 	});
-	return new LandingController();
+	return LandingController;
 });

@@ -7,13 +7,10 @@ define([
     '../../vendor/scripts/js.cookie',
     '../scripts/actions/configurationActions',
     '../scripts/actions/sessionActions',
-    './controllers/catalogs-controller',
-    './controllers/order-controller',
-    './controllers/popups-controller',
-    './controllers/landing-controller',
+    './controllers/dispatcher',
     './temporary-component'
 	], function(Packery, jQueryBridget, appCache, Cookies,
-		configurationActions, sessionActions, catalogsController, orderController, popupsController, landingController, 
+		configurationActions, sessionActions, dispatcher, 
 		temporaryComponent){
 		var App = new Mn.Application({
 			onStart: function() {
@@ -43,7 +40,7 @@ define([
 		                    Backbone.history.start({
 		                        pushState: true
 		                    });
-		                    popupsController.onLoginStatusChanged();
+		                    dispatcher.getPopupsController().onLoginStatusChanged();
 		                });
 		        } else if (Cookies.get('cmxUID')) {
 		            sessionActions.getSessionFromLocalStorage()
@@ -51,19 +48,19 @@ define([
 			                Backbone.history.start({
 			                    pushState: true
 			                });
-			                popupsController.onLoginStatusChanged();
+			                dispatcher.getPopupsController().onLoginStatusChanged();
 		            	}, function() {
 		            		Cookies.remove('cmxUID');
 		            	}.bind(this));
 		        } else {
-		        	popupsController.onLoginStatusChanged();
+		        	dispatcher.getPopupsController().onLoginStatusChanged();
 		        }
 		        this.options.initSubviews();
 			},
 
 			initSubviews: function() {
-				catalogsController.manageCatalog();
-				landingController.start();
+				dispatcher.getCatalogsController().manageCatalog();
+				dispatcher.getLandingController().start();
 			},
 
 			initAnimationsOnPage: function() {
