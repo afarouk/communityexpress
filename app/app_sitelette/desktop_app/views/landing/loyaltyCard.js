@@ -23,13 +23,13 @@ define([
     },
     initialize: function() {
       this.loyaltyProgram = saslData.loyaltyProgram || {};
-      this.setShareLinks();
     },
 
     render: function(loyaltyProgram) {
       this.loyaltyProgram = loyaltyProgram;
       this.$el.html(this.template(loyaltyProgram));
       this.bindUIElements();
+      this.setShareLinks();
       return this;
     },
 
@@ -90,7 +90,7 @@ define([
             '?' + demo + 't=p&u=' + uuid,
           val = $target.prev().val(); //(650) 617-3439
       //todo toggle block 
-      this.trigger('onSendSMS', 'PROMOTION', val, uuid, shareUrl);
+      this.trigger('onSendSMS', 'LOYALTY', val, uuid, shareUrl);
     },
 
     getLinks: function() {
@@ -107,7 +107,7 @@ define([
     },
 
     setShareLinks: function() {
-        var $block = this.$el.find('.share_block'),
+        var $block = this.$el.find('.share-block'),
           links = this.getLinks(),
           $links = $block.find('a');
 

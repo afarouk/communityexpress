@@ -25,6 +25,7 @@ define([
 			this.loyaltyCardView = new LoyaltyCardView();
 			this.loyaltyCardView.render(this.loyaltyProgram);
 			this.listenTo(this.loyaltyCardView, 'onRefresh', this.onLoyaltyRefresh.bind(this));
+			this.listenTo(this.loyaltyCardView, 'onSendSMS', this.onSendSMS.bind(this));
 
 			var shareView = new ShareView();
 			this.listenTo(shareView, 'onSendSMS', this.onSendSMS.bind(this));
@@ -63,7 +64,7 @@ define([
 				loader: true,
 				infinite: true
 			});
-			contactActions.shareURLviaSMS('DISCOUNT', window.saslData.serviceAccommodatorId,
+			contactActions.shareURLviaSMS(type, window.saslData.serviceAccommodatorId,
                 window.saslData.serviceLocationId, phone, uuid, shareUrl)
                 .then(function(res){
                 	if (res.success) {
