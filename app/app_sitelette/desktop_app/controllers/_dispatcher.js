@@ -16,6 +16,8 @@ define([
 			this.landingController.dispatcher = this;
 			this.popupsController = new PopupsController();
 			this.popupsController.dispatcher = this;
+
+			this.orderController.renderOrder(); //shows empty cart
 		},
 		getCatalogsController: function() {
 			return this.catalogsController;
