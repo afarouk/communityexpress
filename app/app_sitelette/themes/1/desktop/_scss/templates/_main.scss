@@ -27,12 +27,69 @@
   cursor: pointer;
 }
 
+
+.share_container {
+  .share-block {
+    .sms_input_block {
+      text-align: center;
+      display: none;
+
+      .sms_input {
+        background-color: transparent;
+        border: solid 1px $cart-scroll;
+        padding: 5px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        color: $cart-text;
+        margin-top: 20px;
+      }
+
+      .sms_send_button {
+        height: 31px;
+        border: solid 1px;
+        position: relative;
+        right: 5px;
+        bottom: 1px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        color: $white;
+      }
+    }
+
+    .icons-container-wrapper {
+      
+      .icons-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 20px 0;
+
+        .text {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #616161;
+          font-size: 20px;
+
+          i {
+            padding: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
 .cmtyx_desktop_application {
   &.grid-container { min-height: 1000px; }
 
   .grid {
     margin: 0 3%;
-    padding: 3% 0 3% 0;
+    padding: 0 0 3% 0;
     display: none;
     
     /* clearfix */
@@ -155,7 +212,7 @@
           }
         }
       }
-      
+
       .promo-used {
         position: absolute;
         top: 0;

@@ -38,6 +38,39 @@
             </div>
        		</#if>
 
+          <div id="cmtyx_share_block" class="share_container">
+            <div class="share-block">
+              <div class="sms_input_block">
+                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+              </div>
+              <div class="icons-container-wrapper">
+                  <div class="icons-container">
+                      <div class="text sms_block">
+                          <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
+                              <i class="fa fa-mobile" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                      <div class="text email_block">
+                          <a href="" name="share_email" class="share_email cmtyx_text_color_1">
+                              <i class="fa fa-envelope" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                      <div class="text facebook_block">
+                          <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                              <i class="fa fa-facebook" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                      <div class="text twitter_block">
+                          <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                              <i class="fa fa-twitter" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
           <div class="grid-container cmtyx_desktop_application">
               <div class="cssload-thecube">
                   <div class="cssload-cube cssload-c1"></div>
@@ -554,14 +587,6 @@
                 <p class="text">${sasl.number} ${sasl.street} ${sasl.street2}, </p>
                 <p class="text">${sasl.city} ${sasl.state} ${sasl.zip},</p>
                 <p class="text">${sasl.saslName}</p>
-            </div>
-            <div class="share-block">
-                <p class="title">Share this site</p>
-                <p class="link"><img src="themes/1/desktop/images/sms-icon.png" alt="sms icon">SMS</p>
-                <p class="link"><img src="themes/1/desktop/images/facebook-icon.png" alt="facebook icon">Facebook</p>
-                <br>
-                <p class="link"><img src="themes/1/desktop/images/email-icon.png" alt="email icon">E-mail</p>
-                <p class="link"><img src="themes/1/desktop/images/twitter-icon.png" alt="twitter icon">Twitter</p>
             </div>
         </footer>
         
