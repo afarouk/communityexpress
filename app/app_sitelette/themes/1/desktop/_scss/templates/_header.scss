@@ -24,12 +24,51 @@ header {
 		font-size: $size-normal;
 		font-weight: $style-normal;
 		text-transform: uppercase;
-		margin-left: 30px;
 		cursor: pointer;
+		vertical-align: middle;
 
-		&:hover {
-		  color: $cmtyx_color_1;
+		.logged_in {
+			.user_email {
+			    margin-right: 5px;
+			    font-size: $size-normal-small;
+			    color: $cart-text;
+			    letter-spacing: 1px;
+			}
+
+			.fa-user {
+			    font-size: 40px;
+    			color: $user-icon;
+			}
+
+			.fa-check {
+			    position: relative;
+			    right: 10px;
+			    top: 5px;
+			    background-color: $user-tick;
+			    border-radius: 50%;
+			    padding: 2px;
+			}
 		}
+
+		.logged_out {
+			.fa-user {
+			    font-size: 40px;
+    			color: $user-icon;
+			}
+
+			.fa-question {
+			    position: relative;
+			    right: 10px;
+			    top: 5px;
+			    background-color: $order-btn;
+			    border-radius: 50%;
+			    padding: 2px 5px;
+			}
+		}
+
+		// &:hover {
+		//   color: $cmtyx_color_1;
+		// }
 
 		&.last {
 		  font-weight: $style-semi-bold;

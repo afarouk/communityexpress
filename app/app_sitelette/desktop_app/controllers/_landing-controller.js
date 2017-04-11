@@ -6,10 +6,11 @@ define([
 	'../views/landing/discounts',
 	'../views/landing/promotions',
 	'../views/landing/loyaltyCard',
+	'../views/landing/share',
 	'../../scripts/actions/contactActions',
 	'../../scripts/actions/loyaltyActions'
 	], function(appCache, h,
-		DiscountsView, PromotionsView, LoyaltyCardView, contactActions, loyaltyActions){
+		DiscountsView, PromotionsView, LoyaltyCardView, ShareView, contactActions, loyaltyActions){
 	var LandingController = Mn.Object.extend({
 		start: function() {
 			var discountsView = new DiscountsView();
@@ -24,6 +25,9 @@ define([
 			this.loyaltyCardView = new LoyaltyCardView();
 			this.loyaltyCardView.render(this.loyaltyProgram);
 			this.listenTo(this.loyaltyCardView, 'onRefresh', this.onLoyaltyRefresh.bind(this));
+
+			var shareView = new ShareView();
+			this.listenTo(shareView, 'onSendSMS', this.onSendSMS.bind(this));
 		},
 		onLoginStatusChanged: function() {
 			var user = appCache.get('user'),

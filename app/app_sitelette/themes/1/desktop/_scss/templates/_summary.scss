@@ -7,6 +7,12 @@
     }
   }
 
+  .summary-wrapper {
+    height: calc(100% - 80px);
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+
   .title,
   .delivery_date_text,
   .delivery_address_text,

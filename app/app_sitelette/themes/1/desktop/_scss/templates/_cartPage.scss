@@ -13,8 +13,11 @@
     height: 0;
     overflow: hidden;
     color: white;
-    background-color: #0074D9;
+    background-color: $red-news;
     animation: 2s addedSlideDown;
+    line-height: 30px;
+    font-size: $size-medium;
+    font-weight: $style-normal-strong;
   }
 
   @keyframes addedSlideDown {
@@ -22,7 +25,7 @@
       height: 0px;
     }
     50% {
-      height: 25px;
+      height: 30px;
     }
     100% {
       height: 0px;
