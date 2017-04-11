@@ -18,9 +18,11 @@ define([
 		},
 		render: function () {
 			var template = this.logged ? logoutTemplate : loginTemplate;
+			var userEmail = this.logged ? appCache.get('user').userName : '';
 			this.$el.html(template());
 
 			if (this.logged) {
+				this.$el.prev().find('.logged_in .user_email').html(userEmail);
 				this.$el.prev().find('.logged_in').show();
 				this.$el.prev().find('.logged_out').hide();
 			}

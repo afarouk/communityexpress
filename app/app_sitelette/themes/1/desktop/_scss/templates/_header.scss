@@ -28,17 +28,23 @@ header {
 		vertical-align: middle;
 
 		.logged_in {
+			.user_email {
+			    margin-right: 5px;
+			    font-size: $size-normal-small;
+			    color: $cart-text;
+			    letter-spacing: 1px;
+			}
 
 			.fa-user {
 			    font-size: 40px;
-    			color: #d1d1d1;
+    			color: $user-icon;
 			}
 
 			.fa-check {
 			    position: relative;
 			    right: 10px;
 			    top: 5px;
-			    background-color: #2ECC40;
+			    background-color: $user-tick;
 			    border-radius: 50%;
 			    padding: 2px;
 			}
@@ -47,30 +53,14 @@ header {
 		.logged_out {
 			.fa-user {
 			    font-size: 40px;
-    			color: #d1d1d1;
-			}
-
-			.fa-check {
-			    position: relative;
-			    right: 10px;
-			    top: 5px;
-			    background-color: #2ECC40;
-			    border-radius: 50%;
-			    padding: 2px;
-			}
-		}
-
-		.logged_out {
-			.fa-user {
-			    font-size: 40px;
-    			color: #d1d1d1;
+    			color: $user-icon;
 			}
 
 			.fa-question {
 			    position: relative;
 			    right: 10px;
 			    top: 5px;
-			    background-color: #0074D9;
+			    background-color: $order-btn;
 			    border-radius: 50%;
 			    padding: 2px 5px;
 			}
