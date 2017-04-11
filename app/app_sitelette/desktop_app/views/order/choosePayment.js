@@ -196,6 +196,17 @@ define([
 	        this.model.set({comment: comment}, {silent: true});
 	    },
 
+	    onDiscountUpdate: function() {
+	    	if (this.model.additionalParams.promoCodeActive) return;
+	    	var promoCode = appCache.get('promoCode');
+	        if (promoCode) {
+	        	this.model.additionalParams.promoCode = promoCode;
+	        	this.$('input[name=promocode]').val(promoCode);
+	        	this.$('input[name=promocode]').attr('disabled', true);
+	        	this.onGetDiscount();
+	        }
+	    },
+
 	    onGetDiscount: function() {
 	        if (this.model.additionalParams.promoCodeActive) return;
 	        var params = this.model.additionalParams,

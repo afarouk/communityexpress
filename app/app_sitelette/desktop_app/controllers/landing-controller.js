@@ -40,6 +40,7 @@ define([
 		onDiscountSelected: function(options) {
 			console.log(options);
 			appCache.fetch('promoCode', options.promoCode);
+			this.dispatcher.getOrderController().onDiscountSelected();
 		},
 		onPromotionSelected: function(options) {
 			console.log(options);

@@ -158,6 +158,11 @@ define([
 		onOrderTimeBack: function(model) {
 			this.showChooseAddress(model);
 		},
+		//on discount selected
+		onDiscountSelected: function() {
+			var currentView = this.layout.getRegion('orderContainer').currentView;
+			currentView.triggerMethod('discountUpdate'); 
+		},
 		//choose payment part
 		showChoosePayment: function(model) {
 			var choosePayment = new ChoosePaymentView({
