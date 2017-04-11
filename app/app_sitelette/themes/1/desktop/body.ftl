@@ -12,6 +12,16 @@
                 <!-- <li class="link">catalog</li>
                 <li class="link">promotions</li>
                 <li class="link">about us</li> -->
+                <li class="link">
+                  <span class="logged_in">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </span>
+                  <span class="logged_out">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i class="fa fa-question" aria-hidden="true"></i>
+                  </span>
+                </li> 
                 <li id="login-btn" class="link last">sign up/log in</li>
             </ul>
         </header>
@@ -291,6 +301,12 @@
                           </div>
                         </div> 
                       </#list>
+                    </div>
+                  </div>
+                  <div class="promo-used">
+                    <div class="attention-sign">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                      <span>Promocode used</span>
                     </div>
                   </div>
                   <#else>

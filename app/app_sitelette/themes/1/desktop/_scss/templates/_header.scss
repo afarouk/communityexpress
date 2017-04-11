@@ -24,12 +24,61 @@ header {
 		font-size: $size-normal;
 		font-weight: $style-normal;
 		text-transform: uppercase;
-		margin-left: 30px;
+		margin-left: 10px;
 		cursor: pointer;
+		vertical-align: middle;
 
-		&:hover {
-		  color: $cmtyx_color_1;
+		.logged_in {
+			.fa-user {
+			    font-size: 40px;
+    			color: #d1d1d1;
+			}
+
+			.fa-check {
+			    position: relative;
+			    right: 10px;
+			    top: 5px;
+			    background-color: #2ECC40;
+			    border-radius: 50%;
+			    padding: 2px;
+			}
 		}
+
+		.logged_out {
+			.fa-user {
+			    font-size: 40px;
+    			color: #d1d1d1;
+			}
+
+			.fa-check {
+			    position: relative;
+			    right: 10px;
+			    top: 5px;
+			    background-color: #2ECC40;
+			    border-radius: 50%;
+			    padding: 2px;
+			}
+		}
+
+		.logged_out {
+			.fa-user {
+			    font-size: 40px;
+    			color: #d1d1d1;
+			}
+
+			.fa-question {
+			    position: relative;
+			    right: 10px;
+			    top: 5px;
+			    background-color: #0074D9;
+			    border-radius: 50%;
+			    padding: 2px 5px;
+			}
+		}
+
+		// &:hover {
+		//   color: $cmtyx_color_1;
+		// }
 
 		&.last {
 		  font-weight: $style-semi-bold;
