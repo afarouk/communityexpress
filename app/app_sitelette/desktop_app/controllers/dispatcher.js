@@ -1,10 +1,10 @@
 'use strict';
 
 define([
-	'./catalogs-controller',
-	'./order-controller',
-	'./landing-controller',
-	'./popups-controller',
+	'./_catalogs-controller',
+	'./_order-controller',
+	'./_landing-controller',
+	'./_popups-controller',
 	], function(CatalogsController, OrderController, LandingController, PopupsController){
 	var ControllersDispatcher = Mn.Object.extend({
 		initialize: function() {

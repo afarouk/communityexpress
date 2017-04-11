@@ -6,7 +6,7 @@ define([
 	'../../../scripts/actions/orderActions',
 	'../../../scripts/globalHelpers',
 	'../../../scripts/appCache',
-	'../../controllers/_dispatcher'
+	'../../controllers/dispatcher'
 	], function(template, SwitchTabsBehavior, orderActions, h, appCache, dispatcher){
 	var ChoosePaymentView = Mn.View.extend({
 		template: template,

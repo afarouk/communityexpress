@@ -7,7 +7,7 @@ define([
     '../../vendor/scripts/js.cookie',
     '../scripts/actions/configurationActions',
     '../scripts/actions/sessionActions',
-    './controllers/_dispatcher',
+    './controllers/dispatcher',
     './temporary-component'
 	], function(Packery, jQueryBridget, appCache, Cookies,
 		configurationActions, sessionActions, dispatcher, 
