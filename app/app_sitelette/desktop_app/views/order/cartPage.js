@@ -17,9 +17,9 @@ define([
 		triggers: {
 			'click @ui.order': 'order:proceed'
 		},
-		initialize: function(options, change) {
+		initialize: function(options, changed) {
 			options.basket = options.basket || [];
-			this.change = change;
+			this.changed = changed;
 			this.basket = options.basket;
 			this.sasl = options.sasl;
 			this.chooseTemplate();
@@ -47,7 +47,7 @@ define([
 					tax: null,
 					tip: null,
 					total: null,
-					change: this.change
+					changed: this.changed
 				};
 			}
 		}

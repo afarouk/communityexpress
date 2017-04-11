@@ -116,8 +116,16 @@ define([
 	            }.bind(this));
 		},
 
-		onBasketChange: function(options, a, b, change) {
-			this.dispatcher.getOrderController().renderOrder(options, change);
+		onBasketChange: function(options, model, temp, changed) {
+			var changes = 'quantity';
+			if (changed) {
+				if (changed.add) {
+					changes = 'add';
+				} else {
+					changes = 'remove';
+				}
+			}
+			this.dispatcher.getOrderController().renderOrder(options, changes);
 		},
 
 		showBlinder: function() {

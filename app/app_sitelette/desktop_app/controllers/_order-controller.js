@@ -22,8 +22,8 @@ define([
 		initialize: function() {
 			this.layout = new OrderLayoutView();
 		},
-		renderOrder: function(options, change) {
-			var cartPage = new CartPageView(options, change);
+		renderOrder: function(options, changed) {
+			var cartPage = new CartPageView(options, changed);
 			this.layout.showChildView('orderContainer', cartPage);
 			this.listenTo(cartPage, 'order:proceed', this.onOrder.bind(this, options));
 			this.options = options;

@@ -1,6 +1,14 @@
-<% if(change && change.add) { %>
+<% if(changed === "add") { %>
   <div class="item-added" name="item-added">
     Item added
+  </div>
+<% } else if(changed === "remove") { %>
+  <div class="item-removed" name="item-removed">
+    Item removed
+  </div>
+<% } else if(changed === "quantity") { %>
+  <div class="item-quantity" name="item-quantity">
+    Item quantity changed
   </div>
 <% } %>
 
