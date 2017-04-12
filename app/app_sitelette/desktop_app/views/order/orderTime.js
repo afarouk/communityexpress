@@ -26,12 +26,11 @@ define([
 		onRender: function() {
 			if (this.futureOrRegular === "FUTURE") {
 	            this.$('.left').addClass('disabled');
-	            this.$('.left').css('pointer-events', 'none');
+	            this.$('.left').attr('disabled', true);
 	            this.$('.right').click();
-	        }
-	        else if (this.futureOrRegular === "REGULAR") {
+	        } else if (this.futureOrRegular === "REGULAR") {
 	            this.$('.right').addClass('disabled');
-	            this.$('.right').css('pointer-events', 'none');
+	            this.$('.right').attr('disabled', true);
 	            this.$('.left').click();
 	        }
 		},
