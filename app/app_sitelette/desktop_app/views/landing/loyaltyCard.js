@@ -28,8 +28,8 @@ define([
     render: function(loyaltyProgram) {
       this.loyaltyProgram = loyaltyProgram;
       this.$el.html(this.template(loyaltyProgram));
-      this.bindUIElements();
-      this.setShareLinks();
+      // this.bindUIElements();
+      // this.setShareLinks();
       return this;
     },
 
