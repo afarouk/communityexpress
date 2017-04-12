@@ -583,6 +583,13 @@ li {
     float: right;
     color: #fafafa;
 }
+.price_list li.after_discount {
+    margin-top: -15px;
+    display: none;
+}
+.price_list li.after_discount.visible {
+    display: block;
+}
 .price_list li span {
     font: 300 14px 'Open Sans', sans-serif;
     color: #fafafa;

@@ -245,6 +245,13 @@
           .price {
             font-weight: $style-semi-bold;
           }
+
+          &.after_discount {
+            display: none;
+            &.visible {
+              display: flex;
+            }
+          }
         }
 
         .total_price {

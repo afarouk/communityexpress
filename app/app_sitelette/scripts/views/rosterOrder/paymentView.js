@@ -154,6 +154,7 @@ var PaymentView = Backbone.View.extend({
             pickupAddress: pickupAddress,
             showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
             discount: this.model.additionalParams.discountDisplay.toFixed(2),
+            afterDiscount: this.model.additionalParams.afterDiscount ? this.model.additionalParams.afterDiscount.toFixed(2) : null,
             promoCode: this.model.additionalParams.promoCode,
             minimumPurchase: this.model.additionalParams.minimumPurchase,
             backToSingleton: this.model.additionalParams.backToSingleton
@@ -294,6 +295,9 @@ var PaymentView = Backbone.View.extend({
                     totalAmount = parseFloat((totalAmount - this.model.additionalParams.discount).toFixed(2));
                     break;
                 default:
+            }
+            if (this.model.additionalParams.discountDisplay) {
+                this.model.additionalParams.afterDiscount = this.model.additionalParams.subTotal - this.model.additionalParams.discountDisplay;
             }
         }
         if (totalAmount < 0) {

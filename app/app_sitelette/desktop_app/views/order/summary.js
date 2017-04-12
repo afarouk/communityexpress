@@ -25,6 +25,9 @@ define([
             'click .get_discount_button': 'onGetDiscount',
             'click @ui.add_note_btn': 'onShowNote'
 		},
+		modelEvents: {
+	        'change': 'render'
+	    },
 		initialize: function() {
 			this.getTipInfo();
 	        this.allowDelivery = this.model.additionalParams.allowDelivery;
@@ -58,6 +61,7 @@ define([
 	            // showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
 	            showTipOnSummaryPage: true,
 	            discount: this.model.additionalParams.discountDisplay ? this.model.additionalParams.discountDisplay.toFixed(2) : 0,
+	            afterDiscount: this.model.additionalParams.afterDiscount ? this.model.additionalParams.afterDiscount.toFixed(2) : null,
 	            promoCode: this.model.additionalParams.promoCode,
 	            minimumPurchase: this.model.additionalParams.minimumPurchase,
 			});
@@ -135,7 +139,7 @@ define([
 	                default:
 	            }
 	            if (this.model.additionalParams.discountDisplay) {
-	            	this.$('.discount_value').text(cs + this.model.additionalParams.discountDisplay.toFixed(2));
+	            	this.model.additionalParams.afterDiscount = this.model.additionalParams.subTotal - this.model.additionalParams.discountDisplay;
 	            }
 	        }
 	        if (totalAmount < 0) {

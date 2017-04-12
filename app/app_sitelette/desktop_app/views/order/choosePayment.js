@@ -14,6 +14,8 @@ define([
 		ui: {
 			back: '.nav_back_btn',
 			next: '.nav_next_btn',
+			left: '.left',
+			right: '.right',
 			add_note_btn: '.add-note',
 			add_note_text: '.note-text',
 			bottom_btns_block: '.bottom_btns_block'
@@ -21,6 +23,8 @@ define([
 		events: {
 			'click @ui.back': 'onBack',
 			'click @ui.next': 'onNext',
+			'click @ui.left': 'onDeliverySelected',
+			'click @ui.right': 'onCashSelected',
             'click .plus_button': 'incrementTip',
             'click .minus_button': 'decrementTip',
             'click .add-note': 'toggleAddNote',
@@ -28,6 +32,9 @@ define([
             'click .get_discount_button': 'onGetDiscount',
             'click @ui.add_note_btn': 'onShowNote'
 		},
+		modelEvents: {
+	        'change': 'render'
+	    },
 		initialize: function() {
 			this.getTipInfo();
 	        this.allowCash = this.model.additionalParams.allowCash;
@@ -63,6 +70,7 @@ define([
 	            // showTipOnSummaryPage: this.model.additionalParams.showTipOnSummaryPage,
 	            showTipOnSummaryPage: true,
 	            discount: this.model.additionalParams.discountDisplay ? this.model.additionalParams.discountDisplay.toFixed(2) : 0,
+	            afterDiscount: this.model.additionalParams.afterDiscount ? this.model.additionalParams.afterDiscount.toFixed(2) : null,
 	            promoCode: this.model.additionalParams.promoCode,
 	            minimumPurchase: this.model.additionalParams.minimumPurchase,
 			});
@@ -71,7 +79,7 @@ define([
 		onRender: function() {
 			var cashOnly = this.allowCash && !this.allowDelivery ,
 				deliveryOnly = !this.allowCash && this.allowDelivery;
-			if (cashOnly) {
+			if (cashOnly || this.model.get('cashSelected')) {
 	            // this.$('.left').addClass('disabled');
 	            // this.$('.left').css('pointer-events', 'none');
 	            this.$('.right').click();
@@ -93,6 +101,15 @@ define([
 	    		this.ui.next.css('visibility', 'visible');
 	    		this.ui.bottom_btns_block.hide();
 	    	}
+	    },
+
+	    onDeliverySelected: function() {
+	    	this.model.set('deliverySelected', true);
+	    	this.model.set('cashSelected', false);
+	    },
+	    onCashSelected: function() {
+	    	this.model.set('deliverySelected', false);
+	    	this.model.set('cashSelected', true);
 	    },
 
 		getAddressFromSasl: function() {
@@ -168,7 +185,7 @@ define([
 	                default:
 	            }
 	            if (this.model.additionalParams.discountDisplay) {
-	            	this.$('.discount_value').text(cs + this.model.additionalParams.discountDisplay.toFixed(2));
+	            	this.model.additionalParams.afterDiscount = this.model.additionalParams.subTotal - this.model.additionalParams.discountDisplay;
 	            }
 	        }
 	        if (totalAmount < 0) {
