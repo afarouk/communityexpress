@@ -383,6 +383,12 @@ a.rightBtn.ui-btn {
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }
+a.rightBtn.ui-btn.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+    border-color: #aaa!important;
+    color: #aaa!important;
+}
 .ui-content {
     overflow-x: visible;
 }

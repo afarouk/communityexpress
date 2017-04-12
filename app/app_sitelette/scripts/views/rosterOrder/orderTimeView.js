@@ -63,16 +63,13 @@ var OrderTimeView = Backbone.View.extend({
         });
         if (this.options.futureOrRegular === "FUTURE") {
             this.$('.leftBtn').addClass('disabled');
-            this.$('.leftBtn').css('pointer-events', 'none');
             this.$('.rightBtn').click();
         }
         else if (this.options.futureOrRegular === "REGULAR") {
             this.$('.rightBtn').addClass('disabled');
-            this.$('.rightBtn').css('pointer-events', 'none');
             this.$('.leftBtn').click();
         }
 
-        //this.$('select').selectmenu();
         this.$('.ui-select > div').addClass('cmtyx_border_color_1 cmtyx_text_color_1');
     },
 
