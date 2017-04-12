@@ -60,8 +60,10 @@ define([
 	        if (exists) {
 	            this.savedVersion = exists;
 	            this.ui.add.attr('disabled', false);
+	            this.$('.item_version_not_available').removeClass('visible');
 	        } else {
-	            this.ui.add.attr('disabled', true);;
+	            this.ui.add.attr('disabled', true);
+	            this.$('.item_version_not_available').addClass('visible');
 	        }
 	    },
 

@@ -571,6 +571,21 @@
                     justify-content: flex-end;
                   }
 
+                  .item_version_not_available {
+                    width: 100%;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    margin: 10px 0 -10px 0;
+                    display: none;
+                    &.visible {
+                      display: flex;
+                    }
+                    span {
+                      color: $warning-messages;
+                    }
+                  }
+
                   .item_added_versions {
                     width: 100%;
                     display: flex;
