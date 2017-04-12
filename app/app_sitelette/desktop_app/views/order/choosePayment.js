@@ -6,8 +6,7 @@ define([
 	'../../../scripts/actions/orderActions',
 	'../../../scripts/globalHelpers',
 	'../../../scripts/appCache',
-	'../../controllers/dispatcher'
-	], function(template, SwitchTabsBehavior, orderActions, h, appCache, dispatcher){
+	], function(template, SwitchTabsBehavior, orderActions, h, appCache){
 	var ChoosePaymentView = Mn.View.extend({
 		template: template,
 		behaviors: [SwitchTabsBehavior],
@@ -233,7 +232,7 @@ define([
 	            }, this), function(jqXHR) {
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
 	                this.model.additionalParams.promoCode = null;
-	                dispatcher.getPopupsController().showMessage({
+	                this.dispatcher.getPopupsController().showMessage({
 	                	message: text,
 						confirm: 'ok'
 	                });

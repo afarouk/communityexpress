@@ -4,9 +4,8 @@ define([
 	'ejs!../../templates/order/summary.ejs',
 	'../../../scripts/actions/orderActions',
 	'../../../scripts/globalHelpers',
-	'../../../scripts/appCache',
-	'../../controllers/dispatcher'
-	], function(template, orderActions, h, appCache, dispatcher){
+	'../../../scripts/appCache'
+	], function(template, orderActions, h, appCache){
 	var SummaryView = Mn.View.extend({
 		template: template,
 		className: 'page summary_page',
@@ -200,7 +199,7 @@ define([
 	            }, this), function(jqXHR) {
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
 	                this.model.additionalParams.promoCode = null;
-	                dispatcher.getPopupsController().showMessage({
+	                this.dispatcher.getPopupsController().showMessage({
 	                	message: text,
 						confirm: 'ok'
 	                });

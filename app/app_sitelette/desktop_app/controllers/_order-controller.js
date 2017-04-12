@@ -166,6 +166,7 @@ define([
 			var choosePayment = new ChoosePaymentView({
                 	model: model
                 });
+			choosePayment.dispatcher = this.dispatcher;
             this.layout.showChildView('orderContainer', choosePayment);
             this.listenTo(choosePayment, 'onNextStep', this.onChoosePaymentNext.bind(this, model));
             this.listenTo(choosePayment, 'onBackStep', this.onChoosePaymentBack.bind(this, model));
@@ -208,6 +209,7 @@ define([
 			var summary = new SummaryView({
                 	model: model
                 });
+			summary.dispatcher = this.dispatcher;
             this.layout.showChildView('orderContainer', summary);
             this.listenTo(summary, 'onNextStep', this.onSummaryNext.bind(this, model));
             this.listenTo(summary, 'onBackStep', this.onSummaryBack.bind(this, model));
