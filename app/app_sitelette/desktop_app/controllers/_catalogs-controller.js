@@ -50,11 +50,16 @@ define([
 	                return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
 	            }.bind(this)).then(function(options) {
 	            		var catalogsCollection = new Backbone.Collection(options.collection);
-	            		var catalogsView = new CatalogsView({
-	                        catalogsCollection: catalogsCollection
-	                    });
-	            		this.layout.showChildView('catalogsContainer', catalogsView);
-	            		this.layout.listenTo(catalogsView, 'catalog:selected', this.onCatalogSelected.bind(this));
+	            		if (catalogsCollection.length > 1) {
+		            		var catalogsView = new CatalogsView({
+		                        catalogsCollection: catalogsCollection
+		                    });
+		            		this.layout.showChildView('catalogsContainer', catalogsView);
+		            		this.layout.listenTo(catalogsView, 'catalog:selected', this.onCatalogSelected.bind(this));
+		            	} else {
+		            		var catalog = catalogsCollection.at(0);
+		            		this.showSingleCatalog(sasl, catalog.get('id'));
+		            	}
 	            }.bind(this));
 		},
 

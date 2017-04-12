@@ -1,6 +1,11 @@
 .cmtyx_desktop_application {
   .home_tabs_list {
 	.cmtyx_loyalty_program_block {
+	  .no_loyalty {
+	  	padding: 20px;
+	    color: $cart-text;
+	    text-align: center;
+	  }
 	  .loyalty_inner_wrapper {
 	    .prize_block {
 	      .prize_container {
