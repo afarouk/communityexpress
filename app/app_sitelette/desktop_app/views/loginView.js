@@ -5,10 +5,14 @@ define([
 	'ejs!../templates/login.ejs',
 	'ejs!../templates/logout.ejs',
 	], function(appCache, loginTemplate, logoutTemplate){
-	var PopupsLayoutView = Mn.View.extend({
-		el: '#login-btn',
+	var LoginView = Mn.View.extend({
+		el: '#login-container',
+		ui: {
+			'login_btn' : '#login-btn',
+			'user_email' : '.user_email'
+		},
 		events: {
-			'click' : 'onLogin'
+			'click @ui.login_btn' : 'onLogin'
 		},
 		initialize: function() {
 			var user = appCache.get('user');
@@ -17,21 +21,11 @@ define([
 			this.render();
 		},
 		render: function () {
-			var template, userEmail;
-
-			if (this.logged) {
-				template = logoutTemplate;
-				userEmail = appCache.get('user').userName;
-				this.$el.prev().find('.logged_in .user_email').html(userEmail);
-				this.$el.prev().find('.logged_in').show();
-				this.$el.prev().find('.logged_out').hide();
-			}
-			else {
-				template = loginTemplate;
-				this.$el.prev().find('.logged_in').hide();
-				this.$el.prev().find('.logged_out').show();
-			}
-
+			var template = this.logged ? logoutTemplate : loginTemplate, 
+				userEmail = this.logged ? appCache.get('user').userName : "";
+			this.bindUIElements();
+				debugger;
+			this.ui.user_email.html(userEmail);
 			this.$el.html(template());
 
 			return this;
@@ -44,5 +38,5 @@ define([
      		}
      	}
 	});
-	return PopupsLayoutView;
+	return LoginView;
 });

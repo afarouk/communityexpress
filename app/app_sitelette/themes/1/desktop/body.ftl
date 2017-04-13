@@ -8,23 +8,9 @@
             <div class="logo-container cmtyx_special_background_color">
                 <img class="logo" src="${bannerImageURL}" alt="logo">
             </div>
-            <ul class="links-conatiner">
-                <!-- <li class="link">catalog</li>
-                <li class="link">promotions</li>
-                <li class="link">about us</li> -->
-                <li class="link">
-                  <span class="logged_in">
-                    <span class="user_email cmtyx_text_color_1"></span>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </span>
-                  <span class="logged_out">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <i class="fa fa-question" aria-hidden="true"></i>
-                  </span>
-                </li> 
-                <li id="login-btn" class="link last">sign up/log in</li>
-            </ul>
+            <div class="links-container">
+                <div id="login-container" class="link"></div> 
+            </div>
         </header>
 
         <div id="cmtyx_landingView">

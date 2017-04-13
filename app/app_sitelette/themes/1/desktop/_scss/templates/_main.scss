@@ -31,8 +31,7 @@
 .share_container {
   .share-block {
     display: flex;
-    margin-right: 3%;
-    align-items: flex-end;
+    align-items: center;
     flex-direction: column;
 
     .sms_input_block {
@@ -64,7 +63,7 @@
 
     .icons-container-wrapper {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       width: 100%;
       
       .icons-container {
@@ -95,11 +94,16 @@
 
 
 .cmtyx_desktop_application {
-  &.grid-container { min-height: 1000px; }
+  &.grid-container {
+    display: flex;
+    min-height: 1000px; 
+  }
 
   .grid {
-    margin: 0 3%;
+    margin: 0 auto; 
     padding: 0 0 3% 0;
+    width: 92%;
+    max-width: 1650px;
     display: none;
     
     /* clearfix */
