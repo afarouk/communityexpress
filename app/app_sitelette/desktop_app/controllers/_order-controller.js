@@ -22,6 +22,14 @@ define([
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
+
+			$(window).on("resize", this.resizeWindow.bind(this));
+		},
+		resizeWindow: function() {
+			var currentView = this.layout.getRegion('orderContainer').currentView;
+			if (currentView) {
+				currentView.triggerMethod('windowResize');
+			}
 		},
 		renderOrder: function(options, changed) {
 			var cartPage = new CartPageView(options, changed);

@@ -39,6 +39,9 @@ define([
 			setTimeout(this.calcCardHeight.bind(this), 0);
 			this.prefillCard();
 		},
+		onWindowResize: function() {
+			this.calcCardHeight();
+		},
 		calcCardHeight: function() {
 			var height = this.$('#skeuocard .face').width() / 1.6;
 			this.$('#skeuocard.js').height(height);
