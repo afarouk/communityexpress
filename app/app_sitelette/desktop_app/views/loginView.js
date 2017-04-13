@@ -12,7 +12,7 @@ define([
 			user_email : '.user_email'
 		},
 		events: {
-			'click @ui.login_btn' : 'onLogin'
+			'click' : 'onLogin'
 		},
 		initialize: function() {
 			var user = appCache.get('user');
