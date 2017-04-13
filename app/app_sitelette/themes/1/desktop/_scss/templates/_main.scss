@@ -765,31 +765,40 @@
         .navigation_block {
           display:flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: center;
           text-transform: uppercase;
           margin-bottom: 10px;
 
           .nav_back_btn,
           .nav_next_btn {
-            font-size: $size-normal-small;
-            color: $welcome-block-text;
-            font-weight: $style-thin;
+            font-size: $size-normal;
+            color: $white;
+            font-weight: $style-normal-strong;
             cursor: pointer;
-            position: relative;
-            // display: none;
+            position: absolute;
+            top: 5px;
+            height: 30px;
+            min-width: 65px;
+            border-radius: 2px;
 
             span.arr {
               font-size: 40px;
+              position: relative;
+              bottom: 6px;
+              font-weight: $style-thin;
             }
 
             span.text {
               position: relative;
-              bottom: 6px;
-              font-size: 14px;
+              bottom: 12px;
             }
           }
 
           .nav_back_btn {
+            left: 10px;
+            background-color: $cart-divider;
+            padding-left: 3px; 
+
             span.text {
               left: 5px;
             }
@@ -797,6 +806,9 @@
 
           .nav_next_btn {
             text-align: right;
+            right: 10px;
+            background-color: $order-btn;
+            padding-right: 3px;
 
             span.text {
               right: 5px;
@@ -886,6 +898,7 @@
         
         .page {
           height: 100%;
+          position: relative;
         }
       }
     }
