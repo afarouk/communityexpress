@@ -270,7 +270,6 @@ define([
 	            quantity: model.get('items')[0].quantity
 	        });
 	        model.unset('items');
-	        model.unset('comment');//temporary
 	        return orderActions.placePromoSingletonOrder(
 	            params.sasl.sa(),
 	            params.sasl.sl(),
