@@ -24,7 +24,7 @@
             </div>
        		</#if>
 
-          <div id="cmtyx_share_block" class="share_container">
+          <div id="cmtyx_share_block" class="cmtyx_share_block share_container">
             <div class="share-block">
               <div class="sms_input_block">
                 <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
@@ -148,38 +148,40 @@
                               </#if>
                             </div>
 
-                            <div class="promoCode_item_buttons">
-                              <div class="share_btn_block cmtyx_text_color_1" data-promoCode="${promoCode.promoCode}" >
-                                  <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
+                            <div class="share_container">
+                              <div class="promoCode_item_buttons item_buttons">
+                                <div class="share_btn_block cmtyx_text_color_1" data-promoCode="${promoCode.promoCode}" >
+                                    <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
+                                </div>
                               </div>
-                            </div>
 
-                            <div class="promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}" >
-                              <div class="sms_input_block">
-                                  <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-                                  <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
-                              </div>
-                              <div class="icons-container-wrapper">
-                                <div class="icons-container">
-                                  <div class="text sms_block">
-                                      <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
-                                          <i class="fa fa-mobile" aria-hidden="true"></i>
-                                      </a>
-                                  </div>
-                                  <div class="text email_block">
-                                      <a href="" name="share_email" class="share_email cmtyx_text_color_1">
-                                          <i class="fa fa-envelope" aria-hidden="true"></i>
-                                      </a>
-                                  </div>
-                                  <div class="text facebook_block">
-                                      <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-                                          <i class="fa fa-facebook" aria-hidden="true"></i>
-                                      </a>
-                                  </div>
-                                  <div class="text twitter_block">
-                                      <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-                                          <i class="fa fa-twitter" aria-hidden="true"></i>
-                                      </a>
+                              <div class="promoCode-share-block share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}" >
+                                <div class="sms_input_block">
+                                    <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                                    <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+                                </div>
+                                <div class="icons-container-wrapper">
+                                  <div class="icons-container">
+                                    <div class="text sms_block">
+                                        <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
+                                            <i class="fa fa-mobile" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text email_block">
+                                        <a href="" name="share_email" class="share_email cmtyx_text_color_1">
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text facebook_block">
+                                        <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text twitter_block">
+                                        <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -282,38 +284,41 @@
                               </div>
                             </div>
                             </#if>
-                            <div class="promotion_item_buttons">
-                              <div class="share_btn_block cmtyx_text_color_1"
-                                uuid="${promotion.uuid}">
-                                <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
+
+                            <div class="share_container">
+                              <div class="promotion_item_buttons item_buttons">
+                                <div class="share_btn_block cmtyx_text_color_1"
+                                  uuid="${promotion.uuid}">
+                                  <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
+                                </div>
                               </div>
-                            </div>
-                            <div class="promotion-share-block" data-uuid="${promotion.uuid}">
-                              <div class="sms_input_block">
-                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-                                <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
-                              </div>
-                              <div class="icons-container-wrapper">
-                                <div class="icons-container">
-                                  <div class="text sms_block">
-                                      <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
-                                          <i class="fa fa-mobile" aria-hidden="true"></i>
-                                      </a>
-                                  </div>
-                                  <div class="text email_block">
-                                      <a href="" name="share_email" class="share_email cmtyx_text_color_1">
-                                          <i class="fa fa-envelope" aria-hidden="true"></i>
-                                      </a>
-                                  </div>
-                                  <div class="text facebook_block">
-                                      <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-                                          <i class="fa fa-facebook" aria-hidden="true"></i>
-                                      </a>
-                                  </div>
-                                  <div class="text twitter_block">
-                                      <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-                                          <i class="fa fa-twitter" aria-hidden="true"></i>
-                                      </a>
+                              <div class="promotion-share-block share-block" data-uuid="${promotion.uuid}">
+                                <div class="sms_input_block">
+                                  <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                                  <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+                                </div>
+                                <div class="icons-container-wrapper">
+                                  <div class="icons-container">
+                                    <div class="text sms_block">
+                                        <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
+                                            <i class="fa fa-mobile" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text email_block">
+                                        <a href="" name="share_email" class="share_email cmtyx_text_color_1">
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text facebook_block">
+                                        <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text twitter_block">
+                                        <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                   </div>
                                 </div>
                               </div>

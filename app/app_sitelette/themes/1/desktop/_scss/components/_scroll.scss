@@ -1,0 +1,19 @@
+body::-webkit-scrollbar,
+.body::-webkit-scrollbar,
+.catalog-container::-webkit-scrollbar,
+.tabcontent::-webkit-scrollbar,
+.cart_page::-webkit-scrollbar,
+.summary-wrapper::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-thumb, 
+.body::-webkit-scrollbar-thumb, 
+.catalog-container::-webkit-scrollbar-thumb,
+.tabcontent::-webkit-scrollbar-thumb,
+.cart_page::-webkit-scrollbar-thumb,
+.summary-wrapper::-webkit-scrollbar-thumb {
+  background-color: $cart-scroll;
+  border-radius: 2px;
+  opacity: 0.5;
+}
