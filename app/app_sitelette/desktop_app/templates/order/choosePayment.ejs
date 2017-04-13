@@ -88,7 +88,7 @@
         <% if (!promoCode) { %>
             <span class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="">Apply</span>
         <% } %>
-        <span class="price order_price discount_value cmtyx_text_color_1"><%= cs + discount %></span>
+        <span class="price order_price discount_value cmtyx_text_color_1">-<%= cs + discount %></span>
     </div>
   </div>
   <div class="additional_prices after_discount <% if(afterDiscount) { %>visible<% } %>">

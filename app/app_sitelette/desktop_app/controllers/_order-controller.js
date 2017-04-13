@@ -2,6 +2,7 @@
 
 define([
 	'../../scripts/appCache',
+	'../../scripts/globalHelpers',
 	'../../scripts/actions/orderActions',
 	'../../scripts/actions/saslActions',
 	'../../scripts/actions/sessionActions',
@@ -15,7 +16,7 @@ define([
 	'../views/order/addCard',
 	'../views/order/summary',
 	'../views/cartLoader',
-	], function(appCache, orderActions, saslActions, sessionActions, RosterOrderModel,
+	], function(appCache, h, orderActions, saslActions, sessionActions, RosterOrderModel,
 		OrderLayoutView, CartPageView, ChooseAddressView, AddAddressView, 
 		OrderTimeView, ChoosePaymentView, AddCardView, SummaryView, CartLoader){
 	var OrderController = Mn.Object.extend({
@@ -79,6 +80,7 @@ define([
                     basket: options.basket,
                     catalogId: options.catalogId,
                     deliveryPickupOptions: options.deliveryPickupOptions,
+                    promoCode: appCache.get('promoCode') || null,
                     promoUUID: options.promoUUID,
                     uuid: options.uuid
             	};
@@ -159,17 +161,64 @@ define([
 		//on discount selected
 		onDiscountSelected: function() {
 			var currentView = this.layout.getRegion('orderContainer').currentView;
-			currentView.triggerMethod('discountUpdate'); 
+			if (currentView) {
+				this.validatePromoCode(currentView.model)
+					.then(function(promoCode){
+						currentView.triggerMethod('discountUpdate', promoCode); 
+					}.bind(this));
+			}
+		},
+		//dererred rejecter for promise
+		rejecter: function(def) {
+			setTimeout(function(){
+				def.reject(null);
+			}, 0)
+			return def;
+		},
+		//validate promo code
+		validatePromoCode: function (model, code) {
+	        var params = model.additionalParams,
+	            promoCode = params.promoCode || appCache.get('promoCode') || code,
+	            def = $.Deferred();
+	        if (model.additionalParams.promoCodeActive) return this.rejecter(def);
+	        model.additionalParams.promoCode = promoCode;
+	        if (!promoCode) return this.rejecter(def);
+	        this.showLoader();
+			orderActions.validatePromoCode(params.sasl.sa(), params.sasl.sl(), promoCode)
+	            .then(_.bind(function(resp) {
+	            	this.hideLoader();
+	                model.additionalParams.discount = resp.discount;
+	                model.additionalParams.discountType = resp.discountType;
+	                model.additionalParams.maximumDiscount = resp.maximumDiscount;
+	                model.additionalParams.minimumPurchase = resp.minimumPurchase || 0;
+	                model.additionalParams.promoCodeActive = true;
+	                model.set({'promoCode': promoCode}, {silent: true});
+	                this.dispatcher.getLandingController().onDiscountUsed();
+	                def.resolve(promoCode);
+	            }, this), function(jqXHR) {
+	            	this.hideLoader();
+	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
+	                model.additionalParams.promoCode = null;
+	                this.dispatcher.getPopupsController().showMessage({
+	                	message: text,
+						confirm: 'ok'
+	                });
+	                def.reject(jqXHR);
+	            }.bind(this));
+	        return def;
 		},
 		//choose payment part
 		showChoosePayment: function(model) {
-			var choosePayment = new ChoosePaymentView({
-                	model: model
-                });
-			choosePayment.dispatcher = this.dispatcher;
-            this.layout.showChildView('orderContainer', choosePayment);
-            this.listenTo(choosePayment, 'onNextStep', this.onChoosePaymentNext.bind(this, model));
-            this.listenTo(choosePayment, 'onBackStep', this.onChoosePaymentBack.bind(this, model));
+			this.validatePromoCode(model).always(function(code){
+				var choosePayment = new ChoosePaymentView({
+	                	model: model
+	                });
+				choosePayment.dispatcher = this.dispatcher;
+	            this.layout.showChildView('orderContainer', choosePayment);
+	            this.listenTo(choosePayment, 'onNextStep', this.onChoosePaymentNext.bind(this, model));
+	            this.listenTo(choosePayment, 'onBackStep', this.onChoosePaymentBack.bind(this, model));
+				this.listenTo(choosePayment, 'onValidatePromoCode', this.validatePromoCode.bind(this, model));
+			}.bind(this));
 		},
 		onChoosePaymentNext: function(model, card, active) {
 			if (active === 'cash') {
@@ -206,13 +255,16 @@ define([
 		},
 		//summary part
 		showSummary: function(model) {
-			var summary = new SummaryView({
-                	model: model
-                });
-			summary.dispatcher = this.dispatcher;
-            this.layout.showChildView('orderContainer', summary);
-            this.listenTo(summary, 'onNextStep', this.onSummaryNext.bind(this, model));
-            this.listenTo(summary, 'onBackStep', this.onSummaryBack.bind(this, model));
+			this.validatePromoCode(model).always(function(resp){
+				var summary = new SummaryView({
+	                	model: model
+	                });
+				summary.dispatcher = this.dispatcher;
+	            this.layout.showChildView('orderContainer', summary);
+	            this.listenTo(summary, 'onNextStep', this.onSummaryNext.bind(this, model));
+	            this.listenTo(summary, 'onBackStep', this.onSummaryBack.bind(this, model));
+	            this.listenTo(choosePayment, 'onValidatePromoCode', this.validatePromoCode.bind(this, model));
+			}.bind(this));
 		},
 		onSummaryNext: function(model) {
 			this.onPlaceOrder(model);
@@ -336,43 +388,6 @@ define([
 			//TODO return to catalog
 			this.renderOrder(this.options);
 		},
-
-		// onPlaceMultipleOrder: function() {
-	 //        var params = this.model.additionalParams;
-	 //        loader.show('placing your order');
-
-	 //        this.model.set({
-	 //            tipAmount: this.tipSum
-	 //        });
-
-	 //        return orderActions.placeOrder(
-	 //            params.sasl.sa(),
-	 //            params.sasl.sl(),
-	 //            this.model.toJSON()
-	 //        ).then(function(e) {
-	 //            loader.hide();
-	 //            params.basket.reset();
-	 //            params.basket.versions = undefined;
-	 //            params.backToRoster = false;
-	 //            appCache.set('promoCode', null);
-	 //            appCache.set('updateDiscount', true);
-	 //            var callback;
-	 //            if (params.backToCatalog) {
-	 //                callback = _.bind(this.triggerCatalogView, this);
-	 //            } else {
-	 //                callback = _.bind(this.triggerRosterView, this);
-	 //            }
-	 //            popupController.textPopup({
-	 //                text: 'order placed'
-	 //            }, callback);
-	 //        }.bind(this), function(e) {
-	 //            loader.hide();
-	 //            var text = h().getErrorMessage(e, 'Error placing your order');
-	 //            popupController.textPopup({
-	 //                text: text
-	 //            });
-	 //        }.bind(this));
-	 //    },
 
 		showNoItemsPopup: function() {
 			console.log('no items selected');

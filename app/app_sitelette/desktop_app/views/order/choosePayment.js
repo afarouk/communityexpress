@@ -41,12 +41,7 @@ define([
 	        this.paymentOnlineAccepted = this.model.additionalParams.paymentOnlineAccepted;
 	        this.allowDelivery = this.model.additionalParams.allowDelivery;
 	        this.currencySymbol = this.model.currencySymbols['USD'];
-
-	        var promoCode = appCache.get('promoCode');
-	        if (promoCode) {
-	        	this.model.additionalParams.promoCode = promoCode;
-	        }
-	        this.onGetDiscount(); //temporary
+	        this.setTotalPriceWithTip();
 		},
 		serializeData: function() {
 			var favorites = this.model.additionalParams.userModel.favorites,
@@ -214,47 +209,20 @@ define([
 	        this.model.set({comment: comment}, {silent: true});
 	    },
 
-	    onDiscountUpdate: function() {
-	    	if (this.model.additionalParams.promoCodeActive) return;
-	    	var promoCode = appCache.get('promoCode');
-	        if (promoCode) {
-	        	this.model.additionalParams.promoCode = promoCode;
-	        	this.$('input[name=promocode]').val(promoCode);
-	        	this.$('input[name=promocode]').attr('disabled', true);
-	        	this.onGetDiscount();
-	        }
+	    onDiscountUpdate: function(promoCode) {
+        	this.$('input[name=promocode]').val(promoCode);
+        	this.$('input[name=promocode]').attr('disabled', true);
+        	this.setTotalPriceWithTip();
 	    },
 
 	    onGetDiscount: function() {
-	        if (this.model.additionalParams.promoCodeActive) return;
-	        var params = this.model.additionalParams,
-	            promoCode;
-	        if (!params.promoCodeActive && params.promoCode) {
-	            promoCode = params.promoCode;
-	        } else {
-	            promoCode = this.$('input[name=promocode]').val();
-	        }
-	        this.model.additionalParams.promoCode = promoCode;
-	        if (!promoCode) return;
-	        orderActions.validatePromoCode(params.sasl.sa(), params.sasl.sl(), promoCode)
-	            .then(_.bind(function(resp) {
-	                this.currencySymbol = this.model.currencySymbols[resp.currencyCode];
-	                this.model.additionalParams.discount = resp.discount;
-	                this.model.additionalParams.discountType = resp.discountType;
-	                this.model.additionalParams.maximumDiscount = resp.maximumDiscount;
-	                this.model.additionalParams.minimumPurchase = resp.minimumPurchase || 0;
-	                this.model.additionalParams.promoCodeActive = true;
-	                this.model.set({'promoCode': promoCode}, {silent: true});
-	                this.setTotalPriceWithTip();
-	                this.dispatcher.getLandingController().onDiscountUsed();
-	            }, this), function(jqXHR) {
-	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
-	                this.model.additionalParams.promoCode = null;
-	                this.dispatcher.getPopupsController().showMessage({
-	                	message: text,
-						confirm: 'ok'
-	                });
-	            }.bind(this));
+	    	var promoCode = this.$('input[name=promocode]').val();
+	    	this.dispatcher.getOrderController()
+	    		.validatePromoCode(this.model, promoCode)
+	    		.then(this.setTotalPriceWithTip.bind(this),
+    			function(){
+    				this.$('input[name=promocode]').val('');
+    			}.bind(this));
 	    },
 
 		onNext: function() {
