@@ -131,6 +131,9 @@ define([
 				}
 			}
 			this.dispatcher.getOrderController().renderOrder(options, changes);
+
+			//basket reset
+			// if ((temp.previousModels && temp.previousModels.length > 0) && options.basket.length === 0) {}
 		},
 
 		showBlinder: function() {
@@ -158,6 +161,7 @@ define([
 		confirmedBackToCatalogs: function () {
 			if (this.basket) this.basket.reset();
 			this.manageCatalog();
+			this.dispatcher.getLandingController().onPromotionUnselected();
 		},
 
 		getUrl: function(sasl) {
@@ -185,6 +189,7 @@ define([
 
 		confirmedPromotion: function(options) {
 			if (this.basket) this.basket.reset();
+			this.dispatcher.getLandingController().onPromotionSelectedConfirmed();
 			this.singleItemPromotion(options);
 		},
 
@@ -222,126 +227,7 @@ define([
             	this.layout.showChildView('catalogsContainer', itemPromotionView);
             	this.listenTo(itemPromotionView, 'backToCatalog' , this.onBackToCatalogs.bind(this)); //todo
 	        }.bind(this));
-		},
-
-		// singleton: function(options) {
-	 //        var sasl,
-	 //            discount = options.discount || null,
-	 //            discountType = options.discountType || '',
-	 //            promoCode = options.promoCode || null,
-	 //            backToRoster = options.backToRoster,
-	 //            backToCatalog = options.backToCatalog,
-	 //            backToCatalogs = options.backToCatalogs,
-	 //            backToSingleton = options.backToSingleton,
-	 //            singletonItem = {
-	 //                uuid: options.uuid || null,
-	 //                type: options.type || null
-	 //            };
-	 //        singletonItem = appCache.fetch('singletonItem', singletonItem);
-	 //        var uuid = singletonItem.uuid,
-	 //            type = singletonItem.type;
-	 //        return saslActions.getSasl()
-	 //        .then(function(ret) {
-	 //            sasl = ret;
-	 //            return type === 'PROMO'? catalogActions.getItemDetailsForPromoItem(uuid) :
-	 //                catalogActions.getEventDetails(uuid);
-	 //        }).then(function(item) {
-	 //            var basket = new CatalogBasketModel(),
-	 //            // Should we have isOpen and isOpenWarningMessage in response?
-	 //                isOpen = true,
-	 //                isOpenWarningMessage = 'message';
-	 //            basket.addItem(new Backbone.Model(item), 1);
-	 //            if (backToSingleton) {
-	 //                basket = appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
-	 //            } else {
-	 //                appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
-	 //            }
-	 //            return {
-	 //                promoCode: promoCode,
-	 //                promoUUID:uuid,
-	 //                type: type,
-	 //                uuid: item.uuid,
-	 //                sasl: sasl,
-	 //                basket: basket,
-	 //                backToRoster: backToRoster,
-	 //                backToCatalog: backToCatalog,
-	 //                backToCatalogs: backToCatalogs,
-	 //                backToSingleton: true,
-	 //                item: item,
-	 //                isOpen: isOpen,
-	 //                isOpenWarningMessage: isOpenWarningMessage
-	 //            }
-	 //        });
-	 //    },
-
-	    // catalog: function(options) { // options is an array with either sasl or
-	    //     var sasl;
-	    //     var rosterBasket = options.rosterBasket || false;
-	    //     var catalogId = options.catalogId;
-	    //     var backToRoster = options.backToRoster;
-	    //     var rosterId = options.rosterId;
-	    //     var backToCatalogs = options.backToCatalogs;
-	    //     var backToCatalog = options.backToCatalog;
-	    //     var catalogId = options.catalogId;
-	    //     var navbarView = options.navbarView;
-	    //     var launchedViaURL = options.launchedViaURL;
-	    //     return saslActions.getSasl(options.id)
-	    //         .then(function(ret) {
-	    //             sasl = ret;
-	    //             return catalogActions.getCatalog(sasl.sa(), sasl.sl(), catalogId);
-	    //         }).then(function(catalog) {
-	    //             /*
-	    //              * check if we are going back to catalogs. If yes, pull up old
-	    //              * catalog, else create new.
-	    //              */
-
-	    //             var basket,
-	    //                 isOpen = catalog.data.isOpen,
-	    //                 isOpenWarningMessage = catalog.data.isOpenWarningMessage;
-	    //             var catalogDetails = {
-	    //                 catalogUUID: catalog.data.catalogId,
-	    //                 catalogDisplayText: catalog.data.displayText,
-	    //                 catalogType: catalog.data.catalogType.enumText
-	    //             };
-	    //             var basket;
-	    //             if (backToCatalog === true) {
-	    //                 basket = new CatalogBasketModel();
-	    //                 basket.setCatalogDetails(catalogDetails);
-	    //                 basket = appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':' + catalog.data.catalogId + ':catalogbasket', basket);
-	    //             } else {
-	    //                 var basket = new CatalogBasketModel();
-	    //                 basket.setCatalogDetails(catalogDetails);
-	    //                 appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + catalog.data.catalogId + ':catalogbasket', basket);
-	    //             }
-	    //             basket.each(function(item, index, list) {
-	    //                 var quantity = item.get('quantity');
-	    //                 var itemName = item.itemName;
-	    //                 var group = item.groupId;
-	    //                 console.log("retrieved catalog from cache ### " + itemName + ":[" + quantity + "] from Group:" + group);
-	    //             });
-	    //             if (catalogId === 'SIDES' && rosterBasket) {
-	    //                 basket = rosterBasket;
-	    //             }
-
-	    //             return {
-	    //                 sasl: sasl,
-	    //                 catalog: catalog,
-	    //                 user: sessionActions.getCurrentUser(),
-	    //                 url: getUrl(sasl) + '/catalog',
-	    //                 rosterId: rosterId,
-	    //                 backToRoster: backToRoster,
-	    //                 basket: basket,
-	    //                 rosterBasket: rosterBasket, // catalogActions.getBasket(sasl.sa(),
-	    //                 // sasl.sl()),
-	    //                 backToCatalogs: backToCatalogs,
-	    //                 catalogId: catalogId,
-	    //                 navbarView: navbarView,
-	    //                 launchedViaURL :launchedViaURL,
-	    //                 isOpen: isOpen,
-	    //                 isOpenWarningMessage: isOpenWarningMessage
-	    //             };
-	    //         });
-	    // },
+		}
 	});
 	return CatalogsController;
 });

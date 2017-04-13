@@ -13,13 +13,13 @@ define([
 		DiscountsView, PromotionsView, LoyaltyCardView, ShareView, contactActions, loyaltyActions){
 	var LandingController = Mn.Object.extend({
 		start: function() {
-			var discountsView = new DiscountsView();
-			this.listenTo(discountsView, 'onDiscount', this.onDiscountSelected.bind(this));
-			this.listenTo(discountsView, 'onSendSMS', this.onSendSMS.bind(this));
+			this.discountsView = new DiscountsView();
+			this.listenTo(this.discountsView, 'onDiscount', this.onDiscountSelected.bind(this));
+			this.listenTo(this.discountsView, 'onSendSMS', this.onSendSMS.bind(this));
 
-			var promotionsView = new PromotionsView();
-			this.listenTo(promotionsView, 'onPromotion', this.onPromotionSelected.bind(this));
-			this.listenTo(promotionsView, 'onSendSMS', this.onSendSMS.bind(this));
+			this.promotionsView = new PromotionsView();
+			this.listenTo(this.promotionsView, 'onPromotion', this.onPromotionSelected.bind(this));
+			this.listenTo(this.promotionsView, 'onSendSMS', this.onSendSMS.bind(this));
 
 			this.loyaltyProgram = saslData.loyaltyProgram || {};
 			this.loyaltyCardView = new LoyaltyCardView();
@@ -54,9 +54,18 @@ define([
 			appCache.fetch('promoCode', options.promoCode);
 			this.dispatcher.getOrderController().onDiscountSelected();
 		},
+		onDiscountUsed: function() {
+			this.discountsView.triggerMethod('discountUsed');
+		},
 		onPromotionSelected: function(options) {
 			console.log(options);
 			this.dispatcher.getCatalogsController().onPromotionSelected(options);
+		},
+		onPromotionSelectedConfirmed: function() {
+			this.promotionsView.triggerMethod('promotionSelected');
+		},
+		onPromotionUnselected: function() {
+			this.promotionsView.triggerMethod('promotionUnselected');
 		},
 		onSendSMS: function(type, phone, uuid, shareUrl) {
 			this.dispatcher.getPopupsController().showMessage({

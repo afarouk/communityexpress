@@ -200,6 +200,7 @@ define([
 	                this.model.additionalParams.promoCodeActive = true;
 	                this.model.set({'promoCode': promoCode}, {silent: true});
 	                this.setTotalPriceWithTip();
+	                this.dispatcher.getLandingController().onDiscountUsed();
 	            }, this), function(jqXHR) {
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
 	                this.model.additionalParams.promoCode = null;

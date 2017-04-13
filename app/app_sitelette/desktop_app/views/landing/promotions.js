@@ -28,7 +28,12 @@ define([
           uuid: uuid,
           promoPrice: promoPrice
       });
+    },
+    onPromotionSelected: function() {
       this.$el.addClass('used');
+    },
+    onPromotionUnselected: function() {
+      this.$el.removeClass('used');
     },
     showShareBlock: function(e) {
       var $target = $(e.currentTarget),
