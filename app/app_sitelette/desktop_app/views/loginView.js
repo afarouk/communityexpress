@@ -8,8 +8,8 @@ define([
 	var LoginView = Mn.View.extend({
 		el: '#login-container',
 		ui: {
-			'login_btn' : '#login-btn',
-			'user_email' : '.user_email'
+			login_btn : '#login-btn',
+			user_email : '.user_email'
 		},
 		events: {
 			'click @ui.login_btn' : 'onLogin'
@@ -18,16 +18,14 @@ define([
 			var user = appCache.get('user');
 
 			this.logged = user && user.getUID() ? true : false;
+			this.template = this.logged ? logoutTemplate : loginTemplate;
 			this.render();
 		},
 		render: function () {
-			var template = this.logged ? logoutTemplate : loginTemplate, 
-				userEmail = this.logged ? appCache.get('user').userName : "";
-			this.bindUIElements();
-				debugger;
+			var userEmail = this.logged ? appCache.get('user').userName : "";
+			this.$el.html(this.template());
+			this.bindUIElements(); //required for dynamic template rendered in existing element
 			this.ui.user_email.html(userEmail);
-			this.$el.html(template());
-
 			return this;
      	},
      	onLogin: function() {
