@@ -78,6 +78,12 @@
     <div class="additional_prices">
       <div class="subtotal_price price_name">Subtotal</div>
       <div class="price cmtyx_text_color_1"><%= cs + subTotal %></div>
+    <div class="right_block promocode_container">
+        <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />
+        <% if (!promoCode) { %>
+            <span class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="">Apply</span>
+        <% } %>
+        <span class="price order_price discount_value cmtyx_text_color_1">-<%= cs + discount %></span>
     </div>
     <div class="additional_prices discount <%= backToSingleton ? 'hidden' : '' %>">
       <div class="left_block">

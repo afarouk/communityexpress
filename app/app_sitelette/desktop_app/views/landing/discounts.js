@@ -28,18 +28,19 @@ define([
       var $target = $(e.currentTarget),
           uuid = $target.data('uuid'),
           promoCode = $target.data('promocode');
-      if ( this.ui.sub_discount.length > 0) {
-        this.ui.sub_discount.find('.discount-description').text('The discount will be applied at the end of order screen');
-      }
+
+      this.onDiscountUsed();
       this.trigger('onDiscount', {
           uuid: uuid,
           promoCode: promoCode
       });
-      this.onDiscountUsed();
     },
     onDiscountUsed: function() {
       this.$el.addClass('used');
       this.ui.sub_discount.off('click');
+      if ( this.ui.sub_discount.length > 0) {
+        this.ui.sub_discount.find('.discount-description').text('The discount will be applied at the end of order screen');
+      }
     },
     showShareBlock: function(e) {
       var $target = $(e.currentTarget),
