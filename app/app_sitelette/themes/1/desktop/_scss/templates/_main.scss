@@ -30,8 +30,14 @@
 
 .share_container {
   .share-block {
+    display: flex;
+    margin-right: 3%;
+    align-items: flex-end;
+    flex-direction: column;
+
     .sms_input_block {
       text-align: center;
+      width: 25%;
       display: none;
 
       .sms_input {
@@ -57,10 +63,14 @@
     }
 
     .icons-container-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
       
       .icons-container {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        width: 25%;
         align-items: center;
         padding: 20px 0;
 
@@ -270,7 +280,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(55, 55, 55, 0.6);
         display: none;
 
         .blinder-content {
@@ -280,9 +290,9 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          color: $cart_text;
+          color: $white;
           i {
-            font-size: 12rem;
+            font-size: 9rem;
           }
           span {
             font-size: 2rem;
