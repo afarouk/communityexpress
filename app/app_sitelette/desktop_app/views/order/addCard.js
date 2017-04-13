@@ -36,7 +36,13 @@ define([
 	    	});
 		},
 		onRender: function() {
+			setTimeout(this.calcCardHeight.bind(this), 0);
 			this.prefillCard();
+		},
+		calcCardHeight: function() {
+			var height = this.$('#skeuocard .face').width() / 1.6;
+			this.$('#skeuocard.js').height(height);
+			this.$('#skeuocard .face').height(height);
 		},
 		prefillCard: function() {
 	        if (this.card) return;
