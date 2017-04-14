@@ -5,7 +5,9 @@
   <div class="item_description">
     <%= longDescription %>
   </div>
-  <button class="customize_btn">customize</button>
+  <% if (hasSubitems) { %>
+    <button class="customize_btn" name="item_customize">customize</button>
+  <% } %>
 </div>
 <div class="right_block">
   <div class="item_price" name="items_price">$<%= price %></div>
@@ -16,3 +18,4 @@
   </div>
   <button class="add_to_cart_btn" name="add_to_card">add to cart</button>
 </div>
+<div class="customization_continer" id="customizationContainer"></div>

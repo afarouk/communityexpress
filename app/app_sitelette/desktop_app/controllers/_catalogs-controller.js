@@ -136,6 +136,10 @@ define([
 			// if ((temp.previousModels && temp.previousModels.length > 0) && options.basket.length === 0) {}
 		},
 
+		onCustomizeItem: function() {
+			return catalogActions.getSubItems();
+		},
+
 		showBlinder: function() {
 			var blinderView = new BlinderView();
 			this.layout.showChildView('blinder', blinderView);

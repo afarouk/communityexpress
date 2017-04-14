@@ -8,6 +8,8 @@ define([
 	], function(CatalogsController, OrderController, LandingController, PopupsController){
 	var ControllersDispatcher = Mn.Object.extend({
 		initialize: function() {
+			Mn.CollectionView.prototype.dispatcher = this;
+			Mn.View.prototype.dispatcher = this;
 			this.initControllers();
 
 			this.get('order').renderOrder(); //shows empty cart

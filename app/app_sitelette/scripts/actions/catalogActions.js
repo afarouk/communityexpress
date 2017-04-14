@@ -36,6 +36,17 @@ module.exports = {
         });
     },
 
+    getSubItems: function(params) {
+        return gateway.sendRequest('getSubItems', {
+            itemId: 1,
+            itemVersion: 1,
+            priceId: 1,
+            simulate: true
+        }).then(function(response) {
+            return response
+        });
+    },
+
     getRoster: function(sa, sl, rosterId) {
         return gateway.sendRequest('getRoster', {
             serviceAccommodatorId: sa,

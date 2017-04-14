@@ -1,11 +1,16 @@
 define([
 	'ejs!../../templates/partials/catalogItem.ejs',
-	], function(itemTemplate){
+	'./customization'
+	], function(itemTemplate, CustomizationView){
 	var CatalogGroupItemView = Mn.View.extend({
 		template: itemTemplate,
 		className: 'catalog_item',
 		tagName: 'li',
+		regions: {
+			customization: '#customizationContainer'
+		},
 		ui: {
+			customize: '[name="item_customize"]',
 			increase: '[name="quantity_increase"]',
 			decrease: '[name="quantity_decrease"]',
 			quantity: '[name="quantity"]',
@@ -15,6 +20,7 @@ define([
 		events: {
 			'click @ui.increase': 'onIncrease',
 			'click @ui.decrease': 'onDecrease',
+			'click @ui.customize': 'onCustomize'
 		},
 		triggers: {
 			'click @ui.addToCard': 'items:added'
@@ -52,6 +58,18 @@ define([
 		changeItemsPrice: function() {
 			var price = this.model.get('price') * this.quantity;
 			this.ui.price.text(price.toFixed(2));
+		},
+		onCustomize: function() {
+			this.dispatcher.get('catalogs')
+				.triggerMethod('customizeItem')
+				.then(this.onCustomizeData.bind(this));
+		},
+		onCustomizeData: function(collection) {
+			var customizationItems = new Backbone.Collection(collection),
+				customizationView = new CustomizationView({
+					collection: customizationItems
+				});
+			this.showChildView('customization', customizationView);
 		}
 	});
 
