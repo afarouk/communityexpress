@@ -1,7 +1,7 @@
 define([
 	'ejs!../../templates/partials/catalogItem.ejs',
-	'./customization'
-	], function(itemTemplate, CustomizationView){
+	'./customizationLayout'
+	], function(itemTemplate, CustomizationLayoutView){
 	var CatalogGroupItemView = Mn.View.extend({
 		template: itemTemplate,
 		className: 'catalog_item',
@@ -60,17 +60,25 @@ define([
 			this.ui.price.text(price.toFixed(2));
 		},
 		onCustomize: function() {
+			this.ui.customize.attr('disabled', true);
 			this.dispatcher.get('catalogs')
 				.triggerMethod('customizeItem')
 				.then(this.onCustomizeData.bind(this));
 		},
 		onCustomizeData: function(collection) {
 			var customizationItems = new Backbone.Collection(collection),
-				customizationView = new CustomizationView({
+				customizationView = new CustomizationLayoutView({
 					collection: customizationItems
 				});
+			this.listenTo(customizationView, 'custom:cancel', this.onCustomCancel.bind(this));
 			this.showChildView('customization', customizationView);
 			this.getRegion('customization').$el.slideToggle('slow');
+			//TODO ^ maybe move that to new customization controller
+			//it will be easier for managing
+		},
+		onCustomCancel: function() {
+			this.getRegion('customization').$el.slideToggle('slow');
+			this.ui.customize.attr('disabled', false);
 		}
 	});
 

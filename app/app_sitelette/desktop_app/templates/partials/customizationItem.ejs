@@ -12,9 +12,9 @@
 				</div>
 				<div class="right">
 					<% if(selectorType.enumText === 'RADIO') { %>
-						<input type="radio" name="" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
+						<input name="custom_radio" type="radio" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked="checked"<% } %>>
 					<% } else { %>
-						<input type="checkbox" name="" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
+						<input name="custom_checkbox" type="checkbox" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
 					<% } %>
 				</div>
 			</div>

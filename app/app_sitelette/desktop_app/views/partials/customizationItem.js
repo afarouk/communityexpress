@@ -6,13 +6,19 @@ define([
 		className: 'customization_item',
 		tagName: 'li',
 		ui: {
-			
+			input: 'input'
 		},
 		events: {
-			
+			'change @ui.input': 'onSelectionChanged'
 		},
 		triggers: {
 			
+		},
+		onSelectionChanged: function(e) {
+			var $target = $(e.currentTarget),
+				val = $target.val(),
+				checked = $target.is(':checked');
+			console.log('custom subsubitem: ', val, checked);
 		}
 	});
 

@@ -12,7 +12,7 @@ define([
 			if (model.get('hasVersions')) {
 				return CatalogItemVersionsView;
 			} else {
-				model.set('hasSubitems', false); //temporary
+				model.set('hasSubitems', false); //temporary until you'll add 'hasSubitems' field
 				return CatalogItemView;
 			}
 		},

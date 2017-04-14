@@ -334,6 +334,19 @@
                       }
                     }
                   }
+                  .confirmation-block {
+                      padding: 10px;
+                      display: flex;
+                      justify-content: space-around;
+                      button {
+                        padding: 8px 16px;
+                        border-radius: 3px;
+                        box-shadow: none;
+                        border: none;
+                        background-color: #faa019;
+                        color: white;
+                    }
+                  }
                 }
               }
             }
