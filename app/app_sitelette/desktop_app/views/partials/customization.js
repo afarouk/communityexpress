@@ -4,7 +4,7 @@ define([
 	'./customizationItem',
 	], function(CustomizationItemView, CatalogItemVersionsView){
 	var CustomizationCollectionView = Mn.CollectionView.extend({
-		className: 'cmtyx_customization',
+		className: 'customization_block',
 		tagName: 'ul',
 		childView: CustomizationItemView,
 		initialize: function(options) {

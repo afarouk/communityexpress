@@ -70,6 +70,7 @@ define([
 					collection: customizationItems
 				});
 			this.showChildView('customization', customizationView);
+			this.getRegion('customization').$el.slideToggle('slow');
 		}
 	});
 

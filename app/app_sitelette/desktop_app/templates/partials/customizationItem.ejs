@@ -1,1 +1,23 @@
-<span><%= displayText %></span>
+<div class="customize-header">
+	<div><%= displayText %></div>
+	<div><%= description %></div>
+</div>
+<div class="customize-body">
+	<% if(hasSubSubItems) { %>
+		<% _.each(subSubItems, function(subItem){ %>
+			<div class="subItem" data-id="<%= subItem.subSubItemId %>">
+				<div class="left">
+					<div class="text"><%= subItem.displayText %></div>
+					<div class="description"><%= subItem.description %></div>
+				</div>
+				<div class="right">
+					<% if(selectorType.enumText === 'RADIO') { %>
+						<input type="radio" name="" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
+					<% } else { %>
+						<input type="checkbox" name="" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
+					<% } %>
+				</div>
+			</div>
+		<% }); %>
+	<% } %>
+</div>

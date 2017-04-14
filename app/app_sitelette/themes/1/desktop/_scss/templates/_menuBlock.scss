@@ -300,6 +300,41 @@
                     }
                   }
                 }
+
+                .customization_continer {
+                  background: gray;
+                  display: none;
+                  margin: 10px 0 0 0;
+                  width: 100%;
+
+                  .customization_block {
+                    .customization_item {
+                      .customize-header {
+                        display: block;
+                        background: lightgreen;
+                        padding: 5px;
+                      }
+                      .customize-body {
+
+                        padding: 5px;
+                        .subItem {
+                          display: flex;
+                          justify-content: space-between;
+                          margin-top: 5px;
+                          background: lightcoral;
+
+                          .left {
+                            padding-left: 10px;
+                          }
+
+                          .right {
+                            padding: 10px;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
