@@ -26,17 +26,16 @@ define([
 			$(window).on("resize", this.resizeWindow.bind(this));
 		},
 		resizeWindow: function() {
-			var currentView = this.layout.getRegion('orderContainer').currentView;
-			if (currentView) {
-				currentView.triggerMethod('windowResize');
-			}
+			this.getRegionView('orderContainer', function(view) {
+				view.triggerMethod('windowResize');
+			});
 		},
 		renderOrder: function(options, changed) {
 			var cartPage = new CartPageView(options, changed);
 			this.layout.showChildView('orderContainer', cartPage);
 			this.listenTo(cartPage, 'order:proceed', this.onOrder.bind(this, options));
 			this.options = options;
-			this.dispatcher.getCatalogsController().hideBlinder();
+			this.dispatcher.get('catalogs').hideBlinder();
 			appCache.set('orderInProcess', false);
 		},
 		showLoader: function() {
@@ -58,8 +57,8 @@ define([
 		},
 		onOrder: function(options) {
 			options.basket.getItemsNumber() === 0 ?
-	        this.showNoItemsPopup() : this.dispatcher.getPopupsController().requireLogIn(function() {
-	        	this.dispatcher.getCatalogsController().showBlinder();
+	        this.showNoItemsPopup() : this.dispatcher.get('popups').requireLogIn(function() {
+	        	this.dispatcher.get('catalogs').showBlinder();
 	        	this.getAdditionalOrderInfo(options);
 	        }.bind(this));
 		},
@@ -168,13 +167,12 @@ define([
 		},
 		//on discount selected
 		onDiscountSelected: function() {
-			var currentView = this.layout.getRegion('orderContainer').currentView;
-			if (currentView) {
-				this.validatePromoCode(currentView.model)
+			this.getRegionView('orderContainer', function(view) {
+				this.validatePromoCode(view.model)
 					.then(function(promoCode){
-						currentView.triggerMethod('discountUpdate', promoCode); 
+						view.triggerMethod('discountUpdate', promoCode); 
 					}.bind(this));
-			}
+			}.bind(this));
 		},
 		//dererred rejecter for promise
 		rejecter: function(def) {
@@ -201,13 +199,13 @@ define([
 	                model.additionalParams.minimumPurchase = resp.minimumPurchase || 0;
 	                model.additionalParams.promoCodeActive = true;
 	                model.set({'promoCode': promoCode}, {silent: true});
-	                this.dispatcher.getLandingController().onDiscountUsed();
+	                this.dispatcher.get('landing').onDiscountUsed();
 	                def.resolve(promoCode);
 	            }, this), function(jqXHR) {
 	            	this.hideLoader();
 	                var text = h().getErrorMessage(jqXHR, 'can\'t get discount');
 	                model.additionalParams.promoCode = null;
-	                this.dispatcher.getPopupsController().showMessage({
+	                this.dispatcher.get('popups').showMessage({
 	                	message: text,
 						confirm: 'ok'
 	                });
@@ -285,7 +283,7 @@ define([
 			console.log('place order');
 			console.log(model.toJSON());
 			this.showLoader();
-	        this.dispatcher.getPopupsController().showMessage({
+	        this.dispatcher.get('popups').showMessage({
 	        	message:'placing your order',
 	        	loader: true,
 	        	infinite: true
@@ -307,14 +305,14 @@ define([
 	        ).then(function(e) {
 	            params.basket.reset();
 	            this.hideLoader();
-	            this.dispatcher.getPopupsController().showMessage({
+	            this.dispatcher.get('popups').showMessage({
 	            	message: 'order placed',
 	            	confirm: 'ok',
 	            	callback: this.afterOrder.bind(this, model)
 	            });
 	        }.bind(this), function(e) {
 	            var text = h().getErrorMessage(e, 'Error placing your order');
-	            this.dispatcher.getPopupsController().showMessage({
+	            this.dispatcher.get('popups').showMessage({
 	            	message: text,
 	            	loader: true
 	            });
@@ -337,14 +335,14 @@ define([
 	        ).then(function() {
 	            params.basket.reset();
 	            this.hideLoader();
-	            this.dispatcher.getPopupsController().showMessage({
+	            this.dispatcher.get('popups').showMessage({
 	            	message: 'order placed',
 	            	confirm: 'ok',
 	            	callback: this.afterOrder.bind(this, model)
 	            });
 	        }.bind(this), function(e) {
 	            var text = h().getErrorMessage(e, 'Error placing your order');
-	            this.dispatcher.getPopupsController().showMessage({
+	            this.dispatcher.get('popups').showMessage({
 	            	message: text,
 	            	loader: true
 	            });
@@ -357,7 +355,7 @@ define([
 	            request;
 
 	        if (!items) {
-	            this.dispatcher.getPopupsController().textPopup({
+	            this.dispatcher.get('popups').textPopup({
 	                text: 'Can\'t place order.'
 	            });
 	            return;
@@ -380,13 +378,13 @@ define([
 	            appCache.set('promoCode', null);
 	            appCache.set('updateDiscount', true);
 	            var callback = _.bind(this.triggerSingletonView, this);
-	            this.dispatcher.getPopupsController().textPopup({
+	            this.dispatcher.get('popups').textPopup({
 	                text: 'order placed'
 	            }, callback);
 	        }.bind(this), function(e) {
 	            loader.hide();
 	            var text = h().getErrorMessage(e, 'Error placing your order');
-	            this.dispatcher.getPopupsController().textPopup({
+	            this.dispatcher.get('popups').textPopup({
 	                text: text
 	            });
 	        });
@@ -399,7 +397,7 @@ define([
 
 		showNoItemsPopup: function() {
 			console.log('no items selected');
-			this.dispatcher.getPopupsController().showMessage({
+			this.dispatcher.get('popups').showMessage({
 				message: 'no items selected',
 				confirm: 'ok'
 			});
@@ -408,7 +406,7 @@ define([
 		triggerOrder: function() {
 	        this.basket.getItemsNumber() === 0 ?
 	        this.showNoItemsPopup() :
-	        this.dispatcher.getPopupsController().requireLogIn(this.sasl, function() {
+	        this.dispatcher.get('popups').requireLogIn(this.sasl, function() {
 	            this.$('.sub_header').hide();
 	            Vent.trigger('viewChange', 'address', {
 	                id : this.sasl.getUrlKey(),

@@ -23,8 +23,8 @@ define([
 			this.loginView = new LoginView();
 			this.listenTo(this.loginView, 'user:login', this.onUserLogin.bind(this));
 			this.listenTo(this.loginView, 'user:logout', this.onUserLogout.bind(this));
-			this.dispatcher.getLandingController().onLoginStatusChanged();
-			this.dispatcher.getOrderController().onLoginStatusChanged();
+			this.dispatcher.get('landing').onLoginStatusChanged();
+			this.dispatcher.get('order').onLoginStatusChanged();
 		},
 		onUserLogin: function(callback) {
 			var signin = new SigninView({

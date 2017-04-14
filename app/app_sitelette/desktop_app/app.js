@@ -40,7 +40,7 @@ define([
 		                    Backbone.history.start({
 		                        pushState: true
 		                    });
-		                    dispatcher.getPopupsController().onLoginStatusChanged();
+		                    dispatcher.get('popups').onLoginStatusChanged();
 		                });
 		        } else if (Cookies.get('cmxUID')) {
 		            sessionActions.getSessionFromLocalStorage()
@@ -48,20 +48,20 @@ define([
 			                Backbone.history.start({
 			                    pushState: true
 			                });
-			                dispatcher.getPopupsController().onLoginStatusChanged();
+			                dispatcher.get('popups').onLoginStatusChanged();
 		            	}, function() {
 		            		Cookies.remove('cmxUID');
 		            	}.bind(this));
 		        } else {
-		        	dispatcher.getPopupsController().onLoginStatusChanged();
+		        	dispatcher.get('popups').onLoginStatusChanged();
 		        }
 		        this.options.initSubviews();
 		        this.options.checkType();
 			},
 
 			initSubviews: function() {
-				dispatcher.getCatalogsController().manageCatalog();
-				dispatcher.getLandingController().start();
+				dispatcher.get('catalogs').manageCatalog();
+				dispatcher.get('landing').start();
 			},
 
 			initAnimationsOnPage: function() {
@@ -87,13 +87,13 @@ define([
 		                //TODO how should it work???
 		                //maybe should be in saslData???
 		                
-		                dispatcher.getLandingController().onDiscountSelected({
+		                dispatcher.get('landing').onDiscountSelected({
 		                	uuid:uuid
 		                });
 		            	break;
 		            case 'p':
 		                //Promotions type
-		                dispatcher.getLandingController().onPromotionSelected({
+		                dispatcher.get('landing').onPromotionSelected({
 		                	uuid:uuid
 		                });
 		                //'openPromotionByShareUrl', uuid

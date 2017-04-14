@@ -130,7 +130,7 @@ define([
 					changes = 'remove';
 				}
 			}
-			this.dispatcher.getOrderController().renderOrder(options, changes);
+			this.dispatcher.get('order').renderOrder(options, changes);
 
 			//basket reset
 			// if ((temp.previousModels && temp.previousModels.length > 0) && options.basket.length === 0) {}
@@ -148,7 +148,7 @@ define([
 
 		onBackToCatalogs: function() {
 			if (this.basket && this.basket.length > 0) {
-				this.dispatcher.getPopupsController().showMessage({
+				this.dispatcher.get('popups').showMessage({
 					message: 'Are you sure?<br> Your order will be lost.',
 					confirm: 'confirm',
 					callback: this.confirmedBackToCatalogs.bind(this)
@@ -161,7 +161,7 @@ define([
 		confirmedBackToCatalogs: function () {
 			if (this.basket) this.basket.reset();
 			this.manageCatalog();
-			this.dispatcher.getLandingController().onPromotionUnselected();
+			this.dispatcher.get('landing').onPromotionUnselected();
 		},
 
 		getUrl: function(sasl) {
@@ -177,7 +177,7 @@ define([
 
 		onPromotionSelected: function(options) {
 			if (this.basket && this.basket.length > 0) {
-				this.dispatcher.getPopupsController().showMessage({
+				this.dispatcher.get('popups').showMessage({
 					message: 'Are you sure?<br> Your order will be lost.',
 					confirm: 'confirm',
 					callback: this.confirmedPromotion.bind(this, options)
@@ -189,7 +189,7 @@ define([
 
 		confirmedPromotion: function(options) {
 			if (this.basket) this.basket.reset();
-			this.dispatcher.getLandingController().onPromotionSelectedConfirmed();
+			this.dispatcher.get('landing').onPromotionSelectedConfirmed();
 			this.singleItemPromotion(options);
 		},
 

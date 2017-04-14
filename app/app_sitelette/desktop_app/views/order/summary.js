@@ -171,7 +171,7 @@ define([
 
 	    onGetDiscount: function() {
 	    	var promoCode = this.$('input[name=promocode]').val();
-	    	this.dispatcher.getOrderController()
+	    	this.dispatcher.get('order')
 	    		.validatePromoCode(this.model, promoCode)
 	    		.then(this.setTotalPriceWithTip.bind(this),
     			function(){
