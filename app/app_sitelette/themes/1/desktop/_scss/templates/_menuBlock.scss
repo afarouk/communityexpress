@@ -313,6 +313,28 @@
 
                   .customization_block {
                     .customization_item {
+                      .fa-exclamation-triangle {
+                        display: inline-block;
+                        color: $warning;
+                        margin-right: 3px;
+                      }
+
+                      .fa-check {
+                        display: none;
+                      }
+
+                      &.confirmed {
+                        .fa-exclamation-triangle {
+                          display: none;
+                        }
+
+                        .fa-check {
+                          display: inline-block;
+                          color: $user-tick;
+                          margin-right: 3px;
+                        }
+                      }
+
                       .customize-header {
                         display: flex;
                         justify-content: space-between;
@@ -328,26 +350,6 @@
                         .item-description {
                           font-size: $size-normal;
                           font-weight: $style-normal-strong;
-                        }
-
-                        i {
-                          display: none;
-                        }
-
-                        &.number-ok {
-                          .fa-check {
-                            display: inline-block;
-                            color: $user-tick;
-                            margin-right: 3px;
-                          }
-                        }
-
-                        &.number-error {
-                          .fa-exclamation {
-                            display: inline-block;
-                            color: $warning;
-                            margin-right: 5px;
-                          }
                         }
                       }
                       .customize-body {
