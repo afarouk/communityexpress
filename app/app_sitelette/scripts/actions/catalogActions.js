@@ -36,13 +36,13 @@ module.exports = {
         });
     },
 
-    getSubItems: function(sa, sl) {
+    getSubItems: function(params) {
         return gateway.sendRequest('getSubItems', {
-            serviceAccommodatorId: sa,
-            serviceLocationId: sl,
-            itemId: 1,
-            itemVersion: 1,
-            priceId: 1,
+            serviceAccommodatorId: params.sa,
+            serviceLocationId: params.sl,
+            itemId: 11,
+            itemVersion: params.itemVersion,
+            priceId: params.priceId,
             simulate: true
         }).then(function(response) {
             return response

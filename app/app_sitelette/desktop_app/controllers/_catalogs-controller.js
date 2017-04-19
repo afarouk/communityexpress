@@ -136,15 +136,6 @@ define([
 			// if ((temp.previousModels && temp.previousModels.length > 0) && options.basket.length === 0) {}
 		},
 
-		onCustomizeItem: function() {
-			var sasl;
-			return saslActions.getSasl()
-	        .then(function(ret) {
-	            sasl = ret;
-	            return catalogActions.getSubItems(sasl.sa(), sasl.sl());
-	        })
-		},
-
 		showBlinder: function() {
 			var blinderView = new BlinderView();
 			this.layout.showChildView('blinder', blinderView);
