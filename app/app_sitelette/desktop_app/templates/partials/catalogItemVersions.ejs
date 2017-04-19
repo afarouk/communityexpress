@@ -6,18 +6,20 @@
     <%= longDescription %>
   </div>
   <!-- <div class="order_price">$2.5</div> -->
-  <div class="versions_selectors_container">
-    <% _.each(selectorVersions, function(selector, index){ %>
-        <select name="select-version-<%= index %>" id="select-version-<%= index %>" class="select-version">
-            <% _.each(selector, function(version){ %>
-                <option value="<%= version %>" <% if (availableVersion[index] === version) { %>selected<% } %> ><%= version %></option>
-            <% }) %>
-        </select>
-    <% }) %>
+  <div class="wrapper">
+    <div class="versions_selectors_container">
+      <% _.each(selectorVersions, function(selector, index){ %>
+          <select name="select-version-<%= index %>" id="select-version-<%= index %>" class="select-version">
+              <% _.each(selector, function(version){ %>
+                  <option value="<%= version %>" <% if (availableVersion[index] === version) { %>selected<% } %> ><%= version %></option>
+              <% }) %>
+          </select>
+      <% }) %>
+    </div>
+    <% if (hasSubItems) { %>
+      <button class="customize_btn" name="item_customize">customize</button>
+    <% } %>
   </div>
-  <% if (hasSubItems) { %>
-    <button class="customize_btn" name="item_customize">customize</button>
-  <% } %>
 </div>
 <div class="right_block">
   <button class="add_to_cart_btn">add to cart</button>
