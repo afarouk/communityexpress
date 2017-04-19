@@ -255,12 +255,16 @@
 
                 &.item_with_versions {
                   .left_block {
-                    .versions_selectors_container {
-                      select {
-                        margin-right: 10px;
-                        border: solid 1px $cart-scroll;
-                        color: $cart-text;
-                        min-width: 100px;
+                    .wrapper {
+                      display: flex;
+
+                      .versions_selectors_container {
+                        select {
+                          margin-right: 30px;
+                          border: solid 1px $cart-scroll;
+                          color: $cart-text;
+                          min-width: 100px;
+                        }
                       }
                     }
                   }
@@ -326,12 +330,16 @@
                         }
                       }
                       .customize-body {
-                        // padding: 5px 0;
-
                         .subItem {
                           display: flex;
                           border-bottom: solid 1px $cart-divider;
                           color: $cart-text;
+                          -webkit-touch-callout: none;
+                          -webkit-user-select: none;
+                          -khtml-user-select: none;
+                          -moz-user-select: none;
+                          -ms-user-select: none;
+                          user-select: none;
 
                           &:first-child {
                             margin-top: 0;
