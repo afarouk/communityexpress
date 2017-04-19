@@ -305,6 +305,14 @@
                   }
                 }
 
+                .customization_layout {
+                  &.number-error {
+                    .error-message {
+                      color: $error-color;
+                    }
+                  }
+                }
+
                 .customization_continer {
                   background: rgba(120, 120, 120, 0.3);
                   display: none;
@@ -331,7 +339,8 @@
                       }
                       .customize-body {
                         .subItem {
-                          display: flex;
+                          // display: flex;
+                          position: relative;
                           border-bottom: solid 1px $cart-divider;
                           color: $cart-text;
                           -webkit-touch-callout: none;
@@ -375,6 +384,16 @@
                               display: flex;
                               justify-content: space-between;
                               align-items: center;
+                            }
+                          }
+
+                          &.disabled {
+                            .blinder {
+                              position: absolute;
+                              background-color: rgba(195, 195, 195, 0.5);;
+                              height: 100%;
+                              width: 100%;
+                              z-index: 1;
                             }
                           }
                         }
