@@ -60,9 +60,6 @@ define([
 			this.ui.price.text(price.toFixed(2));
 		},
 		onCustomize: function() {
-
-		},
-		onCustomize: function() {
 			this.dispatcher.get('customize')
 				.triggerMethod('customizeItem', this);
 		}

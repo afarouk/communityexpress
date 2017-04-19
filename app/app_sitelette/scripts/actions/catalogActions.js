@@ -40,10 +40,10 @@ module.exports = {
         return gateway.sendRequest('getSubItems', {
             serviceAccommodatorId: params.sa,
             serviceLocationId: params.sl,
-            itemId: 11,
+            itemId: params.itemId,
             itemVersion: params.itemVersion,
             priceId: params.priceId,
-            simulate: true
+            // simulate: true
         }).then(function(response) {
             return response
         });

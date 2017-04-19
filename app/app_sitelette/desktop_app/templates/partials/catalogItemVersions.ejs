@@ -15,6 +15,9 @@
         </select>
     <% }) %>
   </div>
+  <% if (hasSubItems) { %>
+    <button class="customize_btn" name="item_customize">customize</button>
+  <% } %>
 </div>
 <div class="right_block">
   <button class="add_to_cart_btn">add to cart</button>
@@ -22,6 +25,7 @@
 <div class="item_version_not_available">
   <span>&#9888; This combination is not available</span>
 </div>
+<div class="customization_continer" id="customizationContainer"></div>
 <!-- <div class="item_added_versions">
   <div class="version_description">8oz</div>
   <div class="quantity_container">

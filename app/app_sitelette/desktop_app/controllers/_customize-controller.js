@@ -13,6 +13,7 @@ define([
 			this.getSubItems(layout.model)
 				.then(this.renderCustomize.bind(this, layout));
 		},
+
 		getSubItems: function(model) {
 			var params = {
 				itemId: model.get('itemId'),
@@ -24,13 +25,15 @@ define([
 	        	params.sa = sasl.sa();
 	        	params.sl = sasl.sl();
 	            return catalogActions.getSubItems(params);
-	        })
+	        });
 		},
+
 		renderCustomize: function(layout, collection) {
 			var customizationItems = new Backbone.Collection(collection),
 				customizationView = new CustomizationLayoutView({
 					collection: customizationItems
 				});
+				debugger;
 			this.listenTo(customizationView, 'custom:cancel', this.onCustomCancel.bind(this, layout));
 			layout.showChildView('customization', customizationView);
 			layout.getRegion('customization').$el.slideToggle('slow');

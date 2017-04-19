@@ -5,11 +5,16 @@ define([
 		template: itemTemplate,
 		className: 'catalog_item item_with_versions',
 		tagName: 'li',
+		regions: {
+			customization: '#customizationContainer'
+		},
 		ui: {
+			customize: '[name="item_customize"]',
 			selector: '.versions_selectors_container select',
 			add: '.add_to_cart_btn'
 		},
 		events: {
+			'click @ui.customize': 'onCustomize',
 			'click .add_to_cart_btn': 'onAddtoCart',
 			'change @ui.selector': 'updateAddVersionButton',
 		},
@@ -21,6 +26,10 @@ define([
 		},
 		onRender: function() {
 			this.updateAddVersionButton();
+		},
+		onCustomize: function() {
+			this.dispatcher.get('customize')
+				.triggerMethod('customizeItem', this);
 		},
 		getSelectorVersions: function() {
 	        var selectorOptions = this.model.get('selectorOptions'),
