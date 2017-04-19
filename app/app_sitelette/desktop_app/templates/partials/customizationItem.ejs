@@ -1,22 +1,26 @@
-<div class="customize-header">
-	<div><%= displayText %></div>
-	<div><%= description %></div>
+<div class="customize-header cmtyx_color_1">
+	<div class="item-name"><%= displayText %></div>
+	<div class="item-description"><%= description %></div>
 </div>
 <div class="customize-body">
 	<% if(hasSubSubItems) { %>
 		<% _.each(subSubItems, function(subItem){ %>
 			<div class="subItem" data-id="<%= subItem.subSubItemId %>">
-				<div class="left">
-					<div class="text"><%= subItem.displayText %></div>
-					<div class="description"><%= subItem.description %></div>
-				</div>
-				<div class="right">
-					<% if(selectorType.enumText === 'RADIO') { %>
-						<input name="custom_radio" type="radio" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked="checked"<% } %>>
-					<% } else { %>
-						<input name="custom_checkbox" type="checkbox" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
-					<% } %>
-				</div>
+				<!-- <div class="left"> -->
+				<label>
+					<div class="left">
+						<div class="text"><%= subItem.displayText %></div>
+						<div class="description"><%= subItem.description %></div>
+					</div>
+					<div class="right">
+						<div class="item-price">$1.99</div>
+						<% if(selectorType.enumText === 'RADIO') { %>
+							<input name="custom_radio" type="radio" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked="checked"<% } %>>
+						<% } else { %>
+							<input name="custom_checkbox" type="checkbox" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
+						<% } %>
+					</div>
+				</label>
 			</div>
 		<% }); %>
 	<% } %>
