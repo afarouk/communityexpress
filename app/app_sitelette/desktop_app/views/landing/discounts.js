@@ -29,6 +29,7 @@ define([
           uuid = $target.data('uuid'),
           promoCode = $target.data('promocode');
 
+      $target.css('background-color', '#2ECC40');
       this.onDiscountUsed();
       this.trigger('onDiscount', {
           uuid: uuid,

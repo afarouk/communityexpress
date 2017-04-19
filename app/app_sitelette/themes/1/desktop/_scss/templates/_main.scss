@@ -129,19 +129,13 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(255, 255, 255, 0.3);
-        color: $attention-sign;
+        background-color: rgba(255, 255, 255, 0.85);
+        color: $user-tick;
         z-index: 9;
         text-align: center;
-        padding: 25%;
         display: none;
 
         .attention-sign {
-          border-radius: 50%;
-          border: 3px $attention-sign solid;
-          background-color: rgba(255, 255 , 255, 0.5);
-          width: 14vw;
-          height: 14vw;
           padding: 10%;
 
           i {
@@ -150,6 +144,7 @@
           }
           span {
             font-size: 2vw;
+            line-height: 2vw;
           }
         }
       }

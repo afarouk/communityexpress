@@ -33,7 +33,7 @@ define([
 				customizationView = new CustomizationLayoutView({
 					collection: customizationItems
 				});
-				debugger;
+				
 			this.listenTo(customizationView, 'custom:cancel', this.onCustomCancel.bind(this, layout));
 			layout.showChildView('customization', customizationView);
 			layout.getRegion('customization').$el.slideToggle('slow');
