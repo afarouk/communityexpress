@@ -16,7 +16,12 @@ define([
 		triggers: {
 			
 		},
-		selected: 0,
+		initialize: function() {
+			var byDefault = _.where(this.model.get('subSubItems'), {isSelectedByDefault: true});
+			this.selectedNumber = byDefault.length; //get selected by default number
+			this.checkConfirmed();
+
+		},
 		serializeData: function() {
 			return _.extend(this.model.toJSON(), {
 				price: this.options.itemModel.get('price')
@@ -25,7 +30,7 @@ define([
 		onSelectionClicked: function(e) {
 			var $target = $(e.currentTarget),
 				checked = $target.is(':checked');
-			if (checked && this.selected >= this.model.get('maxSubSubCount')) {
+			if (checked && this.selectedNumber >= this.model.get('maxSubSubCount')) {
 				//todo you can't select more then max warning
 				e.preventDefault();
 				e.stopPropagation();
@@ -34,15 +39,33 @@ define([
 
 			}
 		},
+		checkConfirmed: function() {
+			if (this.selectedNumber === this.model.get('maxSubSubCount')) {
+				var $checked = this.$el.find('input:checkbox:not(:checked)');
+				$checked.parents('.subItem').addClass('disabled');
+				this.$el.addClass('confirmed');
+				this.selected = true;
+			} else {
+				this.$el.find('.subItem.disabled').removeClass('disabled');
+				this.$el.removeClass('confirmed');
+				this.selected = false;
+			}
+			this.trigger('selection:changed');
+		},
 		onSelectionChanged: function(e) {
 			var $target = $(e.currentTarget),
 				val = $target.val(),
 				checked = $target.is(':checked');
-			if (checked) {
-				this.selected ++;
+			if ($target.attr('type') === 'radio') {
+				this.selectedNumber = 1;
 			} else {
-				this.selected --;
+				if (checked) {
+					this.selectedNumber ++;
+				} else {
+					this.selectedNumber --;
+				}
 			}
+			this.checkConfirmed();
 			console.log('custom subsubitem: ', val, checked);
 		}
 	});
