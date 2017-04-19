@@ -305,14 +305,6 @@
                   }
                 }
 
-                .customization_layout {
-                  &.number-error {
-                    .error-message {
-                      color: $error-color;
-                    }
-                  }
-                }
-
                 .customization_continer {
                   background: rgba(120, 120, 120, 0.3);
                   display: none;
@@ -322,7 +314,8 @@
                   .customization_block {
                     .customization_item {
                       .customize-header {
-                        display: block;
+                        display: flex;
+                        justify-content: space-between;
                         background: lightgreen;
                         padding: 5px;
                         color: $white;
@@ -335,6 +328,26 @@
                         .item-description {
                           font-size: $size-normal;
                           font-weight: $style-normal-strong;
+                        }
+
+                        i {
+                          display: none;
+                        }
+
+                        &.number-ok {
+                          .fa-check {
+                            display: inline-block;
+                            color: $user-tick;
+                            margin-right: 3px;
+                          }
+                        }
+
+                        &.number-error {
+                          .fa-exclamation {
+                            display: inline-block;
+                            color: $warning;
+                            margin-right: 5px;
+                          }
                         }
                       }
                       .customize-body {
@@ -402,22 +415,40 @@
                   }
                   .confirmation-block {
                     padding: 10px;
-                    display: flex;
-                    justify-content: space-around;
+                    
+                    .error-message {
+                      display: none;
+                    }
+                    
+                    .wrapper {
+                      display: flex;
+                      justify-content: space-around;
 
-                    button {
-                      padding: 8px 16px;
-                      border-radius: 3px;
-                      box-shadow: none;
-                      border: solid 1px #faa019;
-                      background-color: #faa019;
-                      color: $white;
-                      cursor: pointer;
+                      button {
+                        padding: 8px 16px;
+                        border-radius: 3px;
+                        box-shadow: none;
+                        border: solid 1px #faa019;
+                        background-color: #faa019;
+                        color: $white;
+                        cursor: pointer;
 
-                      &.cancel {
-                        background-color: transparent;
-                        color: #faa019;
+                        &.cancel {
+                          background-color: transparent;
+                          color: #faa019;
+                        }
                       }
+                    }
+                  }
+                }
+
+                .customization_layout {
+                  &.number-error {
+                    .error-message {
+                      display: block;
+                      color: $error-color;
+                      text-align: center;
+                      margin-bottom: 10px;
                     }
                   }
                 }

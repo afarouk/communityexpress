@@ -10,6 +10,10 @@
 }
 .subheader-discount {
   cursor: pointer;
+
+  &.used {
+    background-color: $user-tick;
+  }
 }
 
 .cmtyx_desktop_application {

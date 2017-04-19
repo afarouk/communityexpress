@@ -29,7 +29,6 @@ define([
           uuid = $target.data('uuid'),
           promoCode = $target.data('promocode');
 
-      $target.css('background-color', '#2ECC40');
       this.onDiscountUsed();
       this.trigger('onDiscount', {
           uuid: uuid,
@@ -39,6 +38,7 @@ define([
     onDiscountUsed: function() {
       this.$el.addClass('used');
       this.ui.sub_discount.off('click');
+      this.ui.sub_discount.addClass('used');
       if ( this.ui.sub_discount.length > 0) {
         this.ui.sub_discount.find('.discount-description').text('The discount will be applied at the end of order screen');
       }
