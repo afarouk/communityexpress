@@ -1,4 +1,4 @@
-/* .cmtyx_color_1 { background-color: #faa019 !important; }
+.cmtyx_color_1 { background-color: #faa019 !important; }
 .cmtyx_border_color_1 { border-color: #faa019 !important; }
 .cmtyx_text_color_1 { color: #fff !important; }
 
@@ -13,7 +13,7 @@
 
 .cmtyx_color_4 { background-color: #e34a20 !important; }
 .cmtyx_border_color_4 { border-color: #e34a20 !important; }
-.cmtyx_text_color_4 { color: #fff !important; } */
+.cmtyx_text_color_4 { color: #fff !important; }
 
 
 @charset "UTF-8";
