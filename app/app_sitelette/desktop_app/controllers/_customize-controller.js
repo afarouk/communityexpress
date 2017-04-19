@@ -29,11 +29,18 @@ define([
 		},
 
 		renderCustomize: function(layout, collection) {
+			if (collection.length === 0) {
+				//temporary solution for hide customize button
+				layout.ui.customize.hide();
+				return;
+			}
+
 			var customizationItems = new Backbone.Collection(collection),
 				customizationView = new CustomizationLayoutView({
-					collection: customizationItems
+					collection: customizationItems,
+					itemModel: layout.model
 				});
-				
+
 			this.listenTo(customizationView, 'custom:cancel', this.onCustomCancel.bind(this, layout));
 			layout.showChildView('customization', customizationView);
 			layout.getRegion('customization').$el.slideToggle('slow');

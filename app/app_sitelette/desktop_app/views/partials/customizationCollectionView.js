@@ -7,9 +7,16 @@ define([
 		className: 'customization_block',
 		tagName: 'ul',
 		childView: CustomizationItemView,
-		initialize: function(options) {
+		initialize: function() {
 			console.log(this.collection.toJSON());
-			this.options = options;
+		},
+		selected: {
+			quantity: 0
+		},
+		childViewOptions: function() {
+			return _.extend(this.options, {
+				selected: this.selected
+			});
 		}
 	});
 	return CustomizationCollectionView;
