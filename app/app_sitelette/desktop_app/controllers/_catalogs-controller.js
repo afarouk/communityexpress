@@ -137,7 +137,12 @@ define([
 		},
 
 		onCustomizeItem: function() {
-			return catalogActions.getSubItems();
+			var sasl;
+			return saslActions.getSasl()
+	        .then(function(ret) {
+	            sasl = ret;
+	            return catalogActions.getSubItems(sasl.sa(), sasl.sl());
+	        })
 		},
 
 		showBlinder: function() {

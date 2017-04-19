@@ -36,8 +36,10 @@ module.exports = {
         });
     },
 
-    getSubItems: function(params) {
+    getSubItems: function(sa, sl) {
         return gateway.sendRequest('getSubItems', {
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
             itemId: 1,
             itemVersion: 1,
             priceId: 1,
