@@ -192,8 +192,8 @@
                     </div>
                     <div class="discount-used">
                       <div class="attention-sign">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                        <span>Discount used</span>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <span>Discount will be applied on order summary screen</span>
                       </div>
                     </div>
                   <#else>
@@ -330,8 +330,8 @@
                   </div>
                   <div class="promo-used">
                     <div class="attention-sign">
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                      <span>Promocode used</span>
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      <span>Promotion code applied, Please proceed to order</span>
                     </div>
                   </div>
                   <#else>
