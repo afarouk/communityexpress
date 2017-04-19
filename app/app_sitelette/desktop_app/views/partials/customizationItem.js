@@ -19,13 +19,14 @@ define([
 		initialize: function() {
 			var byDefault = _.where(this.model.get('subSubItems'), {isSelectedByDefault: true});
 			this.selectedNumber = byDefault.length; //get selected by default number
-			this.checkConfirmed();
-
 		},
 		serializeData: function() {
 			return _.extend(this.model.toJSON(), {
 				price: this.options.itemModel.get('price')
 			});
+		},
+		onRender: function() {
+			this.checkConfirmed();
 		},
 		onSelectionClicked: function(e) {
 			var $target = $(e.currentTarget),
@@ -41,8 +42,8 @@ define([
 		},
 		checkConfirmed: function() {
 			if (this.selectedNumber === this.model.get('maxSubSubCount')) {
-				var $checked = this.$el.find('input:checkbox:not(:checked)');
-				$checked.parents('.subItem').addClass('disabled');
+				var $notChecked = this.$el.find('input:checkbox:not(:checked)');
+				$notChecked.parents('.subItem').addClass('disabled');
 				this.$el.addClass('confirmed');
 				this.selected = true;
 			} else {
@@ -50,7 +51,23 @@ define([
 				this.$el.removeClass('confirmed');
 				this.selected = false;
 			}
+			this.saveSelectedItems();
 			this.trigger('selection:changed');
+		},
+		saveSelectedItems: function() {
+			var selectedItems = [],
+				$checked = this.$el.find('input:checked');
+			$checked.each(function(index, subitem) {
+				var $subitem = $(subitem),
+					ssItemId = parseInt($subitem.val()),
+					ssItem = _.findWhere(this.model.get('subSubItems'), {subSubItemId: ssItemId});
+					selectedItems.push(ssItem);
+			}.bind(this));
+			if (selectedItems.length > 0) {
+				this.options.selectedItems[this.model.get('subItemId')] = selectedItems;
+			} else {
+				delete this.options.selectedItems[this.model.get('subItemId')];
+			}
 		},
 		onSelectionChanged: function(e) {
 			var $target = $(e.currentTarget),

@@ -33,7 +33,7 @@ define([
 		},
 
 		onConfirmCustomChoice: function() {
-			debugger;
+			this.trigger('custom:confirmed');
 		}
 
 	});
