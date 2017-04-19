@@ -43,7 +43,7 @@ module.exports = {
             itemId: params.itemId,
             itemVersion: params.itemVersion,
             priceId: params.priceId,
-            // simulate: true
+            simulate: true
         }).then(function(response) {
             return response
         });

@@ -35,13 +35,16 @@ define([
 				return;
 			}
 
-			var customizationItems = new Backbone.Collection(collection),
+			var selectedItems = {},
+				customizationItems = new Backbone.Collection(collection),
 				customizationView = new CustomizationLayoutView({
 					collection: customizationItems,
-					itemModel: layout.model
+					itemModel: layout.model,
+					selectedItems: selectedItems
 				});
 
 			this.listenTo(customizationView, 'custom:cancel', this.onCustomCancel.bind(this, layout));
+			this.listenTo(customizationView, 'custom:confirmed', this.onCustomConfirmed.bind(this, layout, selectedItems));
 			layout.showChildView('customization', customizationView);
 			layout.getRegion('customization').$el.slideToggle('slow');
 		},
@@ -49,6 +52,12 @@ define([
 		onCustomCancel: function(layout) {
 			layout.getRegion('customization').$el.slideToggle('slow');
 			layout.ui.customize.attr('disabled', false);
+		},
+		onCustomConfirmed: function(layout, selectedItems) {
+			layout.getRegion('customization').$el.slideToggle('slow');
+			layout.ui.customize.attr('disabled', false);
+			//TODO use selectedItems for basket item preparation
+			debugger;
 		}
 	});
 	return CustomizeController;

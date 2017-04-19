@@ -25,10 +25,15 @@ define([
 		showCustomization: function() {
 			var view = new CustomizationCollectionView(this.options);
 			this.showChildView('customization', view);
+			this.listenTo(view, 'selection:changed', this.onSelectionChanged.bind(this));
+		},
+
+		onSelectionChanged: function(allSelected) {
+			this.ui.confirm.attr('disabled', !allSelected);
 		},
 
 		onConfirmCustomChoice: function() {
-			debugger;
+			this.trigger('custom:confirmed');
 		}
 
 	});

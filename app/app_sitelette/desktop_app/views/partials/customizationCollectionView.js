@@ -12,6 +12,12 @@ define([
 		},
 		childViewOptions: function() {
 			return this.options;
+		},
+		onChildviewSelectionChanged: function() {
+			var allSelected = this.children.all(function(view){
+			  return view.selected;
+			});
+			this.trigger('selection:changed', allSelected);
 		}
 	});
 	return CustomizationCollectionView;
