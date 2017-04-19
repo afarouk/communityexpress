@@ -313,8 +313,31 @@
 
                   .customization_block {
                     .customization_item {
+                      .fa-exclamation-triangle {
+                        display: inline-block;
+                        color: $warning;
+                        margin-right: 3px;
+                      }
+
+                      .fa-check {
+                        display: none;
+                      }
+
+                      &.confirmed {
+                        .fa-exclamation-triangle {
+                          display: none;
+                        }
+
+                        .fa-check {
+                          display: inline-block;
+                          color: $user-tick;
+                          margin-right: 3px;
+                        }
+                      }
+
                       .customize-header {
-                        display: block;
+                        display: flex;
+                        justify-content: space-between;
                         background: lightgreen;
                         padding: 5px;
                         color: $white;
@@ -331,7 +354,8 @@
                       }
                       .customize-body {
                         .subItem {
-                          display: flex;
+                          // display: flex;
+                          position: relative;
                           border-bottom: solid 1px $cart-divider;
                           color: $cart-text;
                           -webkit-touch-callout: none;
@@ -377,28 +401,56 @@
                               align-items: center;
                             }
                           }
+
+                          &.disabled {
+                            .blinder {
+                              position: absolute;
+                              background-color: rgba(195, 195, 195, 0.5);;
+                              height: 100%;
+                              width: 100%;
+                              z-index: 1;
+                            }
+                          }
                         }
                       }
                     }
                   }
                   .confirmation-block {
                     padding: 10px;
-                    display: flex;
-                    justify-content: space-around;
+                    
+                    .error-message {
+                      display: none;
+                    }
+                    
+                    .wrapper {
+                      display: flex;
+                      justify-content: space-around;
 
-                    button {
-                      padding: 8px 16px;
-                      border-radius: 3px;
-                      box-shadow: none;
-                      border: solid 1px #faa019;
-                      background-color: #faa019;
-                      color: $white;
-                      cursor: pointer;
+                      button {
+                        padding: 8px 16px;
+                        border-radius: 3px;
+                        box-shadow: none;
+                        border: solid 1px #faa019;
+                        background-color: #faa019;
+                        color: $white;
+                        cursor: pointer;
 
-                      &.cancel {
-                        background-color: transparent;
-                        color: #faa019;
+                        &.cancel {
+                          background-color: transparent;
+                          color: #faa019;
+                        }
                       }
+                    }
+                  }
+                }
+
+                .customization_layout {
+                  &.number-error {
+                    .error-message {
+                      display: block;
+                      color: $error-color;
+                      text-align: center;
+                      margin-bottom: 10px;
                     }
                   }
                 }
