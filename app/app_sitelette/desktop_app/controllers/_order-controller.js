@@ -168,10 +168,12 @@ define([
 		//on discount selected
 		onDiscountSelected: function() {
 			this.getRegionView('orderContainer', function(view) {
-				this.validatePromoCode(view.model)
-					.then(function(promoCode){
-						view.triggerMethod('discountUpdate', promoCode); 
-					}.bind(this));
+				if (view.model) {
+					this.validatePromoCode(view.model)
+						.then(function(promoCode){
+							view.triggerMethod('discountUpdate', promoCode); 
+						}.bind(this));
+				}
 			}.bind(this));
 		},
 		//dererred rejecter for promise

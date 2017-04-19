@@ -10,13 +10,8 @@ define([
 		initialize: function() {
 			console.log(this.collection.toJSON());
 		},
-		selected: {
-			quantity: 0
-		},
 		childViewOptions: function() {
-			return _.extend(this.options, {
-				selected: this.selected
-			});
+			return this.options;
 		}
 	});
 	return CustomizationCollectionView;
