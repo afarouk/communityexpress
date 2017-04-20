@@ -86,7 +86,7 @@ define([
 	        basketItem.set('isVersion', true, {silent: true});
 	        basketItem.set('itemName', this.model.get('itemName'), {silent: true});
 	        basketItem.set('uuid', uuid + '_._' + basketItem.get('itemVersion'), {silent: true});
-	        this.trigger('items:version:added', this.model, basketItem);
+	        this.trigger('items:version:added', this, basketItem);
 	    }
 	});
 

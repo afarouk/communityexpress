@@ -39,17 +39,21 @@ define([
 		onChildviewItemsAdded: function(childView) {
 			var model = childView.model;
 			this.dispatcher.get('customize')
-				.checkCustomization(model)
+				.checkCustomization(childView)
 				.then(function(){
 					this.basket.addItem(model, model.get('quantity'), 
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);
 				}.bind(this));
 		},
-		onChildviewItemsVersionAdded: function(model,  basketItem) {
+		onChildviewItemsVersionAdded: function(childView,  basketItem) {
 			this.dispatcher.get('customize')
-				.checkCustomization(model)
-				.then(function(){
+				.checkCustomization(childView)
+				.then(function(model){
+					//TODO that is not correct only temporary
+					basketItem.set('hasSubItems', model.get('hasSubItems') || false);
+					basketItem.set('customizationNote', model.get('customizationNote') || null);
+					basketItem.set('wasCustomized', model.get('wasCustomized') || false);
 					this.basket.addItem(basketItem, 1,
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);
