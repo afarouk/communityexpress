@@ -67,14 +67,17 @@ define([
 			// layout.ui.customize.attr('disabled', false);
 			//TODO use selectedItems for basket item preparation
 			if (customizationView.allSelected) {
-				var customizationNote = '';
+				var customizationNote = '',
+					adjustedPrice = layout.model.get('price');
 				_.each(selectedItems, function(subItem) {
 					customizationNote += _.pluck(subItem, 'displayText').join(',') + ',';
+					adjustedPrice += _.reduce(_.pluck(subItem, 'priceAdjustment'), function(a, b) {return a+b;});
 				});
 				customizationNote = customizationNote.slice(0, -1);
 				var customizesModel = layout.model.clone();
 				customizesModel.set('customizationNote', customizationNote);
 				customizesModel.set('wasCustomized', true);
+				customizesModel.set('price', adjustedPrice);
 				return this.resolver(def, customizesModel);
 			} else {
 				return this.resolver(def, layout.model);
