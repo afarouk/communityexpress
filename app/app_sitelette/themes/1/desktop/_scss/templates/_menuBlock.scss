@@ -375,6 +375,8 @@
                           font-size: 33px;
                           line-height: 0px;
                           font-weight: 300;
+                          position: relative;
+                          top: 1px;
                         }
 
                         display: flex;
@@ -385,7 +387,7 @@
 
                         .item-name {
                           font-size: $size-lg-normal;
-                          font-weight: $style-semi-bold;
+                          font-weight: $style-normal-strong;
                         }
 
                         .item-description {
@@ -435,6 +437,7 @@
                                 color: $cart-text;
                                 font-size: $size-normal-small;
                                 font-weight: $style-normal;
+                                font-style: italic;
                               }
                             }
 

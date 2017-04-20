@@ -236,7 +236,7 @@
               }
 
               .left_block {
-                width: 50%;
+                width: 55%;
 
                 .item_name {
                   display: inline-block;
@@ -244,6 +244,14 @@
 
                 .item_version {
                   margin-left: 5px;
+                }
+
+                .item_description {
+                  margin-top: 3px;
+                  font-size: $size-normal-small;
+                  color: $item-description;
+
+                  display: none;
                 }
 
                 .remove_item_btn {
@@ -258,7 +266,7 @@
               }
 
               .right_block {
-                width: 50%;
+                width: 45%;
                 display: flex;
                 justify-content: flex-end;
                 flex-direction: row;
