@@ -54,6 +54,8 @@ define([
 					basketItem.set('hasSubItems', model.get('hasSubItems') || false);
 					basketItem.set('customizationNote', model.get('customizationNote') || null);
 					basketItem.set('wasCustomized', model.get('wasCustomized') || false);
+					//temporary tweak
+					basketItem.set('uuid', basketItem.get('uuid') + '[' + escape(model.get('customizationNote')) + ']' || false);
 					this.basket.addItem(basketItem, 1,
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);

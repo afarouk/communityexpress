@@ -85,9 +85,23 @@ var CatalogBasketModel = Backbone.Collection.extend({
         }
     },
 
+    //temporary for testing
+    // getItem: function(uuid, custom) {
+    //     var search = {
+    //         uuid: uuid
+    //     };
+    //     if (custom) {
+    //         search.customizationNote = custom;
+    //     }
+    //     var model = this.findWhere(search);
+    //     return model;
+    // },
+
     addItem : function(item, count, groupId, groupDisplayText,catalogId,catalogDisplayText) {
         // console.log("BasketModel:addItem::"+item.get('itemName')+",
         // "+groupId+", "+catalogId);
+        // var itemModel = this.getItem(item.get('uuid'), item.get('customizationNote'));
+        
         var itemModel = this.get(item.get('uuid'));
         if (itemModel) {
             itemModel.add(count);
