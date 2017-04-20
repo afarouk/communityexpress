@@ -2,7 +2,9 @@
   <span class="remove_item_btn" name="remove_item">&times;</span>
   <div class="item_name"><%= itemName %></div>
   <span class="item_version">(<%=  versionText %>)</span>
-  <div class="item_description">Romaine Lettuce, Parmesan Cheese,Croutons,Lime Caesar dressing</div>
+  <% if(customizationNote) { %>
+  	<div class="item_description"><%= customizationNote %></div>
+  <% } %>
 </div>
 <div class="right_block">
   <div class="quantity_container">
