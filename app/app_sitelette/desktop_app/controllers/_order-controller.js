@@ -264,7 +264,7 @@ define([
 	            this.layout.showChildView('orderContainer', summary);
 	            this.listenTo(summary, 'onNextStep', this.onSummaryNext.bind(this, model));
 	            this.listenTo(summary, 'onBackStep', this.onSummaryBack.bind(this, model));
-	            this.listenTo(choosePayment, 'onValidatePromoCode', this.validatePromoCode.bind(this, model));
+	            this.listenTo(summary, 'onValidatePromoCode', this.validatePromoCode.bind(this, model));
 			}.bind(this));
 		},
 		onSummaryNext: function(model) {

@@ -29,11 +29,16 @@ define([
 		},
 
 		onSelectionChanged: function(allSelected) {
-			this.ui.confirm.attr('disabled', !allSelected);
+			if (allSelected) {
+				this.allSelected = true;
+			} else {
+				this.allSelected = false;				
+			}
+			// this.ui.confirm.attr('disabled', !allSelected);
 		},
 
 		onConfirmCustomChoice: function() {
-			this.trigger('custom:confirmed');
+			// this.trigger('custom:confirmed');
 		}
 
 	});
