@@ -1224,7 +1224,7 @@ li.build_combo, li.choose_extras {
     margin-right: 20px;
 }
 .build_combo .menu_body,
-#sides_extras .menu_body {
+#sides_extras .menu_body, {
     padding: 0;
     padding-bottom: 20px;
 }
