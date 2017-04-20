@@ -47,6 +47,14 @@ define([
 			this.basket.addItem(basketItem, 1,
 				 this.options.groupId, this.options.groupDisplayText, 
 				 this.options.catalogId,this.options.catalogDisplayText);
+		},
+		onChildviewItemsCustomized: function(childView) {
+			this.children.each(function(view) {
+				if(view !== childView) {
+					view.getRegion('customization').$el.slideUp('slow');
+					view.ui.customize.removeClass('opened');
+				}
+			});
 		}
 	});
 	return CatalogGroupView;
