@@ -209,6 +209,39 @@
                     text-transform: uppercase;
                     cursor: pointer;
                     border-radius: 2px;
+
+                    .expand-symbol {
+                      display: inline-block;
+                      font-size: 20px;
+                      line-height: 0px;
+                      margin-left: 3px;
+
+                      &.down {
+                        transform: rotate(270deg);
+                        position: relative;
+                        top: 3px;
+                      }
+
+                      &.up {
+                        transform: rotate(90deg);
+                        position: relative;
+                        left: 4px;
+                        top: 2px;
+                        display: none;
+                      }
+                    }
+
+                    &.opened {
+                      .expand-symbol {
+                        &.down {
+                          display: none;
+                        }
+
+                        &.up {
+                          display: inline-block;
+                        }
+                      }
+                    }
                     
                     /*visibility: hidden;*/
                   }
@@ -336,6 +369,13 @@
                       }
 
                       .customize-header {
+                        .child-symbol {
+                          display: inline-block;
+                          transform: rotate(90deg) scaleY(-1);
+                          font-size: 35px;
+                          line-height: 0px;
+                        }
+
                         display: flex;
                         justify-content: space-between;
                         background: lightgreen;
@@ -354,7 +394,6 @@
                       }
                       .customize-body {
                         .subItem {
-                          // display: flex;
                           position: relative;
                           border-bottom: solid 1px $cart-divider;
                           color: $cart-text;
@@ -369,12 +408,16 @@
                             margin-top: 0;
                           }
 
+                          &:last-child {
+                            border-bottom: none;
+                          }
+
                           label {
                             width: 100%;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
-                            padding: 10px;
+                            padding: 10px 10px 10px 30px;
                             cursor: pointer;
 
                             .left {

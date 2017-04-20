@@ -9,7 +9,7 @@ define([
 	], function(appCache, saslActions, catalogActions, sessionActions, CustomizationLayoutView){
 	var CustomizeController = Mn.Object.extend({
 		onCustomizeItem: function(layout) {
-			layout.ui.customize.attr('disabled', true);
+			// layout.ui.customize.attr('disabled', true);
 			this.getSubItems(layout.model)
 				.then(this.renderCustomize.bind(this, layout));
 		},
@@ -42,11 +42,17 @@ define([
 					itemModel: layout.model,
 					selectedItems: selectedItems
 				});
-
+				
 			this.listenTo(customizationView, 'custom:cancel', this.onCustomCancel.bind(this, layout));
 			this.listenTo(customizationView, 'custom:confirmed', this.onCustomConfirmed.bind(this, layout, selectedItems));
 			layout.showChildView('customization', customizationView);
 			layout.getRegion('customization').$el.slideToggle('slow');
+			if(layout.ui.customize.hasClass('opened')) {
+				layout.ui.customize.removeClass('opened')
+			}
+			else {
+				layout.ui.customize.addClass('opened');
+			}
 		},
 
 		onCustomCancel: function(layout) {
