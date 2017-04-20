@@ -2,6 +2,9 @@
   <span class="remove_item_btn" name="remove_item">&times;</span>
   <div class="item_name"><%= itemName %></div>
   <span class="item_version">(<%=  versionText %>)</span>
+  <% if(customizationNote) { %>
+  	<div class="item_description"><%= customizationNote %></div>
+  <% } %>
 </div>
 <div class="right_block">
   <div class="quantity_container">

@@ -209,6 +209,39 @@
                     text-transform: uppercase;
                     cursor: pointer;
                     border-radius: 2px;
+
+                    .expand-symbol {
+                      display: inline-block;
+                      font-size: 20px;
+                      line-height: 0px;
+                      margin-left: 3px;
+
+                      &.down {
+                        transform: rotate(270deg);
+                        position: relative;
+                        top: 3px;
+                      }
+
+                      &.up {
+                        transform: rotate(90deg);
+                        position: relative;
+                        left: 4px;
+                        top: 2px;
+                        display: none;
+                      }
+                    }
+
+                    &.opened {
+                      .expand-symbol {
+                        &.down {
+                          display: none;
+                        }
+
+                        &.up {
+                          display: inline-block;
+                        }
+                      }
+                    }
                     
                     /*visibility: hidden;*/
                   }
@@ -306,7 +339,7 @@
                 }
 
                 .customization_continer {
-                  background: rgba(120, 120, 120, 0.3);
+                  background: rgba(96, 60, 44, 0.3);
                   display: none;
                   margin: 10px 0 0 0;
                   width: 100%;
@@ -336,6 +369,16 @@
                       }
 
                       .customize-header {
+                        .child-symbol {
+                          display: inline-block;
+                          transform: rotate(90deg) scaleY(-1);
+                          font-size: 33px;
+                          line-height: 0px;
+                          font-weight: 300;
+                          position: relative;
+                          top: 1px;
+                        }
+
                         display: flex;
                         justify-content: space-between;
                         background: lightgreen;
@@ -344,7 +387,7 @@
 
                         .item-name {
                           font-size: $size-lg-normal;
-                          font-weight: $style-semi-bold;
+                          font-weight: $style-normal-strong;
                         }
 
                         .item-description {
@@ -354,7 +397,6 @@
                       }
                       .customize-body {
                         .subItem {
-                          // display: flex;
                           position: relative;
                           border-bottom: solid 1px $cart-divider;
                           color: $cart-text;
@@ -369,12 +411,16 @@
                             margin-top: 0;
                           }
 
+                          &:last-child {
+                            border-bottom: none;
+                          }
+
                           label {
                             width: 100%;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
-                            padding: 10px;
+                            padding: 10px 10px 10px 30px;
                             cursor: pointer;
 
                             .left {
@@ -391,6 +437,7 @@
                                 color: $cart-text;
                                 font-size: $size-normal-small;
                                 font-weight: $style-normal;
+                                font-style: italic;
                               }
                             }
 

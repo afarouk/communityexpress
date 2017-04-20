@@ -26,7 +26,9 @@ define([
 			_.each(this.controllers, function(controller) {
 				_.extend(controller, {
 					dispatcher: this,
-					getRegionView: this.getRegionView
+					getRegionView: this.getRegionView,
+					resolver: this.resolver,
+					rejecter: this.rejecter
 				}); 
 			}.bind(this));
 		},
@@ -43,7 +45,21 @@ define([
 					callback(currentView);
 				}
 			}
-		}
+		},
+		//dererred resolver for promise
+		resolver: function(def, data) {
+			setTimeout(function(){
+				def.resolve(data);
+			}, 0)
+			return def;
+		},
+		//dererred rejecter for promise
+		rejecter: function(def) {
+			setTimeout(function(){
+				def.reject(null);
+			}, 0)
+			return def;
+		},
 	});
 	return new ControllersDispatcher();
 });

@@ -44,10 +44,13 @@ define([
 			if (this.selectedNumber === this.model.get('maxSubSubCount')) {
 				var $notChecked = this.$el.find('input:checkbox:not(:checked)');
 				$notChecked.parents('.subItem').addClass('disabled');
+			} else {
+				this.$el.find('.subItem.disabled').removeClass('disabled');
+			}
+			if (this.selectedNumber >= this.model.get('minSubSubCount')) {
 				this.$el.addClass('confirmed');
 				this.selected = true;
 			} else {
-				this.$el.find('.subItem.disabled').removeClass('disabled');
 				this.$el.removeClass('confirmed');
 				this.selected = false;
 			}

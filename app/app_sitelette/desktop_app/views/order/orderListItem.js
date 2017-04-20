@@ -21,6 +21,11 @@ define([
 		},
 		initialize: function() {
 		},
+		serializeData: function() {
+			return _.extend(this.model.toJSON(), {
+				customizationNote: this.model.get('customizationNote') || null
+			});
+		},
 		onIncrease: function() {
 			var quantity = this.model.get('quantity') + 1;
 			this.model.set('quantity', quantity);

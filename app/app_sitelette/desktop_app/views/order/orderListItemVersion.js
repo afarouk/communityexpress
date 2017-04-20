@@ -27,7 +27,8 @@ define([
                 t3 = this.model.get('version3DisplayText'),
 				versionText = (t1 ? t1 : '') + (t2 ? ' ,' + t2 : '') + (t3 ? ' ,' + t3 : '');
 			return _.extend(this.model.toJSON(), {
-				versionText: versionText
+				versionText: versionText,
+				customizationNote: this.model.get('customizationNote') || null
 			});
 		},
 		onIncrease: function() {

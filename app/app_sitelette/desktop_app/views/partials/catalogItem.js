@@ -23,7 +23,8 @@ define([
 			'click @ui.customize': 'onCustomize'
 		},
 		triggers: {
-			'click @ui.addToCard': 'items:added'
+			'click @ui.addToCard': 'items:added',
+			'click @ui.customize': 'items:customized'
 		},
 		quantity: 1,
 		// onRender: function() {
