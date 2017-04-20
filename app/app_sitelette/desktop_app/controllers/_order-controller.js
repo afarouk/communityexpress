@@ -176,13 +176,6 @@ define([
 				}
 			}.bind(this));
 		},
-		//dererred rejecter for promise
-		rejecter: function(def) {
-			setTimeout(function(){
-				def.reject(null);
-			}, 0)
-			return def;
-		},
 		//validate promo code
 		validatePromoCode: function (model, code) {
 	        var params = model.additionalParams,

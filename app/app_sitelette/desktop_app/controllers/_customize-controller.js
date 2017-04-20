@@ -64,6 +64,14 @@ define([
 			layout.ui.customize.attr('disabled', false);
 			//TODO use selectedItems for basket item preparation
 			debugger;
+		},
+		checkCustomization: function(model) {
+			var def = $.Deferred(),
+				hasSubItems = model.get('hasSubItems');
+
+			if (!hasSubItems) return this.resolver(def, model);
+
+			return this.resolver(def, model);
 		}
 	});
 	return CustomizeController;

@@ -38,15 +38,22 @@ define([
 	    },
 		onChildviewItemsAdded: function(childView) {
 			var model = childView.model;
-			this.basket.addItem(model, model.get('quantity'), 
-				 this.options.groupId, this.options.groupDisplayText, 
-				 this.options.catalogId,this.options.catalogDisplayText);
-			console.log(this.basket.getTotalPrice());
+			this.dispatcher.get('customize')
+				.checkCustomization(model)
+				.then(function(){
+					this.basket.addItem(model, model.get('quantity'), 
+						 this.options.groupId, this.options.groupDisplayText, 
+						 this.options.catalogId,this.options.catalogDisplayText);
+				}.bind(this));
 		},
 		onChildviewItemsVersionAdded: function(model,  basketItem) {
-			this.basket.addItem(basketItem, 1,
-				 this.options.groupId, this.options.groupDisplayText, 
-				 this.options.catalogId,this.options.catalogDisplayText);
+			this.dispatcher.get('customize')
+				.checkCustomization(model)
+				.then(function(){
+					this.basket.addItem(basketItem, 1,
+						 this.options.groupId, this.options.groupDisplayText, 
+						 this.options.catalogId,this.options.catalogDisplayText);
+				}.bind(this));
 		}
 	});
 	return CatalogGroupView;
