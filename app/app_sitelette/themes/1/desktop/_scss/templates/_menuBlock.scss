@@ -372,8 +372,9 @@
                         .child-symbol {
                           display: inline-block;
                           transform: rotate(90deg) scaleY(-1);
-                          font-size: 35px;
+                          font-size: 33px;
                           line-height: 0px;
+                          font-weight: 300;
                         }
 
                         display: flex;

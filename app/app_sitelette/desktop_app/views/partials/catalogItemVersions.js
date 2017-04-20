@@ -18,6 +18,9 @@ define([
 			'click .add_to_cart_btn': 'onAddtoCart',
 			'change @ui.selector': 'updateAddVersionButton',
 		},
+		triggers: {
+			'click @ui.customize': 'items:customized'
+		},
 		serializeData: function() {
 			return _.extend(this.model.toJSON(), {
 				selectorVersions: this.getSelectorVersions(),

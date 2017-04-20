@@ -54,7 +54,7 @@ define([
 				layout.ui.customize.addClass('opened');
 			}
 		},
-
+		
 		onCustomCancel: function(layout) {
 			layout.getRegion('customization').$el.slideToggle('slow');
 			layout.ui.customize.attr('disabled', false);
