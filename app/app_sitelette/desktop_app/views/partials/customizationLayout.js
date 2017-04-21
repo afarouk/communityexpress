@@ -34,11 +34,6 @@ define([
 			} else {
 				this.allSelected = false;				
 			}
-			// this.ui.confirm.attr('disabled', !allSelected);
-		},
-
-		onConfirmCustomChoice: function() {
-			// this.trigger('custom:confirmed');
 		}
 
 	});

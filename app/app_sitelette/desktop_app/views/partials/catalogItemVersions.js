@@ -11,7 +11,7 @@ define([
 		ui: {
 			customize: '[name="item_customize"]',
 			selector: '.versions_selectors_container select',
-			add: '.add_to_cart_btn'
+			add: '[name="add_to_cart_btn"]'
 		},
 		events: {
 			'click @ui.customize': 'onCustomize',
