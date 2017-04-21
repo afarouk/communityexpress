@@ -74,7 +74,7 @@ define([
 	            this.ui.add.attr('disabled', false);
 	            this.$('.item_version_not_available').removeClass('visible');
 	            this.$('.order_price').text('$' + exists.price);
-	            debugger;
+	            // debugger;
 	        } else {
 	            this.ui.add.attr('disabled', true);
 	            this.$('.item_version_not_available').addClass('visible');

@@ -69,8 +69,7 @@ define([
 				customizesModel.set('customizationNote', customizationNote);
 				customizesModel.set('wasCustomized', true);
 				customizesModel.set('price', adjustedPrice);
-
-				customizesModel.set('uuid', customizesModel.get('uuid') + '[' + escape(customizesModel.get('customizationNote')) + ']');
+				customizesModel.set('subItems', selectedItems);
 
 				return this.resolver(def, customizesModel);
 			} else {
