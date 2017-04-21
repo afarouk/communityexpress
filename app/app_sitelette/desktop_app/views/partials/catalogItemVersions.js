@@ -73,8 +73,7 @@ define([
 	            this.savedVersion = exists;
 	            this.ui.add.attr('disabled', false);
 	            this.$('.item_version_not_available').removeClass('visible');
-	            this.$('.order_price').text('$' + exists.price);
-	            debugger;
+	            this.$('.version_order_price').text('$' + exists.price);
 	        } else {
 	            this.ui.add.attr('disabled', true);
 	            this.$('.item_version_not_available').addClass('visible');

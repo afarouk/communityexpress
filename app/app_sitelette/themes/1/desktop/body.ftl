@@ -20,7 +20,7 @@
     				</div>
           <#elseif (promoCodes)?has_content>
             <div id="subheader-discount" class="subheader-discount" data-promoCode="${promoCodes[0].promoCode}" data-uuid="${promoCodes[0].discountUUID}">
-              <span class="discount-description">${promoCodes[0].description}</span>
+              <span class="discount-title">${promoCodes[0].title}</span>
             </div>
        		</#if>
 
