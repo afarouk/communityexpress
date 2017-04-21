@@ -4767,7 +4767,9 @@ input[name=promocode] {
     padding-top: 45px;
 }
 .customizationContainer .done-btn,
-.customizationContainer .done-btn:hover {
+.customizationContainer .done-btn:hover,
+.customizationContainer .done-btn:active,
+.customizationContainer .done-btn:focus {
     color: #fafafa;
     background-color: #0074D9;
     border-color: #0074D9;
@@ -4793,4 +4795,14 @@ input[name=promocode] {
 
 .customizationContainer .menu_body {
     margin-top: 23px;
+}
+
+.customizationContainer .menu_body label,
+.customizationContainer .menu_body label:hover {
+    color: #fafafa;
+    border: none;
+}
+
+.customizationContainer .menu_body input[type=checkbox] {
+    margin: -11px 10px 0 0;
 }
