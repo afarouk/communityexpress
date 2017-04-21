@@ -1,5 +1,11 @@
 /*global define*/
 
+
+    // modelId: function (attrs) {
+    //   return attrs.type + "-" + attrs.id;
+    // }
+
+
 'use strict';
 
 var CatalogBasketItem = require('../models/CatalogBasketItem'); //

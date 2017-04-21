@@ -39,7 +39,7 @@ define([
 		onChildviewItemsAdded: function(childView) {
 			var model = childView.model;
 			this.dispatcher.get('customize')
-				.checkCustomization(childView)
+				.checkCustomization(childView, model)
 				.then(function(){
 					this.basket.addItem(model, model.get('quantity'), 
 						 this.options.groupId, this.options.groupDisplayText, 
@@ -48,17 +48,10 @@ define([
 		},
 		onChildviewItemsVersionAdded: function(childView,  basketItem) {
 			this.dispatcher.get('customize')
-				.checkCustomization(childView)
+				.checkCustomization(childView, basketItem)
 				.then(function(model){
-					//TODO that is not correct only temporary
-					basketItem.set('hasSubItems', model.get('hasSubItems') || false);
-					basketItem.set('customizationNote', model.get('customizationNote') || null);
-					basketItem.set('wasCustomized', model.get('wasCustomized') || false);
-					basketItem.set('price', model.get('price') || basketItem.get('price'));
-					//temporary tweak
-					//todo replace note with spacial ids mark
-					basketItem.set('uuid', basketItem.get('uuid') + '[' + escape(model.get('customizationNote')) + ']' || false);
-					this.basket.addItem(basketItem, 1,
+					console.log(model, basketItem);
+					this.basket.addItem(model, 1,
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);
 				}.bind(this));
