@@ -5,7 +5,6 @@
   <div class="item_description">
     <%= longDescription %>
   </div>
-  <!-- <div class="order_price">$2.5</div> -->
   <div class="wrapper">
     <div class="versions_selectors_container">
       <% _.each(selectorVersions, function(selector, index){ %>
@@ -23,18 +22,9 @@
 </div>
 <div class="right_block">
   <div class="item_price version_order_price"></div>
-  <button class="add_to_cart_btn">add to cart</button>
+  <button name="add_to_cart_btn" class="add_to_cart_btn">add to cart</button>
 </div>
 <div class="item_version_not_available">
   <span>&#9888; This combination is not available</span>
 </div>
 <div class="customization_continer" id="customizationContainer"></div>
-<!-- <div class="item_added_versions">
-  <div class="version_description">8oz</div>
-  <div class="quantity_container">
-    <div class="block minus">-</div>
-    <div class="block number">1</div>
-    <div class="block plus">+</div>
-  </div>
-  <div class="version_price">$2.5</div>
-</div> -->

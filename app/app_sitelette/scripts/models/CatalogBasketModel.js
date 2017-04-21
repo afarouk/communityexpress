@@ -20,6 +20,10 @@ var CatalogBasketModel = Backbone.Collection.extend({
       quantity:0,
       price:0,
 
+    modelId: function (attrs) {
+        return this.getUUID(attrs);
+    },
+
     initialize : function(models, options) {
        this.prices = new Backbone.Model();
        this.price=0;
@@ -91,24 +95,35 @@ var CatalogBasketModel = Backbone.Collection.extend({
         }
     },
 
-    //temporary for testing
-    // getItem: function(uuid, custom) {
-    //     var search = {
-    //         uuid: uuid
-    //     };
-    //     if (custom) {
-    //         search.customizationNote = custom;
-    //     }
-    //     var model = this.findWhere(search);
-    //     return model;
-    // },
+    getCustomizationMark: function(attrs) {
+        var hash = '[';
+        _.each(attrs.subItems, function(subItem, key) {
+            hash += 'i' + key + ':' + _.pluck(subItem, 'subSubItemId').join('|') + '_';
+        });
+        hash += ']';
+        return hash;
+    },
+
+    getUUID: function(item) {
+        var attrs = item instanceof Backbone.Model ? item.attributes : item,
+            uuid = attrs.uuid;
+
+        if (attrs.wasCustomized) {
+            uuid += this.getCustomizationMark(attrs);
+        }
+        return uuid;
+    },
+
+    getItem: function(item) {
+        return this.get(this.getUUID(item));
+    },
+
+    removeItem : function(item) {
+        return this.remove(this.getUUID(item));
+    },
 
     addItem : function(item, count, groupId, groupDisplayText,catalogId,catalogDisplayText) {
-        // console.log("BasketModel:addItem::"+item.get('itemName')+",
-        // "+groupId+", "+catalogId);
-        // var itemModel = this.getItem(item.get('uuid'), item.get('customizationNote'));
-        
-        var itemModel = this.get(item.get('uuid'));
+        var itemModel = this.getItem(item);
         if (itemModel) {
             itemModel.add(count);
             if (!itemModel.get('quantity') || itemModel.get('quantity') === 0) {
@@ -141,7 +156,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
     },
 
     changeVersionItem: function(item, count) {
-        var itemModel = this.get(item.get('uuid'));
+        var itemModel = this.getItem(item);
         itemModel.set('quantity', count);
         itemModel.trigger('updateVersions');
         if (!itemModel.get('quantity') || itemModel.get('quantity') === 0) {
@@ -209,12 +224,8 @@ var CatalogBasketModel = Backbone.Collection.extend({
         this.dumpCartToConsole();
     },
 
-    removeItem : function(item) {
-        this.remove(item.get('uuid'));
-    },
-
     getNumOf : function(item) {
-        var model = this.get(item.get('uuid'));
+        var model = this.getItem(item);
         if (model) {
             return model.get('quantity');
         } else {
@@ -389,13 +400,48 @@ var CatalogBasketModel = Backbone.Collection.extend({
                     itemVersion: item.get('itemVersion'),
                     quantity: item.get('quantity'),
                     intraOrderAssociationTag: item.get('catalogId') + intraOrderAssociationIndex,
-                    intraOrderQuantity: item.get('quantity')
+                    intraOrderQuantity: item.get('quantity'),
+                    customizationNote: item.get('customizationNote') || null,
+                    wasCustomized: item.get('wasCustomized'),
+                    subItems: this.getSubSubItems(item) //I am not sure about this field name
                 };
                 orderItems.push(orderItem);
-            });
+            }.bind(this));
         }
 
         return orderItems;
+    },
+
+    getSubSubItems: function(item) {
+        var subSubItems = [],
+            subItems = item.get('subItems');
+        if (item.get('wasCustomized')) {
+            _.each(subItems, function(subItem) {
+                _.each(subItem, function(subSubItem) {
+                    var item = {
+                        subItemId: subSubItem.subItemId,
+                        subSubItemId: subSubItem.subSubItemId
+                    };
+                    subSubItems.push(item);
+                });
+            });
+            //TODO check if it is properly
+            return subSubItems;
+        } else {
+            return null;
+        }
+
+    //      [ 
+    //   {
+    //     "subItemId": 1,
+    //     "subSubItemId: 3"
+    //    },
+    //    {
+    //       "subItemId": 1,
+    //      "subSubItemId: 8"
+    //     }
+    // ]
+
     },
 
     // quick solution for dynamic subtotal in basket

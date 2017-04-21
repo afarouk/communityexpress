@@ -15,7 +15,7 @@ define([
 			decrease: '[name="quantity_decrease"]',
 			quantity: '[name="quantity"]',
 			price: '[name="items_price"]',
-			addToCard: '[name="add_to_card"]',
+			addToCart: '[name="add_to_cart_btn"]'
 		},
 		events: {
 			'click @ui.increase': 'onIncrease',
@@ -23,7 +23,7 @@ define([
 			'click @ui.customize': 'onCustomize'
 		},
 		triggers: {
-			'click @ui.addToCard': 'items:added',
+			'click @ui.addToCart': 'items:added',
 			'click @ui.customize': 'items:customized'
 		},
 		quantity: 1,
@@ -48,13 +48,11 @@ define([
 			this.quantity++;
 			this.ui.quantity.text(this.quantity);
 			this.model.set('quantity', this.quantity);
-			// this.changeItemsPrice(); //Ravi told that we don't need that
 		},
 		onDecrease: function() {
 			this.quantity = this.quantity > 1 ? this.quantity - 1 : 1;
 			this.ui.quantity.text(this.quantity);
 			this.model.set('quantity', this.quantity);
-			// this.changeItemsPrice();
 		},
 		changeItemsPrice: function() {
 			var price = this.model.get('price') * this.quantity;

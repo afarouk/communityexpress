@@ -58,7 +58,7 @@ define([
 	            discount: this.model.additionalParams.discountDisplay ? this.model.additionalParams.discountDisplay.toFixed(2) : 0,
 	            afterDiscount: this.model.additionalParams.afterDiscount ? this.model.additionalParams.afterDiscount.toFixed(2) : null,
 	            promoCode: this.model.additionalParams.promoCode,
-	            minimumPurchase: this.model.additionalParams.minimumPurchase,
+	            minimumPurchase: this.model.additionalParams.minimumPurchase
 			});
 		},
 		getAddressFromSasl: function() {
