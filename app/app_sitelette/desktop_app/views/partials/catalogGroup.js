@@ -40,7 +40,7 @@ define([
 			var model = childView.model;
 			this.dispatcher.get('customize')
 				.checkCustomization(childView, model)
-				.then(function(){
+				.then(function(model){
 					this.basket.addItem(model, model.get('quantity'), 
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);
