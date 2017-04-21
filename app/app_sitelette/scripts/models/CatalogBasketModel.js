@@ -400,13 +400,48 @@ var CatalogBasketModel = Backbone.Collection.extend({
                     itemVersion: item.get('itemVersion'),
                     quantity: item.get('quantity'),
                     intraOrderAssociationTag: item.get('catalogId') + intraOrderAssociationIndex,
-                    intraOrderQuantity: item.get('quantity')
+                    intraOrderQuantity: item.get('quantity'),
+                    customizationNote: item.get('customizationNote') || null,
+                    wasCustomized: item.get('wasCustomized'),
+                    subItems: this.getSubSubItems(item) //I am not sure about this field name
                 };
                 orderItems.push(orderItem);
-            });
+            }.bind(this));
         }
 
         return orderItems;
+    },
+
+    getSubSubItems: function(item) {
+        var subSubItems = [],
+            subItems = item.get('subItems');
+        if (item.get('wasCustomized')) {
+            _.each(subItems, function(subItem) {
+                _.each(subItem, function(subSubItem) {
+                    var item = {
+                        subItemId: subSubItem.subItemId,
+                        subSubItemId: subSubItem.subSubItemId
+                    };
+                    subSubItems.push(item);
+                });
+            });
+            //TODO check if it is properly
+            return subSubItems;
+        } else {
+            return null;
+        }
+
+    //      [ 
+    //   {
+    //     "subItemId": 1,
+    //     "subSubItemId: 3"
+    //    },
+    //    {
+    //       "subItemId": 1,
+    //      "subSubItemId: 8"
+    //     }
+    // ]
+
     },
 
     // quick solution for dynamic subtotal in basket
