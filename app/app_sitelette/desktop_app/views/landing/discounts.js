@@ -40,7 +40,7 @@ define([
       this.ui.sub_discount.off('click');
       this.ui.sub_discount.addClass('used');
       if ( this.ui.sub_discount.length > 0) {
-        this.ui.sub_discount.find('.discount-description').text('The discount will be applied at the end of order screen');
+        this.ui.sub_discount.find('.discount-title').text('The discount will be applied at the end of order screen');
       }
     },
     showShareBlock: function(e) {

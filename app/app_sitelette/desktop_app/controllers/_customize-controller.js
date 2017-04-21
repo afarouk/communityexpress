@@ -43,8 +43,6 @@ define([
 					selectedItems: selectedItems
 				});
 				
-			// this.listenTo(customizationView, 'custom:cancel', this.onCustomCancel.bind(this, layout));
-			// this.listenTo(customizationView, 'custom:confirmed', this.onCustomConfirmed.bind(this, layout, selectedItems));
 			layout.customized = true;
 			layout.off('custom:confirmed')
 				  .on('custom:confirmed', this.onCustomConfirmed.bind(this, layout, customizationView, selectedItems));
@@ -58,36 +56,34 @@ define([
 			}
 		},
 		
-		onCustomCancel: function(layout) {
-			// layout.getRegion('customization').$el.slideToggle('slow');
-			// layout.ui.customize.attr('disabled', false);
-		},
-		onCustomConfirmed: function(layout, customizationView, selectedItems, def) {
-			// layout.getRegion('customization').$el.slideToggle('slow');
-			// layout.ui.customize.attr('disabled', false);
-			//TODO use selectedItems for basket item preparation
+		onCustomConfirmed: function(layout, customizationView, selectedItems, def, model) {
 			if (customizationView.allSelected) {
-				var customizationNote = '';
+				var customizationNote = '',
+					adjustedPrice = model.get('price');
 				_.each(selectedItems, function(subItem) {
 					customizationNote += _.pluck(subItem, 'displayText').join(',') + ',';
+					adjustedPrice += _.reduce(_.pluck(subItem, 'priceAdjustment'), function(a, b) {return a+b;});
 				});
 				customizationNote = customizationNote.slice(0, -1);
-				var customizesModel = layout.model.clone();
+				var customizesModel = model.clone();
 				customizesModel.set('customizationNote', customizationNote);
 				customizesModel.set('wasCustomized', true);
+				customizesModel.set('price', adjustedPrice);
+
+				customizesModel.set('uuid', customizesModel.get('uuid') + '[' + escape(customizesModel.get('customizationNote')) + ']');
+
 				return this.resolver(def, customizesModel);
 			} else {
-				return this.resolver(def, layout.model);
+				return this.resolver(def, model);
 			}
 		},
-		checkCustomization: function(layout) {
+		checkCustomization: function(layout, model) {
 			var def = $.Deferred(),
-				model = layout.model,
-				hasSubItems = model.get('hasSubItems');
+				hasSubItems = layout.model.get('hasSubItems');
 
 			if (!hasSubItems) return this.resolver(def, model);
 			if (layout.customized) {
-				layout.trigger('custom:confirmed', def);
+				layout.trigger('custom:confirmed', def, model);
 				return def;
 			} else {
 				return this.resolver(def, model);
