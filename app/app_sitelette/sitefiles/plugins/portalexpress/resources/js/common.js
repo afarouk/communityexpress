@@ -764,6 +764,7 @@ com.faralam.common.getMobileAppURL = function (sa, sl) {
 
     com.faralam.common.sendAjaxRequest(com.faralam.get_mobile_app_url, "GET", {}, onsuccess, onerror);
 }
+
 com.faralam.common.getMobileAppURLforSMS = function (sa, sl) {
     com.faralam.get_mobile_app_url = com.faralam.serverURL + 'sasl/getMobileAppURL';
     com.faralam.get_mobile_app_url = com.faralam.get_mobile_app_url + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&UID=' + sessionStorage.UID);
@@ -787,6 +788,7 @@ com.faralam.common.getMobileAppURLforSMS = function (sa, sl) {
 
     com.faralam.common.sendAjaxRequest(com.faralam.get_mobile_app_url, "GET", {}, onsuccess, onerror);
 }
+
 com.faralam.common.getMobileAppURLStartScreen = function (sa, sl) {
 	
     com.faralam.get_mobile_app_url_start = com.faralam.serverURL + 'sasl/getMobileAppURL';
@@ -853,7 +855,7 @@ com.faralam.getServiceConfigurations = function (URL) {
         var settingMenu = [];
 
         //var config_arr = ['reservationService', 'mediaservice', 'messagingService', 'promotionService', 'appointmentService', 'userSASLService', 'emailService', 'smsService', 'addEditSASL', 'catalog', 'onlineOrder', 'openingHours', 'saslLogoIcon', 'saslAppIcon', 'saslMetadata', 'saslPreview', 'customerCare', 'userSettings', 'servicestatus' , 'adAlertService','htmlEmailService','widgetService','pollingContestService','photoContestService','checkinContestService','wallService','orderSiteCardsService','drivingDirectionsService','clickToCallService','version'];
-        var config_arr = ['mediaservice', 'promotionService', 'userSASLService', 'messagingService', 'onlineOrder', 'openingHours', 'saslMetadata', 'saslLogoIcon', 'saslAppIcon', 'emailService', 'smsService', 'servicestatus', 'catalog', 'pollingContestService', 'photoContestService', 'wallService', 'adAlertService', 'htmlEmailService', 'widgetService', 'orderSiteCardsService', 'drivingDirectionsService', 'clickToCallService', 'qrCodeScanService', 'themeSelectionService', 'loyaltyService', 'eventsService', 'videoService', 'customerCare', 'userSettings','saslPreview','discountPromoCodeService','itemsForSaleService'];//,''
+        var config_arr = ['mediaservice', 'promotionService', 'userSASLService', 'messagingService', 'onlineOrder', 'openingHours', 'saslMetadata', 'saslLogoIcon', 'saslAppIcon', 'emailService', 'smsService', 'servicestatus', 'catalog', 'pollingContestService', 'photoContestService', 'wallService', 'adAlertService', 'htmlEmailService', 'widgetService', 'orderSiteCardsService', 'drivingDirectionsService', 'clickToCallService', 'qrCodeScanService', 'themeSelectionService', 'loyaltyService', 'eventsService', 'videoService', 'customerCare', 'userSettings','saslPreview','discountPromoCodeService','itemsForSaleService','customizeService'];//,''
 
         for (var i = 0; i < config_arr.length; i++) {
             if (data['' + config_arr[i] + '']) {
@@ -1390,6 +1392,13 @@ com.faralam.StartScreenNavigate = function (config) {
             Ext.getCmp('main_tab').down('#CreateSaleItem').setDisabled(false);
             Ext.getCmp('CreateSaleItem_pageHeader').update('<span style="color:#E5FFFF;font-size:20px; font-weight: bold;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');
             Ext.getCmp('main_tab').setActiveTab(53);
+        }
+    }else if (config == 'customizeService') {
+        if (sessionStorage.SASLNAME) {
+            Ext.getCmp('main_tab').down('#start_screen').setDisabled(true);
+            Ext.getCmp('main_tab').down('#customize_service').setDisabled(false);                        
+            Ext.getCmp('customize_service_pageHeader').update('<span style="color:#000000;font-size:16px; font-weight: bold;padding-top:3px;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');
+            Ext.getCmp('main_tab').setActiveTab(55);
         }
     }
     
@@ -19773,7 +19782,7 @@ var splitString = "";
     "currencyCode":"USD",
     "item":null,
     "expirationDate":exDt ,
-    "activationDate": actDt,
+    "activationDate": actDt
     }
     data = JSON.stringify(data);
     console.log(data); 
@@ -20158,219 +20167,262 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
 }
 
  /*======================== Create Sale Item =============================*/
- /*-----------------------------Appoinment screen ------------------------------*/
- /*............................. js for calender  ..............................*/
-/* var Calendar = function(o) {
-  this.divId = o.ParentID;
-  this.DaysOfWeek = o.DaysOfWeek;
-  this.Months = o.Months;
-  var d = new Date();
-  this.CurrentMonth = d.getMonth();
-  this.CurrentYear = d.getFullYear();
-  var f=o.Format;
-  if(typeof(f) == 'string') {
-    this.f  = f.charAt(0).toUpperCase();
-  } else {
-    this.f = 'M';
-  }
-};
-Calendar.prototype.nextMonth = function() {
-  if ( this.CurrentMonth == 11 ) {
-    this.CurrentMonth = 0;
-    this.CurrentYear = this.CurrentYear + 1;
-  } else {
-    this.CurrentMonth = this.CurrentMonth + 1;
-  }
-  this.showCurrent();
-};
-Calendar.prototype.previousMonth = function() {
-  if ( this.CurrentMonth == 0 ) {
-    this.CurrentMonth = 11;
-    this.CurrentYear = this.CurrentYear - 1;
-  } else {
-    this.CurrentMonth = this.CurrentMonth - 1;
-  }
-  this.showCurrent();
-};
-Calendar.prototype.previousYear = function() {
-  this.CurrentYear = this.CurrentYear - 1;
-  this.showCurrent();
-}
-Calendar.prototype.nextYear = function() {
-  this.CurrentYear = this.CurrentYear + 1;
-  this.showCurrent();
-}              
-Calendar.prototype.showCurrent = function() {
-  this.Calendar(this.CurrentYear, this.CurrentMonth);
-};
-Calendar.prototype.Calendar = function(y,m) {
-  typeof(y) == 'number' ? this.CurrentYear = y : null;
-  typeof(y) == 'number' ? this.CurrentMonth = m : null;
-  var firstDayOfCurrentMonth = new Date(y, m, 1).getDay();
-  var lastDateOfCurrentMonth = new Date(y, m+1, 0).getDate();
-  var lastDateOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
-  var monthandyearhtml = '<span id="monthandyearspan">' + this.Months[m] + ' - ' + y + '</span>';
-  var html = '<table id="cal_tab">';
-  html += '<tr>';
-  for(var i=0; i < 7;i++) {
-    html += '<th class="daysheader daysheaderth" >' + this.DaysOfWeek[i] + '</th>';
-  }
-  html += '</tr>';
-  var p = dm = this.f == 'M' ? 1 : firstDayOfCurrentMonth == 0 ? -5 : 2;
-  var cellvalue;
-  for (var d, i=0, z0=0; z0<6; z0++) {
-    html += '<tr>';
-    for (var z0a = 0; z0a < 7; z0a++) {
-      d = i + dm - firstDayOfCurrentMonth;
-      if (d < 1){
-        cellvalue = lastDateOfLastMonth - firstDayOfCurrentMonth + p++;
-        html += '<td class="cal_trtd" id="prevmonthdates">' + 
-              '<span id="cellvaluespan">' + (cellvalue) + '</span><br/>' + 
-              '<ul id="cellvaluelist"></ul>' + 
-            '</td>';
-      } else if ( d > lastDateOfCurrentMonth){
-        html += '<td class="cal_trtd" id="nextmonthdates">' + (p++) + '</td>';
-      } else {
-        html += '<td class="cal_trtd" id="currentmonthdates">' + (d) + '</td>';
-        p = 1;
-      }
-      
-      if (i % 7 == 6 && d >= lastDateOfCurrentMonth) {
-        z0 = 10; // no more rows
-      }
-      i++;         
-    }
+ 
+ 
+/*============================ Customize screen  ==================================*/ 
 
-    html += '</tr>';
-  }
-  html += '</table>';
-  document.getElementById("monthandyear").innerHTML = monthandyearhtml;
-  document.getElementById(this.divId).innerHTML = html;
-};
-com.faralam.common.init_Cal= function() {
-  var c = new Calendar({
-    ParentID:"divcalendartable",
-
-    DaysOfWeek:[
-    'MON',
-    'TUE',
-    'WED',
-    'THU',
-    'FRI',
-    'SAT',
-    'SUN'
-    ],
-
-    Months:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
-
-    Format:'dd/mm/yyyy'
-  });
-
-  c.showCurrent();
-  
-  // Bind next and previous button clicks
-  getId('btnPrev').onclick = function(){
-    c.previousMonth();
-  };
-
-  getId('btnPrevYr').onclick = function(){
-    c.previousYear();
-  };
-
-  getId('btnNext').onclick = function(){
-    c.nextMonth();
-  };
-
-  getId('btnNextYr').onclick = function(){
-    c.nextYear();
-  };                        
-}
-function getId(id) {
-  return document.getElementById(id);
-}*/
- /*............................. end js of calender ............................*/
- /*com.faralam.common.openCreateTimeSlotSec = function(){
-     
-    var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
-
-    var appoinmentCreateTimeSlot_modal;
-
-    if (Ext.getCmp('appoinmentCreateTimeSlot_modal')) {
-        var modal = Ext.getCmp('appoinmentCreateTimeSlot_modal');
-        modal.destroy(modal, new Object());
-    }
-       
-        var appoinmentCreateTimeSlot_modal_form = Ext.widget('form', {
-            layout: {
-                type: 'vbox',
-                align: 'stretch'
-            },
-            //cls: 'x-body',
-            cls: 'white_bg',
-            border: '2px solid black',
-            bodyPadding: 10,
-            fieldDefaults: {
-                labelAlign: 'side',
-                labelWidth: 80,
-                labelStyle: 'font-weight:bold'
-            },
-            defaultType: 'textfield',
-            items: [
-                {
-                    xtype: 'container',
-                    style: 'width:680px;',
-                    tdAttrs: {
-                        style: {
-                            'vertical-align': 'top'
-                        }
-                    },
-                    items: [
-                        {
-                            xtype: 'form',
-                            layout: 'vbox',
-                            height:500,
-                            padding: '10 10 5 10',
-                            style: {
-                                border: '1px solid #fff;'
-                            },
-                            items: []
-                        }]
-                }
-            ]
-        });
-
-        appoinmentCreateTimeSlot_modal = Ext.widget('window', {
-            title: 'Create Time Slot',
-            id: 'appoinmentCreateTimeSlot_modal',
-            closeAction: 'hide',
-            layout: 'fit',
-            resizable: false,
-            modal: true,
-            width: 880,
-            cls: 'white_modal',
-            items: appoinmentCreateTimeSlot_modal_form,
-            listeners: {
-                close: function () {
-                    appoinmentCreateTimeSlot_modal_form.getForm().reset(true);
-                },
-                show: function () {
-                   
-                }
-
+ com.faralam.common.retrieveThemeColors = function () {
+    com.faralam.retrieveThemeColors = com.faralam.serverURL + 'sasl/retrieveThemeColors';
+    com.faralam.retrieveThemeColors = com.faralam.retrieveThemeColors + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&UID=' + sessionStorage.UID);
+    
+    var onsuccess = function (response, textStatus, jqXHR) {
+       console.log(response);
+        
+        Ext.getCmp('ban_bac_color').setValue(response.background);
+        Ext.getCmp('menu_hamberger_icon').setValue(response.foregroundLight);
+        Ext.getCmp('open_menu_catalog_color').setValue(response.foregroundDark);
+        if(response.barFontColors){
+            
+            response.barFontColors.split('.').forEach(function(v){
+            var col = v.match(/[a-f0-9]{6}/gi); // Get Hex Code
+                         
+            var classN=v.split(' '); //Get Class Name (If wanted)
+            switch(classN[0]){
+            case 'cmtyx_color_1':
+            Ext.getCmp('bac_col_1').setValue(col);
+            break;
+            case 'cmtyx_color_2':
+            Ext.getCmp('bac_col_2').setValue(col);
+            break; 
+            case 'cmtyx_color_3':
+            Ext.getCmp('bac_col_3').setValue(col);
+            break;
+            case 'cmtyx_color_4':
+            Ext.getCmp('bac_col_4').setValue(col);
+            break;        
+            case 'cmtyx_text_color_1':
+            console.log('txt_1'+col);        
+            Ext.getCmp('txt_col_1').setValue(col);                    
+            break;
+            case 'cmtyx_text_color_2':
+            console.log('txt_2'+col);        
+            Ext.getCmp('txt_col_2').setValue(col);
+            break;
+            case 'cmtyx_text_color_3':
+            console.log('txt_3'+col);        
+            Ext.getCmp('txt_col_3').setValue(col);
+            break;
+            case 'cmtyx_text_color_4':
+            console.log('txt_4'+col);        
+            Ext.getCmp('txt_col_4').setValue(col);
+            break;         
             }
+            
+             //console.log(classN[0]+' => '+Hex); // Display Class => Hex
+           });
+             /*var color1 = arr[1].split(" ")[0];
+             var color2 = arr[2].split(" ")[0];
+             var color3 = arr[3].split(" ")[0];
+             var color4 = arr[4].split(" ")[0];
+             Ext.getCmp('main_theme_discount_color').setValue(color1.replace("#", ""));
+             Ext.getCmp('gallery_poll_review').setValue(color2.replace("#", ""));
+             Ext.getCmp('promotion_events').setValue(color3.replace("#", ""));
+             Ext.getCmp('photo_and_contest_input').setValue(color4.replace("#", ""));*/
+             window.jscolor();
+           }
+    }
+    var onerror = function (jqXHR, textStatus, errorThrown) {}
+    com.faralam.common.sendAjaxRequest(com.faralam.retrieveThemeColors, "GET", {}, onsuccess, onerror);
+}
+ 
+ com.faralam.common.setSASLBanner = function (file) { 
+    com.faralam.setSASLBanner = com.faralam.serverURL + 'sasl/setSASLBanner';
+    com.faralam.setSASLBanner = com.faralam.setSASLBanner + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL +'&UID='+sessionStorage.UID);
+    /*var mtdc= "#"+Ext.getCmp('main_theme_discount_color').getValue();
+    var gpr= "#"+Ext.getCmp('gallery_poll_review').getValue();
+    var pe= "#"+Ext.getCmp('promotion_events').getValue();
+    var pci= "#"+Ext.getCmp('photo_and_contest_input').getValue();*/
+     
+    var bac_1 = "#"+Ext.getCmp('bac_col_1').getValue();
+    var bac_2 = "#"+Ext.getCmp('bac_col_2').getValue();
+    var bac_3 = "#"+Ext.getCmp('bac_col_3').getValue();
+    var bac_4 = "#"+Ext.getCmp('bac_col_4').getValue();
+     
+    var txt_1 = "#"+Ext.getCmp('txt_col_1').getValue();
+    var txt_2 = "#"+Ext.getCmp('txt_col_2').getValue();
+    var txt_3 = "#"+Ext.getCmp('txt_col_3').getValue();
+    var txt_4 = "#"+Ext.getCmp('txt_col_4').getValue();
+     
+    var allcolor = ".cmtyx_color_1 { background-color:" + bac_1 + " !important; }.cmtyx_border_color_1 { border-color: " + bac_1 + " !important; }.cmtyx_text_color_1 { color: " + txt_1 + " !important; }" + ".cmtyx_color_2 { background-color:" + bac_2 + " !important; }.cmtyx_border_color_2 { border-color: " + bac_2 + " !important; } .cmtyx_text_color_2 { color: " + txt_2 + " !important; } .cmtyx_color_3 { background-color:" + bac_3 + " !important; }.cmtyx_border_color_3 { border-color: " + bac_3 + " !important; }.cmtyx_text_color_3 { color: " + txt_3 + " !important; }.cmtyx_color_4 { background-color:" + bac_4 + " !important; }.cmtyx_border_color_4 { border-color: " + bac_4 + " !important; }.cmtyx_text_color_4 { color: " + txt_4 + " !important; }" ;
+    
+    var data ={
+    "backgroundColor": "#"+Ext.getCmp('ban_bac_color').getValue(),
+    "foregroundColorLight": "#"+Ext.getCmp('menu_hamberger_icon').getValue(),
+    "foregroundColorDark": "#"+Ext.getCmp('open_menu_catalog_color').getValue(),
+    "backgroundColor2":"#FFFFFF",
+    "barFontColors":"" +allcolor
+   };
+   var onsuccess = function (response, textStatus, jqXHR) {
+      Ext.getCmp('banner_image_component').update('');   
+      Ext.getCmp('banner_image_component').update('<img style="height:55px !important;width:320px;" src="'+sessionStorage.codecanyonData+'">');
+      sessionStorage.codecanyonData=""; 
+      com.faralam.common.retrieveThemeColors();
+      com.faralam.registration.showPopup('Success', 'You have successfully updated banner screen.');
+   }
+   var onerror = function (jqXHR, textStatus, errorThrown) {}
+   options ={
+     url:com.faralam.setSASLBanner,
+     method:'POST',
+     data:JSON.stringify(data),
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+   if(sessionStorage.codecanyonData==""){
+      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+     }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
+} 
+
+ com.faralam.common.retrieveMediaMetaDataBySASL_themeOption = function () {
+com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retrieveMediaMetaDataBySASL';
+    com.faralam.retrieveMediaMetaDataBySASL = com.faralam.retrieveMediaMetaDataBySASL + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&UID=' + sessionStorage.UID)+'&mediaType=GALLERY_OWNER&status=ALL';
+    
+    var onsuccess = function (response, textStatus, jqXHR) {
+       console.log(response);
+        if(response.length>0){
+         var imgUrl ='<img style="height:240px !important;width:320px;" src="'+response[0].url+'">';
+         Ext.getCmp('welcome_image_preview').update(imgUrl);    
+        }
+        
+    }
+    var onerror = function (jqXHR, textStatus, errorThrown) {}
+    com.faralam.common.sendAjaxRequest(com.faralam.retrieveMediaMetaDataBySASL, "GET", {}, onsuccess, onerror);
+} 
+ 
+ com.faralam.common.createAdhocMedia = function (file) {
+    com.faralam.createAdhocMedia = com.faralam.serverURL + 'media/createAdhocMedia';
+    com.faralam.createAdhocMedia = com.faralam.createAdhocMedia + "?" + encodeURI('UID='+sessionStorage.UID);    
+    var data ={
+            "title":Ext.getCmp('welcome_title').getValue(),
+            "serviceAccommodatorId":sessionStorage.SA,
+            "serviceLocationId":sessionStorage.SL,
+            "type":"GALLERY_OWNER"
+            };
+  
+   var onsuccess = function (response, textStatus, jqXHR) {
+      console.log('welcome');
+      console.log(response);
+      com.faralam.registration.showPopup('Success', 'You have successfully updated Wel come screen.');
+      sessionStorage.codecanyonData=""; 
+      com.faralam.common.retrieveMediaMetaDataBySASL_themeOption();   
+   }
+   var onerror = function (jqXHR, textStatus, errorThrown) {}
+   options ={
+     url:com.faralam.createAdhocMedia,
+     method:'POST',
+     data:JSON.stringify(data),
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+     if(sessionStorage.codecanyonData==""){
+      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+     }else if(Ext.getCmp('welcome_title').getValue()==""){
+      com.faralam.registration.showPopup('Error', 'Please select title.');   
+     }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
+}
+
+ function dataURLtoBlob(data) {
+        var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
+        var byteString = atob(data.split(',')[1]);
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        var bb = (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder);
+        if (bb) {
+            bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)();
+            bb.append(ab);
+            return bb.getBlob(mimeString);
+        } else {
+            bb = new Blob([ab], {
+                'type': (mimeString)
+            });
+            return bb;
+        }
+    }
+ 
+ com.faralam.common.setAppIcon = function(){ 
+ url = com.faralam.serverURL+'sasl/setAppIcon?serviceAccommodatorId='+sessionStorage.SA+'&serviceLocationId='+sessionStorage.SL+'&UID='+sessionStorage.UID;			
+ 
+  var onsuccess = function (response, textStatus, jqXHR) {
+      console.log('App Icon');
+      Ext.getCmp('app_icon_component').update('');
+      Ext.getCmp('app_icon_component').update('<img style="height:100px !important;width:100px;" src="'+sessionStorage.codecanyonData+'">');
+      sessionStorage.codecanyonData="";
+      com.faralam.registration.showPopup('Success', 'You have successfully updated App icon.');
+  }
+  var onerror = function (jqXHR, textStatus, errorThrown) {}
+  options ={
+     url:url,
+     method:'POST',
+     onsuccess:onsuccess,  
+     onerror: onerror,
+     data:''
+  };
+     if(sessionStorage.codecanyonData==""){
+      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+     }else{
+       com.faralam.common.sendMultipart(options);  
+     }
+     
+ }  
+ 
+ com.faralam.common.sendMultipart = function(options){
+     com.faralam.loginMask = new Ext.LoadMask(Ext.getBody(), {msg:"Please wait ..."});
+     com.faralam.loginMask.show();
+     var onsuccess = options.onsuccess;
+     var onerror   = options.onerror;
+     var data      = options.data;
+     var url       = options.url;
+     var method    = options.method;
+     image     = dataURLtoBlob(sessionStorage.codecanyonData);
+     formData = new FormData();
+     if(image){
+     formData.append('image', image, sessionStorage.codecanyonImgName);    
+     }
+     if(data){
+     formData.append('data', data);    
+     }
+     $.ajax({
+            type: method,
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: url ,
+            success:function(response, textStatus, jqXHR){
+            com.faralam.loginMask.hide();
+            sessionStorage.codecanyonImgName = "";
+            $('.btn-del').click();    
+            onsuccess(response, textStatus, jqXHR);    
+            },
+            error:function(jqXHR, textStatus, errorThrown){
+            com.faralam.loginMask.hide(); 
+            sessionStorage.codecanyonImgName = "";
+                
+            com.faralam.common.ErrorHandling(jqXHR.responseText);
+            onerror(jqXHR.responseText, textStatus, errorThrown);    
+            return false;   
+            },
+            timeout: 10000
         });
-    appoinmentCreateTimeSlot_modal.show();
- }*/
- 
- /*-----------------------------Appoinment screen End ------------------------------*/
- 
- 
- 
- 
- 
- 
- 
- 
+ }
  
  
  
