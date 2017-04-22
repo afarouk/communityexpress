@@ -48,8 +48,12 @@
                         <% if (!promoCode) { %>
                             <a class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</a>
                         <% } %>
-                        <span class="order_price discount_value"><%= cs + discount %></span>
+                        <span class="order_price discount_value">-<%= cs + discount %></span>
                     </div>
+                </li>
+                <li class="after_discount <% if(afterDiscount) { %>visible<% } %>">
+                    <span class="order_name">Subtotal after discount</span>
+                    <span class="order_price after_discount_value"><%= cs + afterDiscount%></span>
                 </li>
                 <li>
                     <span class="order_name">Tax (<%= taxState %>%)</span>

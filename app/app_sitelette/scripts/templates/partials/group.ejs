@@ -1,6 +1,6 @@
 <div data-role="collapsible" data-inset="false" data-collapsed="false" class="cmntyex-group ui-listview cmntyex-catalog <% if(direction === 'HORIZONTAL') { %>horizontal<% } %>">
     <h3 style="background: <%= color %>;" class="cmntyex-group_title <%= color %>">
-        <%= groupDisplayText %>
+        <span class="<%= text_color %>"><%= groupDisplayText %></span>
         <% if (description) { %>
 	    	<div class="cmntyex-group_description <%= color %>">
 	    		<span><%= description %></span>

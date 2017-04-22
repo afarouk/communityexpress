@@ -1,0 +1,78 @@
+header {
+  height: 70px;
+  background-color: $header-background;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-container { 
+  	display: inline-block; 
+	
+	.logo {
+	  cursor: pointer;
+	}
+  }
+
+  .links-container { 
+	  display: inline-block; 
+	  list-style-type: none;
+
+	  .link { 
+		display: inline-block; 
+		color: $white;
+		font-size: $size-normal;
+		font-weight: $style-normal;
+		text-transform: uppercase;
+		cursor: pointer;
+		vertical-align: middle;
+
+		.user_email {
+		    margin-right: 5px;
+		    font-size: $size-normal-small;
+		    color: $cart-text;
+		    letter-spacing: 1px;
+		}
+
+		.fa-user {
+		    font-size: 40px;
+			color: $user-icon;
+		}
+
+		.fa-check {
+		    position: relative;
+		    right: 10px;
+		    top: 5px;
+		    background-color: $user-tick;
+		    border-radius: 50%;
+		    padding: 2px;
+		}
+
+		.fa-question {
+		    position: relative;
+		    right: 10px;
+		    top: 5px;
+		    background-color: $order-btn;
+		    border-radius: 50%;
+		    padding: 2px 5px;
+		}
+
+		&.login-btn {
+		  display: inline-block; 
+		  font-weight: $style-semi-bold;
+		  color: $cmtyx_color_1;
+		  border: 1px solid $cmtyx_color_1;
+		  border-radius: 5px;
+		  padding: 15px 25px;
+		  text-transform: uppercase;
+		  cursor: pointer;
+		  vertical-align: top;
+
+		  &:hover {
+		  	background-color: $cmtyx_color_1;
+  			color: $white;
+		  }	
+		}
+	  }
+	}
+}

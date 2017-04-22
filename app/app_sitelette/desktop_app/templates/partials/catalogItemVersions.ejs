@@ -1,0 +1,30 @@
+<div class="left_block">
+  <div class="item_title">
+    <%= itemName %>
+  </div>
+  <div class="item_description">
+    <%= longDescription %>
+  </div>
+  <div class="wrapper">
+    <div class="versions_selectors_container">
+      <% _.each(selectorVersions, function(selector, index){ %>
+          <select name="select-version-<%= index %>" id="select-version-<%= index %>" class="select-version">
+              <% _.each(selector, function(version){ %>
+                  <option value="<%= version %>" <% if (availableVersion[index] === version) { %>selected<% } %> ><%= version %></option>
+              <% }) %>
+          </select>
+      <% }) %>
+    </div>
+    <% if (hasSubItems) { %>
+      <button class="customize_btn" name="item_customize">customize <span class="expand-symbol down">&lsaquo;</span><span class="expand-symbol up">&lsaquo;</span></button>
+    <% } %>
+  </div>
+</div>
+<div class="right_block">
+  <div class="item_price version_order_price"></div>
+  <button name="add_to_cart_btn" class="add_to_cart_btn">add to cart</button>
+</div>
+<div class="item_version_not_available">
+  <span>&#9888; This combination is not available</span>
+</div>
+<div class="customization_continer" id="customizationContainer"></div>

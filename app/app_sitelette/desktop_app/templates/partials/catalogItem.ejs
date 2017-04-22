@@ -1,0 +1,21 @@
+<div class="left_block">
+  <div class="item_title">
+    <%= itemName %>
+  </div>
+  <div class="item_description">
+    <%= longDescription %>
+  </div>
+  <% if (hasSubItems) { %>
+    <button class="customize_btn" name="item_customize">customize <span class="expand-symbol down">&lsaquo;</span><span class="expand-symbol up">&lsaquo;</span></button>
+  <% } %>
+</div>
+<div class="right_block">
+  <div class="item_price" name="items_price">$<%= price %></div>
+  <div class="quantity_container">
+    <div class="block minus" name="quantity_decrease">-</div>
+    <div class="block number" name="quantity">1</div>
+    <div class="block plus" name="quantity_increase">+</div>
+  </div>
+  <button class="add_to_cart_btn" name="add_to_cart_btn">add to cart</button>
+</div>
+<div class="customization_continer" id="customizationContainer"></div>

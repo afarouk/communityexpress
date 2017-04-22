@@ -1,0 +1,59 @@
+footer {
+  border-top: solid 3px $footer-divider;
+  padding: 50px 0 40px 45px;
+
+  & > div {
+  	display: inline-block;
+	vertical-align: top;
+	margin-right: 15%;
+  }
+
+  .rights-block {
+  	.logo {
+  	  margin-bottom: 25px;
+  	}
+
+  	p {
+	  color: $footer-text;
+	  font-size: $size-normal;
+	  font-weight: $size-normal;
+	  margin: 0 0 15px 0;
+	}
+  }
+
+  .title {
+  	color: $footer-title;
+	font-size: $size-lg-normal;
+	font-weight: $style-normal;
+	margin: 6px 0 33px 0;
+  }
+
+  .text {
+	color: $footer-text;
+	font-size: $size-normal;
+	font-weight: $style-normal;
+	margin: 0 0 15px 0;
+  }
+
+  .share-block {
+  	margin-right: 0;
+
+  	.link { 
+	  display: inline-block; 
+	  margin: 0 35px 10px 0;
+	  color: $footer-text;
+	  font-size: $size-normal;
+	  font-weight: $style-normal;
+	  min-width: 90px;
+	  cursor: pointer;
+
+	  &:hover {
+	  	color: $cmtyx_color_1;
+	  }
+
+	  img {
+	  	margin-right: 10px;
+	  }
+	}
+  }
+}

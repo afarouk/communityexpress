@@ -9,9 +9,10 @@ grunt.log.write('compiling ','sitelette');
 var webpackConfig = require('./webpack-sitelette.config.js');
 
 // stop webpack watch and keepalive
-webpackConfig.watch = false;
-webpackConfig.keepalive = false;
-
+webpackConfig.forEach(function(config){
+    config.watch = false;
+    config.keepalive = false;
+});
 // Creating multiple stylesheet's paths with diff themes (for cssmin task)
 var themes = function() {
     // Number of themes
@@ -21,8 +22,8 @@ var themes = function() {
     var copyImages = [];
     for (var i = 1; i <= themeNumber; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
-            distFile='<%= yeoman.dist %>/themes/'+ i +'/css/style.css',
-            themeName='<%= yeoman.app %>/themes/'+ i +'/css/style.css';
+            distFile='<%= yeoman.dist %>/themes/'+ i +'/mobile/css/style.css',
+            themeName='<%= yeoman.app %>/themes/'+ i +'/mobile/css/style.css';
         distStyle[distFile] = [styles, themeName];
         copyImages.push({
             expand: true,
@@ -30,7 +31,7 @@ var themes = function() {
             src: [
                 '*.{ico,txt,png,gif,ttf,svg,woff,woff2,eot}'
             ],
-            dest: '<%= yeoman.dist %>/themes/' + i + '/css'
+            dest: '<%= yeoman.dist %>/themes/' + i + '/mobile/css'
         });
     };
     themesConf['distStyle'] = distStyle;
@@ -167,20 +168,13 @@ module.exports = function (grunt) {
                         cwd: '<%= yeoman.app %>/themes',
                         src: '**',
                         dest: '<%= yeoman.dist %>/themes'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/build',
+                        src: ['_desktop_*.{ico,txt,png,gif,ttf,svg,woff,woff2,eot}'],
+                        dest: '<%= yeoman.dist %>/build'
                     }
-                    //,
-                    //{
-                    //    src: '<%= yeoman.app %>/sitelette-production.php',
-                    //    dest: '<%= yeoman.dist %>/sitelette.php'
-                    //}
-                    // {
-                    //     src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
-                    //     dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
-                    // },
-                    // {
-                    //     src: '<%= yeoman.app %>/styles/themes/theme2/sprite_buttons_theme9.png',
-                    //     dest: '<%= yeoman.dist %>/build/sprite_buttons_theme9.png'
-                    // }
                 ])
             }
         },
@@ -216,7 +210,7 @@ module.exports = function (grunt) {
         replace: {
             dist: {
                 overwrite: true,
-                src: ['<%= yeoman.dist %>/themes/*/head.php'],
+                src: ['<%= yeoman.dist %>/themes/*/mobile/head.php'],
                 replacements: [{
                     from: '<link href="build/styles.css" rel="stylesheet">',
                     to: ''

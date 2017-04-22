@@ -29,7 +29,8 @@ var GroupView = Backbone.View.extend({
         this.direction = this.model.scrollDirection ? this.model.scrollDirection.enumText : null;
         el.innerHTML = this.template(_.extend({}, this.model, {
             color: this.color,
-            direction: this.direction
+            direction: this.direction,
+            text_color: [this.color.slice(0, 6), 'text_', this.color.slice(6)].join('')
         }));
         this.renderItems(el);
         $(el).enhanceWithin();

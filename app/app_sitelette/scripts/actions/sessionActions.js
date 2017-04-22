@@ -111,11 +111,11 @@ module.exports = {
                     //Cookies.remove('cmxUID');
                     Vent.trigger('force_logout');//temporary
                 }
-                dfd.resolve();
+                dfd.resolve(response);
             }, function onRequestError () {
                 console.log("not removing cookie, onRequestError ?");
                 //Cookies.remove('cmxUID');
-                dfd.resolve();
+                dfd.reject();
             });
         } else {
             dfd.resolve();

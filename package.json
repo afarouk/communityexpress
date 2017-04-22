@@ -4,18 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "dev": "webpack --config webpack-sitelette.config.js --watch",
+    "prod": "grunt --gruntfile Gruntfile-sitelette.js prod"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "backbone": "^1.3.3",
-    "backbone.marionette": "^2.4.5",
+    "backbone.marionette": "^3.2.0",
     "fastclick": "^1.0.6",
     "fs.extra": "^1.3.2",
     "jquery": "^2.1.4",
+    "jquery-bridget": "^2.0.1",
     "jquery-mobile": "^1.4.1",
+    "jquery-ui-dist": "^1.12.1",
     "lodash": "^3.5.0",
+    "packery": "^2.1.1",
     "strftime": "^0.7.0",
     "underscore": "^1.8.3"
   },
@@ -31,6 +36,7 @@
     "exports-loader": "^0.6.2",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
+    "font-awesome": "^4.7.0",
     "fullcalendar": "^2.5.0",
     "grunt": "^0.4.5",
     "grunt-cache-bust": "^1.3.0",
@@ -51,7 +57,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "load-grunt-tasks": "^3.4.0",
-    "moment": "^2.11.1",
+    "moment": "2.15.1",
     "node-sass": "^3.3.3",
     "owl.carousel": "^2.2.0",
     "sass-loader": "^3.0.0",

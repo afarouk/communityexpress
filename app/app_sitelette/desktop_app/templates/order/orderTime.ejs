@@ -1,0 +1,76 @@
+<div class="circles_block">
+  <div class="circle"></div>
+  <div class="circle active"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
+
+<div class="navigation_block">
+  <div class="nav_back_btn">
+    <span class="arr right-arrow">&lsaquo;</span><span class="text">back</span>
+  </div>
+  <div class="page_title">
+    order time
+  </div>
+  <div class="nav_next_btn">
+    <span class="text">next</span><span class="arr right-arrow">&rsaquo;</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button data-activate="today" class="tablinks left">Today</button>
+  <button data-activate="future" class="tablinks right">Future</button>
+</div>
+
+<div id="today" class="tabcontent regular">
+  <% if(deliveryPickupOptions.displayText) { %>
+      <div class="regular-order-note">
+          <h3><%= deliveryPickupOptions.displayText %></h3>
+      </div>
+  <% } %>
+  <% if(deliveryPickupOptions.minimumDelayMinutes) { %>
+      <div class="regular-order-delay">
+          <h4>The order will be ready after <%=deliveryPickupOptions.minimumDelayMinutes %> minutes</h4>
+      </div>
+  <% } %>
+  <% if(deliveryPickupOptions.showWarningOnce) { %>
+      <div class="regular-order-warning">
+          <h4><%= deliveryPickupOptions.warningMessage %></h4>
+      </div>
+  <% } %>
+</div>
+
+<div id="future" class="tabcontent future">
+  <div class="selects-container">
+    <select name="select-date" id="select-date">
+        <% _.each(deliveryPickupOptions.options, function(day) { %>
+            <option value="<%= day.day %>"><%= day.day %></option>
+        <% }); %>
+    </select>
+    <select name="select-time" id="select-time">
+        <% _.each(deliveryPickupOptions.options[0].hours, function(hour) { %>
+            <option value="<%= hour.displayString %>"><%= hour.displayString %></option>
+        <% }); %>
+    </select>
+  </div>
+  <% if(deliveryPickupOptions.displayText) { %>
+      <div class="future-order-note">
+          <h3><%= deliveryPickupOptions.displayText %></h3>
+      </div>
+  <% } %>
+  <% if(deliveryPickupOptions.minimumDelayMinutes) { %>
+      <div class="future-order-delay">
+          <h4>The order will be ready after <%=deliveryPickupOptions.minimumDelayMinutes %> minutes</h4>
+      </div>
+  <% } %>
+  <% if(deliveryPickupOptions.showWarningOnce) { %>
+      <div class="future-order-warning">
+          <h4><%= deliveryPickupOptions.warningMessage %></h4>
+      </div>
+  <% } %>
+</div>
+
+<div class="bottom_btns_block">
+  <button type="" class="back_btn">Back</button>
+  <button type="" class="next_btn">Next</button>
+</div>

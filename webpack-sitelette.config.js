@@ -3,20 +3,22 @@
 
 var path = require('path'),
 	webpack = require('webpack'),
-	ExtractTextPlugin = require('extract-text-webpack-plugin');
+	ExtractTextPlugin = require('extract-text-webpack-plugin'),
+	desktopConfig = require('./sitelette-desktop-config');
 
-module.exports = {
+module.exports = [{
+	name: 'mobile',
 	entry: {
 		'bundle': './app/app_sitelette/sitelette.js',
-		'mobile': './app/app_sitelette/mobile.js'
+		'mobile': './app/app_sitelette/mobile.js',
 	},
 	output: {
 		path: './app/app_sitelette/build/',
 		filename: '[name].js'
 	},
 	devtool: 'cheap-module-eval-source-map', // development
-	watch: true,
-	keepalive: true,
+	// watch: true,
+	// keepalive: true,
 	module: {
 		loaders: [
 			{
@@ -58,7 +60,8 @@ module.exports = {
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
 			'_': 'underscore',
-			'Backbone': 'backbone'
+			'Backbone': 'backbone',
+			'Mn': 'backbone.marionette'
 		}),
 	],
 	resolve: {
@@ -66,5 +69,5 @@ module.exports = {
 		extensions: ['', '.js', '.es6', '.jsx'],
 		alias: {
 		},
-	},
-};
+	}
+ }].concat(desktopConfig);

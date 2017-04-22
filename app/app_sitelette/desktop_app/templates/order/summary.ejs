@@ -1,0 +1,110 @@
+<div class="circles_block">
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle active"></div>
+</div>
+
+<div class="navigation_block">
+  <div class="nav_back_btn">
+    <span class="arr right-arrow">&lsaquo;</span><span class="text">back</span>
+  </div>
+  <div class="page_title">
+    order summary
+  </div>
+  <div class="nav_next_btn">
+    <span class="text">next</span><span class="arr right-arrow">&rsaquo;</span>
+  </div>
+</div>
+
+<div class="summary-wrapper">
+  <% if (deliveryDate) { %>
+      <p class="delivery_date_text">Selected date</p>
+      <p class="selected_date"><%= deliveryDate.day + ' ' + deliveryDate.time.displayString %></p>
+  <% } %>
+  <% if (cardNumber) { %>
+      <p class="card_text">Card</p>
+      <p class="card_number"><%= cardNumber %></p>
+  <% } %>
+  <% if (!addrIsEmpty && deliverySelected) { %>
+      <p class="delivery_address_text">Delivery address</p>
+      <p class="address"><%= deliveryAddress.number + ' ' + deliveryAddress.street + ', ' + deliveryAddress.city + ', ' + deliveryAddress.state%></p>
+  <% } else if (pickupAddress && pickupSelected) { %>
+      <p class="delivery_address_text">Pickup location</p>
+      <p class="address"><%= pickupAddress.number + ' ' + pickupAddress.street + ', ' + pickupAddress.city + ', ' + pickupAddress.state%></p>
+  <% } %>
+  <div class="title">
+    Your order
+  </div>
+
+  <ul class="order_list">
+    <% _.each(combinedItems, function(item) { %>
+        <li class="order_list_item">
+            <div class="left_block">
+              <div class="item_name"><%= item.quantity %>X <%= item.displayText %></div>
+              <% if (item.isVersion) { %>
+                  <span class="item_version">(<%= item.versionText %>)</span>
+              <% } %>
+              <div class="item_description"><%= item.customizationNote %></div>
+            </div>
+            <div class="right_block">
+              <div class="item_price cmtyx_text_color_1"><%= cs + item.price %></div>
+            </div>
+        </li>
+    <% }) %>
+  </ul>
+  <div class="additional_prices">
+    <div class="subtotal_price price_name">Subtotal</div>
+    <div class="price cmtyx_text_color_1"><%= cs + subTotal %></div>
+  </div>
+  <div class="additional_prices discount <%= backToSingleton ? 'hidden' : '' %>">
+    <div class="left_block">
+      <span class="minimum_purchase_error <% if ( minimumPurchase > totalWithoutTax ) { %>visible<% } %>">Minimum purchase for discount : <%= cs + minimumPurchase %></span>
+      <span class="subtotal_price price_name order_name">Discount</span>
+    </div>
+    <div class="right_block promocode_container">
+        <input type="text" name="promocode" data-role="none" placeholder="enter code" value="<%= promoCode %>" <%= promoCode ? 'disabled' : '' %> />
+        <% if (!promoCode) { %>
+            <span class="get_discount_button cmtyx_border_color_1 cmtyx_text_color_1" href="#">Apply</span>
+        <% } %>
+        <span class="price order_price discount_value cmtyx_text_color_1">-<%= cs + discount %></span>
+    </div>
+  </div>
+  <div class="additional_prices after_discount <% if(afterDiscount) { %>visible<% } %>">
+    <div class="subtotal_price price_name">Subtotal after discount</div>
+    <div class="price cmtyx_text_color_1 after_discount_value"><%= cs + afterDiscount%></div>
+  </div>
+  <div class="additional_prices">
+    <div class="subtotal_price price_name">Tax (<%= taxState %>%)</div>
+    <div class="price cmtyx_text_color_1"><%= cs + taxAmount.toFixed(2) %></div>
+  </div>
+  <% if(showTipOnSummaryPage) { %>
+  <div class="additional_prices">
+    <div class="left_block">
+      <div class="subtotal_price price_name">Tip</div>
+    </div>  
+    <div class="right_block">
+      <div class="quantity_container">
+        <div class="block minus minus_button">-</div>
+        <div class="block number tip_number tip_quantity"><%= tip %>%</div>
+        <div class="block plus plus_button">+</div>
+      </div>
+      <div class="price tip_price_value cmtyx_text_color_1"><%= cs + tipSum.toFixed(2) %></div>
+    </div>
+  </div>
+  <% } %>
+  <div class="total_price">
+    <div class="name">total</div>
+    <div class="price total_amount cmtyx_text_color_1"><%= cs + totalAmount %></div>
+  </div>
+  <div class="order-note-container">
+    <span class="add-note">Add a note <i class="fa fa-pencil" aria-hidden="true"></i></span>
+    <div class="note-text">
+        <textarea required="" class="order-note" data-role="none" rows="3" autocapitalize="none" placeholder="your note about order"><%= comment %></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="bottom_btns_block">
+  <button type="" class="place_order_btn">Place order</button>
+</div>

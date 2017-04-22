@@ -45,8 +45,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			tipSum: 0,
 			cachedTotalAmount: this.get('totalAmount'),
 			paymentOnlineAccepted: options.sasl.get('services').catalog['paymentOnlineAccepted'],
-			allowPickUp: options.sasl.get('services').catalog['allowPickUp'],
-			allowDelivery: options.sasl.get('services').catalog['allowDelivery'],
+			allowPickUp: true,//options.sasl.get('services').catalog['allowPickUp'],
+			allowDelivery: true,//options.sasl.get('services').catalog['allowDelivery'],
 			allowCash: options.sasl.get('services').catalog['allowCash'],
 			//temporary true , because I can't find that it is in SASL 
 			showTipOnSummaryPage: options.sasl.get('services').catalog['showTipOnSummaryPage'],
@@ -56,7 +56,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			discountDisplay: options.discountPrice,
 			promoCode: options.promoCode,
 			promoCodeActive: false,
-			deliveryDate: null
+			deliveryDate: null,
+			deliveryPickupOptions: options.deliveryPickupOptions || null
 			 // etc...
 		});
 
@@ -168,7 +169,7 @@ var RosterOrderModel = Backbone.Model.extend({
 	    			price: (item.get('quantity') * item.get('price')).toFixed(2)
 	    		});
 	    	});
-		} else if (options.catalogId) {
+		} else { //TODO check why was if (options.catalogId)
 			options.basket.each(function(item, index) {
 				var text1 = item.get('version1DisplayText') || '',
 					text2 = item.get('version2DisplayText'),
@@ -179,7 +180,8 @@ var RosterOrderModel = Backbone.Model.extend({
 					versionText: displayText,
 	    			quantity: item.get('quantity'),
 	    			displayText: item.get('itemName'),
-	    			price: (item.get('quantity') * item.get('price')).toFixed(2)
+	    			price: (item.get('quantity') * item.get('price')).toFixed(2),
+	    			customizationNote: item.get('customizationNote') || ''
 	    		});
 			});
 		}

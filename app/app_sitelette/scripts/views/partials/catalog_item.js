@@ -74,12 +74,20 @@ var CatalogItemView = Backbone.View.extend({
         }
 
         this.$el.addClass(this.generateColor());
+        this.$el.find('.item_name').addClass(this.generateTextColor());
+        this.$el.find('.order_price').addClass(this.generateTextColor());
 
         return this;
     },
 
     generateColor: function(index) {
         var colors = [ 'cmtyx_color_2', 'cmtyx_color_4' ],
+            index = this.index - 1;
+        return colors[index % colors.length];
+    },
+
+    generateTextColor: function(index) {
+        var colors = [ 'cmtyx_text_color_2', 'cmtyx_text_color_4' ],
             index = this.index - 1;
         return colors[index % colors.length];
     },

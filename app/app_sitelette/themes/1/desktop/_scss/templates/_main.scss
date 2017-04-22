@@ -1,0 +1,664 @@
+.subheader-discount,
+.breaking_news {
+  background-color: $red-news;
+  padding: 10px;
+  color: $white;
+  font-size: $size-normal-small;
+  font-weight: $style-normal;
+  text-transform: uppercase;
+  text-align: center;
+}
+.subheader-discount {
+  cursor: pointer;
+
+  &.used {
+    background-color: $user-tick;
+  }
+}
+
+.cmtyx_desktop_application {
+  &.grid-container {
+    display: flex;
+    min-height: 1000px; 
+  }
+
+  .grid {
+    margin: 0 auto; 
+    padding: 0 0 3% 0;
+    width: 92%;
+    max-width: 1650px;
+    display: none;
+    
+    /* clearfix */
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .gutter-sizer { width: 2%; }
+
+    .grid-sizer { width: 32%; }
+
+    .grid-item {
+      width: 32%;
+      float: left;
+      background-color: $cart-cards;
+      border-radius: 0 0 3px 3px;
+      margin-bottom: 1%;
+
+      & > .header { 
+        padding: 24px 18px;
+        cursor: pointer; 
+
+        .title {
+          color: $white;
+          font-size: $size-sm-medium;
+          font-weight: $style-semi-bold;
+          text-transform: uppercase;
+        }
+      }
+
+      .body { 
+        padding: 20px;
+        
+        .share_container {
+          .item_buttons {
+            .share_btn_block {
+              text-align: center;
+              cursor: pointer;
+              margin: 20px 0 10px 0;
+            }
+          }
+
+          .share-block {
+            display: none;
+
+            .sms_input_block {
+              text-align: center;
+              display: none;
+
+              .sms_input {
+                background-color: transparent;
+                border: solid 1px $cart-scroll;
+                padding: 5px;
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
+                color: $cart-text;
+              }
+
+              .sms_send_button {
+                height: 31px;
+                border: solid 1px;
+                position: relative;
+                right: 5px;
+                bottom: 1px;
+                border-top-right-radius: 2px;
+                border-bottom-right-radius: 2px;
+                color: $white;
+              }
+            }
+
+            .icons-container-wrapper {
+              .icons-container {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 20px 0;
+
+                .text {
+                  display: inline-flex;
+                  justify-content: center;
+                  align-items: center;
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background-color: #616161;
+                  font-size: 20px;
+
+                  i {
+                    padding: 20px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .promo-used,
+      .discount-used {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.85);
+        color: $user-tick;
+        z-index: 9;
+        text-align: center;
+        display: none;
+
+        .attention-sign {
+          padding: 10%;
+
+          i {
+            font-size: 6vw;
+            display: block;
+          }
+          span {
+            font-size: 2vw;
+            line-height: 2vw;
+          }
+        }
+      }
+      &.used .promo-used,
+      &.used .discount-used {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+      }
+    }
+
+    /***** GALLERY *****/
+    .cmtyx_gallery_block {
+      .body {
+        padding: 0;
+        height: 380px;
+
+        .gallery {
+          .slide { 
+            height: 380px;
+
+            img {
+              height: 100%;
+            }
+            
+            .slide_description {
+              display: block;
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              padding:  15px 20px;
+              background-color: $cart-tabs;
+              opacity: 0.8;
+
+              .slide_title {
+                display: block; 
+                font-weight: $style-normal;
+                font-size: $size-sm-medium;
+                color: $white;
+                margin-bottom: 10px;
+              }
+
+              .slide_undertitle {
+                display: block;
+                font-weight: $style-thin;
+                font-size: $size-normal-small;
+                color: $white;
+              }
+            }
+          }
+        }
+
+      }
+    }
+    /***** END OF GALLERY *****/
+
+    /***** EVENTS *****/
+    .cmtyx_events_block {
+      .body {
+        & > img {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        table {
+          border-collapse: collapse;
+          width: 100%;
+
+          tr {
+            padding: 15px 0;
+            border-bottom: solid 1px $event-divider;
+
+            &.last { border: none; }
+
+            td {
+              border: none;
+              padding-bottom: 15px;
+              padding-top: 15px;
+
+              &.first { padding-top: 0px; }
+
+              &.last { padding-bottom: 0px; }
+            }
+
+            .event_date {
+              vertical-align: top;
+              padding-left: 0;
+              
+              .event_day {
+                display: block;
+                font-weight: $style-semi-bold;
+                font-size: $size-large;
+                color: $cart-text;
+              }
+
+              .event_month {
+                display: block;
+                font-weight: $style-normal;
+                font-size: $size-normal;
+                line-height: 20px;
+                color: $cart-text;
+                text-transform: uppercase;
+              }
+            }
+
+            .event_info {
+              padding-right: 0;
+              padding-left: 10px;
+
+              .event_title {
+                display: block;
+                font-weight: $style-semi-bold;
+                font-size: $size-normal;
+                line-height: 19px;
+                color: $cart-text;
+                text-transform: uppercase;
+              }
+
+              .event_text,
+              .event_time {
+                display: block;
+                font-weight: $style-thin;
+                font-size: $size-normal-small;
+                line-height: 19px;
+                color: $cart-text;
+              }
+
+              .event_time {
+                color: $event-time;
+              }
+
+            }
+
+            .add_to_calendar_btn_container {
+              vertical-align: top;
+              padding-right: 0;
+
+              .add_to_calendar_btn {
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+    /***** END OF EVENTS *****/
+
+    /***** POLL *****/
+    .cmtyx_poll_block {
+      .body {
+        & > img {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .question {
+          display: block;
+          margin-bottom: 20px;
+          font-weight: $style-normal;
+          font-size: $size-sm-medium;
+          color: $question-text;
+        }
+
+        .question_ans_form {
+          display: block;
+          margin-bottom: 20px;
+
+          input {
+            outline: none;
+            cursor: pointer;
+          }
+
+          label {
+            font-weight: $style-normal-strong;
+            font-size: $size-lg-normal-small;
+            color: $question-text;
+            position: relative;
+            bottom: 1px;
+            cursor: pointer;
+            
+            .answer_color_container {
+              display: inline-block;
+              float: right;
+              width: 27px;
+              height: 22px;
+              position: relative;
+              bottom: 3px;
+
+              &.answer_color_1 { background-color: $cmtyx_color_1; }
+              &.answer_color_2 { background-color: $cmtyx_color_3; }
+            }
+          }
+        }
+
+        .question_results { 
+          margin-bottom: 30px;
+
+          .a_ans_graph {
+            display: inline-block;
+            width: 85%;
+            height: 22px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+
+            &.answer_color_1 { background-color: $cmtyx_color_1; }
+          } 
+
+          .b_ans_graph {
+            display: inline-block;
+            width: 15%;
+            height: 22px;
+            margin-right: 10px;
+
+            &.answer_color_2 { background-color: $cmtyx_color_3; }
+          }
+
+          .a_ans_percent_num,
+          .b_ans_percent_num {
+            display: inline-block;
+            font-weight: $style-normal;
+            font-size: $size-sm-medium;
+            color: $question-text;
+            position: relative;
+            bottom: 14px;
+          }
+
+          .b_ans_percent_num {
+            bottom: 4px;
+          }
+        }
+
+        .prizes_title {
+          text-align: center;
+          font-weight: $style-normal;
+          font-size: $size-normal-small;
+          color: $question-text;
+          text-transform: uppercase;
+          margin-bottom: 15px;
+        }
+
+        ul {
+          list-style-type: none;
+          padding: 0;
+
+          .discount_block {
+            width: 100%;
+            min-height: 112px;
+            margin-bottom: 10px;
+
+            .discount_container { 
+              background-color: $white; 
+              
+              .discount_text_block {
+                text-align: left;
+                padding: 25px 0 25px 25px;
+                display: inline-block;
+                width: 50%;
+
+                .discount_text {
+                  display: block;
+                  font-weight: $style-normal-strong;
+                  font-size: $size-normal;
+                  color: $cmtyx_color_4;
+                  text-transform: uppercase;
+                  margin-bottom: 10px;
+                }
+
+                .discount_condition {
+                  display: block;
+                  font-weight: $style-normal-strong;
+                  font-size: $size-normal;
+                  color: $discount-text;
+                  margin-bottom: 8px;
+                }
+
+                .discount_date {
+                  display: block;
+                  font-weight: $style-normal-strong;
+                  font-size: $size-small;
+                  color: $cart-text;
+                }
+              }
+
+              .prize-picture-container {
+                display: inline-flex;
+                align-items: center;
+                width: 48%;
+                vertical-align: top;
+                height: 113px;
+                float: right;
+                background-size: 90% 90%;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                img {
+                  height: 80%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    /***** END OF POLL *****/
+    
+    /***** VIDEO *****/
+    .grid-item.cmtyx_video_block {
+      .body {
+        padding: 0;
+        position: relative;
+        height: 380px;
+
+        .video-container {
+          height:0;
+          overflow:hidden;
+
+          iframe, 
+          object, 
+          embed {
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+          }
+        }
+      }
+    }
+    /***** END OF VIDEO *****/
+
+    /***** ABOUT US *****/
+    .cmtyx_about_us {
+      .body {
+        .about-text {
+          color: $question-text;
+          font-size: $size-normal-small;
+          font-weight: $style-normal;
+          line-height: 17px;
+          margin-bottom: 25px;
+        }
+        
+        .about-address,
+        .about-phone {
+          color: $question-text;
+          font-size: $size-normal-small;
+          font-weight: $style-normal;
+
+          i.fa {
+            margin-right: 10px;
+            font-size: 20px;
+            position: relative;
+            top: 2px;
+          }
+        }
+
+        .about-address { margin-bottom: 15px; }
+        .about-phone { margin-bottom: 30px; }
+
+        .about-business-hours {
+          color: $welcome-block-text;
+          font-size: $size-normal;
+          font-weight: $style-normal;
+          margin-bottom: 30px;
+        }
+
+        .map-img { width: 100%; }
+      }
+    }
+    /***** END OF ABOUT US *****/
+
+    /***** REVIEWS *****/
+    .cmtyx_reviews_block {
+      .body { 
+        min-height: auto; 
+        
+        .review { 
+          margin-bottom: 20px; 
+          
+          table {
+            tr {
+              td {
+                border-bottom: none;
+                padding-top: 0; 
+                padding-right: 0;
+
+                &.user_avatar {
+                  img {
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    vertical-align: top;
+                  }
+                }
+
+                &.review_section { 
+                  padding-left: 15px; 
+
+                  .name_date_block {
+                    margin-bottom: 10px;
+
+                    .user_name {
+                      display: inline-block;
+                      font-weight: $style-normal;
+                      font-size: $size-lg-normal;
+                      margin-right: 30px;
+                      color: $review-user-name;
+                    }
+
+                    .date {
+                      display: inline-block;
+                      font-weight: $style-thin;
+                      font-size: $size-normal-small;
+                      float: right;
+                      position: relative;
+                      top: 3px;
+                      color: $review-user-name;
+                    }
+                  }
+
+                  .rating_block { 
+                    margin-bottom: 10px;
+                    margin-left: -7px; 
+
+                    .my-rating {
+                      display: inline-block;
+                      margin-right: -7px;
+                    }
+
+                    .rating_number {
+                      display: inline-block;
+                      font-weight: $style-thin;
+                      font-size: $size-normal-small;
+                      color: $rating-number;
+                      margin-left: 20px;
+                      position: relative;
+                      bottom: 6px;
+                    }
+                  }
+
+                  .text_block {
+                    font-weight: $style-thin;
+                    font-size: $size-normal-small;
+                    line-height: 17px;
+                    color: $cart-text;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .show_more_block { 
+          text-align: center; 
+
+          .show_more_avatars_container {
+            .avatar {
+              display: inline-block;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              margin-left: -20px;
+
+              &:first-child {
+                margin-left: 0;
+              }
+            }
+          }
+
+          .show_more_reviews_btn {
+            display: inline-block;
+            font: $style-normal;
+            font-size: $size-xs;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 30px;
+          }
+        }
+      }
+    }
+    /***** END OF REVIEWS *****/
+
+    /***** SALE *****/
+    .cmtyx_sale_block {
+      .sale-item-container { 
+        position: relative; 
+
+        img.sale-item { width: 100%; }
+
+        button {
+          color: $question-text;
+          font-size: $size-sm-medium;
+          font-weight: $style-semi-bold;
+          text-transform: uppercase;
+          opacity: 0.8;
+          background-color: $body-background;
+          border-radius: 5px;
+          padding: 20px 25px;
+          margin:  10px 0 0 10px;
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border: none;
+        }
+      }  
+    }
+    /***** END OF SALE *****/
+  }
+}

@@ -1,0 +1,29 @@
+<div class="customize-header cmtyx_color_1">
+	<div class="item-name"><span class="child-symbol">&not;</span><%= displayText %></div>
+	<div class="item-description">(<%= promptText %>)</div>
+	<i class="fa fa-check" aria-hidden="true"></i>
+	<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+</div>
+<div class="customize-body">
+	<% if(hasSubSubItems) { %>
+		<% _.each(subSubItems, function(subItem){ %>
+			<div class="subItem" data-id="<%= subItem.subSubItemId %>">
+				<div class="blinder"></div>
+				<label>
+					<div class="left">
+						<div class="text"><%= subItem.displayText %></div>
+						<div class="description"><%= subItem.description %></div>
+					</div>
+					<div class="right">
+						<div class="item-price">$<%= subItem.priceAdjustment.toFixed(2) %></div>
+						<% if(selectorType.enumText === 'RADIO') { %>
+							<input name="custom_radio" type="radio" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked="checked"<% } %>>
+						<% } else { %>
+							<input name="custom_checkbox" type="checkbox" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
+						<% } %>
+					</div>
+				</label>
+			</div>
+		<% }); %>
+	<% } %>
+</div>

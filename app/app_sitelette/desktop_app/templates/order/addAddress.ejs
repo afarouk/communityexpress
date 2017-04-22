@@ -1,0 +1,56 @@
+<div class="circles_block">
+  <div class="circle active"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
+
+<div class="navigation_block">
+  <div class="nav_back_btn">
+    <span class="arr right-arrow">&lsaquo;</span><span class="text">back</span>
+  </div>
+  <div class="page_title">
+    Pickup/Delivery details
+  </div>
+  <div class="nav_next_btn">
+    <span class="text">next</span><span class="arr right-arrow">&rsaquo;</span>
+  </div>
+</div>
+
+<div class="body">
+  <div class="title">
+    ADD Address:
+  </div>
+  <div class="wrapper">
+    <div class="material-textfield">
+      <input type="text" id="aptBldgInput" name="number" value="" required="" />
+      <label data-content="Apt/Bldg"></label>
+    </div>
+    
+    <div class="material-textfield">
+      <input type="text" id="streetInput" name="street" value="" required="" />
+      <label data-content="Street"></label>
+    </div>
+
+    <div class="material-textfield">
+      <input type="text" id="cityInput" name="city" value="" required="" />
+      <label data-content="City"></label>
+    </div>
+    <div class="state-selector">
+        <span class="state-selector-message">State</span>
+        <select name="state-selector" id="stateSelector">
+            <% _.each(states, function(state, key) { %>
+                <option <% if (key === selectedState) { %>selected<% } %> value="<%= key %>"><%= state %></option>
+            <% }); %>
+        </select>
+    </div>
+    
+  </div>
+
+  <div id="shipping_map2" class="map-img map_container"></div>
+</div>
+
+<div class="bottom_btns_block">
+  <button type="" class="back_btn">Back</button>
+  <button type="" class="next_btn">Next</button>
+</div>

@@ -36,6 +36,19 @@ module.exports = {
         });
     },
 
+    getSubItems: function(params) {
+        return gateway.sendRequest('getSubItems', {
+            serviceAccommodatorId: params.sa,
+            serviceLocationId: params.sl,
+            itemId: params.itemId,
+            itemVersion: params.itemVersion,
+            priceId: params.priceId,
+            // simulate: true //uncomment that field for testing
+        }).then(function(response) {
+            return response
+        });
+    },
+
     getRoster: function(sa, sl, rosterId) {
         return gateway.sendRequest('getRoster', {
             serviceAccommodatorId: sa,

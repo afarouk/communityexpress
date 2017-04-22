@@ -1,0 +1,59 @@
+<div class="circles_block">
+  <div class="circle active"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
+
+<div class="navigation_block">
+  <div class="nav_back_btn">
+    <span class="arr right-arrow">&lsaquo;</span><span class="text">back</span>
+  </div>
+  <div class="page_title">
+    Pickup/Delivery details
+  </div>
+  <div class="nav_next_btn">
+    <span class="text">next</span><span class="arr right-arrow">&rsaquo;</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button data-activate="delivery" class="tablinks left <% if (allowDelivery) { %>active<% } %>"><i class="fa fa-car" aria-hidden="true"></i>Delivery</button>
+  <button data-activate="pick_up" class="tablinks right <% if (!allowDelivery) { %>active<% } %>"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Pick up</button>
+</div>
+
+<div id="delivery" class="tabcontent" <% if (allowDelivery) { %> style="display: block;"<% } %>>
+  <div class="title">
+    Choose address:
+  </div>
+
+  <form>
+      <% if (!addrIsEmpty) { %>
+          <input type="radio" data-address="saved" name="radio-choice-address" id="saved_address" class="cardRadioChoice" checked='checked'">
+          <label for="saved_address"><%= deliveryAddress.number + ' ' + deliveryAddress.street + ', ' + deliveryAddress.city + ', ' + deliveryAddress.state %></label>
+          <br>
+          <input type="radio" data-address="another" name="radio-choice-address" id="add_another" class="cardRadioChoice">
+          <label for="add_another" class="">Add another address</label>
+      <% } else { %>
+          <input type="radio" data-address="another" name="radio-choice-address" id="add_another" class="cardRadioChoice" checked="checked">
+          <label for="add_another" class="">Add another address</label>
+      <% } %>
+  </form>
+  
+</div>
+
+<div id="pick_up" class="tabcontent" <% if (!allowDelivery) { %> style="display: block;"<% } %>>
+  <% if (address) { %>
+    <p class="order_address">Your order pickup location: <%= address.name %>
+      </br><%= address.number + ', ' + address.street + ', ' + address.street2 %>
+      </br><%= address.city + ', ' + address.state + ' - ' + address.zip %>
+      </br>phone: <%= address.phone %>
+    </p>
+  <% } %>
+  <div id="shipping_map" class="map-img map_container"></div>
+</div>
+
+<div class="bottom_btns_block">
+  <button type="" class="back_btn">Back</button>
+  <button type="" class="next_btn">Next</button>
+</div>
