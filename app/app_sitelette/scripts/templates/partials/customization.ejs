@@ -1,0 +1,49 @@
+<div data-role="page" id="customizationContainer" class="ui-page build_combo customizationContainer">
+
+    <div class="sub_header">
+        <div class="item-name">Customizing<br>[<%= itemName %>]</div>
+        <div class="total_price_order_block">
+            <a class="header_order_btn done-btn ui-link">Done</a>
+        </div>
+    </div>
+
+    <div data-role="content" class="content ui-content" role="main">
+        <div class="menu_body">
+            <% _.each(subItems, function(subItem, sIndex) { %>
+                <div class="collapsibleSet build_combo_collapse ui-collapsible-set ui-group-theme-inherit" data-role="collapsibleset" data-inset="false">
+        			<div data-role="collapsible" name="customize_subitem" class="cmtyx_color_1 ui-collapsible ui-collapsible-themed-content ui-first-child ui-last-child">
+        				<h3 class="firstItem ui-collapsible-heading">
+    		                <div class="cmntyex-group_description cmtyx_color_1">
+    		                    <span><%= subItem.displayText %> <% if (subItem.promptText) { %>(<%= subItem.promptText %>)<% } %></span>
+    		                </div>
+            			</h3>
+            			<ul data-role="listview" data-inset="false" class="items_list ui-listview" style="background-color: #000;">
+            				<ul class="cmntyex-catalog ui-listview" data-role="listview" data-icon="true">
+                                <% _.each(subItem.subSubItems, function(subSubItem, index) { %>
+                					<li class="cmntyex-catalog-item sub-radio-list ui-li-static ui-body-inherit ui-first-child">
+                						<div class="combo_item_container color1">
+        									<div class="input_container" data-iconpos="right">
+        										<label for="subSubItem_<%= sIndex %>_<%= index %>" class="catalog_sub_item_name ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on"><%= subSubItem.displayText %><span class="price_adjustment">$<%= subSubItem.priceAdjustment %></span></label>
+                                                <% if (subItem.selectorType.enumText === "RADIO") { %>
+										            <input data-subid="<%= subSubItem.subItemId %>"  data-subsubid="<%= subSubItem.subSubItemId %>" type="radio" name="first_group" id="subSubItem_<%= sIndex %>_<%= index %>" class="combo_item_input" <% if (subSubItem.isSelectedByDefault) { %>checked<% } %> >
+                                                <% } else { %>
+                                                    <input data-subid="<%= subSubItem.subItemId %>"  data-subsubid="<%= subSubItem.subSubItemId %>" type="checkbox" name="second_group" id="subSubItem_<%= sIndex %>_<%= index %>" class="combo_item_input" <% if (subSubItem.isSelectedByDefault) { %>checked<% } %> >
+                                                <% } %>
+        									</div>
+        								</div>
+        							</li>
+                                <% }); %>
+                            </ul>
+                        </ul> 
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            <% }); %>
+        <div>
+            <div class="ui-grid-a back_next_btns">
+                <button class="ui-btn ui-corner-all done-btn">Done</button>
+            </div>
+        </div>
+
+    </div>
+</div>

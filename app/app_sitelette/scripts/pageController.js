@@ -415,6 +415,28 @@ module.exports = {
         }
     },
 
+    customization: function(model) {
+        var sasl,
+            params = {
+                itemId: model.get('itemId'),
+                itemVersion: model.get('itemVersion'),
+                priceId: model.get('priceId') 
+            };
+        return saslActions.getSasl()
+            .then(function(ret) {
+                sasl = ret;
+                params.sa = sasl.sa();
+                params.sl = sasl.sl();
+                return catalogActions.getSubItems(params);
+            }).then(function(subItems) {
+                    return {
+                        sasl: sasl,
+                        subItems: subItems,
+                        model: model
+                    };
+            });
+    },
+
     posts: function(options) { // options is an array with either sasl or
         // urlKey
         return saslActions.getSasl(options)

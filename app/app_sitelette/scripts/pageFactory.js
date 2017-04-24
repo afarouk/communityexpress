@@ -9,6 +9,7 @@ var LandingView = require('./views/landingView'), //
     CatalogView = require('./views/catalogView'),//
     CatalogsView = require('./views/catalogsView'),//
     RosterView = require('./views/rosterView'),//
+    CustomizationView = require('./views/partials/customizationView'),//
     PostsView = require('./views/postsView'),//
     ContestsView = require('./views/contestsView'),//
     PhotoContestView = require('./views/landingSubviews/photoContestView'), //
@@ -109,6 +110,11 @@ module.exports = {
                 navbarData : {
                     sasl : options.sasl
                 }
+            }));
+            break;
+        case 'customization':
+            view = new CustomizationView(_.extend(options, {
+                navbarView : NavbarView
             }));
             break;
         case 'posts':
