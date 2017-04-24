@@ -415,6 +415,22 @@ module.exports = {
         }
     },
 
+    customization: function(options) {
+        var sasl;
+        return saslActions.getSasl(options)
+            .then(function(ret) {
+                sasl = ret;
+                options.sa = sasl.sa();
+                options.sl = sasl.sl();
+                return catalogActions.getSubItems(options);
+            }).then(function(subItems) {
+                    return {
+                        sasl: sasl,
+                        subItems: subItems
+                    };
+            });
+    },
+
     posts: function(options) { // options is an array with either sasl or
         // urlKey
         return saslActions.getSasl(options)

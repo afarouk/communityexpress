@@ -24,6 +24,7 @@ var CatalogItemView = Backbone.View.extend({
         'click .versions_buttons': 'preventClick',
         'change .versions_buttons select': 'updateAddVersionButton',
         'click .plus_version_button': 'onVersionAdded',
+        'click [name="item_customize"]': 'onCustomize'
     },
 
     initialize: function (options) {
@@ -338,6 +339,15 @@ var CatalogItemView = Backbone.View.extend({
         this.addItem ? count = 1 : count = -1;
         this.model.set('quantity', this.model.get('quantity') + count);
         this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+    },
+
+    onCustomize: function() {
+        var params = {
+                itemId: this.model.get('itemId'),
+                itemVersion: this.model.get('itemVersion'),
+                priceId: this.model.get('priceId') 
+            };
+        Vent.trigger( 'viewChange', 'customization', params);
     }
 });
 
