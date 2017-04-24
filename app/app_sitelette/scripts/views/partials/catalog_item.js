@@ -342,7 +342,10 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     onCustomize: function() {
-        Vent.trigger( 'viewChange', 'customization', this.model);
+        Vent.trigger( 'viewChange', 'customization', {
+            model: this.model,
+            catalogId: this.catalogId
+        });
     }
 });
 

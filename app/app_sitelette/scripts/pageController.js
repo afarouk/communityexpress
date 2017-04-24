@@ -415,12 +415,13 @@ module.exports = {
         }
     },
 
-    customization: function(model) {
+    customization: function(options) {
         var sasl,
+            catalogId = options.catalogId,
             params = {
-                itemId: model.get('itemId'),
-                itemVersion: model.get('itemVersion'),
-                priceId: model.get('priceId') 
+                itemId: options.model.get('itemId'),
+                itemVersion: options.model.get('itemVersion'),
+                priceId: options.model.get('priceId') 
             };
         return saslActions.getSasl()
             .then(function(ret) {
@@ -429,11 +430,15 @@ module.exports = {
                 params.sl = sasl.sl();
                 return catalogActions.getSubItems(params);
             }).then(function(subItems) {
-                    return {
-                        sasl: sasl,
-                        subItems: subItems,
-                        model: model
-                    };
+                var basket = new CatalogBasketModel();
+                // basket.setCatalogDetails(catalogDetails);
+                basket = appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':' + catalogId + ':catalogbasket', basket);
+                return {
+                    sasl: sasl,
+                    subItems: subItems,
+                    model: options.model,
+                    basket: basket
+                };
             });
     },
 

@@ -19,6 +19,7 @@ var CustomizationView = Backbone.View.extend({
         console.log(options.subItems);
         this.on('show', this.onShow, this);
         this.render();
+        //TODO update basket items number on change
     },
 
     render: function() {
@@ -30,7 +31,8 @@ var CustomizationView = Backbone.View.extend({
     serializeData: function() {
         return {
             itemName: this.options.model.get('itemName'),
-            subItems: this.options.subItems
+            subItems: this.options.subItems,
+            basketItemsNumber: this.options.basket.getItemsNumber()
         };
     },
 
@@ -47,7 +49,8 @@ var CustomizationView = Backbone.View.extend({
         this.addEvents({
             'click .back': 'goBack',
             'change input': 'onSelected',
-            'click .done-btn': 'onDone'
+            'click .done-btn': 'onDone',
+            'click .basket_icon_container' : 'openEditPanel'
         });
     },
 
@@ -103,6 +106,19 @@ var CustomizationView = Backbone.View.extend({
 
     onDone: function() {
         debugger;
+    },
+
+    openEditPanel: function() {
+        popupController.editCatalogBasketView(this, this.options.basket, {
+            actions: {
+                removeItem: function(selected) {
+                    _(selected).each(function(item) {
+                        this.options.basket.removeItem(item);
+                    }.bind(this));
+                }.bind(this)
+            },
+            template: require('ejs!../../templates/partials/edit_catalog_basket_item.ejs')
+        });
     },
 
     goBack: function() {
