@@ -4822,6 +4822,10 @@ input[name=promocode] {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    font-weight: 400;
+}
+
+.customizationContainer .sub_header .item-name span {
     font-weight: 700;
 }
 
@@ -4847,3 +4851,26 @@ input[name=promocode] {
 .customizationContainer .menu_body input[type=checkbox] {
     margin: -11px 10px 0 0;
 }
+
+.customizationContainer .collapsibleSet .fa-check {
+    display: none;
+    float: right; 
+    color: #2ECC40;
+    margin-right: 25px;
+}
+
+.customizationContainer .collapsibleSet .allow .fa-check {
+    display: inline-block;
+}
+
+.customizationContainer .collapsibleSet .fa-exclamation-triangle {
+    display: inline-block;
+    float: right;
+    color: #ffeb3b;
+    margin-right: 25px;
+}
+
+.customizationContainer .collapsibleSet .allow .fa-exclamation-triangle {
+    display: none;
+}
+

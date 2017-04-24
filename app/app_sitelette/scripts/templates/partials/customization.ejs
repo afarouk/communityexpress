@@ -1,9 +1,9 @@
 <div data-role="page" id="customizationContainer" class="ui-page build_combo customizationContainer">
 
     <div class="sub_header">
-        <div class="item-name">Customizing<br>[<%= itemName %>]</div>
+        <div class="item-name">Customizing<br><span><%= itemName %></span></div>
         <div class="total_price_order_block">
-            <a class="header_order_btn done-btn ui-link">Done</a>
+            <button class="header_order_btn done-btn ui-link">Done</button>
         </div>
     </div>
 
@@ -15,6 +15,8 @@
         				<h3 class="firstItem ui-collapsible-heading">
     		                <div class="cmntyex-group_description cmtyx_color_1">
     		                    <span><%= subItem.displayText %> <% if (subItem.promptText) { %>(<%= subItem.promptText %>)<% } %></span>
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
     		                </div>
             			</h3>
             			<ul data-role="listview" data-inset="false" class="items_list ui-listview" style="background-color: #000;">

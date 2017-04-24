@@ -14,12 +14,12 @@ define([
 			this.render();
 		},
 		serializeData: function() {
-			return _.extend(this.model.toJSON(), {
+			return {
 				domainType: saslData.domainEnum
-			});
+			};
 		},
 		render: function () {
-			this.$el.html(this.template());
+			this.$el.html(template(this.serializeData()));
 			return this;
      	}
 	});
