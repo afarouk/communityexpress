@@ -19,7 +19,7 @@ var CustomizationView = Backbone.View.extend({
         console.log(options.subItems);
         this.on('show', this.onShow, this);
         this.render();
-        //TODO update basket items number on change
+        this.options.basket.on('change', this.changeItemsNumber.bind(this));
     },
 
     render: function() {
@@ -52,6 +52,11 @@ var CustomizationView = Backbone.View.extend({
             'click .done-btn': 'onDone',
             'click .basket_icon_container' : 'openEditPanel'
         });
+    },
+
+    changeItemsNumber: function() {
+        var number = this.options.basket.getItemsNumber();
+        $('.cart_items_number').text(number);
     },
 
     onSelected: function (e) {
