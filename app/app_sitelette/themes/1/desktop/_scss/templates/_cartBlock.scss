@@ -66,7 +66,7 @@
           align-items: center;
           justify-content: center;
           text-transform: uppercase;
-          margin-bottom: 10px;
+          margin: 20px 0;
 
           .nav_back_btn,
           .nav_next_btn {
@@ -193,6 +193,44 @@
               position: relative;
               bottom: 2px;
             }
+        }
+        
+        .bottom_btn_wrapper {
+          text-align: right;
+
+          .bottom_next_btn {
+            display: inline-block;
+            font-size: $size-normal;
+            color: $white;
+            font-weight: $style-normal-strong;
+            cursor: pointer;
+            height: 30px;
+            min-width: 65px;
+            border-radius: 2px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-align: right;
+            background-color: $order-btn;
+            padding-right: 3px;
+            text-transform: uppercase;
+
+            span.arr {
+              font-size: 40px;
+              position: relative;
+              bottom: 6px;
+              font-weight: $style-thin;
+            }
+
+            span.text {
+              position: relative;
+              bottom: 12px;
+              right: 5px;
+            }
+          }
         }
 
         .order-wrapper,
