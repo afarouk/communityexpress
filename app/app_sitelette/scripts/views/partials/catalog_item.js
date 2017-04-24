@@ -342,12 +342,7 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     onCustomize: function() {
-        var params = {
-                itemId: this.model.get('itemId'),
-                itemVersion: this.model.get('itemVersion'),
-                priceId: this.model.get('priceId') 
-            };
-        Vent.trigger( 'viewChange', 'customization', params);
+        Vent.trigger( 'viewChange', 'customization', this.model);
     }
 });
 

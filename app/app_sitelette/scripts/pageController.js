@@ -415,18 +415,24 @@ module.exports = {
         }
     },
 
-    customization: function(options) {
-        var sasl;
-        return saslActions.getSasl(options)
+    customization: function(model) {
+        var sasl,
+            params = {
+                itemId: model.get('itemId'),
+                itemVersion: model.get('itemVersion'),
+                priceId: model.get('priceId') 
+            };
+        return saslActions.getSasl()
             .then(function(ret) {
                 sasl = ret;
-                options.sa = sasl.sa();
-                options.sl = sasl.sl();
-                return catalogActions.getSubItems(options);
+                params.sa = sasl.sa();
+                params.sl = sasl.sl();
+                return catalogActions.getSubItems(params);
             }).then(function(subItems) {
                     return {
                         sasl: sasl,
-                        subItems: subItems
+                        subItems: subItems,
+                        model: model
                     };
             });
     },

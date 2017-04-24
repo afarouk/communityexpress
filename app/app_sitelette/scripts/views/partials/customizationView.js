@@ -16,14 +16,22 @@ var CustomizationView = Backbone.View.extend({
     initialize: function (options) {
         this.sasl = options.sasl;
         this.options = options;
+        console.log(options.subItems);
         this.on('show', this.onShow, this);
         this.render();
     },
 
     render: function() {
-        this.$el.html(template());
+        this.$el.html(template(this.serializeData()));
         this.setElement(this.$el.children().eq(0));
         return this;
+    },
+
+    serializeData: function() {
+        return {
+            itemName: this.options.model.get('itemName'),
+            subItems: this.options.subItems
+        };
     },
 
     renderContent: function() {

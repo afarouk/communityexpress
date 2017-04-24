@@ -1298,6 +1298,10 @@ li.build_combo, li.choose_extras {
     padding: 4px 20px 4px 20px;
     margin: 5px 0;
 }
+.combo_item_container .price_adjustment {
+    right: 20%;
+    position: absolute;
+}
 .sides_extras_container {
     padding: 10px 20px;
     margin: 5px;
