@@ -1521,6 +1521,80 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     line-height: 20px;
 }
 /* end of versions */
+
+/* item customization */
+.customizationContainer {
+    padding-top: 45px;
+}
+.customizationContainer .done-btn,
+.customizationContainer .done-btn:hover,
+.customizationContainer .done-btn:active,
+.customizationContainer .done-btn:focus {
+    color: #fafafa;
+    background-color: #0074D9;
+    border-color: #0074D9;
+}
+.customizationContainer .sub_header .item-name {
+    display: inline-block;
+    padding: 2px 0;
+    line-height: 18px;
+    font-size: 14px;
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-weight: 400;
+}
+.customizationContainer .sub_header .item-name span {
+    font-weight: 700;
+}
+.customizationContainer .sub_header .done-btn {
+    position: relative;
+    bottom: 2px;
+}
+.customizationContainer .menu_body {
+    margin-top: 23px;
+}
+.customizationContainer .menu_body label,
+.customizationContainer .menu_body label:hover,
+.customizationContainer .menu_body label:active,
+.customizationContainer .menu_body label:focus {
+    color: #fafafa;
+    border: none;
+    width: 100%;
+    max-width: 100%;
+}
+.customizationContainer .menu_body input[type=checkbox] {
+    margin: -11px 10px 0 0;
+}
+.customizationContainer .collapsibleSet .customize_subitem_header {
+    margin-bottom: 5px;
+}
+.customizationContainer .collapsibleSet i.fa {
+    position: relative;
+    top: 3px;
+}
+.customizationContainer .collapsibleSet .fa-check {
+    display: none;
+    float: right; 
+    color: #2ECC40;
+    margin-right: 25px;
+}
+.customizationContainer .collapsibleSet .allow .fa-check {
+    display: inline-block;
+}
+.customizationContainer .collapsibleSet .fa-exclamation-triangle {
+    display: inline-block;
+    float: right;
+    color: #ffeb3b;
+    margin-right: 25px;
+}
+.customizationContainer .collapsibleSet .allow .fa-exclamation-triangle {
+    display: none;
+}
+/* end of item customization */
+
 .cmntyex-items_placeholder .ui-collapsible-themed-content {
     margin-bottom: 10px;
 }
@@ -4794,88 +4868,3 @@ input[name=promocode] {
 .menu_button_5.sign_out > div {
     background: url('images/navbar-icons/Sign_out1.png') no-repeat top left;
 }
-
-
-
-
-
-.customizationContainer {
-    padding-top: 45px;
-}
-
-.customizationContainer .done-btn,
-.customizationContainer .done-btn:hover,
-.customizationContainer .done-btn:active,
-.customizationContainer .done-btn:focus {
-    color: #fafafa;
-    background-color: #0074D9;
-    border-color: #0074D9;
-}
-
-.customizationContainer .sub_header .item-name {
-    display: inline-block;
-    padding: 2px 0;
-    line-height: 18px;
-    font-size: 14px;
-    height: 40px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-weight: 400;
-}
-
-.customizationContainer .sub_header .item-name span {
-    font-weight: 700;
-}
-
-.customizationContainer .sub_header .done-btn {
-    position: relative;
-    bottom: 2px;
-}
-
-.customizationContainer .menu_body {
-    margin-top: 23px;
-}
-
-.customizationContainer .menu_body label,
-.customizationContainer .menu_body label:hover,
-.customizationContainer .menu_body label:active,
-.customizationContainer .menu_body label:focus {
-    color: #fafafa;
-    border: none;
-    width: 100%;
-    max-width: 100%;
-}
-
-.customizationContainer .menu_body input[type=checkbox] {
-    margin: -11px 10px 0 0;
-}
-
-.customizationContainer .collapsibleSet i.fa {
-    position: relative;
-    top: 3px;
-}
-
-.customizationContainer .collapsibleSet .fa-check {
-    display: none;
-    float: right; 
-    color: #2ECC40;
-    margin-right: 25px;
-}
-
-.customizationContainer .collapsibleSet .allow .fa-check {
-    display: inline-block;
-}
-
-.customizationContainer .collapsibleSet .fa-exclamation-triangle {
-    display: inline-block;
-    float: right;
-    color: #ffeb3b;
-    margin-right: 25px;
-}
-
-.customizationContainer .collapsibleSet .allow .fa-exclamation-triangle {
-    display: none;
-}
-

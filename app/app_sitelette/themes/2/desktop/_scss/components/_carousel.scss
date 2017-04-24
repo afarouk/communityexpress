@@ -1,0 +1,10 @@
+.owl-carousel {
+	.owl-nav {
+	    position: absolute;
+	    display: flex;
+	    justify-content: space-between;
+	    top: 0;
+	    width: 100%;
+	    color: $cart-text;
+	}
+}

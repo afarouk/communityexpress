@@ -1,0 +1,33 @@
+.cmtyx_desktop_application {
+  .home_tabs_list {    
+    .cmtyx_promotion_block {
+      .body {
+        padding: 5px 20px 20px 20px;
+
+        .owl-carousel {
+          .owl-nav {
+              top: 5px;
+          }
+        }
+
+        img.promotion-image {
+          width: 100%;
+        }
+
+        .promotion_item {
+          .promotion_type {
+            padding: 5px 0;
+            text-align: center;
+            color: $cart-text;
+          }
+        }
+      }
+
+      .no_promotions {
+        color: $cart-text;
+        text-align: center;
+        padding: 25px 0 10px 0;
+      }
+    }
+  }
+}

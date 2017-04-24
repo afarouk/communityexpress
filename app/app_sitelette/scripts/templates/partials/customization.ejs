@@ -17,7 +17,7 @@
         <div class="menu_body">
             <% _.each(subItems, function(subItem, sIndex) { %>
                 <div class="collapsibleSet build_combo_collapse ui-collapsible-set ui-group-theme-inherit" data-role="collapsibleset" data-inset="false">
-        			<div data-role="collapsible" name="customize_subitem" class="cmtyx_color_1 ui-collapsible ui-collapsible-themed-content ui-first-child ui-last-child">
+        			<div data-role="collapsible" name="customize_subitem" class="cmtyx_color_1 ui-collapsible ui-collapsible-themed-content ui-first-child ui-last-child customize_subitem_header" data-collapsed="false">
         				<h3 class="firstItem ui-collapsible-heading">
     		                <div class="cmntyex-group_description cmtyx_color_1">
     		                    <span><%= subItem.displayText %> <% if (subItem.promptText) { %>(<%= subItem.promptText %>)<% } %></span>
