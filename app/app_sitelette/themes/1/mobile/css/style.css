@@ -1336,6 +1336,13 @@ li.build_combo, li.choose_extras {
 .sides_extras_item_details .order_price {
     color: #fafafa;
 }
+.sides_extras_item_details + .float_right .select_container {
+    position: initial;
+}
+.sides_extras_item_details + .float_right .select_container .ui-grid-b {
+    position: absolute;
+    bottom: 0;
+}
 .sides_extras_input {
     border-color: #e1e1e1 !important;
     position: relative;
@@ -1361,16 +1368,33 @@ li.build_combo, li.choose_extras {
 .sides_extras_item_versions {
     margin: 0 3px 5px 5px;
     height: 40px;
+    display: flex;
+    justify-content: space-between;
 }
 .sides_extras_item_versions .versions_buttons {
-    width: 73%;
-    float: left;
+    width: 48%;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: flex-start;
     pointer-events: none;
     border: none;
+}
+.ui-btn.customize_btn,
+.ui-btn.customize_btn:hover,
+.ui-btn.customize_btn:focus,
+.ui-btn.customize_btn:active {
+    width: 60%;
+    color: white;
+    margin: 5px 0;
+}
+.sides_extras_item_versions .customize_btn,
+.sides_extras_item_versions .customize_btn:hover,
+.sides_extras_item_versions .customize_btn:focus,
+.sides_extras_item_versions .customize_btn:active {
+    width: 30%;
+    position: relative;
+    right: 20%;
+    color: white;
+    margin: 0;
 }
 .sides_extras_item_versions .versions_buttons .ui-select {
     width: 50%;
