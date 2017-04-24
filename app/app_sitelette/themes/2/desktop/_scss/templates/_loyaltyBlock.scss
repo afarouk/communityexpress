@@ -1,0 +1,80 @@
+.cmtyx_desktop_application {
+  .home_tabs_list {
+	.cmtyx_loyalty_program_block {
+	  .no_loyalty {
+	  	padding: 20px;
+	    color: $cart-text;
+	    text-align: center;
+	  }
+	  .loyalty_inner_wrapper {
+	    .prize_block {
+	      .prize_container {
+	        display: flex;
+	        margin-bottom: 10px;
+
+	        .prize_text_block {
+	          width: 50%;
+	          padding: 10px;
+	          background-color: $welcome-block-text;
+
+	          .prize_text {
+	            display: block;
+	            font-size: $size-normal;
+	            font-weight: $style-normal;
+	            line-height: 19px;
+	            color: $red-news;
+	            margin-bottom: 10px;
+	          }
+
+	          .prize_condition {
+	            display: block;
+	            font-size: $size-normal-small;
+	            font-weight: $style-thin;
+	            line-height: 17px;
+	            color: $discount-text;
+	          }
+	        }
+
+	        .prize_img {
+	          width: 50%;
+
+	          img {
+	            width: 100%;
+	            height: 100%;
+	          }
+	        }
+	      }
+
+	      .loyalty_status {
+	        text-align: center;
+	        color: $cart-text;
+	        margin-bottom: 10px;
+	      }
+	    }
+
+	    .no_qr_code_block {
+	      button {
+	        font-weight: 700;
+	        border: 1px solid white;
+	        border-radius: 5px;
+	        padding: 15px 25px;
+	        width: 100%;
+	        background-color: transparent;
+	        margin-bottom: 15px;
+	      }
+	    }
+
+	    .qr_code_block {
+	      display: none;
+	      text-align: center;
+	      margin-bottom: 20px;
+
+	      .qr_code_title {
+	        display: inline-block;
+	        margin-bottom: 5px;
+	      }
+	    }
+	  }
+	}
+  }	
+}

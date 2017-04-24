@@ -1,0 +1,88 @@
+.cmtyx_desktop_application {
+  .grid {
+    .cmtyx_cart_block {
+      .cart_page {
+        padding: 25px 20px 20px 20px;
+        overflow-y: auto;
+        
+        .cart-changed {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 0;
+          overflow: hidden;
+          color: white;
+          animation: 2s addedSlideDown;
+          line-height: 30px;
+          font-size: $size-medium;
+          font-weight: $style-normal-strong;
+          
+          &.item-added {
+            background-color: $user-tick;
+          }
+
+          &.item-removed {
+            background-color: $red-news;
+          }
+
+          &.item-quantity {
+            background-color: $order-btn;
+          }
+
+          @keyframes addedSlideDown {
+            0% {
+              height: 0px;
+            }
+            50% {
+              height: 30px;
+            }
+            100% {
+              height: 0px;
+            }
+          }
+        }
+
+        .emptycart-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          color: $cart_text;
+
+          i {
+            font-size: 12rem;
+          }
+          span {
+            font-size: 2rem;
+            font-weight: $style-semi-bold;
+          }
+        }
+        
+        .order-wrapper {
+          ul.order_list {
+            li.order_list_item {
+              .right_block {
+                justify-content: space-between;
+              }
+            }
+          }
+        }
+
+        .bottom_btns_block {
+          position: static;
+          width: 100%;
+          
+          .order_btn {
+            margin-top: 50px;
+          }
+        }
+      }
+    }
+  }
+}
