@@ -4852,6 +4852,11 @@ input[name=promocode] {
     margin: -11px 10px 0 0;
 }
 
+.customizationContainer .collapsibleSet i.fa {
+    position: relative;
+    top: 3px;
+}
+
 .customizationContainer .collapsibleSet .fa-check {
     display: none;
     float: right; 
