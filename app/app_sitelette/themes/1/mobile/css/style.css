@@ -1302,6 +1302,10 @@ li.build_combo, li.choose_extras {
     right: 20%;
     position: absolute;
 }
+li.cmntyex-catalog-item.sub-radio-list.not-allow {
+    opacity: 0.7;
+    pointer-events: none;
+}
 .sides_extras_container {
     padding: 10px 20px;
     margin: 5px;
