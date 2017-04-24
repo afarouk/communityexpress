@@ -16,7 +16,7 @@ var CustomizationView = Backbone.View.extend({
     initialize: function (options) {
         this.sasl = options.sasl;
         this.options = options;
-        console.log(options.subItems);
+        console.log(options);
         this.on('show', this.onShow, this);
         this.render();
         this.options.basket.on('change', this.changeItemsNumber.bind(this));
@@ -110,7 +110,34 @@ var CustomizationView = Backbone.View.extend({
     },
 
     onDone: function() {
-        debugger;
+        this.options.version.set('wasCustomized', true);
+        this.options.version.set('hasSubItems', true);
+        this.options.version.set('customizationNote', null);
+        this.options.version.set('subItems', this.getSubItems());
+        //TODO save to selected version
+        this.goBack();
+    },
+
+    getSubItems: function() {
+        var selected = {};
+        this.$('input:checked').each(function(index, item){
+            var $item = $(item),
+                subId = $item.data('subid'),
+                subSubId = $item.data('subsubid'),
+                subItems = this.options.subItems,
+                subItem = _.findWhere(subItems, {
+                    subItemId: subId
+                }),
+                subSubItem = _.findWhere(subItem.subSubItems, {
+                    subSubItemId: subSubId
+                });
+            if (selected[subId]) {
+                selected[subId].push(subSubItem);
+            } else {
+                selected[subId] = [subSubItem];
+            }
+        }.bind(this));
+        return selected;
     },
 
     openEditPanel: function() {

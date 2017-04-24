@@ -355,6 +355,7 @@ App.prototype = {
                 viewName === 'upload_photo' ||
                 viewName === 'reviews' ||
                 viewName === 'order_time' ||
+                viewName === 'customization' ||
                 (viewName === 'address' && this.previousViewName === 'roster' ) ||
                 (viewName === 'address' && this.previousViewName === 'catalog' ) ||
                 (viewName === 'address' && this.previousViewName === 'singleton' ) ||

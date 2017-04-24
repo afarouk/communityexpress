@@ -420,7 +420,7 @@ module.exports = {
             catalogId = options.catalogId,
             params = {
                 itemId: options.model.get('itemId'),
-                itemVersion: options.model.get('itemVersion'),
+                itemVersion: options.version.get('itemVersion'),
                 priceId: options.model.get('priceId') 
             };
         return saslActions.getSasl()
@@ -437,7 +437,8 @@ module.exports = {
                     sasl: sasl,
                     subItems: subItems,
                     model: options.model,
-                    basket: basket
+                    basket: basket,
+                    version: options.version
                 };
             });
     },

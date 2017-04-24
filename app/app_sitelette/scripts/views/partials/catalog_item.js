@@ -141,6 +141,7 @@ var CatalogItemView = Backbone.View.extend({
     getVersionsFromBasket: function() {
         var versionsFromBasket = this.basket.getBasketVersions(this.model) || null,
             versions = [];
+        //TODO get saved version or don't create new catalog when return from customization
         if (!versionsFromBasket) return versions;
         _.each(versionsFromBasket.selectedVersions, function(version){
             versions.push({
@@ -342,9 +343,11 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     onCustomize: function() {
+        var version = this.savedVersion.version;
         Vent.trigger( 'viewChange', 'customization', {
             model: this.model,
-            catalogId: this.catalogId
+            catalogId: this.catalogId,
+            version: version
         });
     }
 });
