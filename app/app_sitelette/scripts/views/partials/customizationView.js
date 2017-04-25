@@ -111,7 +111,7 @@ var CustomizationView = Backbone.View.extend({
 
     onDone: function() {
         var subItems = this.getSubItems(),
-            model = this.options.version,
+            model = this.options.version || this.options.model,
             customizationNote = '',
             adjustedPrice = model.get('price');
         _.each(subItems, function(subItem) {
