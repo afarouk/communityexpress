@@ -306,7 +306,7 @@ var CatalogItemView = Backbone.View.extend({
         if (model.get('isVersion')) {
             if (uuid.indexOf(viewModelUuid) === -1) return;
             var foundModel = this.basket.getItem(model);
-            if (!foundModel && model.get('wasCustomized')) {
+            if (!foundModel && model.get('wasCustomized')) { //different for customization
                 return model;
             } else {
                 return foundModel;
@@ -351,6 +351,7 @@ var CatalogItemView = Backbone.View.extend({
         Vent.trigger( 'viewChange', 'customization', {
             model: this.model,
             catalogId: this.catalogId,
+            catalogDisplayText: this.catalogDisplayText,
             savedVersion: this.savedVersion,
             versions: this.versions,
             showCustomizationMark: this.showCustomizationMark.bind(this)
