@@ -88,7 +88,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
     },
 
     changeItem: function(item, count) {
-        var itemModel = this.get(item.get('uuid'));
+        var itemModel = this.getItem(item);
         itemModel.set('quantity', count);
         if (!itemModel.get('quantity') || itemModel.get('quantity') === 0) {
             this.removeItem(itemModel);

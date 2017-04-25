@@ -305,10 +305,9 @@ var CatalogItemView = Backbone.View.extend({
             viewModelUuid = this.model.get('uuid');
         if (model.get('isVersion')) {
             if (uuid.indexOf(viewModelUuid) === -1) return;
-
-            return this.basket.get(uuid);
+            return this.basket.getItem(model);
         } else {
-            return this.basket.get(viewModelUuid);
+            return this.basket.getItem(this.model);
         }
     },
 
@@ -323,7 +322,7 @@ var CatalogItemView = Backbone.View.extend({
                 return;
             }
             if (model && model.get('isVersion')) return;
-            modelChanged = this.basket.get(this.model.get('uuid'));
+            modelChanged = this.basket.getItem(this.model);
             if (modelChanged) {
                 this.quantity = modelChanged.get('quantity');
                 this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
@@ -344,11 +343,10 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     onCustomize: function() {
-        var version = this.savedVersion.version;
         Vent.trigger( 'viewChange', 'customization', {
             model: this.model,
             catalogId: this.catalogId,
-            version: version,
+            savedVersion: this.savedVersion,
             showCustomizationMark: this.showCustomizationMark.bind(this)
         });
     },

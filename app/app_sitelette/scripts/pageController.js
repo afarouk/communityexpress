@@ -418,9 +418,10 @@ module.exports = {
     customization: function(options) {
         var sasl,
             catalogId = options.catalogId,
+            isVersion = options.model.get('hasVersions'),
             params = {
                 itemId: options.model.get('itemId'),
-                itemVersion: options.version.get('itemVersion'),
+                itemVersion: isVersion ? options.savedVersion.version.get('itemVersion') : options.model.get('itemVersion'),
                 priceId: options.model.get('priceId') 
             };
         return saslActions.getSasl()
@@ -438,7 +439,7 @@ module.exports = {
                     subItems: subItems,
                     model: options.model,
                     basket: basket,
-                    version: options.version,
+                    version: isVersion ? options.savedVersion.version : null,
                     showCustomizationMark: options.showCustomizationMark
                 };
             });
