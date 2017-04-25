@@ -9,7 +9,6 @@ define([
 	], function(appCache, saslActions, catalogActions, sessionActions, CustomizationLayoutView){
 	var CustomizeController = Mn.Object.extend({
 		onCustomizeItem: function(layout) {
-			// layout.ui.customize.attr('disabled', true);
 			this.getSubItems(layout.model)
 				.then(this.renderCustomize.bind(this, layout));
 		},
@@ -47,12 +46,16 @@ define([
 			layout.off('custom:confirmed')
 				  .on('custom:confirmed', this.onCustomConfirmed.bind(this, layout, customizationView, selectedItems));
 			layout.showChildView('customization', customizationView);
+			layout.listenTo(customizationView, 'selection:changed', this.onSelectionChanged.bind(this, layout));
 			layout.getRegion('customization').$el.slideToggle('slow');
-			if(layout.ui.customize.hasClass('opened')) {
-				layout.ui.customize.removeClass('opened')
-			}
-			else {
-				layout.ui.customize.addClass('opened');
+			layout.ui.customize.addClass('opened');
+		},
+
+		onSelectionChanged: function(layout, allSelected) {
+			if (allSelected) {
+				layout.ui.customMark.addClass('visible');
+			} else {
+				layout.ui.customMark.removeClass('visible');	
 			}
 		},
 		
