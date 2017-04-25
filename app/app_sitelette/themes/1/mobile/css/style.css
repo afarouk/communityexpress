@@ -1539,12 +1539,15 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     margin-top: 2px;
     font-style: italic;
     font-size: 11px;
+    word-break: break-word;
+    white-space: normal;
 }
 .popup_container .ui-panel-inner .versions-price {
     // margin-right: 10px;
 }
 .popup_container .ui-panel-inner .versions-container .versions_texts {
     display: inline-block;
+    max-width: calc(100% - 200px);
 }
 .popup_container .ui-panel-inner .versions-container .versions-description {
     margin-top: 7px;

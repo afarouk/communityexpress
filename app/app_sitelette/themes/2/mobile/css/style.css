@@ -507,6 +507,7 @@ p.card_text {
 }
 .order_list li {
     margin-bottom: 5px;
+    position: relative;
 }
 .price_list li {
     margin-bottom: 10px;
@@ -546,6 +547,12 @@ li {
     list-style-type: none;
     margin-bottom: 20px;
 }
+.order_list li .item_description {
+    /* display: inline; */
+    font-style: italic;
+    font-size: 11px;
+    max-width: 80%;
+}
 .order_list li,
 .price_list li,
 .cart .cmntyex-list_container ul li {
@@ -570,6 +577,11 @@ li {
 .price_list li span.order_price {
     font: 700 14px 'Open Sans', sans-serif;
     float: right;
+}
+li .item_description + span.order_price {
+    position: absolute;
+    top: 6px;
+    right: 0px;
 }
 .order_price {
     /*float: right;*/
@@ -601,8 +613,8 @@ li {
     margin-bottom: 50%;
 }
 #summary_info .order_price {
-    position: relative;
-    top: 6px;
+    /* position: relative; */
+    /* top: 6px; */
 }
 
 .order-note-container {
@@ -1374,7 +1386,7 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     visibility: hidden;
     padding: 2px;
     color: #2b2;
-    font-size: 15px;
+    font-size: 18px;
 }
 .ui-btn.customize_btn .customization-mark.visible {
     visibility: visible;
@@ -1469,18 +1481,31 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
 }
 .popup_container .ui-panel-inner .versions-container .item-version .version_name {
     color: #fafafa;
-    display: block;
+    display: inline-block;
 }
 .popup_container .ui-panel-inner .versions-container .item-version .version_items {
     color: #fafafa;
     margin-top: 12px;
     display: inline-block;
 }
+.popup_container .ui-panel-inner .left-part {
+    display: inline-block;
+}
+.popup_container .ui-panel-inner span.customization_description {
+    display: block;
+    color: #fafafa;
+    margin-top: 2px;
+    font-style: italic;
+    font-size: 11px;
+    word-break: break-word;
+    white-space: normal;
+}
 .popup_container .ui-panel-inner .versions-price {
     // margin-right: 10px;
 }
 .popup_container .ui-panel-inner .versions-container .versions_texts {
     display: inline-block;
+    max-width: calc(100% - 200px);
 }
 .popup_container .ui-panel-inner .versions-container .versions-description {
     margin-top: 7px;
