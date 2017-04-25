@@ -307,9 +307,10 @@ define([
 	            });
 	        }.bind(this), function(e) {
 	            var text = h().getErrorMessage(e, 'Error placing your order');
+	            this.hideLoader();
 	            this.dispatcher.get('popups').showMessage({
 	            	message: text,
-	            	loader: true
+	            	confirm: 'ok'
 	            });
 	        }.bind(this));
 		},
