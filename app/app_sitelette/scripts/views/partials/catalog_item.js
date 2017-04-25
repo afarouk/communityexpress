@@ -305,7 +305,12 @@ var CatalogItemView = Backbone.View.extend({
             viewModelUuid = this.model.get('uuid');
         if (model.get('isVersion')) {
             if (uuid.indexOf(viewModelUuid) === -1) return;
-            return this.basket.getItem(model);
+            var foundModel = this.basket.getItem(model);
+            if (!foundModel && model.get('wasCustomized')) {
+                return model;
+            } else {
+                return foundModel;
+            }
         } else {
             return this.basket.getItem(this.model);
         }
@@ -347,12 +352,20 @@ var CatalogItemView = Backbone.View.extend({
             model: this.model,
             catalogId: this.catalogId,
             savedVersion: this.savedVersion,
+            versions: this.versions,
             showCustomizationMark: this.showCustomizationMark.bind(this)
         });
     },
 
     showCustomizationMark: function() {
         this.$('.customization-mark').addClass('visible');
+        if (this.model.get('hasVersions')) {
+            _.each(this.versions, function(version) {
+                this.updateQuantity(version.version);
+            }.bind(this));
+        } else {
+            this.updateQuantity(this.model);
+        }
     }
 });
 

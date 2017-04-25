@@ -112,6 +112,7 @@ var CustomizationView = Backbone.View.extend({
     onDone: function() {
         var subItems = this.getSubItems(),
             model = this.options.version || this.options.model,
+            collection = [{version: model}], //<not sure
             customizationNote = '',
             adjustedPrice = model.get('price');
         _.each(subItems, function(subItem) {
@@ -119,11 +120,15 @@ var CustomizationView = Backbone.View.extend({
             adjustedPrice += _.reduce(_.pluck(subItem, 'priceAdjustment'), function(a, b) {return a+b;});
         });
         customizationNote = customizationNote.slice(0, -1);
-        model.set('wasCustomized', true);
-        model.set('hasSubItems', true);
-        model.set('customizationNote', customizationNote);
-        model.set('price', adjustedPrice);
-        model.set('subItems', subItems);
+        collection = this.options.allVersions && this.options.allVersions.length > 0 ? collection.concat(this.options.allVersions) : collection;
+        _.each(collection, function(item){
+            var iModel = item.version;
+            iModel.set('wasCustomized', true);
+            iModel.set('hasSubItems', true);
+            iModel.set('customizationNote', customizationNote);
+            iModel.set('price', adjustedPrice);
+            iModel.set('subItems', subItems);
+        });
         this.options.showCustomizationMark();
         this.goBack();
     },
