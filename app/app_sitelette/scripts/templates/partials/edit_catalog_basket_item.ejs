@@ -1,5 +1,8 @@
 <% if (editable) { %>
-	<span class="order_name"><%=  itemName %></span>
+    <div class="left-part">
+        <span class="order_name"><%=  itemName %></span>
+        <span class="customization_description"><%= customizationNote %></span>
+    </div>
     <div class="float_right">
         <div class="select_container">
             <% if (quantity) { %>

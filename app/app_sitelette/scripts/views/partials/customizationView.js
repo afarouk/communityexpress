@@ -110,11 +110,21 @@ var CustomizationView = Backbone.View.extend({
     },
 
     onDone: function() {
-        this.options.version.set('wasCustomized', true);
-        this.options.version.set('hasSubItems', true);
-        this.options.version.set('customizationNote', null);
-        this.options.version.set('subItems', this.getSubItems());
-        //TODO save to selected version
+        var subItems = this.getSubItems(),
+            model = this.options.version,
+            customizationNote = '',
+            adjustedPrice = model.get('price');
+        _.each(subItems, function(subItem) {
+            customizationNote += _.pluck(subItem, 'displayText').join(',') + ',';
+            adjustedPrice += _.reduce(_.pluck(subItem, 'priceAdjustment'), function(a, b) {return a+b;});
+        });
+        customizationNote = customizationNote.slice(0, -1);
+        model.set('wasCustomized', true);
+        model.set('hasSubItems', true);
+        model.set('customizationNote', customizationNote);
+        model.set('price', adjustedPrice);
+        model.set('subItems', subItems);
+        this.options.showCustomizationMark();
         this.goBack();
     },
 
@@ -159,7 +169,8 @@ var CustomizationView = Backbone.View.extend({
             catalogId: this.catalogId,
             backToCatalog: true,
             backToCatalogs:false,
-            backToRoster:false
+            backToRoster:false,
+            fromCustomization: true
          } );
     }
 });

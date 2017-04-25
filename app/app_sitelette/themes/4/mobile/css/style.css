@@ -1380,6 +1380,19 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     color: white;
     margin: 0;
 }
+.ui-btn.customize_btn:hover,
+.ui-btn.customize_btn {
+    padding: 0 8px 0 0;
+}
+.ui-btn.customize_btn .customization-mark {
+    visibility: hidden;
+    padding: 2px;
+    color: #2b2;
+    font-size: 15px;
+}
+.ui-btn.customize_btn .customization-mark.visible {
+    visibility: visible;
+}
 .sides_extras_item_versions .versions_buttons .ui-select {
     width: 55%;
     margin-right: 1%;

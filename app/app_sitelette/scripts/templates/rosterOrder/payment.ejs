@@ -66,6 +66,7 @@
                             <% if (item.isVersion) { %>
                                 <span class="order_version">(<%= item.versionText %>)</span>
                             <% } %>
+                            <span class="item_description"><%= item.customizationNote %></span>
                             <span class="order_price"><%= cs + item.price %></span>
                         </li>
                     <% }) %>

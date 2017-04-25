@@ -198,6 +198,7 @@ var CatalogItemView = Backbone.View.extend({
             this.$('.sides_extras_item_not_available_versions').addClass('visible');
             this.$('.order_price').html('<br>');
         }
+        this.$('.customization-mark').removeClass('visible');
     },
 
     isAlreadyAdded: function(version) {
@@ -347,8 +348,13 @@ var CatalogItemView = Backbone.View.extend({
         Vent.trigger( 'viewChange', 'customization', {
             model: this.model,
             catalogId: this.catalogId,
-            version: version
+            version: version,
+            showCustomizationMark: this.showCustomizationMark.bind(this)
         });
+    },
+
+    showCustomizationMark: function() {
+        this.$('.customization-mark').addClass('visible');
     }
 });
 

@@ -572,6 +572,11 @@ li {
     list-style-type: none;
     margin-bottom: 20px;
 }
+.order_list li .item_description {
+    display: inline;
+    font-style: italic;
+    font-size: 11px;
+}
 .order_list li,
 .price_list li,
 .cart .cmntyex-list_container ul li {
@@ -1398,6 +1403,19 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     bottom: 5px;
     margin-top: 5px;
 }
+.ui-btn.customize_btn:hover,
+.ui-btn.customize_btn {
+    padding: 0 8px 0 0;
+}
+.ui-btn.customize_btn .customization-mark {
+    visibility: hidden;
+    padding: 2px;
+    color: #2b2;
+    font-size: 15px;
+}
+.ui-btn.customize_btn .customization-mark.visible {
+    visibility: visible;
+}
 .sides_extras_item_versions .customize_btn,
 .sides_extras_item_versions .customize_btn:hover,
 .sides_extras_item_versions .customize_btn:focus,
@@ -1498,12 +1516,22 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
 }
 .popup_container .ui-panel-inner .versions-container .item-version .version_name {
     color: #fafafa;
-    display: block;
+    display: inline-block;
 }
 .popup_container .ui-panel-inner .versions-container .item-version .version_items {
     color: #fafafa;
     margin-top: 12px;
     display: inline-block;
+}
+.popup_container .ui-panel-inner .left-part {
+    display: inline-block;
+}
+.popup_container .ui-panel-inner span.customization_description {
+    display: block;
+    color: #fafafa;
+    margin-top: 2px;
+    font-style: italic;
+    font-size: 11px;
 }
 .popup_container .ui-panel-inner .versions-price {
     // margin-right: 10px;

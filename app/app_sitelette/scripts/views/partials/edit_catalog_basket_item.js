@@ -38,7 +38,8 @@ var EditCatalogBasketItem = Backbone.View.extend({
         this.$el.html(this.template(_.extend({}, this.model.attributes, {
             editable: this.editable,
             versionText: this.versionText || '',
-            totalPrice: this.totalPrice || 0
+            totalPrice: this.totalPrice || 0,
+            customizationNote: this.model.get('customizationNote') || ''
         })));
         return this;
     },

@@ -308,7 +308,7 @@ App.prototype = {
     /*
      * 'roster', options, {reverse:false}
      */
-    goToPage: function(viewName, id, options) {
+    goToPage: function(viewName, params, options) {
         var exists;
         // this.landingView.undelall();
         console.log("app.js:gotoPage: " + viewName);
@@ -320,12 +320,12 @@ App.prototype = {
 
         //check if view was created
         exists = this.checkInstance(viewName);
-        if (this.shouldBeLoadedFromCache(viewName, exists)) { //should we retriveCatalog each time?
-            if (id && id.backTo) exists.options.backTo = id.backTo;
+        if (this.shouldBeLoadedFromCache(viewName, exists, params)) {
+            if (params && params.backTo) exists.options.backTo = params.backTo;
             this.changePage(exists, options);
             loader.hide();
         } else {
-            this.initializePage(viewName, id, options).then(function(page) {
+            this.initializePage(viewName, params, options).then(function(page) {
                 this.saveInstance(viewName, page);
                 this.changePage(page, options);
                 loader.hide();
@@ -345,7 +345,7 @@ App.prototype = {
         }
     },
 
-    shouldBeLoadedFromCache: function(viewName, exists) {
+    shouldBeLoadedFromCache: function(viewName, exists, params) {
         if (exists) {
             if (viewName === 'catalog' ||
                 viewName === 'roster' ||
@@ -362,6 +362,9 @@ App.prototype = {
                 (viewName === 'address' && this.previousViewName === 'restaurant')) {
                     if (viewName === 'address') {
                         this.removeCashedViews(['add_address', 'order_time', 'payment','payment_card', 'summary']);
+                    }
+                    if (viewName === 'catalog' && params.fromCustomization === true) {
+                        return true;
                     }
                     return false;
                 } else {

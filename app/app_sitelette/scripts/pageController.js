@@ -438,7 +438,8 @@ module.exports = {
                     subItems: subItems,
                     model: options.model,
                     basket: basket,
-                    version: options.version
+                    version: options.version,
+                    showCustomizationMark: options.showCustomizationMark
                 };
             });
     },
