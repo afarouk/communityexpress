@@ -552,6 +552,8 @@ li {
     font-style: italic;
     font-size: 11px;
     max-width: 80%;
+    margin-top: -6px;
+    color: #ddd;
 }
 .order_list li,
 .price_list li,
