@@ -1522,6 +1522,9 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
 .customizationContainer {
     padding-top: 45px;
 }
+.customizationContainer .basket_icon_container {
+    display: none;
+}
 .customizationContainer .done-btn,
 .customizationContainer .done-btn:hover,
 .customizationContainer .done-btn:active,
