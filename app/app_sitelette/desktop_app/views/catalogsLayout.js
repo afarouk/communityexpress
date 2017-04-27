@@ -13,8 +13,13 @@ define([
 		initialize: function() {
 			this.render();
 		},
+		serializeData: function() {
+			return {
+				domainType: saslData.domainEnum
+			};
+		},
 		render: function () {
-			this.$el.html(this.template());
+			this.$el.html(template(this.serializeData()));
 			return this;
      	}
 	});

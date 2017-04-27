@@ -11,6 +11,7 @@
         top: 0;
         left: 0;
         background-color: rgba(55, 55, 55, 0.6);
+        z-index: 1;
         display: none;
 
         .blinder-content {
@@ -202,13 +203,23 @@
                   .customize_btn {
                     background-color: $cmtyx_color_1;
                     color: $white;
-                    padding: 10px;
+                    padding: 10px 10px 10px 3px;
                     font-size: $size-normal-small;
                     font-weight: $style-semi-bold;
                     border: none;
                     text-transform: uppercase;
                     cursor: pointer;
                     border-radius: 2px;
+
+                    .customization-mark {
+                      visibility: hidden;
+                      color: #2b2;
+                      font-size: 15px;
+                      padding: 3px;
+                      &.visible {
+                        visibility: visible;
+                      }
+                    }
 
                     .expand-symbol {
                       display: inline-block;
@@ -386,13 +397,15 @@
                         color: $white;
 
                         .item-name {
-                          font-size: $size-lg-normal;
+                          font-size: $size-lg-normal-small;
                           font-weight: $style-normal-strong;
                         }
 
                         .item-description {
-                          font-size: $size-normal;
+                          font-size: $size-normal-strong;
                           font-weight: $style-normal-strong;
+                          position: relative;
+                          right: 5%;
                         }
                       }
                       .customize-body {
@@ -428,14 +441,14 @@
 
                               .text {
                                 color: $cart-text;
-                                font-size: $size-normal;
+                                font-size: $size-normal-strong;
                                 font-weight: $style-normal-strong;
                                 margin-bottom: 2px;
                               }
 
                               .description {
                                 color: $cart-text;
-                                font-size: $size-normal-small;
+                                font-size: $size-small;
                                 font-weight: $style-normal;
                                 font-style: italic;
                               }
@@ -446,13 +459,17 @@
                               display: flex;
                               justify-content: space-between;
                               align-items: center;
+
+                              .item-price {
+                                font-size: $size-normal-strong;
+                              }
                             }
                           }
 
                           &.disabled {
                             .blinder {
                               position: absolute;
-                              background-color: rgba(195, 195, 195, 0.5);;
+                              background-color: rgba(0, 0, 0, 0.55);;
                               height: 100%;
                               width: 100%;
                               z-index: 1;

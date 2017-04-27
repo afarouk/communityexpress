@@ -80,7 +80,9 @@ var CatalogItemVersionsView = Backbone.View.extend({
             if (modelChanged.get('itemVersion') === itemVersion &&
                 modelChanged.get('itemId') === itemId) {
                 var quantity = modelChanged.get('quantity');
-                if (quantity === 0) {
+                if (quantity === undefined) {
+                    version.quantity = 0;
+                } else if (quantity === 0) {
                     this.versions.splice(index, 1);
                     this.trigger('removeVersion');
                 } else {

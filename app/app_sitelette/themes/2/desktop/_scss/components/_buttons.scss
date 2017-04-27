@@ -1,3 +1,9 @@
 button {
 	outline: none;
 }
+
+button:disabled {
+	border-color: $cart-scroll !important;
+    background-color: $cart-scroll !important;
+    color: $cart-tabs !important;
+}

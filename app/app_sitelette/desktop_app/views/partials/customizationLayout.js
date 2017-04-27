@@ -8,16 +8,7 @@ define([
 		regions: {
 			customization: '#customization-region'
 		},
-		ui: {
-			cancel: '[name="cancel"]',
-			confirm: '[name="confirm"]'
-		},
-		events: {
-			'click @ui.confirm': 'onConfirmCustomChoice'
-		},
-		triggers: {
-			'click @ui.cancel': 'custom:cancel'
-		},
+
 		onRender: function() {
 			this.showCustomization();
 		},
@@ -34,6 +25,7 @@ define([
 			} else {
 				this.allSelected = false;				
 			}
+			this.trigger('selection:changed', allSelected);
 		}
 
 	});

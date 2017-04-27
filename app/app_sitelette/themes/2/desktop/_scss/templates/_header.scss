@@ -1,25 +1,22 @@
 header {
   height: 70px;
   background-color: $header-background;
-  padding: 15px 50px 15px 45px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .logo-container { 
   	display: inline-block; 
 	
 	.logo {
-	  position: relative;
-	  top: 5px;
 	  cursor: pointer;
 	}
   }
 
-  .links-conatiner { 
+  .links-container { 
 	  display: inline-block; 
 	  list-style-type: none;
-	  float: right;
-	  position: relative;
-	  bottom: 15px;
-	  margin: 11px 0 0 0;
 
 	  .link { 
 		display: inline-block; 
@@ -27,19 +24,49 @@ header {
 		font-size: $size-normal;
 		font-weight: $style-normal;
 		text-transform: uppercase;
-		margin-left: 30px;
 		cursor: pointer;
+		vertical-align: middle;
 
-		&:hover {
-		  color: $cmtyx_color_1;
+		.user_email {
+		    margin-right: 5px;
+		    font-size: $size-normal-small;
+		    color: $cart-text;
+		    letter-spacing: 1px;
 		}
 
-		&.last {
+		.fa-user {
+		    font-size: 40px;
+			color: $user-icon;
+		}
+
+		.fa-check {
+		    position: relative;
+		    right: 10px;
+		    top: 5px;
+		    background-color: $user-tick;
+		    border-radius: 50%;
+		    padding: 2px;
+		}
+
+		.fa-question {
+		    position: relative;
+		    right: 10px;
+		    top: 5px;
+		    background-color: $order-btn;
+		    border-radius: 50%;
+		    padding: 2px 5px;
+		}
+
+		&.login-btn {
+		  display: inline-block; 
 		  font-weight: $style-semi-bold;
 		  color: $cmtyx_color_1;
 		  border: 1px solid $cmtyx_color_1;
 		  border-radius: 5px;
 		  padding: 15px 25px;
+		  text-transform: uppercase;
+		  cursor: pointer;
+		  vertical-align: top;
 
 		  &:hover {
 		  	background-color: $cmtyx_color_1;

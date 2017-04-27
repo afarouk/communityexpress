@@ -1,0 +1,65 @@
+.cmtyx_desktop_application {
+  .home_tabs_list {    
+    .cmtyx_welcome_block {
+      background-color: $welcome-block-background;
+
+      .body {
+        padding: 0;
+        text-align: center;
+        background-color: $welcome-block-background;
+        position: relative;
+
+        img {
+          width: 100%;
+        }
+
+        .text-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+
+          .title {
+            color: $white;
+            font-size: $size-large;
+            font-weight: $style-semi-bold;
+            text-transform: uppercase;
+            margin-top: 75px;
+            margin-bottom: 40px;
+          }
+
+          .undertitle {
+            display: block;
+            color: $white;
+            font-size: $size-lg-normal-small;
+            font-weight: $style-normal-strong;
+            line-height: 26px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            width: 270px;
+          }
+
+          .open_label {
+            display: inline-block;
+            background-color: $open-label;
+            border-radius: 2px;
+            padding: 12px 52px;
+            color: $white;
+            font-size: $size-normal-small;
+            font-weight: $style-normal-strong;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+          }
+
+          .business_hours {
+            color: $welcome-block-text;
+            font-size: $size-normal;
+            font-weight: $style-normal-strong;
+            margin-bottom: 55px;
+          }
+        }
+      }
+    }
+  }
+}

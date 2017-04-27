@@ -38,7 +38,8 @@ var EditCatalogBasketItem = Backbone.View.extend({
         this.$el.html(this.template(_.extend({}, this.model.attributes, {
             editable: this.editable,
             versionText: this.versionText || '',
-            totalPrice: this.totalPrice || 0
+            totalPrice: this.totalPrice || 0,
+            customizationNote: this.model.get('customizationNote') || ''
         })));
         return this;
     },
@@ -70,7 +71,8 @@ var EditCatalogBasketItem = Backbone.View.extend({
             count: this.quantity
         }
         if (this.basket.catalogType === 'UNDEFINED' || this.basket.catalogType === 'ITEMIZED' || !this.basket.catalogType) {
-            this.changedItems[this.model.get('uuid')] = changedItem;
+            var uuid = this.basket.getUUID(this.model);
+            this.changedItems[uuid] = changedItem;
             this.changedItems.onChanged();
         }
     }

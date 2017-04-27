@@ -1,6 +1,11 @@
 <% _.each(versions, function(version, index){ %>
 	<div class="item_version" data-version="<%= index %>">
-		<span class="version-description"><%= version.selected.join(' ,') %></span>
+		<div class="left_part">
+			<span class="version-description"><%= version.selected.join(' ,') %></span>
+			<% if (version.version.get('customizationNote')) { %>
+				<span class="customization-note"><%= version.version.get('customizationNote') %></span>
+			<% } %>
+		</div>
 		<div class="float_right">
 			<div class="select_container catalog_item_counter">
 				<div class="ui-grid-b">

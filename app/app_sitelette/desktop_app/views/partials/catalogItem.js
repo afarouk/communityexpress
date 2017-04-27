@@ -11,6 +11,7 @@ define([
 		},
 		ui: {
 			customize: '[name="item_customize"]',
+			customMark: '[name="customization-mark"]',
 			increase: '[name="quantity_increase"]',
 			decrease: '[name="quantity_decrease"]',
 			quantity: '[name="quantity"]',
@@ -27,22 +28,6 @@ define([
 			'click @ui.customize': 'items:customized'
 		},
 		quantity: 1,
-		// onRender: function() {
-	 //    	this.$el.addClass(this.getColor());
-	 //    	this.$el.find('.item_title').addClass(this.getTextColor());
-  //       	this.$el.find('.item_description').addClass(this.getTextColor());
-	 //    },
-	 //    getColor: function() {
-	 //        var colors = [ 'cmtyx_color_2', 'cmtyx_color_4' ],
-	 //            index = this.model.collection.indexOf(this.model);
-	 //        return colors[index % colors.length];
-	 //    },
-
-	 //    getTextColor: function(index) {
-	 //        var colors = [ 'cmtyx_text_color_2', 'cmtyx_text_color_4' ],
-	 //            index = this.model.collection.indexOf(this.model);
-	 //        return colors[index % colors.length];
-	 //    },
 	    
 		onIncrease: function() {
 			this.quantity++;
@@ -59,8 +44,15 @@ define([
 			this.ui.price.text(price.toFixed(2));
 		},
 		onCustomize: function() {
-			this.dispatcher.get('customize')
-				.triggerMethod('customizeItem', this);
+			var $el = this.getRegion('customization').$el;
+			this.ui.customMark.removeClass('visible');
+			if ($el.is(':visible')) {
+				$el.slideToggle('slow');
+				this.ui.customize.removeClass('opened')
+			} else {
+				this.dispatcher.get('customize')
+					.triggerMethod('customizeItem', this);
+			}
 		}
 	});
 

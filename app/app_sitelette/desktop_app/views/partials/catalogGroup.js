@@ -59,6 +59,7 @@ define([
 			this.children.each(function(view) {
 				if(view !== childView) {
 					view.getRegion('customization').$el.slideUp('slow');
+					view.ui.customMark.removeClass('visible');
 					view.ui.customize.removeClass('opened');
 				}
 			});

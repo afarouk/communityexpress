@@ -10,6 +10,7 @@ define([
 		},
 		ui: {
 			customize: '[name="item_customize"]',
+			customMark: '[name="customization-mark"]',
 			selector: '.versions_selectors_container select',
 			add: '[name="add_to_cart_btn"]'
 		},
@@ -31,8 +32,15 @@ define([
 			this.updateAddVersionButton();
 		},
 		onCustomize: function() {
-			this.dispatcher.get('customize')
-				.triggerMethod('customizeItem', this);
+			var $el = this.getRegion('customization').$el;
+			this.ui.customMark.removeClass('visible');
+			if ($el.is(':visible')) {
+				$el.slideToggle('slow');
+				this.ui.customize.removeClass('opened')
+			} else {
+				this.dispatcher.get('customize')
+					.triggerMethod('customizeItem', this);
+			}
 		},
 		getSelectorVersions: function() {
 	        var selectorOptions = this.model.get('selectorOptions'),

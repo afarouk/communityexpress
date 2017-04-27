@@ -88,7 +88,7 @@ define([
 	    },
 	    setDeliveryDate: function() {
 	        var date = this.getDeliveryDate(),
-	            requestedDeliveryDate = date ? this.moment(date.date)
+	            requestedDeliveryDate = date ? this.moment.utc(date.date.replace(':UTC', 'Z'))
 	                                           .hour(date.time.hour)
 	                                           .minute(date.time.minute)
 	                                           .utc().format().replace('Z', ':UTC') : null;

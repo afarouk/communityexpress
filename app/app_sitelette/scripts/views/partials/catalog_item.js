@@ -24,6 +24,7 @@ var CatalogItemView = Backbone.View.extend({
         'click .versions_buttons': 'preventClick',
         'change .versions_buttons select': 'updateAddVersionButton',
         'click .plus_version_button': 'onVersionAdded',
+        'click [name="item_customize"]': 'onCustomize'
     },
 
     initialize: function (options) {
@@ -140,6 +141,7 @@ var CatalogItemView = Backbone.View.extend({
     getVersionsFromBasket: function() {
         var versionsFromBasket = this.basket.getBasketVersions(this.model) || null,
             versions = [];
+        //TODO get saved version or don't create new catalog when return from customization
         if (!versionsFromBasket) return versions;
         _.each(versionsFromBasket.selectedVersions, function(version){
             versions.push({
@@ -196,6 +198,7 @@ var CatalogItemView = Backbone.View.extend({
             this.$('.sides_extras_item_not_available_versions').addClass('visible');
             this.$('.order_price').html('<br>');
         }
+        this.$('.customization-mark').removeClass('visible');
     },
 
     isAlreadyAdded: function(version) {
@@ -302,10 +305,14 @@ var CatalogItemView = Backbone.View.extend({
             viewModelUuid = this.model.get('uuid');
         if (model.get('isVersion')) {
             if (uuid.indexOf(viewModelUuid) === -1) return;
-
-            return this.basket.get(uuid);
+            var foundModel = this.basket.getItem(model);
+            if (!foundModel && model.get('wasCustomized')) { //different for customization
+                return model;
+            } else {
+                return foundModel;
+            }
         } else {
-            return this.basket.get(viewModelUuid);
+            return this.basket.getItem(this.model);
         }
     },
 
@@ -320,7 +327,7 @@ var CatalogItemView = Backbone.View.extend({
                 return;
             }
             if (model && model.get('isVersion')) return;
-            modelChanged = this.basket.get(this.model.get('uuid'));
+            modelChanged = this.basket.getItem(this.model);
             if (modelChanged) {
                 this.quantity = modelChanged.get('quantity');
                 this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
@@ -338,6 +345,28 @@ var CatalogItemView = Backbone.View.extend({
         this.addItem ? count = 1 : count = -1;
         this.model.set('quantity', this.model.get('quantity') + count);
         this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+    },
+
+    onCustomize: function() {
+        Vent.trigger( 'viewChange', 'customization', {
+            model: this.model,
+            catalogId: this.catalogId,
+            catalogDisplayText: this.catalogDisplayText,
+            savedVersion: this.savedVersion,
+            versions: this.versions,
+            showCustomizationMark: this.showCustomizationMark.bind(this)
+        });
+    },
+
+    showCustomizationMark: function() {
+        this.$('.customization-mark').addClass('visible');
+        if (this.model.get('hasVersions')) {
+            _.each(this.versions, function(version) {
+                this.updateQuantity(version.version);
+            }.bind(this));
+        } else {
+            this.updateQuantity(this.model);
+        }
     }
 });
 
