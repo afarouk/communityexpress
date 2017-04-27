@@ -27,7 +27,7 @@ var LandingView = Backbone.View.extend({
     el: '#cmtyx_landingView',
 
     events: {
-        'click .catalog': 'triggerCatalogsView',
+        'click #cmtyx_welcome_block': 'triggerCatalogsView',
         'click .appointmentService': 'triggerAppointmentView',
         'click #cmtyx_share_block .sms_block': 'showSMSInput',
         'click #cmtyx_share_block .sms_send_button': 'onSendSMS'
