@@ -80,8 +80,6 @@ define([
 					$grid.show();
 					$grid.packery();
 				}, 1200);
-
-				dispatcher.setGrid($grid); //temporary tweak
 			},
 			checkType: function() {
 				//TODO not ready

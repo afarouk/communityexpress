@@ -19,7 +19,6 @@ define([
 			console.log(this.collection.toJSON());
 			this.basket = options.basket;
 			this.options = options;
-			this.dispatcher.trigger('grid:update');
 		},
 		onChildviewItemsAdded: function(childView, event) {
 			var model = childView.model;
