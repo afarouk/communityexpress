@@ -1,11 +1,13 @@
 define([
 	'ejs!../../templates/partials/catalogItem.ejs',
-	'./customizationLayout'
-	], function(itemTemplate, CustomizationLayoutView){
+	'./customizationLayout',
+	'./extraDetails'
+	], function(itemTemplate, CustomizationLayoutView, extraDetailsBehavior){
 	var CatalogGroupItemView = Mn.View.extend({
 		template: itemTemplate,
 		className: 'catalog_item',
 		tagName: 'li',
+		behaviors: [extraDetailsBehavior],
 		regions: {
 			customization: '#customizationContainer'
 		},
@@ -17,14 +19,12 @@ define([
 			quantity: '[name="quantity"]',
 			price: '[name="items_price"]',
 			addToCart: '[name="add_to_cart_btn"]',
-			details: '[name="extra-details"]',
-			detailsImage: '[name="details-image"]'
+			details: '[name="extra-details"]'
 		},
 		events: {
 			'click @ui.increase': 'onIncrease',
 			'click @ui.decrease': 'onDecrease',
-			'click @ui.customize': 'onCustomize',
-			'click' : 'onExtraDetailsToggle'
+			'click @ui.customize': 'onCustomize'
 		},
 		triggers: {
 			'click @ui.addToCart': 'items:added',
@@ -56,24 +56,6 @@ define([
 				this.dispatcher.get('customize')
 					.triggerMethod('customizeItem', this);
 			}
-
-			e.preventDefault();
-			e.stopPropagation();
-		},
-
-		onExtraDetailsToggle: function(e) {
-			if ($(e.target).parents('#customizationContainer').length > 0) return;
-			var urls = this.model.get('mediaURLs');
-	    	if (!urls && !urls[0]) return;
-	    	var src = this.ui.detailsImage.attr('src');
-	    	if (src) {
-	    		this.trigger('extra:details', this);
-	    	} else {
-	    		this.ui.detailsImage.on('load', function(){
-	    			this.trigger('extra:details', this);
-	    		}.bind(this));
-	    		this.ui.detailsImage.attr('src', urls[0]);
-	    	}
 		}
 	});
 

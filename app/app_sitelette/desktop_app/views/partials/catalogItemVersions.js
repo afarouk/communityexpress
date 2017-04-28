@@ -1,10 +1,12 @@
 define([
 	'ejs!../../templates/partials/catalogItemVersions.ejs',
-	], function(itemTemplate){
+	'./extraDetails'
+	], function(itemTemplate, extraDetailsBehavior){
 	var CatalogGroupItemView = Mn.View.extend({
 		template: itemTemplate,
 		className: 'catalog_item item_with_versions',
 		tagName: 'li',
+		behaviors: [extraDetailsBehavior],
 		regions: {
 			customization: '#customizationContainer'
 		},
@@ -13,15 +15,13 @@ define([
 			customMark: '[name="customization-mark"]',
 			selector: '.versions_selectors_container select',
 			add: '[name="add_to_cart_btn"]',
-			details: '[name="extra-details"]',
-			detailsImage: '[name="details-image"]'
+			details: '[name="extra-details"]'
 		},
 		events: {
 			'click @ui.customize': 'onCustomize',
 			'click .add_to_cart_btn': 'onAddtoCart',
 			'change @ui.selector': 'updateAddVersionButton',
-			'click @ui.selector': 'preventDefault',
-			'click' : 'onExtraDetailsToggle'
+			'click @ui.selector': 'stopPropagation'
 		},
 		triggers: {
 			'click @ui.customize': 'items:customized'
@@ -46,7 +46,6 @@ define([
 					.triggerMethod('customizeItem', this);
 			}
 
-			e.preventDefault();
 			e.stopPropagation();
 		},
 		getSelectorVersions: function() {
@@ -104,29 +103,12 @@ define([
 	        basketItem.set('uuid', uuid + '_._' + basketItem.get('itemVersion'), {silent: true});
 	        this.trigger('items:version:added', this, basketItem);
 
-	        e.preventDefault();
 			e.stopPropagation();
 	    },
 
-	    preventDefault: function(e) {
-	    	e.preventDefault();
+	    stopPropagation: function(e) {
 			e.stopPropagation();
-	    },
-
-	    onExtraDetailsToggle: function() {
-	    	if ($(e.target).parents('#customizationContainer').length > 0) return;
-			var urls = this.model.get('mediaURLs');
-	    	if (!urls && !urls[0]) return;
-	    	var src = this.ui.detailsImage.attr('src');
-	    	if (src) {
-	    		this.trigger('extra:details', this);
-	    	} else {
-	    		this.ui.detailsImage.on('load', function(){
-	    			this.trigger('extra:details', this);
-	    		}.bind(this));
-	    		this.ui.detailsImage.attr('src', urls[0]);
-	    	}
-		}
+	    }
 	});
 
 	return CatalogGroupItemView;
