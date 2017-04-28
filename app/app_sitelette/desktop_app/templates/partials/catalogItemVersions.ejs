@@ -1,9 +1,18 @@
 <div class="left_block">
-  <div class="item_title">
-    <%= itemName %>
-  </div>
-  <div class="item_description">
-    <%= longDescription %>
+  <div class="item-row">
+    <% if (thumbnailBase64) { %>
+      <div class="item_image_small">
+        <img src="data:image/gif;base64,<%= thumbnailBase64 %>">
+      </div>
+    <% } %>
+    <div class="text-block">
+      <div class="item_title">
+        <%= itemName %>
+      </div>
+      <div class="item_description">
+        <%= longDescription %>
+      </div>
+    </div>
   </div>
   <div class="wrapper">
     <div class="versions_selectors_container">
