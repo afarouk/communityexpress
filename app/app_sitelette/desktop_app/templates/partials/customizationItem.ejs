@@ -17,9 +17,9 @@
 					<div class="right">
 						<div class="item-price">$<%= subItem.priceAdjustment.toFixed(2) %></div>
 						<% if(selectorType.enumText === 'RADIO') { %>
-							<input name="custom_radio" type="radio" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked="checked"<% } %>>
+							<input name="group_<%= subItemId %>" type="radio" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked="checked"<% } %>>
 						<% } else { %>
-							<input name="custom_checkbox" type="checkbox" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
+							<input name="group_<%= subItemId %>" type="checkbox" value="<%= subItem.subSubItemId %>" <% if(subItem.isSelectedByDefault) { %>checked<% } %>>
 						<% } %>
 					</div>
 				</label>

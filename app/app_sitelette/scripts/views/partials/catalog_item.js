@@ -347,7 +347,9 @@ var CatalogItemView = Backbone.View.extend({
         this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     },
 
-    onCustomize: function() {
+    onCustomize: function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         Vent.trigger( 'viewChange', 'customization', {
             model: this.model,
             catalogId: this.catalogId,
@@ -356,6 +358,7 @@ var CatalogItemView = Backbone.View.extend({
             versions: this.versions,
             showCustomizationMark: this.showCustomizationMark.bind(this)
         });
+        return false;
     },
 
     showCustomizationMark: function() {

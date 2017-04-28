@@ -43,7 +43,7 @@ module.exports = {
             itemId: params.itemId,
             itemVersion: params.itemVersion,
             priceId: params.priceId,
-            simulate: true //uncomment that field for testing
+            // simulate: true //uncomment that field for testing
         }).then(function(response) {
             return response
         });

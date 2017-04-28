@@ -69,21 +69,24 @@ var CustomizationView = Backbone.View.extend({
             subItemId: subId
         });
         if (subItem.selectorType.enumText === "CHECKBOX") {
-            var selected = this.$('input[type="checkbox"]:checked');
-            var noChecked = this.$('input:checkbox:not(:checked)');
+            var selected = this.$('input[type="checkbox"]:checked[data-subid="' + subId + '"]');
+            var noChecked = this.$('input:checkbox:not(:checked)[data-subid="' + subId + '"]');
             var $row = noChecked.parents('.cmntyex-catalog-item');
             var $subItem = noChecked.parents('[name="customize_subitem"]');
             if (selected.length === subItem.maxSubSubCount) {
                 $row.addClass('not-allow');
-                $subItem.addClass('allow');
             } else {
                 $row.removeClass('not-allow');
+            }
+            if (selected.length >= subItem.minSubSubCount) {
+                $subItem.addClass('allow');
+            } else {
                 $subItem.removeClass('allow');
             }
         } else {
-            var selected = this.$('input[type="radio"]:checked');
+            var selected = this.$('input[type="radio"]:checked[data-subid="' + subId + '"]');
             var $subItem = selected.parents('[name="customize_subitem"]');
-            if (selected.length === subItem.maxSubSubCount) {
+            if (selected.length === subItem.minSubSubCount) {
                 $subItem.addClass('allow');
             } else {
                 $subItem.removeClass('allow');
@@ -96,7 +99,22 @@ var CustomizationView = Backbone.View.extend({
         var selected = this.$('input[type="radio"]:checked');
         var $subItem = selected.parents('[name="customize_subitem"]');
         $subItem.addClass('allow');
+        this.checkCheckbox();
         this.changeSelectedState();
+    },
+
+    checkCheckbox: function() {
+        var subItems = this.options.subItems;
+
+        _.each(subItems, function(subItem) {
+            var subItemId = subItem.subItemId;
+            var selected = this.$('input[type="checkbox"]:checked[data-subid="' + subItemId + '"]');
+            var checkbox = this.$('input[type="checkbox"][data-subid="' + subItemId + '"]');
+            var $subItem = checkbox.parents('[name="customize_subitem"]');
+            if (selected.length >= subItem.minSubSubCount) {
+                $subItem.addClass('allow');
+            }
+        }.bind(this));
     },
 
     changeSelectedState: function() {

@@ -1,11 +1,13 @@
 define([
 	'ejs!../../templates/partials/catalogItem.ejs',
-	'./customizationLayout'
-	], function(itemTemplate, CustomizationLayoutView){
+	'./customizationLayout',
+	'./extraDetails'
+	], function(itemTemplate, CustomizationLayoutView, extraDetailsBehavior){
 	var CatalogGroupItemView = Mn.View.extend({
 		template: itemTemplate,
 		className: 'catalog_item',
 		tagName: 'li',
+		behaviors: [extraDetailsBehavior],
 		regions: {
 			customization: '#customizationContainer'
 		},
@@ -16,7 +18,8 @@ define([
 			decrease: '[name="quantity_decrease"]',
 			quantity: '[name="quantity"]',
 			price: '[name="items_price"]',
-			addToCart: '[name="add_to_cart_btn"]'
+			addToCart: '[name="add_to_cart_btn"]',
+			details: '[name="extra-details"]'
 		},
 		events: {
 			'click @ui.increase': 'onIncrease',
@@ -43,7 +46,7 @@ define([
 			var price = this.model.get('price') * this.quantity;
 			this.ui.price.text(price.toFixed(2));
 		},
-		onCustomize: function() {
+		onCustomize: function(e) {
 			var $el = this.getRegion('customization').$el;
 			this.ui.customMark.removeClass('visible');
 			if ($el.is(':visible')) {
