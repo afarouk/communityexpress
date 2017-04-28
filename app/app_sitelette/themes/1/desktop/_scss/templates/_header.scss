@@ -7,14 +7,85 @@ header {
   align-items: center;
 
   .logo-container { 
-  	display: inline-block; 
+  	display: inline-flex;
+  	align-items: center; 
 	
 	.logo {
 	  cursor: pointer;
 	}
   }
 
-  .links-container { 
+  .share_container {
+  	  width: 25%;
+
+      .item_buttons {
+        .share_btn_block {
+          text-align: center;
+          cursor: pointer;
+          margin: 20px 0 10px 0;
+        }
+      }
+
+      .share-block {
+        // display: none;
+
+        .sms_input_block {
+          text-align: center;
+          display: none;
+
+          .sms_input {
+            background-color: transparent;
+            border: solid 1px $cart-scroll;
+            padding: 5px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+            color: $cart-text;
+          }
+
+          .sms_send_button {
+            height: 31px;
+            border: solid 1px;
+            position: relative;
+            right: 5px;
+            bottom: 1px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            color: $white;
+          }
+        }
+
+        .icons-container-wrapper {
+          .icons-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px 0;
+            width: 100%;
+
+            .text {
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background-color: #616161;
+              font-size: 20px;
+
+              i {
+                padding: 20px;
+              }
+
+              a {
+                outline: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+	.links-container { 
 	  display: inline-block; 
 	  list-style-type: none;
 

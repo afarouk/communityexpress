@@ -12,12 +12,17 @@ define([
 	'../views/popups/signout',
 	'../views/popups/forgotPassword',
 	'../views/popups/message',
-	'../views/popups/loader'
+	'../views/popups/loader',
+	'../views/landing/share',
+	'../views/popups/sendsms',
+	'../../scripts/actions/contactActions'
 	], function(appCache, h, userController, sessionActions,
-		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView, LoaderView){
+		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView, LoaderView, ShareView, SendsmsView, contactActions){
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
+
+			this.onShareBySms();
 		},
 		onLoginStatusChanged: function() {
 			this.loginView = new LoginView();
@@ -32,11 +37,53 @@ define([
 			});
 			this.layout.showChildView('popupsContainer', signin);
 			this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
+			this.listenTo(signin, 'user:signup', this.onUserSignup.bind(this));
 			this.listenTo(signin, 'user:signin', this.onUserSignin.bind(this));
 			this.listenTo(signin, 'user:forgot', this.onUserForgot.bind(this));
 			this.listenTo(signin, 'user:facebook', this.onUserFacebookLogin.bind(this));
 			this.initializeDialog(signin.$el);
 			signin.onShow();
+		},
+		onShareBySms: function() {
+			this.shareView = new ShareView();
+			this.listenTo(this.shareView, 'user:sendsmsopen', this.onUserSendsmsopen.bind(this));
+		},
+		onUserSendsmsopen: function(callback) {
+			var sendsms = new SendsmsView();
+			this.layout.showChildView('popupsContainer', sendsms);
+			this.listenTo(sendsms, 'onSendSMS', this.onSendSMS.bind(this));
+			this.initializeDialog(sendsms.$el);
+			sendsms.onShow();
+		},
+		onSendSMS: function(type, phone, uuid, shareUrl) {
+			this.dispatcher.get('popups').showMessage({
+				message: 'Sending message to... ' + phone,
+				loader: true,
+				infinite: true
+			});
+			contactActions.shareURLviaSMS(type, window.saslData.serviceAccommodatorId,
+                window.saslData.serviceLocationId, phone, uuid, shareUrl)
+                .then(function(res){
+                	if (res.success) {
+                		this.dispatcher.get('popups').showMessage({
+							message: 'Sending message success.',
+							loader: true
+						});
+                	} else {
+                		this.dispatcher.get('popups').showMessage({
+							message: res.explanation,
+							loader: true
+						});
+                	}
+                }.bind(this))
+                .fail(function(res){
+                  if (res.responseJSON && res.responseJSON.error) {
+                    this.dispatcher.get('popups').showMessage({
+							message: res.responseJSON.error.message,
+							loader: true
+						});
+                  }
+                }.bind(this));
 		},
 		initializeDialog: function($el) {
 			$el.dialog({ 
