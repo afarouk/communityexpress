@@ -88,7 +88,6 @@ define([
 		initializeDialog: function($el) {
 			$el.dialog({ 
 				autoOpen: false,
-				closeOnEscape: true,
 				draggable: false,
 				resizable: false,
 				modal: true

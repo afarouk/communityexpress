@@ -39,6 +39,19 @@ div.ui-dialog.ui-widget {
 		padding-top: 0;
 		min-height: auto !important;
 
+		button:not(.sms_send_button) {
+			width: 100%;
+			border-radius: 2px;
+			background-color: transparent;
+			border: solid 1px $cart-text;
+			color: $cart-text;
+			text-transform: uppercase;
+			padding: 10px 0;
+			font-weight: $style-semi-bold;
+			cursor: pointer;
+			margin: 10px 0;
+		}
+
 		a.forgot_btn {
 			color: $href-color;
 			outline: none;
@@ -82,19 +95,6 @@ div.ui-dialog.ui-widget {
 			label::before {
 				color: $cart-text;
 			}
-		}
-
-		button {
-			width: 100%;
-			border-radius: 2px;
-			background-color: transparent;
-			border: solid 1px $cart-text;
-			color: $cart-text;
-			text-transform: uppercase;
-			padding: 10px 0;
-			font-weight: $style-semi-bold;
-			cursor: pointer;
-			margin: 10px 0;
 		}
 
 		button.signup_btn {
@@ -168,19 +168,6 @@ div.ui-dialog.ui-widget {
 	.signup-popup {
 		padding-top: 20px;
 
-		button {
-			width: 100%;
-			border-radius: 2px;
-			background-color: transparent;
-			border: solid 1px $cart-text;
-			color: $cart-text;
-			text-transform: uppercase;
-			padding: 10px 0;
-			font-weight: $style-semi-bold;
-			cursor: pointer;
-			margin: 10px 0;
-		}
-
 		.error {
 			color: $error-color;
 			margin: -15px 0 20px 0;
@@ -198,19 +185,6 @@ div.ui-dialog.ui-widget {
 
 	.forgot-popup {
 		padding-top: 20px;
-
-		button {
-			width: 100%;
-			border-radius: 2px;
-			background-color: transparent;
-			border: solid 1px $cart-text;
-			color: $cart-text;
-			text-transform: uppercase;
-			padding: 10px 0;
-			font-weight: $style-semi-bold;
-			cursor: pointer;
-			margin: 10px 0;
-		}
 
 		.error {
 			color: $error-color;
