@@ -530,6 +530,35 @@
                     }
                   }
                 }
+
+
+                .extra_details_container {
+                  width: 100%;
+                  display: none;
+
+                  .extra-content {
+                    margin-top: 5px;
+                    background-color: #363636;
+                    padding: 5px 0;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+
+                    .item_image_detailed {
+                      display: flex;
+                      justify-content: center;
+                    }
+
+                    .item_long_description {
+                      display: flex;
+                      justify-content: center;
+                      color: $cart_text;
+                      font-size: $size-normal-small;
+                      font-weight: $style-normal;
+                      margin: 2px;
+                    }
+                  }
+                }
               }
             }
           }

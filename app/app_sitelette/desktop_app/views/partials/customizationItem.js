@@ -10,7 +10,6 @@ define([
 			checkbox: 'input[type="checkbox"]'
 		},
 		events: {
-			'click @ui.checkbox': 'onSelectionClicked',
 			'change @ui.input': 'onSelectionChanged'
 		},
 		triggers: {
@@ -27,18 +26,6 @@ define([
 		},
 		onRender: function() {
 			this.checkConfirmed();
-		},
-		onSelectionClicked: function(e) {
-			var $target = $(e.currentTarget),
-				checked = $target.is(':checked');
-			if (checked && this.selectedNumber >= this.model.get('maxSubSubCount')) {
-				//todo you can't select more then max warning
-				e.preventDefault();
-				e.stopPropagation();
-				return false;
-			} else {
-
-			}
 		},
 		checkConfirmed: function() {
 			if (this.selectedNumber === this.model.get('maxSubSubCount')) {

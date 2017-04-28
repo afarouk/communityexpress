@@ -16,12 +16,15 @@ define([
 			decrease: '[name="quantity_decrease"]',
 			quantity: '[name="quantity"]',
 			price: '[name="items_price"]',
-			addToCart: '[name="add_to_cart_btn"]'
+			addToCart: '[name="add_to_cart_btn"]',
+			details: '[name="extra-details"]',
+			detailsImage: '[name="details-image"]'
 		},
 		events: {
 			'click @ui.increase': 'onIncrease',
 			'click @ui.decrease': 'onDecrease',
-			'click @ui.customize': 'onCustomize'
+			'click @ui.customize': 'onCustomize',
+			'click' : 'onExtraDetailsToggle'
 		},
 		triggers: {
 			'click @ui.addToCart': 'items:added',
@@ -43,7 +46,7 @@ define([
 			var price = this.model.get('price') * this.quantity;
 			this.ui.price.text(price.toFixed(2));
 		},
-		onCustomize: function() {
+		onCustomize: function(e) {
 			var $el = this.getRegion('customization').$el;
 			this.ui.customMark.removeClass('visible');
 			if ($el.is(':visible')) {
@@ -53,6 +56,24 @@ define([
 				this.dispatcher.get('customize')
 					.triggerMethod('customizeItem', this);
 			}
+
+			e.preventDefault();
+			e.stopPropagation();
+		},
+
+		onExtraDetailsToggle: function(e) {
+			if ($(e.target).parents('#customizationContainer').length > 0) return;
+			var urls = this.model.get('mediaURLs');
+	    	if (!urls && !urls[0]) return;
+	    	var src = this.ui.detailsImage.attr('src');
+	    	if (src) {
+	    		this.trigger('extra:details', this);
+	    	} else {
+	    		this.ui.detailsImage.on('load', function(){
+	    			this.trigger('extra:details', this);
+	    		}.bind(this));
+	    		this.ui.detailsImage.attr('src', urls[0]);
+	    	}
 		}
 	});
 

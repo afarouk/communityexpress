@@ -20,22 +20,7 @@ define([
 			this.basket = options.basket;
 			this.options = options;
 		},
-		getVersionsFromBasket: function(model) {
-	        var versionsFromBasket = this.basket.getBasketVersions(model) || null,
-	            versions = [];
-
-	        if (!versionsFromBasket) return versions;
-	        _.each(versionsFromBasket.selectedVersions, function(version){
-	            versions.push({
-	                version: version.version,
-	                selected: version.selected,
-	                quantity: version.quantity
-	            });
-	        });
-
-	        return versions;
-	    },
-		onChildviewItemsAdded: function(childView) {
+		onChildviewItemsAdded: function(childView, event) {
 			var model = childView.model;
 			this.dispatcher.get('customize')
 				.checkCustomization(childView, model)
@@ -44,6 +29,9 @@ define([
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);
 				}.bind(this));
+
+			event.preventDefault();
+			event.stopPropagation();
 		},
 		onChildviewItemsVersionAdded: function(childView,  basketItem) {
 			this.dispatcher.get('customize')
@@ -63,7 +51,18 @@ define([
 					view.ui.customize.removeClass('opened');
 				}
 			});
+		},
+
+		onChildviewExtraDetails: function(childView) {
+			this.children.each(function(view) {
+				if(view === childView) {
+					view.ui.details.toggle('slow');
+				} else {
+					view.ui.details.slideUp('slow');
+				}
+			});
 		}
+
 	});
 	return CatalogGroupView;
 });

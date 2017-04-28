@@ -28,3 +28,15 @@
   <button class="add_to_cart_btn" name="add_to_cart_btn">add to cart</button>
 </div>
 <div class="customization_continer" id="customizationContainer"></div>
+<div name="extra-details" class="extra_details_container">
+  <div class="extra-content">
+    <% if (mediaURLs && mediaURLs[0]) { %>
+      <div class="item_image_detailed">
+        <img name="details-image" src="">
+      </div>
+    <% } %>
+    <div class="item_long_description">
+      <span><%= longDescription %></span>
+    </div>
+  </div>
+</div>
