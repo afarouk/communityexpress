@@ -33,6 +33,10 @@ define([
 		},
      	onShow: function () {
      		this.$el.dialog('open');
+               $('.cmtyx_desktop_application').addClass('with-blur');
+               $('.ui-dialog-titlebar-close').click(function() {
+                    $('.cmtyx_desktop_application').removeClass('with-blur');
+               });
      	},
      	onShowPasswordChange: function() {
      		var checked = this.ui.show_password.is(':checked');

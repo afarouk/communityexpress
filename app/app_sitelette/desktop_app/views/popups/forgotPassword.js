@@ -21,6 +21,10 @@ define([
 		},
      	onShow: function () {
      		this.$el.dialog('open');
+     		$('.cmtyx_desktop_application').addClass('with-blur');
+     		this.$el.prev().find('.ui-dialog-titlebar-close').click(function() {
+				$('.cmtyx_desktop_application').removeClass('with-blur');
+			});
      	},
      	onClose: function() {
      		this.$el.dialog('close');

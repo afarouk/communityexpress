@@ -1,11 +1,11 @@
 div.ui-dialog.ui-widget {
+	position: fixed;
 	background-color: $body-background;
 	border-radius: 2px;
 
 	&.ui-widget-content {
 		border: none;	
 	}
-
 
 	.ui-dialog-titlebar {
 		background-color: transparent;
@@ -17,12 +17,21 @@ div.ui-dialog.ui-widget {
 			margin-top: 10px;
 			font-size: $size-medium;
 			line-height: 24px;
+			white-space: normal;
+			width: 100%;
+
+			&.sendsms-title {
+				font-weight: $style-normal-strong;
+				font-size: 17px;
+				line-height: 20px;
+			}
 		}
 
 		button {
 			background: transparent;
     		border: none;
     		top: 10px;
+    		z-index: 1;
 		}
 	}
 
@@ -291,7 +300,7 @@ div.ui-dialog.ui-widget {
 	.sendsms-popup {
 	    .sms_input_block {
           text-align: center;
-          padding: 20px 0;
+          padding: 10px 0 20px 0;
 
           .sms_input {
             background-color: transparent;
@@ -314,4 +323,9 @@ div.ui-dialog.ui-widget {
           }
         }
 	}
+}
+
+.ui-widget-overlay {
+	opacity: 0.5;
+	background: #696969;
 }

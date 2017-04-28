@@ -31,6 +31,10 @@ define([
      		this.$el.dialog('open');
      		this.$el.prev().find('.ui-dialog-title').hide();
      		this.$el.prev().find('button').hide();
+     		$('.cmtyx_desktop_application').addClass('with-blur');
+     		this.$el.prev().find('.ui-dialog-titlebar-close').click(function() {
+				$('.cmtyx_desktop_application').removeClass('with-blur');
+			});
 
      		if( this.options.loader && !this.options.infinite) {
 		 		setTimeout(function(){

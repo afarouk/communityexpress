@@ -6,6 +6,7 @@ define([
 	var SendsmsView = Mn.View.extend({
 		template: template,
 		className: 'sendsms-popup',
+		attributes: { title: 'Type mobile phone number for sharing this site by sms' },
 		ui: {
 			send_sms: '.sms_send_button',
 			sms_input: '.sms_input'
@@ -15,7 +16,11 @@ define([
 		},
      	onShow: function() {
      		this.$el.dialog('open');
-     		this.$el.prev().find('.ui-dialog-title').hide();
+     		$('.cmtyx_desktop_application').addClass('with-blur');
+     		this.$el.prev().find('.ui-dialog-title').addClass('sendsms-title');
+     		this.$el.prev().find('.ui-dialog-titlebar-close').click(function() {
+				$('.cmtyx_desktop_application').removeClass('with-blur');
+			});
      	},
      	onClose: function() {
      		this.$el.dialog('close');
