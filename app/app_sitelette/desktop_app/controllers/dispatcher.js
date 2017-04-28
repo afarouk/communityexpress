@@ -59,6 +59,12 @@ define([
 				def.reject(null);
 			}, 0)
 			return def;
+		},
+
+		layoutReady: function() {
+			_.each(this.controllers, function(controller) {
+				controller.triggerMethod('layoutReady');
+			}.bind(this));
 		}
 	});
 	return new ControllersDispatcher();

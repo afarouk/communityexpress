@@ -79,7 +79,8 @@ define([
 					$('.cssload-thecube').hide();
 					$grid.show();
 					$grid.packery();
-				}, 1200);
+					dispatcher.layoutReady();
+				}.bind(this), 1200);
 			},
 			checkType: function() {
 				//TODO not ready
