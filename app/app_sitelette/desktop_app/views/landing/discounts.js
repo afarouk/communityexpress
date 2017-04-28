@@ -23,6 +23,15 @@ define([
          this.setLinksForEachDiscount();
          this.ui.sub_discount = $('#subheader-discount');
          this.ui.sub_discount.click(this.onBuy.bind(this));
+         this.initGallery();
+    },
+    initGallery: function() {
+      this.$('.owl-carousel').owlCarousel({
+        items: 1,
+        loop: true,
+        nav: true,
+        navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+      });
     },
     onBuy: function(e) {
       var $target = $(e.currentTarget),

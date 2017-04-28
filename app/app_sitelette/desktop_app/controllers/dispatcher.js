@@ -14,6 +14,7 @@ define([
 			this.initControllers();
 
 			this.get('order').renderOrder(); //shows empty cart
+			this.on('grid:update', this.updateGrid.bind(this));
 		},
 		initControllers: function() {
 			this.controllers = {
@@ -60,6 +61,18 @@ define([
 			}, 0)
 			return def;
 		},
+
+		setGrid: function($grid) {
+			this.$grid = $grid;
+		},
+
+		updateGrid: function() {
+			if (this.$grid) {
+				setTimeout(function(){
+					this.$grid.packery('shiftLayout');
+				}.bind(this), 1);
+			}
+		}
 	});
 	return new ControllersDispatcher();
 });

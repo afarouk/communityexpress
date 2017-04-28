@@ -7,14 +7,12 @@ define([
     '../../vendor/scripts/js.cookie',
     '../scripts/actions/configurationActions',
     '../scripts/actions/sessionActions',
-    './controllers/dispatcher',
-    './temporary-component'
+    './controllers/dispatcher'
 	], function(Packery, jQueryBridget, appCache, Cookies,
-		configurationActions, sessionActions, dispatcher, 
-		temporaryComponent){
+		configurationActions, sessionActions, dispatcher){
 		var App = new Mn.Application({
 			onStart: function() {
-				this.options.initAnimationsOnPage();
+				this.options.initPackeryOnPage();
 				//Get sasl data for busineses
 				if (window.saslData) {
 			        appCache.set('saslData', window.saslData);
@@ -64,12 +62,27 @@ define([
 				dispatcher.get('landing').start();
 			},
 
-			initAnimationsOnPage: function() {
+			initPackeryOnPage: function() {
+				//disabling autofocus in popups
+				$.ui.dialog.prototype._focusTabbable = function(){};
+
 				jQueryBridget( 'packery', Packery, $ );
-		        
-		        //Yuras temporary code
-				temporaryComponent.init();
-			}, 
+
+				var $grid = $('.grid').packery({
+				  itemSelector: '.grid-item',
+				  columnWidth: '.grid-sizer',
+				  percentPosition: true,
+				  gutter: '.gutter-sizer'
+				});
+
+				setTimeout(function() { 
+					$('.cssload-thecube').hide();
+					$grid.show();
+					$grid.packery();
+				}, 1200);
+
+				dispatcher.setGrid($grid); //temporary tweak
+			},
 			checkType: function() {
 				//TODO not ready
                 var type = window.community.type,
