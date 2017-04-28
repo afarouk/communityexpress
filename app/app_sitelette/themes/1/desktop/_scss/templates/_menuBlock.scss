@@ -2,7 +2,7 @@
   .home_tabs_list {    
     .cmtyx_menu_block {
       width: 66%;
-      max-height: 768px;
+      // max-height: 768px;
 
       #blinder-region {
         width: 100%;
@@ -34,7 +34,7 @@
 
       .body {
         padding: 0;
-        height: 702px;
+        // height: 702px;
         overflow-y: auto;
 
         .catalog_main_container {
@@ -169,7 +169,7 @@
               li.catalog_item {
                 display: flex;
                 flex-wrap: wrap;
-                padding: 10px 0 15px 0;
+                padding: 10px 0 10px 0;
                 border-bottom: solid 1px $cart-divider;
 
                 &:last-child {
@@ -187,9 +187,9 @@
                   .item_title {
                     display: inline-block;
                     color: $cart_text;
-                    font-size: $size-sm-medium;
+                    font-size: $size-lg-normal;
                     font-weight: $style-semi-bold;
-                    text-transform: uppercase;
+                    // text-transform: uppercase;
                     margin-bottom: 10px;
                   }
 
@@ -197,7 +197,7 @@
                     color: $cart_text;
                     font-size: $size-normal-small;
                     font-weight: $style-normal;
-                    margin-bottom: 15px;
+                    margin-bottom: 10px;
                   }
 
                   .customize_btn {
@@ -308,6 +308,7 @@
                           border: solid 1px $cart-scroll;
                           color: $cart-text;
                           min-width: 100px;
+                          min-height: 35px;
                         }
                       }
                     }

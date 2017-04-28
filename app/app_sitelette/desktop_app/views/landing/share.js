@@ -22,21 +22,7 @@ define([
 
     showSMSInput: function(e) {
       e.preventDefault();
-      var $target = $(e.currentTarget),
-         $el = $target.parent().parent().prev();
-
-      $el.slideToggle();
-    },
-
-    onSendSMS: function(e) {
-      var $el = this.$el.find('.sms_input_block'),
-         $target = $(e.currentTarget),
-         demo = window.community.demo ? 'demo=true&' : '',
-         shareUrl = window.location.href.split('?')[0] +
-          '?' + demo,
-         val = $target.prev().val();
-      //todo toggle block 
-      this.trigger('onSendSMS', 'SITELETTE', val, null, shareUrl);
+      this.trigger('user:sendsmsopen');
     },
 
     getLinks: function() {

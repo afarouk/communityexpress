@@ -66,6 +66,14 @@ div.ui-dialog.ui-widget {
 				cursor: pointer;
 			}
 		}
+	}
+
+	.signin-popup {
+		.material-textfield {
+			label::before {
+				color: $cart-text;
+			}
+		}
 
 		button {
 			width: 100%;
@@ -78,14 +86,6 @@ div.ui-dialog.ui-widget {
 			font-weight: $style-semi-bold;
 			cursor: pointer;
 			margin: 10px 0;
-		}
-	}
-
-	.signin-popup {
-		.material-textfield {
-			label::before {
-				color: $cart-text;
-			}
 		}
 
 		button.signup_btn {
@@ -159,6 +159,19 @@ div.ui-dialog.ui-widget {
 	.signup-popup {
 		padding-top: 20px;
 
+		button {
+			width: 100%;
+			border-radius: 2px;
+			background-color: transparent;
+			border: solid 1px $cart-text;
+			color: $cart-text;
+			text-transform: uppercase;
+			padding: 10px 0;
+			font-weight: $style-semi-bold;
+			cursor: pointer;
+			margin: 10px 0;
+		}
+
 		.error {
 			color: $error-color;
 			margin: -15px 0 20px 0;
@@ -176,6 +189,19 @@ div.ui-dialog.ui-widget {
 
 	.forgot-popup {
 		padding-top: 20px;
+
+		button {
+			width: 100%;
+			border-radius: 2px;
+			background-color: transparent;
+			border: solid 1px $cart-text;
+			color: $cart-text;
+			text-transform: uppercase;
+			padding: 10px 0;
+			font-weight: $style-semi-bold;
+			cursor: pointer;
+			margin: 10px 0;
+		}
 
 		.error {
 			color: $error-color;
@@ -260,5 +286,32 @@ div.ui-dialog.ui-widget {
 			margin-bottom: 10px;
 			display: inline-block;
 		}
+	},
+
+	.sendsms-popup {
+	    .sms_input_block {
+          text-align: center;
+          padding: 20px 0;
+
+          .sms_input {
+            background-color: transparent;
+            border: solid 1px $cart-scroll;
+            padding: 5px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+            color: $cart-text;
+          }
+
+          .sms_send_button {
+            height: 31px;
+            border: solid 1px;
+            position: relative;
+            right: 5px;
+            bottom: 1px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            color: $white;
+          }
+        }
 	}
 }

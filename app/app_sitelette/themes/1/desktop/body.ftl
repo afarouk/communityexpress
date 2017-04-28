@@ -8,6 +8,40 @@
             <div class="logo-container cmtyx_special_background_color">
                 <img class="logo" src="${bannerImageURL}" alt="logo">
             </div>
+            
+            <div id="cmtyx_share_block" class="cmtyx_share_block share_container">
+              <div class="share-block">
+                <div class="sms_input_block">
+                  <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                  <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+                </div>
+                <div class="icons-container-wrapper">
+                    <div class="icons-container">
+                        <div class="text sms_block">
+                            <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
+                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="text email_block">
+                            <a href="" name="share_email" class="share_email cmtyx_text_color_1">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="text facebook_block">
+                            <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="text twitter_block">
+                            <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
             <div class="links-container">
                 <div id="login-container" class="link"></div> 
             </div>
@@ -24,38 +58,7 @@
             </div>
        		</#if>
 
-          <div id="cmtyx_share_block" class="cmtyx_share_block share_container">
-            <div class="share-block">
-              <div class="sms_input_block">
-                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
-                <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
-              </div>
-              <div class="icons-container-wrapper">
-                  <div class="icons-container">
-                      <div class="text sms_block">
-                          <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
-                              <i class="fa fa-mobile" aria-hidden="true"></i>
-                          </a>
-                      </div>
-                      <div class="text email_block">
-                          <a href="" name="share_email" class="share_email cmtyx_text_color_1">
-                              <i class="fa fa-envelope" aria-hidden="true"></i>
-                          </a>
-                      </div>
-                      <div class="text facebook_block">
-                          <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-                              <i class="fa fa-facebook" aria-hidden="true"></i>
-                          </a>
-                      </div>
-                      <div class="text twitter_block">
-                          <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-                              <i class="fa fa-twitter" aria-hidden="true"></i>
-                          </a>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
+          
 
           <div class="grid-container cmtyx_desktop_application">
               <div class="cssload-thecube">
