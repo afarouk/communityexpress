@@ -7,7 +7,7 @@ define([
 		tagName: 'li',
 		ui: {
 			input: 'input',
-			checkbox: '[name="custom_checkbox"]'
+			checkbox: 'input[type="checkbox"]'
 		},
 		events: {
 			'click @ui.checkbox': 'onSelectionClicked',
