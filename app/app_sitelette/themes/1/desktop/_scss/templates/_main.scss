@@ -17,6 +17,9 @@
 }
 
 .cmtyx_desktop_application {
+  .owl-stage-outer {
+    column-count: 1;
+  }
   &.with-blur {
     filter: blur(1px);
   }
