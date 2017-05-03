@@ -30,6 +30,7 @@ define([
      	},
      	onClose: function() {
      		this.$el.dialog('close');
+     		$('.cmtyx_desktop_application').removeClass('with-blur');
      	},
      	onProceedSubmit: function() {
      		var email = this.ui.email.val(),

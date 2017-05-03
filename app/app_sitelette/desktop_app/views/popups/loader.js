@@ -17,6 +17,7 @@ define([
      	},
      	hide: function() {
      		this.$el.dialog('close');
+               $('.cmtyx_desktop_application').removeClass('with-blur');
      	}
 	});
 	return LoaderView;

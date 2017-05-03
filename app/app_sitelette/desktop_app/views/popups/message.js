@@ -48,6 +48,7 @@ define([
      	},
      	onClose: function() {
      		this.$el.dialog('close');
+     		$('.cmtyx_desktop_application').removeClass('with-blur');
      	}
 	});
 	return MessageView;

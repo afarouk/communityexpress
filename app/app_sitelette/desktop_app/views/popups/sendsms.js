@@ -24,6 +24,7 @@ define([
      	},
      	onClose: function() {
      		this.$el.dialog('close');
+     		$('.cmtyx_desktop_application').removeClass('with-blur');
      	},
      	onSendSMS: function(e) {
 	      var $el = this.$el.find('.sms_input_block'),
