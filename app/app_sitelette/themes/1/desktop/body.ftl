@@ -70,14 +70,13 @@
 
               <div class="grid home_tabs_list">
 
-                <div class="grid-sizer"></div>
-                <div class="gutter-sizer"></div>
-
+                <!-- <div class="grid-sizer"></div> -->
+                <!-- <div class="gutter-sizer"></div> -->
+              <div class="left-block">
                 <!-- there is catalogs block -->
                 <div id="catalogs-layout" class="grid-item cmtyx_menu_block"></div>
 
-                <!-- there is cart/order block -->
-                <div id="order-layout" class="grid-item cmtyx_cart_block"></div>
+                
 
                 <!-- <#if (promotions)?has_content >
 	                <div class="grid-item cmtyx_promotion_block">
@@ -560,6 +559,12 @@
                         </div>
                     </div>
                 </div> -->
+              </div>
+
+              <div class="right-block">
+                <!-- there is cart/order block -->
+                <div id="order-layout" class="grid-item cmtyx_cart_block"></div>
+              </div>
 
               </div>
           </div>

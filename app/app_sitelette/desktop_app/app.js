@@ -68,19 +68,21 @@ define([
 
 				jQueryBridget( 'packery', Packery, $ );
 
-				var $grid = $('.grid').packery({
-				  itemSelector: '.grid-item',
-				  columnWidth: '.grid-sizer',
-				  percentPosition: true,
-				  gutter: '.gutter-sizer'
-				});
+				var $grid = $('.grid');
+				
+				// $grid.packery({
+				//   itemSelector: '.grid-item',
+				//   columnWidth: '.grid-sizer',
+				//   percentPosition: true,
+				//   gutter: '.gutter-sizer'
+				// });
 
-				setTimeout(function() { 
-					$('.cssload-thecube').hide();
-					$grid.show();
-					$grid.packery();
-					dispatcher.layoutReady();
-				}.bind(this), 1200);
+				// setTimeout(function() { 
+				// 	$('.cssload-thecube').hide();
+				// 	$grid.show();
+				// 	$grid.packery();
+				// 	dispatcher.layoutReady();
+				// }.bind(this), 1200);
 			},
 			checkType: function() {
 				//TODO not ready

@@ -31,7 +31,7 @@
     padding: 30px 0 30px 0;
     width: 92%;
     max-width: 1650px;
-    display: none;
+    display: flex;
     
     /* clearfix */
     &:after {
@@ -40,16 +40,28 @@
       clear: both;
     }
 
-    .gutter-sizer { width: 2%; }
+    .left-block {
+      // display: flex;
+      width: 66%;
+      margin-right: 2%;
+    }
 
-    .grid-sizer { width: 32%; }
+    .right-block {
+      display: inline-block;
+      width: 32%;
+    }
+
+    // .gutter-sizer { width: 2%; }
+
+    // .grid-sizer { width: 32%; }
 
     .grid-item {
-      width: 32%;
+      display: inline-block;
+      width: 49%;
       float: left;
       background-color: $cart-cards;
       border-radius: 0 0 3px 3px;
-      margin-bottom: 1%;
+      margin: 0 2% 1% 0;
 
       & > .header { 
         padding: 12px 18px;
