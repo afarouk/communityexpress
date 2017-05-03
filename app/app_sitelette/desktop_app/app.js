@@ -77,12 +77,12 @@ define([
 				//   gutter: '.gutter-sizer'
 				// });
 
-				// setTimeout(function() { 
-				// 	$('.cssload-thecube').hide();
-				// 	$grid.show();
-				// 	$grid.packery();
-				// 	dispatcher.layoutReady();
-				// }.bind(this), 1200);
+				setTimeout(function() { 
+					$('.cssload-thecube').hide();
+					$grid.css('display', 'flex');;
+					// $grid.packery();
+					dispatcher.layoutReady();
+				}.bind(this), 1200);
 			},
 			checkType: function() {
 				//TODO not ready

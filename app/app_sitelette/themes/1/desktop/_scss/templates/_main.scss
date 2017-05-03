@@ -27,11 +27,11 @@
   }
 
   .grid {
+    display: none;
     margin: 0 auto; 
     padding: 30px 0 30px 0;
     width: 92%;
     max-width: 1650px;
-    display: flex;
 
     .left-block {
       width: 66%;
