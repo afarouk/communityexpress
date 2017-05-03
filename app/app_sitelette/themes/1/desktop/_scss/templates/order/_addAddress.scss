@@ -3,10 +3,11 @@
     .cmtyx_cart_block {
       .add_address_page {
         padding: 15px 10px 10px 10px;
+        min-height: 702px;
 
         .body {
-          height: calc(100% - 90px);
-          overflow-y: auto;
+          // height: calc(100% - 90px);
+          // overflow-y: auto;
           padding-right: 5px;
 
           .wrapper {

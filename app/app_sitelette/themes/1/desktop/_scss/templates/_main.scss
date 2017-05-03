@@ -36,6 +36,14 @@
     .left-block {
       width: 66%;
       margin-right: 2%;
+
+      .wrapper {
+        width: 100%;
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
     }
 
     .right-block {
@@ -46,10 +54,9 @@
     .grid-item {
       display: inline-block;
       width: 49%;
-      float: left;
       background-color: $cart-cards;
       border-radius: 0 0 3px 3px;
-      margin: 0 2% 1% 0;
+      margin: 0 0 2% 0;
 
       & > .header { 
         padding: 12px 18px;
