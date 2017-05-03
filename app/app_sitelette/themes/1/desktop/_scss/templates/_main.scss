@@ -32,16 +32,8 @@
     width: 92%;
     max-width: 1650px;
     display: flex;
-    
-    /* clearfix */
-    &:after {
-      content: '';
-      display: block;
-      clear: both;
-    }
 
     .left-block {
-      // display: flex;
       width: 66%;
       margin-right: 2%;
     }
@@ -50,10 +42,6 @@
       display: inline-block;
       width: 32%;
     }
-
-    // .gutter-sizer { width: 2%; }
-
-    // .grid-sizer { width: 32%; }
 
     .grid-item {
       display: inline-block;
