@@ -34,15 +34,22 @@
     max-width: 1650px;
 
     .left-block {
-      width: 66%;
-      margin-right: 2%;
+      width: calc(68% - 30px);
+      margin-right: 30px;
 
       .wrapper {
         width: 100%;
-        display: inline-flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: flex-start;
+        -webkit-column-count: 2;
+           -moz-column-count: 2;
+                column-count: 2;
+        -webkit-column-gap: 30px;
+           -moz-column-gap: 30px;
+                column-gap: 30px;
+
+        // display: flex;
+        // flex-wrap: wrap;
+        // justify-content: space-between;
+        // align-items: flex-start;
       }
     }
 
@@ -54,10 +61,10 @@
 
     .grid-item {
       display: inline-block;
-      width: 49%;
+      width: 100%;
       background-color: $cart-cards;
       border-radius: 0 0 3px 3px;
-      margin: 0 0 2% 0;
+      margin: 0 0 30px 0;
 
       & > .header { 
         padding: 12px 18px;

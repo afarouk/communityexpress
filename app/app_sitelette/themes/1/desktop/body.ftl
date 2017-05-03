@@ -122,6 +122,35 @@
                   </div> -->
                   
                   <div class="wrapper">
+                  
+                  <!-- there is welcome block -->
+                    <div class="grid-item cmtyx_welcome_block">
+                      <div class="body">
+                        <#if (medias)?has_content >
+                          <img src="${medias[0].URL}" />
+                        <#else>
+                          <img src="themes/1/placeholder_images/welocome_img.png"></img>
+                        </#if>
+                        <div class="text-container">
+                          <#if (medias)?has_content >
+                            <#if (medias[0]??) >
+                              <div class="title">${medias[0].title}</div>
+                              <div class="undertitle">${medias[0].message}</div>
+                            <#else>
+                              <div class="title">(no title)</div>
+                              <div class="undertitle">(no message) </div>
+                            </#if>
+                          </#if>
+                          
+                          <!-- <span class="open_label">we are open</span>    
+                          <div class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></div> -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <!----- End of welcome block  ---------------->
+
+
                     <!----- Discount coupons  ---------------->
                 
                     <div id="cmtyx_promocodes_block" class="grid-item cmtyx_promocodes_block">
@@ -209,33 +238,6 @@
                     </div>
                   
                     <!----- End of Discount coupons  ---------------->
-
-                    <!-- there is welcome block -->
-                    <div class="grid-item cmtyx_welcome_block">
-                      <div class="body">
-                        <#if (medias)?has_content >
-                          <img src="${medias[0].URL}" />
-                        <#else>
-                          <img src="themes/1/placeholder_images/welocome_img.png"></img>
-                        </#if>
-                        <div class="text-container">
-                          <#if (medias)?has_content >
-                            <#if (medias[0]??) >
-                              <div class="title">${medias[0].title}</div>
-                              <div class="undertitle">${medias[0].message}</div>
-                            <#else>
-                              <div class="title">(no title)</div>
-                              <div class="undertitle">(no message) </div>
-                            </#if>
-                          </#if>
-                          
-                          <!-- <span class="open_label">we are open</span>    
-                          <div class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></div> -->
-                        </div>
-                      </div>
-                    </div>
-
-                    <!----- End of welcome block  ---------------->
 
                     <!----- Promotions  ---------------->
                     <div id="cmtyx_promotion_block" class="grid-item cmtyx_promotion_block">
