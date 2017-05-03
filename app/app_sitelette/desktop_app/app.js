@@ -12,7 +12,7 @@ define([
 		configurationActions, sessionActions, dispatcher){
 		var App = new Mn.Application({
 			onStart: function() {
-				this.options.initPackeryOnPage();
+				this.options.initLayout();
 				//Get sasl data for busineses
 				if (window.saslData) {
 			        appCache.set('saslData', window.saslData);
@@ -62,29 +62,11 @@ define([
 				dispatcher.get('landing').start();
 			},
 
-			initPackeryOnPage: function() {
+			initLayout: function() {
 				//disabling autofocus in popups
 				$.ui.dialog.prototype._focusTabbable = function(){};
 
-				jQueryBridget( 'packery', Packery, $ );
-
-				// var $grid = $('.grid');
-
 				dispatcher.layoutReady();
-				
-				// $grid.packery({
-				//   itemSelector: '.grid-item',
-				//   columnWidth: '.grid-sizer',
-				//   percentPosition: true,
-				//   gutter: '.gutter-sizer'
-				// });
-
-				// setTimeout(function() { 
-				// 	$('.cssload-thecube').hide();
-				// 	$grid.show();
-				// 	$grid.packery();
-				// 	dispatcher.layoutReady();
-				// }.bind(this), 1200);
 			},
 			checkType: function() {
 				//TODO not ready
