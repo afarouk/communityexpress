@@ -20,7 +20,6 @@
     "jquery-mobile": "^1.4.1",
     "jquery-ui-dist": "^1.12.1",
     "lodash": "^3.5.0",
-    "packery": "^2.1.1",
     "strftime": "^0.7.0",
     "underscore": "^1.8.3"
   },

@@ -1,14 +1,12 @@
 'use strict';
 
 define([
-    'packery/js/packery',
-    'jquery-bridget/jquery-bridget',
     '../scripts/appCache.js',
     '../../vendor/scripts/js.cookie',
     '../scripts/actions/configurationActions',
     '../scripts/actions/sessionActions',
     './controllers/dispatcher'
-	], function(Packery, jQueryBridget, appCache, Cookies,
+	], function(appCache, Cookies,
 		configurationActions, sessionActions, dispatcher){
 		var App = new Mn.Application({
 			onStart: function() {
