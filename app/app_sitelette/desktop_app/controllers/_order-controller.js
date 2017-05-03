@@ -26,21 +26,21 @@ define([
 		onLayoutReady: function() {
 			var scrollTimeout;
 			$(window).on("resize", this.resizeWindow.bind(this));
-			//with 'transition: 1.5s;'
 			$(window).on("scroll", function(){
 				if (scrollTimeout) {
 					clearTimeout(scrollTimeout);
 				}
-				scrollTimeout = setTimeout(this.scrollWindow.bind(this), 600)
+				scrollTimeout = setTimeout(this.moveCart.bind(this), 600)
 			}.bind(this));
 			this.layoutTop = this.layout.$el.offset().top;
+			this.moveCart();
 		},
 		resizeWindow: function() {
 			this.getRegionView('orderContainer', function(view) {
 				view.triggerMethod('windowResize');
 			});
 		},
-		scrollWindow: function() {
+		moveCart: function() {
 			var scroll = $(window).scrollTop(),
 				indent = scroll - this.layoutTop;
 			if (indent < 0) {
