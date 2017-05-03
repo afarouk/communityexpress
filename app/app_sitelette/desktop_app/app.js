@@ -68,7 +68,9 @@ define([
 
 				jQueryBridget( 'packery', Packery, $ );
 
-				var $grid = $('.grid');
+				// var $grid = $('.grid');
+
+				dispatcher.layoutReady();
 				
 				// $grid.packery({
 				//   itemSelector: '.grid-item',

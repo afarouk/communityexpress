@@ -24,30 +24,30 @@ define([
 			this.layout = new OrderLayoutView();
 		},
 		onLayoutReady: function() {
+			var scrollTimeout;
 			$(window).on("resize", this.resizeWindow.bind(this));
-			//TODO make interval scroll and set cart top position
 			//with 'transition: 1.5s;'
-			//!!!!!!!!!!!!!!!!!!!^^^
-			// $(window).on("scroll", function(){ 
-			// 	setTimeout(this.scrollWindow.bind(this), 10)
-			// }.bind(this));
-			// this.layoutTop = this.layout.$el.offset().top;
-			// console.log(this.layoutTop);
+			$(window).on("scroll", function(){
+				if (scrollTimeout) {
+					clearTimeout(scrollTimeout);
+				}
+				scrollTimeout = setTimeout(this.scrollWindow.bind(this), 600)
+			}.bind(this));
+			this.layoutTop = this.layout.$el.offset().top;
 		},
 		resizeWindow: function() {
 			this.getRegionView('orderContainer', function(view) {
 				view.triggerMethod('windowResize');
 			});
 		},
-		// scrollWindow: function() {
-		// 	var scroll = $(window).scrollTop(),
-		// 		elTop = this.layout.$el.offset().top,
-		// 		indent = scroll - 130;
-		// 	console.log(indent);
-		// 	if (indent > 0) {
-		// 		this.layout.$el.css('top', indent + 30 + 'px');
-		// 	}
-		// },
+		scrollWindow: function() {
+			var scroll = $(window).scrollTop(),
+				indent = scroll - this.layoutTop;
+			if (indent < 0) {
+				indent = 0;
+			}
+			this.layout.$el.css('top', indent + 'px');
+		},
 		renderOrder: function(options, changed) {
 			var cartPage = new CartPageView(options, changed);
 			this.layout.showChildView('orderContainer', cartPage);
