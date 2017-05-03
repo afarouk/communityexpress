@@ -2,6 +2,9 @@
   .home_tabs_list {    
     .cmtyx_cart_block {
       position: relative;
+      width: 100%;
+      margin: 0;
+      transition: 0.8s;
 
       #cart-loader-region {
         width: 100%;
@@ -36,7 +39,6 @@
       }
 
       .body {
-        height: 702px;
         padding: 0;
         
         .circles_block {
@@ -178,8 +180,8 @@
         .tabcontent {
             display: none;
             border-top: none;
-            height: calc(100% - 150px);
-            overflow-y: auto;
+            // height: calc(100% - 150px);
+            // overflow-y: auto;
 
             input[type='radio'] {
               margin: 0 5px 15px 0;
@@ -464,7 +466,7 @@
         }
         
         .page {
-          height: 100%;
+          // height: 100%;
           position: relative;
 
           .quantity_container {

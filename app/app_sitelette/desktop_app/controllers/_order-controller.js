@@ -22,13 +22,36 @@ define([
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
-
+		},
+		onLayoutReady: function() {
+			var scrollTimeout;
 			$(window).on("resize", this.resizeWindow.bind(this));
+			$(window).on("scroll", function(){
+				if (scrollTimeout) {
+					clearTimeout(scrollTimeout);
+				}
+				scrollTimeout = setTimeout(this.moveCart.bind(this), 600)
+			}.bind(this));
+			this.layoutTop = this.layout.$el.offset().top;
+			this.moveCart();
 		},
 		resizeWindow: function() {
 			this.getRegionView('orderContainer', function(view) {
 				view.triggerMethod('windowResize');
 			});
+		},
+		moveCart: function() {
+			var scroll = $(window).scrollTop(),
+				indent = scroll - this.layoutTop,
+				$parent = this.layout.$el.parent(),
+				height = this.layout.$el.height(),
+				parentHeight;
+			if (indent < 0) {
+				indent = 0;
+			}
+			this.layout.$el.css('top', indent + 'px');
+			parentHeight = $parent.height();
+			$parent.height(height + indent + 'px');
 		},
 		renderOrder: function(options, changed) {
 			var cartPage = new CartPageView(options, changed);
@@ -37,6 +60,7 @@ define([
 			this.options = options;
 			this.dispatcher.get('catalogs').hideBlinder();
 			appCache.set('orderInProcess', false);
+			this.moveCart();
 		},
 		showLoader: function() {
 			var cartLoader = new CartLoader();
@@ -107,6 +131,7 @@ define([
             this.layout.showChildView('orderContainer', chooseAddress);
             this.listenTo(chooseAddress, 'onNextStep', this.onChooseAddressNext.bind(this, model));
             this.listenTo(chooseAddress, 'onBackStep', this.onChooseAddressBack.bind(this, model));
+            this.moveCart();
 		},
 		onChooseAddressNext: function(model, address, active) {
 			console.log(address);

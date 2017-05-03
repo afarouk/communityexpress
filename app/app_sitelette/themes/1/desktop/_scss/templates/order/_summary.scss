@@ -3,7 +3,8 @@
     .cmtyx_cart_block {
       .summary_page {
         padding: 15px 10px 70px 10px;
-        
+        height: 702px;
+
         .navigation_block {
           .nav_next_btn {
             visibility: hidden;
@@ -11,7 +12,7 @@
         }
 
         .summary-wrapper {
-          height: calc(100% - 80px);
+          height: calc(100% - 90px);
           overflow-y: auto;
           padding-right: 10px;
         }
