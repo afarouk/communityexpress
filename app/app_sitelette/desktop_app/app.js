@@ -66,21 +66,11 @@ define([
 				//disabling autofocus in popups
 				$.ui.dialog.prototype._focusTabbable = function(){};
 
-				jQueryBridget( 'packery', Packery, $ );
-
 				var $grid = $('.grid');
-				
-				// $grid.packery({
-				//   itemSelector: '.grid-item',
-				//   columnWidth: '.grid-sizer',
-				//   percentPosition: true,
-				//   gutter: '.gutter-sizer'
-				// });
 
 				setTimeout(function() { 
 					$('.cssload-thecube').hide();
-					$grid.css('display', 'flex');;
-					// $grid.packery();
+					$grid.addClass('flex-container');
 					dispatcher.layoutReady();
 				}.bind(this), 1200);
 			},

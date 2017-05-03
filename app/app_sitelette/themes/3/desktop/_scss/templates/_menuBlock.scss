@@ -1,8 +1,8 @@
 .cmtyx_desktop_application {
   .home_tabs_list {    
     .cmtyx_menu_block {
-      width: 66%;
-      max-height: 768px;
+      width: 100%;
+      position: relative;
 
       #blinder-region {
         width: 100%;
@@ -34,7 +34,6 @@
 
       .body {
         padding: 0;
-        height: 702px;
         overflow-y: auto;
 
         .catalog_main_container {

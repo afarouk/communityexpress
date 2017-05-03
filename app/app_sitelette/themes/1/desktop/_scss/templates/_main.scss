@@ -36,6 +36,10 @@
     width: 92%;
     max-width: 1650px;
 
+    &.flex-container {
+      display: flex;
+    }
+
     .left-block {
       width: calc(68% - 30px);
       margin-right: 30px;
