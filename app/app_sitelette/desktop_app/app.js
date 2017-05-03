@@ -12,7 +12,7 @@ define([
 		configurationActions, sessionActions, dispatcher){
 		var App = new Mn.Application({
 			onStart: function() {
-				this.options.initPackeryOnPage();
+				this.options.initLayout();
 				//Get sasl data for busineses
 				if (window.saslData) {
 			        appCache.set('saslData', window.saslData);
@@ -62,7 +62,7 @@ define([
 				dispatcher.get('landing').start();
 			},
 
-			initPackeryOnPage: function() {
+			initLayout: function() {
 				//disabling autofocus in popups
 				$.ui.dialog.prototype._focusTabbable = function(){};
 
