@@ -855,7 +855,7 @@ com.faralam.getServiceConfigurations = function (URL) {
         var settingMenu = [];
 
         //var config_arr = ['reservationService', 'mediaservice', 'messagingService', 'promotionService', 'appointmentService', 'userSASLService', 'emailService', 'smsService', 'addEditSASL', 'catalog', 'onlineOrder', 'openingHours', 'saslLogoIcon', 'saslAppIcon', 'saslMetadata', 'saslPreview', 'customerCare', 'userSettings', 'servicestatus' , 'adAlertService','htmlEmailService','widgetService','pollingContestService','photoContestService','checkinContestService','wallService','orderSiteCardsService','drivingDirectionsService','clickToCallService','version'];
-        var config_arr = ['mediaservice', 'promotionService', 'userSASLService', 'messagingService', 'onlineOrder', 'openingHours', 'saslMetadata', 'saslLogoIcon', 'saslAppIcon', 'emailService', 'smsService', 'servicestatus', 'catalog', 'pollingContestService', 'photoContestService', 'wallService', 'adAlertService', 'htmlEmailService', 'widgetService', 'orderSiteCardsService', 'drivingDirectionsService', 'clickToCallService', 'qrCodeScanService', 'themeSelectionService', 'loyaltyService', 'eventsService', 'videoService', 'customerCare', 'userSettings','saslPreview','discountPromoCodeService','itemsForSaleService','customizeService'];//,''
+        var config_arr = ['mediaservice', 'promotionService', 'userSASLService', 'messagingService', 'onlineOrder', 'openingHours', 'saslMetadata', 'saslLogoIcon', 'saslAppIcon', 'emailService', 'smsService', 'servicestatus', 'catalogPortal', 'pollingContestService', 'photoContestService', 'wallService', 'adAlertService', 'htmlEmailService', 'widgetService', 'orderSiteCardsService', 'drivingDirectionsService', 'clickToCallService', 'qrCodeScanService', 'themeSelectionService', 'loyaltyService', 'eventsService', 'videoService', 'customerCare', 'userSettings','saslPreview','discountPromoCodeService','itemsForSaleService','customizeService'];//,''
 
         for (var i = 0; i < config_arr.length; i++) {
             if (data['' + config_arr[i] + '']) {
@@ -1237,7 +1237,7 @@ com.faralam.StartScreenNavigate = function (config) {
             Ext.getCmp('UpdateAppIcon_pageHeader').update('<span style="color:#000;font-size:20px; font-weight: bold;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');
             Ext.getCmp('main_tab').setActiveTab(20);
         }
-    } else if (config == 'catalog') {
+    } else if (config == 'catalogPortal') {
         if (sessionStorage.SASLNAME) {
             Ext.getCmp('main_tab').down('#start_screen').setDisabled(true);
             Ext.getCmp('main_tab').down('#CatalogMenu').setDisabled(false);
