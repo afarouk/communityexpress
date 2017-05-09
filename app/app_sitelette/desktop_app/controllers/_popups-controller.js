@@ -90,7 +90,8 @@ define([
 				autoOpen: false,
 				draggable: false,
 				resizable: false,
-				modal: true
+				modal: true,
+				closeOnEscape: false
 			});
 		},
 		onUserSignin: function(creds, onClose, callback) {

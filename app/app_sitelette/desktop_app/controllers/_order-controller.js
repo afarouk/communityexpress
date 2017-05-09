@@ -45,13 +45,30 @@ define([
 				indent = scroll - this.layoutTop,
 				$parent = this.layout.$el.parent(),
 				height = this.layout.$el.height(),
-				parentHeight;
+				parentHeight,
+				$container = $('.grid'),
+				containerHeight = $container.parent().height(),
+				containerPaddings = parseInt($container.css('padding')) * 2;
+
 			if (indent < 0) {
 				indent = 0;
 			}
-			this.layout.$el.css('top', indent + 'px');
 			parentHeight = $parent.height();
-			$parent.height(height + indent + 'px');
+			
+
+			if( parentHeight + indent >=  containerHeight - containerPaddings) {
+				$parent.height(height + 'px');
+
+				if (parentHeight == containerHeight - containerPaddings) {
+					this.layout.$el.css('top', '0px');
+				} else {
+					this.layout.$el.css('top', containerHeight - height - containerPaddings + 'px');
+				}
+			} else {
+				$parent.height(height + indent + 'px');
+				this.layout.$el.css('top', indent + 'px')
+			}
+
 		},
 		renderOrder: function(options, changed) {
 			var cartPage = new CartPageView(options, changed);
