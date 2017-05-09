@@ -290,6 +290,11 @@ if ($saslAccess || $urlKeyAccess) {
     /*end valid sitelette*/
   }
   /*end can reach server */
+}else{
+  /* make api call to get tiles html etc.
+     assign them to PHP variables
+     set some PHP variable that TilesAvailable==true
+  */
 }
 
 /* NOTE: if debug=true then PHP will echo variables and exit */

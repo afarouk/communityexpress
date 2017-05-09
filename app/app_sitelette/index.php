@@ -14,7 +14,7 @@ if (isset($pageAccess)) {
     } else {
     // include_once('sitefiles/pages/' . 'common_desktop.php');
       include_once 'themes/'.$themeId.'/desktop/head.php';
-      if ($useTemplate) {  
+      if ($useTemplate) {
         echo $siteletteJSON['landingViewHTML'];
       } else {
         include_once 'themes/'.$themeId.'/desktop/body.html';
@@ -40,5 +40,9 @@ if (isset($pageAccess)) {
    * neither sasl access or urlkey access.
    * neither URL nor sa,sl provided
    */
+   /* make the following code part of common_chalkboards.php */
+   //if($TilesAvailable){
+   //   /* include common head, tiles html then rest of the page */
+   //}
   include_once('sitefiles/pages/' . 'common_chalkboards.php');
 }
