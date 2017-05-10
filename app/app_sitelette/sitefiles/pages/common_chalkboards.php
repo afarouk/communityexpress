@@ -47,6 +47,13 @@ include 'sitefiles/includes/stylesheets.html';
 include 'sitefiles/includes/navbar.php';
   ?>
   <!-- Header end -->
+<!-- AF: check if we have tiles, if yes, add html -->
+
+  <?php
+  if ($showSASLTiles) {
+     echo $saslTilesHTML;  
+  }
+  ?>
 
   <?php
 include 'sitefiles/pages/content_index.html';

@@ -13,36 +13,36 @@ $useTemplate     = true;
  * the desktop wrapper and thus prevent a re-entrant loop*/
 
 if (validateParams('desktopiframe')) {
-  $desktopIFrame = true;
+    $desktopIFrame = true;
 } else {
-  $desktopIFrame = false;
+    $desktopIFrame = false;
 }
 
 $detect        = new Mobile_Detect;
 $iPhoneVersion = $detect->version('iPhone'); // 3.1 (float)
 if ($iPhoneVersion) {
-  $IOSversion = intval(substr($iPhoneVersion, 0, strpos($iPhoneVersion, '_')));
-  if ($IOSversion >= 10) {
-    $videoNeedsPlaceholder = false;
-  } else {
-    $videoNeedsPlaceholder = true;
-  }
+    $IOSversion = intval(substr($iPhoneVersion, 0, strpos($iPhoneVersion, '_')));
+    if ($IOSversion >= 10) {
+        $videoNeedsPlaceholder = false;
+    } else {
+        $videoNeedsPlaceholder = true;
+    }
 } else {
-  $videoNeedsPlaceholder = false;
+    $videoNeedsPlaceholder = false;
 }
 
 if ((!$detect->isMobile() && !$detect->isTablet()) && !$desktopIFrame) {
-  $isDesktop=true;
-  $userAgent='d';
-}else{
-  $isDesktop=false;
-  $userAgent='m';
+    $isDesktop=true;
+    $userAgent='d';
+} else {
+    $isDesktop=false;
+    $userAgent='m';
 }
 
 if (validateParams('demo')) {
-  $demo = true;
+    $demo = true;
 } else {
-  $demo = false;
+    $demo = false;
 }
 
 
@@ -56,50 +56,50 @@ $serverName  = $_SERVER['SERVER_NAME'];
 /* is API server specified? */
 
 if (validateParams('server')) {
-  $server = $_REQUEST['server'];
-  if (strcmp($server, 'localhost') === 0) {
-    $server = $server . ':8080';
-  }
+    $server = $_REQUEST['server'];
+    if (strcmp($server, 'localhost') === 0) {
+        $server = $server . ':8080';
+    }
 } else {
-  if ($demo) {
-    $server = 'simfel.com';
-  } else {
-    $server = 'communitylive.ws';
-  }
+    if ($demo) {
+        $server = 'simfel.com';
+    } else {
+        $server = 'communitylive.ws';
+    }
 }
 
 if (strpos($server, 'localhost') !== false) {
-  $protocol = 'http://';
+    $protocol = 'http://';
 } else {
-  $protocol = 'https://';
+    $protocol = 'https://';
 }
 
 /* is IOS embedded specified?*/
 
 if (validateParams('embedded')) {
-  $embedded = true;
+    $embedded = true;
 } else {
-  $embedded = false;
+    $embedded = false;
 }
 
 /* is serviceAccomodatorId specified (only from Portal) */
 
 if (validateParams('serviceAccommodatorId')) {
-  $serviceAccommodatorId = $_REQUEST['serviceAccommodatorId'];
+    $serviceAccommodatorId = $_REQUEST['serviceAccommodatorId'];
 } else {
-  $serviceAccommodatorId = null;
+    $serviceAccommodatorId = null;
 }
 
 if (validateParams('serviceLocationId')) {
-  $serviceLocationId = $_REQUEST['serviceLocationId'];
+    $serviceLocationId = $_REQUEST['serviceLocationId'];
 } else {
-  $serviceLocationId = null;
+    $serviceLocationId = null;
 }
 
 if (validateParams('friendlyURL')) {
-  $friendlyURL = $_REQUEST['friendlyURL'];
-  if (isset($friendlyURL)) {
-    switch ($friendlyURL) {
+    $friendlyURL = $_REQUEST['friendlyURL'];
+    if (isset($friendlyURL)) {
+        switch ($friendlyURL) {
       case 'privacypolicy':
         $pageAccess = 'common_privacypolicy.php';
         break;
@@ -147,195 +147,209 @@ if (validateParams('friendlyURL')) {
           break;
       default:
     }
-  }
+    }
 } else {
-  $friendlyURL = null;
+    $friendlyURL = null;
 }
 
 if (validateParams('UID')) {
-  $UID = $_REQUEST['UID'];
+    $UID = $_REQUEST['UID'];
 } else {
-  $UID = null;
+    $UID = null;
 }
 
 if (validateParams('t')) {
-  $type = $_REQUEST['t'];
+    $type = $_REQUEST['t'];
 } else {
-  $type = null;
+    $type = null;
 }
 
 if (validateParams('u')) {
-  $uuidURL = $_REQUEST['u'];
+    $uuidURL = $_REQUEST['u'];
 } else {
-  $uuidURL = null;
+    $uuidURL = null;
 }
 
 if (validateParams('street')) {
-  $street = $_REQUEST['street'];
+    $street = $_REQUEST['street'];
 } else {
-  $street = null;
+    $street = null;
 }
 
 if (validateParams('city')) {
-  $city = $_REQUEST['city'];
+    $city = $_REQUEST['city'];
 } else {
-  $city = null;
+    $city = null;
 }
 
 if (validateParams('number')) {
-  $number = $_REQUEST['number'];
+    $number = $_REQUEST['number'];
 } else {
-  $number = null;
+    $number = null;
 }
 
-if ((!is_null($city)) || (!is_null($street)) || (!is_null($number)) ) {
-  $hasAddress = true;
+if ((!is_null($city)) || (!is_null($street)) || (!is_null($number))) {
+    $hasAddress = true;
 } else {
-  $hasAddress = false;
+    $hasAddress = false;
 }
 
 if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId)) && !isset($pageAccess)) {
-  $saslAccess = true;
+    $saslAccess = true;
 } else {
-  $saslAccess = false;
+    $saslAccess = false;
 }
 
 if (!is_null($friendlyURL) && !isset($pageAccess)) {
-  $urlKeyAccess = true;
+    $urlKeyAccess = true;
 } else {
-  $urlKeyAccess = false;
+    $urlKeyAccess = false;
 }
 
 if (validateParams('ftl')) {
-  $ftlfile = $_REQUEST['ftl'];
+    $ftlfile = $_REQUEST['ftl'];
 } else {
-  $ftlfile = null;
+    $ftlfile = null;
 }
 
 if ($saslAccess || $urlKeyAccess) {
-
-  $errorMessage           = null;
-  $saslName               = null;
-  $appleTouchIcon60URL    = null;
-  $isPrivate              = false;
-  $canCreateAnonymousUser = false;
-  if ($urlKeyAccess) {
-    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false').'&ua='.$userAgent. '&ftl=' . $ftlfile;
-  } else {
-    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') .'&ua='.$userAgent. '&ftl=' . $ftlfile;
-  }
-
-  $siteletteJSON = makeApiCall($apiURL);
-  if ($siteletteJSON['curl_error']) {
-    $errorMessage = 'Service unavailable: ' . $siteletteJSON['curl_error'];
-
-  } else {
-    if (isset($siteletteJSON['error'])) {
-      $errorMessage = 'Service unavailable: ' . $siteletteJSON['error']['message'];
-
-
+    $errorMessage           = null;
+    $saslName               = null;
+    $appleTouchIcon60URL    = null;
+    $isPrivate              = false;
+    $canCreateAnonymousUser = false;
+    if ($urlKeyAccess) {
+        $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false').'&ua='.$userAgent. '&ftl=' . $ftlfile;
     } else {
-      $saslJSON                 = json_decode($siteletteJSON['saslJSON'], true);
-      $themeId                  = $saslJSON['themeId'];
-      $foregroundDark           = $saslJSON['themeColors']['foregroundDark'];
-      $foregroundLight          = $saslJSON['themeColors']['foregroundLight'];
-      $background              = $saslJSON['themeColors']['background'];
-      $background2              = $saslJSON['themeColors']['background2'];
-      $barFontColors            = $saslJSON['themeColors']['barFontColors'];
-      $domain                   = $saslJSON['domainEnum'];
-      $serviceAccommodatorId    = $saslJSON['serviceAccommodatorId'];
-      $serviceLocationId        = $saslJSON['serviceLocationId'];
-      $saslName                 = $saslJSON['saslName'];
-      $appleTouchIcon60URL      = $saslJSON['appleTouchIcon60URL'];
-      $androidHomeScreenIconURL = $saslJSON['androidHomeScreenIconURL'];
-      if (is_null($friendlyURL)) {
-        if (array_key_exists('anchorURL', $saslJSON)) {
-          $anchorURL = $saslJSON['anchorURL'];
-          if (array_key_exists('friendlyURL', $anchorURL)) {
-            $friendlyURL = $anchorURL['friendlyURL'];
-          } else {
-            $friendlyURL = null;
-          }
-        } else {
-          $friendlyURL = null;
-        }
-      }
+        $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteBySASLandTemplate?UID=&latitude=&longitude=&serviceAccommodatorId=' . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') .'&ua='.$userAgent. '&ftl=' . $ftlfile;
+    }
 
-      if (is_null($type)) {
-        $og_title       = $saslJSON['ogTags']['title'];
-        $og_description = $saslJSON['ogTags']['description'];
-        $og_image       = $saslJSON['ogTags']['image'];
-        $og_url         = remove_querystring_var($completeURL, 'desktopiframe');
-      } else {
-        /* make api call */
+    $siteletteJSON = makeApiCall($apiURL);
+    if ($siteletteJSON['curl_error']) {
+        $errorMessage = 'Service unavailable: ' . $siteletteJSON['curl_error'];
+    } else {
+        if (isset($siteletteJSON['error'])) {
+            $errorMessage = 'Service unavailable: ' . $siteletteJSON['error']['message'];
+        } else {
+            $saslJSON                 = json_decode($siteletteJSON['saslJSON'], true);
+            $themeId                  = $saslJSON['themeId'];
+            $foregroundDark           = $saslJSON['themeColors']['foregroundDark'];
+            $foregroundLight          = $saslJSON['themeColors']['foregroundLight'];
+            $background              = $saslJSON['themeColors']['background'];
+            $background2              = $saslJSON['themeColors']['background2'];
+            $barFontColors            = $saslJSON['themeColors']['barFontColors'];
+            $domain                   = $saslJSON['domainEnum'];
+            $serviceAccommodatorId    = $saslJSON['serviceAccommodatorId'];
+            $serviceLocationId        = $saslJSON['serviceLocationId'];
+            $saslName                 = $saslJSON['saslName'];
+            $appleTouchIcon60URL      = $saslJSON['appleTouchIcon60URL'];
+            $androidHomeScreenIconURL = $saslJSON['androidHomeScreenIconURL'];
+            if (is_null($friendlyURL)) {
+                if (array_key_exists('anchorURL', $saslJSON)) {
+                    $anchorURL = $saslJSON['anchorURL'];
+                    if (array_key_exists('friendlyURL', $anchorURL)) {
+                        $friendlyURL = $anchorURL['friendlyURL'];
+                    } else {
+                        $friendlyURL = null;
+                    }
+                } else {
+                    $friendlyURL = null;
+                }
+            }
+
+            if (is_null($type)) {
+                $og_title       = $saslJSON['ogTags']['title'];
+                $og_description = $saslJSON['ogTags']['description'];
+                $og_image       = $saslJSON['ogTags']['image'];
+                $og_url         = remove_querystring_var($completeURL, 'desktopiframe');
+            } else {
+                /* make api call */
         $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveOgTags?type=' . $type . '&uuid=' . $uuidURL;
 
-        $ogTags = makeApiCall($apiURL);
+                $ogTags = makeApiCall($apiURL);
 
-        $og_title       = $ogTags['title'];
-        $og_description = $ogTags['description'];
-        $og_image       = $ogTags['image'];
-        $og_url         = $completeURL;
+                $og_title       = $ogTags['title'];
+                $og_description = $ogTags['description'];
+                $og_image       = $ogTags['image'];
+                $og_url         = $completeURL;
+            }
 
-      }
+            $twitter_card = "summary_large_image";
+            $twitter_site = "@ChalkboardsToday";
 
-      $twitter_card = "summary_large_image";
-      $twitter_site = "@ChalkboardsToday";
-
-      $twitter_title       = $og_title;
-      $twitter_description = $og_description;
-      $twitter_image       = $og_image;
-      $twitter_url         = $og_url;
-    }
+            $twitter_title       = $og_title;
+            $twitter_description = $og_description;
+            $twitter_image       = $og_image;
+            $twitter_url         = $og_url;
+        }
     /*end valid sitelette*/
-  }
+    }
   /*end can reach server */
-}else{
-  /* make api call to get tiles html etc.
-     assign them to PHP variables
-     set some PHP variable that TilesAvailable==true
-  */
+} else {
+    $errorMessage           = null;
+    $showSASLTiles          =false;
+    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSASLTilesByUIDAndLocation?UID=&latitude=&longitude=&ua='.$userAgent. '&ftl=' . $ftlfile;
+
+    $saslTiles = makeApiCall($apiURL);
+    if ($saslTiles['curl_error']) {
+        $errorMessage = 'Service unavailable: ' . $saslTiles['curl_error'];
+    } else {
+        if (isset($saslTiles['error'])) {
+            $errorMessage = 'Service unavailable: ' . $saslTiles['error']['message'];
+        } else {
+            $showSASLTiles            = $saslTiles['showSASLTiles'];
+            $saslTilesJSON            = json_decode($saslTiles['saslTilesJSON'], true);
+            $saslTilesHTML            = $saslTiles['saslTilesHTML'];
+        }
+    /*end no error*/
+    }
+  /*end can reach server */
 }
 
 /* NOTE: if debug=true then PHP will echo variables and exit */
 
 if (validateParams('debug')) {
-  echo '$completeURL=' . $completeURL . '</br>';
-  echo '$serverName=' . $serverName . '</br>';
-  echo '$friendlyURL=' . $friendlyURL . '</br>';
-  echo '$server=' . $server . '</br>';
-  echo '$embedded=' . ($embedded ? 'true' : 'false') . '</br>';
-  echo '$demo=' . ($demo ? 'true' : 'false') . '</br>';
-  echo '$serviceAccommodatorId=' . $serviceAccommodatorId . '</br>';
-  echo '$serviceLocationId=' . $serviceLocationId . '</br>';
-  echo '$UID=' . $UID . '</br>';
-  echo '$saslAccess=' . ($saslAccess ? 'true' : 'false') . '</br>';
-  echo '$urlKeyAccess=' . ($urlKeyAccess ? 'true' : 'false') . '</br>';
-  echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false') . '</br>';
-  if (isset($IOSversion)) {
-    echo '$IOSversion=' . $IOSversion . '</br>';
-  }
-  echo '$videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') . '</br>';
-  echo '$city=' . $city . '</br>';
-  echo '$street=' . $street . '</br>';
-  echo '$number=' . $number . '</br>';
-  if (!is_null($friendlyURL)) {
-    echo '$friendlyURL is ' . $friendlyURL . '</br>';
-  } elseif ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
-    echo '$serviceAccommodatorId is ' . $serviceAccommodatorId . ' and $serviceLocationId is ' . $serviceLocationId.'</br>';
-  } else {
-    echo ' root case </br>';
-  }
-  if ($isDesktop) {
-    echo 'Desktop detected </br>';
-  }else{
-    echo 'Mobile detected </br>';
-  }
-  if(!is_null($type)){
-    echo ' $og_title:'.$og_title.'</br>';
-    echo ' $og_description:'.$og_description.'</br>'; ;
-    echo ' $og_image:'.$og_image.'</br>';
-  }
+    echo '$completeURL=' . $completeURL . '</br>';
+    echo '$serverName=' . $serverName . '</br>';
+    echo '$friendlyURL=' . $friendlyURL . '</br>';
+    echo '$server=' . $server . '</br>';
+    echo '$embedded=' . ($embedded ? 'true' : 'false') . '</br>';
+    echo '$demo=' . ($demo ? 'true' : 'false') . '</br>';
+    echo '$serviceAccommodatorId=' . $serviceAccommodatorId . '</br>';
+    echo '$serviceLocationId=' . $serviceLocationId . '</br>';
+    echo '$UID=' . $UID . '</br>';
+    echo '$saslAccess=' . ($saslAccess ? 'true' : 'false') . '</br>';
+    echo '$urlKeyAccess=' . ($urlKeyAccess ? 'true' : 'false') . '</br>';
+    echo '$desktopIFrame=' . ($desktopIFrame ? 'true' : 'false') . '</br>';
+    if (isset($IOSversion)) {
+        echo '$IOSversion=' . $IOSversion . '</br>';
+    }
+    echo '$videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') . '</br>';
+    echo '$city=' . $city . '</br>';
+    echo '$street=' . $street . '</br>';
+    echo '$number=' . $number . '</br>';
+    if (!is_null($friendlyURL)) {
+        echo '$friendlyURL is ' . $friendlyURL . '</br>';
+    } elseif ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
+        echo '$serviceAccommodatorId is ' . $serviceAccommodatorId . ' and $serviceLocationId is ' . $serviceLocationId.'</br>';
+    } else {
+        echo ' root case </br>';
+    }
+    if ($isDesktop) {
+        echo 'Desktop detected </br>';
+    } else {
+        echo 'Mobile detected </br>';
+    }
+    if (!is_null($type)) {
+        echo ' $og_title:'.$og_title.'</br>';
+        echo ' $og_description:'.$og_description.'</br>';
+        ;
+        echo ' $og_image:'.$og_image.'</br>';
+    }
 
-  exit();
+    echo '$showSASLTiles='.$showSASLTiles . '</br>';
+    echo '$saslTilesJSON='.$saslTilesJSON . '</br>';
+    echo '$saslTilesHTML='.$saslTilesHTML . '</br>';
+
+    exit();
 }
