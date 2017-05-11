@@ -1,0 +1,148 @@
+.discounts-block-wrapper {
+	padding: 0;
+	background-image: url("../images/bg/tiles_background.jpg");
+	background-size: cover;
+}
+
+.discounts-block {
+	padding: 0 20px 20px 20px;
+}
+
+.discounts-block .nav-tabs {
+	border: none;
+}
+
+.discounts-block .nav-tabs > li.active > a, 
+.discounts-block .nav-tabs > li.active > a:focus, 
+.discounts-block .nav-tabs > li.active > a:hover {
+	background-color: #b8b8b8;
+}
+
+.discounts-block .nav li {
+	width: 33.3%;
+}
+
+.discounts-block .tab-content {
+	background-color: transparent;
+	margin: 0;
+	border: none;
+	padding-top: 20px;
+}
+
+/* DISCOUNT TILES */
+.tile-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin-bottom: 20px;
+}
+
+.tile {
+	max-width: 320px;
+}
+
+.tile a {
+	text-decoration: none;
+}
+
+.tile .header {
+	height: 40px;
+	border: solid 1px transparent;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+}
+
+.tile .header img {
+	width: 70%;
+	max-height: 38px;
+}
+
+.tile .header i {
+	font-size: 30px;
+	color: white;
+	position: relative;
+    right: 5px;
+
+    display: none;
+}
+
+.tile .header i.gray-icon {
+	color: #666;
+}
+
+.tile .body {
+	position: relative;
+	/* border: solid 1px #666; */
+	border-top: none;
+	background-color: white;
+}
+
+.tile .body .img-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: 240px;
+}
+
+.tile .body .img-container img {
+	width: 100%;
+	max-height: 100%;
+}
+
+.tile .body .info-wrapper {
+	padding: 5px;
+	color: white;
+	background-color: rgba(49, 49, 49, 0.9); 
+	text-align: left;
+	min-height: 85px;
+}
+
+.tile .body .info-wrapper .title {
+	font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.tile .body .info-wrapper .description {
+	font-size: 14px;
+    font-weight: 500;
+}
+
+.businesses-table.table-bordered .glyphicon-map-marker {
+	color: #FB7468;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+
+/* BUSINESSES TABLE */
+.businesses-table.table-bordered {
+	border-color: #616161;
+	background-color: #777;
+	color: #ddd;
+}
+
+.businesses-table.table-bordered > thead {
+	font-size: 18px;
+}
+
+.businesses-table.table-bordered > thead > tr > th,
+.businesses-table.table-bordered > tbody > tr > td {
+	border-width: 1px;
+	border-color: #616161;
+}
+
+.businesses-table.table-bordered > tbody > tr > td.marker-container {
+	text-align: center;
+}
+
+/* BUSINESSES MAP */
+.map-container {
+	height: 600px;
+    width: 100%;
+}
+
