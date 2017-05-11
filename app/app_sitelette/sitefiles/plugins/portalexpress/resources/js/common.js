@@ -7771,18 +7771,16 @@ com.faralam.common.RetrieveCatalogInfo = function (p_id,txt,coi) {
                        kn++;
                    }
                 }
-            console.log("length="+response.items.length);
-            for (var j = 0; j < response.items.length; j++) {
-
+            var ln =response.items.length;
+            console.log("length here="+ln);
+            
+            for (var j = 0; j < ln; j++) {
+               
                 if (response.items[j].itemStatus.enumText == "ACTIVE") {
                     fl++;
                     /*if(fl>=parseInt(coi))
                         {*/
                     flg++;
-                /*if(flg>7)
-                    {
-                        break;
-                    }*/
                     var active_count = 1;
                     if (active_count == 1) {
                         currency = response.items[j].currency;
@@ -7809,10 +7807,13 @@ com.faralam.common.RetrieveCatalogInfo = function (p_id,txt,coi) {
 
                    /* html += '<li><img id="mainItems_catalog_drag_zone_active" class="before_dragging" ondragend="com.faralam.dragEnd_catalog(event)" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetAllItemDescEdit(this)" width="70" height="80" data-qtip=' + response.items[j].itemStatus.enumText + ' params=' + del_params + ' src="' + response.items[j].mediaURLs[0] + '" itemName="' + response.items[j].itemName + '" longDescription="' + response.items[j].longDescription + '" itemVersion="' + response.items[j].itemVersion + '" price="' + response.items[j].price + '" priceId="' + response.items[j].priceId + '" itemId="' + response.items[j].itemId + '" itemTag="' + response.items[j].itemTag + '" imgUrl="' + response.items[j].mediaURLs[0] + '" shortDescription="' + response.items[j].shortDescription + '" ><div class="gallery_overlay"><span><img src="' + overlay_img + '" alt="" ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" /></span></div></li>';*/
                             var attr='';
-                             $.each(response.items[j].attributes, function(key, value){
+                             if(response.items[j].attributes !=null){
+                               $.each(response.items[j].attributes, function(key, value){
                                  attr=attr+' '+key+'='+value;
                                  
-                             });
+                             });  
+                             }
+                             
                     var editbtn='';
                             editbtn='<img src="'+com.faralam.custom_img_path+'icon_pencil.png" onclick="com.faralam.common.CATALOGS_EDIT_ITEMS(this)" itemId="'+response.items[j].itemId+'" itemVersion='+response.items[j].itemVersion+' priceId='+response.items[j].priceId+' price="'+response.items[j].price+'" shortDescription="'+response.items[j].shortDescription+'" longDescription="'+response.items[j].longDescription+'" itemType="'+response.items[j].itemType.enumText+'" itemName="'+response.items[j].itemName+'" itemTag="'+response.items[j].itemTag+'" '+attr+' imgUrl="' + response.items[j].mediaURLs[0]+'" style="position:absolute;left:92px;top:2;z-index:9999;cursor:pointer;left:0">';
                             
@@ -7866,10 +7867,8 @@ com.faralam.common.RetrieveCatalogInfo = function (p_id,txt,coi) {
         var blnk=" ";
         Ext.getCmp('previous_btn').update(BtnGrp_prv);
         Ext.getCmp('next_btn').update(BtnGrp_nxt);
-        //     }
-        // }
+        
 
-      
         if (html) {
             html = '<ul class="images" style="margin-bottom: 4px;padding-left: 5px;">' + html + '</ul>';
             
@@ -8133,7 +8132,7 @@ com.faralam.common.AddNewItem = function () {
                                                             name: '',
                                                             value: '',
                                                             id: 'item_summary',
-                                                            allowBlank: false
+                                                            allowBlank: true
                                                         },
                                                         {
                                                             xtype: 'textareafield',
@@ -8147,7 +8146,7 @@ com.faralam.common.AddNewItem = function () {
                                                             width: 350,
                                                             height: 45,
                                                             id: 'catalog_msg',
-                                                            allowBlank: false
+                                                            allowBlank: true
                                                         },
                                                         /*{
                                                             xtype: 'textfield',
@@ -20228,8 +20227,9 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
              Ext.getCmp('gallery_poll_review').setValue(color2.replace("#", ""));
              Ext.getCmp('promotion_events').setValue(color3.replace("#", ""));
              Ext.getCmp('photo_and_contest_input').setValue(color4.replace("#", ""));*/
-             window.jscolor();
+             
            }
+        window.jscolor();
     }
     var onerror = function (jqXHR, textStatus, errorThrown) {}
     com.faralam.common.sendAjaxRequest(com.faralam.retrieveThemeColors, "GET", {}, onsuccess, onerror);
