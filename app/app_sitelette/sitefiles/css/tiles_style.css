@@ -6,10 +6,13 @@
 
 .discounts-block {
 	padding: 0 20px 20px 20px;
+	height: 470px;
+    overflow-y: auto;
 }
 
 .discounts-block .nav-tabs {
 	border: none;
+	/* margin-left: -20px; */
 }
 
 .discounts-block .nav-tabs > li.active > a, 
@@ -19,7 +22,7 @@
 }
 
 .discounts-block .nav li {
-	width: 33.3%;
+	width: 15%;
 }
 
 .discounts-block .tab-content {
@@ -50,9 +53,10 @@
 	height: 40px;
 	border: solid 1px transparent;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	background-color: white;
+	position: relative;
 }
 
 .tile .header img {
@@ -60,13 +64,12 @@
 	max-height: 38px;
 }
 
-.tile .header i {
-	font-size: 30px;
-	color: white;
-	position: relative;
-    right: 5px;
-
-    display: none;
+.tile .header .glyphicon {
+	font-size: 20px;
+	position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
 }
 
 .tile .header i.gray-icon {
@@ -77,7 +80,7 @@
 	position: relative;
 	/* border: solid 1px #666; */
 	border-top: none;
-	background-color: white;
+	background-color: #dadada;
 }
 
 .tile .body .img-container {
@@ -98,18 +101,18 @@
 	color: white;
 	background-color: rgba(49, 49, 49, 0.9); 
 	text-align: left;
-	min-height: 85px;
+	height: 105px;
 }
 
 .tile .body .info-wrapper .title {
 	font-size: 18px;
-    font-weight: 600;
+    /* font-weight: 600; */
     margin-bottom: 3px;
 }
 
 .tile .body .info-wrapper .description {
 	font-size: 14px;
-    font-weight: 500;
+    /* font-weight: 500; */
 }
 
 .businesses-table.table-bordered .glyphicon-map-marker {
@@ -142,7 +145,25 @@
 
 /* BUSINESSES MAP */
 .map-container {
-	height: 600px;
+	height: 360px;
     width: 100%;
+}
+
+@media all and (max-width:1200px) {
+    .discounts-block .nav li {
+		width: 17%;
+	}
+}
+
+@media all and (max-width:991px) {
+    .discounts-block .nav li {
+		width: 33.3%;
+	}
+}
+
+@media all and (max-width:768px) {
+    .discounts-block .nav li {
+		width: 33.3%;
+	}
 }
 

@@ -14,28 +14,38 @@
 					<div class="business-discounts">
 						<#list tiles as tile>
 						   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 tile-wrapper">
-								<div class="tile">
-									<#if (tile.onClickURL)?has_content >
-				                        <a href="${tile.onClickURL}">
-											<div class="header">
-												<img src="${tile.bannerURL}" alt="banner"> <i class="icon-clothes"></i>
-											</div>
-										</a>
-				                    <#else>
+						   		<#if tile.onClickURL?? >
+						   			<a href="${tile.onClickURL}">
+						   		</#if>
+									<div class="tile">
 				                        <div class="header">
-											<img src="${tile.bannerURL}" alt="banner"> <i class="icon-clothes"></i>
+											<img src="${tile.bannerURL}" alt="banner">
+											<#if tile.promoType.enumText == "DINING_DEAL" >
+												<span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="color:${tile.promoType.color}"></span>
+											</#if>
+											<#if tile.promoType.enumText == "DISCOUNT" >
+												<span class="glyphicon glyphicon-tags" aria-hidden="true" style="color:${tile.promoType.color}"></span>
+											</#if>
+											<#if tile.promoType.enumText == "ENTERTAINMENT" >
+												<span class="glyphicon glyphicon-music" aria-hidden="true" style="color:${tile.promoType.color}"></span>
+											</#if>
+											<#if tile.promoType.enumText == "HAPPYHOUR" >
+												<span class="glyphicon glyphicon-glass" aria-hidden="true" style="color:${tile.promoType.color}"></span>
+											</#if>
 										</div>
-				                    </#if>
-									<div class="body">
-										<div class="img-container">
-											<img src="http://placehold.it/320x240">
-										</div>
-										<div class="info-wrapper">
-											<div class="title">${tile.title}</div>
-											<div class="description">${tile.message}</div>
+										<div class="body">
+											<div class="img-container">
+												<img src="${tile.url}">
+											</div>
+											<div class="info-wrapper">
+												<div class="title">${tile.title}</div>
+												<div class="description">${tile.message}</div>
+											</div>
 										</div>
 									</div>
-								</div>
+								<#if tile.onClickURL?? >
+						   			</a>
+						   		</#if>
 							</div>
 				        </#list>
 					</div>
@@ -53,36 +63,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Zaza grill</td>
-									<td>0.45 miles</td>
-									<td class="marker-container"><span
-										class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
-								</tr>
-								<tr>
-									<td>Ciceros pizza</td>
-									<td>0.54 miles</td>
-									<td class="marker-container"><span
-										class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
-								</tr>
-								<tr>
-									<td>Vibha Fashion</td>
-									<td>0.16 miles</td>
-									<td class="marker-container"><span
-										class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
-								</tr>
-								<tr>
-									<td>Toy Store</td>
-									<td>0.23 miles</td>
-									<td class="marker-container"><span
-										class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
-								</tr>
-								<tr>
-									<td>Hair Cair</td>
-									<td>0.25 miles</td>
-									<td class="marker-container"><span
-										class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
-								</tr>
+								<#list sasls as sasl>
+									<tr>
+										<td><a href="${sasl.friendyURL}"></a>${sasl.name}</td>
+										<td>${sasl.distanceInMiles} miles</td>
+										<td class="marker-container"><a href="${sasl.friendyURL}"><span
+											class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></a></td>
+									</tr>
+								</#list>
 							</tbody>
 						</table>
 					</div>
