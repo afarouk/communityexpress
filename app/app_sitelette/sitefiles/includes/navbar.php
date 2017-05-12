@@ -37,6 +37,7 @@
               <a href="portalexpress" class="login_btn">Log in</a>
             </li>
             <li class="li_support"><a href="support">Support</a></li>
+            <li class="li_paypal"><a target="_blank" href="paypalsetup">Paypal Support</a></li>
             <li>
           </ul>
         </div>
