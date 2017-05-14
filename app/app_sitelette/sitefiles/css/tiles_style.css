@@ -15,8 +15,8 @@
 	/* margin-left: -20px; */
 }
 
-.discounts-block .nav-tabs > li.active > a, 
-.discounts-block .nav-tabs > li.active > a:focus, 
+.discounts-block .nav-tabs > li.active > a,
+.discounts-block .nav-tabs > li.active > a:focus,
 .discounts-block .nav-tabs > li.active > a:hover {
 	background-color: #b8b8b8;
 }
@@ -60,7 +60,7 @@
 }
 
 .tile .header img {
-	width: 70%;
+	width: 100%;
 	max-height: 38px;
 }
 
@@ -99,7 +99,7 @@
 .tile .body .info-wrapper {
 	padding: 5px;
 	color: white;
-	background-color: rgba(49, 49, 49, 0.9); 
+	background-color: rgba(49, 49, 49, 0.9);
 	text-align: left;
 	height: 105px;
 }
@@ -166,4 +166,3 @@
 		width: 33.3%;
 	}
 }
-
