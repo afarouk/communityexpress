@@ -8,6 +8,93 @@
 
  */
 
+$(function() {
+	var url = "https://simfel.com/apptsvc/rest/sasl/getSASLSummaryLightByUIDAndLocation?domain=ALL&UID=&latitude=37.307793&longitude=-122.002228&simulate=true",
+		sasls = getSASLS(url),
+		markers = getMarkers(sasls),
+		map = initMap();
+
+	function getSASLS(url) {
+		var saslsArr = [];
+
+		$.ajax({
+            url: url,
+            async: false
+      	})
+		  .done(function(data) {
+		    saslsArr = data.sasls;
+		  	console.log("sasl data received");
+		  })
+		  .fail(function() {
+		    console.log("error on receiving sasl data");
+		  });
+
+		  return saslsArr;
+	}
+
+	function getMarkers(sasls) {
+		var sasls = sasls,
+			markers = []; 
+
+		for( var index in sasls ) {
+			var marker, position, name, url;
+
+			position = {
+				lat : Number(sasls[index].latitude),
+				lng : Number(sasls[index].longitude)
+			};
+			name = sasls[index].name;
+			url = sasls[index].onClickURL;
+
+			marker = {
+				name: name, 
+				position : position,
+				url: url
+			};
+
+			markers.push(marker)
+		}
+
+		return markers;
+	}
+
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom : 15,
+			scrollwheel : false
+		});
+
+		return map;
+	}
+
+	function placeMarkers(map, markers) {
+		for( var index in markers ) { 
+			var marker = new MarkerWithLabel({
+			   position: markers[index].position,
+			   map: map,
+			   labelContent: markers[index].name,
+			   labelAnchor: new google.maps.Point(33, 0),
+			   labelClass: "labels" // the CSS class for the label
+			});
+
+			google.maps.event.addListener(marker, 'click', (function(markers, marker, index) {
+				return function() {
+					window.location.href = markers[index].url;
+				}
+			})(markers, marker, index));
+		}
+		console.log('markers placed')
+	}
+
+	$("a[href='#map_tab']").click(function(event) {
+		setTimeout(function() {
+			google.maps.event.trigger(map, 'resize');
+			map.setCenter(new google.maps.LatLng(markers[0].position.lat, markers[0].position.lng));
+			placeMarkers(map, markers);
+		}, 1000);
+	});
+});
+
 $(window).load(function() { // makes sure the whole site is loaded
 	"use strict";
 

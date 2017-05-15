@@ -5,14 +5,19 @@
 }
 
 .discounts-block {
-	padding: 0 20px 20px 20px;
+	padding: 0 20px;
 	height: 470px;
     overflow-y: auto;
 }
 
+/* TABS */
 .discounts-block .nav-tabs {
 	border: none;
-	/* margin-left: -20px; */
+	background-color: #dedede;
+    position: absolute;
+    height: 60px;
+    width: 45%;
+    z-index: 1;
 }
 
 .discounts-block .nav-tabs > li.active > a,
@@ -22,14 +27,18 @@
 }
 
 .discounts-block .nav li {
-	width: 15%;
+	width: 33.3%;
+}
+
+.discounts-block .nav li:last-child {
+	width: 33.4%;
 }
 
 .discounts-block .tab-content {
 	background-color: transparent;
 	margin: 0;
 	border: none;
-	padding-top: 20px;
+	padding-top: 80px;
 }
 
 /* DISCOUNT TILES */
@@ -37,7 +46,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 	margin-bottom: 20px;
 }
 
@@ -45,13 +53,8 @@
 	max-width: 320px;
 }
 
-.tile a {
-	text-decoration: none;
-}
-
 .tile .header {
-	height: 40px;
-	border: solid 1px transparent;
+	height: 55px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -59,27 +62,19 @@
 	position: relative;
 }
 
-.tile .header img {
+.tile .header .business-banner {
 	width: 100%;
-	max-height: 50px;
+	height: 55px;
 }
 
-.tile .header .glyphicon {
-	font-size: 20px;
+.tile .header .promo-type {
 	position: absolute;
-    left: 10px;
-    top: 10px;
-    font-size: 20px;
-}
-
-.tile .header i.gray-icon {
-	color: #666;
+	left: 5px;
+	width: 40px;
 }
 
 .tile .body {
 	position: relative;
-	/* border: solid 1px #666; */
-	border-top: none;
 	background-color: #dadada;
 }
 
@@ -87,13 +82,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 	height: 240px;
 }
 
 .tile .body .img-container img {
-	width: 100%;
-	max-height: 100%;
+	height: 100%;
+	max-width: 100%;
 }
 
 .tile .body .info-wrapper {
@@ -101,28 +95,25 @@
 	color: white;
 	background-color: rgba(49, 49, 49, 0.9);
 	text-align: left;
-	height: 105px;
 }
 
 .tile .body .info-wrapper .title {
 	font-size: 18px;
-    /* font-weight: 600; */
     margin-bottom: 3px;
+    height: 25px;
+    text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .tile .body .info-wrapper .description {
+	height: 55px;
 	font-size: 14px;
-    /* font-weight: 500; */
+	line-height: 18px;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
-.businesses-table.table-bordered .glyphicon-map-marker {
-	color: #FB7468;
-	font-size: 20px;
-	cursor: pointer;
-}
-
-
-/* BUSINESSES TABLE */
+/* BUSINESSES LIST */
 .businesses-table.table-bordered {
 	border-color: #616161;
 	background-color: #777;
@@ -134,13 +125,39 @@
 }
 
 .businesses-table.table-bordered > thead > tr > th,
-.businesses-table.table-bordered > tbody > tr > td {
+.businesses-table.table-bordered > tbody > tr > td,
+.businesses-table.table-bordered > tbody > tr > td a,
+.businesses-table.table-bordered > tbody > tr > td a:hover {
 	border-width: 1px;
 	border-color: #616161;
+	color: #ddd;
+}
+
+.businesses-table.table-bordered > tbody > tr:hover {
+	background-color: #717171;
+}
+
+.businesses-table.table-bordered > tbody > tr > td {
+	padding: 0;
+    line-height: 35px;
+    padding-left: 10px;
+}
+
+.businesses-table.table-bordered > tbody > tr > td a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
 }
 
 .businesses-table.table-bordered > tbody > tr > td.marker-container {
 	text-align: center;
+}
+
+.businesses-table.table-bordered .glyphicon-map-marker {
+	color: #FB7468;
+	font-size: 20px;
+	position: relative;
+	top: 5px;
 }
 
 /* BUSINESSES MAP */
@@ -149,20 +166,30 @@
     width: 100%;
 }
 
+.map-container .labels {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #515151;
+    padding: 2px 4px;
+    border-radius: 8px;
+}
+
 @media all and (max-width:1200px) {
-    .discounts-block .nav li {
-		width: 17%;
+    .discounts-block .nav-tabs {
+	    width: 51%;
 	}
 }
 
 @media all and (max-width:991px) {
-    .discounts-block .nav li {
-		width: 33.3%;
+    .discounts-block .nav-tabs {
+	    width: 100%;
 	}
 }
 
 @media all and (max-width:768px) {
-    .discounts-block .nav li {
-		width: 33.3%;
+	.discounts-block .nav-tabs {
+	    width: 100%;
 	}
 }

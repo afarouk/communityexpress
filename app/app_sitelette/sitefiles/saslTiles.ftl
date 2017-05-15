@@ -1,5 +1,4 @@
-<div class="container-fluid discounts-block-wrapper"
-	style="margin-top: 86px;">
+<div class="container-fluid discounts-block-wrapper" style="margin-top: 86px;">
 	<div class="discounts-block">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
@@ -21,18 +20,45 @@
 							<a href="${tile.onClickURL}">
 								<div class="tile">
 									<div class="header">
-										<img src="${tile.bannerURL}" alt="banner">
+										<img src="${tile.bannerURL}" alt="banner" class="business-banner">
+										<#if tile.promoType.enumText == "UNDEFINED" >
+											<img src="/sitefiles/images/promoType/OTHER.png" alt="promoType" class="promoType promo-type">
+										</#if>
+										<#if tile.promoType.enumText == "ACTIVITY" >
+											<img src="/sitefiles/images/promoType/ACTIVITY.png" alt="promoType" class="promoType promo-type">
+										</#if>
 										<#if tile.promoType.enumText == "DINING_DEAL" >
-												<span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="color:${tile.promoType.color}"></span>
+											<img src="/sitefiles/images/promoType/DINING_DEAL.png" alt="promoType" class="promoType promo-type">
 										</#if>
 										<#if tile.promoType.enumText == "DISCOUNT" >
-												<span class="glyphicon glyphicon-tags" aria-hidden="true" style="color:${tile.promoType.color}"></span>
+											<img src="/sitefiles/images/promoType/DISCOUNT.png" alt="promoType" class="promoType promo-type">
 										</#if>
 										<#if tile.promoType.enumText == "ENTERTAINMENT" >
-												<span class="glyphicon glyphicon-music" aria-hidden="true" style="color:${tile.promoType.color}"></span>
+											<img src="/sitefiles/images/promoType/ENTERTAINMENT.png" alt="promoType" class="promoType promo-type">
 										</#if>
 										<#if tile.promoType.enumText == "HAPPYHOUR" >
-												<span class="glyphicon glyphicon-glass" aria-hidden="true" style="color:${tile.promoType.color}"></span>
+											<img src="/sitefiles/images/promoType/HAPPYHOUR.png" alt="promoType" class="promoType promo-type">
+										</#if>
+										<#if tile.promoType.enumText == "OTHER" >
+											<img src="/sitefiles/images/promoType/OTHER.png" alt="promoType" class="promoType promo-type">
+										</#if>
+										<#if tile.promoType.enumText == "EVENT" >
+											<img src="/sitefiles/images/promoType/EVENT.png" alt="promoType" class="promoType promo-type">
+										</#if>
+										<#if tile.promoType.enumText == "POLL" >
+											<img src="/sitefiles/images/promoType/POLL.png" alt="promoType" class="promoType promo-type">
+										</#if>
+										<#if tile.promoType.enumText == "PHOTO_CONTEST" >
+											<img src="/sitefiles/images/promoType/PHOTO_CONTEST.png" alt="promoType" class="promoType promo-type">
+										</#if>
+										<#if tile.promoType.enumText == "CAMPAIGN_PROMOTION" >
+											<img src="/sitefiles/images/promoType/CAMPAIGN_PROMOTION.png" alt="promoType" class="promoType promo-type">
+										</#if>
+										<#if tile.promoType.enumText == "CAMPAIGN_SUBSCRIBE_FOR_NOTIFICATION" >
+											<img src="/sitefiles/images/promoType/CAMPAIGN_SUBSCRIBE.png" alt="promoType" class="promoType promo-type">
+										</#if>
+										<#if tile.promoType.enumText == "AD_ALERT" >
+											<img src="/sitefiles/images/promoType/AD_ALERT.png" alt="promoType" class="promoType promo-type">
 										</#if>
 									</div>
 									<div class="body">
@@ -65,10 +91,9 @@
 							<tbody>
 								<#list sasls as sasl>
 								<tr>
-									<td><a href="${sasl.onClickURL}">${sasl.name}</a></td> 
-									<td>${sasl.distanceInMiles} miles</td>
+									<td class="name-conatiner"><a href="${sasl.onClickURL}">${sasl.name}</a></td>
+									<td class="distance-conatiner"><a href="${sasl.onClickURL}">${sasl.distanceInMiles} miles</a></td>
 								    <td class="marker-container"><a href="${sasl.onClickURL}"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></a></td>
-
 								</tr>
 								</#list>
 							</tbody>
@@ -86,35 +111,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-	var map, center = {
-		lat : -25.363,
-		lng : 131.044
-	};
-	function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-			zoom : 4,
-			center : center,
-			scrollwheel : false
-		});
-		var marker = new google.maps.Marker({
-			position : center,
-			map : map
-		});
-	}
-
-	var elem = document.querySelectorAll("a[href='#map_tab']");
-
-	elem[0].addEventListener('click', function() {
-		initMap();
-		setTimeout(function() {
-			google.maps.event.trigger(map, 'resize');
-			map.setCenter(new google.maps.LatLng(center.lat, center.lng));
-		}, 1000);
-	}, false);
-</script>
-<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDV7jH2GL811-d_q2COrnU88dfkWqCL6gY&callback=initMap">
-	
-</script>
