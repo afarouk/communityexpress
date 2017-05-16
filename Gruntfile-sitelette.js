@@ -141,6 +141,12 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
+                        cwd: '<%= yeoman.app %>/paypalsetup',
+                        src: ['{,*/}**', '!dev-index.php'],
+                        dest: '<%= yeoman.dist %>/paypalsetup'
+                    },
+                    {
+                        expand: true,
                         cwd: '<%= yeoman.app %>/desktop',
                         src: ['**', '!dev-index.php'],
                         dest: '<%= yeoman.dist %>/desktop'
