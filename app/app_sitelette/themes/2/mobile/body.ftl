@@ -1,11 +1,12 @@
 <body>
 
-	<audio id="addtocart" src="themes/2/tempSound/addToCart.wav" autostart="false" ></audio>
-	<audio id="removefromcart" src="themes/2/tempSound/removeFromCart.wav" autostart="false" ></audio>
+	<audio id="addtocart" src="themes/1/tempSound/addToCart.wav" autostart="false" ></audio>
+	<audio id="removefromcart" src="themes/1/tempSound/removeFromCart.wav" autostart="false" ></audio>
 
 	<div class="popup_container"></div>
 
 	<div id="cmtyx_header" data-role="header" class="header common_header">
+		<div id="cmtyx_header_prev_page_button" class="prev_page_button"></div>
 		<div id="cmtyx_header_menu_button" class="menu_btn">
 			<div class="menu_btn_hamburger cmtyx_special_icon_color">&#9776;</div>
 			<span class="messages_counter" style="display:none;"></span>
@@ -14,7 +15,7 @@
 			<span class="glyphicon glyphicon-arrow-left cmtyx_special_icon_color"></span>
 		</div>
 		<div class="logo_container cmtyx_special_background_color">
-			<!--  <img src="themes/2/placeholder_images/ZAZA-Grill.png" /> -->
+			<!--  <img src="themes/1/placeholder_images/ZAZA-Grill.png" /> -->
 			<img src="${bannerImageURL}" />
 		</div>
 	</div>
@@ -53,7 +54,7 @@
 		<div class="home_body p-0">
 			<ul>
 				<li id="cmtyx_welcome_block">
-					<!-- <img src="themes/2/placeholder_images/welocome_img.png"></img> -->
+					<!-- <img src="themes/1/placeholder_images/welocome_img.png"></img> -->
 					<#if notification??>
 					<div class="breaking_news">
 						<span class="news_line">${notification.notificationBody}</span>
@@ -62,7 +63,7 @@
 	  			    <#if (medias)?has_content >
 					   <img src="${medias[0].URL}" />
 					<#else>
-					   <img src="themes/2/placeholder_images/welocome_img.png"></img>
+					   <img src="themes/1/placeholder_images/welocome_img.png"></img>
         			</#if>
 
 
@@ -92,146 +93,111 @@
 			</ul>
 			<!--
 			 <div style="text-align:center; margin: auto auto; background-color:white; height: 120px; width: 355px;">
-	          	<a href="https://www.facebook.com/dialog/oauth?client_id=630212017138999&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fapptsvc%2Frest%2Fext%2FfacebookLogin&scope=email"> <img style="margin-top: 138px;" src="themes/2/placeholder_images/facebookloginbutton.png" />
+	          	<a href="https://www.facebook.com/dialog/oauth?client_id=630212017138999&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fapptsvc%2Frest%2Fext%2FfacebookLogin&scope=email"> <img style="margin-top: 138px;" src="themes/1/placeholder_images/facebookloginbutton.png" />
 	          	</a>
 	         </div>
 	        -->
 			<ul class="home_tabs_list">
 			
-					<!-- Share This Site ------------------------>
-							<li id="cmtyx_share_block" class="share_block"><span
-							class="title"> Share this site </span>
-							<div class="ui-grid-c">
-								<div class="sms_input_block">
-									<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-									<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-								</div>
-								<div class="ui-block-a text sms_block">
-									<a href="" class="share_sms cmtyx_text_color_1">
-										<span class="share_icon sms_icon"></span>
-									</a>
-								</div>
-								<div class="ui-block-b text email_block">
-									<a href="" class="share_email cmtyx_text_color_1">
-										<span class="share_icon email_icon"></span>
-									</a>
-								</div>
-								<div class="ui-block-c text facebook_block">
-									<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-										<span class="share_icon facebook_icon"></span>
-									</a>
-								</div>
-								<div class="ui-block-d text twitter_block">
-									<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-										<span class="share_icon twitter_icon"></span>
-									</a>
-								</div>
-							</div>
-						</li>
-					
-				<!-- Share This Site -------------------->
-			
-			
 						<!----- Discount coupons  ---------------->
-			
-			
-                <li id="cmtyx_promocodes_block" class="promocodes_block">
-					<div class="header cmtyx_color_1">
-						<span class="title">Discounts</span> 
-						<span class="collapse_btn">&#9660;</span>
-						<span class="tag_icon"></span>
-					</div>
-					<#if (promoCodes)?has_content >
-						<div class="body">
-							<ul class="gallery event_block_overlay">
-								<#list promoCodes as promoCode>
-									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
-										<div class="promocode_inner_wrapper">
-											<div class="promoCode-container">
-						                        <!-- <span class="promoCode_title">${promoCode.title}</span> -->
-												<#if promoCode.imageURL??>
-													<div class="promoCode_image">
-														<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
+						
+						
+			                <li id="cmtyx_promocodes_block" class="promocodes_block">
+								<div class="header cmtyx_color_1">
+									<span class="title">Discounts</span> 
+									<span class="collapse_btn">&#9660;</span>
+									<span class="tag_icon"></span>
+								</div>
+								<#if (promoCodes)?has_content >
+									<div class="body">
+										<ul class="gallery event_block_overlay">
+											<#list promoCodes as promoCode>
+												<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
+													<div class="promocode_inner_wrapper">
+														<div class="promoCode-container">
+									                        <!-- <span class="promoCode_title">${promoCode.title}</span> -->
+															<#if promoCode.imageURL??>
+																<div class="promoCode_image">
+																	<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
+																</div>
+															</#if>
+															<!-- <div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
+								                                <div class="promoCode_expiration_date">
+									                                <div class="promoCode_container"> 
+									                                     Expires: ${promoCode.expirationDate?date}
+									                                </div>
+								                                </div>
+								                               
+								                                <#if promoCode.type.name()=="AMOUNT">
+								                                  <div class="promoCode_details">
+								                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
+								                                    <span class="promoCode_discount">${promoCode.discount}</span>
+								                                  </div>
+								                                <#else>
+								                                  <div class="promoCode_details">
+								                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
+								                                  </div>
+								                                </#if>
+															</div> -->
+														</div>
+							                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
+								                            <div class="promoCode-buybutton-container">
+						                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
+						                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
+						                                           Shop</button>
+								                            </div>
+				                                        </#if>
 													</div>
-												</#if>
-												<!-- <div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
-					                                <div class="promoCode_expiration_date">
-						                                <div class="promoCode_container"> 
-						                                     Expires: ${promoCode.expirationDate?date}
-						                                </div>
-					                                </div>
-					                               
-					                                <#if promoCode.type.name()=="AMOUNT">
-					                                  <div class="promoCode_details">
-					                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
-					                                    <span class="promoCode_discount">${promoCode.discount}</span>
-					                                  </div>
-					                                <#else>
-					                                  <div class="promoCode_details">
-					                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
-					                                  </div>
-					                                </#if>
-												</div> -->
-											</div>
-				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
-					                            <div class="promoCode-buybutton-container">
-			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
-			                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
-			                                           Shop</button>
-					                            </div>
-	                                        </#if>
-										</div>
-
-										<div class="promoCode_item_buttons">
-											<div class="share_btn_block"
-												data-promoCode="${promoCode.promoCode}">
-												<span class="icon share_icon"></span> <span class="text">Share</span>
-											</div>
-										</div>
-
-										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
-											<div class="sms_input_block">
-												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-											</div>
-											<div class="ui-block-a text sms_block">
-												<a href="" class="share_sms cmtyx_text_color_1">
-													<span class="share_icon sms_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-b text email_block">
-												<a href="" class="share_email cmtyx_text_color_1">
-													<span class="share_icon email_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-c text facebook_block">
-												<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-													<span class="share_icon facebook_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-d text twitter_block">
-												<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-													<span class="share_icon twitter_icon"></span>
-												</a>
-											</div>
-										</div>
-
-									</li>
-								</#list>
-							</ul>
-						</div>
-					<#else>
-						<div class="body">
-							<div class="no_discounts">
-								(No Discounts)
-							</div>
-						</div>
-					</#if>
-				</li>
-				
-			<!----- End of Discount coupons  ---------------->
-				
 			
+													<div class="promoCode_item_buttons">
+														<div class="share_btn_block"
+															data-promoCode="${promoCode.promoCode}">
+															<span class="icon share_icon"></span> <span class="text">Share</span>
+														</div>
+													</div>
+			
+													<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
+														<div class="sms_input_block">
+															<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
+															<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+														</div>
+														<div class="ui-block-a text sms_block">
+															<a href="" class="share_sms cmtyx_text_color_1">
+																<span class="share_icon sms_icon"></span>
+															</a>
+														</div>
+														<div class="ui-block-b text email_block">
+															<a href="" class="share_email cmtyx_text_color_1">
+																<span class="share_icon email_icon"></span>
+															</a>
+														</div>
+														<div class="ui-block-c text facebook_block">
+															<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+																<span class="share_icon facebook_icon"></span>
+															</a>
+														</div>
+														<div class="ui-block-d text twitter_block">
+															<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+																<span class="share_icon twitter_icon"></span>
+															</a>
+														</div>
+													</div>
+			
+												</li>
+											</#list>
+										</ul>
+									</div>
+								<#else>
+									<div class="body">
+										<div class="no_discounts">
+											(No Discounts)
+										</div>
+									</div>
+								</#if>
+							</li>
+							
+						<!----- End of Discount coupons  ---------------->
+
 			
 			<!----- Promotions  ---------------->
 				<li id="cmtyx_promotion_block" class="promotion_block">
@@ -458,6 +424,7 @@
 			<!----- End of Loyalty Program  ---------------->
 						
 			
+				
 
 				<!----- Gallery  ---------------->
 				<li id="cmtyx_gallery_block" class="gallery_block">
@@ -945,6 +912,35 @@
 						</div>
 					</div>
 				</li>
+				<li id="cmtyx_share_block" class="share_block"><span
+					class="title"> Share this site </span>
+					<div class="ui-grid-c">
+						<div class="sms_input_block">
+							<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
+							<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+						</div>
+						<div class="ui-block-a text sms_block">
+							<a href="" class="share_sms cmtyx_text_color_1">
+								<span class="share_icon sms_icon"></span>
+							</a>
+						</div>
+						<div class="ui-block-b text email_block">
+							<a href="" class="share_email cmtyx_text_color_1">
+								<span class="share_icon email_icon"></span>
+							</a>
+						</div>
+						<div class="ui-block-c text facebook_block">
+							<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+								<span class="share_icon facebook_icon"></span>
+							</a>
+						</div>
+						<div class="ui-block-d text twitter_block">
+							<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+								<span class="share_icon twitter_icon"></span>
+							</a>
+						</div>
+					</div>
+				</li>
 				<li class="map_in_landing">
 					<div id="home_map" class="map_container"></div>
 				</li>
@@ -1313,13 +1309,13 @@
 			<div class="select_picture_container">
 				<label data-content="Title">Select a picture</label>
 				<div class="select_picture_gallery">
-					<img src="themes/2/placeholder_images/pexels-photo-59523.png"
+					<img src="themes/1/placeholder_images/pexels-photo-59523.png"
 						alt=""> <img
-						src="themes/2/placeholder_images/6359862041401967861409225263_coffee.png"
-						alt=""> <img src="themes/2/placeholder_images/burger.png"
-						alt=""> <img src="themes/2/placeholder_images/special.png"
+						src="themes/1/placeholder_images/6359862041401967861409225263_coffee.png"
+						alt=""> <img src="themes/1/placeholder_images/burger.png"
+						alt=""> <img src="themes/1/placeholder_images/special.png"
 						alt=""> <img
-						src="themes/2/placeholder_images/Salad_platter.png" alt="">
+						src="themes/1/placeholder_images/Salad_platter.png" alt="">
 				</div>
 				<div class="btn_container">
 					or
