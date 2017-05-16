@@ -10,8 +10,9 @@ define([
 	'../../scripts/actions/contactActions',
 	'../../scripts/actions/loyaltyActions',
 	'../views/popups/sendsms',
+	'../views/backBtnView',
 	], function(appCache, h,
-		DiscountsView, PromotionsView, LoyaltyCardView, ShareView, contactActions, loyaltyActions, SendsmsView){
+		DiscountsView, PromotionsView, LoyaltyCardView, ShareView, contactActions, loyaltyActions, SendsmsView, BackBtnView){
 	var LandingController = Mn.Object.extend({
 		start: function() {
 			this.discountsView = new DiscountsView();
@@ -33,6 +34,8 @@ define([
 
 			var sendsmsView = new SendsmsView();
 			this.listenTo(sendsmsView, 'onSendSMS', this.onSendSMS.bind(this));
+
+			var backBtnView = new BackBtnView();
 		},
 		onLoginStatusChanged: function() {
 			var user = appCache.get('user'),

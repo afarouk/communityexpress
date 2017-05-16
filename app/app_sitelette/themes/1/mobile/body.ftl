@@ -6,6 +6,7 @@
 	<div class="popup_container"></div>
 
 	<div id="cmtyx_header" data-role="header" class="header common_header">
+		<div id="cmtyx_header_prev_page_button" class="prev_page_button"></div>
 		<div id="cmtyx_header_menu_button" class="menu_btn">
 			<div class="menu_btn_hamburger cmtyx_special_icon_color">&#9776;</div>
 			<span class="messages_counter" style="display:none;"></span>

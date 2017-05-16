@@ -5,6 +5,7 @@
     <div id="cmtyx_desktop_application" class="cmtyx_desktop_application">
         
         <header class="cmtyx_special_background_color">
+            <div id="back-btn-container" class="back-btn-container"></div>
             <div class="logo-container cmtyx_special_background_color">
                 <img class="logo" src="${bannerImageURL}" alt="logo">
             </div>

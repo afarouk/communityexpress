@@ -6,6 +6,22 @@ header {
   justify-content: space-between;
   align-items: center;
 
+  .back-btn-container {
+    position: absolute;
+    left: 2px;
+
+    display: none;
+
+    .back-btn {
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-right: 15px solid white;
+      cursor: pointer;
+    }
+  }
+
   .logo-container { 
   	display: inline-flex;
   	align-items: center; 

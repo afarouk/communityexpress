@@ -16,7 +16,8 @@ var HeaderView = Backbone.View.extend({
 
     events: {
         'click #cmtyx_header_back_button': 'triggerPreviousView',
-        'click #cmtyx_header_menu_button': 'openLeftMenu'
+        'click #cmtyx_header_menu_button': 'openLeftMenu',
+        'click #cmtyx_header_prev_page_button': 'goPrevPage'
     },
 
     initialize: function(options) {
@@ -51,6 +52,7 @@ var HeaderView = Backbone.View.extend({
 
     showMenuButton: function() {
         this.$el.find('.menu_btn').show();
+        this.$el.find('.prev_page_button').show();
         this.hideBackButton();
     },
 
@@ -60,6 +62,7 @@ var HeaderView = Backbone.View.extend({
 
     hideMenuButton: function(backOption) {
         this.$el.find('.menu_btn').hide();
+        this.$el.find('.prev_page_button').hide();
         if (backOption.back === true) {
             this.showBackButton();
         }
@@ -75,8 +78,11 @@ var HeaderView = Backbone.View.extend({
 
     openLeftMenu: function() {
         popupController.openLeftMenu();
-    }
+    },
 
+    goPrevPage: function() {
+        window.history.back();
+    }
 });
 
 module.exports = HeaderView;
