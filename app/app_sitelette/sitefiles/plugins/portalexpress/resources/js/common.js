@@ -20175,8 +20175,6 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
     com.faralam.retrieveThemeColors = com.faralam.retrieveThemeColors + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&UID=' + sessionStorage.UID);
     
     var onsuccess = function (response, textStatus, jqXHR) {
-       console.log(response);
-        
         Ext.getCmp('ban_bac_color').setValue(response.background);
         Ext.getCmp('menu_hamberger_icon').setValue(response.foregroundLight);
         Ext.getCmp('open_menu_catalog_color').setValue(response.foregroundDark);
@@ -20216,17 +20214,7 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
             Ext.getCmp('txt_col_4').setValue(col);
             break;         
             }
-            
-             //console.log(classN[0]+' => '+Hex); // Display Class => Hex
            });
-             /*var color1 = arr[1].split(" ")[0];
-             var color2 = arr[2].split(" ")[0];
-             var color3 = arr[3].split(" ")[0];
-             var color4 = arr[4].split(" ")[0];
-             Ext.getCmp('main_theme_discount_color').setValue(color1.replace("#", ""));
-             Ext.getCmp('gallery_poll_review').setValue(color2.replace("#", ""));
-             Ext.getCmp('promotion_events').setValue(color3.replace("#", ""));
-             Ext.getCmp('photo_and_contest_input').setValue(color4.replace("#", ""));*/
              
            }
         window.jscolor();
@@ -20234,14 +20222,38 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
     var onerror = function (jqXHR, textStatus, errorThrown) {}
     com.faralam.common.sendAjaxRequest(com.faralam.retrieveThemeColors, "GET", {}, onsuccess, onerror);
 }
+  
+ com.faralam.common.setSASLBannerImageOnly = function(){
+    com.faralam.setSASLBannerImageOnly = com.faralam.serverURL + 'sasl/setSASLBannerImageOnly';
+    com.faralam.setSASLBannerImageOnly = com.faralam.setSASLBannerImageOnly + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL +'&UID='+sessionStorage.UID);
+
+    var onsuccess = function (response, textStatus, jqXHR) {
+      Ext.getCmp('banner_image_component').update('');   
+      Ext.getCmp('banner_image_component').update('<img style="height:55px !important;width:320px;" src="'+sessionStorage.codecanyonData+'">');
+      sessionStorage.codecanyonData=""; 
+      com.faralam.registration.showPopup('Success', 'You have successfully updated banner Image.');
+   }
+   var onerror = function (jqXHR, textStatus, errorThrown) {}
+   options ={
+     url:com.faralam.setSASLBannerImageOnly,
+     method:'POST',
+     data:{},
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+   var imageData = sessionStorage.codecanyonData;
+   if(imageData.trim()==""){
+      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+        }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
+
+}
  
- com.faralam.common.setSASLBanner = function (file) { 
-    com.faralam.setSASLBanner = com.faralam.serverURL + 'sasl/setSASLBanner';
-    com.faralam.setSASLBanner = com.faralam.setSASLBanner + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL +'&UID='+sessionStorage.UID);
-    /*var mtdc= "#"+Ext.getCmp('main_theme_discount_color').getValue();
-    var gpr= "#"+Ext.getCmp('gallery_poll_review').getValue();
-    var pe= "#"+Ext.getCmp('promotion_events').getValue();
-    var pci= "#"+Ext.getCmp('photo_and_contest_input').getValue();*/
+com.faralam.common.setThemeColors = function (file) { 
+    com.faralam.setThemeColors = com.faralam.serverURL + 'sasl/setThemeColors';
+    com.faralam.setThemeColors = com.faralam.setThemeColors + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL +'&UID='+sessionStorage.UID);
      
     var bac_1 = "#"+Ext.getCmp('bac_col_1').getValue();
     var bac_2 = "#"+Ext.getCmp('bac_col_2').getValue();
@@ -20254,35 +20266,23 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
     var txt_4 = "#"+Ext.getCmp('txt_col_4').getValue();
      
     var allcolor = ".cmtyx_color_1 { background-color:" + bac_1 + " !important; }.cmtyx_border_color_1 { border-color: " + bac_1 + " !important; }.cmtyx_text_color_1 { color: " + txt_1 + " !important; }" + ".cmtyx_color_2 { background-color:" + bac_2 + " !important; }.cmtyx_border_color_2 { border-color: " + bac_2 + " !important; } .cmtyx_text_color_2 { color: " + txt_2 + " !important; } .cmtyx_color_3 { background-color:" + bac_3 + " !important; }.cmtyx_border_color_3 { border-color: " + bac_3 + " !important; }.cmtyx_text_color_3 { color: " + txt_3 + " !important; }.cmtyx_color_4 { background-color:" + bac_4 + " !important; }.cmtyx_border_color_4 { border-color: " + bac_4 + " !important; }.cmtyx_text_color_4 { color: " + txt_4 + " !important; }" ;
+
     
     var data ={
-    "backgroundColor": "#"+Ext.getCmp('ban_bac_color').getValue(),
-    "foregroundColorLight": "#"+Ext.getCmp('menu_hamberger_icon').getValue(),
-    "foregroundColorDark": "#"+Ext.getCmp('open_menu_catalog_color').getValue(),
-    "backgroundColor2":"#FFFFFF",
-    "barFontColors":"" +allcolor
-   };
+            "background": "#"+Ext.getCmp('ban_bac_color').getValue(),
+            "foregroundLight": "#"+Ext.getCmp('menu_hamberger_icon').getValue(),
+            "foregroundDark": "#"+Ext.getCmp('open_menu_catalog_color').getValue(),
+            "background2": "#FFFFFF",
+            "barFontColors": "" +allcolor
+            };
+        
    var onsuccess = function (response, textStatus, jqXHR) {
-      Ext.getCmp('banner_image_component').update('');   
-      Ext.getCmp('banner_image_component').update('<img style="height:55px !important;width:320px;" src="'+sessionStorage.codecanyonData+'">');
-      sessionStorage.codecanyonData=""; 
       com.faralam.common.retrieveThemeColors();
-      com.faralam.registration.showPopup('Success', 'You have successfully updated banner screen.');
+      com.faralam.registration.showPopup('Success', 'You have successfully updated theme colors.');
    }
    var onerror = function (jqXHR, textStatus, errorThrown) {}
-   options ={
-     url:com.faralam.setSASLBanner,
-     method:'POST',
-     data:JSON.stringify(data),
-     onsuccess:onsuccess,  
-     onerror: onerror      
-   };
-   if(sessionStorage.codecanyonData==""){
-      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
-     }
-      else{
-       com.faralam.common.sendMultipart(options);  
-     }
+   data = JSON.stringify(data);
+   com.faralam.common.sendAjaxRequest(com.faralam.setThemeColors , "POST", data, onsuccess, onerror);
 } 
 
  com.faralam.common.retrieveMediaMetaDataBySASL_themeOption = function () {
@@ -20312,8 +20312,6 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
             };
   
    var onsuccess = function (response, textStatus, jqXHR) {
-      console.log('welcome');
-      console.log(response);
       com.faralam.registration.showPopup('Success', 'You have successfully updated Wel come screen.');
       sessionStorage.codecanyonData=""; 
       com.faralam.common.retrieveMediaMetaDataBySASL_themeOption();   
@@ -20337,6 +20335,7 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
 }
 
  function dataURLtoBlob(data) {
+     console.log(data);
         var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
         var byteString = atob(data.split(',')[1]);
         var ab = new ArrayBuffer(byteString.length);
@@ -20361,7 +20360,6 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
  url = com.faralam.serverURL+'sasl/setAppIcon?serviceAccommodatorId='+sessionStorage.SA+'&serviceLocationId='+sessionStorage.SL+'&UID='+sessionStorage.UID;			
  
   var onsuccess = function (response, textStatus, jqXHR) {
-      console.log('App Icon');
       Ext.getCmp('app_icon_component').update('');
       Ext.getCmp('app_icon_component').update('<img style="height:100px !important;width:100px;" src="'+sessionStorage.codecanyonData+'">');
       sessionStorage.codecanyonData="";
@@ -20391,7 +20389,13 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
      var data      = options.data;
      var url       = options.url;
      var method    = options.method;
-     image     = dataURLtoBlob(sessionStorage.codecanyonData);
+     var imageData = sessionStorage.codecanyonData;
+     var imageData = imageData.trim();
+     if(imageData==""){
+      com.faralam.registration.showPopup('Error', 'No image found.');   
+        }
+     
+     image     = dataURLtoBlob(imageData);
      formData = new FormData();
      if(image){
      formData.append('image', image, sessionStorage.codecanyonImgName);    
@@ -20408,13 +20412,11 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
             url: url ,
             success:function(response, textStatus, jqXHR){
             com.faralam.loginMask.hide();
-            sessionStorage.codecanyonImgName = "";
             $('.btn-del').click();    
             onsuccess(response, textStatus, jqXHR);    
             },
             error:function(jqXHR, textStatus, errorThrown){
             com.faralam.loginMask.hide(); 
-            sessionStorage.codecanyonImgName = "";
                 
             com.faralam.common.ErrorHandling(jqXHR.responseText);
             onerror(jqXHR.responseText, textStatus, errorThrown);    
