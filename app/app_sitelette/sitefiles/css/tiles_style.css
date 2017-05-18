@@ -8,6 +8,7 @@
 	padding: 0 20px;
 	height: 470px;
     overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 /* TABS */
@@ -15,9 +16,18 @@
 	border: none;
 	background-color: #dedede;
     position: absolute;
+    left: 20px;
     height: 60px;
     width: 45%;
     z-index: 1;
+}
+
+.nav-tabs > li > a {
+	padding: 0 5px;
+	height: 60px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .discounts-block .nav-tabs > li.active > a,
@@ -70,6 +80,7 @@
 .tile .header .promo-type {
 	position: absolute;
 	left: 5px;
+	top: 7px;
 	width: 40px;
 }
 
@@ -191,5 +202,6 @@
 @media all and (max-width:768px) {
 	.discounts-block .nav-tabs {
 	    width: 100%;
+	    left: 0;
 	}
 }

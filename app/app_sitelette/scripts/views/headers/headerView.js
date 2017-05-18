@@ -28,6 +28,8 @@ var HeaderView = Backbone.View.extend({
         this.sl = community.serviceLocationId;
         Vent.on('update_message_count', this.updateMessageCount, this);
         Vent.on('logout_success', this.hideMessageCount, this);
+
+        this.showHidePrevPageBtn();
     },
 
     hideMessageCount: function() {
@@ -52,7 +54,7 @@ var HeaderView = Backbone.View.extend({
 
     showMenuButton: function() {
         this.$el.find('.menu_btn').show();
-        this.$el.find('.prev_page_button').show();
+        this.showHidePrevPageBtn();
         this.hideBackButton();
     },
 
@@ -62,7 +64,7 @@ var HeaderView = Backbone.View.extend({
 
     hideMenuButton: function(backOption) {
         this.$el.find('.menu_btn').hide();
-        this.$el.find('.prev_page_button').hide();
+        this.$el.removeClass('with_back_btn');
         if (backOption.back === true) {
             this.showBackButton();
         }
@@ -78,6 +80,19 @@ var HeaderView = Backbone.View.extend({
 
     openLeftMenu: function() {
         popupController.openLeftMenu();
+    },
+
+    checkPrevPageAvailable() {
+        return document.referrer;
+    },
+
+    showHidePrevPageBtn() {
+        if ( this.checkPrevPageAvailable() ) {
+            this.$el.addClass('with_back_btn');
+        }
+        else {
+            this.$el.removeClass('with_back_btn');
+        }
     },
 
     goPrevPage: function() {

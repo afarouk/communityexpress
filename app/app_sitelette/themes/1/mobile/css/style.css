@@ -2090,7 +2090,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font-size: 20px;
 }
 .common_header .prev_page_button {
-    display: inline-block;
+    display: none;
     position: absolute;
     left: 5px;
     top: 2px;
@@ -2100,11 +2100,17 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     border-bottom: 20px solid transparent;
     border-right: 20px solid white;
 }
+.common_header.with_back_btn .prev_page_button {
+    display: inline-block;
+}
 .common_header .menu_btn {
     height: 26px;
     width: 50px;
     padding: 10px;
     position: absolute;
+    left: 0;
+}
+.common_header.with_back_btn .menu_btn {
     left: 25px;
 }
 .logo_container img {

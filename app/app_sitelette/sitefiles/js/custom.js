@@ -8,11 +8,11 @@
 
  */
 
-$(function() {
+$(window).load(function() {
 	var url = "https://simfel.com/apptsvc/rest/sasl/getSASLSummaryLightByUIDAndLocation?domain=ALL&UID=&latitude=37.307793&longitude=-122.002228&simulate=true",
 		sasls = getSASLS(url),
 		markers = getMarkers(sasls),
-		map = initMap();
+		map;
 
 	function getSASLS(url) {
 		var saslsArr = [];
@@ -88,6 +88,7 @@ $(function() {
 
 	$("a[href='#map_tab']").click(function(event) {
 		setTimeout(function() {
+			map = initMap();
 			google.maps.event.trigger(map, 'resize');
 			map.setCenter(new google.maps.LatLng(markers[0].position.lat, markers[0].position.lng));
 			placeMarkers(map, markers);

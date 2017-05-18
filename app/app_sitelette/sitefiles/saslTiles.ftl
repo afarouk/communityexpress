@@ -3,7 +3,7 @@
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#tiles_tab"
-				aria-controls="home" role="tab" data-toggle="tab">Discounts(${tileCount})</a></li>
+				aria-controls="home" role="tab" data-toggle="tab">Discounts (${tileCount})</a></li>
 			<li role="presentation"><a href="#list_tab"
 				aria-controls="profile" role="tab" data-toggle="tab">List</a></li>
 			<li role="presentation"><a href="#map_tab"

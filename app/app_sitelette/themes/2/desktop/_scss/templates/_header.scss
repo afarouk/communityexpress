@@ -8,17 +8,27 @@ header {
 
   .back-btn-container {
     position: absolute;
-    left: 2px;
+    left: 0;
+    text-align: center;
+    padding: 0 6px;
+    cursor: pointer;
 
     display: none;
 
-    .back-btn {
-      width: 0;
-      height: 0;
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
-      border-right: 15px solid white;
-      cursor: pointer;
+    .fa {
+      font-size: 36px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  &.with-back-btn {
+    padding: 0 20px 0 50px;
+
+    .back-btn-container {
+      display: block;
     }
   }
 

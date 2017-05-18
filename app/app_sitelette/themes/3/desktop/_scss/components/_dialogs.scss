@@ -2,6 +2,9 @@ div.ui-dialog.ui-widget {
 	position: fixed;
 	background-color: $body-background;
 	border-radius: 2px;
+	top: 50vh !important;
+    left: 50vw !important;
+    transform: translate(-50%, -50%);
 
 	&.ui-widget-content {
 		border: none;	

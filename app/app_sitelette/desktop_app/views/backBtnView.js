@@ -6,7 +6,7 @@ define([
 	var BackBtnView = Mn.View.extend({
 		el: '#back-btn-container',
 		ui: {
-			back_btn : '#back-btn'
+			'back_btn': '.back-btn-inner-wrapper'
 		},
 		events: {
 			'click @ui.back_btn' : 'goPrevPage'
@@ -16,9 +16,9 @@ define([
 			this.render();
 		},
 		render: function () {
-			// if( window.history.length > 2 ) {
-				this.$el.show();
-			// }
+			if( document.referrer ) {
+				this.$el.parent().addClass('with-back-btn');
+			}
 			this.$el.html(this.template());
 			return this;
      	},
