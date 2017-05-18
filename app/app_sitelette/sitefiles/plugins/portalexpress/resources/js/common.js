@@ -7953,8 +7953,6 @@ com.faralam.common.AddNewItem = function () {
               }
               var onerror = function (jqXHR, textStatus, errorThrown) {}  
               com.faralam.common.sendAjaxRequest(com.faralam.getItemAttributeMap, "GET", {}, onsuccess, onerror);  
-                
-                /*var check_switchs='<table style="border:2px solid black;margin:5px" width="95%" height="94%" cellspacing="10px" id="add_catalogs_attributes"><tr><td>Vegeterian</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="vegeterian" class="cmn-toggle cmn-toggle-rounds" onclick="com.faralam.common.enablecheck(this,'+"'add_Vegeterian'"+')" type="checkbox"><label for="vegeterian"></label></div></td><td>Signature</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="Signature" class="cmn-toggle cmn-toggle-rounds"  type="checkbox" onclick="com.faralam.common.enablecheck(this,'+"'add_Signature'"+')" ><label for="Signature"></label></div></td></tr><tr><td>Organic</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="Organic" class="cmn-toggle cmn-toggle-rounds" type="checkbox" onclick="com.faralam.common.enablecheck(this,'+"'add_Organic'"+')"  ><label for="Organic"></label></div></td><td>New</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="New" class="cmn-toggle cmn-toggle-rounds" type="checkbox" onclick="com.faralam.common.enablecheck(this,'+"'add_New'"+')" ><label for="New"></label></div></td></tr><tr><td>Vegan</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="Vegan" class="cmn-toggle cmn-toggle-rounds" type="checkbox" onclick="com.faralam.common.enablecheck(this,'+"'add_Vegan'"+')" ><label for="Vegan"></label></div></td><td>Spicy</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="Spicy" class="cmn-toggle cmn-toggle-rounds" type="checkbox" onclick="com.faralam.common.enablecheck(this,'+"'add_Spicy'"+')"  ><label for="Spicy"></label></div></td></tr><tr><td>Local</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="Local" class="cmn-toggle cmn-toggle-rounds" type="checkbox" onclick="com.faralam.common.enablecheck(this,'+"'add_Local'"+')"  ><label for="Local"></label></div></td><td>&nbsp;</td><td>&nbsp;</td></tr></table>';*/
                 var item_modal_form = Ext.widget('form', {
                     layout: {
                         type: 'vbox',
@@ -8036,42 +8034,6 @@ com.faralam.common.AddNewItem = function () {
                                                     name: 'hid_all_attr_val',
                                                     value:''
                                                     },
-                                                /*{
-                                                    xtype: 'hiddenfield',
-                                                    id: 'add_Vegeterian',
-                                                    name: 'add_Vegeterian',
-                                                    value:false
-                                                    },{
-                                                    xtype: 'hiddenfield',
-                                                    id: 'add_Signature',
-                                                    name: 'add_Signature',
-                                                    value:false
-                                                    },{
-                                                    xtype: 'hiddenfield',
-                                                    id: 'add_Organic',
-                                                    name: 'add_Organic',
-                                                    value:false
-                                                    },{
-                                                    xtype: 'hiddenfield',
-                                                    id: 'add_New',
-                                                    name: 'add_New',
-                                                    value:false
-                                                    },{
-                                                    xtype: 'hiddenfield',
-                                                    id: 'add_Vegan',
-                                                    name: 'add_Vegan',
-                                                    value:false
-                                                    },{
-                                                    xtype: 'hiddenfield',
-                                                    id: 'add_Spicy',
-                                                    name: 'add_Spicy',
-                                                    value:false
-                                                    },{
-                                                    xtype: 'hiddenfield',
-                                                    id: 'add_Local',
-                                                    name: 'add_Local',
-                                                    value:false
-                                                    }*/,
                                                 {
                                                     xtype: 'container',
                                                     defaultType: 'button',
@@ -8090,11 +8052,6 @@ com.faralam.common.AddNewItem = function () {
                                                             handler: function(){
                                                                 if(item_modal_form.getForm().isValid()){
                                                                     com.faralam.SubmitCatalog();
-                                                                    /*if(Ext.getCmp('catalog_big_img').src){
-                                                                        com.faralam.SubmitCatalog();
-                                                                    }else{
-                                                                        com.faralam.registration.showPopup('Error', 'Please add image before updating');
-                                                                    }*/
                                                                 }
                                                             }
                                                         }]
@@ -8148,18 +8105,7 @@ com.faralam.common.AddNewItem = function () {
                                                             id: 'catalog_msg',
                                                             allowBlank: true
                                                         },
-                                                        /*{
-                                                            xtype: 'textfield',
-                                                            fieldLabel: 'Tags',
-                                                            labelSeparator: '',
-                                                            emptyText: '(Tags)',
-                                                            inputWidth: 350,
-                                                            margin: '4 0 2 0',
-                                                            name: '',
-                                                            value: '',
-                                                            id: 'item_tags',
-                                                            allowBlank: false
-                                                        },*/{
+                                                        {
                                                             xtype: 'container',
                                                             layout:'hbox',
                                                             style: 'display:inline',
@@ -8207,87 +8153,71 @@ com.faralam.common.AddNewItem = function () {
                                                     ]
                                                         },
                                                         {
-                                    xtype: 'combo',
-                                    id: 'itemType',                                        
-                                    name: 'itemType',
-                                    hidden:true,
-                                    margin: '4 0 2 0', 
-                                    inputWidth: 350,                                                         
-                                    allowBlank: false,                                      
-                                    fieldLabel:'Item Type',
-                                    queryMode:'local',                      
-                                    autoSelect:true,
-                                    emptyText:'Select Item Type',
-                                    forceSelection:true	,
-                                    editable: false,
-                                    mode: 'remote',
-                                    displayField: 'displayText',
-                                    valueField: 'enumText',
-                                    store: Ext.create('Ext.data.ArrayStore', {
-                                    fields : ['displayText', 'enumText'],
-                                    autoLoad: false,
-                                    proxy: {
-                                        type: 'ajax',
-                                        url:  '',
-                                        reader: {
-                                            type: 'json',
-                                            getData: function(data){
-                                                var temparray = []; 
-                                                var count = 0;
-                                                Ext.each(data, function(rec) {
-                                                    temparray.push([]);
-                                                    temparray[count].push( new Array(1));
-                                                    temparray[count]['displayText'] = rec.displayText;
-                                                    temparray[count]['enumText'] = rec.enumText;
-                                                    count=count+1;
-                                                });									
-                                                data = temparray;
-                                                return data;
-                                            }
-                                        }
-                                    }
-                                })
-
-                                         },
-                                                        
-                                                        {
-                                                            xtype: 'image',
-                                                            width: 350,
-                                                            height: 135,
-                                                            src: '',
-                                                            style: 'border: 1px solid #fff;margin: 3px 0 0 0;',
-                                                            id: 'catalog_big_img',
-                                                            hidden:true
+                                                        xtype: 'combo',
+                                                        id: 'itemType',                                        
+                                                        name: 'itemType',
+                                                        hidden:true,
+                                                        margin: '4 0 2 0', 
+                                                        inputWidth: 350,                                                         
+                                                        allowBlank: false,                                      
+                                                        fieldLabel:'Item Type',
+                                                        queryMode:'local',                      
+                                                        autoSelect:true,
+                                                        emptyText:'Select Item Type',
+                                                        forceSelection:true	,
+                                                        editable: false,
+                                                        mode: 'remote',
+                                                        displayField: 'displayText',
+                                                        valueField: 'enumText',
+                                                        store: Ext.create('Ext.data.ArrayStore', {
+                                                        fields : ['displayText', 'enumText'],
+                                                        autoLoad: false,
+                                                        proxy: {
+                                                            type: 'ajax',
+                                                            url:  '',
+                                                            reader: {
+                                                                type: 'json',
+                                                                getData: function(data){
+                                                                    var temparray = []; 
+                                                                    var count = 0;
+                                                                    Ext.each(data, function(rec) {
+                                                                        temparray.push([]);
+                                                                        temparray[count].push( new Array(1));
+                                                                        temparray[count]['displayText'] = rec.displayText;
+                                                                        temparray[count]['enumText'] = rec.enumText;
+                                                                        count=count+1;
+                                                                    });									
+                                                                    data = temparray;
+                                                                    return data;
+                                                                }
+                                                            }
                                                         }
+                                                    })
+
+                                         }/*,
+                                                        
+                                            {
+                                                xtype: 'image',
+                                                width: 350,
+                                                height: 135,
+                                                src: '',
+                                                style: 'border: 1px solid #fff;margin: 3px 0 0 0;',
+                                                id: 'catalog_big_img',
+                                                hidden:true
+                                            }*/
                                                     ]
                                                 }
 
                                             ]
-                                        },
+                                        }/*,
                                         {
                                             xtype: 'button',
                                             scale: 'small',
                                             text: 'Add New Picture',
-                                            /*margin: '0 0 0 10',
-                                             tdAttrs: {
-                                             style: {
-                                             width: '33%'
-                                             }
-                                             },*/
                                             style: 'margin: 0 auto; position: absolute;right: 10px;bottom: 138px;z-index: 9;',
                                             handler: function(){
-                                                //$('#modal').css({'z-index': '19002', 'margin-top': '-5px'});
                                                 $('#modal').css({'z-index': '19002'});
                                                 com.faralam.getCropPicURLs('resources/plugins/croppic/catalog_crop.html');
-                                                /*Ext.Ajax.request({
-                                                 url: 'resources/plugins/croppic/catalog_crop.html',
-                                                 method: 'GET',
-                                                 success : function(data, textStatus, jqXHR) {
-                                                 modal.open({
-                                                 content : data.responseText
-                                                 });
-                                                 }
-                                                 });*/
                                             }
                                         },
                                         {
@@ -8319,56 +8249,24 @@ com.faralam.common.AddNewItem = function () {
                                                 style: 'border: 1px solid #00a234;'
                                             }
                                         ]
-                                    }
+                                    }*/
 
                                     ]
                                     }
                                 ]
                             },
-                                /*{
-                                    xtype: 'container',
-                                    width:230,
-                                    margin:'0 0 0 100',
-                                    style: 'margin-left:50px;width:230px;',
-                                    tdAttrs: {
-                                        style: {
-                                            'vertical-align': 'top'
-                                        }
-                                    },
-                                    layout:'vbox',
-                                    style:'border:2px solid #33ccff;padding:5px;',
-                                    items: [
-                                        {
-                                            xtype:'component',
-                                            html:'<div style="border-radius:3px;background-color:#ff9900 !important;width:220px;height: 200px;"></div>'
-                                        },
-                                        {
-                                            xtype:'component',
-                                            html:'<div style="background-color: #000 !important;width:230px;height: 50px;"><h4 style="line-height:50px;color:#fff;margin-left:65px; font-size:16px">Attributes</h4></div>'
-                                        },
-                                        {
-                                            xtype:'component',
-                                            html:'<div style="background-color: #ff9900 !important;width:220px;height: 200px; border:2px solid black;border-radius:3px"></div>'
-                                        }
-                                        ]
-                                }*/
                                    {
                                     xtype: 'container',
                                     width:300,
                                     margin:'0 0 0 50',
                                     style: 'width:300px;',
-                                    /*tdAttrs: {
-                                        style: {
-                                            'vertical-align': 'top'
-                                        }
-                                    },*/
                                     layout:'vbox',
                                     style:'border:2px solid #33ccff;padding:5px;',
                                     items: [
                                         {
                                             xtype:'component',
                                             id:'big_pic',
-                                            html:'<div style="border-radius:3px;background-color:#ff9900 !important;width:290px;height: 200px;"></div>'
+                                            html:'<div style="border-radius:3px;background-color:#ff9900 !important;width:290px;height: 200px; padding:5px"><div  style="border: 2px solid black; width: 280px; border-radius: 5px; height: 190px;" class="dropzone" data-width="280" data-height="190" data-resize="true" data-save="false" ><input type="file" name="thumb" /></div></div>'
                                         },
                                         {
                                             xtype:'component',
@@ -8398,8 +8296,8 @@ com.faralam.common.AddNewItem = function () {
                     items: item_modal_form,
                     listeners:{
                         close:function(){
-                            Ext.getCmp('catalog_big_img').setSrc('');
-                            Ext.getCmp('thumb_img').setSrc('');                            
+                            /*Ext.getCmp('catalog_big_img').setSrc('');
+                            Ext.getCmp('thumb_img').setSrc('');*/                            
                             item_modal_form.getForm().reset(true);
                             
                         },
@@ -8408,6 +8306,17 @@ com.faralam.common.AddNewItem = function () {
                             Ext.getCmp('itemType').getStore().removeAll();
                             Ext.getCmp('itemType').getStore().proxy.url = com.faralam.serverURL + 'retail/getItemTypes?UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL;
                             Ext.getCmp('itemType').getStore().reload();
+                            window.CodeCanyon(window, jQuery);
+                            $('.dropzone').html5imageupload({
+                            onSave: function(e) {
+                                sessionStorage.codecanyonData = e.data;
+                                sessionStorage.codecanyonImgName = e.name;
+                            },
+                            onAfterCancel: function() {
+                                sessionStorage.codecanyonData = '';
+                                sessionStorage.codecanyonImgName = '';
+                            }
+                           });
                     }
                     }
                 });
@@ -8823,6 +8732,7 @@ com.faralam.common.CATALOGS_EDIT_ITEMS = function (e) {
                                                  });*/
                                             }
                                         },
+                                        
                                         {
                                         tdAttrs: {
                                             style: {
@@ -9151,13 +9061,9 @@ com.faralam.common.addGroupCatalog = function (catalogId) {
 
 com.faralam.SubmitCatalog = function () {
 
-    com.faralam.submit_catalog = com.faralam.serverURL + 'retail/createWNewPictureURLNewMetaData';
+    com.faralam.submit_catalog = com.faralam.serverURL + 'retail/createWNewPictureNewMetaData';
     com.faralam.submit_catalog = com.faralam.submit_catalog + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
- var src=null;
-    if(Ext.getCmp('catalog_big_img').src)
-        {
-            src=Ext.getCmp('catalog_big_img').src;
-        }
+    var src=null;
     var all=Ext.getCmp('hid_all_attr_val').getValue();
     console.log(all);
     var all_att_arr=all.split("*");
@@ -9176,12 +9082,14 @@ com.faralam.SubmitCatalog = function () {
           att_json=att_json+"}";
         
     var data = {
+        "serviceAccommodatorId":sessionStorage.SA,
+        "serviceLocationId":sessionStorage.SL,
         "itemName": Ext.getCmp('item_title').getValue(),
         "itemType": Ext.getCmp('itemType').getValue(),
         "inventoryNotSold": 3,
         "serviceAccommodatorId": sessionStorage.SA,
         "mediaType": "GALLERY_OWNER",
-        "url":src ,
+        "url":'' ,
         "serviceLocationId": sessionStorage.SL,
         "currency": "USD",
         "message": "Media Message1",
@@ -9194,26 +9102,10 @@ com.faralam.SubmitCatalog = function () {
         "itemTag": "Tag1, Tag2",
         "attributes": JSON.parse(att_json)
     };
-   /*{
-                "Local": Ext.getCmp('add_Local').getValue(),
-                "New": Ext.getCmp('add_New').getValue(),
-                "Organic": Ext.getCmp('add_Organic').getValue(),
-                "Spicy": Ext.getCmp('add_Spicy').getValue(),
-                "Vegetarian": Ext.getCmp('add_Vegetarian').getValue(),
-                "Signature": Ext.getCmp('add_Signature').getValue()
-            }  */
-    /*  var data = {"longDescription":Ext.getCmp('catalog_textarea').getValue(),
-     "itemType":Ext.getCmp('catalog_type').getValue(),
-     "title": Ext.getCmp('catalog_title').getValue(),
-     "price": Ext.getCmp('catalog_price').getValue(),
-     "serviceAccommodatorId":sessionStorage.SA,
-     "serviceLocationId":sessionStorage.SL,
-     "url":Ext.getCmp('catalog_big_img').src};*/
-
-    data = JSON.stringify(data);
-    console.log(data);
-            
+    
     var onsuccess = function (response, textStatus, jqXHR) {
+        sessionStorage.codecanyonData = '';
+        sessionStorage.codecanyonImgName = '';
         Ext.MessageBox.alert('Success', 'Item Created successfully.', function () {
             Ext.getCmp('item_modal').close();
             com.faralam.common.RetrieveCatalogInfo('','',1);
@@ -9221,8 +9113,22 @@ com.faralam.SubmitCatalog = function () {
     }
 
     var onerror = function (jqXHR, textStatus, errorThrown) {}
-
-    com.faralam.common.sendAjaxRequest(com.faralam.submit_catalog, "POST", data, onsuccess, onerror);
+    
+    data = JSON.stringify(data);
+    options ={
+     url:com.faralam.submit_catalog,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+   var imageData = sessionStorage.codecanyonData;
+   if(imageData==""){
+      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+        }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
 }
 
 com.faralam.SubmitCatalogEdit = function () {
@@ -20228,7 +20134,7 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
     com.faralam.setSASLBannerImageOnly = com.faralam.setSASLBannerImageOnly + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL +'&UID='+sessionStorage.UID);
 
     var onsuccess = function (response, textStatus, jqXHR) {
-      Ext.getCmp('banner_image_component').update('');   
+      //Ext.getCmp('banner_image_component').update('');   
       Ext.getCmp('banner_image_component').update('<img style="height:55px !important;width:320px;" src="'+sessionStorage.codecanyonData+'">');
       sessionStorage.codecanyonData=""; 
       com.faralam.registration.showPopup('Success', 'You have successfully updated banner Image.');
@@ -20242,7 +20148,7 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
      onerror: onerror      
    };
    var imageData = sessionStorage.codecanyonData;
-   if(imageData.trim()==""){
+   if(imageData==""){
       com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
         }
       else{
@@ -20390,11 +20296,10 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
      var url       = options.url;
      var method    = options.method;
      var imageData = sessionStorage.codecanyonData;
-     var imageData = imageData.trim();
+    /*var imageData = imageData.trim();
      if(imageData==""){
       com.faralam.registration.showPopup('Error', 'No image found.');   
-        }
-     
+        }*/
      image     = dataURLtoBlob(imageData);
      formData = new FormData();
      if(image){
