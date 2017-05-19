@@ -82,11 +82,11 @@ var HeaderView = Backbone.View.extend({
         popupController.openLeftMenu();
     },
 
-    checkPrevPageAvailable() {
+    checkPrevPageAvailable: function() {
         return document.referrer;
     },
 
-    showHidePrevPageBtn() {
+    showHidePrevPageBtn: function() {
         if ( this.checkPrevPageAvailable() ) {
             this.$el.addClass('with_back_btn');
         }
