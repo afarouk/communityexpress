@@ -22,7 +22,7 @@
 							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 tile-wrapper">
 								<a href="${tile.onClickURL}">
 									<div class="tile">
-										<div class="header">
+										<div class="header" style="background-color:${tile.tileColor};">
 											<img src="${tile.bannerURL}" alt="banner"
 												class="business-banner">
 											<#if tile.promoType.enumText=="UNDEFINED" > <img
@@ -65,7 +65,7 @@
 												src="/sitefiles/images/promoType/AD_ALERT.png"
 												alt="promoType" class="promoType promo-type"> </#if>
 										</div>
-										<div class="body">
+										<div class="body" style="background-color:${tile.tileColor};">
 											<div class="img-container">
 												<img src="${tile.URL}">
 											</div>
