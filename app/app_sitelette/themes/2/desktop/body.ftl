@@ -56,6 +56,7 @@
           <#elseif (promoCodes)?has_content>
             <div id="subheader-discount" class="subheader-discount" data-promoCode="${promoCodes[0].promoCode}" data-uuid="${promoCodes[0].discountUUID}">
               <span class="discount-title">${promoCodes[0].title}</span>
+              <button type="button" class="subheader-discount-button">Apply discount</button>
             </div>
        		</#if>
 

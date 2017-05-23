@@ -116,60 +116,111 @@ header {
 	  list-style-type: none;
 
 	  .link { 
-		display: inline-block; 
-		color: $white;
-		font-size: $size-normal;
-		font-weight: $style-normal;
-		text-transform: uppercase;
-		cursor: pointer;
-		vertical-align: middle;
+  		display: inline-block; 
+  		color: $white;
+  		font-size: $size-normal;
+  		font-weight: $style-normal;
+  		text-transform: uppercase;
+  		cursor: pointer;
+  		vertical-align: middle;
 
-		.user_email {
-		    margin-right: 5px;
-		    font-size: $size-normal-small;
-		    color: $cart-text;
-		    letter-spacing: 1px;
-		}
+      .user-dropdown {
 
-		.fa-user {
-		    font-size: 40px;
-			color: $user-icon;
-		}
+        .user-dropdown-btn {
+          display: inline-block;
+          font-weight: 700;
+          border: 1px solid #faa019;
+          background-color: transparent;
+          border-radius: 5px;
+          text-transform: uppercase;
+          cursor: pointer;
+          vertical-align: top;
+          background-color: rgba(255,255,255,0.2);
 
-		.fa-check {
-		    position: relative;
-		    right: 10px;
-		    top: 5px;
-		    background-color: $user-tick;
-		    border-radius: 50%;
-		    padding: 2px;
-		}
+          .caret {
+              display: inline-block;
+              width: 0;
+              height: 0;
+              margin-left: -6px;
+              vertical-align: middle;
+              border-top: 5px dashed;
+              border-right: 5px solid transparent;
+              border-left: 5px solid transparent;
+          }
+        }
 
-		.fa-question {
-		    position: relative;
-		    right: 10px;
-		    top: 5px;
-		    background-color: $order-btn;
-		    border-radius: 50%;
-		    padding: 2px 5px;
-		}
+        .dropdown-menu {
+          color: white;
 
-		&.login-btn {
-		  display: inline-block; 
-		  font-weight: $style-semi-bold;
-		  color: $cmtyx_color_1;
-		  border: 1px solid $cmtyx_color_1;
-		  border-radius: 5px;
-		  padding: 15px 25px;
-		  text-transform: uppercase;
-		  cursor: pointer;
-		  vertical-align: top;
+          li {
 
-		  &:hover {
-		  	background-color: $cmtyx_color_1;
-  			color: $white;
-		  }	
-		}
+            a {
+              color: white;
+              padding: 6px 10px;
+              font-weight: 600;
+              color: white;
+
+              &:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+              }
+            }
+
+            &.login-wrapper {
+              a {
+                color: #faa019;
+              }
+            }
+          }
+        }
+      }
+
+      .user_email {
+          margin-right: 5px;
+          font-size: $size-normal-small;
+          color: $cart-text;
+          letter-spacing: 1px;
+          font-weight: normal;
+      }
+
+      .fa-user {
+          font-size: 40px;
+          color: $user-icon;
+      }
+
+      .fa-check {
+          position: relative;
+          right: 10px;
+          top: 5px;
+          background-color: $user-tick;
+          border-radius: 50%;
+          padding: 2px;
+      }
+
+      .fa-question {
+          position: relative;
+          right: 10px;
+          top: 5px;
+          background-color: $order-btn;
+          border-radius: 50%;
+          padding: 2px 5px;
+      }
+
+      &.login-btn {
+        display: inline-block; 
+        font-weight: $style-semi-bold;
+        color: $cmtyx_color_1;
+        border: 1px solid $cmtyx_color_1;
+        border-radius: 5px;
+        padding: 15px 25px;
+        text-transform: uppercase;
+        cursor: pointer;
+        vertical-align: top;
+
+        &:hover {
+          background-color: $cmtyx_color_1;
+          color: $white;
+        } 
+      }
 	  }
 	}
 }
