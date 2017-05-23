@@ -10,9 +10,31 @@
 }
 .subheader-discount {
   cursor: pointer;
+  padding: 5px;
+
+  .discount-title {
+    line-height: 22px;
+  }
+
+  .subheader-discount-button {
+    display: inline-block;
+    font-weight: 500;
+    color: #faa019;
+    border: 1px solid #faa019;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    height: 22px;
+    margin: 0px 10px;
+    line-height: 17px;
+    background-color: transparent;
+  }
 
   &.used {
     background-color: $user-tick;
+    .subheader-discount-button {
+      display: none;
+    }
   }
 }
 
