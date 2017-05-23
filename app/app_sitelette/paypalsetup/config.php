@@ -14,8 +14,8 @@ if(isset($_GET['live'])){ //if it is live.
 
 	$PRODUCTION_MODE = true; //since this is live
 
-	$PAYPAL_REST_DOMAIN = 'https://api.sandbox.paypal.com'; // Use this for production
-	$PAYPAL_AUTH_DOMAIN = 'https://www.sandbox.paypal.com'; // Use this for production
+	$PAYPAL_REST_DOMAIN = 'https://api.paypal.com'; // Use this for production
+	$PAYPAL_AUTH_DOMAIN = 'https://www.paypal.com'; // Use this for production
 
 }else{ //otherwise lets use the sanbox.
 
@@ -28,12 +28,12 @@ if(isset($_GET['live'])){ //if it is live.
 
 	$PRODUCTION_MODE = false; //set to false for sandbox
 
-	$PAYPAL_REST_DOMAIN = 'https://api.sandbox.paypal.com'; //Use this for sandbox
-	$PAYPAL_AUTH_DOMAIN = 'https://www.sandbox.paypal.com'; //Use this for sandbox
+	$PAYPAL_REST_DOMAIN = 'https://api.paypal.com'; //Use this for sandbox
+	$PAYPAL_AUTH_DOMAIN = 'https://www.paypal.com'; //Use this for sandbox
 
 }
 
-//Lets Create the OAuth Login link for later. 
+//Lets Create the OAuth Login link for later.
 $OAUTH_LINK =  $PAYPAL_AUTH_DOMAIN.'/webapps/auth/protocol/openidconnect/v1/authorize?';
 $OAUTH_LINK .= 'scope='.urlencode('https://uri.paypal.com/services/paypalhere email phone profile openid https://uri.paypal.com/services/paypalattributes address https://uri.paypal.com/services/paypalattributes/business'); //These are the scopes required separated by spaces. Ensure your REST APP is enabled for each on developer.paypal.com
 $OAUTH_LINK .= '&response_type=code';
@@ -54,7 +54,7 @@ $PPH_DATA->US->account_onboard_link.='&returnurl='.urlencode($OAUTH_LINK);
 // Want to include some very simple Encrypt / Decrypt functions we will use these for encrypting the refresh token we put in the SDK Token
 // Make sure you update the salt to be unique and your own.
 
-function encrypt($decrypted, $password="myPassword123", $salt='!kQm*mySaltGoesHere') { 
+function encrypt($decrypted, $password="myPassword123", $salt='!kQm*mySaltGoesHere') {
 	// Build a 256-bit $key which is a SHA256 hash of $salt and $password.
 	$key = hash('SHA256', $salt . $password, true);
 	// Build $iv and $iv_base64.  We use a block size of 128 bits (AES compliant) and CBC mode.  (Note: ECB mode is inadequate as IV is not used.)
@@ -64,7 +64,7 @@ function encrypt($decrypted, $password="myPassword123", $salt='!kQm*mySaltGoesHe
 	$encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $decrypted . md5($decrypted), MCRYPT_MODE_CBC, $iv));
 	// We're done!
 	return $iv_base64 . $encrypted;
-} 
+}
 
 function decrypt($encrypted, $password="myPassword123", $salt='!kQm*mySaltGoesHere') {
 	// Build a 256-bit $key which is a SHA256 hash of $salt and $password.
