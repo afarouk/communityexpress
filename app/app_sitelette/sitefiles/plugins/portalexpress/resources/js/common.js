@@ -3784,7 +3784,7 @@ com.faralam.retrievePromotion = function (sa, sl) {
                                                 style: 'border: 2px solid #00a234;'
                                                 }]
                                         },
-                                        {
+                                        /*{
                                             xtype: 'filefield',
                                             tdAttrs: {
                                                 style: {
@@ -3817,7 +3817,7 @@ com.faralam.retrievePromotion = function (sa, sl) {
                                                     });
                                                 }
                                             }
-                                        },
+                                        },*/
                                         {
                                             xtype: 'fieldset',
                                             title: 'Add Text',
@@ -5703,7 +5703,10 @@ com.faralam.RetrievePromoInfo = function () {
 
 com.faralam.common.set_promo_image = function(e){
     var img=e.getAttribute('src');
-    Ext.getCmp('promo_big_img').setSrc(img);
+    $("#promo_big_img").html("<div><img style='width:240px;height:190px' src="+img+"></div>");
+    
+    com.faralam.common.ConvertImage(img);
+    
     var pid=e.getAttribute('pid');
     var p_sa=e.getAttribute('p_sa');
     Ext.getCmp('hid_promo_picture_id').setValue(pid);
@@ -5730,10 +5733,10 @@ com.faralam.common.retrievePromoPictureMetadataBySA = function () {
                 html+="</div>";
                 
             }
-        console.log("html="+html);
+       
         Ext.getCmp('promo_sel_image_sec').update(html);
-        $('promo_sel_image_div').perfectScrollbar('destroy');
-        $("promo_sel_image_div").perfectScrollbar();
+        $('#promo_sel_image_div').perfectScrollbar('destroy');
+        $("#promo_sel_image_div").perfectScrollbar();
     }
 
     var onerror = function (jqXHR, textStatus, errorThrown) {}
@@ -5743,7 +5746,7 @@ com.faralam.common.retrievePromoPictureMetadataBySA = function () {
 }
 
 com.faralam.SubmitPromotion = function () {
-    com.faralam.submit_promotion = com.faralam.serverURL + 'promotions/createWNewPictureURLNewMetaData';
+    com.faralam.submit_promotion = com.faralam.serverURL + 'promotions/createWNewPictureNewMetaData';
     //com.faralam.submit_promotion = com.faralam.submit_promotion+ "?" + encodeURI('UID='+ sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL +'&status=APPROVED');
     com.faralam.submit_promotion = com.faralam.submit_promotion + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
 
@@ -5753,12 +5756,9 @@ com.faralam.SubmitPromotion = function () {
         "promotionSASLName": Ext.getCmp('promo_title').getValue(),
         "serviceAccommodatorId": sessionStorage.SA,
         "serviceLocationId": sessionStorage.SL,
-        "url": Ext.getCmp('promo_big_img').src
     };
-
-    data = JSON.stringify(data);
-
     var onsuccess = function (response, textStatus, jqXHR) {
+        sessionStorage.codecanyonData="";
         Ext.MessageBox.alert('Success', 'Promotion Updated successfully.', function () {
             Ext.getCmp('promotion_modal').close();
             com.faralam.RetrievePromoInfo();
@@ -5766,12 +5766,28 @@ com.faralam.SubmitPromotion = function () {
     }
 
     var onerror = function (jqXHR, textStatus, errorThrown) {}
-
-    com.faralam.common.sendAjaxRequest(com.faralam.submit_promotion, "POST", data, onsuccess, onerror);
+    data = JSON.stringify(data);
+    
+    options ={
+     url:com.faralam.submit_promotion,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+    
+    
+    var imageData = sessionStorage.codecanyonData;
+    if(imageData==""){
+        com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+        }
+      else{
+        com.faralam.common.sendMultipart(options);  
+     }
 }
 
 com.faralam.common.createWRecyledPictureNewMetaData = function () {
-    com.faralam.createWRecyledPictureNewMetaData = com.faralam.serverURL + 'promotions/createWRecyledPictureNewMetaData';
+    com.faralam.createWRecyledPictureNewMetaData = com.faralam.serverURL + 'promotions/createWNewPictureNewMetaData';
     com.faralam.createWRecyledPictureNewMetaData = com.faralam.createWRecyledPictureNewMetaData + "?" + encodeURI('UID=' + sessionStorage.UID);
    
 var data={
@@ -5790,6 +5806,7 @@ var data={
     data = JSON.stringify(data);
 
     var onsuccess = function (response, textStatus, jqXHR) {
+        sessionStorage.codecanyonData="";
         Ext.MessageBox.alert('Success', 'Promotion Added successfully.', function () {
             com.faralam.RetrievePromoInfo();
              Ext.getCmp('promotion_modal').close();
@@ -5797,8 +5814,23 @@ var data={
     }
 
     var onerror = function (jqXHR, textStatus, errorThrown) {}
-
-    com.faralam.common.sendAjaxRequest(com.faralam.createWRecyledPictureNewMetaData, "POST", data, onsuccess, onerror);
+     data = JSON.stringify(data);
+    
+    options ={
+     url:com.faralam.createWRecyledPictureNewMetaData,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+    
+    var imageData = sessionStorage.codecanyonData;
+    if(imageData==""){
+      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+        }
+      else{
+        com.faralam.common.sendMultipart(options);  
+     }
 }
 
 com.faralam.SubmitPromotionEdit = function () {
@@ -6318,7 +6350,7 @@ com.faralam.common.AddNewPromotion =function() {
                                            width:200,
                                            height:50,
                                            html:'<span style="color:#fff>Select a picture</span>' 
-                                       },*/
+                                       },
                                        {
                                             xtype: 'button',
                                             scale: 'medium',
@@ -6334,7 +6366,8 @@ com.faralam.common.AddNewPromotion =function() {
                                                 $('#modal').css({'z-index': '19002'});
                                                 com.faralam.getCropPicURLs('resources/plugins/croppic/promo_crop.html');
                                             }
-                                       },
+                                       },*/
+                                
                                {
                                 xtype:'container',
                                 width:600,
@@ -6453,12 +6486,13 @@ com.faralam.common.AddNewPromotion =function() {
 										labelSeparator: ''		
 									},*/
 							{
-								xtype: 'image',
+								//xtype: 'image',
+                                xtype:'component',
                                 width: 240,
                                 height: 190,
-								src: '',
 								style: 'border: 1px solid #fff;margin: 3px 0 0 0;',
-								id: 'promo_big_img'
+								id: 'promo_big_img',
+                                html:'<div><div  style="border: 2px solid black; width: 240px; border-radius: 5px; height: 190px;" class="dropzone" data-width="190" data-height="190" data-resize="true" data-save="false" ><input type="file" name="thumb" /></div></div>'
 							},
 							{
 								xtype: 'textareafield',
@@ -6497,6 +6531,7 @@ com.faralam.common.AddNewPromotion =function() {
                                         var title=Ext.getCmp('promo_title').getValue();
                                         var type=Ext.getCmp('promo_type').getValue();
                                         var src=Ext.getCmp('promo_big_img').src;
+                                      
                                         var msg=Ext.getCmp('promo_msg').getValue();
 										    if(title.trim()=='')
                                                 {
@@ -6506,33 +6541,29 @@ com.faralam.common.AddNewPromotion =function() {
                                             {
                                                Ext.MessageBox.alert('Error', 'Please choose type'); 
                                             }
-                                        else if(src==''){
-												Ext.MessageBox.alert('Error', 'Please add image before saving');
-											}
                                         else if(msg=='')
                                             {
                                                Ext.MessageBox.alert('Error', 'Please add message'); 
                                             }
 											else{
-                                                var tp=Ext.getCmp('save_type').getValue();
+                                               var tp=Ext.getCmp('save_type').getValue();
+                                               /* console.log(tp);
                                                 if(tp=="SAVED")
                                                     {
-                                                       com.faralam.common.createWRecyledPictureNewMetaData(); 
+                                                        com.faralam.common.createWRecyledPictureNewMetaData(); 
                                                     }
                                                 if(tp=="NEW")
-                                                    {
+                                                    {*/
                                                         com.faralam.SubmitPromotion();
-                                                    }
-												
-											}
+											        // }
 										
 									}
-								}]
+								}
 							}]				
 						}]
 					}]
 					}]
-				});
+				}]});
 			
 				promotion_modal = Ext.widget('window', {
 					title: 'Add Promotion',
@@ -6552,6 +6583,17 @@ com.faralam.common.AddNewPromotion =function() {
 						},
                         show:function(){
                             com.faralam.common.retrievePromoPictureMetadataBySA();
+                            window.CodeCanyon(window, jQuery);
+                            $('.dropzone').html5imageupload({
+                            onSave: function(e) {
+                                sessionStorage.codecanyonData = e.data;
+                                sessionStorage.codecanyonImgName = e.name;
+                            },
+                            onAfterCancel: function() {
+                                sessionStorage.codecanyonData = '';
+                                sessionStorage.codecanyonImgName = '';
+                            }
+                           });
                         }
 					}
 				});
@@ -6559,7 +6601,8 @@ com.faralam.common.AddNewPromotion =function() {
 				Ext.getCmp('promo_type').setValue('');
 				Ext.getCmp('promo_type').getStore().removeAll();
 				Ext.getCmp('promo_type').getStore().proxy.url = com.faralam.serverURL+'promotions/getPromotionTypes';
-				Ext.getCmp('promo_type').getStore().reload();				
+				Ext.getCmp('promo_type').getStore().reload();	
+                
 			}
 			promotion_modal.show();
 		}
@@ -8194,62 +8237,12 @@ com.faralam.common.AddNewItem = function () {
                                                         }
                                                     })
 
-                                         }/*,
-                                                        
-                                            {
-                                                xtype: 'image',
-                                                width: 350,
-                                                height: 135,
-                                                src: '',
-                                                style: 'border: 1px solid #fff;margin: 3px 0 0 0;',
-                                                id: 'catalog_big_img',
-                                                hidden:true
-                                            }*/
+                                         }
                                                     ]
                                                 }
 
                                             ]
-                                        }/*,
-                                        {
-                                            xtype: 'button',
-                                            scale: 'small',
-                                            text: 'Add New Picture',
-                                            style: 'margin: 0 auto; position: absolute;right: 10px;bottom: 138px;z-index: 9;',
-                                            handler: function(){
-                                                $('#modal').css({'z-index': '19002'});
-                                                com.faralam.getCropPicURLs('resources/plugins/croppic/catalog_crop.html');
-                                            }
-                                        },
-                                        {
-                                        tdAttrs: {
-                                            style: {
-                                                width: '550px;'
-                                            }
-                                        },
-                                        xtype: 'fieldset',
-                                        title: '<span style="font-style: italic;font-weight: bold;font-size: 16px;">Item Pictures</span>',
-                                        collapsible: false,
-                                        style: 'text-align:center;',
-                                        items: [
-                                            {
-                                                xtype: 'component',
-                                                style:'float:left !important',
-                                                margin: '93 30 0 5',
-                                                id: 'delete_zone_item_add',
-                                                html: '<span></span><img ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" id="delete_zone_item_add" src="'+com.faralam.custom_img_path+'dustbin.png" width="26" height="26" border="0">'
-                                            },
-                                            {
-                                                xtype: 'image',
-                                                padding: '5 5 5 5',
-                                                width: 120,
-                                                height: 120,
-                                                margin: '0 0 5 0',
-                                                src: '',
-                                                id: 'thumb_img',
-                                                style: 'border: 1px solid #00a234;'
-                                            }
-                                        ]
-                                    }*/
+                                        }
 
                                     ]
                                     }
@@ -20296,10 +20289,6 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
      var url       = options.url;
      var method    = options.method;
      var imageData = sessionStorage.codecanyonData;
-    /*var imageData = imageData.trim();
-     if(imageData==""){
-      com.faralam.registration.showPopup('Error', 'No image found.');   
-        }*/
      image     = dataURLtoBlob(imageData);
      formData = new FormData();
      if(image){
@@ -20328,10 +20317,31 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
             return false;   
             },
             timeout: 10000
-        });
+        })
  }
  
  
+  com.faralam.common.ConvertImage=function(img){
+      sessionStorage.codecanyonData="";
+      function convertFileToDataURLviaFileReader(img, callback) {
+          
+          var xhr = new XMLHttpRequest();
+          xhr.onload = function() {
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                callback(reader.result);
+            }
+            reader.readAsDataURL(xhr.response);
+          };
+          xhr.open('GET', img);
+          xhr.responseType = 'blob';
+          xhr.send();
+}
+        function set(data){
+           sessionStorage.codecanyonData=data;   
+        }
+        convertFileToDataURLviaFileReader(img,set);
+}
  
  
  
