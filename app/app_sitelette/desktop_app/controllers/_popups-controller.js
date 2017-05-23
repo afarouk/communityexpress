@@ -28,6 +28,7 @@ define([
 			this.loginView = new LoginView();
 			this.listenTo(this.loginView, 'user:login', this.onUserLogin.bind(this));
 			this.listenTo(this.loginView, 'user:logout', this.onUserLogout.bind(this));
+			this.listenTo(this.loginView, 'order:history', this.onOrderHistory.bind(this));
 			this.dispatcher.get('landing').onLoginStatusChanged();
 			this.dispatcher.get('order').onLoginStatusChanged();
 		},
@@ -191,6 +192,10 @@ define([
         			loader: true
         		});
         	}.bind(this));
+		},
+		onOrderHistory: function() {
+			//TODO order history show
+			// this.dispatcher.get('history').getHistory();
 		},
 		requireLogIn: function(callback) {
 			var user = appCache.get('user'),

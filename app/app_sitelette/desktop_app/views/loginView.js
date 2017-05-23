@@ -8,11 +8,13 @@ define([
 	var LoginView = Mn.View.extend({
 		el: '#login-container',
 		ui: {
-			login_btn : '#login-btn',
-			user_email : '.user_email'
+			user_email : '.user_email',
+			login : '.login-wrapper',
+			history: '.order-history'
 		},
 		events: {
-			'click' : 'onLogin'
+			'click @ui.login' : 'onLogin',
+			'click @ui.history' : 'onOrderHistory'
 		},
 		initialize: function() {
 			var user = appCache.get('user');
@@ -28,12 +30,15 @@ define([
 			this.ui.user_email.html(userEmail);
 			return this;
      	},
-     	onLogin: function() {
+     	onLogin: function(e) {
      		if (this.logged) {
      			this.trigger('user:logout');
      		} else {
      			this.trigger('user:login');
      		}
+     	},
+     	onOrderHistory: function() {
+     		this.trigger('order:history');
      	}
 	});
 	return LoginView;
