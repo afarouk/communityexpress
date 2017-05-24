@@ -6486,7 +6486,6 @@ com.faralam.common.AddNewPromotion =function() {
 										labelSeparator: ''		
 									},*/
 							{
-								//xtype: 'image',
                                 xtype:'component',
                                 width: 240,
                                 height: 190,
@@ -16714,27 +16713,25 @@ console.log(date);
 }
 
 com.faralam.common.createPoll = function () {
-    com.faralam.createPoll = com.faralam.serverURL + 'contests/createPollURL';
+    com.faralam.createPoll = com.faralam.serverURL + 'contests/createPoll';
     com.faralam.createPoll = com.faralam.createPoll + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
     var data = {
         "serviceAccommodatorId": sessionStorage.SA,
         "serviceLocationId": sessionStorage.SL,
-        "activationDate": com.faralam.common.contestDateFormat(Ext.getCmp('newPollActivationDate').getSubmitValue())+":PDT",          
-        "expirationDate": com.faralam.common.contestDateFormat(Ext.getCmp('newPollExpirationDate').getSubmitValue())+"Z",  
+        "activationDate": Ext.getCmp('newPollActivationDate').getSubmitValue() ,          
+        "expirationDate": Ext.getCmp('newPollExpirationDate').getSubmitValue() ,  
         "contestName": Ext.getCmp('newPollTitle').getValue(),
         "displayText": Ext.getCmp('newPollQuestion').getValue(),
         "isAnonymous": Ext.getCmp('poll_anonymous').getValue(),
-        "contestUUID": null,
-        "url": Ext.getCmp('pollQuestion_img').src
+        "contestUUID": null
     };
 
     data = JSON.stringify(data);
-
-    console.log(data);
-
     var onsuccess = function (response, textStatus, jqXHR) {
         Ext.MessageBox.alert('Success', 'Poll contest added successfully.', function () {
-            sessionStorage.nxt_prev_id="";
+        Ext.getCmp('CreateNewPollContestForm').getForm().reset(true);
+        sessionStorage.nxt_prev_id="";
+        sessionStorage.codecanyonData="";
         Ext.getCmp('main_tab').down('#CreateNewPollContest').setDisabled(true);
         Ext.getCmp('main_tab').down('#PollContest').setDisabled(false);   
         Ext.getCmp('main_tab').setActiveTab(29);
@@ -16742,8 +16739,23 @@ com.faralam.common.createPoll = function () {
     }
 
     var onerror = function (jqXHR, textStatus, errorThrown) {}
-
-com.faralam.common.sendAjaxRequest(com.faralam.createPoll, "POST", data, onsuccess, onerror);
+  
+    options ={
+     url:com.faralam.createPoll,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+    console.log(options);
+   var imageData = sessionStorage.codecanyonData;
+   if(imageData==""){
+            com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');  
+        }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
+//com.faralam.common.sendAjaxRequest(com.faralam.createPoll, "POST", data, onsuccess, onerror);
 }
 
 com.faralam.common.operateSwitchCheckbox = function (e, field) {
@@ -16905,7 +16917,7 @@ com.faralam.common.pollAnswerPopupSec = function () {
                                             xtype: 'displayfield',
                                             value: '<div class="add_answer_text">Add / Delete Answers</div>'
                                         },
-                                        {
+                                        /*{
                                             xtype: 'button',
                                             scale: 'large',
                                             text: '<span style="color:#fff !important;">Add New Picture</span>',
@@ -16919,7 +16931,7 @@ com.faralam.common.pollAnswerPopupSec = function () {
                                                 });
                                                 com.faralam.getCropPicURLs('resources/plugins/croppic/pollcontestanswer_crop.html');
                                             }
-                                        }
+                                        }*/
                                     ]
                                 },
                                 {
@@ -16941,13 +16953,13 @@ com.faralam.common.pollAnswerPopupSec = function () {
                                             allowBlank: false
                                         },
                                         {
-                                            xtype: 'image',
+                                            xtype:'component',
                                             width: 160,
                                             height: 150,
-                                            src: '',
                                             margin: '0 0 0 78',
                                             style: 'background:#E81212;',
-                                            id: 'pollAnswer_img'
+                                            id: 'pollAnswer_img',
+                                            html:'<div  style="border: 2px solid black; width: 160px; border-radius: 5px; height: 150px;" class="dropzone" data-width="160" data-height="150" data-resize="true" data-save="false" ><input type="file" name="thumb" /></div>'
                                         },
                                         {
                                             xtype: 'button',
@@ -16999,6 +17011,17 @@ com.faralam.common.pollAnswerPopupSec = function () {
                     pollAnswerPopupSec_modal_form.getForm().reset(true);
                 },
                 show: function () {
+                    window.CodeCanyon(window, jQuery);
+                    $('.dropzone').html5imageupload({
+                    onSave: function(e) {
+                        sessionStorage.codecanyonData = e.data;
+                        sessionStorage.codecanyonImgName = e.name;
+                    },
+                    onAfterCancel: function() {
+                        sessionStorage.codecanyonData = '';
+                        sessionStorage.codecanyonImgName = '';
+                    }
+                   });
                     com.faralam.common.populateContestInnerData('pollChoicesData');
                 }
 
@@ -17055,7 +17078,7 @@ com.faralam.common.pollPrizePopupSec = function () {
                                             xtype: 'displayfield',
                                             value: '<div class="add_answer_text">Add / Delete Prizes</div>'
                                         },
-                                        {
+                                        /*{
                                             xtype: 'button',
                                             scale: 'large',
                                             text: '<span style="color:#fff !important;">Add New Picture</span>',
@@ -17069,7 +17092,7 @@ com.faralam.common.pollPrizePopupSec = function () {
                                                 });
                                                 com.faralam.getCropPicURLs('resources/plugins/croppic/pollcontestprize_crop.html');
                                             }
-                                        }
+                                        }*/
                                     ]
                                 },
                                 {
@@ -17108,13 +17131,14 @@ com.faralam.common.pollPrizePopupSec = function () {
                                             allowBlank: false
                                         },
                                         {
-                                            xtype: 'image',
+                                            xtype: 'component',
                                             width: 160,
                                             height: 150,
-                                            src: '',
                                             margin: '0 0 0 27',
                                             style: 'background:#E81212;',
-                                            id: 'pollPrize_img'
+                                            id: 'pollPrize_img',
+                                            html:'<div  style="border: 2px solid black; width: 160px; border-radius: 5px; height: 150px;" class="dropzone" data-width="160" data-height="150" data-resize="true" data-save="false" ><input type="file" name="thumb" /></div>'
+                                            
                                         },
                                         {
                                             xtype: 'button',
@@ -17125,7 +17149,19 @@ com.faralam.common.pollPrizePopupSec = function () {
                                             width: 80,
                                             margin: '40 0 0 35',
                                             handler: function () {
-                                                com.faralam.common.addPollPrize();
+                                                if(Ext.getCmp('pollPrizeQty').getValue()==""){
+                                                    
+                                                    Ext.MessageBox.alert('Information', 'Please enter prize Qty');
+                                                }
+                                               
+                                                else if(Ext.getCmp('pollPrizeName').getValue()==""){
+                                                    
+                                                    Ext.MessageBox.alert('Information', 'Please enter  prize Name');
+                                                }
+                                                else{
+                                                    com.faralam.common.addPollPrize();
+                                                }
+                                                    
                                             }
                                         }
                                     ]
@@ -17165,6 +17201,17 @@ com.faralam.common.pollPrizePopupSec = function () {
                     pollPrizePopupSec_modal_form.getForm().reset(true);
                 },
                 show: function () {
+                     window.CodeCanyon(window, jQuery);
+                     $('.dropzone').html5imageupload({
+                    onSave: function(e) {
+                        sessionStorage.codecanyonData = e.data;
+                        sessionStorage.codecanyonImgName = e.name;
+                    },
+                    onAfterCancel: function() {
+                        sessionStorage.codecanyonData = '';
+                        sessionStorage.codecanyonImgName = '';
+                    }
+                   });
                     com.faralam.common.populateContestInnerData('pollPrizeData');
                 }
 
@@ -17172,7 +17219,7 @@ com.faralam.common.pollPrizePopupSec = function () {
         });
     }
     pollPrizePopupSec_modal.showAt(50, 100);
-    //pollPrizePopupSec_modal.show();
+    pollPrizePopupSec_modal.show();
 }
 
 com.faralam.common.pollMsgPopupSec = function () {
@@ -17380,7 +17427,7 @@ com.faralam.common.addPollChoice = function () {
             Ext.MessageBox.alert('Success', 'Please Enter Answer befor save.');
         }
     else{
-    com.faralam.addPollChoice = com.faralam.serverURL + 'contests/addPollChoiceURL';
+    com.faralam.addPollChoice = com.faralam.serverURL + 'contests/addPollChoice';
     com.faralam.addPollChoice = com.faralam.addPollChoice + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
 
     var data = {
@@ -17391,29 +17438,41 @@ com.faralam.common.addPollChoice = function () {
         "displayText": Ext.getCmp('newPollAnswerText').getValue(),
         "url": Ext.getCmp('pollAnswer_img').src
     };
-
+        
     data = JSON.stringify(data);
 
-    //console.log(data);
-
     var onsuccess = function (response, textStatus, jqXHR) {
+        sessionStorage.codecanyonData="";
         Ext.MessageBox.alert('Success', 'Poll choice added successfully.', function () {
             Ext.getCmp('newPollAnswerText').setValue('');
-            Ext.getCmp('pollAnswer_img').setSrc('');
-            //Ext.getCmp('pollAnswerPopupSec_modal').close();
+            Ext.getCmp('pollAnswerPopupSec_modal').close();
             com.faralam.common.retrievePollPortal_func();
-            
-            
         });
     }
+    
+     var onerror = function (jqXHR, textStatus, errorThrown) {}
+     
+     options ={
+     url:com.faralam.addPollChoice,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+     };
+   var imageData = sessionStorage.codecanyonData;
+   if(imageData==""){
+      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+        }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
+   
 
-    var onerror = function (jqXHR, textStatus, errorThrown) {}
-
-    com.faralam.common.sendAjaxRequest(com.faralam.addPollChoice, "POST", data, onsuccess, onerror);
+    //com.faralam.common.sendAjaxRequest(com.faralam.addPollChoice, "POST", data, onsuccess, onerror);
 }}
 
 com.faralam.common.addPollPrize = function () {
-    com.faralam.addPollPrize = com.faralam.serverURL + 'contests/addPollPrizeURL';
+    com.faralam.addPollPrize = com.faralam.serverURL + 'contests/addPollPrize';
     com.faralam.addPollPrize = com.faralam.addPollPrize + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
 
 
@@ -17430,21 +17489,35 @@ com.faralam.common.addPollPrize = function () {
 
     data = JSON.stringify(data);
 
-    //console.log(data);
-
     var onsuccess = function (response, textStatus, jqXHR) {
+        sessionStorage.codecanyonData="";
         Ext.MessageBox.alert('Success', 'Poll prize added successfully.', function () {
-            //Ext.getCmp('pollPrizePopupSec_modal').close();
             Ext.getCmp('pollPrizeQty').setValue('');
             Ext.getCmp('pollPrizeName').setValue('');
-            Ext.getCmp('pollPrize_img').setSrc('');
+            Ext.getCmp('pollPrizePopupSec_modal').close();
             com.faralam.common.retrievePollPortal_func();
         });
     }
-
-    var onerror = function (jqXHR, textStatus, errorThrown) {}
-
-    com.faralam.common.sendAjaxRequest(com.faralam.addPollPrize, "POST", data, onsuccess, onerror);
+    
+      var onerror = function (jqXHR, textStatus, errorThrown) {}
+      
+    options ={
+     url:com.faralam.addPollPrize,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+  
+   var imageData = sessionStorage.codecanyonData;
+   if(imageData==""){
+      com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+        }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
+    
+    //com.faralam.common.sendAjaxRequest(com.faralam.addPollPrize, "POST", data, onsuccess, onerror);
 }
 
 com.faralam.common.setCorrectPollChoice = function (e) {
@@ -20126,7 +20199,7 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
     com.faralam.setSASLBannerImageOnly = com.faralam.serverURL + 'sasl/setSASLBannerImageOnly';
     com.faralam.setSASLBannerImageOnly = com.faralam.setSASLBannerImageOnly + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL +'&UID='+sessionStorage.UID);
 
-    var onsuccess = function (response, textStatus, jqXHR) {
+   var onsuccess = function (response, textStatus, jqXHR) {
       //Ext.getCmp('banner_image_component').update('');   
       Ext.getCmp('banner_image_component').update('<img style="height:55px !important;width:320px;" src="'+sessionStorage.codecanyonData+'">');
       sessionStorage.codecanyonData=""; 
