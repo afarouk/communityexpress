@@ -1,8 +1,8 @@
 
 <?php
 
-include_once('config.php'); 
-//For this example we will let the merchant country be passed in if they want. 
+include_once('config.php');
+//For this example we will let the merchant country be passed in if they want.
 if(isset($_GET['country'])){
   $merchant_country = strtoupper($_GET['country']);
 }else{
@@ -38,12 +38,12 @@ if(isset($_GET['country'])){
   <body>
 
     <div class="container">
-      <div class="header clearfix">
+      <!--div class="header clearfix">
         <h3 class="text-muted"><?php echo $PARTNER_NAME; ?></h3>
-      </div>
-      <div class="jumbotron">
+      </div-->
+      <!--div class="jumbotron">
         <p>Other Retail Payment Option </p>
-      </div>
+      </div-->
       <div class="jumbotron">
         <h1><img src="img/pp_here_flat.png" height="40" alt="PayPal Here" /></h1>
 
@@ -64,20 +64,20 @@ if(isset($_GET['country'])){
           <a href="<?php echo $OAUTH_LINK; ?>" class="ui-link">
           <img src="https://www.paypalobjects.com/webstatic/en_US/developer/docs/lipp/loginwithpaypalbutton.png" alt="Log in with PayPal">
         </a>
-        <?php }else{ //we can tell them PayPal Here is not availbale in their country 
+        <?php }else{ //we can tell them PayPal Here is not availbale in their country
           ?>
          <p class="lead">Sorry. PayPal Here is only available for card processing in (  <?php
          echo implode(", ", $PPH_DATA->card_countries); ?>) at this time.</p>
-        <?php } //end if PayPal Here is not available. 
+        <?php } //end if PayPal Here is not available.
           ?>
       </div>
-      <div class="jumbotron">
+      <!--div class="jumbotron">
         <p>Other Retail Payment Option </p>
-      </div>
+      </div-->
 
-      <footer class="footer">
+      <!--footer class="footer">
         <p>&copy; <?php echo $PARTNER_NAME; ?> <?php echo date('Y'); ?>    |    <a href="../pph-onboard-global.zip">Download Sample Code</a></p>
-      </footer>
+      </footer -->
 
     </div> <!-- /container -->
 

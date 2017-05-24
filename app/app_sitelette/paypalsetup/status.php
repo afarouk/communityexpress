@@ -1,11 +1,11 @@
-<?php include_once('config.php'); 
+<?php include_once('config.php');
 
 //For this page we will get the Merchant PayPal Aceess/Refresh Token from a Cookie.
 //In your situation these would be stored in the Database.
 
 
 if(isset($_COOKIE['PayPal-Merchant-Access'])){ //if we have an active access token lets use it.
-  
+
   $access_token = $_COOKIE['PayPal-Merchant-Access'];
   $refresh_token = $_COOKIE['PayPal-Merchant-Refresh'];
 
@@ -13,7 +13,7 @@ if(isset($_COOKIE['PayPal-Merchant-Access'])){ //if we have an active access tok
 
   $refresh_token = $_COOKIE['PayPal-Merchant-Refresh'];
 
-  // This is an example of how you can refresh the access token and check the status of Access tokens. 
+  // This is an example of how you can refresh the access token and check the status of Access tokens.
   // You make this call to create fresh access tokens.
 
   $refresh_url = $PAYPAL_REST_DOMAIN.'/v1/identity/openidconnect/tokenservice?';
@@ -208,9 +208,9 @@ $paypal_account_retail_status = json_decode(curl_exec( $ch ));
 
         </div>
 
-      <footer class="footer">
+      <!--footer class="footer">
         <p>&copy; <?php echo $PARTNER_NAME; ?> <?php echo date('Y'); ?>    |    <a href="../pph-onboard-global.zip">Download Sample Code</a></p>
-      </footer>
+      </footer-->
 
     </div> <!-- /container -->
 
