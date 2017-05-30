@@ -159,8 +159,7 @@ com.faralam.getLoginStatus = function () {
                     Ext.getCmp('main_tab').down('#other_info').setDisabled(false);
                     Ext.getCmp('main_tab').down('#open_hrs').setDisabled(false);
                     Ext.getCmp('main_tab').down('#settings').setDisabled(false);
-                    Ext.getCmp('main_tab').setActiveTab(4);
-                    Ext.getCmp('main_tab').down('#name_address').setDisabled(true);
+                       Ext.getCmp('main_tab').down('#name_address').setDisabled(true);
                 }
             } else {
                 if ( /*data.registrationState == 'LEVEL3' && */ data.isOwner) {
@@ -1393,7 +1392,9 @@ com.faralam.StartScreenNavigate = function (config) {
             Ext.getCmp('CreateSaleItem_pageHeader').update('<span style="color:#E5FFFF;font-size:20px; font-weight: bold;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');
             Ext.getCmp('main_tab').setActiveTab(53);
         }
-    }else if (config == 'customizeService') {
+    }
+    else if (config == 'customizeService') {
+        console.log("B.K.P "+sessionStorage.SASLNAME);
         if (sessionStorage.SASLNAME) {
             Ext.getCmp('main_tab').down('#start_screen').setDisabled(true);
             Ext.getCmp('main_tab').down('#customize_service').setDisabled(false);                        
@@ -2565,10 +2566,10 @@ com.faralam.common.retrieveMobileGalleryInfo = function (sa, sl) {
                 html1 += '<li ondrop="com.faralam.drop(event)" ondragover="com.faralam.allowDrop(event)"><img total_count = "' + data.length + '" img_id = "' + data[i].id + '" selector = "' + data[i].index + '" data-value = "' + data_value + '" params="' + param + '" param="' + params + '" id="gallery_drag_zone_active" class="before_dragging" ondragend="com.faralam.dragEnd(event)" ondragstart="com.faralam.dragStart(event)" onclick="com.faralam.showGalleryImage(this)" src=' + data[i].thumbURL + '&ver=' + timestamp + ' style="margin:1px 3px;"></li>';
             }
 
-            Ext.getCmp('gallery_show_image_title').setValue(data[0].title);
-            Ext.getCmp('gallery_show_image').setSrc(data[0].url + '&ver=' + timestamp);
+            /*Ext.getCmp('gallery_show_image_title').setValue(data[0].title);
+            // Ext.getCmp('gallery_show_image').setSrc(data[0].url + '&ver=' + timestamp);
             Ext.getCmp('gallery_textarea').setValue(data[0].message);
-            Ext.getCmp('gallery_picture_id').setValue(data[0].id);
+            Ext.getCmp('gallery_picture_id').setValue(data[0].id);*/
         } else {
             html1 = '<li ondrop="com.faralam.drop(event)" ondragover="com.faralam.allowDrop(event)" id="mobile_gallery"></li>';
             Ext.getCmp('gallery_save_pic_txt').setDisabled(true);
@@ -2953,7 +2954,8 @@ com.faralam.showGalleryImage = function (e) {
     }
 
     Ext.getCmp('gallery_show_image_title').setValue(decodeURI(n[1]));
-    Ext.getCmp('gallery_show_image').setSrc(n[3]);
+    //Ext.getCmp('gallery_show_image').setSrc(n[3]);
+    $("#gallery_show_image").attr('src',n[3]);
     Ext.getCmp('gallery_textarea').setValue(decodeURI(n[2]));
     Ext.getCmp('gallery_picture_id').setValue(n[0]);
 }
@@ -2962,13 +2964,13 @@ com.faralam.common.setGalleryTitle = function (id, sa, sl, data) {
 
     com.faralam.update_media_title = com.faralam.serverURL + 'media/updateMediaTitle';
     com.faralam.update_media_title = com.faralam.update_media_title + "?" + encodeURI('id=' + id + '&UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sa + '&serviceLocationId=' + sl);
-
-    //console.log(data);
-    //data = JSON.stringify(data);
-    //console.log(data);
+ 
+       //data = JSON.stringify(data);
+      //console.log(data);
 
     var onsuccess = function (data, textStatus, jqXHR) {
         //if(jqXHR.status){
+       sessionStorage.codecanyonData="";
         if (data) {
             com.faralam.common.retrieveMobileGalleryInfo(sa, sl);
             com.faralam.common.retrieveMediaMetaDataBySASL(sa, sl);
@@ -2977,8 +2979,25 @@ com.faralam.common.setGalleryTitle = function (id, sa, sl, data) {
     }
 
     var onerror = function (jqXHR, textStatus, errorThrown) {}
+    
+     options ={
+             url:com.faralam.update_media_title,
+             method:'PUT',
+             data:data,
+             onsuccess:onsuccess,  
+             onerror: onerror      
+           };
+    
+    
+        var imageData = sessionStorage.codecanyonData;
+        if(imageData==""){
+            com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');
+            }
+          else{
+            com.faralam.common.sendMultipart(options);  
+         }
 
-    com.faralam.common.sendAjaxRequest(com.faralam.update_media_title, "PUT", data, onsuccess, onerror);
+    //com.faralam.common.sendAjaxRequest(com.faralam.update_media_title, "PUT", data, onsuccess, onerror);
 }
 
 com.faralam.common.setGalleryMessage = function (id, sa, sl, data) {
@@ -2997,11 +3016,27 @@ com.faralam.common.setGalleryMessage = function (id, sa, sl, data) {
                 com.faralam.common.retrieveMemberMediaMetaDataBySASL(sa, sl);
             }
         }
-
+        
         var onerror = function (jqXHR, textStatus, errorThrown) {}
-
-        com.faralam.common.sendAjaxRequest(com.faralam.update_media_message, "PUT", data, onsuccess, onerror);
-    }
+        
+        options ={
+             url:com.faralam.update_media_message,
+             method:'PUT',
+             data:data,
+             onsuccess:onsuccess,  
+             onerror: onerror      
+           };
+    
+    
+        var imageData = sessionStorage.codecanyonData;
+        if(imageData==""){
+            com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');
+            }
+          else{
+            com.faralam.common.sendMultipart(options);  
+         }
+        //com.faralam.common.sendAjaxRequest(com.faralam.update_media_message, "PUT", data, onsuccess, onerror);
+        }
     // ############################# Ends #################################
 
 // ############################ Other Info Section ##########################
@@ -5612,12 +5647,11 @@ com.faralam.RetrievePromoInfo = function () {
                         first_share_url=response[i].shareURL;
                         active_count++;
                     }
-
                     var del_params = response[i].promoPictureId + ',' + response[i].serviceAccommodatorId + ',' + response[i].promotionType.enumText + ',' + response[i].promotionSASLName + ',' + response[i].messageText + ',' + response[i].promoUUID;
                     var overlay_img = '';
                     overlay_img = com.faralam.custom_img_path + 'ACTIVE.png';
 
-                    html += '<li><img id="promotion_drag_zone_active" class="before_dragging" ondragend="com.faralam.dragEnd_promotion(event)" ondragstart="com.faralam.dragStart_promotion(event)" onclick="com.faralam.SetPromoImageDesc(this)" status="ACTIVE" shareUrl="'+response[i].shareURL+'"  width="70" height="80" data-qtip=' + response[i].promotionStatus + ' params=' + del_params + ' src="' + response[i].url + '" promoUUID="' + response[i].promoUUID + '" promoId="' + response[i].promoPictureId + '" promoType="' + response[i].promotionType.enumText + '" promoTitle="' + response[i].promotionSASLName + '" imgUrl="' + response[i].url + '" promoDesc="' + response[i].messageText + '" ><div class="gallery_overlay"><span><img src="' + overlay_img + '" alt="" ondrop="com.faralam.drop_promotion(event)" ondragover="com.faralam.allowDrop_promotion(event)" /></span></div></li>';
+                    html += '<li><img id="promotion_drag_zone_active" class="before_dragging" ondragend="com.faralam.dragEnd_promotion(event)" ondragstart="com.faralam.dragStart_promotion(event)" onclick="com.faralam.SetPromoImageDesc(this)" status="ACTIVE" shareUrl="'+response[i].shareURL+'"  width="70" height="80" data-qtip=' + response[i].promotionStatus + ' params=' + del_params + ' src="' +response[i].url + '" promoUUID="' + response[i].promoUUID + '" promoId="' + response[i].promoPictureId + '" promoType="' + response[i].promotionType.enumText + '" promoTitle="' + response[i].promotionSASLName + '" imgUrl="' + response[i].url + '" promoDesc="' + response[i].messageText + '" ><div class="gallery_overlay"><span><img src="' + overlay_img + '" alt="" ondrop="com.faralam.drop_promotion(event)" ondragover="com.faralam.allowDrop_promotion(event)" /></span></div></li>';
                 } else if (response[i].promotionStatus == "PROPOSED" || response[i].promotionStatus == "APPROVED") {
 
                     // var promo_fields = response[i].promoPictureId+','+response[i].serviceAccommodatorId+','+response[i].promotionType.enumText+','+response[i].promotionSASLName+','+response[i].messageText;
@@ -5703,10 +5737,8 @@ com.faralam.RetrievePromoInfo = function () {
 
 com.faralam.common.set_promo_image = function(e){
     var img=e.getAttribute('src');
-    $("#promo_big_img").html("<div><img style='width:240px;height:190px' src="+img+"></div>");
-    
+    Ext.getCmp('promo_big_img').setSrc(img);
     com.faralam.common.ConvertImage(img);
-    
     var pid=e.getAttribute('pid');
     var p_sa=e.getAttribute('p_sa');
     Ext.getCmp('hid_promo_picture_id').setValue(pid);
@@ -5755,8 +5787,8 @@ com.faralam.SubmitPromotion = function () {
         "promotionType": Ext.getCmp('promo_type').getValue(),
         "promotionSASLName": Ext.getCmp('promo_title').getValue(),
         "serviceAccommodatorId": sessionStorage.SA,
-        "serviceLocationId": sessionStorage.SL,
-    };
+        "serviceLocationId": sessionStorage.SL
+    }
     var onsuccess = function (response, textStatus, jqXHR) {
         sessionStorage.codecanyonData="";
         Ext.MessageBox.alert('Success', 'Promotion Updated successfully.', function () {
@@ -6316,7 +6348,6 @@ com.faralam.common.AddNewPromotion =function() {
 						type: 'vbox',
 						align: 'stretch'
 					},
-					//cls: 'x-body',
                     cls: 'common_bg',
                     border: false,
 					bodyPadding: 10,
@@ -6344,30 +6375,17 @@ com.faralam.common.AddNewPromotion =function() {
                            layout:'vbox',
                            width:620,
                            height:500,
-                           items:[
-                               /*{
-                                           xtype:'component',
-                                           width:200,
-                                           height:50,
-                                           html:'<span style="color:#fff>Select a picture</span>' 
-                                       },
-                                       {
-                                            xtype: 'button',
-                                            scale: 'medium',
-                                            text: 'Upload New Picture',
-                                            tdAttrs: {
-                                                style: {
-                                                    width: '30%',
-                                                    background:'#2E4E87'
-                                                }
-                                            },
-                                            style: 'margin:0 auto;',
-                                            handler: function(){
-                                                $('#modal').css({'z-index': '19002'});
-                                                com.faralam.getCropPicURLs('resources/plugins/croppic/promo_crop.html');
-                                            }
-                                       },*/
-                                
+                           items:[ 
+                                 {
+                                   xtype:'button',
+                                   text:'Add Picture',
+                                   width:100,
+                                   height:25,
+                                   id:'add_image',
+                                   handler:function(){
+                                       com.faralam.common.Promotion_Popup();
+                                   }
+                                },
                                {
                                 xtype:'container',
                                 width:600,
@@ -6486,12 +6504,12 @@ com.faralam.common.AddNewPromotion =function() {
 										labelSeparator: ''		
 									},*/
 							{
-                                xtype:'component',
+								xtype: 'image',
                                 width: 240,
                                 height: 190,
+								src: '',
 								style: 'border: 1px solid #fff;margin: 3px 0 0 0;',
-								id: 'promo_big_img',
-                                html:'<div><div  style="border: 2px solid black; width: 240px; border-radius: 5px; height: 190px;" class="dropzone" data-width="190" data-height="190" data-resize="true" data-save="false" ><input type="file" name="thumb" /></div></div>'
+								id: 'promo_big_img'
 							},
 							{
 								xtype: 'textareafield',
@@ -8702,26 +8720,9 @@ com.faralam.common.CATALOGS_EDIT_ITEMS = function (e) {
                                             xtype: 'button',
                                             scale: 'small',
                                             text: 'Add New Picture',
-                                            /*margin: '0 0 0 10',
-                                             tdAttrs: {
-                                             style: {
-                                             width: '33%'
-                                             }
-                                             },*/
                                             style: 'margin: 0 auto; position: absolute;right: 10px;bottom: 138px;z-index: 9;',
                                             handler: function(){
-                                                //$('#modal').css({'z-index': '19002', 'margin-top': '-5px'});
                                                 $('#modal').css({'z-index': '19002'});
-                                                //com.faralam.getCropPicURLs('resources/plugins/croppic/catalog_crop.html');
-                                                /*Ext.Ajax.request({
-                                                 url: 'resources/plugins/croppic/catalog_crop.html',
-                                                 method: 'GET',
-                                                 success : function(data, textStatus, jqXHR) {
-                                                 modal.open({
-                                                 content : data.responseText
-                                                 });
-                                                 }
-                                                 });*/
                                             }
                                         },
                                         
@@ -9125,7 +9126,7 @@ com.faralam.SubmitCatalog = function () {
 
 com.faralam.SubmitCatalogEdit = function () {
 
-    com.faralam.submit_catalog = com.faralam.serverURL + 'retail/createWNewPictureURLNewMetaData';
+    com.faralam.submit_catalog = com.faralam.serverURL + 'retail/createWNewPictureNewMetaData';
     com.faralam.submit_catalog = com.faralam.submit_catalog + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
 
     var data = {
@@ -15596,7 +15597,7 @@ com.faralam.common.widgetSwitchCheckbox = function (e, field) {
     //       DATE - 24th feb 2016
     //-----------------------------------------------------------------------------------------------
 com.faralam.common.createPhoto = function () {
-    com.faralam.createPhoto = com.faralam.serverURL + 'contests/createPhotoContestURL';
+    com.faralam.createPhoto = com.faralam.serverURL + 'contests/createPhotoContest';
     com.faralam.createPhoto = com.faralam.createPhoto + "?" + encodeURI('UID=' + sessionStorage.UID);
     var url=Ext.getCmp('photoQuestion_img').src;
     if(url==null)
@@ -15606,10 +15607,8 @@ com.faralam.common.createPhoto = function () {
     var data = {
         "serviceAccommodatorId": sessionStorage.SA,
         "serviceLocationId": sessionStorage.SL,
-        /*"activationDate": "2016-10-20T22:27:41:PDT", //Ext.getCmp('newPollActivationDate').getSubmitValue(),
-        "expirationDate": "2016-11-01T09:45:00:PDT", *///Ext.getCmp('newPollExpirationDate').getSubmitValue(),
-       "activationDate": com.faralam.common.contestDateFormat(Ext.getCmp('newPhotoActivationDate').getSubmitValue())+":PDT",
-        "expirationDate": com.faralam.common.contestDateFormat(Ext.getCmp('newPhotoExpirationDate').getSubmitValue())+"Z",
+       "activationDate": Ext.getCmp('newPhotoActivationDate').getSubmitValue(),
+        "expirationDate": Ext.getCmp('newPhotoExpirationDate').getSubmitValue(),
         "contestName": Ext.getCmp('newPhotoContestTitle').getValue(),
         "displayText": Ext.getCmp('newPhotoContestDescription').getValue(),
         "isAnonymous": Ext.getCmp('photo_anonymous').getValue(),
@@ -15633,14 +15632,15 @@ com.faralam.common.createPhoto = function () {
     console.log(data);
 
     var onsuccess = function (response, textStatus, jqXHR) {
+        sessionStorage.codecanyonData="";
         Ext.MessageBox.alert('Success', 'Photo contest added successfully.', function () {
             sessionStorage.photo_nxt_prev_id="";
             Ext.getCmp('newPhotoMainContainer').getForm().reset(true);
-            Ext.getCmp('photo_anonymous').setValue(false);
+            /*Ext.getCmp('photo_anonymous').setValue(false);
             Ext.getCmp('photoQuestion_img').setSrc('');
             Ext.getCmp('photo_agree').setValue(false);
             $('#photo_anonymous_toggle').attr('checked', false); 
-            $('#photo_agree_toggle').attr('checked', false); 
+            $('#photo_agree_toggle').attr('checked', false);*/ 
              
             Ext.getCmp('main_tab').down('#PhotoContest').setDisabled(false);
             Ext.getCmp('main_tab').down('#CreateNewPhotoContest').setDisabled(true);
@@ -15649,8 +15649,25 @@ com.faralam.common.createPhoto = function () {
     }
 
     var onerror = function (jqXHR, textStatus, errorThrown) {}
+    
+    
+     options ={
+     url:com.faralam.createPhoto,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+    console.log(options);
+   var imageData = sessionStorage.codecanyonData;
+   if(imageData==""){
+            com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');  
+        }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
 
-    com.faralam.common.sendAjaxRequest(com.faralam.createPhoto, "POST", data, onsuccess, onerror);
+    //com.faralam.common.sendAjaxRequest(com.faralam.createPhoto, "POST", data, onsuccess, onerror);
 }
 
 com.faralam.common.retrievePhotoContestPortal_func_nxt_prev = function(fl){
@@ -15922,21 +15939,6 @@ com.faralam.common.photoPrizePopupSec = function () {
                                         {
                                             xtype: 'displayfield',
                                             value: '<div class="add_answer_text">Add / Delete Prizes</div>'
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            scale: 'large',
-                                            text: '<span style="color:#fff !important;">Add New Picture</span>',
-                                            style: ' border-radius: 5px !important;cursor:pointer;background:#007AFF !important;border:2px solid #000 !important;box-shadow:none !important;color:#006FC0;padding:0 5px;',
-                                            height: 26,
-                                            width: 170,
-                                            margin: '0 0 0 255',
-                                            handler: function () {
-                                                $('#modal').css({
-                                                    'z-index': '19002'
-                                                });
-                                                com.faralam.getCropPicURLs('resources/plugins/croppic/pollcontestprize_crop.html');
-                                            }
                                         }
                                     ]
                                 },
@@ -15976,13 +15978,13 @@ com.faralam.common.photoPrizePopupSec = function () {
                                             allowBlank: false
                                         },
                                         {
-                                            xtype: 'image',
+                                            xtype:'component',
                                             width: 160,
                                             height: 150,
-                                            src: '',
                                             margin: '0 0 0 27',
                                             style: 'background:#E81212;',
-                                            id: 'photoPrize_img'
+                                            id: 'photoPrize_img',
+                                            html:'<div  style="border: 2px solid black; width: 160px; border-radius: 5px; height: 150px;" class="dropzone" data-width="160" data-height="150" data-resize="true" data-save="false" ><input type="file" name="thumb" /></div>'
                                         },
                                         {
                                             xtype: 'button',
@@ -16015,7 +16017,7 @@ com.faralam.common.photoPrizePopupSec = function () {
                                                         Ext.MessageBox.alert('Error', 'Please Choose a picture.');
                                                     }*/
                                                 else{
-                                                com.faralam.common.addPhotoContestPrizeURL(qty,name);
+                                                com.faralam.common.addPhotoContestPrize(qty,name);
                                                 }
                                             }
                                         }
@@ -16058,14 +16060,25 @@ com.faralam.common.photoPrizePopupSec = function () {
                 },
                 show: function () {
                     com.faralam.common.populatephotoContestInnerData();
-                    //com.faralam.common.populateContestInnerData('pollPrizeData');
+                    sessionStorage.codecanyonData ="";
+                        window.CodeCanyon(window, jQuery);
+                        $('.dropzone').html5imageupload({
+                        onSave: function(e) {
+                            sessionStorage.codecanyonData = e.data;
+                            sessionStorage.codecanyonImgName = e.name;
+                        },
+                        onAfterCancel: function() {
+                           sessionStorage.codecanyonData = '';
+                           sessionStorage.codecanyonImgName = '';
+                        }
+                    });
                 }
 
             }
         });
     }
     photoPrizePopupSec_modal.showAt(50, 100);
-    //photoPrizePopupSec_modal.show();
+    photoPrizePopupSec_modal.show();
 }
 
 com.faralam.common.activatePhotoContest = function(){
@@ -16114,9 +16127,9 @@ com.faralam.common.deletePhotoContestEntry = function (entryId,entryForUID,conte
                                                     
 }
 
-com.faralam.common.addPhotoContestPrizeURL = function(qty,name){
-    com.faralam.addPhotoContestPrizeURL = com.faralam.serverURL + 'contests/addPhotoContestPrizeURL';
-    com.faralam.addPhotoContestPrizeURL = com.faralam.addPhotoContestPrizeURL + "?" + encodeURI('UID=' + sessionStorage.UID);
+com.faralam.common.addPhotoContestPrize = function(qty,name){
+    com.faralam.addPhotoContestPrize = com.faralam.serverURL + 'contests/addPhotoContestPrize';
+    com.faralam.addPhotoContestPrize = com.faralam.addPhotoContestPrize + "?" + encodeURI('UID=' + sessionStorage.UID);
     var img_url=Ext.getCmp('photoPrize_img').src;
     if(!img_url)
         {
@@ -16136,8 +16149,9 @@ com.faralam.common.addPhotoContestPrizeURL = function(qty,name){
     data = JSON.stringify(data);
     
     var onsuccess = function (response, textStatus, jqXHR) {
+        sessionStorage.codecanyonData="";
         Ext.MessageBox.alert('Success', 'Poll prize added successfully.', function () {
-            //Ext.getCmp('photoPrizePopupSec_modal').close();
+            Ext.getCmp('photoPrizePopupSec_modal').close();
             Ext.getCmp('photoPrizeQty').setValue('');
             Ext.getCmp('photoPrizeName').setValue('');
             Ext.getCmp('photoPrize_img').setSrc('');
@@ -16146,8 +16160,23 @@ com.faralam.common.addPhotoContestPrizeURL = function(qty,name){
     }
 
     var onerror = function (jqXHR, textStatus, errorThrown) {}
+    
+    options ={
+     url:com.faralam.addPhotoContestPrize,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+   var imageData = sessionStorage.codecanyonData;
+   if(imageData==""){
+            com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');  
+        }
+      else{
+       com.faralam.common.sendMultipart(options);  
+     }
 
-    com.faralam.common.sendAjaxRequest(com.faralam.addPhotoContestPrizeURL, "POST", data, onsuccess, onerror);   
+    //com.faralam.common.sendAjaxRequest(com.faralam.addPhotoContestPrizeURL, "POST", data, onsuccess, onerror);   
 }
 
 com.faralam.common.populatephotoContestInnerData = function () {
@@ -16916,23 +16945,8 @@ com.faralam.common.pollAnswerPopupSec = function () {
                                         {
                                             xtype: 'displayfield',
                                             value: '<div class="add_answer_text">Add / Delete Answers</div>'
-                                        },
-                                        /*{
-                                            xtype: 'button',
-                                            scale: 'large',
-                                            text: '<span style="color:#fff !important;">Add New Picture</span>',
-                                            style: ' border-radius: 5px !important;cursor:pointer;background:#007AFF !important;border:2px solid #000 !important;box-shadow:none !important;color:#006FC0;padding:0 5px;',
-                                            height: 26,
-                                            width: 170,
-                                            margin: '0 0 0 255',
-                                            handler: function () {
-                                                $('#modal').css({
-                                                    'z-index': '19002'
-                                                });
-                                                com.faralam.getCropPicURLs('resources/plugins/croppic/pollcontestanswer_crop.html');
-                                            }
-                                        }*/
-                                    ]
+                                        }
+                                            ]
                                 },
                                 {
                                     xtype: 'container',
@@ -17077,23 +17091,8 @@ com.faralam.common.pollPrizePopupSec = function () {
                                         {
                                             xtype: 'displayfield',
                                             value: '<div class="add_answer_text">Add / Delete Prizes</div>'
-                                        },
-                                        /*{
-                                            xtype: 'button',
-                                            scale: 'large',
-                                            text: '<span style="color:#fff !important;">Add New Picture</span>',
-                                            style: ' border-radius: 5px !important;cursor:pointer;background:#007AFF !important;border:2px solid #000 !important;box-shadow:none !important;color:#006FC0;padding:0 5px;',
-                                            height: 26,
-                                            width: 170,
-                                            margin: '0 0 0 255',
-                                            handler: function () {
-                                                $('#modal').css({
-                                                    'z-index': '19002'
-                                                });
-                                                com.faralam.getCropPicURLs('resources/plugins/croppic/pollcontestprize_crop.html');
-                                            }
-                                        }*/
-                                    ]
+                                        }
+                                            ]
                                 },
                                 {
                                     xtype: 'container',
@@ -20200,10 +20199,19 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
     com.faralam.setSASLBannerImageOnly = com.faralam.setSASLBannerImageOnly + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL +'&UID='+sessionStorage.UID);
 
    var onsuccess = function (response, textStatus, jqXHR) {
-      //Ext.getCmp('banner_image_component').update('');   
-      Ext.getCmp('banner_image_component').update('<img style="height:55px !important;width:320px;" src="'+sessionStorage.codecanyonData+'">');
-      sessionStorage.codecanyonData=""; 
-      com.faralam.registration.showPopup('Success', 'You have successfully updated banner Image.');
+       /*Ext.getCmp('banner_image_component').update('');
+       sessionStorage.codecanyonData=""; 
+       
+       
+       Ext.MessageBox.alert('Success', 'You have successfully updated banner Image', function () {
+        var imgPth=com.faralam.serverURL+'sasl/retrieveSASLbanner?serviceAccommodatorId='+sessionStorage.SA+'&serviceLocationId='+sessionStorage.SL+"id=12";
+      Ext.getCmp('banner_image_component').update('<img style="height:55px !important;width:320px;" src="'+imgPth+'">');
+        });*/
+       
+       Ext.MessageBox.alert('Success', 'You have successfully updated banner Image',function(){Ext.getCmp('banner_image_component').update('<img style="height:55px !important;width:320px;" src="'+imageData+'">')}
+       );
+       sessionStorage.codecanyonData=""
+       
    }
    var onerror = function (jqXHR, textStatus, errorThrown) {}
    options ={
@@ -20262,10 +20270,10 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
     com.faralam.retrieveMediaMetaDataBySASL = com.faralam.retrieveMediaMetaDataBySASL + "?" + encodeURI('serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL + '&UID=' + sessionStorage.UID)+'&mediaType=GALLERY_OWNER&status=ALL';
     
     var onsuccess = function (response, textStatus, jqXHR) {
-       console.log(response);
         if(response.length>0){
          var imgUrl ='<img style="height:240px !important;width:320px;" src="'+response[0].url+'">';
-         Ext.getCmp('welcome_image_preview').update(imgUrl);    
+         Ext.getCmp('welcome_image_preview').update(imgUrl);  
+         Ext.getCmp('welcome_title').setValue(response[0].title);
         }
         
     }
@@ -20307,7 +20315,10 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
 }
 
  function dataURLtoBlob(data) {
-     console.log(data);
+     
+     if(!data){
+         return "";
+     }
         var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
         var byteString = atob(data.split(',')[1]);
         var ab = new ArrayBuffer(byteString.length);
@@ -20333,9 +20344,15 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
  
   var onsuccess = function (response, textStatus, jqXHR) {
       Ext.getCmp('app_icon_component').update('');
-      Ext.getCmp('app_icon_component').update('<img style="height:100px !important;width:100px;" src="'+sessionStorage.codecanyonData+'">');
-      sessionStorage.codecanyonData="";
-      com.faralam.registration.showPopup('Success', 'You have successfully updated App icon.');
+      
+     //sessionStorage.codecanyonData="";
+      
+      Ext.MessageBox.alert('Success', 'You have successfully updated App icon.', function () {
+            /*Ext.getCmp('app_icon_component').update('<img style="height:100px !important;width:100px;" src="'+com.faralam.serverURL +'sasl/retrieveATC192bySASL?serviceAccommodatorId='+sessionStorage.SA+'&serviceLocationId='+sessionStorage.SL+'">');*/
+          
+          Ext.getCmp('app_icon_component').update('<img style="height:100px !important;width:100px;" src="'+imageData+'">');
+        });
+       sessionStorage.codecanyonData="";
   }
   var onerror = function (jqXHR, textStatus, errorThrown) {}
   options ={
@@ -20345,6 +20362,7 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
      onerror: onerror,
      data:''
   };
+     var imageData=sessionStorage.codecanyonData;
      if(sessionStorage.codecanyonData==""){
       com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
      }else{
@@ -20411,17 +20429,307 @@ com.faralam.retrieveMediaMetaDataBySASL = com.faralam.serverURL + 'media/retriev
           xhr.send();
 }
         function set(data){
-           sessionStorage.codecanyonData=data;   
+         sessionStorage.codecanyonData=data;   
         }
-        convertFileToDataURLviaFileReader(img,set);
+        convertFileToDataURLviaFileReader(img , set);
 }
  
  
+ com.faralam.common.Gallery_Popup = function(){
+     var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
+     
+    var galleryPopupSec_modal;
+     
+     if(Ext.getCmp('galleryPopupSec_modal')){
+         var modal = Ext.getCmp('galleryPopupSec_modal');
+         modal.destroy(modal,new Object);
+     }else{
+          var GalleryPopupSec_modal_form=Ext.widget('form',{
+              
+            layout: {
+                type: 'vbox',
+                align: 'stretch'
+            },
+            cls: 'white_bg',
+            border: false,
+            bodyPadding: 10,
+            fieldDefaults: {
+                labelAlign: 'side',
+                labelWidth: 80,
+                labelStyle: 'font-weight:bold'
+            },
+            defaultType: 'textfield',
+            items: [
+                {
+                    xtype: 'container',
+                    style: 'width:400px;',
+                    layout: 'hbox',
+                    margin: '20 0 0 25',
+                    items: [
+                         {
+                            xtype:'component',
+                            width: 220,
+                            height: 200,
+                            margin: '40 0 0 10',
+                            style: 'background:#E81212;',
+                            id: 'gallery_image',
+                            //src:'',
+                            html:'<div  style="border: 2px solid black; width: 220px; border-radius: 5px; height: 200px;" class="dropzone" data-width="220" data-height="200" data-resize="true" data-save="false" ><input type="file" name="thumb" /></div>'
+                        },
+                        {
+                            xtype: 'container',
+                            layout: 'vbox',
+                            items: [
+                                {
+                                    xtype: 'textfield',
+                                    fieldLabel: '',
+                                    labelSeparator: '',
+                                    inputWidth: 245,
+                                    margin: '40 0 0 10',
+                                    name: '',
+                                    value: '',
+                                    id: 'Title',
+                                    allowBlank: false,
+                                    emptyText:'Title'
+                                },
+
+                                {
+                                    xtype: 'textfield',
+                                    fieldLabel: '',
+                                    labelSeparator: '',
+                                    inputWidth: 245,
+                                    inputHeight: 30,
+                                    margin: '40 0 0 10',
+                                    name: '',
+                                    value: '',
+                                    id: 'Description',
+                                    allowBlank: false,
+                                    emptyText:'Description'
+                                },
+                                {
+                                   xtype: 'container',
+                                   layout: 'hbox', 
+                                    items:[
+                                        {
+                                            xtype: 'button',
+                                            scale: 'large',
+                                            text: '<span style="color:#000 !important;">Upload Image</span>',
+                                            style: 'border-radius: none !important;cursor:pointer;background:#007AFF !important;border:2px solid #007AFF !important;box-shadow:none !important;color:#006FC0;padding:0 5px;',
+                                            height: 26,
+                                            width: 160,
+                                            margin: '40 0 0 10',
+                                            id:'Submit',
+                                            handler: function () {
+                                                com.faralam.common.Add_gallery_picture();
+                                    }
+                                },
+                                        {
+                                         xtype:'button',   
+                                         scale:'large',
+                                         text:'<span style="color:#000 !important;">Cancel</span>',
+                                         style:'border-radius: none !important;cursor:pointer;background:#007AFF !important;border:2px solid #007AFF !important;box-shadow:none !important;color:#006FC0;padding:0 5px;',
+                                        height:26,
+                                        width:80,
+                                        margin:'40 0 0 10',
+                                        id:'Cancel',
+                                        handler:function(){
+                                             Ext.getCmp('galleryPopupSec_modal').close();
+                                        }
+                                }   
+                                    ]
+                                }  
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
+         
+          galleryPopupSec_modal= Ext.widget('window', {
+            title: '<h4 style="color:#000 !important">Add New Picture</h4>',
+            id: 'galleryPopupSec_modal',
+            closeAction: 'destroy',
+            layout: 'fit',
+            resizable: false,
+            modal: true,
+            height:400,
+            width: 600,
+            cls: 'white_modal',
+            items: GalleryPopupSec_modal_form,
+            listeners: {
+                close: function () {
+                    GalleryPopupSec_modal_form.getForm().reset(true);
+                },
+                show: function () {
+                    window.CodeCanyon(window, jQuery);
+                    $('.dropzone').html5imageupload({
+                    onSave: function(e) {
+                        sessionStorage.codecanyonData = e.data;
+                        sessionStorage.codecanyonImgName = e.name;
+                    },
+                    onAfterCancel: function() {
+                        sessionStorage.codecanyonData = '';
+                        sessionStorage.codecanyonImgName = '';
+                    }
+                   });
+                   
+                }
+
+            }
+        });
+     }
+    
+    galleryPopupSec_modal.show();        
+}
  
- 
- 
- 
- 
- 
- 
- 
+com.faralam.common.Add_gallery_picture = function () {
+    com.faralam.submit_promotion = com.faralam.serverURL + 'media/createWNewPictureNewMetaData';
+    com.faralam.submit_promotion = com.faralam.submit_promotion + "?" + encodeURI('UID=' + sessionStorage.UID);
+
+    var data  = {
+				"title" : Ext.getCmp('Title').getValue(),
+				"message" : Ext.getCmp('Description').getValue(),
+				"serviceAccommodatorId" : sessionStorage.SA,
+				"serviceLocationId" : sessionStorage.SL,
+				"status":"PROPOSED",
+				"type":"GALLERY_OWNER"
+			};
+
+    var onsuccess = function (response, textStatus, jqXHR) {
+        sessionStorage.codecanyonData="";
+        Ext.MessageBox.alert('Success', 'Picture uploaded successfully.', function () {
+        Ext.getCmp('galleryPopupSec_modal').close();
+        com.faralam.common.retrieveMediaMetaDataBySASL(sessionStorage.SA, sessionStorage.SL);
+        com.faralam.common.retrieveMobileGalleryInfo(sessionStorage.SA, sessionStorage.SL);
+        com.faralam.common.retrieveMemberMediaMetaDataBySASL(sessionStorage.SA, sessionStorage.SL);
+        });
+    }
+
+    var onerror = function (jqXHR, textStatus, errorThrown) {}
+    data = JSON.stringify(data);
+    
+    options ={
+     url:com.faralam.submit_promotion,
+     method:'POST',
+     data:data,
+     onsuccess:onsuccess,  
+     onerror: onerror      
+   };
+    
+    
+    var imageData = sessionStorage.codecanyonData;
+    if(imageData==""){
+        com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+        }
+      else{
+        com.faralam.common.sendMultipart(options);  
+     }
+}
+
+ com.faralam.common.Promotion_Popup = function(){
+     //var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
+     
+    var Promotion_Popup_modal;
+     
+     if(Ext.getCmp('Promotion_Popup_modal')){
+         var modal = Ext.getCmp('Promotion_Popup_modal');
+         modal.destroy(modal,new Object);
+     }else{
+          var Promotion_Popup_modal_form=Ext.widget('form',{
+              
+            layout: {
+            type: 'vbox',
+            align: 'stretch',
+            cls: 'white_bg'
+            },
+            fieldDefaults: {
+            labelAlign: 'side',
+            labelWidth: 80,
+            labelStyle: 'font-weight:bold'
+            },
+            items:[ 
+                {
+                            xtype:'component',
+                            width: 220,
+                            height: 200,
+                            margin: '40 0 0 70',
+                            id: 'promotion_image',
+                            html:'<div  style="border: 2px solid black; width: 240px; border-radius: 5px; height: 190px;" class="dropzone" data-width="240" data-height="190" data-resize="true" data-save="false" ><input type="file" name="thumb" /></div>'
+                        },
+                {
+                            xtype: 'container',
+                            layout: 'hbox',
+                            margin: '40 0 0 50',
+                            items: [
+                                {
+                                    xtype: 'button',
+                                    scale: 'large',
+                                    text: '<span style="color:#000 !important;">Use Image</span>',
+                                    style: 'border-radius: none !important;cursor:pointer;background:#007AFF !important;border:2px solid #007AFF !important;box-shadow:none !important;color:#FFFFFFF !important;padding:0 5px;border-radius: 0px !important;',
+                                    height: 26,
+                                    width: 150,
+                                    margin: '0 0 0 20',
+                                    id:'Submit',
+                                    handler: function () {
+                                        
+                                if(sessionStorage.codecanyonData==""){
+                                    com.faralam.registration.showPopup('Error', 'Select image or click on green tick button.');   
+                                     }else{
+                                       Ext.getCmp('promo_big_img').setSrc(sessionStorage.codecanyonData);
+                                Ext.getCmp('Promotion_Popup_modal').close();  
+                                     }
+                                }
+                            },
+                                     {
+                                         xtype:'button',   
+                                         scale:'large',
+                                         text:'<span style="color:#000 !important;">Cancel</span>',
+                                         style:'border-radius: none !important;cursor:pointer;background:#007AFF !important;border:2px solid #007AFF !important;box-shadow:none !important;color:#FFFFFF !important;padding:0 5px;border-radius: 0px !important;',
+                                         height:26,
+                                         width:80,
+                                         margin:'0 0 0 20',
+                                         id:'Cancel',
+                                         handler:function(){
+                                             Ext.getCmp('Promotion_Popup_modal').close();
+                                        }
+                                       }   
+                                    ]
+                         } ]
+        });
+         
+          Promotion_Popup_modal= Ext.widget('window', {
+            title: '<h4 style="color:#000 !important">Add New Picture</h4>',
+            id: 'Promotion_Popup_modal',
+            closeAction: 'destroy',
+            layout: 'fit',
+            resizable: false,
+            modal: true,
+            height:400,
+            width: 400,
+            cls: 'white_modal',
+            items: Promotion_Popup_modal_form,
+            listeners: {
+                close: function () {
+                    Promotion_Popup_modal_form.getForm().reset(true);
+                },
+                show: function () {
+                    window.CodeCanyon(window, jQuery);
+                    $('.dropzone').html5imageupload({
+                    onSave: function(e) {
+                        sessionStorage.codecanyonData = e.data;
+                        sessionStorage.codecanyonImgName = e.name;
+                    },
+                    onAfterCancel: function() {
+                        sessionStorage.codecanyonData = '';
+                        sessionStorage.codecanyonImgName = '';
+                    }
+                   });
+                   
+                }
+
+            }
+        });
+     }
+    
+   Promotion_Popup_modal.show();        
+}
