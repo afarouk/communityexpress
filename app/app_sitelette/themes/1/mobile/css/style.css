@@ -3717,11 +3717,14 @@ li.driving_directions_block {
 }
 
 #orders_history .body .orders_history_container {
-    padding: 0 30px;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #orders_history .body .orders_history_container table {
-    
+    width: 100%;
 }
 #orders_history .body .orders_history_container .history-title {
     color: white;
@@ -3740,12 +3743,13 @@ li.driving_directions_block {
     background-color: rgba(60, 255, 80, 0.25);
 }
 #orders_history .body .orders_history_container th {
+    text-align: center;
     background-color: rgba(255, 255, 255, 0.2);
 }
 #orders_history .body .orders_history_container th,
 #orders_history .body .orders_history_container td {
     border: 1px solid white;
-    padding: 6px 20px;
+    padding: 5px;
 }
 
 
