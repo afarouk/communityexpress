@@ -22,7 +22,8 @@ var LeftMenuView = PanelView.extend({
         'click .wallService': 'onOpenCreateBlogPosts',
     	'click .contactUs': 'onOpenContactUs',
         'click .messagingService': 'onOpenChat',
-        'click .appointmentService': 'onOpenAppointment'
+        'click .appointmentService': 'onOpenAppointment',
+        'click .orderHistoryService': 'onOrdersHistory'
     },
 
     initialize : function(options) {
@@ -133,6 +134,14 @@ var LeftMenuView = PanelView.extend({
         loader.show('retrieving user pictures');
         this.PopupController.requireLogIn(this.sasl, function() {
             Vent.trigger('viewChange', 'appointments',
+            [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
+        }.bind(this));
+    },
+
+    onOrdersHistory: function() {
+        loader.show('retrieving orders history');
+        this.PopupController.requireLogIn(this.sasl, function() {
+            Vent.trigger('viewChange', 'orders_history',
             [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
         }.bind(this));
     }

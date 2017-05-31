@@ -2216,6 +2216,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .button0_68_0_0 {
     background-image: url('images/edit.png');
 }
+.button0_73_0_0 {
+    background-image: url('images/history.png');
+}
 .deals_img {
     background-image: url('images/deals2.png');
 }
@@ -3697,6 +3700,44 @@ li.driving_directions_block {
     position: relative;
     top: -10px;
     right: 5px;
+}
+
+/************************** Order History View ***********************/
+.ui-page#orders_history {
+    padding: 45px 0 0 0;
+}
+
+#orders_history .body {
+    text-align: center;
+}
+
+#orders_history .body .orders_history_container {
+    padding: 0 30px;
+}
+
+#orders_history .body .orders_history_container table {
+    
+}
+#orders_history .body .orders_history_container .history-title {
+    color: white;
+    text-align: center;
+}
+
+#orders_history .body .orders_history_container thead,
+#orders_history .body .orders_history_container tbody {
+    
+}
+
+#orders_history .body .orders_history_container tr {
+    
+}
+#orders_history .body .orders_history_container th {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+#orders_history .body .orders_history_container th,
+#orders_history .body .orders_history_container td {
+    border: 1px solid white;
+    padding: 6px 20px;
 }
 
 

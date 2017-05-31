@@ -607,6 +607,26 @@ module.exports = {
             });
     },
 
+    orders_history: function(options){
+        return saslActions.getSasl(options)
+            .then(function (sasl) {
+                return orderActions.retrieveOrdersByUID()
+                    .then(function(ordersHistory){
+                        return $.Deferred().resolve({
+                            sasl: sasl,
+                            ordersHistory: ordersHistory
+                        }).promise();
+                    },function (e) {
+                        $.Deferred().resolve({
+                            error: e,
+                            sasl: sasl
+                        }).promise();
+                    })
+            }.bind(this), function (err) {
+                return err;
+            });
+    },
+
     catalog_order: function(options) {
         var sasl,
             orderPrefillInfo,
