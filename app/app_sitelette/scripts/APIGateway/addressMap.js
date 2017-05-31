@@ -92,6 +92,9 @@ module.exports = {
             getOrderPrefillInfo: ['GET', '/retail/getOrderPrefillInfo'],
             getPriceAddons: ['GET', '/retail/retrieveRetailPriceAddon'],
 
+            retrieveOrdersByUID: ['GET', '/retail/retrieveOrdersByUID'],
+            retrieveOrderByID: ['GET', '/retail/retrieveOrderByID'],
+
             validatePromoCode: ['POST', '/retail/validateRetailPromoCode'],
             retrievePromoCodeByUUID: ['GET', '/retail/retrieveRetailPromoCodeByUUID'],
             retrieveRetailPromoCodes: ['GET', '/retail/retrieveRetailPromoCodes'],

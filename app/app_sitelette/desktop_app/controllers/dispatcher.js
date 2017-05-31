@@ -6,7 +6,9 @@ define([
 	'./_order-controller',
 	'./_landing-controller',
 	'./_popups-controller',
-	], function(CatalogsController, CustomizeController, OrderController, LandingController, PopupsController){
+	'./_history-controller'
+	], function(CatalogsController, CustomizeController, OrderController, 
+		LandingController, PopupsController, HistoryController){
 	var ControllersDispatcher = Mn.Object.extend({
 		initialize: function() {
 			Mn.CollectionView.prototype.dispatcher = this;
@@ -21,7 +23,8 @@ define([
 				'customize': new CustomizeController(),
 				'order': new OrderController(),
 				'landing': new LandingController(),
-				'popups': new PopupsController()
+				'popups': new PopupsController(),
+				'history': new HistoryController()
 			};
 			_.each(this.controllers, function(controller) {
 				_.extend(controller, {

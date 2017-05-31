@@ -96,5 +96,16 @@ module.exports = {
             serviceAccommodatorId: sa,
             serviceLocationId: sl
         });
+    },
+
+    retrieveOrdersByUID: function() {
+        return gateway.sendRequest('retrieveOrdersByUID', {
+            UID: getUser().getUID()
+        });
+    },
+    retrieveOrderByID: function(orderId) {
+        return gateway.sendRequest('retrieveOrderByID', {
+            o: orderId
+        });
     }
 };

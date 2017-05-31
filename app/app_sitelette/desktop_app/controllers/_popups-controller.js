@@ -194,8 +194,7 @@ define([
         	}.bind(this));
 		},
 		onOrderHistory: function() {
-			//TODO order history show
-			// this.dispatcher.get('history').getHistory();
+			this.dispatcher.get('history').getHistory();
 		},
 		requireLogIn: function(callback) {
 			var user = appCache.get('user'),
