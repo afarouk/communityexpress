@@ -93,7 +93,7 @@ module.exports = {
             getPriceAddons: ['GET', '/retail/retrieveRetailPriceAddon'],
 
             retrieveOrdersByUID: ['GET', '/retail/retrieveOrdersByUID'],
-            retrieveOrderByID: ['GET', '/retail/retrieveOrderByID'],
+            retrieveOrderByID: ['GET', '/html/retrieveOrderByID'],
 
             validatePromoCode: ['POST', '/retail/validateRetailPromoCode'],
             retrievePromoCodeByUUID: ['GET', '/retail/retrieveRetailPromoCodeByUUID'],

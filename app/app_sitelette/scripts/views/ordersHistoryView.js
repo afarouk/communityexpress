@@ -6,7 +6,7 @@ var Vent = require('../Vent'),
     loader = require('../loader'),
     template= require('ejs!../templates/ordersHistoryView.ejs');
 
-var OrderHistoryView = Backbone.View.extend({
+var OrdersHistoryView = Backbone.View.extend({
     name: 'orders_history',
     id: 'cmtyx_orders_history',
 
@@ -39,7 +39,7 @@ var OrderHistoryView = Backbone.View.extend({
     onOrderSelected: function(e) {
         var $target = $(e.currentTarget),
             orderUUID = $target.data('uuid');
-        
+        Vent.trigger( 'viewChange', 'order_details', orderUUID);
     },
 
     goBack: function() {
@@ -47,4 +47,4 @@ var OrderHistoryView = Backbone.View.extend({
     }
 });
 
-module.exports = OrderHistoryView;
+module.exports = OrdersHistoryView;

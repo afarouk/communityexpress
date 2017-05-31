@@ -627,6 +627,19 @@ module.exports = {
             });
     },
 
+    order_details: function(orderId){
+        return orderActions.retrieveOrderByID(orderId)
+            .then(function(html){
+                return $.Deferred().resolve({
+                    html: html
+                }).promise();
+            },function (e) {
+                $.Deferred().resolve({
+                    error: e
+                }).promise();
+            })
+    },
+
     catalog_order: function(options) {
         var sasl,
             orderPrefillInfo,

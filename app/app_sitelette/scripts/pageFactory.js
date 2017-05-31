@@ -22,6 +22,7 @@ var LandingView = require('./views/landingView'), //
     UploadPhotoView = require('./views/uploadPhotoView'), //
     BlogPostsView = require('./views/blogPostsView'), //
     OrdersHistoryView = require('./views/ordersHistoryView'), //
+    OrderDetailsView = require('./views/orderDetailsView'), //
     AppointmentsView = require('./views/appointmentsView'), //
     CatalogOrderView = require('./views/catalogOrderView'),//
     RosterOrderView = require('./views/rosterOrderView'),//
@@ -192,6 +193,9 @@ module.exports = {
             break;
         case 'orders_history':
             view = new OrdersHistoryView(_.extend(options, {}));
+            break;
+        case 'order_details':
+            view = new OrderDetailsView(_.extend(options, {}));
             break;
         case 'catalog_order':
             view = new CatalogOrderView(_.extend(options, {

@@ -3703,6 +3703,11 @@ li.driving_directions_block {
 }
 
 /************************** Order History View ***********************/
+.ui-page#order_details {
+    background-color: white;
+    padding: 25px 0 0 0;
+}
+
 .ui-page#orders_history {
     padding: 45px 0 0 0;
 }
@@ -3728,8 +3733,11 @@ li.driving_directions_block {
     
 }
 
-#orders_history .body .orders_history_container tr {
-    
+#orders_history .body .orders_history_container tbody tr {
+    cursor: pointer;
+}
+#orders_history .body .orders_history_container tbody tr:hover {
+    background-color: rgba(60, 255, 80, 0.25);
 }
 #orders_history .body .orders_history_container th {
     background-color: rgba(255, 255, 255, 0.2);
