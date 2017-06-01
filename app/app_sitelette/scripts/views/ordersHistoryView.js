@@ -4,12 +4,13 @@
 
 var Vent = require('../Vent'),
     loader = require('../loader'),
+    moment = require('moment'),
     template= require('ejs!../templates/ordersHistoryView.ejs');
 
 var OrdersHistoryView = Backbone.View.extend({
     name: 'orders_history',
     id: 'cmtyx_orders_history',
-
+    moment: moment,
     events: {
         'click .order-row': 'onOrderSelected'
     },
@@ -18,7 +19,19 @@ var OrdersHistoryView = Backbone.View.extend({
         options = options || {};
         this.sasl = options.sasl;
         this.on('show', this.onShow, this);
-        this.render(options.ordersHistory);
+        this.render(this.templateData(options.ordersHistory));
+    },
+     templateData: function(ordersHistory) {
+        return ordersHistory.map(function(order){
+            var date = order.dateTimeOrderPlacedOn.replace('at', '');
+            return {
+                orderUUID: order.orderUUID,
+                orderId: order.orderId,
+                totalAmount: order.totalAmount,
+                saslName: order.saslName,
+                dateTimeOrderPlacedOn: this.moment(date).format('MMM D \'YY')
+            }
+        }.bind(this));
     },
     render: function(ordersHistory){
         this.$el.html(template({

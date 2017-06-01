@@ -6,7 +6,8 @@
     			<thead>
     				<tr>
     					<th>orderId</th>
-    					<th>Amount</th>
+    					<th>Total</th>
+                        <th>Biz Name</th>
     					<th>Date</th>
     				</tr>
     			</thead>
@@ -15,6 +16,7 @@
     					<tr class="order-row" data-uuid="<%= order.orderUUID %>">
 	    					<td><%= order.orderId %></td>
 	    					<td>$<%= order.totalAmount %></td>
+                            <td><%= order.saslName %></td>
 	    					<td><%= order.dateTimeOrderPlacedOn %></td>
 	    				</tr>
     				<% }) %>
