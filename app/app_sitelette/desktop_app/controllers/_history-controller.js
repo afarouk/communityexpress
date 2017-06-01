@@ -12,6 +12,15 @@ define([
 		},
 		showHistory: function(history) {
 			console.log(history);
+			this.dispatcher.get('popups').showOrdersHistory(history);
+		},
+		getOrderDetails: function(orderUUID){
+			var $def = $.Deferred();
+			orderActions.retrieveOrderByID(orderUUID)
+				.then(function(html){
+					$def.resolve(html);
+				});
+			return $def;
 		}
 	});
 	return HistoryController;

@@ -15,9 +15,12 @@ define([
 	'../views/popups/loader',
 	'../views/landing/share',
 	'../views/popups/sendsms',
+	'../views/popups/ordersHistory',
 	'../../scripts/actions/contactActions'
 	], function(appCache, h, userController, sessionActions,
-		PopupsLayoutView, LoginView, SigninView, SignupView, SignoutView, ForgotView, MessageView, LoaderView, ShareView, SendsmsView, contactActions){
+		PopupsLayoutView, LoginView, SigninView, SignupView, 
+		SignoutView, ForgotView, MessageView, LoaderView, 
+		ShareView, SendsmsView, OrdersHistoryView, contactActions){
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
@@ -219,7 +222,15 @@ define([
 		},
 		hideLoader: function() {
 			this.loader.hide();
-		}
+		},
+		showOrdersHistory: function(history) {
+			var ordersHistoryView = new OrdersHistoryView({
+				history: history
+			});
+			this.layout.showChildView('popupsContainer', ordersHistoryView);
+			this.initializeDialog(ordersHistoryView.$el);
+			ordersHistoryView.onShow();
+		},
 	});
 	return PopupsController;
 });

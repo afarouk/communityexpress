@@ -1,0 +1,25 @@
+<div class="orders_history_container">
+	<h4 class="history-title">Orders history:</h4>
+	<div class="table-container">
+		<table>
+			<thead>
+				<tr>
+					<th>orderId</th>
+					<th>Total</th>
+	                <th>Biz Name</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% _.each(ordersHistory, function(order) { %>
+					<tr class="order-row" name="order-row" data-uuid="<%= order.orderUUID %>">
+						<td><%= order.orderId %></td>
+						<td>$<%= order.totalAmount %></td>
+	                    <td><%= order.saslName %></td>
+						<td><%= order.dateTimeOrderPlacedOn %></td>
+					</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	</div>
+</div>
