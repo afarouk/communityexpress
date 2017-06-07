@@ -1425,6 +1425,10 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
 .ui-btn.customize_btn .customization-mark.visible {
     visibility: visible;
 }
+.ui-btn.customize_btn.invisible {
+    visibility: hidden;
+    height: 15px;
+}
 .sides_extras_item_versions .customize_btn,
 .sides_extras_item_versions .customize_btn:hover,
 .sides_extras_item_versions .customize_btn:focus,
