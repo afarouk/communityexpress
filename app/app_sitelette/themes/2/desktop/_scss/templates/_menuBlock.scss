@@ -416,6 +416,15 @@
                           right: 5%;
                         }
                       }
+                      .custom-customization-header{
+                        padding: 5px 5px 5px 30px;
+                        div{
+                            &:first-child{
+                              width:50%;   
+                            }
+                           
+                          }
+                        }  
                       .customize-body {
                         .subItem {
                           position: relative;
