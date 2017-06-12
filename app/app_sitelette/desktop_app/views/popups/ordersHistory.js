@@ -56,7 +56,7 @@ define([
      		this.$el.prev().find('.ui-dialog-titlebar-close').click(function() {
 				$('.cmtyx_desktop_application').removeClass('with-blur');
 			});
-			this.$el.parent().width('440px');
+			this.$el.parent().width('600px');
      	},
      	onClose: function() {
      		this.$el.dialog('close');
