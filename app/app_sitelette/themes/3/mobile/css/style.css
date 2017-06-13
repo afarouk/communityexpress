@@ -1276,10 +1276,16 @@ li.build_combo, li.choose_extras {
     float: right;
     bottom: 10px;
 }
-.combo_item_container {
+.combo_item_container{
     background-color: rgba(227, 74, 32, 0.5);
     padding: 4px 20px 4px 20px;
     margin: 5px 0;
+}
+.color1{
+     background-color: lightgreen;
+    padding: 4px 20px 4px 20px;
+    margin: 5px 0;
+    margin-top:0px;
 }
 .combo_item_container .price_adjustment {
     right: 20%;

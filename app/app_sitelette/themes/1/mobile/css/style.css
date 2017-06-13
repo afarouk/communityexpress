@@ -1312,9 +1312,23 @@ li.build_combo, li.choose_extras {
     padding: 4px 20px 4px 20px;
     margin: 5px 0;
 }
+.color1{
+     background-color: lightgreen;
+    padding: 4px 20px 4px 20px;
+    margin: 5px 0;
+    margin-top:0px;
+}
 .combo_item_container .price_adjustment {
     right: 20%;
     position: absolute;
+}
+.price_heading_adjustment{
+    right: 0;
+    position: absolute;
+}
+
+.heading_list{
+    background-color: #9dec94;
 }
 li.cmntyex-catalog-item.sub-radio-list.not-allow {
     opacity: 0.7;

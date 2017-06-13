@@ -20,16 +20,27 @@
         			<div data-role="collapsible" name="customize_subitem" class="cmtyx_color_1 ui-collapsible ui-collapsible-themed-content ui-first-child ui-last-child customize_subitem_header" data-collapsed="false">
         				<h3 class="firstItem ui-collapsible-heading">
     		                <div class="cmntyex-group_description cmtyx_color_1">
-    		                    <span><%= subItem.displayText %> <% if (subItem.promptText) { %>(<%= subItem.promptText %>)<% } %></span>
+    		                  <span><%= subItem.displayText %> <% if (subItem.promptText) { %>(<%= subItem.promptText %>)<% } %></span>
                                 <i class="fa fa-check" aria-hidden="true"></i>
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
     		                </div>
-            			</h3>
-            			<ul data-role="listview" data-inset="false" class="items_list ui-listview" style="background-color: #000;">
+            			</h3>  
+                        
+                        <ul data-role="listview" data-inset="false" class="items_list ui-listview" style="background-color: #000;">
             				<ul class="cmntyex-catalog ui-listview" data-role="listview" data-icon="true">
+                               
+                                <li class="sub-radio-list heading_list" >
+                						<div class="combo_item_container color1">
+        									<div class="input_container" data-iconpos="right">
+                                                    <div class="ui-checkbox"><label class="catalog_sub_item_name ui-btn ui-corner-all ui-radio-on ui-btn-inherit ui-btn-icon-left ui-checkbox-off"><span>Item</span><span class="price_heading_adjustment" style="margin-left">Extra Price</span></label></div>
+                                                
+        									</div>
+        								</div>
+        							</li>
+                                
                                 <% _.each(subItem.subSubItems, function(subSubItem, index) { %>
                 					<li class="cmntyex-catalog-item sub-radio-list ui-li-static ui-body-inherit ui-first-child">
-                						<div class="combo_item_container color1">
+                						<div class="combo_item_container">
         									<div class="input_container" data-iconpos="right">
         										<label for="subSubItem_<%= sIndex %>_<%= index %>" class="catalog_sub_item_name ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on"><%= subSubItem.displayText %><span class="price_adjustment">$<%= subSubItem.priceAdjustment %></span></label>
                                                 <% if (subItem.selectorType.enumText === "RADIO") { %>
