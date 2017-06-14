@@ -1291,6 +1291,10 @@ li.build_combo, li.choose_extras {
     right: 20%;
     position: absolute;
 }
+.price_heading_adjustment{
+    right: 18%;
+    position: absolute;
+}
 li.cmntyex-catalog-item.sub-radio-list.not-allow {
     opacity: 0.7;
     pointer-events: none;
