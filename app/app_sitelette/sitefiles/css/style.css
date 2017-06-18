@@ -1811,9 +1811,9 @@ a.get_started_btn:active {
     text-align: center;
 }
 
-.heading_block h1{
+.heading_block h1{ 
 	padding-top:80px;
-	color:white;
+	color:black;
 	font: 600 48px/48px Roboto;
 }
 
