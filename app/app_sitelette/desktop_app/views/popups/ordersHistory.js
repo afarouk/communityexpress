@@ -33,7 +33,7 @@ define([
 			if (this.state === 'ORDERS_HISTORY') {
 				return {
 	        		ordersHistory: ordersHistory.map(function(order) {
-			            var date = order.dateTimeOrderPlacedOn.replace('at', '');
+			            var date = order.dateTimeOrderPlacedOn.replace('at', '').replace('\'', '20');
 			            return {
 			                orderUUID: order.orderUUID,
 			                orderId: order.orderId,
