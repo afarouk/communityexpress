@@ -8,6 +8,7 @@ define([
 	'../../../scripts/appCache',
 	], function(template, SwitchTabsBehavior, orderActions, h, appCache){
 	var ChoosePaymentView = Mn.View.extend({
+		name: 'order_payment',
 		template: template,
 		behaviors: [SwitchTabsBehavior],
 		className: 'page choose_payment_page',

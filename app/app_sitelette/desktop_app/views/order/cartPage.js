@@ -6,6 +6,7 @@ define([
 	'./orderList'
 	], function(cartTemplate, emptyTemplate, OrderList){
 	var CartPageView = Mn.View.extend({
+		name: 'shopping_cart',
 		className: 'page cart_page',
 		regions: {
 			orderListContainer: '#order-list-region'

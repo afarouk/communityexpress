@@ -40,8 +40,17 @@ define([
 				view.triggerMethod('windowResize');
 			});
 		},
+		isActionOnBottom: function() {
+			var view = this.layout.getRegion('orderContainer').currentView,
+				name = view.name;
+			return name === 'shopping_cart' || 
+				   (name === 'order_payment' && view.model.get('cashSelected')) ||
+				   name === 'order_summary';
+		},
 		moveCart: function() {
-			var scroll = $(window).scrollTop(),
+			var isActionOnBottom = this.isActionOnBottom(),
+				scroll = $(window).scrollTop(),
+				windowHeight = $(window).height(),
 				indent = scroll - this.layoutTop,
 				$parent = this.layout.$el.parent(),
 				height = this.layout.$el.height(),
@@ -54,19 +63,30 @@ define([
 				indent = 0;
 			}
 			parentHeight = $parent.height();
-			
-
 			if( parentHeight + indent >=  containerHeight - containerPaddings) {
 				$parent.height(height + 'px');
 
 				if (parentHeight == containerHeight - containerPaddings) {
 					this.layout.$el.css('top', '0px');
 				} else {
-					this.layout.$el.css('top', containerHeight - height - containerPaddings + 'px');
+					var allowedIndent = containerHeight - height - containerPaddings;
+					if (isActionOnBottom && windowHeight < height) {
+						indent = indent - (height - windowHeight);
+						indent = indent > 0 ? indent : 0;
+					} 
+					if (allowedIndent < indent) indent = allowedIndent;
+					this.layout.$el.css('top', indent + 'px');
 				}
 			} else {
+				if (isActionOnBottom) {
+					if (windowHeight < height) {
+						indent = indent - (height - windowHeight);
+						indent = indent > 0 ? indent : 0;
+					}
+				}
+				// debugger;
 				$parent.height(height + indent + 'px');
-				this.layout.$el.css('top', indent + 'px')
+				this.layout.$el.css('top', indent + 'px');
 			}
 
 		},

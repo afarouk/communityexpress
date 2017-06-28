@@ -7,6 +7,7 @@ define([
 	'../../../scripts/appCache'
 	], function(template, orderActions, h, appCache){
 	var SummaryView = Mn.View.extend({
+		name: 'order_summary',
 		template: template,
 		className: 'page summary_page',
 		ui: {
