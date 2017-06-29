@@ -46,6 +46,7 @@ define([
 		},
 		saveSelectedItems: function() {
 			var selectedItems = [],
+				subitemData,
 				$checked = this.$el.find('input:checked');
 			$checked.each(function(index, subitem) {
 				var $subitem = $(subitem),
@@ -53,8 +54,12 @@ define([
 					ssItem = _.findWhere(this.model.get('subSubItems'), {subSubItemId: ssItemId});
 					selectedItems.push(ssItem);
 			}.bind(this));
+			subitemData = {
+				displayText: this.model.get('displayText'),
+				selected: selectedItems
+			};
 			if (selectedItems.length > 0) {
-				this.options.selectedItems[this.model.get('subItemId')] = selectedItems;
+				this.options.selectedItems[this.model.get('subItemId')] = subitemData;
 			} else {
 				delete this.options.selectedItems[this.model.get('subItemId')];
 			}

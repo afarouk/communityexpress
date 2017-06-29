@@ -45,7 +45,18 @@
               <% if (item.isVersion) { %>
                   <span class="item_version">(<%= item.versionText %>)</span>
               <% } %>
-              <span class="item_description"><%= item.customizationNote %></span>
+              <% if(item.customizationNote) { %>
+                <div class="item_description customization">
+                  <% _.each(item.subItems, function(subItem){ %>
+                    <span class="customization-title"><%= subItem.displayText %>:</span>
+                    <ul class="customization-part">
+                      <% _.each(subItem.selected, function(subSubItem){ %>
+                        <li class="customization-item-name"><%= subSubItem.displayText %></li>
+                      <% }); %>
+                    </ul>
+                  <% }); %>
+                </div>
+              <% } %>
             </div>
             <div class="right_block">
               <div class="item_price cmtyx_text_color_1"><%= cs + item.price %></div>

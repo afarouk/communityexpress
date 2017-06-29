@@ -84,7 +84,6 @@ define([
 						indent = indent > 0 ? indent : 0;
 					}
 				}
-				// debugger;
 				$parent.height(height + indent + 'px');
 				this.layout.$el.css('top', indent + 'px');
 			}

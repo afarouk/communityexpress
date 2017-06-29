@@ -290,6 +290,20 @@
                   margin-top: 3px;
                   font-size: $size-normal-small;
                   color: $item-description;
+
+                  &.customization {
+                    padding-left: 26px;
+                    line-height: 14px;
+                    .customization-title {
+                      font-weight: bold;
+                    }
+                    .customization-part {
+                      padding-left: 15px;
+                      .customization-item-name {
+                        font-size: 11px;
+                      }
+                    }
+                  }
                 }
 
                 .remove_item_btn {

@@ -3,7 +3,18 @@
         <div class="versions_texts">
             <span class="version_name"><%=  itemName %></span>
             <span class="version_items">(<%=  versionText %>)</span>
-            <span class="customization_description"><%= customizationNote %></span>
+            <% if(customizationNote) { %>
+                <div class="customization_description">
+                  <% _.each(subItems, function(subItem){ %>
+                    <span class="customization-title"><%= subItem.displayText %>:</span>
+                    <ul class="customization-part">
+                      <% _.each(subItem.selected, function(subSubItem){ %>
+                        <li class="customization-item-name"><%= subSubItem.displayText %></li>
+                      <% }); %>
+                    </ul>
+                  <% }); %>
+                </div>
+            <% } %>
         </div>
         <div class="float_right">
             <div class="select_container">
@@ -21,8 +32,5 @@
             </div>
             <span class="versions-price order_price">$ <%= totalPrice.toFixed(2) %></span>
         </div>
-        <!-- <div class="versions-description">
-            <span class="order_name"><%=  shortDescription %></span>
-        </div> -->
     </div>
 </div>

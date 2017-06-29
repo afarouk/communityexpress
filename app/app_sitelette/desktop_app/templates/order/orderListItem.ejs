@@ -2,7 +2,16 @@
   <span class="remove_item_btn" name="remove_item">&times;</span>
   <div class="item_name"><%= itemName %></div>
   <% if(customizationNote) { %>
-  	<div class="item_description"><%= customizationNote %></div>
+    <div class="item_description customization">
+      <% _.each(subItems, function(subItem){ %>
+        <span class="customization-title"><%= subItem.displayText %>:</span>
+        <ul class="customization-part">
+          <% _.each(subItem.selected, function(subSubItem){ %>
+            <li class="customization-item-name"><%= subSubItem.displayText %></li>
+          <% }); %>
+        </ul>
+      <% }); %>
+    </div>
   <% } %>
 </div>
 <div class="right_block">

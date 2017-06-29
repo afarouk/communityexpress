@@ -42,12 +42,14 @@
                 					<li class="cmntyex-catalog-item sub-radio-list ui-li-static ui-body-inherit ui-first-child">
                 						<div class="combo_item_container">
         									<div class="input_container" data-iconpos="right">
-        										<label for="subSubItem_<%= sIndex %>_<%= index %>" class="catalog_sub_item_name ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on"><%= subSubItem.displayText %><span class="price_adjustment">$<%= subSubItem.priceAdjustment %></span></label>
-                                                <% if (subItem.selectorType.enumText === "RADIO") { %>
-										            <input data-subid="<%= subSubItem.subItemId %>"  data-subsubid="<%= subSubItem.subSubItemId %>" type="radio" name="group_<%= sIndex %>" id="subSubItem_<%= sIndex %>_<%= index %>" class="combo_item_input" <% if (subSubItem.isSelectedByDefault) { %>checked<% } %> >
-                                                <% } else { %>
-                                                    <input data-subid="<%= subSubItem.subItemId %>"  data-subsubid="<%= subSubItem.subSubItemId %>" type="checkbox" name="group_<%= sIndex %>" id="subSubItem_<%= sIndex %>_<%= index %>" class="combo_item_input" <% if (subSubItem.isSelectedByDefault) { %>checked<% } %> >
-                                                <% } %>
+        										<label class="catalog_sub_item_name ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on">
+                                                    <% if (subItem.selectorType.enumText === "RADIO") { %>
+                                                        <input data-subid="<%= subSubItem.subItemId %>"  data-subsubid="<%= subSubItem.subSubItemId %>" type="radio" name="group_<%= sIndex %>" id="subSubItem_<%= sIndex %>_<%= index %>" class="combo_item_input" <% if (subSubItem.isSelectedByDefault) { %>checked<% } %> >
+                                                    <% } else { %>
+                                                        <input data-subid="<%= subSubItem.subItemId %>"  data-subsubid="<%= subSubItem.subSubItemId %>" type="checkbox" name="group_<%= sIndex %>" id="subSubItem_<%= sIndex %>_<%= index %>" class="combo_item_input" <% if (subSubItem.isSelectedByDefault) { %>checked<% } %> >
+                                                    <% } %><%= subSubItem.displayText %>
+                                                    <span class="price_adjustment">$<%= subSubItem.priceAdjustment %></span>
+                                                </label>
         									</div>
         								</div>
         							</li>

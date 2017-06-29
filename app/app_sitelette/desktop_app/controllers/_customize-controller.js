@@ -61,13 +61,23 @@ define([
 		
 		onCustomConfirmed: function(layout, customizationView, selectedItems, def, model) {
 			if (customizationView.allSelected) {
-				var customizationNote = '',
+				var customizationNote = model.get('itemName'),
+					customCollection = customizationView.collection,
 					adjustedPrice = model.get('price');
-				_.each(selectedItems, function(subItem) {
-					customizationNote += _.pluck(subItem, 'displayText').join(',') + ',';
-					adjustedPrice += _.reduce(_.pluck(subItem, 'priceAdjustment'), function(a, b) {return a+b;});
+				//don't know if we need it
+				// if (model.get('isVersion')) {
+				// 	customizationNote += ' (' + model.get('version1DisplayText') + ')';
+				// }
+				customizationNote += '[';
+				_.each(selectedItems, function(subItem, sId) {
+					var selected = subItem.selected,
+						displayText = subItem.displayText;
+					customizationNote += displayText + ':';
+					customizationNote += _.pluck(selected, 'displayText').join(',') + '; ';
+					adjustedPrice += _.reduce(_.pluck(selected, 'priceAdjustment'), function(a, b) {return a+b;});
 				});
-				customizationNote = customizationNote.slice(0, -1);
+				customizationNote = customizationNote.slice(0, -2);
+				customizationNote += ']';
 				var customizesModel = model.clone();
 				customizesModel.set('customizationNote', customizationNote);
 				customizesModel.set('wasCustomized', true);

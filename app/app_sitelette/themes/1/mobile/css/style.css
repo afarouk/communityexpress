@@ -573,14 +573,42 @@ li {
     list-style-type: none;
     margin-bottom: 20px;
 }
-.order_list li .item_description {
-    /* display: inline; */
+
+/* .........*/
+.order_list li .item_description.customization {
+    /*color: #fafafa;*/
     font-style: italic;
     font-size: 11px;
+    word-break: break-word;
+    white-space: normal;
+    padding-left: 10px;
+    line-height: 13px;
     max-width: 80%;
     margin-top: -6px;
     color: #ddd;
 }
+label > * {
+    display: block;
+    pointer-events: none;
+}
+.order_list li .item_description.customization .customization-title {
+    font-weight: bold;
+}
+.order_list li .item_description.customization .customization-part {
+    padding: 0 0 0 15px;
+    margin: 0!important;
+}
+.order_list li .item_description.customization .customization-part .customization-item-name {
+    font-size: 10px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+}
+
+/*........*/
+
 .order_list li,
 .price_list li,
 .cart .cmntyex-list_container ul li {
@@ -1516,12 +1544,33 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     padding-left: 8px;
     padding-bottom: 4px;
 }
-.sides_extras_item_added_versions .item_version .left_part .customization-note {
-    font-size: 11px;
+/*........*/
+.sides_extras_item_added_versions .item_version .left_part .customization_description {
+    color: #fafafa;
     font-style: italic;
+    font-size: 11px;
+    word-break: break-word;
     white-space: normal;
-    word-break: break-all;
+    padding-left: 10px;
+    line-height: 13px;
 }
+
+.sides_extras_item_added_versions .item_version .left_part .customization_description .customization-title {
+    font-weight: bold;
+}
+.sides_extras_item_added_versions .item_version .left_part .customization_description .customization-part {
+    padding: 0 0 0 15px;
+    margin: 0!important;
+}
+.sides_extras_item_added_versions .item_version .left_part .customization_description .customization-part .customization-item-name {
+    font-size: 10px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+}
+/*........*/
 .sides_extras_item_added_versions .item_version .float_right {
     max-height: 50px;
     min-width: 210px;
@@ -1567,15 +1616,30 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
 .popup_container .ui-panel-inner .left-part {
     display: inline-block;
 }
-.popup_container .ui-panel-inner span.customization_description {
-    display: block;
+.popup_container .ui-panel-inner .customization_description {
     color: #fafafa;
-    margin-top: 2px;
+    margin-top: 4px;
     font-style: italic;
     font-size: 11px;
     word-break: break-word;
     white-space: normal;
+    padding-left: 10px;
+    line-height: 13px;
 }
+
+.popup_container .ui-panel-inner .customization_description .customization-title {
+    font-weight: bold;
+}
+.popup_container .ui-panel-inner .customization_description .customization-part {
+    padding-left: 15px;
+    margin: 0!important;
+}
+.popup_container .ui-panel-inner .customization_description .customization-part .customization-item-name {
+    font-size: 10px;
+    border: none;
+    padding: 0;
+}
+
 .popup_container .ui-panel-inner .versions-price {
     /*margin-right: 10px;*/
 }
