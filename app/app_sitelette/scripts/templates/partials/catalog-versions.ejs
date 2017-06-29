@@ -3,7 +3,16 @@
 		<div class="left_part">
 			<span class="version-description"><%= version.selected.join(' ,') %></span>
 			<% if (version.version.get('customizationNote')) { %>
-				<span class="customization-note"><%= version.version.get('customizationNote') %></span>
+				<div class="customization_description">
+                  <% _.each(version.version.get('subItems'), function(subItem){ %>
+                    <span class="customization-title"><%= subItem.displayText %>:</span>
+                    <ul class="customization-part">
+                      <% _.each(subItem.selected, function(subSubItem){ %>
+                        <li class="customization-item-name"><%= subSubItem.displayText %></li>
+                      <% }); %>
+                    </ul>
+                  <% }); %>
+                </div>
 			<% } %>
 		</div>
 		<div class="float_right">

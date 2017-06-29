@@ -131,13 +131,18 @@ var CustomizationView = Backbone.View.extend({
         var subItems = this.getSubItems(),
             model = this.options.version || this.options.model,
             collection = [{version: model}], //<not sure
-            customizationNote = '',
+            customizationNote = this.options.model.get('itemName'),
             adjustedPrice = model.get('price');
+        customizationNote += '[';
         _.each(subItems, function(subItem) {
-            customizationNote += _.pluck(subItem, 'displayText').join(',') + ',';
-            adjustedPrice += _.reduce(_.pluck(subItem, 'priceAdjustment'), function(a, b) {return a+b;});
+            var selected = subItem.selected,
+                displayText = subItem.displayText;
+            customizationNote += displayText + ':';
+            customizationNote += _.pluck(selected, 'displayText').join(',') + '; ';
+            adjustedPrice += _.reduce(_.pluck(selected, 'priceAdjustment'), function(a, b) {return a+b;});
         });
-        customizationNote = customizationNote.slice(0, -1);
+        customizationNote = customizationNote.slice(0, -2);
+        customizationNote += ']';
         collection = this.options.allVersions && this.options.allVersions.length > 0 ? collection.concat(this.options.allVersions) : collection;
         _.each(collection, function(item){
             var iModel = item.version;
@@ -165,9 +170,13 @@ var CustomizationView = Backbone.View.extend({
                     subSubItemId: subSubId
                 });
             if (selected[subId]) {
-                selected[subId].push(subSubItem);
+                selected[subId].selected.push(subSubItem);
             } else {
-                selected[subId] = [subSubItem];
+                var found = _.findWhere(this.options.subItems, {subItemId: subId});
+                selected[subId] = {
+                    displayText: found.displayText,
+                    selected: [subSubItem]
+                };
             }
         }.bind(this));
         return selected;
