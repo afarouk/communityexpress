@@ -403,7 +403,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
                     intraOrderQuantity: item.get('quantity'),
                     customizationNote: item.get('customizationNote') || null,
                     wasCustomized: item.get('wasCustomized'),
-                    subItems: this.getSubSubItems(item) //I am not sure about this field name
+                    subItems: this.getSubSubItems(item)
                 };
                 orderItems.push(orderItem);
             }.bind(this));
@@ -417,7 +417,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
             subItems = item.get('subItems');
         if (item.get('wasCustomized')) {
             _.each(subItems, function(subItem) {
-                _.each(subItem, function(subSubItem) {
+                _.each(subItem.selected, function(subSubItem) {
                     var item = {
                         subItemId: subSubItem.subItemId,
                         subSubItemId: subSubItem.subSubItemId
@@ -425,7 +425,6 @@ var CatalogBasketModel = Backbone.Collection.extend({
                     subSubItems.push(item);
                 });
             });
-            //TODO check if it is properly
             return subSubItems;
         } else {
             return null;

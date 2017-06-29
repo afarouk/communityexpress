@@ -181,7 +181,8 @@ var RosterOrderModel = Backbone.Model.extend({
 	    			quantity: item.get('quantity'),
 	    			displayText: item.get('itemName'),
 	    			price: (item.get('quantity') * item.get('price')).toFixed(2),
-	    			customizationNote: item.get('customizationNote') || ''
+	    			customizationNote: item.get('customizationNote') || '',
+	    			subItems: item.get('subItems')
 	    		});
 			});
 		}
