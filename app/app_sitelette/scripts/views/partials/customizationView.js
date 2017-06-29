@@ -48,7 +48,7 @@ var CustomizationView = Backbone.View.extend({
         this.checkRadio();
         this.addEvents({
             'click .back': 'goBack',
-            'change input': 'onSelected',
+            'change input.combo_item_input': 'onSelected',
             'click .done-btn': 'onDone',
             'click .basket_icon_container' : 'openEditPanel'
         });
@@ -93,6 +93,9 @@ var CustomizationView = Backbone.View.extend({
             }
         }
         this.changeSelectedState();
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
     },
 
     checkRadio: function() {

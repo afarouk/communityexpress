@@ -587,7 +587,10 @@ li {
     margin-top: -6px;
     color: #ddd;
 }
-
+label > * {
+    display: block;
+    pointer-events: none;
+}
 .order_list li .item_description.customization .customization-title {
     font-weight: bold;
 }
