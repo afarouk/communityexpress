@@ -1804,14 +1804,14 @@ a.get_started_btn:active {
 
 .heading_block {
     /* background: url(../images/landing/hands-coffee-smartphone.jpg) no-repeat right; */
-    background: url(../images/landing/kioskSetupHeckler.jpg) no-repeat right;
+    background: url(../images/landing/kioskSetupHeckler.png) no-repeat right;
     background-size: cover;
     /* padding: 19% 0 18% 0; */
 		padding:0% 0 25% 0;
     text-align: center;
 }
 
-.heading_block h1{ 
+.heading_block h1{
 	padding-top:80px;
 	color:black;
 	font: 600 48px/48px Roboto;
