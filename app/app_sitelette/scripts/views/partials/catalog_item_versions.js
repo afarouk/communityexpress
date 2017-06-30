@@ -58,8 +58,9 @@ var CatalogItemVersionsView = Backbone.View.extend({
             versionIndex = $target.data('version'),
             version = this.versions[versionIndex];
 
-        this.addToBasket(versionIndex, -1);
-        if (version.quantity === 1) {
+        if (version.quantity === 0) {
+            return;
+        } else if (version.quantity === 1) {
             this.versions.splice(versionIndex, 1);
             this.render(this.versions);
             this.trigger('removeVersion');
@@ -67,6 +68,7 @@ var CatalogItemVersionsView = Backbone.View.extend({
             version.quantity --;
             this.updateIndex(versionIndex, version.quantity);
         }
+        this.addToBasket(versionIndex, -1);
 
         h().playSound('removeFromCart');
 

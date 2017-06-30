@@ -98,7 +98,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
     getCustomizationMark: function(attrs) {
         var hash = '[';
         _.each(attrs.subItems, function(subItem, key) {
-            hash += 'i' + key + ':' + _.pluck(subItem, 'subSubItemId').join('|') + '_';
+            hash += 'i' + key + ':' + _.pluck(subItem.selected, 'subSubItemId').join('|') + '_';
         });
         hash += ']';
         return hash;
