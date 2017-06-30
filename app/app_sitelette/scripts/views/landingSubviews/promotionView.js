@@ -86,14 +86,15 @@ var PromotionView = Backbone.View.extend({
   },
 
   openPromotionByShareUrl: function(uuid) {
-    var callback = _.bind(function() {
-        var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
-            index = el.data('slick-index');
+    // var callback = _.bind(function() {
+    //     var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
+    //         index = el.data('slick-index');
 
-        this.$el.find('.body ul').slick('slickGoTo', index);
-        Vent.trigger('scrollToBlock', '.promotion_block');
-    }, this);
-    this.toggleCollapse(callback);
+    //     this.$el.find('.body ul').slick('slickGoTo', index);
+    //     Vent.trigger('scrollToBlock', '.promotion_block');
+    // }, this);
+    // this.toggleCollapse(callback);
+    this.triggerSingleton(uuid, null);
   },
 
   showShareBlock: function(e) {
@@ -214,6 +215,10 @@ var PromotionView = Backbone.View.extend({
       console.log(" price:" + promoPrice + ", uuid:" + promoUUID);
       appCache.fetch('promoUUID', promoUUID);
 
+      this.triggerSingleton(promoUUID, promoPrice);
+  },
+
+  triggerSingleton : function(promoUUID, promoPrice) {
       Vent.trigger('viewChange', 'singleton', {
           type: 'PROMO',
           promoPrice: promoPrice || null,
@@ -223,20 +228,6 @@ var PromotionView = Backbone.View.extend({
           backToCatalog: false,
           backToSingleton: false
       });
-  },
-
-  triggerOrder : function(sasl) {
-      popupController.requireLogIn(this.sasl, function() {
-          Vent.trigger('viewChange', 'address', {
-              id: sasl.getUrlKey(),
-              catalogId: 'CATALOG',
-              backToCatalog: false,
-              backToCatalogs: false,
-              backToRoster: false
-          }, {
-              reverse : true
-          });
-      }.bind(this));
   }
 
 });
