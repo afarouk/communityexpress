@@ -237,6 +237,9 @@ define([
 				}
 			}.bind(this));
 		},
+		retrievePromoCodeByUUID: function(uuid) {
+			return orderActions.retrievePromoCodeByUUID(uuid);
+		},
 		//validate promo code
 		validatePromoCode: function (model, code) {
 	        var params = model.additionalParams,
