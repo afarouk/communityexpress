@@ -1615,6 +1615,7 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
 }
 .popup_container .ui-panel-inner .left-part {
     display: inline-block;
+    max-width: 46%;
 }
 .popup_container .ui-panel-inner .customization_description {
     color: #fafafa;

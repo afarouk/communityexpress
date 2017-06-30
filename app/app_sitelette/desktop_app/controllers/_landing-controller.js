@@ -58,8 +58,17 @@ define([
 		},
 		onDiscountSelected: function(options) {
 			console.log(options);
-			appCache.fetch('promoCode', options.promoCode);
-			this.dispatcher.get('order').onDiscountSelected();
+			if (options.uuid && !options.promoCode) {
+				this.dispatcher.get('order').retrievePromoCodeByUUID(options.uuid)
+					.then(this.onDiscountRetrieved.bind(this));
+			} else {
+				appCache.fetch('promoCode', options.promoCode);
+				this.dispatcher.get('order').onDiscountSelected();
+			}
+		},
+		onDiscountRetrieved: function(discount) {
+			appCache.fetch('promoCode', discount.promoCode);
+			this.onDiscountUsed();
 		},
 		onDiscountUsed: function() {
 			this.discountsView.triggerMethod('discountUsed');

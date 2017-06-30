@@ -421,7 +421,7 @@ module.exports = {
             isVersion = options.model.get('hasVersions'),
             params = {
                 itemId: options.model.get('itemId'),
-                itemVersion: isVersion ? options.savedVersion.version.get('itemVersion') : options.model.get('itemVersion'),
+                itemVersion: isVersion  && options.savedVersion ? options.savedVersion.version.get('itemVersion') : options.model.get('itemVersion'),
                 priceId: options.model.get('priceId') 
             },
             catalogDetails = {
@@ -443,7 +443,7 @@ module.exports = {
                     subItems: subItems,
                     model: options.model,
                     basket: basket,
-                    version: isVersion ? options.savedVersion.version : null,
+                    version: isVersion && options.savedVersion ? options.savedVersion.version : null,
                     allVersions: options.versions,
                     showCustomizationMark: options.showCustomizationMark
                 };

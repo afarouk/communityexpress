@@ -119,9 +119,13 @@ var DiscountsView = Backbone.View.extend({
 
   triggerCatalogsView: function(e) {
       var $target = $(e.currentTarget),
-          index = $target.data('uuid'),
-          promo = this.promoCodes.filter(function(item) {
-              return item.discountUUID === index;
+          uuid = $target.data('uuid');
+      this.manageDiscountByUUID(uuid);
+  },
+
+  manageDiscountByUUID: function(uuid) {
+      var promo = this.promoCodes.filter(function(item) {
+              return item.discountUUID === uuid;
           })[0],
           promoCode = promo.promoCode;
       appCache.fetch('promoCode', promoCode);
@@ -162,14 +166,17 @@ var DiscountsView = Backbone.View.extend({
   },
 
   openDiscountByShareUrl: function(uuid) {
-    var callback = _.bind(function() {
-      var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
-          index = el.data('slick-index');
+    // var callback = _.bind(function() {
+    //   var el = this.$el.find('li[data-uuid="' + uuid + '"]').first(),
+    //       index = el.data('slick-index');
 
-          this.$el.find('.body ul').slick('slickGoTo', index);
-          Vent.trigger('scrollToBlock', '.promocodes_block');
-    }, this);
-    this.toggleCollapse(callback);
+    //       this.$el.find('.body ul').slick('slickGoTo', index);
+    //       Vent.trigger('scrollToBlock', '.promocodes_block');
+    // }, this);
+    // this.toggleCollapse(callback);
+
+    //I am not sure what way is preferred
+    this.manageDiscountByUUID(uuid);
   },
 
   showShareBlock: function(e) {
