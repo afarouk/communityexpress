@@ -293,7 +293,7 @@ h5{
 }
 
 .white_background{
-	padding: 80px 0px;
+	/* padding: 80px 0px; */
 	background: #fff;
 }
 
@@ -1486,10 +1486,7 @@ h1.formHeading{
 .force-min-height {
 	min-height: 500px;
 }
- .white_background{
-    padding: 80px 0px;
-    background: #fff;
-    }
+
 /**/
 .font_color_white{
     color:#BFBFBF;
