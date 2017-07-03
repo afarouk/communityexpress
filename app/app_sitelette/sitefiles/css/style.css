@@ -1794,7 +1794,7 @@ a.get_started_btn:active {
 .list_item_text {
     display: inline-block;
     font: 300 14px/19px Roboto;
-    color: #999999;
+    color: #333333;
     max-width: 355px;
 }
 
@@ -1876,7 +1876,7 @@ a.get_started_btn:active {
 
 .how_works_block .text {
     font: 300 16px / 23px Roboto;
-    color: #999999;
+    color: #333333;
     margin-bottom: 30px;
 }
 
