@@ -1572,9 +1572,7 @@ nav.navbar.navbar-default {
 #header .nav li a {
     text-transform: uppercase;
     font: 400 14px Roboto;
-		/*
-    color: #cccccc !important;
-		*/
+		color: #cccccc ;
 }
 
 .navbar-default,
@@ -1801,19 +1799,30 @@ a.get_started_btn:active {
 
 .heading_block {
     /* background: url(../images/landing/hands-coffee-smartphone.jpg) no-repeat right; */
-    background: url(../images/landing/kioskSetupHeckler.jpg) no-repeat right;
+    background: url(../images/landing/grayBlurredBackground.png) no-repeat right;
     background-size: cover;
     /* padding: 19% 0 18% 0; */
-		padding:0% 0 25% 0;
+	  padding:0% 0% 0% 0%;
+		min-height:500px;
+		height:500px;
     text-align: center;
 }
 
 .heading_block h1{
-	padding-top:80px;
-	color:black;
+	padding-top:100px;
+	color:white;
 	font: 600 48px/48px Roboto;
 }
+.heading_block h3{
+ 	color:white;
+  line-height:1.6;
+	font: 500 22px/22px Roboto;
+}
+.heading_block img{
+	padding-top:100px;
+	width:80%;
 
+}
 /*Browse chalkboards section
 =============================================================*/
 
