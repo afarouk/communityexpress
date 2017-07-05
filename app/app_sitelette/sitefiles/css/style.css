@@ -2660,6 +2660,14 @@ nav.navbar {
 	button#submit_mobile {
 	    min-width: 260px;
 	}
+
+	.heading_block h1 {
+		color:black;
+	}
+
+	.heading_block h3 {
+		color:black;
+	}
 }
 
 /*Flyer section
