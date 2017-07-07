@@ -32,9 +32,11 @@
             <li>
               <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
             </li>
+            <!--
             <li class="li_signin" <?php modifyUrlAndClass("signup") ?> >
               <a href="signup" class="signup_btn">Sign up</a>
             </li>
+            -->
             <li class="li_login" <?php modifyUrlAndClass("portalexpress") ?> >
               <a href="portalexpress" class="login_btn">Log in</a>
             </li>
