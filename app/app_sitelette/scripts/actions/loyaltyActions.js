@@ -4,8 +4,10 @@ var gateway = require('../APIGateway/gateway');
 
 module.exports = {
     updateLoyaltyStatus: function(UID) {
-        return gateway.sendRequest('retrieveLoyaltyStatus', {
+      var jqScreenWidth=$( window ).width();
+         return gateway.sendRequest('retrieveLoyaltyStatus', {
             UID: UID,
+            screenWidth:jqScreenWidth,
             serviceAccommodatorId: window.saslData.serviceAccommodatorId,
             serviceLocationId: window.saslData.serviceLocationId
         });
