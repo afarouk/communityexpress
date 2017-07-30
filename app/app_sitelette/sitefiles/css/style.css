@@ -1798,13 +1798,15 @@ a.get_started_btn:active {
 
 
 .heading_block {
-    /* background: url(../images/landing/hands-coffee-smartphone.jpg) no-repeat right; */
-    background: url(../images/landing/conversation.png) no-repeat right;
+    background: url(../images/landing/conversation.png) no-repeat ;
+    background-size: cover;
+		-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     /* padding: 19% 0 18% 0; */
 	  padding:0% 0% 0% 0%;
-		min-height:500px;
-		height:500px;
+		width:auto%;
     text-align: center;
 }
 
@@ -2673,11 +2675,11 @@ nav.navbar {
 	}
 
 	.heading_block h1 {
-		color:black;
+		color:white;
 	}
 
 	.heading_block h3 {
-		color:black;
+		color:white;
 	}
 }
 
