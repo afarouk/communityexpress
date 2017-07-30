@@ -1811,7 +1811,7 @@ a.get_started_btn:active {
 }
 
 .heading_block h1{
-	padding-top:140px;
+	padding-top:180px;
 	color:white;
 	font: 600 40px/40px Roboto;
 }
@@ -1908,11 +1908,13 @@ a.get_started_btn:active {
 
 .how_works_block .right_block {
     position: relative;
-    height: 100%;
-    padding: 60px 0;
     text-align: center;
 }
-
+.how_works_block .right_block img {
+    max-width:350px;
+		width:350px;
+		height:auto;
+}
 /*package section
 =============================================================*/
 
