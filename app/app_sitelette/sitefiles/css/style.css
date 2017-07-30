@@ -1798,15 +1798,15 @@ a.get_started_btn:active {
 
 
 .heading_block {
-    background: url(../images/landing/conversation.png) no-repeat ;
-    background-size: cover;
-		-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url(../images/landing/conversation.png) no-repeat center;
+		-webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
     /* padding: 19% 0 18% 0; */
 	  padding:0% 0% 0% 0%;
-		width:auto%;
+		min-height:600px;
+		height:auto;
     text-align: center;
 }
 
@@ -1827,8 +1827,8 @@ a.get_started_btn:active {
 	font: 500 22px/22px Roboto;
 }
 .heading_block img{
-	padding-top:80px;
-	width:100%;
+	padding-top:190px;
+	width:90%;
 
 }
 .heading_block .color_fade_block {
@@ -2673,11 +2673,18 @@ nav.navbar {
 	button#submit_mobile {
 	    min-width: 260px;
 	}
+	.heading_block   {
+	  min-height:140px;
+  }
 
 	.heading_block h1 {
+		padding-top:40px;
 		color:white;
-	}
-
+		font: 600 34px/34px Roboto;
+ 	}
+	.heading_block h2 {
+ 		color:white;
+ 	}
 	.heading_block h3 {
 		color:white;
 	}
