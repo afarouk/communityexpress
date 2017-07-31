@@ -1813,13 +1813,12 @@ a.get_started_btn:active {
 .heading_block h1{
 	padding-top:180px;
 	color:white;
-	font: 600 40px/40px Roboto;
+	font: 600 44px/44px Roboto;
 }
 .heading_block h2{
-	padding-top:100px;
  	color:white;
   line-height:1.2;
-	font: 500 26px/26px Roboto;
+	font: 500 36px/36px Roboto;
 }
 .heading_block h3{
  	color:white;
