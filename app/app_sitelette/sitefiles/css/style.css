@@ -1846,7 +1846,8 @@ a.get_started_btn:active {
 }
 
 .browse_chalkboards_block .color_fade_block {
-	background-color: #EF7012;
+	/* background-color: #EF7012;*/
+	  background-color:#000000;
     position: absolute;
     bottom: 0px;
 }
@@ -1870,7 +1871,9 @@ a.get_started_btn:active {
     display: inline-block;
     font: 300 26px / 30px Roboto;
     color: #ffffff;
-    max-width: 650px;
+    /* max-width: 650px; */
+		padding-left:20px;
+		padding-right:20px;
     position: relative;
 }
 
