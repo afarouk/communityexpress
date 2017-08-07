@@ -444,7 +444,6 @@ module.exports = {
                     model: options.model,
                     basket: basket,
                     version: isVersion && options.savedVersion ? options.savedVersion.version : null,
-                    allVersions: options.versions,
                     showCustomizationMark: options.showCustomizationMark
                 };
             });

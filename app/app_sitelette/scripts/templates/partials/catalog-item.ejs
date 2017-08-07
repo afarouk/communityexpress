@@ -7,7 +7,10 @@
     <div class="sides_extras_item_details">
         <span class="item_name"><%= itemName %></span>
         <div class="order_price">$<%= price %></div>
-        <button class="customize_btn cmtyx_color_1 cmtyx_border_color_1 <% if (!hasSubItems) { %>invisible<% } %>" name="item_customize"><span class="customization-mark" name="customization-mark">*</span>customize</button>
+        <div class="customization-btn-container">
+            <button class="customize_btn cmtyx_color_1 cmtyx_border_color_1 <% if (!hasSubItems) { %>invisible<% } %>" name="item_customize"><span class="customization-mark" name="customization-mark">*</span>customize</button>
+            <i class="fa fa-times customization-reset regular" name="customization-reset" aria-hidden="true"></i>
+        </div>
     </div>
     
     <div class="float_right">

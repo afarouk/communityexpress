@@ -19,7 +19,10 @@
             <% }) %>
         </div>
         <% if (hasSubItems) { %>
-          <button class="customize_btn cmtyx_color_1 cmtyx_border_color_1" name="item_customize"><span class="customization-mark" name="customization-mark">*</span>customize</button>
+            <div class="customization-btn-container">
+                <button class="customize_btn cmtyx_color_1 cmtyx_border_color_1" name="item_customize"><span class="customization-mark" name="customization-mark">*</span>customize</button>
+                <i class="fa fa-times customization-reset" name="customization-reset" aria-hidden="true"></i>
+            </div>
         <% } %>
         <div class="float_right">
             <div class="select_container catalog_item_counter">

@@ -4,7 +4,6 @@
 
 var regularTemplate = require('ejs!../../templates/partials/catalog-item.ejs'),
     versionsTemplate = require('ejs!../../templates/partials/catalog-versions-item.ejs'),
-    VersionsView = require('./catalog_item_versions'),
     h = require('../../globalHelpers'),
     appCache = require('../../appCache'),
     Vent = require('../../Vent');
@@ -24,7 +23,8 @@ var CatalogItemView = Backbone.View.extend({
         'click .versions_buttons': 'preventClick',
         'change .versions_buttons select': 'updateAddVersionButton',
         'click .plus_version_button': 'onVersionAdded',
-        'click [name="item_customize"]': 'onCustomize'
+        'click [name="item_customize"]': 'onCustomize',
+        'click [name="customization-reset"]': 'onCustomizationReset'
     },
 
     initialize: function (options) {
@@ -46,9 +46,12 @@ var CatalogItemView = Backbone.View.extend({
         if (this.preopenAllPictures) {
             this.withExpandedDetails = true;
         }
-        this.versions = this.getVersionsFromBasket();
 
         this.listenTo(this.basket, 'reset change add remove', this.updateQuantity, this);
+
+        //backup price
+        this.model.set('originalPrice', this.model.get('price'));
+        this.model.set('originalSubItems', this.model.get('subItems'));
     },
 
     render: function() {
@@ -64,9 +67,6 @@ var CatalogItemView = Backbone.View.extend({
         })));
         if (hasVersion) {
             this.updateAddVersionButton();
-            if (this.versions.length > 0) {
-                this.renderVersions();
-            }
             this.$el.find('.sides_extras_item_details').css('width','100%');
         }
         this.listenLoadImage();
@@ -138,22 +138,6 @@ var CatalogItemView = Backbone.View.extend({
         return false;
     },
 
-    getVersionsFromBasket: function() {
-        var versionsFromBasket = this.basket.getBasketVersions(this.model) || null,
-            versions = [];
-        //TODO get saved version or don't create new catalog when return from customization
-        if (!versionsFromBasket) return versions;
-        _.each(versionsFromBasket.selectedVersions, function(version){
-            versions.push({
-                version: version.version,
-                selected: version.selected,
-                quantity: version.quantity
-            });
-        });
-
-        return versions;
-    },
-
     getSelectorVersions: function() {
         var selectorOptions = this.model.get('selectorOptions'),
             length = Object.keys(selectorOptions).length,
@@ -182,16 +166,13 @@ var CatalogItemView = Backbone.View.extend({
         exists = _.findWhere(itemVersions, search);
         if (exists) {
             this.$('.sides_extras_item_not_available_versions').removeClass('visible');
-            if(this.isAlreadyAdded(exists)) {
-                this.$('.plus_version_button').addClass('disabled');
-            } else {
-                this.$('.plus_version_button').removeClass('disabled');
-                this.savedVersion = {
-                    version: new Backbone.Model(exists),
-                    selected: selectedValues,
-                    quantity: 1
-                };
-            }
+            this.$('.plus_version_button').removeClass('disabled');
+            this.savedVersion = {
+                version: new Backbone.Model(exists),
+                selected: selectedValues,
+                quantity: 1
+            };
+            this.savedVersion.version.set('originalPrice', exists.price);
             this.$('.order_price').text('$' + exists.price);
         } else {
             this.$('.plus_version_button').addClass('disabled');
@@ -199,42 +180,37 @@ var CatalogItemView = Backbone.View.extend({
             this.$('.order_price').html('<br>');
         }
         this.$('.customization-mark').removeClass('visible');
+        this.$('.customization-reset').removeClass('visible');
     },
 
-    isAlreadyAdded: function(version) {
-        var exists = _.find(this.versions, function(item){
-            return item.version.get('itemId') === version.itemId &&
-                   item.version.get('itemVersion') === version.itemVersion;
-        });
-        return exists ? true : false;
-    },
-
-    onRemoveVersion: function() {
-        this.updateAddVersionButton();
-        this.adjustImageContainer();
-    },
-
-    onVersionAdded: function() {
-        this.versions.push(this.savedVersion);
-        this.renderVersions();
-        this.versionsView.addToBasket();
-        this.$('.plus_version_button').addClass('disabled');
-        this.adjustImageContainer();
-    },
-
-    renderVersions: function() {
-        var versionsContainer = this.$('.sides_extras_item_added_versions');
-        if (!this.versionsView) {
-            this.versionsView = new VersionsView({
-                el: versionsContainer,
-                basket: this.basket,
-                catalogId: this.catalogId,
-                groupId: this.groupId,
-                model: this.model
+    getVersions: function() {
+        var versions = {
+            totalPrice: 0,
+            totalQuantity: 0,
+            selectedVersions: []
+        };
+        _.each([this.savedVersion], function(version) {
+            var longVersion = _.extend(version, {
+                displayText: version.selected.join(' ,')
             });
-            this.versionsView.listenTo(this.versionsView, 'removeVersion', this.onRemoveVersion.bind(this));
-        }
-        this.versionsView.render(this.versions);
+            versions.selectedVersions.push(longVersion);
+            versions.totalPrice += longVersion.version.get('price') * longVersion.quantity;
+            versions.totalQuantity += longVersion.quantity;
+        });
+        return versions;
+    },
+    onVersionAdded: function (versionIndex, count) {
+        var versions = this.getVersions(),
+            uuid = this.model.get('uuid'),
+            basketItem = this.savedVersion.version;
+
+        h().playSound('addToCart');
+        this.basket.setBasketVersions(this.model, versions);
+        if (!basketItem) return;
+        basketItem.set('isVersion', true, {silent: true});
+        basketItem.set('itemName', this.model.get('itemName'), {silent: true});
+        basketItem.set('uuid', uuid + '_' + basketItem.get('itemVersion'), {silent: true});
+        this.basket.addItem(basketItem, count || 1,this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     },
 
     expandDetails: function() {
@@ -287,53 +263,20 @@ var CatalogItemView = Backbone.View.extend({
         return false;
     },
 
-    updateVersionsTotalPrice: function() {
-        var versions = this.basket.getBasketVersions(this.model),
-            totalPrice = versions ? versions.totalPrice : 0;
-        this.$('.order_price').text('$' + totalPrice.toFixed(2));
-    },
-
-    onBackVersionsUpdate: function(modelChanged) {
-        if (modelChanged && this.versionsView) {
-            this.versionsView.updateQuantity(modelChanged);
-        }
-    },
-
-    getChangedModel: function(model) {
-        if (!model) return;
-        var uuid = model.get('uuid'),
-            viewModelUuid = this.model.get('uuid');
-        if (model.get('isVersion')) {
-            if (uuid.indexOf(viewModelUuid) === -1) return;
-            var foundModel = this.basket.getItem(model);
-            if (!foundModel && model.get('wasCustomized')) { //different for customization
-                return model;
-            } else {
-                return foundModel;
-            }
-        } else {
-            return this.basket.getItem(this.model);
-        }
-    },
-
-    updateQuantity: function (model) {
+    updateQuantity: function () {
         if (this.basket.length === 0) {
             this.$('.quantity').text(0);
             this.quantity = 0;
         } else {
-            var modelChanged = this.getChangedModel(model);
-            if (modelChanged && modelChanged.get('isVersion')) {
-                setTimeout(this.onBackVersionsUpdate.bind(this, modelChanged), 1);
-                return;
-            }
-            if (model && model.get('isVersion')) return;
-            modelChanged = this.basket.getItem(this.model);
+            var modelChanged = this.basket.getItem(this.model);
             if (modelChanged) {
                 this.quantity = modelChanged.get('quantity');
                 this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
             } else {
                 this.quantity = 0;
-                this.$('.order_price').text('$' + this.model.get('price'));
+                if (!this.model.get('hasVersions')) {
+                    this.$('.order_price').text('$' + this.model.get('price'));
+                }
             }
         }
         this.model.set('quantity', this.quantity);
@@ -343,6 +286,7 @@ var CatalogItemView = Backbone.View.extend({
     addToBasket: function () {
     	var count;
         this.addItem ? count = 1 : count = -1;
+        console.log(this.model.toJSON());
         this.model.set('quantity', this.model.get('quantity') + count);
         this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     },
@@ -355,7 +299,6 @@ var CatalogItemView = Backbone.View.extend({
             catalogId: this.catalogId,
             catalogDisplayText: this.catalogDisplayText,
             savedVersion: this.savedVersion,
-            versions: this.versions,
             showCustomizationMark: this.showCustomizationMark.bind(this)
         });
         return false;
@@ -363,12 +306,25 @@ var CatalogItemView = Backbone.View.extend({
 
     showCustomizationMark: function() {
         this.$('.customization-mark').addClass('visible');
+        this.$('.customization-reset').addClass('visible');
         if (this.model.get('hasVersions')) {
-            _.each(this.versions, function(version) {
-                this.updateQuantity(version.version);
-            }.bind(this));
+            var adjustedPrice = this.savedVersion.version.get('price');
+            this.$('.order_price').text('$' + adjustedPrice);
         } else {
             this.updateQuantity(this.model);
+        }
+    },
+    onCustomizationReset: function(){
+        if (this.model.get('hasVersion')) {
+            this.updateAddVersionButton();
+        } else {
+            this.$('.customization-mark').removeClass('visible');
+            this.$('.customization-reset').removeClass('visible');
+            this.model.set('price', this.model.get('originalPrice'));
+            this.model.set('subItems', this.model.get('originalSubItems'));
+            this.model.unset('customizationNote');
+            this.updateQuantity();
+            console.log(this.model.toJSON());
         }
     }
 });

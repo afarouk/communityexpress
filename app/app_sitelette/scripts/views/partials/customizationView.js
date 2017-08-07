@@ -20,6 +20,9 @@ var CustomizationView = Backbone.View.extend({
         this.on('show', this.onShow, this);
         this.render();
         this.options.basket.on('change', this.changeItemsNumber.bind(this));
+
+        this.price = this.options.model.get('hasVersions') ? 
+            this.options.version.get('originalPrice') : this.options.model.get('originalPrice');
     },
 
     render: function() {
@@ -32,7 +35,7 @@ var CustomizationView = Backbone.View.extend({
         return {
             itemName: this.options.model.get('itemName'),
             subItems: this.options.subItems,
-            basketItemsNumber: this.options.basket.getItemsNumber()
+            price: this.price
         };
     },
 
@@ -128,14 +131,26 @@ var CustomizationView = Backbone.View.extend({
         } else {
             $doneBtns.attr('disabled', true);
         }
+        this.changePrice();
+    },
+
+    changePrice: function() {
+        var subItems = this.getSubItems(),
+            price = this.price;
+
+        _.each(subItems, function(subItem){
+            _.each(subItem.selected, function(selected){
+                price += selected.priceAdjustment;
+            })
+        });
+        this.$('.total-price').text('$ ' + price);
     },
 
     onDone: function() {
         var subItems = this.getSubItems(),
             model = this.options.version || this.options.model,
-            collection = [{version: model}], //<not sure
             customizationNote = this.options.model.get('itemName'),
-            adjustedPrice = model.get('price');
+            adjustedPrice = this.price;
         customizationNote += '[';
         _.each(subItems, function(subItem) {
             var selected = subItem.selected,
@@ -146,15 +161,12 @@ var CustomizationView = Backbone.View.extend({
         });
         customizationNote = customizationNote.slice(0, -2);
         customizationNote += ']';
-        collection = this.options.allVersions && this.options.allVersions.length > 0 ? collection.concat(this.options.allVersions) : collection;
-        _.each(collection, function(item){
-            var iModel = item.version;
-            iModel.set('wasCustomized', true);
-            iModel.set('hasSubItems', true);
-            iModel.set('customizationNote', customizationNote);
-            iModel.set('price', adjustedPrice);
-            iModel.set('subItems', subItems);
-        });
+        var iModel = model;
+        iModel.set('wasCustomized', true);
+        iModel.set('hasSubItems', true);
+        iModel.set('customizationNote', customizationNote);
+        iModel.set('price', adjustedPrice);
+        iModel.set('subItems', subItems);
         this.options.showCustomizationMark();
         this.goBack();
     },
