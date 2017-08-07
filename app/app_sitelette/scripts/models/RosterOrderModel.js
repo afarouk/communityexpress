@@ -60,6 +60,7 @@ var RosterOrderModel = Backbone.Model.extend({
 			deliveryPickupOptions: options.deliveryPickupOptions || null
 			 // etc...
 		});
+           
 
 	},
 
@@ -77,11 +78,11 @@ var RosterOrderModel = Backbone.Model.extend({
 			creditCardSelected: true,
 			fundSourceId: fundsource.fundSourceId || null,
 			items: this.getItems(options),
-			tipAmount: 0,
+                        tipAmount: options.tipAmount,
 			subTotal: this.getPriceWithoutTaxes(options),
 			taxAmount: this.calculateTaxes(options),
 			totalAmount: this.getTotalPriceWithTax(options),
-			currencyCode: options.priceAddons.currencyCode,
+                        currencyCode: options.priceAddons.currencyCode,
 			saveCreditCardForFutureReference: fundsource.saveCardForReuse || false,
 			deliveryAddress: this.getAddress(options.addresses[0] || {}),
 			creditCard: this.getCreditCard(fundsource),

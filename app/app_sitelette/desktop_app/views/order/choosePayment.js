@@ -37,7 +37,7 @@ define([
 	        'change': 'render'
 	    },
 		initialize: function() {
-			this.getTipInfo();
+	        this.getTipInfo();
 	        this.allowCash = this.model.additionalParams.allowCash;
 	        this.paymentOnlineAccepted = this.model.additionalParams.paymentOnlineAccepted;
 	        this.allowDelivery = this.model.additionalParams.allowDelivery;
@@ -47,7 +47,7 @@ define([
 		serializeData: function() {
 			var favorites = this.model.additionalParams.userModel.favorites,
             	pickupAddress = favorites.length !== 0 ? favorites.first().get('address') : this.getAddressFromSasl();
-
+        
 			return _.extend(this.model.toJSON(), this.model.additionalParams, {
 				cardNumber: this.model.get('creditCard').cardNumber,
 				cs: this.model.additionalParams.symbol,
@@ -70,6 +70,7 @@ define([
 	            promoCode: this.model.additionalParams.promoCode,
 	            minimumPurchase: this.model.additionalParams.minimumPurchase
 			});
+                        
 		},
 
 		onRender: function() {
@@ -122,18 +123,21 @@ define([
 	        return address;
 	    },
 
-	    getTipInfo: function() {
+	    getTipInfo: function(){
 	        this.totalAmount = this.model.additionalParams.cachedTotalAmount;
 	        this.tip = this.model.additionalParams.tip;
-	        this.tipSum = this.model.additionalParams.tipSum;
+	        this.tipSum = this.model.additionalParams.tipSum;  
 	        this.$('.tip_quantity').text(this.tip + '%');
 	        this.$('.tip_price_value').text(this.tipSum);
 	    },
 
-	    incrementTip: function() {
+	    incrementTip: function() { 
 	        if (this.tip === 20) return;
 	        h().playSound('addToCart');
-	        this.tip = this.tip + 5;
+                var sum = this.tip + 5;
+                this.tip = sum;
+	        //this.tip = this.tip + 5;
+              
 	        this.setTotalPriceWithTip();
 	    },
 
@@ -188,7 +192,6 @@ define([
 	            totalAmount = 0
 	        }
 	        totalAmount = this.model.getTotalPriceWithTaxAfterAll(totalAmount);
-
 	        this.tipSum = parseFloat((totalAmount * tipPortion).toFixed(2));
 	        totalAmount = parseFloat((totalAmount + this.tipSum).toFixed(2));
 	        this.$('.tip_quantity').text(this.tip + '%');
@@ -196,8 +199,11 @@ define([
         	this.$('.total_amount').text(cs + totalAmount.toFixed(2));
 	        this.model.additionalParams.tipSum = this.tipSum;
 	        this.model.additionalParams.tip = this.tip;
-
+                
+                this.model.set({'tipAmount':this.tipSum}, {silent:true});
+                
 	        this.model.set({'totalAmount': totalAmount.toFixed(2)}, {silent:true});
+                
 	        this.model.trigger('change');
 	    },
 
