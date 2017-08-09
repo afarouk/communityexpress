@@ -3,7 +3,7 @@
 'use strict';
 
 var regularTemplate = require('ejs!../../templates/partials/catalog-item.ejs'),
-    versionsTemplate = require('ejs!../../templates/partials/catalog-versions-item.ejs'),
+    // versionsTemplate = require('ejs!../../templates/partials/catalog-versions-item.ejs'),
     h = require('../../globalHelpers'),
     appCache = require('../../appCache'),
     Vent = require('../../Vent');
@@ -22,7 +22,7 @@ var CatalogItemView = Backbone.View.extend({
         'click .item_name': 'openItemDetails',
         'click .versions_buttons': 'preventClick',
         'change .versions_buttons select': 'updateAddVersionButton',
-        'click .plus_version_button': 'onVersionAdded',
+        'click .plus_version_button': 'onAddItem',
         'click [name="item_customize"]': 'onCustomize',
         'click [name="customization-reset"]': 'onCustomizationReset'
     },
@@ -56,7 +56,8 @@ var CatalogItemView = Backbone.View.extend({
 
     render: function() {
         var hasVersion = this.model.get('hasVersions'),
-            template = hasVersion ? versionsTemplate : regularTemplate;
+            // template = hasVersion ? versionsTemplate : regularTemplate;
+            template = regularTemplate;
         this.$el.html(template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity || 0,
@@ -199,7 +200,14 @@ var CatalogItemView = Backbone.View.extend({
         });
         return versions;
     },
-    onVersionAdded: function (versionIndex, count) {
+    onAddItem: function() {
+        if (this.model.get('hasVersions')) {
+            this.onVersionAdded();
+        } else {
+            this.incrementQuantity();
+        }
+    },
+    onVersionAdded: function () {
         var versions = this.getVersions(),
             uuid = this.model.get('uuid'),
             basketItem = this.savedVersion.version;
@@ -210,7 +218,7 @@ var CatalogItemView = Backbone.View.extend({
         basketItem.set('isVersion', true, {silent: true});
         basketItem.set('itemName', this.model.get('itemName'), {silent: true});
         basketItem.set('uuid', uuid + '_' + basketItem.get('itemVersion'), {silent: true});
-        this.basket.addItem(basketItem, count || 1,this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
+        this.basket.addItem(basketItem, 1,this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
     },
 
     expandDetails: function() {
@@ -264,23 +272,23 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     updateQuantity: function () {
-        if (this.basket.length === 0) {
-            this.$('.quantity').text(0);
-            this.quantity = 0;
-        } else {
-            var modelChanged = this.basket.getItem(this.model);
-            if (modelChanged) {
-                this.quantity = modelChanged.get('quantity');
-                this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
-            } else {
-                this.quantity = 0;
-                if (!this.model.get('hasVersions')) {
-                    this.$('.order_price').text('$' + this.model.get('price'));
-                }
-            }
-        }
-        this.model.set('quantity', this.quantity);
-        this.$('.quantity').text(this.quantity);
+        // if (this.basket.length === 0) {
+        //     this.$('.quantity').text(0);
+        //     this.quantity = 0;
+        // } else {
+        //     var modelChanged = this.basket.getItem(this.model);
+        //     if (modelChanged) {
+        //         this.quantity = modelChanged.get('quantity');
+        //         // this.$('.order_price').text('$' + (this.model.get('price') * (this.quantity === 0 ? 1 : this.quantity)).toFixed(2));
+        //     } else {
+        //         this.quantity = 0;
+        //         if (!this.model.get('hasVersions')) {
+        //             // this.$('.order_price').text('$' + this.model.get('price'));
+        //         }
+        //     }
+        // }
+        // this.model.set('quantity', this.quantity);
+        // this.$('.quantity').text(this.quantity);
     },
 
     addToBasket: function () {

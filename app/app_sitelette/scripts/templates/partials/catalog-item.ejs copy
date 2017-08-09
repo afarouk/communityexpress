@@ -1,0 +1,45 @@
+<div class="catalog_item_main_view">
+    <% if (thumbnailBase64) { %>
+        <div class="sides_item_image_small_container">
+            <img src="data:image/gif;base64,<%= thumbnailBase64 %>" alt="" />
+        </div>
+    <% } %>
+    <div class="sides_extras_item_details">
+        <span class="item_name"><%= itemName %></span>
+        <div class="order_price">$<%= price %></div>
+        <div class="customization-btn-container">
+            <button class="customize_btn cmtyx_color_1 cmtyx_border_color_1 <% if (!hasSubItems) { %>invisible<% } %>" name="item_customize"><span class="customization-mark" name="customization-mark">*</span>customize</button>
+            <i class="fa fa-times customization-reset regular" name="customization-reset" aria-hidden="true"></i>
+        </div>
+    </div>
+    
+    <div class="float_right">
+        <div class="select_container catalog_item_counter">
+            <div class="ui-grid-b">
+                <div class="ui-block-a quantity_minus decrementQuantity">
+                    <a class="right minus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-minus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a>
+                </div>
+                <div class="ui-block-b cmntyex-add_to_basket_quantity quantity_field">
+                     <span class="quantity"><%= quantity %></span>
+                </div>
+                <div class="ui-block-c quantity_plus incrementQuantity">
+                    <a class="left plus_button ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-plus ui-btn-icon-notext" catalogid="COMBO3" catalogdisplaytext="Combo3"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sides_extras_detailed" <% if (preopenAllPictures) { %>style="display: block;"<% } %>>
+    <% if (mediaURLs[0] !== '' || typeof mediaURLs[0] !== 'undefined' ) { %>
+        <div class="sides_extras_detailed_image">
+            <img alt="" <% if (direction === 'HORIZONTAL') { %>class="owl-lazy" data-src="<%= mediaURLs[0] %>"<% } %> />
+        </div>
+    <% } %>
+    <div class="catalog_item_attributes">
+        <div class="short_description"><%= shortDescription %></div>
+        <div class="long_description"><%= longDescription %></div>
+        <% _.each(attributes, function(status, attr) { %>
+            <div class="catalog_item_attribute <%= status ? 'true_attr' : 'false_attr' %>"><%= attr %></div>
+        <% }) %>
+    </div>
+</div>
