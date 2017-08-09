@@ -48,7 +48,6 @@ var RosterOrderModel = Backbone.Model.extend({
 			allowPickUp: true,//options.sasl.get('services').catalog['allowPickUp'],
 			allowDelivery: true,//options.sasl.get('services').catalog['allowDelivery'],
 			allowCash: options.sasl.get('services').catalog['allowCash'],
-			//temporary true , because I can't find that it is in SASL 
 			showTipOnSummaryPage: options.sasl.get('services').catalog['showTipOnSummaryPage'],
 			discount: 0,
 			maximumDiscount: 0,
@@ -58,8 +57,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			promoCodeActive: false,
 			deliveryDate: null,
 			deliveryPickupOptions: options.deliveryPickupOptions || null
-			 // etc...
 		});
+           
 
 	},
 
@@ -77,11 +76,11 @@ var RosterOrderModel = Backbone.Model.extend({
 			creditCardSelected: true,
 			fundSourceId: fundsource.fundSourceId || null,
 			items: this.getItems(options),
-			tipAmount: 0,
+                        tipAmount: options.tipAmount,
 			subTotal: this.getPriceWithoutTaxes(options),
 			taxAmount: this.calculateTaxes(options),
 			totalAmount: this.getTotalPriceWithTax(options),
-			currencyCode: options.priceAddons.currencyCode,
+                        currencyCode: options.priceAddons.currencyCode,
 			saveCreditCardForFutureReference: fundsource.saveCardForReuse || false,
 			deliveryAddress: this.getAddress(options.addresses[0] || {}),
 			creditCard: this.getCreditCard(fundsource),
