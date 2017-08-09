@@ -1348,6 +1348,24 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     bottom: 0;
 }
 
+.sides_extras_item_details .price-container {
+    display: flex;
+    min-width: 300px;
+}
+.sides_extras_item_details .customization-note {
+    padding-left: 10px;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #fafafa;
+    /* -webkit-font-smoothing: antialiased; */
+}
+
 /* item versions */
 .sides_extras_item_not_available_versions {
     color: #FFCC00;
