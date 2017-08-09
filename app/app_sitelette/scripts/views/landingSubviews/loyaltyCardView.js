@@ -70,6 +70,7 @@ var LoyaltyCardView = Backbone.View.extend({
     this.$(this.qrCode).slideUp('slow');
     this.$(this.no_qrCode).slideDown('slow');
     this.$(this.status).text('');
+    $('#loyalty-bar-code').removeClass('visible').html('');
   },
 
   retrieveLoyaltyStatus: function(uid) {
@@ -84,6 +85,8 @@ var LoyaltyCardView = Backbone.View.extend({
           this.$(this.status).html(content);
         }
         this.$(this.qrCode).find('.qr_code_container').html('<img src="' +
+          resp.qrcodeURL + '" alt="" >');
+        $('#loyalty-bar-code').addClass('visible').html('<img src="' +
           resp.qrcodeURL + '" alt="" >');
         this.$(this.qrCode).slideDown('slow', function(){
           this.resolved();

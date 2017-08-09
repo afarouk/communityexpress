@@ -53,6 +53,10 @@
 	<div id="cmtyx_landingView" data-role="page">
 		<div class="home_body p-0">
 			<ul>
+				<li id="loyalty-bar-code" class="loyalty-bar-code">
+					<!-- bar code for loyalty -->
+				</li>
+				
 				<li id="cmtyx_welcome_block">
 					<!-- <img src="themes/1/placeholder_images/welocome_img.png"></img> -->
 					<#if notification??>
