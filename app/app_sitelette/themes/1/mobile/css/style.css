@@ -1410,6 +1410,23 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     position: absolute;
     bottom: 0;
 }
+.sides_extras_item_details .price-container {
+    display: flex;
+    min-width: 300px;
+}
+.sides_extras_item_details .customization-note {
+    padding-left: 10px;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #fafafa;
+    /* -webkit-font-smoothing: antialiased; */
+}
 .sides_extras_input {
     border-color: #e1e1e1 !important;
     position: relative;

@@ -185,6 +185,7 @@ var CatalogItemView = Backbone.View.extend({
         }
         this.$('.customization-mark').removeClass('visible');
         this.$('.customization-reset').removeClass('visible');
+        this.$('.customization-note').text('');
     },
 
     getVersions: function() {
@@ -324,14 +325,31 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     showCustomizationMark: function() {
+        var model,
+            adjustedPrice;
         this.$('.customization-mark').addClass('visible');
         this.$('.customization-reset').addClass('visible');
         if (this.model.get('hasVersions')) {
-            var adjustedPrice = this.savedVersion.version.get('price');
+            model = this.savedVersion.version;
+            adjustedPrice = model.get('price');
             this.$('.order_price').text('$' + adjustedPrice);
         } else {
-            this.updateQuantity(this.model);
+            model = this.model;
+            this.updateQuantity();
         }
+        this.$('.customization-note').text(this.getFormattedCustomizationNote(model.get('subItems')));
+    },
+    getFormattedCustomizationNote: function(subItems) {
+        var customizationNote = '';
+        _.each(subItems, function(subItem){
+            customizationNote += subItem.displayText + '(';
+            _.each(subItem.selected, function(selected){
+                customizationNote += selected.displayText + ',';
+            });
+            customizationNote = customizationNote.slice(0, -1);
+            customizationNote += ') ';
+        });
+        return customizationNote;
     },
     showCustomizationWarning: function() {
         popupController.textPopup({
@@ -352,6 +370,7 @@ var CatalogItemView = Backbone.View.extend({
             this.model.unset('customizationNote');
             this.model.unset('wasCustomized');
             this.updateQuantity();
+            this.$('.customization-note').text('');
         }
     }
 });
