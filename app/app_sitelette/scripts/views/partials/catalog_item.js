@@ -322,7 +322,7 @@ var CatalogItemView = Backbone.View.extend({
             this.model.set('price', this.model.get('originalPrice'));
             this.model.set('subItems', this.model.get('originalSubItems'));
             this.model.unset('customizationNote');
-            this.model.unset('wasCustomized');onVersionSelectionChanges
+            this.model.unset('wasCustomized');
             this.$('.customization-note').text('');
         }
     }
