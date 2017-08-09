@@ -79,7 +79,9 @@ var CatalogItemView = Backbone.View.extend({
         this.$el.addClass(this.generateColor());
         this.$el.find('.item_name').addClass(this.generateTextColor());
         this.$el.find('.order_price').addClass(this.generateTextColor());
-
+        if (this.model.get('hasSubItems')) {
+            console.log(this.model.toJSON());
+        }
         return this;
     },
 
@@ -204,9 +206,9 @@ var CatalogItemView = Backbone.View.extend({
     onAddItem: function() {
         var mustCustomize = this.model.get('mustCustomize'),
             hasVersions = this.model.get('hasVersions'),
-            customizationNote = hasVersions ? 
-                this.savedVersion.version.get('customizationNote') : this.model.get('customizationNote');
-        if (mustCustomize && !customizationNote) {
+            wasCustomized = hasVersions ? 
+                this.savedVersion.version.get('wasCustomized') : this.model.get('wasCustomized');
+        if (mustCustomize && !wasCustomized) {
             this.showCustomizationWarning();
         } else {
             if (hasVersions) {
@@ -337,17 +339,19 @@ var CatalogItemView = Backbone.View.extend({
         });
     },
     onCustomizationReset: function(){
+        console.log(this.model.toJSON());
         if (this.model.get('hasVersions')) {
             this.updateAddVersionButton();
             this.savedVersion.version.unset('customizationNote');
+            this.savedVersion.version.unset('wasCustomized');
         } else {
             this.$('.customization-mark').removeClass('visible');
             this.$('.customization-reset').removeClass('visible');
             this.model.set('price', this.model.get('originalPrice'));
             this.model.set('subItems', this.model.get('originalSubItems'));
             this.model.unset('customizationNote');
+            this.model.unset('wasCustomized');
             this.updateQuantity();
-            console.log(this.model.toJSON());
         }
     }
 });
