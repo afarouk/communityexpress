@@ -48,7 +48,6 @@ var RosterOrderModel = Backbone.Model.extend({
 			allowPickUp: true,//options.sasl.get('services').catalog['allowPickUp'],
 			allowDelivery: true,//options.sasl.get('services').catalog['allowDelivery'],
 			allowCash: options.sasl.get('services').catalog['allowCash'],
-			//temporary true , because I can't find that it is in SASL 
 			showTipOnSummaryPage: options.sasl.get('services').catalog['showTipOnSummaryPage'],
 			discount: 0,
 			maximumDiscount: 0,
@@ -58,7 +57,6 @@ var RosterOrderModel = Backbone.Model.extend({
 			promoCodeActive: false,
 			deliveryDate: null,
 			deliveryPickupOptions: options.deliveryPickupOptions || null
-			 // etc...
 		});
            
 
