@@ -4,6 +4,7 @@
 
 var regularTemplate = require('ejs!../../templates/partials/catalog-item.ejs'),
     // versionsTemplate = require('ejs!../../templates/partials/catalog-versions-item.ejs'),
+    popupController = require('../../controllers/popupController'),
     h = require('../../globalHelpers'),
     appCache = require('../../appCache'),
     Vent = require('../../Vent');
@@ -55,18 +56,18 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     render: function() {
-        var hasVersion = this.model.get('hasVersions'),
+        var hasVersions = this.model.get('hasVersions'),
             // template = hasVersion ? versionsTemplate : regularTemplate;
             template = regularTemplate;
         this.$el.html(template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity || 0,
-            selectorVersions: hasVersion ? this.getSelectorVersions() : null,
-            availableVersion: hasVersion ? this.getFirstAvailableVersion() : null,
+            selectorVersions: hasVersions ? this.getSelectorVersions() : null,
+            availableVersion: hasVersions ? this.getFirstAvailableVersion() : null,
             preopenAllPictures: this.preopenAllPictures,
             direction: this.direction
         })));
-        if (hasVersion) {
+        if (hasVersions) {
             this.updateAddVersionButton();
             this.$el.find('.sides_extras_item_details').css('width','100%');
         }
@@ -201,10 +202,18 @@ var CatalogItemView = Backbone.View.extend({
         return versions;
     },
     onAddItem: function() {
-        if (this.model.get('hasVersions')) {
-            this.onVersionAdded();
+        var mustCustomize = this.model.get('mustCustomize'),
+            hasVersions = this.model.get('hasVersions'),
+            customizationNote = hasVersions ? 
+                this.savedVersion.version.get('customizationNote') : this.model.get('customizationNote');
+        if (mustCustomize && !customizationNote) {
+            this.showCustomizationWarning();
         } else {
-            this.incrementQuantity();
+            if (hasVersions) {
+                this.onVersionAdded();
+            } else {
+                this.incrementQuantity();
+            }
         }
     },
     onVersionAdded: function () {
@@ -322,9 +331,15 @@ var CatalogItemView = Backbone.View.extend({
             this.updateQuantity(this.model);
         }
     },
+    showCustomizationWarning: function() {
+        popupController.textPopup({
+            text: 'Please, customize this item.'
+        });
+    },
     onCustomizationReset: function(){
-        if (this.model.get('hasVersion')) {
+        if (this.model.get('hasVersions')) {
             this.updateAddVersionButton();
+            this.savedVersion.version.unset('customizationNote');
         } else {
             this.$('.customization-mark').removeClass('visible');
             this.$('.customization-reset').removeClass('visible');
