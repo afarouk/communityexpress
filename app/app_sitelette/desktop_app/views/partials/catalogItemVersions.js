@@ -43,7 +43,7 @@ define([
 				this.ui.customize.removeClass('opened')
 			} else {
 				this.dispatcher.get('customize')
-					.triggerMethod('customizeItem', this);
+					.triggerMethod('customizeItem', this, this.savedVersion.subItems);
 			}
 
 			e.stopPropagation();
@@ -92,6 +92,19 @@ define([
 	            this.ui.add.attr('disabled', true);
 	            this.$('.item_version_not_available').addClass('visible');
 	        }
+
+	        //reset customization if version selected
+	        var $el = this.getRegion('customization').$el;
+			this.ui.customMark.removeClass('visible');
+			if ($el.is(':visible')) {
+				this.ui.add.attr('disabled', true);
+				this.ui.customize.attr('disabled', true);
+				$el.slideToggle('slow', function(){
+					this.ui.add.attr('disabled', false);
+					this.ui.customize.attr('disabled', false);
+				}.bind(this));
+				this.ui.customize.removeClass('opened');
+			} 
 	    },
 
 	    onAddtoCart: function (e) {

@@ -268,13 +268,17 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     onCustomize: function(e) {
+        var subItems = this.model.get('hasVersions') ? 
+            this.savedVersion.version.get('subItems') : this.model.get('subItems');
         e.preventDefault();
         e.stopPropagation();
+
         Vent.trigger( 'viewChange', 'customization', {
             model: this.model,
             catalogId: this.catalogId,
             catalogDisplayText: this.catalogDisplayText,
             savedVersion: this.savedVersion,
+            subItems: subItems,
             showCustomizationMark: this.showCustomizationMark.bind(this)
         });
         return false;

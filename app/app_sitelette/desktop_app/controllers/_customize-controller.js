@@ -8,23 +8,8 @@ define([
     '../views/partials/customizationLayout'
 	], function(appCache, saslActions, catalogActions, sessionActions, CustomizationLayoutView){
 	var CustomizeController = Mn.Object.extend({
-		onCustomizeItem: function(layout) {
-			this.getSubItems(layout.model)
-				.then(this.renderCustomize.bind(this, layout));
-		},
-
-		getSubItems: function(model) {
-			var params = {
-				itemId: model.get('itemId'),
-				itemVersion: model.get('itemVersion'),
-				priceId: model.get('priceId') 
-			};
-			return saslActions.getSasl()
-	        .then(function(sasl) {
-	        	params.sa = sasl.sa();
-	        	params.sl = sasl.sl();
-	            return catalogActions.getSubItems(params);
-	        });
+		onCustomizeItem: function(layout, subItems) {
+			this.renderCustomize(layout, subItems);
 		},
 
 		renderCustomize: function(layout, collection) {

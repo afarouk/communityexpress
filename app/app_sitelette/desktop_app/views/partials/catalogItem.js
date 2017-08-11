@@ -54,7 +54,7 @@ define([
 				this.ui.customize.removeClass('opened')
 			} else {
 				this.dispatcher.get('customize')
-					.triggerMethod('customizeItem', this);
+					.triggerMethod('customizeItem', this, this.model.get('subItems'));
 			}
 		}
 	});

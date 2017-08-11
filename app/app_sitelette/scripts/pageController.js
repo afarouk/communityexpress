@@ -419,11 +419,6 @@ module.exports = {
         var sasl,
             catalogId = options.catalogId,
             isVersion = options.model.get('hasVersions'),
-            params = {
-                itemId: options.model.get('itemId'),
-                itemVersion: isVersion  && options.savedVersion ? options.savedVersion.version.get('itemVersion') : options.model.get('itemVersion'),
-                priceId: options.model.get('priceId') 
-            },
             catalogDetails = {
                 catalogUUID: catalogId,
                 catalogDisplayText: options.catalogDisplayText
@@ -431,16 +426,12 @@ module.exports = {
         return saslActions.getSasl()
             .then(function(ret) {
                 sasl = ret;
-                params.sa = sasl.sa();
-                params.sl = sasl.sl();
-                return catalogActions.getSubItems(params);
-            }).then(function(subItems) {
                 var basket = new CatalogBasketModel();
                 basket.setCatalogDetails(catalogDetails);
                 basket = appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':' + catalogId + ':catalogbasket', basket);
                 return {
                     sasl: sasl,
-                    subItems: subItems,
+                    subItems: options.subItems,
                     model: options.model,
                     basket: basket,
                     version: isVersion && options.savedVersion ? options.savedVersion.version : null,
