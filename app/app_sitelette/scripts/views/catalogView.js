@@ -246,13 +246,36 @@ console.log('Preopen: ', this.preopenAllPictures);
         });
     },
 
-    updateBasket: function() {
+    updateBasket: function(model, unneeded, status) {
         if (this.rosterBasket && this.catalogId === 'BUILDYOURCOMBO') {
             this.$('.cart_items_number').text(this.rosterBasket.getItemsNumber());
             this.$('.total_price').text('$ ' + this.rosterBasket.getTotalPrice().toFixed(2));
         } else {
             this.$('.cart_items_number').text(this.basket.getItemsNumber());
             this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
+        }
+
+        //add items animation
+        if (model && model.get('quantity')) {
+            let $el = this.$('[name="cart-item-added"]');
+            //reset animation on fasl click add item
+            $el.addClass('stop');
+            setTimeout(function(){
+                $el.removeClass('stop');
+            }, 0);
+            //.................
+            $el.off('animationend').on('animationend', function(){
+                $el.removeClass('changed').removeClass('added');
+            });
+            if (status) {
+                if (status.add) {
+                    //animation on add
+                    $el.removeClass('changed').addClass('added').text('Item added');
+                }
+            } else {
+                // animation quantity changed
+                $el.removeClass('added').addClass('changed').text('Item quantity changed');
+            }
         }
     },
 
