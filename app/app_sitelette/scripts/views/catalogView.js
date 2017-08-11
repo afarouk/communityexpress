@@ -257,24 +257,24 @@ console.log('Preopen: ', this.preopenAllPictures);
 
         //add items animation
         if (model && model.get('quantity')) {
-            let $el = this.$('[name="cart-item-added"]');
+            var $animElement = this.$('[name="cart-item-added"]');
             //reset animation on fasl click add item
-            $el.addClass('stop');
+            $animElement.addClass('stop');
             setTimeout(function(){
-                $el.removeClass('stop');
+                $animElement.removeClass('stop');
             }, 0);
             //.................
-            $el.off('animationend').on('animationend', function(){
-                $el.removeClass('changed').removeClass('added');
+            $animElement.off('animationend').on('animationend', function(){
+                $animElement.removeClass('changed').removeClass('added');
             });
             if (status) {
                 if (status.add) {
                     //animation on add
-                    $el.removeClass('changed').addClass('added').text('Item added');
+                    $animElement.removeClass('changed').addClass('added').text('Item added');
                 }
             } else {
                 // animation quantity changed
-                $el.removeClass('added').addClass('changed').text('Item quantity changed');
+                $animElement.removeClass('added').addClass('changed').text('Item quantity changed');
             }
         }
     },
