@@ -2949,7 +2949,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .loyalty-bar-code.visible {
     display: flex;
-    padding: 0px 0px;
+    padding: 3px 0px;
     height: 256px;
 }
 .loyalty-bar-code img {
