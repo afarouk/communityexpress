@@ -1,12 +1,12 @@
 <body>
-	<audio id="addtocart" src="themes/1/tempSound/addToCart.wav" autostart="false" ></audio>
-	<audio id="removefromcart" src="themes/1/tempSound/removeFromCart.wav" autostart="false" ></audio>
+	<audio id="addtocart" src="themes/4/tempSound/addToCart.wav" autostart="false" ></audio>
+	<audio id="removefromcart" src="themes/4/tempSound/removeFromCart.wav" autostart="false" ></audio>
 
     <div id="cmtyx_desktop_application" class="cmtyx_desktop_application">
         
         <header class="cmtyx_special_background_color">
-            <div id="back-btn-container" class="back-btn-container"></div>
             <div class="logo-container cmtyx_special_background_color">
+            <div id="back-btn-container" class="back-btn-container"></div>
                 <img class="logo" src="${bannerImageURL}" alt="logo">
             </div>
             
@@ -90,13 +90,13 @@
   	                    		<#list promotions as promotion>
   	                    			<li class="promotions-item" data-uuid="${promotion.uuid}">
   				                        <div class="promotion-container">
-  				                            <img src="themes/1/desktop/images/dog.png" alt="promotion image" class="promotion-image">
+  				                            <img src="themes/4/desktop/images/dog.png" alt="promotion image" class="promotion-image">
   				                            <div class="promotion-btns">
   				                                <div class="left-block">
-  				                                  <span><img src="themes/1/desktop/images/like-icon.png" alt="like icon">Like</span>
+  				                                  <span><img src="themes/4/desktop/images/like-icon.png" alt="like icon">Like</span>
   				                                </div>
   				                                <div class="right-block">
-  				                                  <span><img src="themes/1/desktop/images/share-icon.png" alt="share icon">Share</span>
+  				                                  <span><img src="themes/4/desktop/images/share-icon.png" alt="share icon">Share</span>
   				                                </div>
   				                            </div>
   				                        </div>
@@ -113,7 +113,7 @@
                       </div>
                       <div class="body">
                           <div class="discount-item-container">
-                              <img src="themes/1/desktop/images/burger.png" alt="discount image">
+                              <img src="themes/4/desktop/images/burger.png" alt="discount image">
                               <div class="discount-item-info">
                                   <div class="discount-item-title">Discount</div>
                                   <div class="discount-item-text">every second burger</div>
@@ -131,7 +131,7 @@
                         <#if (medias)?has_content >
                           <img src="${medias[0].URL}" />
                         <#else>
-                          <img src="themes/1/placeholder_images/welocome_img.png"></img>
+                          <img src="themes/4/placeholder_images/welocome_img.png"></img>
                         </#if>
                         <div class="text-container">
                           <#if (medias)?has_content >
@@ -362,7 +362,7 @@
                               <div class="title">events <span class="collapse_btn"></span></div>
                           </div>
                           <div class="body">
-                              <img src="themes/1/desktop/images/red-hot-band.png" alt="event image">
+                              <img src="themes/4/desktop/images/red-hot-band.png" alt="event image">
                                 <table>
                                     <tr>
                                         <td class="event_date first">
@@ -375,7 +375,7 @@
                                             <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
                                         </td>
                                         <td class="add_to_calendar_btn_container first">
-                                            <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
+                                            <img src="themes/4/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
                                         </td>
                                     </tr>
                                     <tr>
@@ -389,7 +389,7 @@
                                             <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
                                         </td>
                                         <td class="add_to_calendar_btn_container">
-                                            <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
+                                            <img src="themes/4/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
                                         </td>
                                     </tr>
                                     <tr class="last">
@@ -403,7 +403,7 @@
                                             <span class="event_text">The sound of a live drum will put the rhythm back in your soul. Playing tonight.</span>
                                         </td>
                                         <td class="add_to_calendar_btn_container last">
-                                            <img src="themes/1/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
+                                            <img src="themes/4/desktop/images/280-Appointment_calendar_date_month_planner_reminder_schedule_add_plus-256.png" alt="calendar icon" class="add_to_calendar_btn">
                                         </td>
                                     </tr>
                                 </table>
@@ -417,7 +417,7 @@
                         </div>
                         <div class="body">
                             <div class="sale-item-container">
-                                <img src="themes/1/desktop/images/coffee.png" alt="sale-item" class="sale-item">
+                                <img src="themes/4/desktop/images/coffee.png" alt="sale-item" class="sale-item">
                                 <button>now on sale!</button>
                             </div>
                         </div>
@@ -428,7 +428,7 @@
                             <div class="title">sweepstake <span class="collapse_btn"></span></div>
                         </div>
                         <div class="body">
-                              <img src="themes/1/desktop/images/coffee.png" alt="poll image">
+                              <img src="themes/4/desktop/images/coffee.png" alt="poll image">
                               <span class="question">Our coffee is awesome</span>
                               <form class="question_ans_form">
                                   <input type="radio" name="radio-choice-ans" id="a_ans" class="ansRadioChoice" checked='checked'>
@@ -458,7 +458,7 @@
                                                   <span class="discount_date">till 30.07</span>
                                               </div>
                                               <div class="prize-picture-container">
-                                                <img src="themes/1/desktop//images/discount_burger.png" alt="discount image">
+                                                <img src="themes/4/desktop//images/discount_burger.png" alt="discount image">
                                               </div>
                                           </div>
                                      </div>
@@ -472,7 +472,7 @@
                                                   <span class="discount_date">till 30.07</span>
                                               </div>
                                               <div class="prize-picture-container">
-                                                <img src="themes/1/desktop/images/discount_coffee.png" alt="discount image">
+                                                <img src="themes/4/desktop/images/discount_coffee.png" alt="discount image">
                                               </div>
                                           </div>
                                      </div>
@@ -521,10 +521,10 @@
                             <div class="about-text">
                                 ${(sasl.detailedDescription)!"(no detailedDescription)"}
                             </div>
-                            <div class="about-address"><img src="themes/1/desktop/images/marker-icon.png" alt="marker icon">1086 North 1st Street, San jose CA 95112</div>
-                            <div class="about-phone"><img src="themes/1/desktop/images/phone-icon.png" alt="phone icon">123-456-789</div>
+                            <div class="about-address"><img src="themes/4/desktop/images/marker-icon.png" alt="marker icon">1086 North 1st Street, San jose CA 95112</div>
+                            <div class="about-phone"><img src="themes/4/desktop/images/phone-icon.png" alt="phone icon">123-456-789</div>
                             <div class='about-business-hours'>Business hours 16.00-02:00</div>
-                            <img src="themes/1/desktop/images/map.png" alt="map" class="map-img">
+                            <img src="themes/4/desktop/images/map.png" alt="map" class="map-img">
                         </div>
                     </div> -->
 
@@ -537,7 +537,7 @@
                                 <table>
                                     <tr>
                                         <td class="user_avatar">
-                                          <img src="themes/1/desktop/images/guy-912229_960_720.png" alt="avatar">
+                                          <img src="themes/4/desktop/images/guy-912229_960_720.png" alt="avatar">
                                         </td>
                                         <td class="review_section">
                                             <div class="name_date_block">
@@ -554,11 +554,11 @@
                             </div>
                             <div class="show_more_block">
                                 <div class="show_more_avatars_container">
-                                    <img src="themes/1/desktop/images/landscape_nrm_1416942794-chris-prat-cover.png" alt="avatar" class="avatar"></img>
-                                    <img src="themes/1/desktop/images/guy-912229_960_720-copy.png" alt="avatar" class="avatar"></img>
-                                    <img src="themes/1/desktop/images/girl-03.png" alt="avatar" class="avatar"></img>
-                                    <img src="themes/1/desktop/images/images.png" alt="avatar" class="avatar"></img>
-                                    <img src="themes/1/desktop/images/guy-912229_960_720-copy.png" alt="avatar" class="avatar"></img>
+                                    <img src="themes/4/desktop/images/landscape_nrm_1416942794-chris-prat-cover.png" alt="avatar" class="avatar"></img>
+                                    <img src="themes/4/desktop/images/guy-912229_960_720-copy.png" alt="avatar" class="avatar"></img>
+                                    <img src="themes/4/desktop/images/girl-03.png" alt="avatar" class="avatar"></img>
+                                    <img src="themes/4/desktop/images/images.png" alt="avatar" class="avatar"></img>
+                                    <img src="themes/4/desktop/images/guy-912229_960_720-copy.png" alt="avatar" class="avatar"></img>
                                 </div>
                                 <span class="show_more_reviews_btn cmtyx_text_color_4">show more reviews</span>
                             </div>
@@ -578,7 +578,7 @@
         
         <footer>
             <div class="rights-block">
-                <img src="themes/1/desktop/images/zaza-grill.png" alt="logo" class="logo">
+                <img src="themes/4/desktop/images/chalkboards_tiny.png" alt="logo" class="logo">
                 <p>©  2016. All rights reserved.</p>
                 <p>orinoco.us, by Orinoco Inc.</p>
             </div>

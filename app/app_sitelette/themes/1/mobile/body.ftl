@@ -56,7 +56,7 @@
 				<li id="loyalty-bar-code" class="loyalty-bar-code">
 					<!-- bar code for loyalty -->
 				</li>
-
+			
 				<li id="cmtyx_welcome_block">
 					<!-- <img src="themes/1/placeholder_images/welocome_img.png"></img> -->
 					<#if notification??>
@@ -102,7 +102,39 @@
 	         </div>
 	        -->
 			<ul class="home_tabs_list">
-			
+					
+						<!-- Share This Site ------------------------>
+							<li id="cmtyx_share_block" class="share_block"><span
+							class="title"> Share this site </span>
+							<div class="ui-grid-c">
+								<div class="sms_input_block">
+									<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
+									<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+								</div>
+								<div class="ui-block-a text sms_block">
+									<a href="" class="share_sms cmtyx_text_color_1">
+										<span class="share_icon sms_icon"></span>
+									</a>
+								</div>
+								<div class="ui-block-b text email_block">
+									<a href="" class="share_email cmtyx_text_color_1">
+										<span class="share_icon email_icon"></span>
+									</a>
+								</div>
+								<div class="ui-block-c text facebook_block">
+									<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+										<span class="share_icon facebook_icon"></span>
+									</a>
+								</div>
+								<div class="ui-block-d text twitter_block">
+									<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+										<span class="share_icon twitter_icon"></span>
+									</a>
+								</div>
+							</div>
+						</li>
+					
+						<!-- Share This Site -------------------->
 						<!----- Discount coupons  ---------------->
 						
 						
@@ -916,35 +948,8 @@
 						</div>
 					</div>
 				</li>
-				<li id="cmtyx_share_block" class="share_block"><span
-					class="title"> Share this site </span>
-					<div class="ui-grid-c">
-						<div class="sms_input_block">
-							<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-							<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-						</div>
-						<div class="ui-block-a text sms_block">
-							<a href="" class="share_sms cmtyx_text_color_1">
-								<span class="share_icon sms_icon"></span>
-							</a>
-						</div>
-						<div class="ui-block-b text email_block">
-							<a href="" class="share_email cmtyx_text_color_1">
-								<span class="share_icon email_icon"></span>
-							</a>
-						</div>
-						<div class="ui-block-c text facebook_block">
-							<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-								<span class="share_icon facebook_icon"></span>
-							</a>
-						</div>
-						<div class="ui-block-d text twitter_block">
-							<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-								<span class="share_icon twitter_icon"></span>
-							</a>
-						</div>
-					</div>
-				</li>
+				
+				
 				<li class="map_in_landing">
 					<div id="home_map" class="map_container"></div>
 				</li>
