@@ -580,7 +580,7 @@
             <div class="rights-block">
                 <img src="themes/4/desktop/images/chalkboards_tiny.png" alt="logo" class="logo">
                 <p>©  2016. All rights reserved.</p>
-                <p>orinoco.us, by Orinoco Inc.</p>
+                <p><a href="https://chalkboardstoday.com">chalkboardstoday.com</a> by Orinoco Inc.</p>
             </div>
             <div class="contacts-block">
                 <p class="title">Contacts</p>
