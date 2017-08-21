@@ -13,10 +13,6 @@
     <style  type="text/css">
     <?php
      if (isset($barFontColors)) {
-      echo '.cmtyx_special_icon_color{color:'.$foregroundLight.'!important;}';
-      echo '.cmtyx_special_text_color{color:'.$foregroundDark.'!important;}';
-      echo '.cmtyx_special_border_color{border-color:'.$foregroundDark.'!important;}';
-      echo '.cmtyx_special_background_color{background-color:'.$background.'!important;}';
       echo $barFontColors;
      } else {
       include_once 'themes/1/desktop/barFontColors.css';
