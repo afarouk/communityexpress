@@ -1,3 +1,8 @@
+/*default special colors*/
+.cmtyx_special_icon_color { color: #FFFFFF; }
+.cmtyx_special_background_color { background-color: #330000; }
+/* .... */
+
 @charset "UTF-8";
 
 @font-face {

@@ -19,7 +19,7 @@
       echo '.cmtyx_special_background_color{background-color:'.$background.'!important;}';
       echo $barFontColors;
      } else {
-      include_once 'themes/1/css/barFontColors.css';
+      include_once 'themes/1/desktop/barFontColors.css';
      }
     ?>
     </style>
