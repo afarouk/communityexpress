@@ -87,6 +87,9 @@ App.prototype = {
             return;
         }
 
+        $(window).resize(this.navbarVisibilityByOrientation.bind(this));
+        this.navbarVisibilityByOrientation();
+
         //Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
 
@@ -121,6 +124,15 @@ App.prototype = {
         } else {
             this.afterTriedToLogin();
             return;
+        }
+    },
+
+    navbarVisibilityByOrientation: function(viewName) {
+        var orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+        if (orientation === 'landscape') {
+            this.navbarView.hide();
+        } else if (viewName === 'restaurant' || this.currentView.name === 'landing') {
+            this.navbarView.show();
         }
     },
 
@@ -291,7 +303,7 @@ App.prototype = {
     visibilityOnSwitchPage: function(viewName) {
         if (viewName === 'restaurant') {
             this.headerView.showMenuButton();
-            this.navbarView.show();
+            this.navbarVisibilityByOrientation(viewName);
         } else {
             this.headerView.hideMenuButton({back: true});
             this.navbarView.hide();
