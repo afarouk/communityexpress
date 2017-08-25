@@ -82,11 +82,15 @@ module.exports = {
     authenticate: function (uid) {
         return gateway.sendRequest('getAuthenticationStatus', {UID: uid}).then(function (response) {
             if (response.action && response.action.enumText === 'NO_ACTION') {
-                onLoginSuccess({
-                    uid: uid,
-                    userName: response.userName,
-                    messageCount: response.messageCount
-                });
+                if (response.adHocEntry) {
+                    Cookies.set('cmxAdHocEntry', true);
+                } else {
+                    onLoginSuccess({
+                        uid: uid,
+                        userName: response.userName,
+                        messageCount: response.messageCount
+                    });
+                }
             }
         });
     },
@@ -129,13 +133,16 @@ module.exports = {
     },
 
     registerNewMember: function (email, password, password_confirmation) {
-        var payload ={
+        var payload = {
             serviceAccommodatorId: window.community.serviceAccommodatorId,
             serviceLocationId: window.community.serviceLocationId,
-            //username: username,
             email: email,
             password: password
         };
+        if (Cookies.get('cmxAdHocEntry')) {
+            payload.uid = Cookies.get('cmxUID');
+            payload.convertingFromAdhoc = true;
+        }
         return gateway.sendRequest('registerNewMember', {payload:payload}).then(onLoginSuccess);
     },
 

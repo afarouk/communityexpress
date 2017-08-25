@@ -46,7 +46,6 @@ var SignupView = PopupView.extend({
             loader.show();
 
             sessionActions.registerNewMember(
-                //data.username,
                 data.email,
                 data.password,
                 data.password_confirmation)
