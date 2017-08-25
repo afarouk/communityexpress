@@ -82,10 +82,10 @@ module.exports = {
     authenticate: function (uid) {
         return gateway.sendRequest('getAuthenticationStatus', {UID: uid}).then(function (response) {
             if (response.action && response.action.enumText === 'NO_ACTION') {
-                if (response.adHocEntry) {
-                    Cookies.set('cmxAdHocEntry', true);
+                if (response.adhocEntry) {
+                    Cookies.set('cmxAdhocEntry', true);
                 } else {
-                    Cookies.set('cmxAdHocEntry', false);
+                    Cookies.set('cmxAdhocEntry', false);
                     onLoginSuccess({
                         uid: uid,
                         userName: response.userName,
@@ -101,7 +101,7 @@ module.exports = {
         var persistedUID;
 
         persistedUID = Cookies.get('cmxUID');
-        Cookies.set('cmxAdHocEntry', false);
+        Cookies.set('cmxAdhocEntry', false);
         if (persistedUID) {
             window.asdesds=persistedUID;
             gateway.sendRequest('getAuthenticationStatus', {UID: persistedUID}).then(function (response) {
@@ -138,7 +138,7 @@ module.exports = {
             email: email,
             password: password
         };
-        if (Cookies.get('cmxAdHocEntry')) {
+        if (Cookies.get('cmxAdhocEntry')) {
             payload.uid = Cookies.get('cmxUID');
             payload.convertingFromAdhoc = true;
         }
