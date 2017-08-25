@@ -85,6 +85,7 @@ module.exports = {
                 if (response.adHocEntry) {
                     Cookies.set('cmxAdHocEntry', true);
                 } else {
+                    Cookies.set('cmxAdHocEntry', false);
                     onLoginSuccess({
                         uid: uid,
                         userName: response.userName,
@@ -99,8 +100,8 @@ module.exports = {
         var dfd = $.Deferred();
         var persistedUID;
 
-        //persistedUID = localStorage.getItem('cmxUID');
         persistedUID = Cookies.get('cmxUID');
+        Cookies.set('cmxAdHocEntry', false);
         if (persistedUID) {
             window.asdesds=persistedUID;
             gateway.sendRequest('getAuthenticationStatus', {UID: persistedUID}).then(function (response) {
@@ -112,13 +113,11 @@ module.exports = {
                     });
                 } else {
                     console.log("not removing cookie, getAuthentication status call failed?");
-                    //Cookies.remove('cmxUID');
-                    Vent.trigger('force_logout');//temporary
+                    Vent.trigger('force_logout');
                 }
                 dfd.resolve(response);
             }, function onRequestError () {
                 console.log("not removing cookie, onRequestError ?");
-                //Cookies.remove('cmxUID');
                 dfd.reject();
             });
         } else {
