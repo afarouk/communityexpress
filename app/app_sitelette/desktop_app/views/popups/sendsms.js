@@ -29,11 +29,11 @@ define([
      	onSendSMS: function(e) {
 	      var $el = this.$el.find('.sms_input_block'),
 	         $target = $(e.currentTarget),
-	         demo = window.community.demo ? 'demo=true&' : '',
+	         demo = window.community.demo ? 'demo=true' : '',
 	         shareUrl = window.location.href.split('?')[0] +
 	          '?' + demo,
 	         val = $target.prev().val();
-	      //todo toggle block 
+	      //todo toggle block
 	      this.trigger('onSendSMS', 'SITELETTE', val, null, shareUrl);
 	    }
 	});
