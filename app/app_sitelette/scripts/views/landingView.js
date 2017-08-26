@@ -115,9 +115,8 @@ var LandingView = Backbone.View.extend({
     onSendSMS: function(e) {
     var $el = this.$el.find('#cmtyx_share_block .sms_input_block'),
         $target = $(e.currentTarget),
-        demo = window.community.demo ? 'demo=true' : '',
-        shareUrl = window.location.href.split('?')[0] +
-          '?' + demo,
+        demo = window.community.demo ? '?demo=true' : '',
+        shareUrl = window.location.href.split('?')[0] + demo,
         val = $target.prev().val();
 
     loader.showFlashMessage('Sending message to... ' + val);
@@ -125,7 +124,7 @@ var LandingView = Backbone.View.extend({
     contactActions.shareURLviaSMS('SITELETTE', this.sasl.serviceAccommodatorId,
         this.sasl.serviceLocationId, val, null, shareUrl)
       .then(function(res){
-        loader.showFlashMessage('Sending message success.');
+        loader.showFlashMessage('Message sent.');
       }.bind(this))
       .fail(function(res){
         if (res.responseJSON && res.responseJSON.error) {
