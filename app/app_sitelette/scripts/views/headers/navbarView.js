@@ -10,7 +10,8 @@ var Vent = require('../../Vent'),
     sessionActions = require('../../actions/sessionActions'),
     userController = require('../../controllers/userController'),
     promotionsController = require('../../controllers/promotionsController'),
-    popupController = require('../../controllers/popupController');
+    popupController = require('../../controllers/popupController'),
+    Cookies = require('../../../../vendor/scripts/js.cookie');
 
 var NavbarView = Backbone.View.extend({
 
@@ -151,7 +152,7 @@ var NavbarView = Backbone.View.extend({
     },
 
     toggle: function () {
-        if ( !this.user.getUID()) {
+        if ( !this.user.getUID() || Cookies.get('cmxAdhocEntry') == 'true') {
             this.signin();
         } else {
             this.confirmSignout();

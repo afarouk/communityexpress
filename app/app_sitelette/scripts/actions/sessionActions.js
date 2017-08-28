@@ -13,15 +13,16 @@ var userController = require('../controllers/userController.js'),
     updateActions = require('./updateActions'),
     Cookies = require('../../../vendor/scripts/js.cookie');
 
-var onLoginSuccess = function (response) {
+var onLoginSuccess = function (response, withAdhoc) {
     var user = appCache.fetch('user', new User());
     user.initiate(response.uid, response.userName);
-    $('.menu_button_5').addClass('sign_out');
-    // $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
-    // $('.menu_button_5').addClass('cmtyx_text_color_1');
-    // var color = $('.cmtyx_text_color_1').css("color");
-    // $( ".menu_button_5" ).before( "<style>.icon-user:before{color:" + color + "}</style>" );
-    // $( ".glyphicon-ok" ).show();
+    if (response.adhocEntry === false) {
+        Cookies.set('cmxAdhocEntry', false);
+        $('.menu_button_5').addClass('sign_out');
+    } 
+    if (!withAdhoc) {
+        $('.menu_button_5').addClass('sign_out');
+    }
     
     favoriteActions.getFavoritesForCurrentUser();
 
@@ -62,6 +63,14 @@ var onLoginSuccess = function (response) {
 
 module.exports = {
 
+    checkIfUserAppropriate: function() {
+        if (Cookies.get('cmxAdhocEntry') == 'true') {
+            return new User();
+        } else {
+            return this.getCurrentUser();
+        }
+    },
+
     getCurrentUser: function () {
         return appCache.fetch('user', new User());
     },
@@ -79,21 +88,22 @@ module.exports = {
         });
     },
 
+    isWithAdhoc: function(response) {
+        var withAdhoc = response.adhocEntry;
+        Cookies.set('cmxAdhocEntry', withAdhoc);
+        return withAdhoc;
+    },
+
     authenticate: function (uid) {
         return gateway.sendRequest('getAuthenticationStatus', {UID: uid}).then(function (response) {
             if (response.action && response.action.enumText === 'NO_ACTION') {
-                if (response.adhocEntry) {
-                    Cookies.set('cmxAdhocEntry', true);
-                } else {
-                    Cookies.set('cmxAdhocEntry', false);
-                    onLoginSuccess({
-                        uid: uid,
-                        userName: response.userName,
-                        messageCount: response.messageCount
-                    });
-                }
+                onLoginSuccess({
+                    uid: uid,
+                    userName: response.userName,
+                    messageCount: response.messageCount
+                }, this.isWithAdhoc(response));
             }
-        });
+        }.bind(this));
     },
 
     getSessionFromLocalStorage: function () {
@@ -110,13 +120,13 @@ module.exports = {
                         uid: persistedUID,
                         userName: response.userName,
                         messageCount: response.messageCount
-                    });
+                    }, this.isWithAdhoc(response));
                 } else {
                     console.log("not removing cookie, getAuthentication status call failed?");
                     Vent.trigger('force_logout');
                 }
                 dfd.resolve(response);
-            }, function onRequestError () {
+            }.bind(this), function onRequestError () {
                 console.log("not removing cookie, onRequestError ?");
                 dfd.reject();
             });
@@ -138,7 +148,7 @@ module.exports = {
             email: email,
             password: password
         };
-        if (Cookies.get('cmxAdhocEntry')) {
+        if (Cookies.get('cmxAdhocEntry') == 'true') {
             payload.uid = Cookies.get('cmxUID');
             payload.convertingFromAdhoc = true;
         }

@@ -80,7 +80,8 @@ module.exports = {
     requireLogIn: function(model, callback) {
         var conf = configurationActions.getConfigurations(),
             view;
-        if(sessionActions.getCurrentUser().getUID()) {
+    
+        if(sessionActions.checkIfUserAppropriate().getUID()) {
             callback();
         } else if (conf.get('embedded')) {
             window.iosJavascriptLogin(this.loginFromIOS(callback));

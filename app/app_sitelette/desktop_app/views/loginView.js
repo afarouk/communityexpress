@@ -4,7 +4,8 @@ define([
 	'../../scripts/appCache.js',
 	'ejs!../templates/login.ejs',
 	'ejs!../templates/logout.ejs',
-	], function(appCache, loginTemplate, logoutTemplate){
+	'../../../vendor/scripts/js.cookie',
+	], function(appCache, loginTemplate, logoutTemplate, Cookies){
 	var LoginView = Mn.View.extend({
 		el: '#login-container',
 		ui: {
@@ -17,9 +18,10 @@ define([
 			'click @ui.history' : 'onOrderHistory'
 		},
 		initialize: function() {
-			var user = appCache.get('user');
+			var user = appCache.get('user'),
+				adhocEntry = Cookies.get('cmxAdhocEntry');
 
-			this.logged = user && user.getUID() ? true : false;
+			this.logged = user && user.getUID() && adhocEntry == 'false' ? true : false;
 			this.template = this.logged ? logoutTemplate : loginTemplate;
 			this.render();
 		},

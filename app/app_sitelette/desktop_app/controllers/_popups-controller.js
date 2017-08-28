@@ -16,11 +16,13 @@ define([
 	'../views/landing/share',
 	'../views/popups/sendsms',
 	'../views/popups/ordersHistory',
-	'../../scripts/actions/contactActions'
+	'../../scripts/actions/contactActions',
+	'../../../vendor/scripts/js.cookie'
 	], function(appCache, h, userController, sessionActions,
 		PopupsLayoutView, LoginView, SigninView, SignupView, 
 		SignoutView, ForgotView, MessageView, LoaderView, 
-		ShareView, SendsmsView, OrdersHistoryView, contactActions){
+		ShareView, SendsmsView, OrdersHistoryView, 
+		contactActions, Cookies){
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new PopupsLayoutView();
@@ -201,7 +203,8 @@ define([
 		},
 		requireLogIn: function(callback) {
 			var user = appCache.get('user'),
-				logged = user && user.getUID() ? true : false;
+				adhocEntry = Cookies.get('cmxAdhocEntry'),
+				logged = user && user.getUID() && adhocEntry == 'false' ? true : false;
 			if (logged) {
 				callback();
 			} else {
