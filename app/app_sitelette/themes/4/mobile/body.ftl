@@ -25,7 +25,7 @@
 			<ul class="ui-grid-c">
 				<li class="ui-block-a"><a href="#" class="menu_button_3 ui-btn">
 					<!-- <div class="navbar_btn_icon document_img"></div>  -->
-					<#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" >
+		            <#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" >
 					    <div class="navbar_btn_icon icon-document_ navbutton_menu"></div>
 						<br>Menu
 					<#else>
@@ -61,6 +61,7 @@
 				<li id="loyalty-bar-code" class="loyalty-bar-code">
 					<!-- bar code for loyalty -->
 				</li>
+			
 				<li id="cmtyx_welcome_block">
 					<!-- <img src="themes/4/placeholder_images/welocome_img.png"></img> -->
 					<#if notification??>
@@ -106,7 +107,8 @@
 	         </div>
 	        -->
 			<ul class="home_tabs_list">
-					<!-- Share This Site ------------------------>
+					
+						<!-- Share This Site ------------------------>
 							<li id="cmtyx_share_block" class="share_block"><span
 							class="title"> Share this site </span>
 							<div class="ui-grid-c">
@@ -115,129 +117,144 @@
 									<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 								</div>
 								<div class="ui-block-a text sms_block">
-									<a href="" class="share_sms cmtyx_text_color_1">
-										<span class="share_icon sms_icon"></span>
+									<a href="" class="share_sms">
+										<div class="share_icons_round_block">
+											<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
+										</div>
 									</a>
 								</div>
 								<div class="ui-block-b text email_block">
-									<a href="" class="share_email cmtyx_text_color_1">
-										<span class="share_icon email_icon"></span>
+									<a href="" class="share_email">
+										<div class="share_icons_round_block">
+											<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
+										</div>
 									</a>
 								</div>
 								<div class="ui-block-c text facebook_block">
-									<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-										<span class="share_icon facebook_icon"></span>
+									<a href="" target="_blank" class="share_facebook">
+										<div class="share_icons_round_block">
+											<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
+										</div>
 									</a>
 								</div>
 								<div class="ui-block-d text twitter_block">
-									<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-										<span class="share_icon twitter_icon"></span>
+									<a href="" target="_blank" class="share_twitter">
+										<div class="share_icons_round_block">
+											<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
+										</div>
 									</a>
 								</div>
 							</div>
 						</li>
-			<!-- Share This Site -------------------->
-			
-			
-			<!----- Discount coupons  ---------------->
-			
-			
-                <li id="cmtyx_promocodes_block" class="promocodes_block">
-					<div class="header cmtyx_color_1">
-						<span class="title">Discounts</span> 
-						<span class="collapse_btn">&#9660;</span>
-						<span class="tag_icon"></span>
-					</div>
-					<#if (promoCodes)?has_content >
-						<div class="body">
-							<ul class="gallery event_block_overlay">
-								<#list promoCodes as promoCode>
-									<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
-										<div class="promocode_inner_wrapper">
-											<div class="promoCode-container">
-						                        <!-- <span class="promoCode_title">${promoCode.title}</span> -->
-												<#if promoCode.imageURL??>
-													<div class="promoCode_image">
-														<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
+					
+						<!-- Share This Site -------------------->
+						<!----- Discount coupons  ---------------->
+						
+						
+			                <li id="cmtyx_promocodes_block" class="promocodes_block">
+								<div class="header cmtyx_color_1">
+									<span class="title">Discounts</span> 
+									<span class="collapse_btn">&#9660;</span>
+									<span class="tag_icon"></span>
+								</div>
+								<#if (promoCodes)?has_content >
+									<div class="body">
+										<ul class="gallery event_block_overlay">
+											<#list promoCodes as promoCode>
+												<li class="promoCode_item" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
+													<div class="promocode_inner_wrapper">
+														<div class="promoCode-container">
+									                        <!-- <span class="promoCode_title">${promoCode.title}</span> -->
+															<#if promoCode.imageURL??>
+																<div class="promoCode_image">
+																	<img data-uuid="${promoCode.discountUUID}" src="${promoCode.imageURL}"></img>
+																</div>
+															</#if>
+															<!-- <div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
+								                                <div class="promoCode_expiration_date">
+									                                <div class="promoCode_container"> 
+									                                     Expires: ${promoCode.expirationDate?date}
+									                                </div>
+								                                </div>
+								                               
+								                                <#if promoCode.type.name()=="AMOUNT">
+								                                  <div class="promoCode_details">
+								                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
+								                                    <span class="promoCode_discount">${promoCode.discount}</span>
+								                                  </div>
+								                                <#else>
+								                                  <div class="promoCode_details">
+								                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
+								                                  </div>
+								                                </#if>
+															</div> -->
+														</div>
+							                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
+								                            <div class="promoCode-buybutton-container">
+						                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
+						                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
+						                                           Shop</button>
+								                            </div>
+				                                        </#if>
 													</div>
-												</#if>
-												<!-- <div class="promoCode_description" data-promoCode="${promoCode.promoCode}">
-					                                <div class="promoCode_expiration_date">
-						                                <div class="promoCode_container"> 
-						                                     Expires: ${promoCode.expirationDate?date}
-						                                </div>
-					                                </div>
-					                               
-					                                <#if promoCode.type.name()=="AMOUNT">
-					                                  <div class="promoCode_details">
-					                                    <span class="promoCode_currency">${promoCode.currencyCode.symbol}</span>
-					                                    <span class="promoCode_discount">${promoCode.discount}</span>
-					                                  </div>
-					                                <#else>
-					                                  <div class="promoCode_details">
-					                                    <span class="promoCode_discount">${promoCode.discount}% off</span>
-					                                  </div>
-					                                </#if>
-												</div> -->
-											</div>
-				                            <#if promoCode.applicationType.name()=="AUTO_APPLY">
-					                            <div class="promoCode-buybutton-container">
-			                                         <button class="promoCode-buybutton cmtyx_text_color_1 cmtyx_border_color_1"
-			                                            data-uuid="${promoCode.discountUUID}" data-promoCode="${promoCode.promoCode}">
-			                                           Shop</button>
-					                            </div>
-	                                        </#if>
-										</div>
-
-										<div class="promoCode_item_buttons">
-											<div class="share_btn_block"
-												data-promoCode="${promoCode.promoCode}">
-												<span class="icon share_icon"></span> <span class="text">Share</span>
-											</div>
-										</div>
-
-										<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
-											<div class="sms_input_block">
-												<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-											</div>
-											<div class="ui-block-a text sms_block">
-												<a href="" class="share_sms cmtyx_text_color_1">
-													<span class="share_icon sms_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-b text email_block">
-												<a href="" class="share_email cmtyx_text_color_1">
-													<span class="share_icon email_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-c text facebook_block">
-												<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-													<span class="share_icon facebook_icon"></span>
-												</a>
-											</div>
-											<div class="ui-block-d text twitter_block">
-												<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-													<span class="share_icon twitter_icon"></span>
-												</a>
-											</div>
-										</div>
-
-									</li>
-								</#list>
-							</ul>
-						</div>
-					<#else>
-						<div class="body">
-							<div class="no_discounts">
-								(No Discounts)
-							</div>
-						</div>
-					</#if>
-				</li>
-				
-			<!----- End of Discount coupons  ---------------->
 			
+													<div class="promoCode_item_buttons">
+														<div class="share_btn_block"
+															data-promoCode="${promoCode.promoCode}">
+															<span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
+														</div>
+													</div>
+			
+													<div class="ui-grid-c promoCode-share-block" data-promoCode="${promoCode.promoCode}" data-uuid="${promoCode.discountUUID}">
+														<div class="sms_input_block">
+															<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
+															<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+														</div>
+														<div class="ui-block-a text sms_block">
+															<a href="" class="share_sms">
+																<div class="share_icons_round_block">
+																	<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
+																</div>
+															</a>
+														</div>
+														<div class="ui-block-b text email_block">
+															<a href="" class="share_email">
+																<div class="share_icons_round_block">
+																	<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
+																</div>
+															</a>
+														</div>
+														<div class="ui-block-c text facebook_block">
+															<a href="" target="_blank" class="share_facebook">
+																<div class="share_icons_round_block">
+																	<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
+																</div>
+															</a>
+														</div>
+														<div class="ui-block-d text twitter_block">
+															<a href="" target="_blank" class="share_twitter">
+																<div class="share_icons_round_block">
+																	<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
+																</div>
+															</a>
+														</div>
+													</div>
+			
+												</li>
+											</#list>
+										</ul>
+									</div>
+								<#else>
+									<div class="body">
+										<div class="no_discounts">
+											(No Discounts)
+										</div>
+									</div>
+								</#if>
+							</li>
+							
+						<!----- End of Discount coupons  ---------------->
+
 			
 			<!----- Promotions  ---------------->
 				<li id="cmtyx_promotion_block" class="promotion_block">
@@ -363,7 +380,7 @@
 								<div class="promotion_item_buttons">
 									<div class="share_btn_block"
 										uuid="${promotion.uuid}">
-										<span class="icon share_icon"></span> <span class="text">Share</span>
+										<span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
 									</div>
 								</div>
 								<div class="ui-grid-c promotion-share-block" data-uuid="${promotion.uuid}">
@@ -372,23 +389,31 @@
 										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 									</div>
 									<div class="ui-block-a text sms_block">
-										<a href="" class="share_sms cmtyx_text_color_1">
-											<span class="share_icon sms_icon"></span>
+										<a href="" class="share_sms">
+											<div class="share_icons_round_block">
+												<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
+											</div>
 										</a>
 									</div>
 									<div class="ui-block-b text email_block">
-										<a href="" class="share_email cmtyx_text_color_1">
-											<span class="share_icon email_icon"></span>
+										<a href="" class="share_email">
+											<div class="share_icons_round_block">
+												<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
+											</div>
 										</a>
 									</div>
 									<div class="ui-block-c text facebook_block">
-										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-											<span class="share_icon facebook_icon"></span>
+										<a href="" target="_blank" class="share_facebook">
+											<div class="share_icons_round_block">
+												<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
+											</div>
 										</a>
 									</div>
 									<div class="ui-block-d text twitter_block">
-										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-											<span class="share_icon twitter_icon"></span>
+										<a href="" target="_blank" class="share_twitter">
+											<div class="share_icons_round_block">
+												<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
+											</div>
 										</a>
 									</div>
 								</div>
@@ -456,55 +481,6 @@
 				</li>
 			<!----- End of Promotions  ---------------->
 
-
-	    <#if (externalMedia)?has_content >
-		<!----- Videos  ---------------->		
-				<li id="cmtyx_video_block" class="video_block">
-					<div class="header cmtyx_color_1">
-						<span class="title">video</span> <span class="collapse_btn">&#9660;</span>
-					</div>
-				    <div class="body last">
-		            <ul>
-				      <#list externalMedia as media>
-				          <li>
-			          		<span class="video_title">${media.title}</span>
-	 						<#if videoNeedsPlaceholder>
-			                    <div id="externalvideo${media.idMedia}" class="embedded_videos external" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
-			                      <a href="#">
-			                        <img src="themes/4/mobile/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
-			                      </a>
-			                    </div>
-			                    <div class="video_item_message">
-		 						    <span>${media.message}</span>
-		 						</div>
-                    		<#else>
-			                    <div class="embedded_videos">
-				                    <iframe width="100%" height="250"
-									    src="https://www.youtube.com/embed/${media.vid}?playsinline=1"frameborder="0"
-									    allowfullscreen="1">
-								    </iframe>
-								    <br>
-		 						    <div class="video_item_message">
-		 						    	<span>${media.message}</span>
-		 						    </div>
-			                    </div>
-		                    </#if>
-
-                          </li>
-						</#list>
-				      </ul>
-					  <#else>
-					  <div style="text-align:center;">
-						  (No videos available)
-					  </div>
-					</div>
-				</li>
-			    </#if>
-				
-			<!----- End of Videos  ---------------->		
-				
-
-
 			<!----- Loyalty Program  ---------------->
 			
 			
@@ -536,7 +512,7 @@
 								<div class="gallery_item_buttons">
 									<div class="share_btn_block"
 										uuid="${media.uuid}">
-										<span class="icon share_icon"></span> <span class="text">Share</span>
+										<span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
 									</div>
 								</div>
 
@@ -546,23 +522,31 @@
 										<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 									</div>
 									<div class="ui-block-a text sms_block">
-										<a href="" class="share_sms cmtyx_text_color_1">
-											<span class="share_icon sms_icon"></span>
+										<a href="" class="share_sms">
+											<div class="share_icons_round_block">
+												<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
+											</div>
 										</a>
 									</div>
 									<div class="ui-block-b text email_block">
-										<a href="" class="share_email cmtyx_text_color_1">
-											<span class="share_icon email_icon"></span>
+										<a href="" class="share_email">
+											<div class="share_icons_round_block">
+												<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
+											</div>
 										</a>
 									</div>
 									<div class="ui-block-c text facebook_block">
-										<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-											<span class="share_icon facebook_icon"></span>
+										<a href="" target="_blank" class="share_facebook">
+											<div class="share_icons_round_block">
+												<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
+											</div>
 										</a>
 									</div>
 									<div class="ui-block-d text twitter_block">
-										<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-											<span class="share_icon twitter_icon"></span>
+										<a href="" target="_blank" class="share_twitter">
+											<div class="share_icons_round_block">
+												<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
+											</div>
 										</a>
 									</div>
 								</div>
@@ -640,7 +624,7 @@
 						                <div class="share_container">
 						                    <div class="share_btn_block"
 						                        uuid="">
-						                        <span class="icon share_icon"></span> <span class="text">Share</span>
+						                        <span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
 						                    </div>
 						                    <div class="share_block" data-uuid="${poll.contestUUID}">
 						                        <div class="ui-grid-c">
@@ -649,25 +633,33 @@
 						                                <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 						                            </div>
 						                            <div class="ui-block-a text sms_block">
-						                                <a href="" class="share_sms cmtyx_text_color_1">
-						                                    <span class="share_icon sms_icon"></span>
-						                                </a>
-						                            </div>
-						                            <div class="ui-block-b text email_block">
-						                                <a href="" class="share_email cmtyx_text_color_1">
-						                                    <span class="share_icon email_icon"></span>
-						                                </a>
-						                            </div>
-						                            <div class="ui-block-c text facebook_block">
-						                                <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-						                                    <span class="share_icon facebook_icon"></span>
-						                                </a>
-						                            </div>
-						                            <div class="ui-block-d text twitter_block">
-						                                <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-						                                    <span class="share_icon twitter_icon"></span>
-						                                </a>
-						                            </div>
+														<a href="" class="share_sms">
+															<div class="share_icons_round_block">
+																<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
+															</div>
+														</a>
+													</div>
+													<div class="ui-block-b text email_block">
+														<a href="" class="share_email">
+															<div class="share_icons_round_block">
+																<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
+															</div>
+														</a>
+													</div>
+													<div class="ui-block-c text facebook_block">
+														<a href="" target="_blank" class="share_facebook">
+															<div class="share_icons_round_block">
+																<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
+															</div>
+														</a>
+													</div>
+													<div class="ui-block-d text twitter_block">
+														<a href="" target="_blank" class="share_twitter">
+															<div class="share_icons_round_block">
+																<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
+															</div>
+														</a>
+													</div>
 						                        </div>
 						                    </div>
 						                </div>
@@ -719,7 +711,7 @@
 					                    <div class="share_container">
 					                        <div class="share_btn_block"
 					                            uuid="">
-					                            <span class="icon share_icon"></span> <span class="text">Share</span>
+					                            <span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
 					                        </div>
 					                        <div class="share_block" data-uuid="${photo.contestUUID}">
 					                            <div class="ui-grid-c">
@@ -728,25 +720,33 @@
 					                                    <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 					                                </div>
 					                                <div class="ui-block-a text sms_block">
-					                                    <a href="" class="share_sms cmtyx_text_color_1">
-					                                        <span class="share_icon sms_icon"></span>
-					                                    </a>
-					                                </div>
-					                                <div class="ui-block-b text email_block">
-					                                    <a href="" class="share_email cmtyx_text_color_1">
-					                                        <span class="share_icon email_icon"></span>
-					                                    </a>
-					                                </div>
-					                                <div class="ui-block-c text facebook_block">
-					                                    <a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-					                                        <span class="share_icon facebook_icon"></span>
-					                                    </a>
-					                                </div>
-					                                <div class="ui-block-d text twitter_block">
-					                                    <a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-					                                        <span class="share_icon twitter_icon"></span>
-					                                    </a>
-					                                </div>
+														<a href="" class="share_sms">
+															<div class="share_icons_round_block">
+																<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
+															</div>
+														</a>
+													</div>
+													<div class="ui-block-b text email_block">
+														<a href="" class="share_email">
+															<div class="share_icons_round_block">
+																<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
+															</div>
+														</a>
+													</div>
+													<div class="ui-block-c text facebook_block">
+														<a href="" target="_blank" class="share_facebook">
+															<div class="share_icons_round_block">
+																<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
+															</div>
+														</a>
+													</div>
+													<div class="ui-block-d text twitter_block">
+														<a href="" target="_blank" class="share_twitter">
+															<div class="share_icons_round_block">
+																<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
+															</div>
+														</a>
+													</div>
 					                            </div>
 					                        </div>
 					                    </div>
@@ -804,7 +804,7 @@
 											<div class="ui-grid-a event_item_buttons">
 												<div class="ui-block-a share_btn_block"
 													uuid="${event.uuid}">
-													<span class="icon share_icon"></span> <span class="text">Share</span>
+													<span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
 												</div>
 												<div class="ui-block-b "
 													uuid="${event.uuid}">
@@ -816,7 +816,7 @@
 											<div class="ui-grid-solo event_item_buttons">
 												<div class="ui-block-a share_btn_block"
 													uuid="${event.uuid}">
-													<span class="icon share_icon"></span> <span class="text">Share</span>
+													<span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
 												</div>
 											</div>
 			                            </#if>
@@ -827,23 +827,31 @@
 												<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
 											</div>
 											<div class="ui-block-a text sms_block">
-												<a href="" class="share_sms cmtyx_text_color_1">
-													<span class="share_icon sms_icon"></span>
+												<a href="" class="share_sms">
+													<div class="share_icons_round_block">
+														<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
+													</div>
 												</a>
 											</div>
 											<div class="ui-block-b text email_block">
-												<a href="" class="share_email cmtyx_text_color_1">
-													<span class="share_icon email_icon"></span>
+												<a href="" class="share_email">
+													<div class="share_icons_round_block">
+														<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
+													</div>
 												</a>
 											</div>
 											<div class="ui-block-c text facebook_block">
-												<a href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-													<span class="share_icon facebook_icon"></span>
+												<a href="" target="_blank" class="share_facebook">
+													<div class="share_icons_round_block">
+														<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
+													</div>
 												</a>
 											</div>
 											<div class="ui-block-d text twitter_block">
-												<a href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-													<span class="share_icon twitter_icon"></span>
+												<a href="" target="_blank" class="share_twitter">
+													<div class="share_icons_round_block">
+														<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
+													</div>
 												</a>
 											</div>
 										</div>
@@ -937,7 +945,53 @@
 				</li>
 				</#if>
 				
-		    <!----- End of User Reviews  ---------------->				
+		<!----- End of User Reviews  ---------------->				
+
+		<!----- Videos  ---------------->		
+		<#if (externalMedia)?has_content >
+				<li id="cmtyx_video_block" class="video_block">
+					<div class="header cmtyx_color_1">
+						<span class="title">video</span> <span class="collapse_btn">&#9660;</span>
+					</div>
+				    <div class="body last">
+		            <ul>
+				      <#list externalMedia as media>
+				          <li>
+			          		<span class="video_title">${media.title}</span>
+	 						<#if videoNeedsPlaceholder>
+			                    <div id="externalvideo${media.idMedia}" class="embedded_videos external" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
+			                      <a href="#">
+			                        <img src="themes/4/mobile/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
+			                      </a>
+			                    </div>
+			                    <div class="video_item_message">
+		 						    <span>${media.message}</span>
+		 						</div>
+                    		<#else>
+			                    <div class="embedded_videos">
+				                    <iframe width="100%" height="250"
+									    src="https://www.youtube.com/embed/${media.vid}?playsinline=1"frameborder="0"
+									    allowfullscreen="1">
+								    </iframe>
+								    <br>
+		 						    <div class="video_item_message">
+		 						    	<span>${media.message}</span>
+		 						    </div>
+			                    </div>
+		                    </#if>
+
+                          </li>
+						</#list>
+				      </ul>
+					  <!-- <div style="text-align:center;">
+						  (No videos available)
+					  </div> -->
+					</div>
+				</li>
+			</#if>
+				
+			<!----- End of Videos  ---------------->		
+				
 				
 			</ul>
 			<ul class="cmtyx_bottom_block" id="cmtyx_contact_us_block">
@@ -955,6 +1009,8 @@
 						</div>
 					</div>
 				</li>
+				
+				
 				<li class="map_in_landing">
 					<div id="home_map" class="map_container"></div>
 				</li>

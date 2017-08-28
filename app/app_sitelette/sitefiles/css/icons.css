@@ -1,19 +1,19 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: "type-icons";
-  src:url("fonts/type-icons.eot");
-  src:url("fonts/type-icons.eot?#iefix") format("embedded-opentype"),
-    url("fonts/type-icons.woff") format("woff"),
-    url("fonts/type-icons.ttf") format("truetype"),
-    url("fonts/type-icons.svg#type-icons") format("svg");
+  font-family: "cmtyx";
+  src:url("fonts/cmtyx.eot");
+  src:url("fonts/cmtyx.eot?#iefix") format("embedded-opentype"),
+    url("fonts/cmtyx.woff") format("woff"),
+    url("fonts/cmtyx.ttf") format("truetype"),
+    url("fonts/cmtyx.svg#cmtyx") format("svg");
   font-weight: normal;
   font-style: normal;
 
 }
 
 [data-icon]:before {
-  font-family: "type-icons" !important;
+  font-family: "cmtyx" !important;
   content: attr(data-icon);
   font-style: normal !important;
   font-weight: normal !important;
@@ -27,7 +27,7 @@
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "type-icons" !important;
+  font-family: "cmtyx" !important;
   font-style: normal !important;
   font-weight: normal !important;
   font-variant: normal !important;
@@ -38,27 +38,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-deals:before {
+.icon-share:before {
   content: "\61";
 }
-.icon-document:before {
-  content: "\62";
-}
-.icon-information:before {
+.icon-twitter:before {
   content: "\63";
 }
-.icon-user:before {
+.icon-envelope:before {
   content: "\64";
 }
-.icon-clothes:before {
+.icon-facebook:before {
+  content: "\62";
+}
+.icon-mobile:before {
   content: "\65";
-}
-.icon-entertainment:before {
-  content: "\66";
-}
-.icon-food:before {
-  content: "\67";
-}
-.icon-restourant:before {
-  content: "\68";
 }

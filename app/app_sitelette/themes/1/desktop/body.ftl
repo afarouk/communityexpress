@@ -19,23 +19,23 @@
                 <div class="icons-container-wrapper">
                     <div class="icons-container">
                         <div class="text sms_block">
-                            <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
-                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                            <a href="" name="share_sms" class="share_sms">
+                                <i class="fa fa-mobile cmtyx_share_icon_color" aria-hidden="true"></i>
                             </a>
                         </div>
                         <div class="text email_block">
-                            <a href="" name="share_email" class="share_email cmtyx_text_color_1">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <a href="" name="share_email" class="share_email">
+                                <i class="fa fa-envelope cmtyx_share_icon_color" aria-hidden="true"></i>
                             </a>
                         </div>
                         <div class="text facebook_block">
-                            <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            <a name="share_facebook" href="" target="_blank" class="share_facebook">
+                                <i class="fa fa-facebook cmtyx_share_icon_color" aria-hidden="true"></i>
                             </a>
                         </div>
                         <div class="text twitter_block">
-                            <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <a name="share_twitter" href="" target="_blank" class="share_twitter">
+                                <i class="fa fa-twitter cmtyx_share_icon_color" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
 
                                 <div class="share_container">
                                   <div class="promoCode_item_buttons item_buttons">
-                                    <div class="share_btn_block cmtyx_text_color_1" data-promoCode="${promoCode.promoCode}" >
+                                    <div class="share_btn_block cmtyx_share_icon_color" data-promoCode="${promoCode.promoCode}" >
                                         <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
                                     </div>
                                   </div>
@@ -294,7 +294,7 @@
 
                                 <div class="share_container">
                                   <div class="promotion_item_buttons item_buttons">
-                                    <div class="share_btn_block cmtyx_text_color_1"
+                                    <div class="share_btn_block cmtyx_share_icon_color"
                                       uuid="${promotion.uuid}">
                                       <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
                                     </div>

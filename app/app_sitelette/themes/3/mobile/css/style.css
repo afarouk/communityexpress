@@ -1,6 +1,7 @@
 /*default special colors*/
 .cmtyx_special_icon_color { color: #FFFFFF; }
 .cmtyx_special_background_color { background-color: #330000; }
+.cmtyx_share_icon_color { color: #ffffff; }
 /* .... */
 
 @charset "UTF-8";
@@ -3653,6 +3654,37 @@ li.video_block .body {
 .twitter_icon {
     background: url('images/tw.png');
 }
+
+/* new fa icons block */
+.share_icons_round_block {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #3f3f3f;
+    margin: auto;
+    -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.25);
+}
+i.share_icon_round {
+    font-size: 30px;
+    line-height: 40px;
+    margin-right: 0;
+}
+.share_icon_round.fa-mobile {
+    font-size: 30px;
+}
+.share_icon_round.fa-envelope {
+    font-size: 24px;
+}
+.share_icon_round.fa-facebook {
+    font-size: 24px;
+}
+.share_icon_round.fa-twitter {
+    font-size: 26px;
+}
+/* end of fa icons */
+
 .login_with_facebook {
     text-align: center;
     padding: 0;
