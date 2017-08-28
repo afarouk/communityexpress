@@ -5021,6 +5021,10 @@ input[name=promocode] {
 .navbutton_menu {
     background: url('images/navbar-icons/menu.png') no-repeat top left;
 }
+.navbutton_catalog {
+    background: url('images/navbar-icons/catalog.png') no-repeat top left;
+    /*background-size: 50px 50px;*/
+}
 .navbutton_deals {
     background: url('images/navbar-icons/promo.png') no-repeat top left;
 }

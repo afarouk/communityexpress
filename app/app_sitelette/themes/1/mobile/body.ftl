@@ -24,9 +24,14 @@
 		<div data-role="navbar">
 			<ul class="ui-grid-c">
 				<li class="ui-block-a"><a href="#" class="menu_button_3 ui-btn">
-						<!-- <div class="navbar_btn_icon document_img"></div>  -->
-						<div class="navbar_btn_icon icon-document_ navbutton_menu"></div>
+					<!-- <div class="navbar_btn_icon document_img"></div>  -->
+		            <#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" >
+					    <div class="navbar_btn_icon icon-document_ navbutton_menu"></div>
 						<br>Menu
+					<#else>
+						<div class="navbar_btn_icon icon-document_ navbutton_catalog"></div>
+						<br>Catalog
+					</#if>
 				</a></li>
 				<li class="ui-block-b"><a href="#" class="menu_button_2 ui-btn">
 						<!-- <div class="navbar_btn_icon calendar_grey_img m-b-11"></div>  -->
