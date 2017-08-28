@@ -212,12 +212,12 @@ if (validateParams('ftl')) {
     $ftlfile = null;
 }
 
+$canCreateAnonymousUser=false;
 if ($saslAccess || $urlKeyAccess) {
     $errorMessage           = null;
     $saslName               = null;
     $appleTouchIcon60URL    = null;
     $isPrivate              = false;
-    $canCreateAnonymousUser = false;
     if ($urlKeyAccess) {
         $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false').'&ua='.$userAgent. '&ftl=' . $ftlfile;
     } else {
@@ -240,6 +240,8 @@ if ($saslAccess || $urlKeyAccess) {
             $saslName                 = $saslJSON['saslName'];
             $appleTouchIcon60URL      = $saslJSON['appleTouchIcon60URL'];
             $androidHomeScreenIconURL = $saslJSON['androidHomeScreenIconURL'];
+            $canCreateAnonymousUser   = $saslJSON['canCreateAnonymousUser'];;
+
             if (is_null($friendlyURL)) {
                 if (array_key_exists('anchorURL', $saslJSON)) {
                     $anchorURL = $saslJSON['anchorURL'];
