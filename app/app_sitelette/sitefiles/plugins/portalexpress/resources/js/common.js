@@ -8,7 +8,7 @@ if (typeof com.faralam === 'undefined') {
 if (typeof com.faralam.registration === 'undefined') {
     com.faralam.registration = {};
 }
-if (typeof com.faralam.common === 'undefined') {
+if (typeof (com.faralam.common) === 'undefined') {
     com.faralam.common = {};
 }
 
@@ -256,151 +256,7 @@ com.faralam.evaluateEmailMobileVerificationStatus = function (data) {
      Ext.getCmp('main_tab').setActiveTab(10);	
      }
      }*/
-};
-
-/*com.faralam.ShowServerOption = function(){
- 
- var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
- var win_server;
- var form = Ext.widget('form', {
- layout: {
- type: 'vbox',
- align: 'stretch'
- },
- border: false,
- bodyPadding: 10,
- fieldDefaults: {
- labelAlign: 'side',
- labelWidth: 150,
- labelStyle: 'font-weight:bold'
- },
- defaultType: 'radio',
- items: [								
- {
- boxLabel: '<span style="color:#000;">communitylive.ws</span>',
- name: 'server_name',
- inputValue: '0'
- }, {
- boxLabel: '<span style="color:#000;">communityLive.co</span>',
- name: 'server_name',
- inputValue: '1'				
- }, {
- boxLabel: '<span style="color:#000;">appt-svc</span>',
- name: 'server_name',
- inputValue: '2',
- checked: true
- },{
- boxLabel: '<span style="color:#000;">localhost</span>',
- name: 'server_name',
- inputValue: '4'
- }],
- buttons: [{
- text: 'Submit',
- handler: function() {					
- var values = form.getForm().getValues();					
- sessionStorage.server_index = values.server_name;
- if(com.faralam.registration.setServerURL(values.server_name)){
- win_server.close();	
- }
- }
- }]
- });		
- 
- if(sessionStorage.server_index){			
- form.items.items[sessionStorage.server_index].setValue(true);
- }
- 
- win_server = Ext.widget('window', {
- title: 'Change Server',
- closeAction: 'hide',
- layout: 'fit',
- resizable: true,
- modal: true,
- width: 200,
- items: form
- });
- win_server.show();
- }
- 
- com.faralam.registration.setServerURL = function(server) {
- 
- if(server == '0'){
- com.faralam.serverURL = 'http://communitylive.ws:80/apptsvc/rest/';
- }else if(server == '1'){
- com.faralam.serverURL = 'http://communityLive.co:80/apptsvc/rest/';
- }else if(server == '2'){
- com.faralam.serverURL = 'http://appointment-service.com:80/apptsvc/rest/';
- }else if (server == "3") {
- com.faralam.serverURL = 'http://localhost:8080/apptsvc/rest/';
- }
- return true;
- };*/
-
-com.faralam.UserLogOut = function () {
-    com.faralam.UserLogOutURL = com.faralam.serverURL + "authentication/logout?";
-    var UserLogOutURL = com.faralam.UserLogOutURL + encodeURI('UID=' + sessionStorage.UID);
-	var redirectUrl = sessionStorage.ignorehistory=="true"?"http://sitelettes.com":"http://sitelettes.com/business";
-	console.log(sessionStorage.ignorehistory);
-	console.log(redirectUrl);
-    var onsuccess = function (data, textStatus, jqXHR) {
-        Ext.Msg.show({
-            title: 'Success',
-            buttons: Ext.MessageBox.OK,
-            msg: 'Your session has ended. Please press the Manage Site to relogin.',
-            fn: function (btn) {
-                if (btn == 'ok') {
-                    Ext.Ajax.request({
-                        url: '/', //again
-                        callback: function () {
-                            window.top.location.href = '/';
-                            
-                        }
-                    });
-                }
-            }
-        });
-        Ext.getCmp('main_tab').down('#login').setTitle('Login');
-        for (var i = 0; i < Ext.getCmp('main_tab').items.length; i++) {
-            if (Ext.getCmp('main_tab').down('#' + Ext.getCmp('main_tab').items.items[i].itemId).isDisabled()) {
-                Ext.getCmp('main_tab').down('#' + Ext.getCmp('main_tab').items.items[i].itemId).setDisabled(true);
-            }
-        }
-
-        //Ext.getCmp('main_tab').down('#login').setDisabled(false);
-        //Ext.getCmp('main_tab').setActiveTab(0);
-        sessionStorage.clear();
-
-    }
-
-    var onerror = function (jqXHR, textStatus, errorThrown) {}
-
-    com.faralam.common.sendAjaxRequest(UserLogOutURL, "GET", {}, onsuccess, onerror);
-
 }
-
-/*com.faralam.inIframe = function() {
- try {
- return window.self !== window.top;
- } catch (e) {
- return true;
- }
- }*/
-
-/*com.faralam.FirstVisit = function(){
- if(com.faralam.inIframe()){
- //var url = (window.location != window.parent.location) ? document.referrer: document.location;
- var frame = parent.document.getElementsByTagName('iframe');
- var url = frame[0].src;
- 
- var getParams = url.split("?");
- var params = Ext.urlDecode(getParams[getParams.length - 1]);
- 
- return params;
- }else{
- //var url = document.URL;
- return false;
- }		
- }*/
 
 com.faralam.FirstVisit = function () {
     var queryParams = $.url().param();
@@ -19771,6 +19627,39 @@ var splitString = "";
     com.faralam.common.sendAjaxRequest(com.faralam.retrieveItems, "GET", {}, onsuccess, onerror);
 }
  
+ com.faralam.common.retrievePromoItems = function(){
+    com.faralam.retrievePromoItems = com.faralam.serverURL + 'promotions/retrievePromoItems';
+    com.faralam.retrievePromoItems = com.faralam.retrievePromoItems + "?" + encodeURI('UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
+    
+    var onsuccess = function (response, textStatus, jqXHR) {
+        var result = "";
+        var arr = new Array();
+        var count = 0;
+        var overlay_img = '';
+        if (response.length > 0){           
+            
+            for (var j = 0; j < response.length; j++) {
+                
+                result +='<div class="items_list_saleitem_active"><div style="width: 100px;float:left;margin:4px;"><img draggable="false" src="'+response[j].mediaURLS+'" alt="dress" style=" width: 100px;    border: 1px solid black;"></div><div style="color: black;width: 86px;float: left;margin-top: 40px;">Price :'+response[j].price+'<br><br>'+response[j].title+'</div><button id="share" class="share" style="float: right;margin-top: 10px;font-size: 15px;background: #00F !important;margin-right: 10px;width: 72px;color: #fff;border-radius: 0px !important;padding: 2px;border: 0px !important;">Share</button><button id="Deactivate" class="Deactivate" style="float: right;margin-top: 121px;font-size: 15px;background: #5f5353 !important;margin-right: -75px;width: 109px;color: #fff;border-radius: 0px !important;border: 0px !important;padding: 3px;">Deactivate</button><div class="clear"></div></div>';
+                }
+            }
+        if (result) {
+            result = '<div id="active_container_dv">'+result+"</div>";
+        }
+        else {
+            result = '<div id="active_container_dv"><ul class="images" style="text-align:center;height:87px;"><li>No image(s) available</li></ul></div>';
+        }
+        Ext.getCmp('active_container').update(result);
+        $('#active_container_dv').perfectScrollbar('destroy');
+        $('#active_container_dv').perfectScrollbar();
+        }
+        
+        
+     
+    var onerror = function (jqXHR, textStatus, errorThrown) {}
+    com.faralam.common.sendAjaxRequest(com.faralam.retrievePromoItems, "GET", {}, onsuccess, onerror);
+ }
+ 
  com.faralam.common.createNewSaleItem = function (obj) {
     console.log(obj);
     var createNewSaleItem_modal;
@@ -20037,7 +19926,7 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
     var onsuccess = function (response, textStatus, jqXHR) {
        Ext.MessageBox.alert('Success', "success",function(){
        Ext.getCmp('createNewSaleItem_modal').close();
-           
+       com.faralam.common.retrievePromoItems();
         });
     }
     var onerror = function (jqXHR, textStatus, errorThrown) {}
@@ -20057,7 +19946,31 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
         Ext.getCmp('ban_bac_color').setValue(response.background);
         Ext.getCmp('menu_hamberger_icon').setValue(response.foregroundLight);
         Ext.getCmp('open_menu_catalog_color').setValue(response.foregroundDark);
-        if(response.barFontColors){
+		var barFontColors = response.barFontColors;
+		//str.substr(0,4)
+		var bac_col_1 = barFontColors.cmtyx_color_1.background_color ? barFontColors.cmtyx_color_1.background_color.substr(0,7) : '';
+		var bac_col_2 = barFontColors.cmtyx_color_2.background_color ? barFontColors.cmtyx_color_2.background_color.substr(0,7) : '';
+		var bac_col_3 = barFontColors.cmtyx_color_3.background_color ? barFontColors.cmtyx_color_3.background_color.substr(0,7) : '';
+		var bac_col_4 = barFontColors.cmtyx_color_4.background_color ? barFontColors.cmtyx_color_4.background_color.substr(0,7) : '';
+		
+		var txt_col_1 = barFontColors.cmtyx_text_color_1.color ? barFontColors.cmtyx_text_color_1.color.substr(0,7) : '';
+		var txt_col_2 = barFontColors.cmtyx_text_color_2.color ? barFontColors.cmtyx_text_color_2.color.substr(0,7) : '';
+		var txt_col_3 = barFontColors.cmtyx_text_color_3.color ? barFontColors.cmtyx_text_color_3.color.substr(0,7) : '';
+		var txt_col_4 = barFontColors.cmtyx_text_color_4.color ? barFontColors.cmtyx_text_color_4.color.substr(0,7) : '';
+		var share_icon_color = barFontColors.cmtyx_share_icon_color.color ? barFontColors.cmtyx_share_icon_color.color.substr(0,7) : '';
+
+		Ext.getCmp('bac_col_1').setValue(bac_col_1);
+		Ext.getCmp('bac_col_2').setValue(bac_col_2);
+		Ext.getCmp('bac_col_3').setValue(bac_col_3);
+		Ext.getCmp('bac_col_4').setValue(bac_col_4);
+		
+		Ext.getCmp('txt_col_1').setValue(txt_col_1);  
+		Ext.getCmp('txt_col_2').setValue(txt_col_2);  
+		Ext.getCmp('txt_col_3').setValue(txt_col_3);  
+		Ext.getCmp('txt_col_4').setValue(txt_col_4);  
+		Ext.getCmp('share_icon_color').setValue(share_icon_color);
+		
+        /*if(response.barFontColors){
             
             response.barFontColors.split('.').forEach(function(v){
             var col = v.match(/[a-f0-9]{6}/gi); // Get Hex Code
@@ -20095,7 +20008,7 @@ com.faralam.common.createPromotionForPriceSASLItem = function () {
             }
            });
              
-           }
+           }*/
         window.jscolor();
     }
     var onerror = function (jqXHR, textStatus, errorThrown) {}
@@ -20153,16 +20066,74 @@ com.faralam.common.setThemeColors = function (file) {
     var txt_3 = "#"+Ext.getCmp('txt_col_3').getValue();
     var txt_4 = "#"+Ext.getCmp('txt_col_4').getValue();
      
-    var allcolor = ".cmtyx_color_1 { background-color:" + bac_1 + " !important; }.cmtyx_border_color_1 { border-color: " + bac_1 + " !important; }.cmtyx_text_color_1 { color: " + txt_1 + " !important; }" + ".cmtyx_color_2 { background-color:" + bac_2 + " !important; }.cmtyx_border_color_2 { border-color: " + bac_2 + " !important; } .cmtyx_text_color_2 { color: " + txt_2 + " !important; } .cmtyx_color_3 { background-color:" + bac_3 + " !important; }.cmtyx_border_color_3 { border-color: " + bac_3 + " !important; }.cmtyx_text_color_3 { color: " + txt_3 + " !important; }.cmtyx_color_4 { background-color:" + bac_4 + " !important; }.cmtyx_border_color_4 { border-color: " + bac_4 + " !important; }.cmtyx_text_color_4 { color: " + txt_4 + " !important; }" ;
+    //var allcolor = ".cmtyx_color_1 { background-color:" + bac_1 + " !important; }.cmtyx_border_color_1 { border-color: " + bac_1 + " !important; }.cmtyx_text_color_1 { color: " + txt_1 + " !important; }" + ".cmtyx_color_2 { background-color:" + bac_2 + " !important; }.cmtyx_border_color_2 { border-color: " + bac_2 + " !important; } .cmtyx_text_color_2 { color: " + txt_2 + " !important; } .cmtyx_color_3 { background-color:" + bac_3 + " !important; }.cmtyx_border_color_3 { border-color: " + bac_3 + " !important; }.cmtyx_text_color_3 { color: " + txt_3 + " !important; }.cmtyx_color_4 { background-color:" + bac_4 + " !important; }.cmtyx_border_color_4 { border-color: " + bac_4 + " !important; }.cmtyx_text_color_4 { color: " + txt_4 + " !important; }" ;
 
-    
-    var data ={
+    var data = {
+				  "foregroundDark": "#000000",
+				  "foregroundLight": "#ece7e7",
+				  "background": "#FFFF00",
+				  "background2": "#FFE72F",
+				  "barFontColors": {
+							"cmtyx_color_1": {
+							  "background_color": bac_1
+							},
+							"cmtyx_border_color_1": {
+							  "border_color": bac_1
+							},
+							"cmtyx_text_color_1": {
+							  "color": txt_1
+							},
+							"cmtyx_color_2": {
+							  "background_color": bac_2
+							},
+							"cmtyx_border_color_2": {
+							  "border_color": bac_2
+							},
+							"cmtyx_text_color_2": {
+							  "color": txt_2
+							},
+							"cmtyx_color_3": {
+							  "background_color": bac_3
+							},
+							"cmtyx_border_color_3": {
+							  "border_color": bac_3
+							},
+							"cmtyx_text_color_3": {
+							  "color": txt_2
+							},
+							"cmtyx_color_4": {
+							  "background_color": bac_4
+							},
+							"cmtyx_border_color_4": {
+							  "border_color": bac_4
+							},
+							"cmtyx_text_color_4": {
+								 "color": txt_4
+							},
+							"cmtyx_special_icon_color": {
+							  "color": "#"+Ext.getCmp('menu_hamberger_icon').getValue()
+							},
+							"cmtyx_special_text_color": {
+							  "color": "#"+Ext.getCmp('open_menu_catalog_color').getValue()
+							},
+							"cmtyx_special_border_color": {
+							  "border_color": "#8c8c00 !important"
+							},
+							"cmtyx_special_background_color": {
+							  "background_color": "#"+Ext.getCmp('ban_bac_color').getValue()
+							},
+							"cmtyx_share_icon_color": {
+							  "color": "#"+Ext.getCmp('share_icon_color').getValue()
+							}
+						  }
+				};
+    /*var data ={
             "background": "#"+Ext.getCmp('ban_bac_color').getValue(),
             "foregroundLight": "#"+Ext.getCmp('menu_hamberger_icon').getValue(),
             "foregroundDark": "#"+Ext.getCmp('open_menu_catalog_color').getValue(),
             "background2": "#FFFFFF",
             "barFontColors": "" +allcolor
-            };
+            };*/
         
    var onsuccess = function (response, textStatus, jqXHR) {
       com.faralam.common.retrieveThemeColors();
