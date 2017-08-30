@@ -48,6 +48,15 @@ define([
 		            	}, function() {
 		            		Cookies.remove('cmxUID');
 		            	}.bind(this));
+		        } else if (this.params.canCreateAnonymousUser) {
+		            $.when(sessionActions.createAnonymousUser()).done(function() {
+		                sessionActions.getSessionFromLocalStorage().then(function() {
+		                    Backbone.history.start({
+		                        pushState: true
+		                    });
+		                    dispatcher.get('popups').onLoginStatusChanged();
+		                });
+		            });
 		        } else {
 		        	dispatcher.get('popups').onLoginStatusChanged();
 		        }
