@@ -25,7 +25,7 @@
 			<ul class="ui-grid-c">
 				<li class="ui-block-a"><a href="#" class="menu_button_3 ui-btn">
 					<!-- <div class="navbar_btn_icon document_img"></div>  -->
-		            <#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" >
+		            <#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" || sasl.domainEnum.enumText=="CAFE">
 					    <div class="navbar_btn_icon icon-document_ navbutton_menu"></div>
 						<br>Menu
 					<#else>
@@ -88,7 +88,7 @@
 					  </#if>
 						<button
 								class="ui-btn ui-corner-all catalog open_menu_btn cmtyx_special_text_color cmtyx_special_border_color menu_button_3">
-		            <#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" >
+		            <#if sasl.domainEnum.enumText=="BARS_PUBS" || sasl.domainEnum.enumText=="RESTAURANT" || sasl.domainEnum.enumText=="CAFE">
 							    open menu
 							  <#else>
 							    open catalog
