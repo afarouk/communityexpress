@@ -132,16 +132,16 @@ var LeftMenuView = PanelView.extend({
 
     onOpenAppointment: function() {
         console.log('appointments');
-        loader.show('retrieving user pictures');
         this.PopupController.requireLogIn(this.sasl, function() {
+            loader.show('retrieving user pictures');
             Vent.trigger('viewChange', 'appointments',
             [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
         }.bind(this));
     },
 
     onOrdersHistory: function() {
-        loader.show('retrieving orders history');
         this.PopupController.requireLogIn(this.sasl, function() {
+            loader.show('retrieving orders history');
             Vent.trigger('viewChange', 'orders_history',
             [this.saslData.serviceAccommodatorId, this.saslData.serviceLocationId]);
         }.bind(this));

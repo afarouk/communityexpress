@@ -83,8 +83,10 @@ module.exports = {
     
         if(sessionActions.checkIfUserAppropriate().getUID()) {
             callback();
-        } else if (conf.get('embedded')) {
-            window.iosJavascriptLogin(this.loginFromIOS(callback));
+        // I don't know why do we need that code below, migratet from previous version, maybe outdated
+        // } else if (conf.get('embedded')) {
+        //     window.iosJavascriptLogin(this.loginFromIOS(callback));
+        // ..........................
         } else {
             view = new SigninView({
                 parent: this,
