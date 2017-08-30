@@ -1036,7 +1036,7 @@ a.right.minus_button.ui-btn.ui-shadow.ui-corner-all.ui-nodisc-icon.ui-alt-icon.u
 }
 .menu_body li .item_name {
     /* text-transform: uppercase; */
-    font: 700 14px 'Open Sans', sans-serif;
+    font: 400 14px 'Open Sans', sans-serif;
     color: #fff;
     display: inline-block;
     white-space: normal;
