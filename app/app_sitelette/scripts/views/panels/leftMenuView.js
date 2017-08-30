@@ -8,6 +8,7 @@ PanelView = require('../components/panelView'),
 RestaurantModel = require('../../models/restaurantModel'),
 appCache = require('../../appCache.js'),
 Vent = require('../../Vent'),
+sessionActions = require('../../actions/sessionActions'),
 h = require('../../globalHelpers');
 
 var LeftMenuView = PanelView.extend({
@@ -36,12 +37,12 @@ var LeftMenuView = PanelView.extend({
     },
 
     getActiveButtonsAndUser: function() {
-        var user = appCache.get('user');
-        var buttons = _.filter(this.sasl.get('services'), function (option, key) {
-            if (!option || !option.masterEnabled) return false;
-            option.key = key;
-            return true;
-        }.bind(this));
+        var user = sessionActions.checkIfUserAppropriate(),
+            buttons = _.filter(this.sasl.get('services'), function (option, key) {
+                if (!option || !option.masterEnabled) return false;
+                option.key = key;
+                return true;
+            }.bind(this));
         return {
             buttons: buttons,
             user: user
