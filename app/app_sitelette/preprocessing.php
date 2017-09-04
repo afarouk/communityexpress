@@ -100,6 +100,9 @@ if (validateParams('friendlyURL')) {
     $friendlyURL = $_REQUEST['friendlyURL'];
     if (isset($friendlyURL)) {
         switch ($friendlyURL) {
+      case 'userguide':
+        $pageAccess = 'common_userguide.php';
+        break;
       case 'privacypolicy':
         $pageAccess = 'common_privacypolicy.php';
         break;
