@@ -4645,6 +4645,39 @@ a.cancel {
     box-shadow: none;
     margin-bottom: 5px;
     padding: 0;
+    position: relative;
+}
+.menu_body li.cmntyex-catalog-item.out-of-stock,
+.menu_body li.cmntyex-catalog-item.out-of-stock select,
+.menu_body li.cmntyex-catalog-item.out-of-stock a {
+    pointer-events: none;
+}
+.menu_body li.cmntyex-catalog-item .out-of-stock-cover {
+    display: none;
+}
+.menu_body li.cmntyex-catalog-item.out-of-stock .out-of-stock-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu_body li.cmntyex-catalog-item .out-of-stock-cover .cross {
+    position: absolute;
+    font-size: 65px;
+    font-weight: 100;
+    margin-top: 6px;
+    color: rgba(255, 0, 0, 0.5);
+}
+.menu_body li.cmntyex-catalog-item .out-of-stock-cover .text {
+    z-index: 1;
+    font-size: 26px;
+    color: white;
 }
 
 .basket_icon_container {

@@ -51,6 +51,9 @@ var CatalogItemView = Backbone.View.extend({
 
     render: function() {
         var hasVersions = this.model.get('hasVersions');
+        if (this.model.get('typeInGroup').enumText === 'OUTOFSTOCK') {
+            this.$el.addClass('out-of-stock');
+        }
         this.$el.html(template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity || 0,
