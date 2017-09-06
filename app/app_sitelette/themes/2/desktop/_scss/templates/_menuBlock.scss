@@ -170,6 +170,43 @@
                 flex-wrap: wrap;
                 padding: 10px 0 10px 0;
                 border-bottom: solid 1px $cart-divider;
+                position: relative;
+
+                .out-of-stock-cover {
+                  display: none;
+                }
+                &.out-of-stock {
+                  pointer-events: none;
+                  margin: 0 -4px;
+                  padding: 10px 4px 10px 4px;
+
+                  .out-of-stock-cover {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .cross {
+                      position: absolute;
+                      font-size: 65px;
+                      font-weight: 100;
+                      margin-top: 6px;
+                      color: rgba(255, 0, 0, 0.5);
+                    }
+
+                    .text {
+                      z-index: 1;
+                      font-size: 26px;
+                      color: white;
+                    }
+                  }
+                }
 
                 &:last-child {
                   border-bottom: none;

@@ -34,6 +34,10 @@ define([
 		},
 		onRender: function() {
 			this.updateAddVersionButton();
+
+			if (this.model.get('typeInGroup').enumText === 'OUTOFSTOCK') {
+	            this.$el.addClass('out-of-stock');
+	        }
 		},
 		onCustomize: function(e) {
 			var $el = this.getRegion('customization').$el;

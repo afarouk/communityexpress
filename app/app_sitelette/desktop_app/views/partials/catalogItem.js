@@ -30,6 +30,13 @@ define([
 			'click @ui.addToCart': 'items:added',
 			'click @ui.customize': 'items:customized'
 		},
+
+		onRender: function() {
+			if (this.model.get('typeInGroup').enumText === 'OUTOFSTOCK') {
+	            this.$el.addClass('out-of-stock');
+	        }
+		},
+
 		quantity: 1,
 	    
 		onIncrease: function() {
