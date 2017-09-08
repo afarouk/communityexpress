@@ -28,13 +28,19 @@ define([
     render: function(loyaltyProgram) {
       this.loyaltyProgram = loyaltyProgram;
       this.$el.html(this.template(loyaltyProgram));
-      // this.bindUIElements();
-      // this.setShareLinks();
+      this.bindUIElements();
+      this.setShareLinks();
       return this;
     },
 
     onRefresh: function() {
       this.trigger('onRefresh');
+    },
+
+    renderLoyaltyDetails: function(resp) {
+      var content = '<div>'+ resp.loyaltyBlockLine1 +'</div><div>' +
+          resp.loyaltyBlockLine2 +'</div><div>' + resp.loyaltyBlockLine3 + '</div>';
+      this.ui.status.html(content);
     },
 
     renderQrCode: function(resp) {

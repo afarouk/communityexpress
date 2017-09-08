@@ -84,8 +84,8 @@ var LoyaltyCardView = Backbone.View.extend({
             resp.loyaltyBlockLine2 +'</div><div>' + resp.loyaltyBlockLine3 + '</div>';
           this.$(this.status).html(content);
         }
-        this.$(this.qrCode).find('.qr_code_container').html('<img src="' +
-          resp.qrcodeURL + '" alt="" >');
+        // this.$(this.qrCode).find('.qr_code_container').html('<img src="' +
+        //   resp.qrcodeURL + '" alt="" >');
         $('#loyalty-bar-code').addClass('visible').html('<img src="' +
           resp.qrcodeURL + '" alt="" >');
         this.$(this.qrCode).slideDown('slow', function(){

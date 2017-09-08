@@ -3,10 +3,7 @@
     <span class="title">Loyalty Card</span>
 </div>
 <div class="body">
-    <div class="no_loyalty">
-            (load on mobile device for your QR code)
-    </div>
-    <!-- <% if (hasLoyaltyProgram) { %>
+    <% if (hasLoyaltyProgram) { %>
         <div class="loyalty_inner_wrapper">
             <div class="prize_block">
                 <div class="prize_container">
@@ -24,18 +21,11 @@
             <div class="no_qr_code_block cmtyx_color1">
                 <button class="refresh_button_style1 cmtyx_border_color_1 cmtyx_text_color_1"> Refresh </button>
             </div>
-            <div class="qr_code_block cmtyx_border_color_1">
-                <span class="close_btn"></span>
-                <span class="qr_code_title title cmtyx_text_color_1">This is your personal identification code</span>
-                <div class="qr_code_container">
-                    <img src="themes/1/placeholder_images/getUserQRCode.png" alt="" >
-                </div>
-            </div>
         </div>
 
         <div class="share_container">
             <div class="item_buttons">
-              <div class="share_btn_block cmtyx_text_color_1" uuid="">
+              <div class="share_btn_block cmtyx_share_icon_color" uuid="">
                   <i class="fa fa-share" aria-hidden="true"></i> <span class="text">Share</span>
               </div>
             </div>
@@ -75,5 +65,5 @@
         <div class="no_loyalty">
             (No Loyalty Program)
         </div>
-    <% } %> -->
+    <% } %>
 </div>

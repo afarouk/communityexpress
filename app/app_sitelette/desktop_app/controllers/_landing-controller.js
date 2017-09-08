@@ -52,7 +52,7 @@ define([
 			loyaltyActions.updateLoyaltyStatus(uuid)
 				.then(function(resp) {
 	          		if (resp.hasLoyaltyProgram) {
-	          			this.loyaltyCardView.renderQrCode(resp);
+	          			this.loyaltyCardView.renderLoyaltyDetails(resp);
 	          		}
 	          	}.bind(this));
 		},
