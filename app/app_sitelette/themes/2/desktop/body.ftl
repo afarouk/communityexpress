@@ -124,34 +124,6 @@
                   </div> -->
                   
                   <div class="wrapper">
-                  
-                  <!-- there is welcome block -->
-                    <div class="grid-item cmtyx_welcome_block">
-                      <div class="body">
-                        <#if (medias)?has_content >
-                          <img src="${medias[0].URL}" />
-                        <#else>
-                          <img src="themes/2/placeholder_images/welocome_img.png"></img>
-                        </#if>
-                        <div class="text-container">
-                          <#if (medias)?has_content >
-                            <#if (medias[0]??) >
-                              <div class="title">${medias[0].title}</div>
-                              <div class="undertitle">${medias[0].message}</div>
-                            <#else>
-                              <div class="title">(no title)</div>
-                              <div class="undertitle">(no message) </div>
-                            </#if>
-                          </#if>
-                          
-                          <!-- <span class="open_label">we are open</span>    
-                          <div class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></div> -->
-                        </div>
-                      </div>
-                    </div>
-
-                    <!----- End of welcome block  ---------------->
-
 
                     <!----- Discount coupons  ---------------->
                 
@@ -241,6 +213,33 @@
                   
                     <!----- End of Discount coupons  ---------------->
 
+                    <!-- there is welcome block -->
+                    <div class="grid-item cmtyx_welcome_block">
+                      <div class="body">
+                        <#if (medias)?has_content >
+                          <img src="${medias[0].URL}" />
+                        <#else>
+                          <img src="themes/2/placeholder_images/welocome_img.png"></img>
+                        </#if>
+                        <div class="text-container">
+                          <#if (medias)?has_content >
+                            <#if (medias[0]??) >
+                              <div class="title">${medias[0].title}</div>
+                              <div class="undertitle">${medias[0].message}</div>
+                            <#else>
+                              <div class="title">(no title)</div>
+                              <div class="undertitle">(no message) </div>
+                            </#if>
+                          </#if>
+                          
+                          <!-- <span class="open_label">we are open</span>    
+                          <div class="business_hours">Business hours <span class="from">16.00</span>-<span class="till">02:00</span></div> -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <!----- End of welcome block  ---------------->
+
                     <!----- Promotions  ---------------->
                     <div id="cmtyx_promotion_block" class="grid-item cmtyx_promotion_block">
                       <div class="header cmtyx_color_3">
@@ -289,6 +288,12 @@
                                       <img src="${promotion.URL}" class="promotions-buybutton" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}"></img>
                                     </div> 
                                   </div>
+                                  <#if promotion.buyable!false>
+                                    <div class="promotions_buybutton_container" uuid="${promotion.uuid}">
+                                      <button class="promotions-buybutton cmtyx_color_1 cmtyx_border_color_1" data-price="$${promotion.promoPrice}" data-uuid="${promotion.uuid}">
+                                       Buy</button>
+                                    </div>
+                                  </#if>
                                 </div>
                                 </#if>
 
