@@ -212,7 +212,8 @@ define([
 	        this.ui.street.val(address.street);
 	        this.ui.city.val(address.city);
 	        this.ui.state.val(state);
-	        this.ui.state.selectmenu('refresh', true);
+	        this.ui.state.selectmenu()
+	        	.selectmenu('refresh', true);
 	    },
 
 	    getSelectedState: function() {
