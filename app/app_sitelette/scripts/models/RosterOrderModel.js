@@ -45,9 +45,9 @@ var RosterOrderModel = Backbone.Model.extend({
 			tipSum: 0,
 			cachedTotalAmount: this.get('totalAmount'),
 			paymentOnlineAccepted: options.sasl.get('services').catalog['paymentOnlineAccepted'],
-			allowPickUp: true,//options.sasl.get('services').catalog['allowPickUp'], //true
-			allowDelivery: true,//options.sasl.get('services').catalog['allowDelivery'], //true,
-			allowCash: true,//options.sasl.get('services').catalog['allowCash'], //true,
+			allowPickUp: options.sasl.get('services').catalog['allowPickUp'], //true
+			allowDelivery: options.sasl.get('services').catalog['allowDelivery'], //true,
+			allowCash: options.sasl.get('services').catalog['allowCash'], //true,
 			showTipOnSummaryPage: options.sasl.get('services').catalog['showTipOnSummaryPage'], //true,
 			discount: 0,
 			maximumDiscount: 0,
