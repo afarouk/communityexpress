@@ -24,7 +24,7 @@ define([
 		events: {
 			'click @ui.back': 'onBack',
 			'click @ui.next': 'onNext',
-			'click @ui.left': 'onDeliverySelected',
+			'click @ui.left': 'onCreditCardSelected',
 			'click @ui.right': 'onCashSelected',
             'click .plus_button': 'incrementTip',
             'click .minus_button': 'decrementTip',
@@ -73,13 +73,14 @@ define([
 		},
 
 		onRender: function() {
+			//TODO check if it make sense 
 			var cashOnly = this.allowCash && !this.allowDelivery ,
-				deliveryOnly = !this.allowCash && this.allowDelivery;
+				cardOnly = !this.allowCash && this.allowDelivery;
 			if (cashOnly || this.model.get('cashSelected')) {
 	            // this.$('.left').addClass('disabled');
 	            // this.$('.left').css('pointer-events', 'none');
 	            this.$('.right').click();
-	        } else if (deliveryOnly) {
+	        } else if (cardOnly) {
 	            // this.$('.right').addClass('disabled');
 	            // this.$('.right').css('pointer-events', 'none');
 	            this.$('.left').click();
@@ -99,8 +100,8 @@ define([
 	    	}
 	    },
 
-	    onDeliverySelected: function() {
-	    	this.model.set('deliverySelected', true);
+	    onCreditCardSelected: function() {
+	    	this.model.set('creditCardSelected', true);
 	    	this.model.set('cashSelected', false);
 	    },
 	    onCashSelected: function() {
