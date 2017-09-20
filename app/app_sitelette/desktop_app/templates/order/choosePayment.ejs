@@ -19,7 +19,7 @@
 
 <div class="tabs">
   <button data-activate="credit" class="tablinks left"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>Credit</button>
-  <button data-activate="cash" class="tablinks right"><i class="fa fa-money" aria-hidden="true"></i>Cash</button>
+  <button data-activate="cash" class="tablinks right" <% if (!allowCash){ %>disabled<% } %>><i class="fa fa-money" aria-hidden="true"></i>Cash</button>
 </div>
 
 <div id="credit" class="tabcontent card">

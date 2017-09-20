@@ -29,6 +29,10 @@ define([
 			});
 		},
 
+		onRender: function() {
+			this.onTabShown();
+		},
+
 		getAddressFromSasl: function() {
 	        var address = {
 	            name: saslData.saslName,

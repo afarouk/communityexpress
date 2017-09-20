@@ -15,6 +15,8 @@ define([
 	    	var $target = $(e.currentTarget),
 	    		activate = $target.data('activate'),
 	    		$tab = this.$('#' + activate);
+
+	    	// if (this.view.tabActive === activate) return; //doesn't work because re-render
 	    	this.view.tabActive = activate;
 	    	this.ui.tab.removeClass('active');
 	    	$target.addClass('active');

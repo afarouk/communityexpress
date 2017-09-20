@@ -24,8 +24,6 @@ define([
 		events: {
 			'click @ui.back': 'onBack',
 			'click @ui.next': 'onNext',
-			'click @ui.left': 'onCreditCardSelected',
-			'click @ui.right': 'onCashSelected',
             'click .plus_button': 'incrementTip',
             'click .minus_button': 'decrementTip',
             'click .add-note': 'toggleAddNote',
@@ -91,10 +89,12 @@ define([
 
 		onTabShown: function() {
 	    	if (this.tabActive === 'cash') {
+	    		this.onCashSelected();
 	    		this.$el.find('.navigation_block .nav_next_btn').css('visibility', 'hidden');
 	    		this.ui.bottom_btns_block.show();
 	    	}
 	    	else {
+	    		this.onCreditCardSelected();
 	    		this.ui.next.css('visibility', 'visible');
 	    		this.ui.bottom_btns_block.hide();
 	    	}

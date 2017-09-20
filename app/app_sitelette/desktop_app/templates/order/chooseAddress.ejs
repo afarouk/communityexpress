@@ -18,8 +18,8 @@
 </div>
 
 <div class="tabs">
-  <button data-activate="delivery" class="tablinks left <% if (allowDelivery) { %>active<% } %>"><i class="fa fa-car" aria-hidden="true"></i>Delivery</button>
-  <button data-activate="pick_up" class="tablinks right <% if (!allowDelivery) { %>active<% } %>"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Pick up</button>
+  <button data-activate="delivery" class="tablinks left <% if (allowDelivery) { %>active<% } %>"  <% if (!allowDelivery){ %>disabled<% } %> ><i class="fa fa-car" aria-hidden="true"></i>Delivery</button>
+  <button data-activate="pick_up" class="tablinks right <% if (!allowDelivery) { %>active<% } %>" <% if (!allowPickUp){ %>disabled<% } %> ><i class="fa fa-shopping-bag" aria-hidden="true"></i>Pick up</button>
 </div>
 
 <div id="delivery" class="tabcontent" <% if (allowDelivery) { %> style="display: block;"<% } %>>
