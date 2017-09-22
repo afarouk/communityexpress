@@ -16,11 +16,24 @@ var initUser = function(response) {
         });
 };
 
+var facebookLogout = function() {
+    FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {
+            //facebook logout is recommended on user logout
+            //but it will logout all apps on this browser
+            FB.logout(function(response){
+                console.log(response.status);
+            });
+        }
+    }.bind(this), true);
+};
+
 var killUser = function(response) {
     appCache.get('user').kill();
     //localStorage.removeItem('cmxUID');
     Cookies.remove('cmxUID');
     Vent.trigger('logout_success');
+    facebookLogout();
     return response;
 };
 

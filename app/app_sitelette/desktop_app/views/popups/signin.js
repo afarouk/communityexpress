@@ -56,7 +56,7 @@ define([
      		}, this.onClose.bind(this), this.callback);
      	},
           loginWithFacebook: function() {
-               this.trigger('user:facebook', this.onClose.bind(this));
+               this.trigger('user:facebook', this.facebookStatus, this.onClose.bind(this));
           },
      	onSignup: function() {
      		this.trigger('user:signup');

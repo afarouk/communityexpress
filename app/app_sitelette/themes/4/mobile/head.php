@@ -80,7 +80,7 @@
         window.community.type = '<?php echo $type ?>';
         window.community.uuidURL = '<?php echo $uuidURL ?>';
         window.community.embedded = <?php echo  $embedded==TRUE?'true':'false'  ?>;
-        window.community.desktop = <?php echo  $desktopIFrame==TRUE?'true':'false' ?>;
+        window.community.desktop = <?php echo  $isDesktop==TRUE?'true':'false' ?>;
         window.community.publicAccess = <?php echo  $urlKeyAccess==TRUE?'true':'false'?>;
         window.community.directAccess = <?php echo  $saslAccess==TRUE?'true':'false'?>;
         window.community.demo = <?php echo  $demo==TRUE?'true':'false'?>;

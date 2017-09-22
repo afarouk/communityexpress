@@ -121,8 +121,8 @@ define([
 				});
             }.bind(this));
 		},
-		onUserFacebookLogin: function(onClose) {
-			sessionActions.facebookLoginStatus(this.facebookStatus)
+		onUserFacebookLogin: function(status, onClose) {
+			sessionActions.facebookLoginStatus(status)
                 .then(function(response){
              		onClose();
                     if (response.success) {

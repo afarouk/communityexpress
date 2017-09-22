@@ -34,8 +34,8 @@ var NavbarView = Backbone.View.extend({
         this.sl = community.serviceLocationId;
         this.visible=true;
 
-        this.user = sessionActions.getCurrentUser();
-        if (this.user.getUID()) {
+        var user = sessionActions.getCurrentUser();
+        if (user.getUID()) {
             $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
         };
 
@@ -134,8 +134,9 @@ var NavbarView = Backbone.View.extend({
     },
 
     signout: function() {
+        var user = sessionActions.getCurrentUser();
         loader.show();
-        userController.logout(this.user.getUID()).then(function(){
+        userController.logout(user.getUID()).then(function(){
             loader.showFlashMessage( 'signed out' );
             $('.menu_button_5').removeClass('sign_out');
             // $('.menu_button_5').removeClass('navbutton_sign_out').addClass('navbutton_sign_in');
@@ -152,7 +153,8 @@ var NavbarView = Backbone.View.extend({
     },
 
     toggle: function () {
-        if ( !this.user.getUID() || Cookies.get('cmxAdhocEntry') == 'true') {
+        var user = sessionActions.getCurrentUser();
+        if ( !user.getUID() || Cookies.get('cmxAdhocEntry') == 'true') {
             this.signin();
         } else {
             this.confirmSignout();

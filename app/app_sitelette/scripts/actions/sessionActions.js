@@ -184,11 +184,13 @@ module.exports = {
 
     facebookLoginStatus: function(status) {
         var def = $.Deferred(),
-            isMobile = !window.community.desktop,
+            isDesktop = window.community.desktop,
+            isMobile = !isDesktop,
             standalone = window.navigator.standalone;
         console.log('isMobile: ', isMobile);
         console.log('standalone: ', standalone);
-        if (isMobile && standalone === true && status === 'connected') {
+        // if (isMobile && standalone === true && status === 'connected') {
+        if (status === 'connected') {
             this.getPublicProfile(def);
         } else {
             FB.login(function(response) {
