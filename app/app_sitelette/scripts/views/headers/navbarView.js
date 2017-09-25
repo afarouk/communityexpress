@@ -63,7 +63,9 @@ var NavbarView = Backbone.View.extend({
                     this.triggerRosterView();
                     break;
                 case 'CATALOGS':
-                    Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl]);
+                    Vent.trigger('viewChange', 'catalogs', {
+                        id: [this.sa, this.sl]
+                    });
                     break;
                 case 'CATALOG':
                     Vent.trigger('viewChange', 'catalog', {

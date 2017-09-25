@@ -257,7 +257,7 @@ var LandingView = Backbone.View.extend({
                     Vent.trigger('viewChange', 'catalog', {
                         backToRoster: false,
                         backToCatalogs: false,
-                        backToCatalog: false // TODO check if it's right
+                        backToCatalog: true
                     });
                     break;
             default:

@@ -108,11 +108,14 @@ App.prototype = {
                     });
                 });
         } else if (Cookies.get('cmxUID')) {
-            sessionActions.getSessionFromLocalStorage().then(function() {
-                Backbone.history.start({
-                    pushState: true
-                });
-            });
+            sessionActions.getSessionFromLocalStorage(this.params)
+                .then(function() {
+                    Backbone.history.start({
+                        pushState: true
+                    });
+                }, function() {
+                    // Cookies.remove('cmxUID');
+                }.bind(this));
         } else if (this.params.canCreateAnonymousUser && !this.params.embedded) {
             $.when(sessionActions.createAnonymousUser()).done(function() {
                 sessionActions.getSessionFromLocalStorage().then(function() {

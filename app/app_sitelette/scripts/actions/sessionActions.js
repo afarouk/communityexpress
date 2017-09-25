@@ -95,7 +95,9 @@ module.exports = {
     },
 
     authenticate: function (uid) {
-        return gateway.sendRequest('getAuthenticationStatus', {UID: uid}).then(function (response) {
+        return gateway.sendRequest('getAuthenticationStatus', {
+            UID: uid
+        }).then(function (response) {
             if (response.action && response.action.enumText === 'NO_ACTION') {
                 onLoginSuccess({
                     uid: uid,
@@ -106,7 +108,7 @@ module.exports = {
         }.bind(this));
     },
 
-    getSessionFromLocalStorage: function () {
+    getSessionFromLocalStorage: function (params) {
         var dfd = $.Deferred();
         var persistedUID;
 
@@ -114,7 +116,9 @@ module.exports = {
         Cookies.set('cmxAdhocEntry', false);
         if (persistedUID) {
             window.asdesds=persistedUID;
-            gateway.sendRequest('getAuthenticationStatus', {UID: persistedUID}).then(function (response) {
+            gateway.sendRequest('getAuthenticationStatus', {
+                UID: persistedUID
+            }).then(function (response) {
                 if (response.action && response.action.enumText === 'NO_ACTION') {
                     onLoginSuccess({
                         uid: persistedUID,
@@ -127,9 +131,13 @@ module.exports = {
                 }
                 dfd.resolve(response);
             }.bind(this), function onRequestError () {
-                console.log("not removing cookie, onRequestError ?");
-                dfd.reject();
-            });
+                if (params && params.canCreateAnonymousUser && !params.embedded) {
+                    this.doesUIDexist(persistedUID, dfd);
+                } else {
+                    console.log("not removing cookie, onRequestError ?");
+                    dfd.reject();
+                }
+            }.bind(this));
         } else {
             dfd.resolve();
         }
@@ -155,8 +163,28 @@ module.exports = {
         return gateway.sendRequest('registerNewMember', {payload:payload}).then(onLoginSuccess);
     },
 
+    doesUIDexist: function(UID, dfd) {
+        return gateway.sendRequest('doesUIDexist', {
+            UID: UID,
+        }).then(function(response) {
+            if (response.success) {
+                //Now do nothing
+            } else {
+                Cookies.remove('cmxUID');
+                $.when(this.createAnonymousUser())
+                    .then(function(){
+                        this.getSessionFromLocalStorage().then(function(response){
+                            dfd.resolve(response);
+                        }.bind(this), function(){
+                            console.log("not removing cookie, onRequestError ?");
+                            dfd.reject();
+                        });
+                    }.bind(this));
+            }
+        }.bind(this));
+    },
+
     createAnonymousUser: function() {
-        var self = this;
         return gateway.sendRequest('createAnonymousUser', {
             serviceAccommodatorId: window.saslData.serviceAccommodatorId,
             serviceLocationId: window.saslData.serviceLocationId
@@ -171,9 +199,9 @@ module.exports = {
                     userRegistrationDetails.uid);
                 //localStorage.setItem("cmxUID", userRegistrationDetails.uid);
                 Cookies.set('cmxUID',userRegistrationDetails.uid , {expires:365});
-                self.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
+                this.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
             }
-        });
+        }.bind(this));
     },
 
     forgotPassword: function(email) {

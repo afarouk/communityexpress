@@ -72,6 +72,7 @@ module.exports = {
             getAuthenticationStatus: ['GET', '/authentication/getAuthenticationStatus'],
             registerNewMemberWithInvitationCode: ['POST', '/authentication/registerNewMemberWithInvitationCode'],
             createAnonymousUser: ['POST', '/authentication/registerAnonymousAdhocMember'],
+            doesUIDexist: ['GET', '/authentication/doesUIDexist'],
 
             retrieveLoyaltyStatus: ['GET', '/retail/retrieveLoyaltyStatus'],
 

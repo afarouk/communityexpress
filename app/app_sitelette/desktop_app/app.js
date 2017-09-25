@@ -39,14 +39,14 @@ define([
 		                    dispatcher.get('popups').onLoginStatusChanged();
 		                });
 		        } else if (Cookies.get('cmxUID')) {
-		            sessionActions.getSessionFromLocalStorage()
+		            sessionActions.getSessionFromLocalStorage(this.params)
 		            	.then(function(response) {
 			                Backbone.history.start({
 			                    pushState: true
 			                });
 			                dispatcher.get('popups').onLoginStatusChanged();
 		            	}, function() {
-		            		Cookies.remove('cmxUID');
+		            		// Cookies.remove('cmxUID');
 		            	}.bind(this));
 		        } else if (this.params.canCreateAnonymousUser && !this.params.embedded) {
 		            $.when(sessionActions.createAnonymousUser()).done(function() {
