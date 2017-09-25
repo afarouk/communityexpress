@@ -51,7 +51,13 @@ $completeURL = full_url($_SERVER, true);
 $serverName  = $_SERVER['SERVER_NAME'];
 /* determine the http host */
 
-
+/* temporary facebook appId by is production or not */
+/* facebook logout won't work on localhost probably */
+$FacebookAppId = '793067554198873';
+if ($serverName === 'chalkboardstoday.com') {
+    $FacebookAppId = '325638451175132';
+}
+/*  ...  */
 
 /* is API server specified? */
 
