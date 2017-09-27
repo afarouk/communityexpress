@@ -240,6 +240,97 @@
 
                     <!----- End of welcome block  ---------------->
 
+                    <!--    APPOINTMENTS-->
+                      <li id="cmtyx_appointments_block" class="grid-item cmtyx_appointments_block">
+                        <div class="header cmtyx_color_3">
+                          <span class="title">Appointments</span>
+                        </div>
+                        <div class="body">
+                          <div class="navigation_block">
+                            <span class="arr back_arr"> <span
+                              class="arr_icon back_arr_icon"></span>
+                            </span> <span class="date">Aug, 24, 2016</span> <span class="arr next_arr">
+                              <span class="arr_icon next_arr_icon"></span>
+                            </span>
+                          </div>
+                          <div class="schedule_block">
+                            <table>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">10:00</td>
+                                <td rowspan="2" class="event">
+                                  <div class="event_description">We are passionate about
+                                    coffee. Our founder has a PhD in Coffiology, from the Columbian
+                                    Beverage Science Academy.</div>
+                                </td>
+                              </tr>
+                              <tr>
+                              </tr>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">11:00</td>
+                                <td rowspan="2" class="event">
+                                  <div class="event_description reserved">(Reserved)</div>
+                                </td>
+                              </tr>
+                              <tr>
+                              </tr>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">12:00</td>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">13:00</td>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">14:00</td>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">15:00</td>
+                                <td rowspan="2" class="event">
+                                  <div class="event_description">We are passionate about
+                                    coffee. Our founder has a PhD in Coffiology, from the Columbian
+                                    Beverage Science Academy.</div>
+                                </td>
+                              </tr>
+                              <tr>
+                              </tr>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">16:00</td>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">17:00</td>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td rowspan="2" class="hour cmtyx_text_color_1 right_border">18:00</td>
+                                <td class="event"></td>
+                              </tr>
+                              <tr>
+                                <td class="event"></td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </li>  
+                    <!--   end of APPOINTMENTS-->
+
                     <!----- Promotions  ---------------->
                     <div id="cmtyx_promotion_block" class="grid-item cmtyx_promotion_block">
                       <div class="header cmtyx_color_3">

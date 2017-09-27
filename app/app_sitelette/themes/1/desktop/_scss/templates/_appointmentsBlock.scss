@@ -1,0 +1,35 @@
+.cmtyx_desktop_application {
+  .home_tabs_list {    
+    .cmtyx_appointments_block {
+      position: relative;
+      display: none;
+      
+      .body {
+        padding: 5px 20px 0px 20px;   
+
+        .navigation_block {
+          color: $cart-text;
+          font-size: 14px;
+        }
+
+        .schedule_block {
+          .event_description {
+            color: $cart-text;
+            font-size: 14px;
+            line-height: 20px;
+          }
+          td {
+            vertical-align: middle;
+            padding: 5px 10px;
+          }
+        }
+      }
+
+      .no_appointments {
+        color: $cart-text;
+        text-align: center;
+        padding: 25px 0 10px 0;
+      }
+    }
+  }
+}

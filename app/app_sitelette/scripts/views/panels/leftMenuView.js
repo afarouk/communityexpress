@@ -39,6 +39,8 @@ var LeftMenuView = PanelView.extend({
     getActiveButtonsAndUser: function() {
         var user = sessionActions.checkIfUserAppropriate(),
             buttons = _.filter(this.sasl.get('services'), function (option, key) {
+                // if (option && option.masterEnabled === false) option.masterEnabled = true; //temporary for testing
+                
                 if (!option || !option.masterEnabled) return false;
                 option.key = key;
                 return true;

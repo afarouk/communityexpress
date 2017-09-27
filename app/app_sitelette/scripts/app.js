@@ -27,7 +27,8 @@ var userController = require('./controllers/userController'),
     LandingReviewsView = require('./views/landingSubviews/landingReviewsView'),
     PromotionView = require('./views/landingSubviews/promotionView'),
     PhotoContestView = require('./views/landingSubviews/photoContestView'),
-    LoyaltyCardView = require('./views/landingSubviews/loyaltyCardView');
+    LoyaltyCardView = require('./views/landingSubviews/loyaltyCardView'),
+    AppointmentsBlockView = require('./views/landingSubviews/appointmentsBlockView');
 
 var hasUIDinQueryParams = function() {
     var params = location.search.match(/UID=/);
@@ -141,6 +142,7 @@ App.prototype = {
 
     initSubviews: function() {
         this.viewsInLanding = {
+            appointments: this.createSubview( AppointmentsBlockView ),
             loyaltyCard: this.createSubview( LoyaltyCardView ),
             events: this.createSubview( EventsView ),
             discounts: this.createSubview( DiscountsView ),

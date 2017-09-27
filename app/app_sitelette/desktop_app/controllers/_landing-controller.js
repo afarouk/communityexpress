@@ -6,13 +6,15 @@ define([
 	'../views/landing/discounts',
 	'../views/landing/promotions',
 	'../views/landing/loyaltyCard',
+	'../views/landing/appointments',
 	'../views/landing/share',
 	'../../scripts/actions/contactActions',
 	'../../scripts/actions/loyaltyActions',
 	'../views/popups/sendsms',
 	'../views/backBtnView',
 	], function(appCache, h,
-		DiscountsView, PromotionsView, LoyaltyCardView, ShareView, contactActions, loyaltyActions, SendsmsView, BackBtnView){
+		DiscountsView, PromotionsView, LoyaltyCardView, AppointmentsView, 
+		ShareView, contactActions, loyaltyActions, SendsmsView, BackBtnView){
 	var LandingController = Mn.Object.extend({
 		start: function() {
 			this.discountsView = new DiscountsView();
@@ -26,8 +28,13 @@ define([
 			this.loyaltyProgram = saslData.loyaltyProgram || {};
 			this.loyaltyCardView = new LoyaltyCardView();
 			this.loyaltyCardView.render(this.loyaltyProgram);
+
 			this.listenTo(this.loyaltyCardView, 'onRefresh', this.onLoyaltyRefresh.bind(this));
 			this.listenTo(this.loyaltyCardView, 'onSendSMS', this.onSendSMS.bind(this));
+
+			//TODO get appointments data and render 
+			//after calendar changed rerender
+			this.appointmentsView = new AppointmentsView();
 
 			var shareView = new ShareView();
 			this.listenTo(shareView, 'onSendSMS', this.onSendSMS.bind(this));
