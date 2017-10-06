@@ -156,7 +156,12 @@ var CustomizationView = Backbone.View.extend({
             var selected = subItem.selected,
                 displayText = subItem.displayText;
             customizationNote += displayText + ':';
-            customizationNote += _.pluck(selected, 'displayText').join(',') + '; ';
+            customizationNote += _.reduce(selected, function(first, second){
+                var first = first || '';
+                return first + '+ ' + second.displayText + '(' + second.priceAdjustment.toFixed(2) + '),'; 
+            }, 0);
+            customizationNote = customizationNote.slice(0, -1);
+            customizationNote += '; ';
             adjustedPrice += _.reduce(_.pluck(selected, 'priceAdjustment'), function(a, b) {return a+b;});
         });
         customizationNote = customizationNote.slice(0, -2);

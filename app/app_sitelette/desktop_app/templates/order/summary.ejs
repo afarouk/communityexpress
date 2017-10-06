@@ -51,7 +51,7 @@
                     <span class="customization-title"><%= subItem.displayText %>:</span>
                     <ul class="customization-part">
                       <% _.each(subItem.selected, function(subSubItem){ %>
-                        <li class="customization-item-name"><%= subSubItem.displayText %></li>
+                        <li class="customization-item-name">+ <%= subSubItem.displayText %> (<%= subSubItem.priceAdjustment.toFixed(2) %>)</li>
                       <% }); %>
                     </ul>
                   <% }); %>
