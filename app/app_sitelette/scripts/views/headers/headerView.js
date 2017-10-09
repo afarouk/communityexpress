@@ -17,6 +17,7 @@ var HeaderView = Backbone.View.extend({
     events: {
         'click #cmtyx_header_back_button': 'triggerPreviousView',
         'click #cmtyx_header_menu_button': 'openLeftMenu',
+        'click #cmtyx_header_qrCode_button': 'qrCodeExpande',
         'click #cmtyx_header_prev_page_button': 'goPrevPage'
     },
 
@@ -80,6 +81,10 @@ var HeaderView = Backbone.View.extend({
 
     openLeftMenu: function() {
         popupController.openLeftMenu();
+    },
+
+    qrCodeExpande: function() {
+        $('#loyalty-bar-code').toggleClass('visible');
     },
 
     checkPrevPageAvailable: function() {
