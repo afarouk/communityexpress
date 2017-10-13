@@ -71,17 +71,20 @@ define([
 		},
 
 		onRender: function() {
-			//TODO check if it make sense 
-			var cashOnly = this.allowCash && !this.allowDelivery ,
-				cardOnly = !this.allowCash && this.allowDelivery;
-			if (cashOnly || this.model.get('cashSelected')) {
-	            // this.$('.left').addClass('disabled');
-	            // this.$('.left').css('pointer-events', 'none');
+			var cashOnly = this.allowCash && !this.paymentOnlineAccepted,
+				cardOnly = !this.allowCash && this.paymentOnlineAccepted;
+			if (cashOnly) {
+	            this.$('.left')
+	            	.addClass('disabled')
+	            	.attr('disabled', 'disabled');
 	            this.$('.right').click();
 	        } else if (cardOnly) {
-	            // this.$('.right').addClass('disabled');
-	            // this.$('.right').css('pointer-events', 'none');
+	            this.$('.right')
+	            	.addClass('disabled')
+	            	.attr('disabled', 'disabled');
 	            this.$('.left').click();
+	        } else if (this.model.get('cashSelected')) {
+	        	this.$('.right').click();
 	        } else {
 	        	this.$('.left').click();
 	        }
