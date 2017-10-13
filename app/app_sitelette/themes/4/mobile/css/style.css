@@ -72,6 +72,12 @@ html {}
 
 .popup_container { background-color: #363636; }
 
+/* try to fix very rare bug on iPhone when popup shows up behind the mask */
+.ui-popup-screen,
+.ui-popup-container {
+    transform: translate3d(0, 0, 0);
+}
+
 i.fa {
     margin-right: 5px;
 }
