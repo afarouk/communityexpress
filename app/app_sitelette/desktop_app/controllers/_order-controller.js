@@ -136,13 +136,11 @@ define([
                 fundsource = ret.fundsource;
                 var sa = sasl.get('serviceAccommodatorId'),
                     sl = sasl.get('serviceLocationId');
-                return orderActions.getPriceAddons(sa, sl);
-            }).then(function(ret) {
+
             	var modelOptions = {
             		sasl: sasl,
                     addresses: addresses,
                     fundsource: fundsource,
-                    priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     basket: options.basket,
                     catalogId: options.catalogId,
@@ -151,7 +149,6 @@ define([
                     promoUUID: options.promoUUID,
                     uuid: options.uuid
             	};
-                //var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + basketType);
                 var orderModel = new RosterOrderModel({}, modelOptions);
                 appCache.set('basket', options.basket);
                 this.showChooseAddress(orderModel);

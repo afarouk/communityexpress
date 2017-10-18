@@ -14,6 +14,7 @@ var RosterOrderModel = Backbone.Model.extend({
 	additionalParams: {},
 
 	initialize: function(attr, options) {
+		this.saslCatalog = options.sasl.get('services').catalog;
 		_.extend(this.attributes, this.getDefaults(options));
 		this.setAdditionalParams(options);
 	    this.set('promoCode',options.promoCode);
@@ -24,7 +25,7 @@ var RosterOrderModel = Backbone.Model.extend({
 		//FIFP2016
 		//localhost/demohairstylist?demo=true&desktopiframe=true
 		_.extend(this.additionalParams, {
-			symbol: this.currencySymbols[options.priceAddons.currencyCode] || '$',
+			symbol: this.currencySymbols[this.saslCatalog['currencyCode']] || '$',
 			catalogId: options.catalogId,
 			backToCatalog: options.backToCatalog,
 			backToCatalogs: options.backToCatalogs,
@@ -36,7 +37,7 @@ var RosterOrderModel = Backbone.Model.extend({
 			launchedViaURL: options.launchedViaURL,
 			rosterId: options.rosterId,
 			combinedItems: this.getCombinedItems(options),
-			taxState: options.priceAddons.taxState,
+			taxState: this.saslCatalog['taxState'],
 			userModel: options.user,
 			coords: this.getCoords(options.sasl.attributes),
 			basket: options.basket,
@@ -44,11 +45,11 @@ var RosterOrderModel = Backbone.Model.extend({
 			tip: 0,
 			tipSum: 0,
 			cachedTotalAmount: this.get('totalAmount'),
-			paymentOnlineAccepted: options.sasl.get('services').catalog['paymentOnlineAccepted'],
-			allowPickUp: options.sasl.get('services').catalog['allowPickUp'], //true
-			allowDelivery: options.sasl.get('services').catalog['allowDelivery'], //true,
-			allowCash: options.sasl.get('services').catalog['allowCash'], //true,
-			showTipOnSummaryPage: options.sasl.get('services').catalog['showTipOnSummaryPage'], //true,
+			paymentOnlineAccepted: this.saslCatalog['paymentOnlineAccepted'],
+			allowPickUp: this.saslCatalog['allowPickUp'],
+			allowDelivery: this.saslCatalog['allowDelivery'],
+			allowCash: this.saslCatalog['allowCash'],
+			showTipOnSummaryPage: this.saslCatalog['showTipOnSummaryPage'],
 			discount: 0,
 			maximumDiscount: 0,
 			minimumPurchase: 0,
@@ -76,11 +77,11 @@ var RosterOrderModel = Backbone.Model.extend({
 			creditCardSelected: true,
 			fundSourceId: fundsource.fundSourceId || null,
 			items: this.getItems(options),
-                        tipAmount: options.tipAmount,
+            tipAmount: options.tipAmount,
 			subTotal: this.getPriceWithoutTaxes(options),
 			taxAmount: this.calculateTaxes(options),
 			totalAmount: this.getTotalPriceWithTax(options),
-                        currencyCode: options.priceAddons.currencyCode,
+            currencyCode: this.saslCatalog['currencyCode'],
 			saveCreditCardForFutureReference: fundsource.saveCardForReuse || false,
 			deliveryAddress: this.getAddress(options.addresses[0] || {}),
 			creditCard: this.getCreditCard(fundsource),
@@ -155,7 +156,7 @@ var RosterOrderModel = Backbone.Model.extend({
     //...............
 
     calculateTaxes: function(options) {
-        return parseInt(options.basket.getTotalPrice() * options.priceAddons.taxState) / 100;
+        return parseInt(options.basket.getTotalPrice() * this.saslCatalog['taxState']) / 100;
     },
 
     getCombinedItems: function(options) {
