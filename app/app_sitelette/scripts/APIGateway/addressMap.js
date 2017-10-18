@@ -91,7 +91,6 @@ module.exports = {
             getEventDetails: ['GET', '/reservations/retreiveEventDetailsForPurchase'],
 
             getOrderPrefillInfo: ['GET', '/retail/getOrderPrefillInfo'],
-            getPriceAddons: ['GET', '/retail/retrieveRetailPriceAddon'],
 
             retrieveOrdersByUID: ['GET', '/retail/retrieveOrdersByUID'],
             retrieveOrderByID: ['GET', '/html/retrieveOrderByID'],

@@ -758,8 +758,6 @@ module.exports = {
                 fundsource = ret.fundsource;
                 var sa = sasl.get('serviceAccommodatorId'),
                     sl = sasl.get('serviceLocationId');
-                return orderActions.getPriceAddons(sa, sl);
-            }).then(function(ret) {
                 /*
                  * pull up the basket for this sasl
                  */
@@ -768,7 +766,6 @@ module.exports = {
                     sasl: sasl,
                     addresses: addresses,
                     fundsource: fundsource,
-                    priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/roster',
                     basket: basket,
