@@ -2258,9 +2258,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .common_header .qrCode_btn {
     position: absolute;
     right: 10px;
-    top: 0;
+    top: 1px;
     width: 44px;
-    height: 44px;
+    height: 43px;
     display: none;
     justify-content: center;
     align-items: center;
@@ -2268,6 +2268,25 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 
 .common_header .qrCode_btn.visible {
     display: flex;
+}
+.common_header .qrCode_btn.visible.pulse {
+    background-color: white;
+    animation: qrCodePulse 2s infinite;
+    transform: translate3d(0, 0, 0);
+}
+@keyframes qrCodePulse {
+    0% {
+        background-color: white;
+        opacity: 1;
+    }
+    50% {
+       background-color: transparent;
+       opacity: 0.7;
+    }
+    100% {
+        background-color: white;
+        opacity: 1;
+    }
 }
 
 .common_header .qrCode_btn .qr_image {

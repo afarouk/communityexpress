@@ -7,7 +7,8 @@ var Vent = require('../../Vent'),
   contactActions = require('../../actions/contactActions'),
   sessionActions = require('../../actions/sessionActions.js'),
   loyaltyActions = require('../../actions/loyaltyActions.js'),
-  template = require('ejs!../../templates/landingSubviews/loyaltyCardView.ejs');
+  template = require('ejs!../../templates/landingSubviews/loyaltyCardView.ejs'),
+  Cookies = require('../../../../vendor/scripts/js.cookie');
 
 var LoyaltyCardView = Backbone.View.extend({
   name: 'loyalty_card',
@@ -71,7 +72,7 @@ var LoyaltyCardView = Backbone.View.extend({
     this.$(this.no_qrCode).slideDown('slow');
     this.$(this.status).text('');
     $('#loyalty-bar-code').removeClass('visible').html('');
-    $('#cmtyx_header_qrCode_button').removeClass('visible');
+    $('#cmtyx_header_qrCode_button').removeClass('visible pulse');
   },
 
   retrieveLoyaltyStatus: function(uid) {
@@ -85,7 +86,7 @@ var LoyaltyCardView = Backbone.View.extend({
             resp.loyaltyBlockLine2 +'</div><div>' + resp.loyaltyBlockLine3 + '</div>';
           this.$(this.status).html(content);
         }
-        $('#cmtyx_header_qrCode_button').addClass('visible');
+        $('#cmtyx_header_qrCode_button').addClass('visible pulse');
 
         $('#loyalty-bar-code').html('<img src="' +
           resp.qrcodeURL + '" alt="" >');
@@ -95,6 +96,10 @@ var LoyaltyCardView = Backbone.View.extend({
         this.$(this.no_qrCode).slideUp('slow');
         this.$(this.qrCode).find('.qr_code_title.title').text(resp.qrCodeBlockLine1);
         this.$(this.qrCode).find('.qr_code_title.info').text(resp.qrCodeBlockLine2);
+        if (!Cookies.get('qrCodeExpanded')) {
+          $('#cmtyx_header_qrCode_button').click();
+          Cookies.set('qrCodeExpanded', true);
+        }
     }, this));
 
   },
