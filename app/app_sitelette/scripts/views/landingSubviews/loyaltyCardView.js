@@ -96,9 +96,9 @@ var LoyaltyCardView = Backbone.View.extend({
         this.$(this.no_qrCode).slideUp('slow');
         this.$(this.qrCode).find('.qr_code_title.title').text(resp.qrCodeBlockLine1);
         this.$(this.qrCode).find('.qr_code_title.info').text(resp.qrCodeBlockLine2);
-        if (!Cookies.get('qrCodeExpanded')) {
+        if (!Cookies.get('cmxQrCodeExpanded')) {
           $('#cmtyx_header_qrCode_button').click();
-          Cookies.set('qrCodeExpanded', true);
+          Cookies.set('cmxQrCodeExpanded', true);
         }
     }, this));
 

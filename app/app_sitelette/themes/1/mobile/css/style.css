@@ -2281,7 +2281,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     }
     50% {
        background-color: transparent;
-       opacity: 0.7;
+       opacity: 0.5;
     }
     100% {
         background-color: white;
