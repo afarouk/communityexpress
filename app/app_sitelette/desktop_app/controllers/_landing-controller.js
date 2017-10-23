@@ -7,13 +7,14 @@ define([
 	'../views/landing/promotions',
 	'../views/landing/loyaltyCard',
 	'../views/landing/appointments',
+	'../views/landing/photoContest',
 	'../views/landing/share',
 	'../../scripts/actions/contactActions',
 	'../../scripts/actions/loyaltyActions',
 	'../views/popups/sendsms',
 	'../views/backBtnView',
 	], function(appCache, h,
-		DiscountsView, PromotionsView, LoyaltyCardView, AppointmentsView, 
+		DiscountsView, PromotionsView, LoyaltyCardView, AppointmentsView, PhotoContestView,
 		ShareView, contactActions, loyaltyActions, SendsmsView, BackBtnView){
 	var LandingController = Mn.Object.extend({
 		start: function() {
@@ -35,6 +36,9 @@ define([
 			//TODO get appointments data and render 
 			//after calendar changed rerender
 			this.appointmentsView = new AppointmentsView();
+
+			//TODO photo contests view
+			this.PhotoContestView = new PhotoContestView();
 
 			var shareView = new ShareView();
 			this.listenTo(shareView, 'onSendSMS', this.onSendSMS.bind(this));

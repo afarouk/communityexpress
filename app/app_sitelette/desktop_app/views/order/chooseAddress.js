@@ -65,6 +65,9 @@ define([
 	            map: this.map
 	        });
 	        google.maps.event.addListener(this.map, 'click', _.bind(this.calculateRoute, this));
+	        //tweak for view reload
+	        google.maps.event.trigger(this.map, 'resize');
+	        this.map.setZoom( this.map.getZoom() );
 	    },
 
 	    calculateRoute: function(location) {
@@ -91,7 +94,7 @@ define([
 
 	    onTabShown: function() {
 	    	if (this.tabActive === 'pick_up') {
-	    		this.showMap();
+	    		setTimeout(this.showMap.bind(this), 1); //tweak for view reload
 	    	}
 	    },
 

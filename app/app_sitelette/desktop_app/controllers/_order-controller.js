@@ -206,7 +206,8 @@ define([
 			var deliveryPickupOptions = model.additionalParams.deliveryPickupOptions;
 
 			return deliveryPickupOptions && 
-				   deliveryPickupOptions.options && 
+				   deliveryPickupOptions.futureOrRegular !== 'UNDEFINED' &&
+				   deliveryPickupOptions.options &&
 				   deliveryPickupOptions.options.length > 0;
 		},
 		showOrderTime: function(model) {
@@ -463,7 +464,7 @@ define([
 		triggerOrder: function() {
 	        this.basket.getItemsNumber() === 0 ?
 	        this.showNoItemsPopup() :
-	        this.dispatcher.get('popups').requireLogIn(this.sasl, function() {
+	        this.dispatcher.get('popups').requireLogIn(function() {
 	            this.$('.sub_header').hide();
 	            Vent.trigger('viewChange', 'address', {
 	                id : this.sasl.getUrlKey(),

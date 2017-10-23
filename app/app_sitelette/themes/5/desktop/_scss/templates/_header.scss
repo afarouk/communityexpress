@@ -1,0 +1,226 @@
+header {
+  height: 70px;
+  background-color: $header-background;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .back-btn-container {
+    position: absolute;
+    left: 0;
+    text-align: center;
+    padding: 0 6px;
+    cursor: pointer;
+
+    display: none;
+
+    .fa {
+      font-size: 36px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  &.with-back-btn {
+    padding: 0 20px 0 50px;
+
+    .back-btn-container {
+      display: block;
+    }
+  }
+
+  .logo-container { 
+  	display: inline-flex;
+  	align-items: center; 
+	
+	.logo {
+	  cursor: pointer;
+	}
+  }
+
+  .share_container {
+  	  width: 25%;
+
+      .item_buttons {
+        .share_btn_block {
+          text-align: center;
+          cursor: pointer;
+          margin: 20px 0 10px 0;
+        }
+      }
+
+      .share-block {
+        // display: none;
+
+        .sms_input_block {
+          text-align: center;
+          display: none;
+
+          .sms_input {
+            background-color: transparent;
+            border: solid 1px $cart-scroll;
+            padding: 5px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+            color: $cart-text;
+          }
+
+          .sms_send_button {
+            height: 31px;
+            border: solid 1px;
+            position: relative;
+            right: 5px;
+            bottom: 1px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            color: $white;
+          }
+        }
+
+        .icons-container-wrapper {
+          .icons-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px 0;
+            width: 100%;
+
+            .text {
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background-color: #616161;
+              font-size: 20px;
+
+              i {
+                padding: 20px;
+              }
+
+              a {
+                outline: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+	.links-container { 
+	  display: inline-block; 
+	  list-style-type: none;
+
+	  .link { 
+  		display: inline-block; 
+  		color: $white;
+  		font-size: $size-normal;
+  		font-weight: $style-normal;
+  		text-transform: uppercase;
+  		cursor: pointer;
+  		vertical-align: middle;
+
+      .user-dropdown {
+
+        .user-dropdown-btn {
+          display: inline-block;
+          font-weight: 700;
+          border: 1px solid #faa019;
+          background-color: transparent;
+          border-radius: 5px;
+          text-transform: uppercase;
+          cursor: pointer;
+          vertical-align: top;
+          background-color: rgba(255,255,255,0.2);
+
+          .caret {
+              display: inline-block;
+              width: 0;
+              height: 0;
+              margin-left: -6px;
+              vertical-align: middle;
+              border-top: 5px dashed;
+              border-right: 5px solid transparent;
+              border-left: 5px solid transparent;
+          }
+        }
+
+        .dropdown-menu {
+          color: white;
+
+          li {
+
+            a {
+              color: white;
+              padding: 6px 10px;
+              font-weight: 600;
+              color: white;
+
+              &:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+              }
+            }
+
+            &.login-wrapper {
+              a {
+                color: #faa019;
+              }
+            }
+          }
+        }
+      }
+
+      .user_email {
+          margin-right: 5px;
+          font-size: $size-normal-small;
+          color: $cart-text;
+          letter-spacing: 1px;
+          font-weight: normal;
+      }
+
+      .fa-user {
+          font-size: 40px;
+          color: $user-icon;
+      }
+
+      .fa-check {
+          position: relative;
+          right: 10px;
+          top: 5px;
+          background-color: $user-tick;
+          border-radius: 50%;
+          padding: 2px;
+      }
+
+      .fa-question {
+          position: relative;
+          right: 10px;
+          top: 5px;
+          background-color: $order-btn;
+          border-radius: 50%;
+          padding: 2px 5px;
+      }
+
+      &.login-btn {
+        display: inline-block; 
+        font-weight: $style-semi-bold;
+        color: $cmtyx_color_1;
+        border: 1px solid $cmtyx_color_1;
+        border-radius: 5px;
+        padding: 15px 25px;
+        text-transform: uppercase;
+        cursor: pointer;
+        vertical-align: top;
+
+        &:hover {
+          background-color: $cmtyx_color_1;
+          color: $white;
+        } 
+      }
+	  }
+	}
+}

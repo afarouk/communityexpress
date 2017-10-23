@@ -244,7 +244,8 @@ if ($saslAccess || $urlKeyAccess) {
             $errorMessage = 'Service unavailable: ' . $siteletteJSON['error']['message'];
         } else {
             $saslJSON                 = json_decode($siteletteJSON['saslJSON'], true);
-            $themeId                  = $saslJSON['themeId'];
+            $themeId                  = $saslJSON['themeId']; //5 for medical
+            //$saslJSON['retailViewType'] = 'MEDICAL';
             $barFontColors            = $saslJSON['themeColors']['barFontColors'];
             $domain                   = $saslJSON['domainEnum'];
             $serviceAccommodatorId    = $saslJSON['serviceAccommodatorId'];

@@ -4,7 +4,7 @@ var path = require('path'),
 	webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin'),
 	config = [],
-	themesCount = 4,
+	themesCount = 5,
 	desktopConfig = {
 		name: 'desktop_config',
 		entry: './app/app_sitelette/sitelette-desktop.js',

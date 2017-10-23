@@ -34,8 +34,7 @@ define([
 			this.listenTo(this.loginView, 'user:login', this.onUserLogin.bind(this));
 			this.listenTo(this.loginView, 'user:logout', this.onUserLogout.bind(this));
 			this.listenTo(this.loginView, 'order:history', this.onOrderHistory.bind(this));
-			this.dispatcher.get('landing').onLoginStatusChanged();
-			this.dispatcher.get('order').onLoginStatusChanged();
+			this.dispatcher.onLoginStatusChanged();
 		},
 		onUserLogin: function(callback) {
 			var signin = new SigninView({

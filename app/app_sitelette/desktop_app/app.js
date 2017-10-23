@@ -65,8 +65,7 @@ define([
 			},
 
 			initSubviews: function() {
-				dispatcher.get('catalogs').manageCatalog();
-				dispatcher.get('landing').start();
+				dispatcher.initSubviews();
 			},
 
 			initLayout: function() {

@@ -23,18 +23,6 @@ define([
             'change @ui.time': 'onSelectTime'
 		},
 
-		onRender: function() {
-			if (this.futureOrRegular === "FUTURE") {
-	            this.$('.left').addClass('disabled');
-	            this.$('.left').attr('disabled', true);
-	            this.$('.right').click();
-	        } else if (this.futureOrRegular === "REGULAR") {
-	            this.$('.right').addClass('disabled');
-	            this.$('.right').attr('disabled', true);
-	            this.$('.left').click();
-	        }
-		},
-
 		serializeData: function() {
 			this.deliveryPickupOptions = this.model.additionalParams.deliveryPickupOptions;
 			var futureOrRegular = this.deliveryPickupOptions.futureOrRegular;
@@ -49,6 +37,18 @@ define([
 	            deliveryPickupOptions: this.deliveryPickupOptions,
 	            futureOrRegular: this.futureOrRegular
 	        });
+		},
+
+		onRender: function() {
+			if (this.futureOrRegular === "FUTURE") {
+	            this.$('.left').addClass('disabled');
+	            this.$('.left').attr('disabled', true);
+	            this.$('.right').click();
+	        } else if (this.futureOrRegular === "REGULAR") {
+	            this.$('.right').addClass('disabled');
+	            this.$('.right').attr('disabled', true);
+	            this.$('.left').click();
+	        }
 		},
 
 		deliveryDateInit: function() {

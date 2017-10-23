@@ -32,6 +32,9 @@ define([
 	                case 'CATALOG':
 	                    this.showSingleCatalog(saslData);
 	                    break;
+	                case 'MEDICAL':
+	                    debugger;
+	                    break;
 	            default:
 	            }
 	        }

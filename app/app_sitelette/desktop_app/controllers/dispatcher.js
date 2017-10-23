@@ -15,17 +15,31 @@ define([
 			Mn.View.prototype.dispatcher = this;
 			this.initControllers();
 
-			this.get('order').renderOrder(); //shows empty cart
+			if (!this.checkMedical()) {
+				this.get('order').renderOrder(); //shows empty cart
+			}
+		},
+		//different type of application MEDICAL APP
+		checkMedical: function() {
+			return window.community.themeId === 5;
 		},
 		initControllers: function() {
-			this.controllers = {
-				'catalogs': new CatalogsController(),
-				'customize': new CustomizeController(),
-				'order': new OrderController(),
-				'landing': new LandingController(),
-				'popups': new PopupsController(),
-				'history': new HistoryController()
-			};
+			if (this.checkMedical()) {
+				this.controllers = {
+					// 'medical': {},
+					'landing': new LandingController(),
+					'popups': new PopupsController()
+				};
+			} else {
+				this.controllers = {
+					'catalogs': new CatalogsController(),
+					'customize': new CustomizeController(),
+					'order': new OrderController(),
+					'landing': new LandingController(),
+					'popups': new PopupsController(),
+					'history': new HistoryController()
+				};
+			}
 			_.each(this.controllers, function(controller) {
 				_.extend(controller, {
 					dispatcher: this,
@@ -68,6 +82,24 @@ define([
 			_.each(this.controllers, function(controller) {
 				controller.triggerMethod('layoutReady');
 			}.bind(this));
+		},
+
+		initSubviews: function() {
+			if (this.checkMedical()) {
+				this.get('landing').start();
+			} else {
+				this.get('catalogs').manageCatalog();
+				this.get('landing').start();
+			}
+		},
+
+		onLoginStatusChanged: function() {
+			if (this.checkMedical()) {
+				//
+			} else {
+				this.get('landing').onLoginStatusChanged();
+				this.get('order').onLoginStatusChanged();
+			}
 		}
 	});
 	return new ControllersDispatcher();
