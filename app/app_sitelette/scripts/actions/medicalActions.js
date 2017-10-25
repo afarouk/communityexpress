@@ -20,30 +20,30 @@ module.exports = {
         return $def;
     },
 
-    getMedicalSecureCode: function (UID) {
+    getMedicalSecurityCode: function (UID) {
         if (emulate) {
             return this.emulateRequest({
-                secureCode: '123'
+                securityCode: '123'
             });
         } else {
-            return gateway.sendRequest('getMedicalSecureCode', {
+            return gateway.sendRequest('getMedicalSecurityCode', {
                 UID: UID
             });
         }
     },
 
-    approveMedicalSecureCode: function (UID, secureCode) {
+    approveMedicalSecurityCode: function (UID, securityCode) {
         if (emulate) {
             return this.emulateRequest({
-                success: true
+                success: true,
+                secondaryID: 'someUId'
             });
         } else {
-            return gateway.sendRequest('approveMedicalSecureCode', {
+            return gateway.sendRequest('approveMedicalSecurityCode', {
                 UID: getUID(),
-                code: secureCode
+                code: securityCode
             });
         }
-        //approveMedicalSecureCode
     },
 
 };

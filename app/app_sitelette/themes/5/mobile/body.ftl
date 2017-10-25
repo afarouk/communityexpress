@@ -433,6 +433,12 @@
 
 	<div id="cmtyx_medicalSecureView">
 		<div class="ticket">
+			<div class="medical-name">
+				<span>Medicuris</span>
+			</div>
+			<div class="medical-logo">
+				<span class="fa fa-heartbeat"></span>
+			</div>
 			<div class="secure-block">
 				<div class="left puzzle">
 					<span class="t"></span>

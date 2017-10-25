@@ -144,15 +144,15 @@ App.prototype = {
     },
 
     onMedicalAppAuth: function(UID) {
-        medicalActions.getMedicalSecureCode(UID)
+        medicalActions.getMedicalSecurityCode(UID)
             .then(function(response) {
-                var secureCode = response.secureCode;
-                $('#cmtyx_medicalSecureView').find('.secure-text').text(secureCode);
+                var securityCode = response.securityCode;
+                $('#cmtyx_medicalSecureView').find('.secure-text').text(securityCode);
                 $('#cmtyx_medicalSecureView').find('.secure-input').focus().on('change', function(e) {
                     var val = $(e.currentTarget).val();
                     console.log(val);
-                    if (val === secureCode) {
-                        this.onSecureCodeApprove(UID, val);
+                    if (val === securityCode) {
+                        this.onSecurityCodeApprove(UID, val);
                     } else {
                         //TODO invalid message
                         console.log('!!!invalid');
@@ -162,22 +162,28 @@ App.prototype = {
                 }.bind(this));
             }.bind(this));
     },
-    onSecureCodeApprove: function(UID, secureCode) {
-        medicalActions.approveMedicalSecureCode(UID, secureCode)
+    onSecurityCodeApprove: function(UID, securityCode) {
+        medicalActions.approveMedicalSecurityCode(UID, securityCode)
             .then(function(response) {
                 if (response.success) {
                     $('#cmtyx_medicalSecureView').find('.secure-block').addClass('secured');
                     setTimeout(function() {
                         $('#cmtyx_landingView').show('slow');
                         $('#cmtyx_medicalSecureView').hide('slow');
-                    }, 2000);
+                    }.bind(this), 2000);
                     $('#cmtyx_medicalSecureView').find('.approve-message>span')
                             .text('* Security code approved.').css('color', 'green');
+                    this.onSecondaryIdReceived(response.secondaryID);
                 } else {
                     //TODO security error
                     console.log('!!!invalid');
                 }
             }.bind(this));
+    },
+
+    onSecondaryIdReceived: function(secondaryID) {
+        console.log(secondaryID);
+        Cookies.set('cmxSecondaryID', secondaryID, {expires: 1});
     },
 
     navbarVisibilityByOrientation: function(viewName) {
