@@ -113,6 +113,163 @@ body {
 #cmtyx_header {
     top: -1px;
 }
+#cmtyx_medicalSecureView {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: gray;
+    z-index: 9999;
+    transform: translate3d(0, 0, 0);
+}
+#cmtyx_medicalSecureView .ticket {
+    background: url('images/medicalTicket.jpg');
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#cmtyx_medicalSecureView .ticket .secure-block {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+    font-size: 33px;
+    color: cadetblue;
+}
+
+#cmtyx_medicalSecureView .ticket .secure-block .left {
+    /*margin-right: 24px;*/
+}
+/*#cmtyx_medicalSecureView .ticket .secure-block .left .secure-text:after {
+    content: '\25ba';
+    position: relative;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    top: -7px;
+    font-size: 17px;
+}*/
+#cmtyx_medicalSecureView .ticket .secure-block .left
+#cmtyx_medicalSecureView .ticket .secure-block .right {
+    width: 60px;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .puzzle {
+    width: 2.5em;
+    height: 2em;
+    margin: 20px;
+    top: 5px;
+    position: relative;
+    -webkit-border-radius: .2em;
+    -moz-border-radius: .2em;
+    border-radius: .2em;
+    cursor: pointer;
+    background-color: #77bde5;
+    transition: 1s;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .left.puzzle {
+    background-color: #77bde5;
+    z-index: 99999;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .right.puzzle {
+    background-color: #3fbfbf;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .puzzle .t {
+    width: 0.8em;
+    height: 0.8em;
+    position: absolute;
+    top: -.6em;
+    left: 0.8em;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+    z-index: 99999999;
+    background-color: inherit;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .puzzle .r {
+    width: 0.8em;
+    height: 0.8em;
+    position: absolute;
+    top: .6em;
+    left: 2.3em;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+    background-color: inherit;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .puzzle .b {
+    width: 0.8em;
+    height: 0.8em;
+    position: absolute;
+    top: 1.4em;
+    left: .8em;
+    -webkit-border-radius: 4em;
+    -moz-border-radius: 4em;
+    border-radius: 2em;
+    background-color: #ebd099;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .puzzle .l {
+    width: 0.8em;
+    height: 0.8em;
+    position: absolute;
+    top: 0.6em;
+    left: -.2em;
+    -webkit-border-radius: 4em;
+    -moz-border-radius: 4em;
+    border-radius: 2em;
+    background-color: #ebd099;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .puzzle .secure-text {
+    position: absolute;
+    left: 0.7em;
+    top: 0.35em;
+    color: azure;
+    font-size: 30px;
+    border: 2px solid #4bdc90;
+    line-height: 30px;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .right .secure-input {
+    width: 55px;
+    background: transparent;
+    border: 2px solid tomato;
+    caret-color: yellow;
+    line-height: 30px;
+    padding: 0;
+    color: azure;
+    font-size: 30px;
+    position: absolute;
+    top: 0.35em;
+    left: 0.7em;
+    height: 34px;
+    z-index: 999999;
+}
+#cmtyx_medicalSecureView .ticket .secure-block .right .secure-input::placeholder { 
+  color: azure;
+}
+
+#cmtyx_medicalSecureView .ticket .secure-block.secured .puzzle {
+    margin: 0;
+}
+#cmtyx_medicalSecureView .ticket .secure-block.secured .puzzle .secure-input {
+    border: 2px solid #4bdc90;
+}
+#cmtyx_medicalSecureView .ticket .approve-message {
+    color: darkseagreen;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    top: 17%;
+    font-size: 18px;
+}
+
+
 #cmtyx_landingView.ui-page {
     padding-top: 45px;
     padding-bottom: 13px;

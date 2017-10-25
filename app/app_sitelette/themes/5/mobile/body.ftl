@@ -431,5 +431,29 @@
 		</div>
 	</div>
 
+	<div id="cmtyx_medicalSecureView">
+		<div class="ticket">
+			<div class="secure-block">
+				<div class="left puzzle">
+					<span class="t"></span>
+					<span class="r"></span>
+					<span class="b"></span>
+					<span class="l"></span>
+					<span class="secure-text">???</span>
+				</div>
+				<div class="right puzzle">
+					<span class="t"></span>
+					<span class="r"></span>
+					<span class="b"></span>
+					<span class="l"></span>
+					<input type="text" pattern="\d*" maxlength="3" name="" class="secure-input" placeholder="???">
+				</div>
+			</div>
+			<div class="approve-message">
+				<span>* Please, type security code.</span>
+			</div>
+		</div>
+	</div>
+
 	<script src="build/bundle.js"></script>
 </body>

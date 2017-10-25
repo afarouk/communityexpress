@@ -123,6 +123,9 @@ module.exports = {
 
             getAppointments: ['GET', '/appointments/fc_retrieveEvents'],
             bookAppointment: ['PUT', '/appointments/fc_bookappointment'],
+
+            getMedicalSecureCode: ['GET', '/medical/getMedicalSecureCode'],
+            approveMedicalSecureCode: ['POST', '/medical/approveMedicalSecureCode'],
         };
     }
 };

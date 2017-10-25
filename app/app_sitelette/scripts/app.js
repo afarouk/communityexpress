@@ -4,6 +4,7 @@ var userController = require('./controllers/userController'),
     configurationActions = require('./actions/configurationActions'),
     updateActions = require('./actions/updateActions'),
     sessionActions = require('./actions/sessionActions'),
+    medicalActions = require('./actions/medicalActions'),
     pageController = require('./pageController.js'),
     config = require('./appConfig.js'),
     h = require('./globalHelpers'),
@@ -100,35 +101,83 @@ App.prototype = {
         if (this.params.embedded) {
             conf.set('embedded', true);
         };
-        if (this.params.UID) {
-            Cookies.set("cmxUID", this.params.UID, {expires:365});
-            sessionActions.authenticate(this.params.UID)
-                .always(function() {
-                    Backbone.history.start({
-                        pushState: true
-                    });
-                });
-        } else if (Cookies.get('cmxUID')) {
-            sessionActions.getSessionFromLocalStorage(this.params)
-                .then(function() {
-                    Backbone.history.start({
-                        pushState: true
-                    });
-                }, function() {
-                    // Cookies.remove('cmxUID');
-                }.bind(this));
-        } else if (this.params.canCreateAnonymousUser && !this.params.embedded) {
-            $.when(sessionActions.createAnonymousUser()).done(function() {
-                sessionActions.getSessionFromLocalStorage().then(function() {
-                    Backbone.history.start({
-                        pushState: true
-                    });
-                });
-            });
+        if (window.saslData.retailViewType === 'MEDICAL') {
+            // console.log(Cookies.get('cmxUID'));
+            if (this.params.UID) {
+                //2JmFudynQX2uuYfhKJ0tlQ
+                this.onMedicalAppAuth(this.params.UID);
+            } else {
+                //TODO something like
+                //UID error
+            }
         } else {
-            this.afterTriedToLogin();
-            return;
+            if (this.params.UID) {
+                Cookies.set("cmxUID", this.params.UID, {expires:365});
+                sessionActions.authenticate(this.params.UID)
+                    .always(function() {
+                        Backbone.history.start({
+                            pushState: true
+                        });
+                    });
+            } else if (Cookies.get('cmxUID')) {
+                sessionActions.getSessionFromLocalStorage(this.params)
+                    .then(function() {
+                        Backbone.history.start({
+                            pushState: true
+                        });
+                    }, function() {
+                        // Cookies.remove('cmxUID');
+                    }.bind(this));
+            } else if (this.params.canCreateAnonymousUser && !this.params.embedded) {
+                $.when(sessionActions.createAnonymousUser()).done(function() {
+                    sessionActions.getSessionFromLocalStorage().then(function() {
+                        Backbone.history.start({
+                            pushState: true
+                        });
+                    });
+                });
+            } else {
+                this.afterTriedToLogin();
+                return;
+            }
         }
+    },
+
+    onMedicalAppAuth: function(UID) {
+        medicalActions.getMedicalSecureCode(UID)
+            .then(function(response) {
+                var secureCode = response.secureCode;
+                $('#cmtyx_medicalSecureView').find('.secure-text').text(secureCode);
+                $('#cmtyx_medicalSecureView').find('.secure-input').focus().on('change', function(e) {
+                    var val = $(e.currentTarget).val();
+                    console.log(val);
+                    if (val === secureCode) {
+                        this.onSecureCodeApprove(UID, val);
+                    } else {
+                        //TODO invalid message
+                        console.log('!!!invalid');
+                        $('#cmtyx_medicalSecureView').find('.approve-message>span')
+                            .text('* Security codes mismatch.').css('color', 'red');
+                    }
+                }.bind(this));
+            }.bind(this));
+    },
+    onSecureCodeApprove: function(UID, secureCode) {
+        medicalActions.approveMedicalSecureCode(UID, secureCode)
+            .then(function(response) {
+                if (response.success) {
+                    $('#cmtyx_medicalSecureView').find('.secure-block').addClass('secured');
+                    setTimeout(function() {
+                        $('#cmtyx_landingView').show('slow');
+                        $('#cmtyx_medicalSecureView').hide('slow');
+                    }, 2000);
+                    $('#cmtyx_medicalSecureView').find('.approve-message>span')
+                            .text('* Security code approved.').css('color', 'green');
+                } else {
+                    //TODO security error
+                    console.log('!!!invalid');
+                }
+            }.bind(this));
     },
 
     navbarVisibilityByOrientation: function(viewName) {
