@@ -55,6 +55,7 @@ var HeaderView = Backbone.View.extend({
 
     showMenuButton: function() {
         this.$el.find('.menu_btn').show();
+        this.$el.find('#cmtyx_header_qrCode_button').show();
         this.showHidePrevPageBtn();
         this.hideBackButton();
     },
@@ -65,6 +66,7 @@ var HeaderView = Backbone.View.extend({
 
     hideMenuButton: function(backOption) {
         this.$el.find('.menu_btn').hide();
+        this.$el.find('#cmtyx_header_qrCode_button').hide();
         this.$el.removeClass('with_back_btn');
         if (backOption.back === true) {
             this.showBackButton();
