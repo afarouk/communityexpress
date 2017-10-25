@@ -11,7 +11,7 @@
             <span class="customization-note"></span>
         </div>
     </div>
-    <div class="sides_extras_item_versions">
+    <div class="sides_extras_item_versions <% if (hasSubItems) { %>with-customization<% } %> <%= versionsClass %>">
         <div class="ui-field-contain versions_buttons">
             <% _.each(selectorVersions, function(selector, index){ %>
                 <select name="select-version-<%= index %>" id="select-version-<%= index %>" data-mini="true">

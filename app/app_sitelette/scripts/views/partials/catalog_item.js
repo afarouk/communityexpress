@@ -50,14 +50,16 @@ var CatalogItemView = Backbone.View.extend({
     },
 
     render: function() {
-        var hasVersions = this.model.get('hasVersions');
+        var hasVersions = this.model.get('hasVersions'),
+            versions = hasVersions ? this.getSelectorVersions() : null;
         if (this.model.get('typeInGroup').enumText === 'OUTOFSTOCK') {
             this.$el.addClass('out-of-stock');
         }
         this.$el.html(template(_.extend({}, this.model.attributes, {
             color: this.color,
             quantity: this.quantity || 0,
-            selectorVersions: hasVersions ? this.getSelectorVersions() : null,
+            selectorVersions: versions,
+            versionsClass: versions ? 'vn-' + versions.length : '',
             availableVersion: hasVersions ? this.getFirstAvailableVersion() : null,
             preopenAllPictures: this.preopenAllPictures,
             direction: this.direction

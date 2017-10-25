@@ -1448,11 +1448,14 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     justify-content: space-between;
 }
 .sides_extras_item_versions .versions_buttons {
-    width: 48%;
+    width: 80%;
     margin: 0;
     padding: 0;
     pointer-events: none;
     border: none;
+}
+.sides_extras_item_versions.with-customization .versions_buttons {
+    width: 48%;
 }
 .ui-btn.customize_btn,
 .ui-btn.customize_btn:hover,
@@ -1517,7 +1520,7 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     height: 15px;
 }
 .sides_extras_item_versions .versions_buttons .ui-select {
-    width: 55%;
+    width: 48%;
     margin-right: 1%;
     margin-left: 0;
     float: left;
@@ -1525,6 +1528,30 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     background-color: #3c3b3b !important;
     pointer-events: all;
 }
+.sides_extras_item_versions.vn-1 .versions_buttons .ui-select {
+    width: 63%;
+}
+.sides_extras_item_versions.with-customization.vn-1 .versions_buttons .ui-select {
+    width: 99%;
+}
+
+.sides_extras_item_versions.vn-2 .versions_buttons .ui-select {
+    width: 49%;
+}
+.sides_extras_item_versions.with-customization.vn-2 .versions_buttons .ui-select {
+    width: 49%;
+}
+
+.sides_extras_item_versions.vn-3 {
+    height: 80px;
+}
+.sides_extras_item_versions.vn-3 .versions_buttons .ui-select {
+    width: 49%;
+}
+.sides_extras_item_versions.with-customization.vn-3 .versions_buttons .ui-select {
+    width: 49%;
+}
+
 .sides_extras_item_versions .versions_buttons .ui-select .ui-btn select {
     font-size: 16px!important;
 }
@@ -1541,6 +1568,9 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     border-radius: 5px!important;
     background-color: black!important;
     width: 65px;
+}
+.sides_extras_item_versions .catalog_item_counter {
+    width: 67px;
 }
 .sides_extras_item_versions .catalog_item_counter a.left.plus_version_button {
     margin: 5px 10px 0 0;
