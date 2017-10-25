@@ -36,12 +36,12 @@ module.exports = {
         if (emulate) {
             return this.emulateRequest({
                 success: true,
-                secondaryID: 'someUId'
+                secondaryID: 'someId'
             });
         } else {
             return gateway.sendRequest('approveMedicalSecurityCode', {
                 UID: getUID(),
-                code: securityCode
+                securityCode: securityCode
             });
         }
     },
