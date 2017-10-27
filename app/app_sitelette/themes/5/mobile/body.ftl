@@ -221,7 +221,7 @@
 				<!----- Sweepstakes (Poll)  ---------------->
 				<li id="cmtyx_poll_block" class="poll_block">
 					<div class="header cmtyx_color_2">
-						<span class="title">Sweepstake</span> <span class="collapse_btn">&#9660;</span>
+						<span class="title">Poll</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
 						<ul class="poll_gallery">
@@ -257,7 +257,7 @@
 						                    <div class="ui-block-a">
 						                        <div class="medal_icon"></div>
 						                    </div>
-						                    <div class="ui-block-b">All entries are entered into our mini sweepstakes!</div>
+						                    <div class="ui-block-b">All uploads are confidential</div>
 						                </div>
 						                <ul class="contest_prizes <#if poll.answerStatus.enumText == 'ANSWERED'>shown</#if>">
 						                    <#list poll.prizes as prize>
@@ -336,7 +336,7 @@
 				
 				<li id="cmtyx_photo_contest_block" class="photo_contest_block">
 					<div class="header cmtyx_color_4">
-						<span class="title">Selfie contest</span> <span
+						<span class="title">Upload Picture</span> <span
 							class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
