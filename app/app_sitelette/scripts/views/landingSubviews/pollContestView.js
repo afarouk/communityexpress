@@ -51,15 +51,21 @@ module.exports = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         Vent.on('openPollByShareUrl', this.openPollByShareUrl, this);
+
+        this.medicalType = window.saslData.domainEnum === 'MEDICURIS' ||
+            window.saslData.domainEnum === 'MOBILEVOTE' ? true : false;
     },
 
     render: function(poll) {
         // console.log('poll', poll);
         this.poll = poll;
         this.$el.html(pollTemplate({
-            contests: poll
+            contests: poll,
+            medical: this.medicalType
         }));
-        this.setLinksForEachPoll();
+        if (!this.medicalType) {
+            this.setLinksForEachPoll();
+        }
         
         var $el = this.$('.body'),
         visible = $el.is(':visible');
@@ -242,9 +248,13 @@ module.exports = Backbone.View.extend({
 
             contestActions.enterPoll(this.sa,this.sl, uuid, choise)
                 .then(function(result) {
-                    $container.find('.submit_poll_button').slideUp('slow', _.bind(function() {
-                        this.displayResults($container, result);
-                    }, this));
+                    if (this.medicalType) {
+                        this.displayAnsweredMessage($container);
+                    } else {
+                        $container.find('.submit_poll_button').slideUp('slow', _.bind(function() {
+                            this.displayResults($container, result);
+                        }, this));
+                    }
                 }.bind(this))
                 .fail(function(err){
                     popupController.textPopup({ text: 'You already answered this question.'});
@@ -262,13 +272,26 @@ module.exports = Backbone.View.extend({
         return this.sasl.themeColors ? this.sasl.themeColors.cmtyx_color : colors;
     },
 
+    displayAnsweredMessage: function($container) {
+        var $questions = $container.find('.poll_ans_form');
+        $questions.addClass('answered');
+        loader.showFlashMessage('poll answered');
+        $container.find('.submit_poll_button').slideUp('slow', _.bind(function() {
+            $questions.addClass('medical');
+        }, this));
+        $questions.find('.medical-answered').off('click').on('click', function() {
+            $questions.removeClass('answered medical');
+            $container.find('.submit_poll_button').slideDown('slow');
+        }.bind(this));
+    },
+
     displayResults: function($container, result) {
         var height,
             $questions = $container.find('.poll_ans_form');
 
-        $questions.addClass('answered');
         // $container.parent().find('.contest_prizes').show();
         // $container.parent().find('.prize_block').show();
+        $questions.addClass('answered');
         $questions.find('li').each(function(index, element){
             var choice = result.choices[index],
                 percent = Math.round(choice.percentOfTotalResponses),

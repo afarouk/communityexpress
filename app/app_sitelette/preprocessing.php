@@ -170,6 +170,12 @@ if (validateParams('UID')) {
     $UID = null;
 }
 
+if (validateParams('fullCode')) {
+    $fullCode = $_REQUEST['fullCode'];
+} else {
+    $fullCode = null;
+}
+
 if (validateParams('t')) {
     $type = $_REQUEST['t'];
 } else {
@@ -244,8 +250,7 @@ if ($saslAccess || $urlKeyAccess) {
             $errorMessage = 'Service unavailable: ' . $siteletteJSON['error']['message'];
         } else {
             $saslJSON                 = json_decode($siteletteJSON['saslJSON'], true);
-            $themeId                  = $saslJSON['themeId']; //5 for medical
-            //$saslJSON['retailViewType'] = 'MEDICAL';
+            $themeId                  = $saslJSON['themeId'];
             $barFontColors            = $saslJSON['themeColors']['barFontColors'];
             $domain                   = $saslJSON['domainEnum'];
             $serviceAccommodatorId    = $saslJSON['serviceAccommodatorId'];

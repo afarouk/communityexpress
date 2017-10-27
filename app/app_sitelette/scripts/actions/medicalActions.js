@@ -6,44 +6,24 @@ var appCache = require('../appCache'),
     gateway = require('../APIGateway/gateway'),
     sessionActions = require('./sessionActions');
 
-var emulate = true;
-
 module.exports = {
-
-    emulateRequest: function(response) {
-        var $def = $.Deferred();
-
-        setTimeout(function() {
-            $def.resolve(response);
-        }, 1000);
-
-        return $def;
+    medicurisAuthentication: function (fullCode) {
+        return gateway.sendRequest('medicurisAuthentication', {
+            payload: {
+                fullCode: fullCode
+            }
+        });
     },
 
-    getMedicalSecurityCode: function (UID) {
-        if (emulate) {
-            return this.emulateRequest({
-                securityCode: '123'
-            });
-        } else {
-            return gateway.sendRequest('getMedicalSecurityCode', {
-                UID: UID
-            });
-        }
-    },
-
-    approveMedicalSecurityCode: function (UID, securityCode) {
-        if (emulate) {
-            return this.emulateRequest({
-                success: true,
-                secondaryID: 'someId'
-            });
-        } else {
-            return gateway.sendRequest('approveMedicalSecurityCode', {
-                UID: getUID(),
-                securityCode: securityCode
-            });
-        }
+    getUserDetailsByPIN: function (authData, securityCode) {
+        return gateway.sendRequest('getUserDetailsByPIN', {
+            payload: {
+                serviceAccommodatorId : authData.serviceAccommodatorId,
+                serviceLocationId : authData.serviceLocationId,
+                pin: securityCode,
+                uid: authData.uid
+            }
+        });
     },
 
 };

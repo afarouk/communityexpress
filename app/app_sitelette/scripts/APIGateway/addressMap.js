@@ -124,8 +124,8 @@ module.exports = {
             getAppointments: ['GET', '/appointments/fc_retrieveEvents'],
             bookAppointment: ['PUT', '/appointments/fc_bookappointment'],
 
-            getMedicalSecurityCode: ['GET', '/medical/getMedicalSecurityCode'],
-            approveMedicalSecurityCode: ['POST', '/medical/approveMedicalSecurityCode'],
+            medicurisAuthentication: ['POST', '/test/medicurisAuthentication'],
+            getUserDetailsByPIN: ['POST', '/usersasl/getUserDetailsByPIN'],
         };
     }
 };

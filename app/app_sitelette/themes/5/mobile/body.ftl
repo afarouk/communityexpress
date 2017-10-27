@@ -6,19 +6,7 @@
 	<div class="popup_container"></div>
 
 	<div id="cmtyx_header" data-role="header" class="header common_header">
-		<div id="cmtyx_header_prev_page_button" class="prev_page_button"></div>
-		<!-- <div id="cmtyx_header_menu_button" class="menu_btn">
-			<div class="menu_btn_hamburger cmtyx_special_icon_color">&#9776;</div>
-			<span class="messages_counter" style="display:none;"></span>
-		</div> -->
-		<div class="qrCode_btn" id="cmtyx_header_qrCode_button">
-			<div class="qr_image"></div>
-		</div>
-		<div id="cmtyx_header_back_button" data-role="button" data-icon="back">
-			<span class="glyphicon glyphicon-arrow-left cmtyx_special_icon_color"></span>
-		</div>
 		<div class="logo_container cmtyx_special_background_color">
-			<!--  <img src="themes/5/placeholder_images/ZAZA-Grill.png" /> -->
 			<img src="${bannerImageURL}" />
 		</div>
 	</div>
@@ -82,141 +70,6 @@
 			</ul>
 
 			<ul class="home_tabs_list">
-					
-						<!-- Share This Site ------------------------>
-							<li id="cmtyx_share_block" class="share_block"><span
-							class="title"> Share this site </span>
-							<div class="ui-grid-c">
-								<div class="sms_input_block">
-									<input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-									<span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-								</div>
-								<div class="ui-block-a text sms_block">
-									<a href="" class="share_sms">
-										<div class="share_icons_round_block">
-											<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
-										</div>
-									</a>
-								</div>
-								<div class="ui-block-b text email_block">
-									<a href="" class="share_email">
-										<div class="share_icons_round_block">
-											<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
-										</div>
-									</a>
-								</div>
-								<div class="ui-block-c text facebook_block">
-									<a href="" target="_blank" class="share_facebook">
-										<div class="share_icons_round_block">
-											<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
-										</div>
-									</a>
-								</div>
-								<div class="ui-block-d text twitter_block">
-									<a href="" target="_blank" class="share_twitter">
-										<div class="share_icons_round_block">
-											<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
-										</div>
-									</a>
-								</div>
-							</div>
-						</li>
-					
-						<!-- Share This Site -------------------->
-
-			<!--    APPOINTMENTS-->
-
-				<li id="cmtyx_appointments_block" class="appointments-block">
-					<div class="header cmtyx_color_1">
-						<span class="title">Appointments</span> 
-						<span class="collapse_btn">&#9660;</span>
-					</div>
-					<div class="body">
-						<div class="navigation_block">
-							<span class="arr back_arr"> <span
-								class="arr_icon back_arr_icon"></span>
-							</span> <span class="date">Aug, 24, 2016</span> <span class="arr next_arr">
-								<span class="arr_icon next_arr_icon"></span>
-							</span>
-						</div>
-						<div class="schedule_block">
-							<table>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">10:00</td>
-									<td rowspan="2" class="event">
-										<div class="event_description">We are passionate about
-											coffee. Our founder has a PhD in Coffiology, from the Columbian
-											Beverage Science Academy.</div>
-									</td>
-								</tr>
-								<tr>
-								</tr>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">11:00</td>
-									<td rowspan="2" class="event">
-										<div class="event_description reserved">(Reserved)</div>
-									</td>
-								</tr>
-								<tr>
-								</tr>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">12:00</td>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">13:00</td>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">14:00</td>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">15:00</td>
-									<td rowspan="2" class="event">
-										<div class="event_description">We are passionate about
-											coffee. Our founder has a PhD in Coffiology, from the Columbian
-											Beverage Science Academy.</div>
-									</td>
-								</tr>
-								<tr>
-								</tr>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">16:00</td>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">17:00</td>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td rowspan="2" class="hour cmtyx_text_color_1 right_border">18:00</td>
-									<td class="event"></td>
-								</tr>
-								<tr>
-									<td class="event"></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</li>
-						
-				<!--   end of APPOINTMENTS-->
 				
 				<!----- Sweepstakes (Poll)  ---------------->
 				<li id="cmtyx_poll_block" class="poll_block">
@@ -281,48 +134,6 @@
 						                        </li>
 						                    </#list>
 						                </ul>
-						                <div class="share_container">
-						                    <div class="share_btn_block cmtyx_share_icon_color"
-						                        uuid="">
-						                        <span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
-						                    </div>
-						                    <div class="share_block" data-uuid="${poll.contestUUID}">
-						                        <div class="ui-grid-c">
-						                            <div class="sms_input_block" data-uuid="${poll.contestUUID}">
-						                                <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-						                                <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-						                            </div>
-						                            <div class="ui-block-a text sms_block">
-														<a href="" class="share_sms">
-															<div class="share_icons_round_block">
-																<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
-															</div>
-														</a>
-													</div>
-													<div class="ui-block-b text email_block">
-														<a href="" class="share_email">
-															<div class="share_icons_round_block">
-																<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
-															</div>
-														</a>
-													</div>
-													<div class="ui-block-c text facebook_block">
-														<a href="" target="_blank" class="share_facebook">
-															<div class="share_icons_round_block">
-																<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
-															</div>
-														</a>
-													</div>
-													<div class="ui-block-d text twitter_block">
-														<a href="" target="_blank" class="share_twitter">
-															<div class="share_icons_round_block">
-																<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
-															</div>
-														</a>
-													</div>
-						                        </div>
-						                    </div>
-						                </div>
 						            </div>
 						        </li>
 							</#list>
@@ -331,7 +142,8 @@
 				</li>
 				
 			<!----- End of Sweepstakes (Poll)  ---------------->
-				
+
+			<#if sasl.domainEnum.enumText=="MEDICURIS">
 			<!----- Selfie Contest (Photo contest)  ---------------->				
 				
 				<li id="cmtyx_photo_contest_block" class="photo_contest_block">
@@ -354,49 +166,6 @@
 				                                <input type="file" name="thumb" />
 				                            </div>
 				                        </div>
-
-					                    <div class="share_container">
-					                        <div class="share_btn_block cmtyx_share_icon_color"
-					                            uuid="">
-					                            <span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
-					                        </div>
-					                        <div class="share_block" data-uuid="${photo.contestUUID}">
-					                            <div class="ui-grid-c">
-					                                <div class="sms_input_block" data-uuid="${photo.contestUUID}">
-					                                    <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-					                                    <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-					                                </div>
-					                                <div class="ui-block-a text sms_block">
-														<a href="" class="share_sms">
-															<div class="share_icons_round_block">
-																<i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
-															</div>
-														</a>
-													</div>
-													<div class="ui-block-b text email_block">
-														<a href="" class="share_email">
-															<div class="share_icons_round_block">
-																<i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
-															</div>
-														</a>
-													</div>
-													<div class="ui-block-c text facebook_block">
-														<a href="" target="_blank" class="share_facebook">
-															<div class="share_icons_round_block">
-																<i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
-															</div>
-														</a>
-													</div>
-													<div class="ui-block-d text twitter_block">
-														<a href="" target="_blank" class="share_twitter">
-															<div class="share_icons_round_block">
-																<i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
-															</div>
-														</a>
-													</div>
-					                            </div>
-					                        </div>
-					                    </div>
 					                </div>
 					            </li>
 					        </#list>
@@ -404,40 +173,47 @@
 					</div>
 				</li>
 				
-			<!----- End of Selfie Contest (Photo contest)  ---------------->		
+			<!----- End of Selfie Contest (Photo contest)  ---------------->
+			</#if>	
 
 			</ul>
-			<ul class="cmtyx_bottom_block" id="cmtyx_contact_us_block">
-				<li id="cmtyx_driving_directions_block"
-					class="driving_directions_block"><span class="title">contact
-						us</span>
-					<div class="ui-grid-a btns_container">
-						<div class="ui-block-a p-r-10">
-							<a target="_blank" href="" id="driveToUs"
-								class="ui-btn ui-corner-all back_btn cmtyx_border_color_1 cmtyx_text_color_1">Drive</a>
-						</div>
-						<div class="ui-block-b p-l-10">
-							<a target="_blank" href="" id="callUs"
-								class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Call</a>
-						</div>
-					</div>
-				</li>
-				
-				
-				<li class="map_in_landing">
-					<div id="home_map" class="map_container"></div>
-				</li>
-			</ul>
+			<div style="height:100px;">
+				<!--empty space temporary-->
+			</div>
 		</div>
 	</div>
 
 	<div id="cmtyx_medicalSecureView">
-		<div class="ticket">
-			<div class="medical-name">
-				<span>Medicuris</span>
-			</div>
-			<div class="medical-logo">
-				<span class="fa fa-heartbeat"></span>
+		<div class="secure-container">
+			<#if sasl.domainEnum.enumText=="MEDICURIS">
+				<div class="medical-name">
+					<span>Medicuris</span>
+				</div>
+				<div class="medical-logo">
+					<span class="fa fa-heartbeat"></span>
+				</div>		    
+			<#else>
+				<div class="vote-name">
+					<span>Mobilevote</span>
+				</div>
+				<div class="vote-logo">
+					<span class="fa fa-hand-paper-o"></span>
+				</div>			   
+			</#if>
+			<div class="ticket-container">
+				<div class="ticket">
+					<div class="left-waves"></div>
+					<div class="left-circle-t"></div>
+					<div class="small-circle-t"></div>
+					<div class="ticket-center">
+						<i class="fa fa-star-o star t-l" aria-hidden="true"></i>
+						<i class="fa fa-star-o star t-r" aria-hidden="true"></i>
+						<i class="fa fa-star-o star b-l" aria-hidden="true"></i>
+						<i class="fa fa-star-o star b-r" aria-hidden="true"></i>
+					</div>
+					<div class="right-waves"></div>
+					<div class="right-circle-t"></div>
+				</div>
 			</div>
 			<div class="secure-block">
 				<div class="left puzzle">
@@ -458,6 +234,10 @@
 			<div class="approve-message">
 				<span>* Please, type security code.</span>
 			</div>
+		</div>
+		<div class="invalid-code">
+			<i class="fa fa-minus-circle" aria-hidden="true"></i>
+			<span>Full code is invalid!</span>
 		</div>
 	</div>
 

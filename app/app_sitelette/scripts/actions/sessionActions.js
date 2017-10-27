@@ -247,6 +247,14 @@ module.exports = {
     loginWithFacebook: function(publicProfile) {
         userController.loginUserWithFacebook(publicProfile)
             .then(onLoginSuccess);
+    },
+
+    onMedicurisLogin: function(userData) {
+        onLoginSuccess({
+            uid: userData.uid,
+            userName: userData.userName,
+            messageCount: userData.messageCount
+        }, null);
     }
 
 };

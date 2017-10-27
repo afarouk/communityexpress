@@ -35,15 +35,21 @@ module.exports = Backbone.View.extend({
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
         Vent.on('openPhotoByShareUrl', this.openPhotoByShareUrl, this);
+
+        this.medicalType = window.saslData.domainEnum === 'MEDICURIS' ||
+            window.saslData.domainEnum === 'MOBILEVOTE' ? true : false;
     },
 
     render: function(photos) {
         // console.log('contest', photos);
         this.contest = photos;
         this.$el.html(photoContestTemplate({
-            contests: photos
+            contests: photos,
+            medical: this.medicalType
         }));
-        this.setLinksForEachPhoto();
+        if (!this.medicalType) {
+            this.setLinksForEachPhoto();
+        }
         
         var $el = this.$('.body'),
         visible = $el.is(':visible');
@@ -291,11 +297,15 @@ module.exports = Backbone.View.extend({
         contestActions.enterPhotoContest(this.sa, this.sl,
             contestUUID, file, message)
             .then(function(result) {
-                $el.slideUp('fast', function() {
-                    $el.next().slideDown('fast', function() {
+                if (this.medicalType) {
+                    this.render(this.contest);
+                } else {
+                    $el.slideUp('fast', function() {
+                        $el.next().slideDown('fast', function() {
 
+                        }.bind(this));
                     }.bind(this));
-                }.bind(this));
+                }
                 // this.showPrizes($el);
                 loader.showFlashMessage('contest entered');
             }.bind(this))
