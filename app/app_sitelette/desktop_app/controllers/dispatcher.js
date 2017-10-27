@@ -6,9 +6,10 @@ define([
 	'./_order-controller',
 	'./_landing-controller',
 	'./_popups-controller',
-	'./_history-controller'
+	'./_history-controller',
+	'./_medical-controller'
 	], function(CatalogsController, CustomizeController, OrderController, 
-		LandingController, PopupsController, HistoryController){
+		LandingController, PopupsController, HistoryController, MedicalController){
 	var ControllersDispatcher = Mn.Object.extend({
 		initialize: function() {
 			Mn.CollectionView.prototype.dispatcher = this;
@@ -21,14 +22,16 @@ define([
 		},
 		//different type of application MEDICAL APP
 		checkMedical: function() {
-			return window.community.themeId === 5;
+			return window.saslData.domainEnum === 'MEDICURIS' ||
+		            window.saslData.domainEnum === 'MOBILEVOTE';
 		},
 		initControllers: function() {
 			if (this.checkMedical()) {
 				this.controllers = {
 					// 'medical': {},
 					'landing': new LandingController(),
-					'popups': new PopupsController()
+					'popups': new PopupsController(),
+					'medical': new MedicalController()
 				};
 			} else {
 				this.controllers = {

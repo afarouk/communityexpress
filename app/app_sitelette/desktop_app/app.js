@@ -29,39 +29,46 @@ define([
 		        if (this.params.embedded) {
 		            conf.set('embedded', true);
 		        };
-		        if (this.params.UID) {
-		            Cookies.set("cmxUID", this.params.UID, {expires:365});
-		            sessionActions.authenticate(this.params.UID)
-		                .always(function() {
-		                    Backbone.history.start({
-		                        pushState: true
-		                    });
-		                    dispatcher.get('popups').onLoginStatusChanged();
-		                });
-		        } else if (Cookies.get('cmxUID')) {
-		            sessionActions.getSessionFromLocalStorage(this.params)
-		            	.then(function(response) {
-			                Backbone.history.start({
-			                    pushState: true
-			                });
-			                dispatcher.get('popups').onLoginStatusChanged();
-		            	}, function() {
-		            		// Cookies.remove('cmxUID');
-		            	}.bind(this));
-		        } else if (this.params.canCreateAnonymousUser && !this.params.embedded) {
-		            $.when(sessionActions.createAnonymousUser()).done(function() {
-		                sessionActions.getSessionFromLocalStorage().then(function() {
-		                    Backbone.history.start({
-		                        pushState: true
-		                    });
-		                    dispatcher.get('popups').onLoginStatusChanged();
-		                });
-		            });
+		        if (window.saslData.domainEnum === 'MEDICURIS' ||
+		            window.saslData.domainEnum === 'MOBILEVOTE') {
+		            dispatcher.get('medical').init(this.params);
+		        	// this.options.initSubviews();
 		        } else {
-		        	dispatcher.get('popups').onLoginStatusChanged();
-		        }
-		        this.options.initSubviews();
-		        this.options.checkType();
+			        if (this.params.UID) {
+			            Cookies.set("cmxUID", this.params.UID, {expires:365});
+			            sessionActions.authenticate(this.params.UID)
+			                .always(function() {
+			                    Backbone.history.start({
+			                        pushState: true
+			                    });
+			                    dispatcher.get('popups').onLoginStatusChanged();
+			                });
+			        } else if (Cookies.get('cmxUID')) {
+			            sessionActions.getSessionFromLocalStorage(this.params)
+			            	.then(function(response) {
+				                Backbone.history.start({
+				                    pushState: true
+				                });
+				                dispatcher.get('popups').onLoginStatusChanged();
+			            	}, function() {
+			            		// Cookies.remove('cmxUID');
+			            	}.bind(this));
+			        } else if (this.params.canCreateAnonymousUser && !this.params.embedded) {
+			            $.when(sessionActions.createAnonymousUser()).done(function() {
+			                sessionActions.getSessionFromLocalStorage().then(function() {
+			                    Backbone.history.start({
+			                        pushState: true
+			                    });
+			                    dispatcher.get('popups').onLoginStatusChanged();
+			                });
+			            });
+			        } else {
+			        	dispatcher.get('popups').onLoginStatusChanged();
+			        }
+
+			        this.options.initSubviews();
+		        	this.options.checkType();
+			    }
 			},
 
 			initSubviews: function() {

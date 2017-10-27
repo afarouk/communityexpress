@@ -459,31 +459,7 @@ define([
 				message: 'no items selected',
 				confirm: 'ok'
 			});
-		},
-
-		triggerOrder: function() {
-	        this.basket.getItemsNumber() === 0 ?
-	        this.showNoItemsPopup() :
-	        this.dispatcher.get('popups').requireLogIn(function() {
-	            this.$('.sub_header').hide();
-	            Vent.trigger('viewChange', 'address', {
-	                id : this.sasl.getUrlKey(),
-	                promoCode: this.promoCode,
-	                catalogId : this.catalogId,
-	                deliveryPickupOptions: this.options.catalog.collection.deliveryPickupOptions,
-	                backToCatalog : true,// /* This will always be true */
-	                backToCatalogs : this.backToCatalogs, /*
-	                                                         * not used by order,
-	                                                         * but passed back to
-	                                                         * catalog view
-	                                                         */
-	                launchedViaURL:this.launchedViaURL,
-	                navbarView : this.navbarView
-	            }, {
-	                reverse : true
-	            });
-	        }.bind(this));
-	    },
+		}
 	});
 	return OrderController;
 });

@@ -17,6 +17,8 @@ module.exports = {
         } else {
             //TODO something like
             //fullCode error
+            console.log('error');
+            $('#cmtyx_medicalSecureView').addClass('invalid');
         }
     },
     onLogoutSuccess: function() {
@@ -55,7 +57,7 @@ module.exports = {
                 }.bind(this), 2000);
                 $('#cmtyx_medicalSecureView').find('.approve-message>span')
                         .text('* Security code approved.').css('color', 'green');
-                this.onSecondaryIdReceived(userData);
+                this.onCredentialsReceived(userData);
             }.bind(this), function() {
                 console.log('!!!invalid');
                 $('#cmtyx_medicalSecureView').find('.approve-message>span')
@@ -63,7 +65,7 @@ module.exports = {
             }.bind(this));
     },
 
-    onSecondaryIdReceived: function(userData) {
+    onCredentialsReceived: function(userData) {
         sessionActions.onMedicurisLogin(userData);
     },
 

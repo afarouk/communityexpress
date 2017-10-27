@@ -42,6 +42,7 @@
         window.community.domain = '<?php echo $domain ?>';
         window.community.protocol = '<?php echo $protocol?>';
         window.community.UID = '<?php echo $UID ?>';
+        window.community.fullCode = '<?php echo $fullCode ?>';
         window.community.type = '<?php echo $type ?>';
         window.community.uuidURL = '<?php echo $uuidURL ?>';
         window.community.embedded = <?php echo  $embedded==TRUE?'true':'false'  ?>;
