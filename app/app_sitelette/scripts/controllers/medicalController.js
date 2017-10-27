@@ -25,6 +25,7 @@ module.exports = {
         $('#cmtyx_landingView').hide('slow');
         $('#cmtyx_medicalSecureView').show('slow');
         $('#cmtyx_medicalSecureView').find('.secure-input').val('');
+        $('#cmtyx_medicalSecureView').find('.secure-block').removeClass('secured');
         this.onMedicalAppAuth(this.fullCode);
     },
     onMedicalAppAuth: function(fullCode) {
