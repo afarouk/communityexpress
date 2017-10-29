@@ -2020,12 +2020,14 @@ a.get_started_btn:active {
 }
 .browse_chalkboards_block .text {
   display: inline-block;
-  font: 300 26px / 30px Roboto;
+  font: 300 20px / 20px Roboto;
   color: #ffffff;
+  line-height: 1.5;
   /* max-width: 650px; */
 
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 30px;
   position: relative;
 }
 
