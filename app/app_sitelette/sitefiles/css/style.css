@@ -1887,8 +1887,7 @@ and (orientation : portrait) {
     -moz-background-size: 100% auto;
     -o-background-size: 100% auto;
     background-size: 100% auto;
-    /* padding: 19% 0 18% 0; */
-   padding:0% 0% 0% 0%;
+   padding-top: 70px;
  }
  .heading_block h1 {
   padding-top:10px;
@@ -1965,15 +1964,9 @@ and (orientation : portrait) {
 
 .how_works_block .title {
     text-transform: uppercase;
-    font: 700 28px Roboto;
+    font: 700 24px Roboto;
     color: #555555;
-}
-
-.how_works_block .title {
     display: inline-block;
-    text-transform: uppercase;
-    font: 700 28px Roboto;
-    color: #555555;
     margin: 0 0 20px 0;
 }
 
