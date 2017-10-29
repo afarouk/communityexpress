@@ -1798,7 +1798,7 @@ a.get_started_btn:active {
 
 
 .heading_block {
-    background: url(../images/landing/conversation.png) no-repeat ;
+    background: url(../images/landing/worried.png) no-repeat ;
   -webkit-background-size: 100% auto;
     -moz-background-size: 100% auto;
     -o-background-size: 100% auto;
@@ -1811,7 +1811,7 @@ a.get_started_btn:active {
 }
 
 .heading_block h1{
- padding-top:180px;
+ padding-top:280px;
  color:white;
  font: 600 54px/54px Roboto;
 }
@@ -1877,12 +1877,12 @@ a.get_started_btn:active {
  }
 }
 
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 667px) 
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 667px)
 and (orientation : portrait) {
  .heading_block {
-  background: url(../images/landing/conversationPortrait.png) no-repeat centers;
+  background: url(../images/landing/worriedMobile.png) no-repeat center;
   -webkit-background-size: 100% auto;
     -moz-background-size: 100% auto;
     -o-background-size: 100% auto;
