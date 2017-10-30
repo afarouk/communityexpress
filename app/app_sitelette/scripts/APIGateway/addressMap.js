@@ -125,7 +125,8 @@ module.exports = {
             bookAppointment: ['PUT', '/appointments/fc_bookappointment'],
 
             medicurisAuthentication: ['POST', '/test/medicurisAuthentication'],
-            getUserDetailsByPIN: ['POST', '/usersasl/getUserDetailsByPIN'],
+            getSASLcodeByPIN: ['POST', '/test/getSASLcodeByPIN'],
+            verifySASLcodeAndRetrieveUID: ['POST', '/test/verifySASLcodeAndRetrieveUID']
         };
     }
 };

@@ -15,13 +15,24 @@ module.exports = {
         });
     },
 
-    getUserDetailsByPIN: function (authData, securityCode) {
-        return gateway.sendRequest('getUserDetailsByPIN', {
+    getSASLcodeByPIN: function (authData, securityCode) {
+        return gateway.sendRequest('getSASLcodeByPIN', {
             payload: {
                 serviceAccommodatorId : authData.serviceAccommodatorId,
                 serviceLocationId : authData.serviceLocationId,
                 pin: securityCode,
-                uid: authData.uid
+                tempId: authData.tempId
+            }
+        });
+    },
+
+    verifySASLcodeAndRetrieveUID: function (authData, saslCode, tempId) {
+        return gateway.sendRequest('verifySASLcodeAndRetrieveUID', {
+            payload: {
+                serviceAccommodatorId : authData.serviceAccommodatorId,
+                serviceLocationId : authData.serviceLocationId,
+                saslCode: saslCode,
+                tempId: tempId
             }
         });
     },
