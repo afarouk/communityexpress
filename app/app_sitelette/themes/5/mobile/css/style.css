@@ -362,6 +362,8 @@ body {
     cursor: pointer;
     background-color: #77bde5;
     transition: 1s;
+    pointer-events: none;
+    z-index: 9;
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .left.puzzle {
     background-color: #77bde5;
@@ -369,6 +371,9 @@ body {
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .right.puzzle {
     background-color: #3fbfbf;
+}
+#cmtyx_medicalSecureView .secure-container .secure-block .right.puzzle.active {
+    pointer-events: all;
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .puzzle .t {
     width: 0.8em;
@@ -379,7 +384,6 @@ body {
     -webkit-border-radius: 2em;
     -moz-border-radius: 2em;
     border-radius: 2em;
-    z-index: 99999999;
     background-color: inherit;
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .puzzle .r {
@@ -438,6 +442,20 @@ body {
     left: 0.7em;
     height: 34px;
     z-index: 999999;
+}
+#cmtyx_medicalSecureView .secure-container .secure-block .right.puzzle.active .secure-input {
+    animation: input-pulse 1s infinite;
+}
+@keyframes input-pulse {
+    0% {
+        border: 2px solid tomato;
+    }
+    50% {
+        border: 2px solid yellow;
+    }
+    100% {
+        border: 2px solid tomato;
+    }
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .right .secure-input::placeholder { 
   color: azure;

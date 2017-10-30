@@ -221,7 +221,7 @@
 					<span class="r"></span>
 					<span class="b"></span>
 					<span class="l"></span>
-					<span class="secure-text">???</span>
+					<span class="secure-text">xxx</span>
 				</div>
 				<div class="right puzzle">
 					<span class="t"></span>

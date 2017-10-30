@@ -26,13 +26,13 @@ module.exports = {
         });
     },
 
-    verifySASLcodeAndRetrieveUID: function (authData, saslCode, tempId) {
+    verifySASLcodeAndRetrieveUID: function (saslCode, authData) {
         return gateway.sendRequest('verifySASLcodeAndRetrieveUID', {
             payload: {
                 serviceAccommodatorId : authData.serviceAccommodatorId,
                 serviceLocationId : authData.serviceLocationId,
                 saslCode: saslCode,
-                tempId: tempId
+                tempId: authData.tempId
             }
         });
     },
