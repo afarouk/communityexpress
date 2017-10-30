@@ -31,7 +31,8 @@ var LeftMenuView = require('./views/panels/leftMenuView'),
     InvitationView = require('./views/popups/invitationView'),
     SupportView = require('./views/popups/supportView'),
     ConfirmationPopup = require('./views/popups/confirmationPopup'),
-    TextPopup = require('./views/popups/textPopup');
+    TextPopup = require('./views/popups/textPopup'),
+    ExpandImage = require('./views/panels/expandImage');
 
 var viewMap = {
     leftMenuView: LeftMenuView,
@@ -61,7 +62,8 @@ var viewMap = {
     invitationView: InvitationView,
     confirmationPopup: ConfirmationPopup,
     support: SupportView,
-    textPopup: TextPopup
+    textPopup: TextPopup,
+    expandImage: ExpandImage
 };
 
 module.exports = {

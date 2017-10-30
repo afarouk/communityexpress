@@ -33,6 +33,11 @@ module.exports = {
         this.show(view);
     },
 
+    expandImage: function(imageSource, title) {
+        var view = viewFactory.create('expandImage', imageSource, this, {title: title});
+        this.show(view);
+    },
+
     addToRosterBasket: function(model, options) {
         var view = viewFactory.create('addToRosterBasket', model, this , options);
         this.show(view);

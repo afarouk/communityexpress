@@ -28,7 +28,8 @@ module.exports = Backbone.View.extend({
         'change .poll_ans_form input': 'checkIfAnswered',
         'click .share_btn_block': 'showShareBlock',
         'click .sms_block': 'showSMSInput',
-        'click .sms_send_button': 'onSendSMS'
+        'click .sms_send_button': 'onSendSMS',
+        'click .question_thumbnail': 'onImageExpand'
     },
 
     toggleCollapse: function(callback) {
@@ -349,6 +350,13 @@ module.exports = Backbone.View.extend({
                 loader.showErrorMessage(e, 'error entering poll');
             });
         }.bind(this));
+    },
+
+    onImageExpand: function(e) {
+        var $target = $(e.currentTarget),
+            imgSource = $target.data('src'),
+            title = $target.data('title');
+        popupController.expandImage(imgSource, title);
     }
 
 });

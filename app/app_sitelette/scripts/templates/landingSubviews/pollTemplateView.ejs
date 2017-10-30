@@ -69,6 +69,11 @@
                                             </div>
                                             <p class="question_text"><%= choice.displayText %></p>
                                         </div>
+                                        <% if (choice.imageURL) { %>
+                                            <div class="question_thumbnail" data-src="<%= choice.imageURL %>" data-title="<%= choice.displayText %>">
+                                                <img src="<%= choice.imageURL %>" alt="">
+                                            </div>
+                                        <% } %>
                                     </div>
                                 </div>
                             </li>

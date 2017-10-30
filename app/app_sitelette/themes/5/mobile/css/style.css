@@ -3296,7 +3296,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .poll_block .poll_ans_form .question_item {
     min-height: 24px;
-    width: 90%;
+    width: 85%;
     position: relative;
     list-style-type: none;
     float: left;
@@ -3305,7 +3305,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     z-index: 1;
     top: 0;
     padding-left: 3px;
-    width: 85%;
+    width: 80%;
     word-wrap: break-word;
     line-height: 24px;
     position: relative;
@@ -3334,6 +3334,18 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     height: 100%;
     transition: 1.5s;
 }
+
+.poll_block .poll_ans_form li .ui-block-a {
+    display: flex;
+    align-items: center;
+}
+
+.poll_block .poll_ans_form .question_thumbnail {
+    width: 80px;
+    margin-left: 5px;
+    pointer-events: all;
+}
+
 .poll_block .ansRadioChoice + label {
     font: 400 14px 'Open Sans', sans-serif;
     width: 10%;
@@ -4929,6 +4941,39 @@ color: #acacac;
 #upload_photo .select_picture_gallery img {
     margin: 10px;
 }
+
+/**************************** EXPAND IMAGE *******************************/
+
+#cmntyex_expand_image .close_btn {
+    display: inline-block;
+    background: url('images/close.png') no-repeat;
+    background-position: 50%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+}
+#cmntyex_expand_image .ui-content {
+    padding: 6px;
+}
+#cmntyex_expand_image .ui-content img {
+    width: 100%;
+}
+
+#cmntyex_expand_image .header-title {
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    color: #fefefe;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 6px 0 0 0;
+    text-align: center;
+}
+
+/************************* end of EXPAND IMAGE *************************/
 
 /**************************** SIGN IN/LOG IN ****************************/
 
