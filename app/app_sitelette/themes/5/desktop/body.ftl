@@ -139,7 +139,7 @@
               <span class="r"></span>
               <span class="b"></span>
               <span class="l"></span>
-              <span class="secure-text">???</span>
+              <span class="secure-text">xxx</span>
             </div>
             <div class="right puzzle">
               <span class="t"></span>
@@ -150,12 +150,28 @@
             </div>
           </div>
           <div class="approve-message">
-            <span>* Please, type security code.</span>
+            <div class="type-code">
+              <span>* Please, type security code.</span>
+            </div>
+            <div class="mismatch-code">
+              <span>* Security codes mismatch.</span>
+            </div>
+            <div class="ticket-match">
+              <span>Do both numbers match your ticket?</span>
+              <div class="ticket-btns">
+                <button type="button" class="confirm">YES</button>
+                <button type="button" class="reject">NO</button>
+              </div>
+            </div>
+            <div class="ticket-approved">
+              <span>* Ticket approved.</span>
+            </div>
           </div>
         </div>
         <div class="invalid-code">
           <i class="fa fa-minus-circle" aria-hidden="true"></i>
-          <span>Full code is invalid!</span>
+          <span class="full-code">Full code is invalid!</span>
+          <span class="ticket-no">Please do not proceed!</span>
         </div>
       </div>
         

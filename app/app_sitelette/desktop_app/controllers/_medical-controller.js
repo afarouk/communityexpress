@@ -1,71 +1,89 @@
 'use strict';
 
 define([
+	'../views/securityView',
 	'../../scripts/actions/sessionActions',
     '../../scripts/actions/medicalActions',
 	'../../scripts/appCache',
 	'../../scripts/globalHelpers',
-	], function(sessionActions, medicalActions, appCache, h, orderActions){
+	], function(SecurityView, sessionActions, medicalActions, appCache, h, orderActions){
 	var MedicalController = Mn.Object.extend({
-
 		init: function(params) {
 	        if (params.fullCode) {
 	            this.fullCode = params.fullCode;
-	            this.onMedicalAppAuth(params.fullCode);
+	            this.prepareView();
 	        } else {
-	            //TODO something like
-	            //fullCode error
 	            console.log('error');
-                $('#cmtyx_medicalSecureView').addClass('invalid');
+	            $('#cmtyx_medicalSecureView').addClass('invalid');
 	        }
+	    },
+	    prepareView: function() {
+	        this.securityView = new SecurityView();
+	        this.listenTo(this.securityView, 'pinEntered', this.onPinEntered.bind(this));
+	        this.listenTo(this.securityView, 'ticketWasConfirmed', this.onTicketWasConfirmed.bind(this));
+	        this.listenTo(this.securityView, 'ticketWasRejected', this.onTicketWasRejected.bind(this));
+	        this.onMedicalAppAuth();
+	    },
+	    onPinEntered: function(val) {
+	        this.getSASLcodeByPIN(val);
+	    },
+	    onTicketWasConfirmed: function() {
+	        this.verifySASLcodeAndRetrieveUID();
+	    },
+	    onTicketWasRejected: function() {
+	        //???
 	    },
 	    onLogoutSuccess: function() {
 	        $('#cmtyx_landingView').hide('slow');
-	        $('#cmtyx_medicalSecureView').show('slow');
-	        $('#cmtyx_medicalSecureView').find('.secure-input').val('');
-	        this.onMedicalAppAuth(this.fullCode);
+	        this.securityView.onLogoutSuccess();
+	        this.onMedicalAppAuth();
 	    },
-	    onMedicalAppAuth: function(fullCode) {
-	        medicalActions.medicurisAuthentication(fullCode)
+	    onMedicalAppAuth: function() {
+	        medicalActions.medicurisAuthentication(this.fullCode)
 	            .then(function(authData) {
-	                var isValid = authData.isValid,
-	                    saslCode = authData.saslCode;
+	                var isValid = authData.isValid;
 
 	                if (isValid) {
-	                    $('#cmtyx_medicalSecureView').find('.secure-text').text(saslCode);
-	                    $('#cmtyx_medicalSecureView').find('.secure-input').focus().on('change', function(e) {
-	                        var val = $(e.currentTarget).val();
-	                        console.log(val);
-	                        this.onSecurityCodeApprove(authData, val);
-	                    }.bind(this));
+	                    this.authData = authData
+	                    this.securityView.afterAuth();
 	                } else {
 	                    //TODO error
 	                    console.log('error');
-	                    $('#cmtyx_medicalSecureView').addClass('invalid');
+	                    this.securityView.onInvalid();
 	                }
 	            }.bind(this));
 	    },
-	    onSecurityCodeApprove: function(authData, saslCode) {
-	        medicalActions.getUserDetailsByPIN(authData, saslCode)
-	            .then(function(userData) {
-	                $('#cmtyx_medicalSecureView').find('.secure-block').addClass('secured');
-	                setTimeout(function() {
-	                    $('#cmtyx_landingView').show('slow');
-	                    $('#cmtyx_medicalSecureView').hide('slow');
-	                }.bind(this), 2000);
-	                $('#cmtyx_medicalSecureView').find('.approve-message>span')
-	                        .text('* Security code approved.').css('color', 'green');
-	                this.onCredentialsReceived(userData);
+	    getSASLcodeByPIN: function(pin) {
+	        medicalActions.getSASLcodeByPIN(this.authData, pin)
+	            .then(function(response) {
+	                var isValid = response.isValid;
+	                    
+	                this.saslCode = response.saslCode;
+	                if (isValid) {
+	                    this.securityView.afterGetSASL(this.saslCode);
+	                } else {
+	                    console.log('error');
+	                    this.securityView.onInvalid();
+	                }
 	            }.bind(this), function() {
 	                console.log('!!!invalid');
-	                $('#cmtyx_medicalSecureView').find('.approve-message>span')
-	                    .text('* Security codes mismatch.').css('color', 'red');
+	                this.securityView.onMismatch();
+	            }.bind(this));
+	    },
+	    verifySASLcodeAndRetrieveUID: function() {
+	        medicalActions.verifySASLcodeAndRetrieveUID(this.saslCode, this.authData)
+	            .then(function(userData) { 
+	                this.securityView.afterVerify();
+
+	                this.onCredentialsReceived(userData);
+	            }.bind(this), function() {
+	                //TODO some error???
 	            }.bind(this));
 	    },
 
 	    onCredentialsReceived: function(userData) {
 	        sessionActions.onMedicurisLogin(userData);
-	    },
+	    }
 	});
 	return MedicalController;
 });
