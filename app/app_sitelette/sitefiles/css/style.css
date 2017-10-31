@@ -1913,6 +1913,19 @@ a.get_started_btn:active {
   text-align: center;
   padding-top:20px;
 }
+.middle_block {
+  background: url(../images/landing/happyWithChalkboards.png) no-repeat;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+  color:white;
+  padding: 20% 0% 23% 0%;
+  min-height: 600px;
+  height: auto;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   #header .nav li a.login_btn {
     padding: 10px 15px;
