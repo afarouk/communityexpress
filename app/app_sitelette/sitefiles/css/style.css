@@ -1981,9 +1981,26 @@ a.get_started_btn:active {
     -moz-background-size: 100% auto;
     -o-background-size: 100% auto;
     background-size: 100% auto;
-    padding-top: 70px;
+    padding-top: 150px;
+    min-height: auto;
+  }
+  .middle_block h1 {
+    padding-top: 10px;
+    color: white;
+    font: 700 30px Roboto;
   }
 
+  .middle_block h2 {
+    color: white;
+    line-height: 1.0;
+    font: 500 20px/20px Roboto;
+  }
+
+  .middle_block h3 {
+    color: white;
+    line-height: 2em;
+    font: 400 14px Roboto;
+  }
 
   .heading_block {
     background: url(../images/landing/worriedMobile.png) no-repeat center;
@@ -1992,6 +2009,7 @@ a.get_started_btn:active {
     -o-background-size: 100% auto;
     background-size: 100% auto;
     padding-top: 70px;
+    min-height:auto;
   }
 
   .heading_block h1 {
