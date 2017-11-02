@@ -1,0 +1,161 @@
+.cmtyx_desktop_application {
+  .home_tabs_list {
+  /***** POLL *****/
+    .cmtyx_poll_block {
+      .body {
+        & > img {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .question {
+          display: block;
+          margin-bottom: 20px;
+          font-weight: $style-normal;
+          font-size: $size-sm-medium;
+          color: $question-text;
+        }
+
+        .question_ans_form {
+          display: block;
+          margin-bottom: 20px;
+
+          input {
+            outline: none;
+            cursor: pointer;
+          }
+
+          label {
+            font-weight: $style-normal-strong;
+            font-size: $size-lg-normal-small;
+            color: $question-text;
+            position: relative;
+            bottom: 1px;
+            cursor: pointer;
+            
+            .answer_color_container {
+              display: inline-block;
+              float: right;
+              width: 27px;
+              height: 22px;
+              position: relative;
+              bottom: 3px;
+
+              &.answer_color_1 { background-color: $cmtyx_color_1; }
+              &.answer_color_2 { background-color: $cmtyx_color_3; }
+            }
+          }
+        }
+
+        .question_results { 
+          margin-bottom: 30px;
+
+          .a_ans_graph {
+            display: inline-block;
+            width: 85%;
+            height: 22px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+
+            &.answer_color_1 { background-color: $cmtyx_color_1; }
+          } 
+
+          .b_ans_graph {
+            display: inline-block;
+            width: 15%;
+            height: 22px;
+            margin-right: 10px;
+
+            &.answer_color_2 { background-color: $cmtyx_color_3; }
+          }
+
+          .a_ans_percent_num,
+          .b_ans_percent_num {
+            display: inline-block;
+            font-weight: $style-normal;
+            font-size: $size-sm-medium;
+            color: $question-text;
+            position: relative;
+            bottom: 14px;
+          }
+
+          .b_ans_percent_num {
+            bottom: 4px;
+          }
+        }
+
+        .prizes_title {
+          text-align: center;
+          font-weight: $style-normal;
+          font-size: $size-normal-small;
+          color: $question-text;
+          text-transform: uppercase;
+          margin-bottom: 15px;
+        }
+
+        ul {
+          list-style-type: none;
+          padding: 0;
+
+          .discount_block {
+            width: 100%;
+            min-height: 112px;
+            margin-bottom: 10px;
+
+            .discount_container { 
+              background-color: $white; 
+              
+              .discount_text_block {
+                text-align: left;
+                padding: 25px 0 25px 25px;
+                display: inline-block;
+                width: 50%;
+
+                .discount_text {
+                  display: block;
+                  font-weight: $style-normal-strong;
+                  font-size: $size-normal;
+                  color: $cmtyx_color_4;
+                  text-transform: uppercase;
+                  margin-bottom: 10px;
+                }
+
+                .discount_condition {
+                  display: block;
+                  font-weight: $style-normal-strong;
+                  font-size: $size-normal;
+                  color: $discount-text;
+                  margin-bottom: 8px;
+                }
+
+                .discount_date {
+                  display: block;
+                  font-weight: $style-normal-strong;
+                  font-size: $size-small;
+                  color: $cart-text;
+                }
+              }
+
+              .prize-picture-container {
+                display: inline-flex;
+                align-items: center;
+                width: 48%;
+                vertical-align: top;
+                height: 113px;
+                float: right;
+                background-size: 90% 90%;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                img {
+                  height: 80%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    /***** END OF POLL *****/
+  }
+}

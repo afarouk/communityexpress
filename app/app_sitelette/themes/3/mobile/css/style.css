@@ -2776,10 +2776,11 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 }
 .poll_block .poll_ans_form .question_item {
     min-height: 24px;
-    width: 85%;
+    width: 90%;
     position: relative;
     list-style-type: none;
-    float: left;
+    float: right;
+    margin-left: 10px;
 }
 .poll_block .poll_ans_form .question_item .question_text {
     z-index: 1;
@@ -2828,10 +2829,13 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 
 .poll_block .ansRadioChoice + label {
     font: 400 14px 'Open Sans', sans-serif;
-    width: 10%;
-    float: left;
-    height: 24px;
-    padding: 6px 3px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 .poll_block .answer_color_container {
     display: inline-block;
@@ -2892,7 +2896,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   height: 12px;
   background : url('images/unchecked-radio.png') no-repeat;
   background-size: cover;
-  margin-right: 10px;
+  /*margin-right: 10px;*/
   pointer-events: none;
 }
 

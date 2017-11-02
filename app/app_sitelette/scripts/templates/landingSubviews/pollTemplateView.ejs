@@ -1,6 +1,9 @@
 <div class="header cmtyx_color_2">
-    <% if (medical) { %>
+    <% if (securityType === "MEDICURIS") { %>
         <span class="title">Poll</span>
+        <div class="collapse_btn">&#9660;</div>
+    <% } else if (securityType === "MOBILEVOTE") { %>
+        <span class="title">Vote</span>
         <div class="collapse_btn">&#9660;</div>
     <% } else { %>
         <style>.poll_block #flag:after { border-bottom-color: <%= $('.cmtyx_color_2').css('background-color') %> }</style>
@@ -14,7 +17,7 @@
     <ul class="poll_gallery">
         <% _.each(contests, function(poll, poll_index){ %>
             <li class="poll_item" data-uuid="<%= poll.contestUUID %>">
-                <% if (!medical) { %>
+                <% if (!securityType) { %>
                     <ul class="contest_prizes shown">
                         <div class="poll_block_title"><span>Enter to win</span>&nbsp</div>
                         <div class="ui-grid-a prizes_title">
@@ -56,19 +59,21 @@
                                         <input type="radio" name="radio-choice-ans" data-poll-index="<%= poll_index %>" id="ans_<%= index %>-<%= poll.contestUUID %>" data-uuid="<%= poll.contestUUID %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (poll.answerStatus.enumText === 'ANSWERED') {
                                             if (choice.thisIsYourChoice) {%> checked="checked"<% } %>
                                         <% } else if ( index === 0 ) { %>checked='checked'<% } %>>
-                                        <label for="ans_<%= index %>-<%= poll.contestUUID %>"><span><span></span></span></label>
-                                        <div class="question_item">
-                                            <div class="bar">
-                                                <% if (poll.answerStatus.enumText !== 'ANSWERED') { %>
-                                                    <div class="back cmtyx_color_<%= (index % 4) + 1 %>"></div>
-                                                    <span class="percent"></span>
-                                                <% } else { %>
-                                                    <div class="back cmtyx_color_<%= (index % 4) + 1 %>" style="width: <%= Math.round(choice.percentOfTotalResponses) %>%"></div>
-                                                    <span class="percent"><%= Math.round(choice.percentOfTotalResponses) %>%</span>
-                                                <% } %>
+                                        <label for="ans_<%= index %>-<%= poll.contestUUID %>">
+                                            <span><span></span></span>
+                                            <div class="question_item">
+                                                <div class="bar">
+                                                    <% if (poll.answerStatus.enumText !== 'ANSWERED') { %>
+                                                        <div class="back cmtyx_color_<%= (index % 4) + 1 %>"></div>
+                                                        <span class="percent"></span>
+                                                    <% } else { %>
+                                                        <div class="back cmtyx_color_<%= (index % 4) + 1 %>" style="width: <%= Math.round(choice.percentOfTotalResponses) %>%"></div>
+                                                        <span class="percent"><%= Math.round(choice.percentOfTotalResponses) %>%</span>
+                                                    <% } %>
+                                                </div>
+                                                <p class="question_text"><%= choice.displayText %></p>
                                             </div>
-                                            <p class="question_text"><%= choice.displayText %></p>
-                                        </div>
+                                        </label>
                                         <% if (choice.imageURL) { %>
                                             <div class="question_thumbnail" data-src="<%= choice.imageURL %>" data-title="<%= choice.displayText %>">
                                                 <img src="<%= choice.imageURL %>" alt="">
@@ -78,7 +83,7 @@
                                 </div>
                             </li>
                         <% }) %>
-                        <% if (medical) { %>
+                        <% if (securityType) { %>
                             <div class="medical-answered">
                                 <span>Answer again</span>
                             </div>
@@ -94,7 +99,7 @@
                     <% } %>
                     <div class="poll_results answerBar jqplot-target" id="pollBar-<%= poll.contestUUID %>"></div>
                 </div>
-                <% if (!medical) { %>
+                <% if (!securityType) { %>
                     <div class="share_container">
                         <div class="share_btn_block cmtyx_share_icon_color"
                             uuid="">

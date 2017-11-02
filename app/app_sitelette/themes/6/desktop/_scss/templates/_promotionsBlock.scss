@@ -1,0 +1,49 @@
+.cmtyx_desktop_application {
+  .home_tabs_list {    
+    .cmtyx_promotion_block {
+      position: relative;
+      
+      .body {
+        padding: 5px 20px 0px 20px;
+
+        .owl-carousel {
+          .owl-nav {
+              top: 5px;
+          }
+        }
+
+        img.promotion-image {
+          width: 100%;
+        }
+
+        .promotion_item {
+          .promotion_type {
+            padding: 5px 0;
+            text-align: center;
+            color: $cart-text;
+          }
+        }
+
+        .promotions_buybutton_container {
+          margin-top: 15px;
+          
+          .promotions-buybutton {
+            font-weight: 700;
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 15px 25px;
+            width: 100%;
+            background-color: transparent;
+          }
+        }
+        
+      }
+
+      .no_promotions {
+        color: $cart-text;
+        text-align: center;
+        padding: 25px 0 10px 0;
+      }
+    }
+  }
+}

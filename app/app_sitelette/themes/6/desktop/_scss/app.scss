@@ -1,0 +1,41 @@
+// Core
+@import 'core/reset';
+@import 'core/colors';
+@import 'core/fonts';
+@import 'core/global';
+@import 'core/typography';
+@import 'core/helpers';
+
+// Components
+@import 'components/buttons';
+@import 'components/inputs';
+@import 'components/loader';
+@import 'components/dialogs';
+@import 'components/scroll';
+@import 'components/carousel';
+@import 'components/quantityStepper';
+
+// Templates
+@import 'templates/main';
+@import 'templates/header';
+@import 'templates/footer';
+@import 'templates/securityCode';
+
+@import 'templates/shareBlock';
+@import 'templates/menuBlock';
+@import 'templates/cartBlock';
+@import 'templates/discountsBlock';
+@import 'templates/welcomeBlock';
+@import 'templates/promotionsBlock';
+@import 'templates/loyaltyBlock';
+@import 'templates/appointmentsBlock';
+@import 'templates/pollBlock';
+@import 'templates/photoBlock';
+
+@import 'templates/order/cartPage';
+@import 'templates/order/chooseAddress';
+@import 'templates/order/addAddress';
+@import 'templates/order/orderTime';
+@import 'templates/order/choosePayment';
+@import 'templates/order/addCard';
+@import 'templates/order/summary';

@@ -124,6 +124,7 @@ module.exports = {
             getAppointments: ['GET', '/appointments/fc_retrieveEvents'],
             bookAppointment: ['PUT', '/appointments/fc_bookappointment'],
 
+            simfelAuthentication: ['POST', '/test/simfelAuthentication'],
             medicurisAuthentication: ['POST', '/test/medicurisAuthentication'],
             getSASLcodeByPIN: ['POST', '/test/getSASLcodeByPIN'],
             verifySASLcodeAndRetrieveUID: ['POST', '/test/verifySASLcodeAndRetrieveUID']

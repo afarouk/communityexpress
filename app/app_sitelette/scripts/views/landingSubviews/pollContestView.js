@@ -53,8 +53,8 @@ module.exports = Backbone.View.extend({
         this.sl = community.serviceLocationId;
         Vent.on('openPollByShareUrl', this.openPollByShareUrl, this);
 
-        this.medicalType = window.saslData.domainEnum === 'MEDICURIS' ||
-            window.saslData.domainEnum === 'MOBILEVOTE' ? true : false;
+        this.securityType = window.saslData.domainEnum === 'MEDICURIS' ||
+            window.saslData.domainEnum === 'MOBILEVOTE' ? window.saslData.domainEnum : false;
     },
 
     render: function(poll) {
@@ -62,9 +62,9 @@ module.exports = Backbone.View.extend({
         this.poll = poll;
         this.$el.html(pollTemplate({
             contests: poll,
-            medical: this.medicalType
+            securityType: this.securityType
         }));
-        if (!this.medicalType) {
+        if (!this.securityType) {
             this.setLinksForEachPoll();
         }
         
@@ -249,7 +249,7 @@ module.exports = Backbone.View.extend({
 
             contestActions.enterPoll(this.sa,this.sl, uuid, choise)
                 .then(function(result) {
-                    if (this.medicalType) {
+                    if (this.securityType) {
                         this.displayAnsweredMessage($container);
                     } else {
                         $container.find('.submit_poll_button').slideUp('slow', _.bind(function() {

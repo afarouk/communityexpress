@@ -1,0 +1,74 @@
+.cmtyx_desktop_application {
+  .home_tabs_list {
+	  .cmtyx_promocodes_block {
+      position:relative;
+      
+      .body{
+        padding: 30px 20px 1px 20px;
+
+        .owl-carousel {
+          .owl-nav {
+              top: -20px;
+          }
+        }
+
+        .discount-item-container { 
+          position: relative;
+
+          .promoCode_item {
+            .promoCode_image {
+              img { width: 100%; }
+            }
+
+            .discount-item-info {
+              position: absolute;
+              top: 35px;
+              left: 25px;
+
+              .discount-item-title {
+                color: $cmtyx_color_4;
+                font-size: $size-normal;
+                font-weight: $style-normal-strong;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+              }
+
+              .discount-item-text {
+                color: $discount-text;
+                font-size: $size-normal;
+                font-weight: $style-normal-strong;
+                margin-bottom: 10px;
+              }
+
+              .discount-item-date {
+                opacity: 0.7;
+                color: $discount-text;
+                font-size: $size-small;
+                font-weight: $style-normal-strong;
+              }
+            }
+
+            .promoCode-buybutton-container {
+              margin-top: 15px;
+              
+              .promoCode-buybutton {
+                font-weight: 700;
+                border: 1px solid white;
+                border-radius: 5px;
+                padding: 15px 25px;
+                width: 100%;
+                background-color: transparent;
+              }
+            }
+          }
+        }   
+      }
+
+      .no_discounts {
+        color: $cart-text;
+        text-align: center;
+        padding: 0 0 10px 0;
+      }
+    }
+  }	
+}

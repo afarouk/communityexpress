@@ -7,8 +7,25 @@ var appCache = require('../appCache'),
     sessionActions = require('./sessionActions');
 
 module.exports = {
+    securityAuthentication: function() {
+        var domain = window.saslData.domainEnum;
+        if (domain === 'MEDICURIS') {
+            return this.medicurisAuthentication();
+        } else if (domain === 'MOBILEVOTE') {
+            return this.voteAuthentication();
+        }
+    },
+
     medicurisAuthentication: function (fullCode) {
         return gateway.sendRequest('medicurisAuthentication', {
+            payload: {
+                fullCode: fullCode
+            }
+        });
+    },
+
+    voteAuthentication: function (fullCode) {
+        return gateway.sendRequest('simfelAuthentication', {
             payload: {
                 fullCode: fullCode
             }

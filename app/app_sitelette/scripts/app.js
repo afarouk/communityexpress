@@ -5,7 +5,7 @@ var userController = require('./controllers/userController'),
     updateActions = require('./actions/updateActions'),
     sessionActions = require('./actions/sessionActions'),
     pageController = require('./pageController.js'),
-    medicalController = require('./controllers/medicalController.js'),
+    securityController = require('./controllers/securityController.js'),
     config = require('./appConfig.js'),
     h = require('./globalHelpers'),
     Vent = require('./Vent.js'),
@@ -103,7 +103,7 @@ App.prototype = {
         };
         if (window.saslData.domainEnum === 'MEDICURIS' ||
             window.saslData.domainEnum === 'MOBILEVOTE') {
-            medicalController.init(this.params);
+            securityController.init(this.params);
         } else {
             if (this.params.UID) {
                 Cookies.set("cmxUID", this.params.UID, {expires:365});

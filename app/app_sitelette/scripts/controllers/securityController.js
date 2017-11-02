@@ -3,7 +3,7 @@
 'use strict';
 
 var SecurityView = require('../views/securityView'),
-    medicalActions = require('../actions/medicalActions'),
+    securityActions = require('../actions/securityActions'),
     sessionActions = require('../actions/sessionActions'),
     Vent = require('../Vent.js'),
     gateway = require('../APIGateway/gateway.js'),
@@ -25,7 +25,7 @@ module.exports = {
         this.securityView.listenTo(this.securityView, 'ticketWasConfirmed', this.onTicketWasConfirmed.bind(this));
         this.securityView.listenTo(this.securityView, 'ticketWasRejected', this.onTicketWasRejected.bind(this));
         Vent.on('logout_success', this.onLogoutSuccess.bind(this));
-        this.onMedicalAppAuth();
+        this.onSecurityAppAuth();
     },
     onPinEntered: function(val) {
         this.getSASLcodeByPIN(val);
@@ -39,10 +39,10 @@ module.exports = {
     onLogoutSuccess: function() {
         $('#cmtyx_landingView').hide('slow');
         this.securityView.onLogoutSuccess();
-        this.onMedicalAppAuth();
+        this.onSecurityAppAuth();
     },
-    onMedicalAppAuth: function() {
-        medicalActions.medicurisAuthentication(this.fullCode)
+    onSecurityAppAuth: function() {
+        securityActions.securityAuthentication(this.fullCode)
             .then(function(authData) {
                 var isValid = authData.isValid;
 
@@ -57,7 +57,7 @@ module.exports = {
             }.bind(this));
     },
     getSASLcodeByPIN: function(pin) {
-        medicalActions.getSASLcodeByPIN(this.authData, pin)
+        securityActions.getSASLcodeByPIN(this.authData, pin)
             .then(function(response) {
                 var isValid = response.isValid;
                     
@@ -74,7 +74,7 @@ module.exports = {
             }.bind(this));
     },
     verifySASLcodeAndRetrieveUID: function() {
-        medicalActions.verifySASLcodeAndRetrieveUID(this.saslCode, this.authData)
+        securityActions.verifySASLcodeAndRetrieveUID(this.saslCode, this.authData)
             .then(function(userData) { 
                 this.securityView.afterVerify();
 
