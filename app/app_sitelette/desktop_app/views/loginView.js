@@ -27,7 +27,9 @@ define([
 		},
 		render: function () {
 			var userEmail = this.logged ? appCache.get('user').userName : "";
-			this.$el.html(this.template());
+			this.$el.html(this.template({
+				secure: this.dispatcher.checkSecurity()
+			}));
 			this.bindUIElements(); //required for dynamic template rendered in existing element
 			this.ui.user_email.html(userEmail);
 			return this;

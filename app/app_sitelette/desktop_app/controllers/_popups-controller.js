@@ -195,6 +195,9 @@ define([
         			message: 'user logged out',
         			loader: true
         		});
+        		setTimeout(function() {
+        			this.dispatcher.onLogoutSuccess();
+        		}.bind(this), 2000);
         	}.bind(this));
 		},
 		onOrderHistory: function() {

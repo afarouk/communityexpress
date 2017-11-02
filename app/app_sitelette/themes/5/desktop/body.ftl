@@ -4,19 +4,22 @@
 
     <div id="cmtyx_desktop_application" class="cmtyx_desktop_application">  
       <header class="cmtyx_special_background_color">
-          <div id="back-btn-container" class="back-btn-container"></div>
-          <div class="logo-container cmtyx_special_background_color">
-              <img class="logo" src="${bannerImageURL}" alt="logo">
-          </div>
+        <div id="back-btn-container" class="back-btn-container"></div>
+        <div class="logo-container cmtyx_special_background_color">
+          <img class="logo" src="${bannerImageURL}" alt="logo">
+        </div>
+        <div class="links-container">
+          <div id="login-container" class="link"></div> 
+        </div>
       </header>
 
       <div id="cmtyx_landingView">
         <div class="grid-container cmtyx_desktop_application">
           <div class="cssload-thecube">
-              <div class="cssload-cube cssload-c1"></div>
-              <div class="cssload-cube cssload-c2"></div>
-              <div class="cssload-cube cssload-c4"></div>
-              <div class="cssload-cube cssload-c3"></div>
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
           </div>
 
           <div class="grid home_tabs_list">

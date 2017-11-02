@@ -36,24 +36,24 @@ var onLoginSuccess = function (response, withAdhoc) {
         Vent.trigger('update_message_count', response.messageCount);
     }
 
-    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-        //var a = localStorage.getItem("cmxUID");
-        var a = Cookies.get("cmxUID");
-        if ("undefined" !== typeof a && null !== a) {
-            loyaltyActions.updateLoyaltyStatus(a);
-            loyaltyActions.retrieveCalendar(a);
-        } else {
-            console.log("1. NO cmxUID, try to create one");
-            /*
-            * create user
-            */
-            loyaltyActions.createAnonymousUser();
-            console.log("anonymous user created");
-        }
+    // if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
+    //     //var a = localStorage.getItem("cmxUID");
+    //     var a = Cookies.get("cmxUID");
+    //     if ("undefined" !== typeof a && null !== a) {
+    //         loyaltyActions.updateLoyaltyStatus(a);
+    //         loyaltyActions.retrieveCalendar(a);
+    //     } else {
+    //         console.log("1. NO cmxUID, try to create one");
+    //         /*
+    //         * create user
+    //         */
+    //         loyaltyActions.createAnonymousUser();
+    //         console.log("anonymous user created");
+    //     }
 
-    } else {
-        console.log("no api url");
-    }
+    // } else {
+    //     console.log("no api url");
+    // }
 
     return {
         uid: response.uid,
@@ -249,7 +249,7 @@ module.exports = {
             .then(onLoginSuccess);
     },
 
-    onMedicurisLogin: function(userData) {
+    onSecureLogin: function(userData) {
         onLoginSuccess({
             uid: userData.uid,
             userName: userData.userName,

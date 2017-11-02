@@ -7,11 +7,13 @@
 		<span class="caret cmtyx_text_color_1"></span>
 	</button>
 	<ul class="dropdown-menu cmtyx_special_background_color">
-	  <li class="order-history">
-	  	<a href="#" class="cmtyx_text_color_1">Order history</a>
-	  </li>
-	  <li class="login-wrapper">
-	  	<a href="#" class="cmtyx_text_color_1">Logout</a>
-	  </li>
+	  	<% if (!secure) { %>
+			<li class="order-history">
+				<a href="#" class="cmtyx_text_color_1">Order history</a>
+			</li>
+	  	<% } %>
+		<li class="login-wrapper">
+			<a href="#" class="cmtyx_text_color_1">Logout</a>
+		</li>
 	</ul>
 </div>

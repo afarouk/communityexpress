@@ -31,7 +31,7 @@ define([
 		        };
 		        if (window.saslData.domainEnum === 'MEDICURIS' ||
 		            window.saslData.domainEnum === 'MOBILEVOTE') {
-		            dispatcher.get('medical').init(this.params);
+		            dispatcher.get('security').init(this.params);
 		        	// this.options.initSubviews();
 		        } else {
 			        if (this.params.UID) {

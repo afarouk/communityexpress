@@ -7,31 +7,30 @@ define([
 	'./_landing-controller',
 	'./_popups-controller',
 	'./_history-controller',
-	'./_medical-controller'
+	'./_security-controller'
 	], function(CatalogsController, CustomizeController, OrderController, 
-		LandingController, PopupsController, HistoryController, MedicalController){
+		LandingController, PopupsController, HistoryController, SecurityController){
 	var ControllersDispatcher = Mn.Object.extend({
 		initialize: function() {
 			Mn.CollectionView.prototype.dispatcher = this;
 			Mn.View.prototype.dispatcher = this;
 			this.initControllers();
 
-			if (!this.checkMedical()) {
+			if (!this.checkSecurity()) {
 				this.get('order').renderOrder(); //shows empty cart
 			}
 		},
-		//different type of application MEDICAL APP
-		checkMedical: function() {
+		//different type of application MEDICURIS or MOBILEVOTE APP
+		checkSecurity: function() {
 			return window.saslData.domainEnum === 'MEDICURIS' ||
 		            window.saslData.domainEnum === 'MOBILEVOTE';
 		},
 		initControllers: function() {
-			if (this.checkMedical()) {
+			if (this.checkSecurity()) {
 				this.controllers = {
-					// 'medical': {},
 					'landing': new LandingController(),
 					'popups': new PopupsController(),
-					'medical': new MedicalController()
+					'security': new SecurityController()
 				};
 			} else {
 				this.controllers = {
@@ -88,7 +87,7 @@ define([
 		},
 
 		initSubviews: function() {
-			if (this.checkMedical()) {
+			if (this.checkSecurity()) {
 				this.get('landing').start();
 			} else {
 				this.get('catalogs').manageCatalog();
@@ -96,9 +95,16 @@ define([
 			}
 		},
 
+		onLogoutSuccess: function() {
+			if (this.checkSecurity()) {
+				this.get('security').onLogoutSuccess();
+			}
+		},
+
 		onLoginStatusChanged: function() {
-			if (this.checkMedical()) {
+			if (this.checkSecurity()) {
 				//
+
 			} else {
 				this.get('landing').onLoginStatusChanged();
 				this.get('order').onLoginStatusChanged();

@@ -3,11 +3,11 @@
 define([
 	'../views/securityView',
 	'../../scripts/actions/sessionActions',
-    '../../scripts/actions/medicalActions',
+    '../../scripts/actions/securityActions',
 	'../../scripts/appCache',
 	'../../scripts/globalHelpers',
-	], function(SecurityView, sessionActions, medicalActions, appCache, h, orderActions){
-	var MedicalController = Mn.Object.extend({
+	], function(SecurityView, sessionActions, securityActions, appCache, h, orderActions){
+	var SecurityController = Mn.Object.extend({
 		init: function(params) {
 	        if (params.fullCode) {
 	            this.fullCode = params.fullCode;
@@ -22,7 +22,7 @@ define([
 	        this.listenTo(this.securityView, 'pinEntered', this.onPinEntered.bind(this));
 	        this.listenTo(this.securityView, 'ticketWasConfirmed', this.onTicketWasConfirmed.bind(this));
 	        this.listenTo(this.securityView, 'ticketWasRejected', this.onTicketWasRejected.bind(this));
-	        this.onMedicalAppAuth();
+	        this.onSecureAuth();
 	    },
 	    onPinEntered: function(val) {
 	        this.getSASLcodeByPIN(val);
@@ -36,10 +36,10 @@ define([
 	    onLogoutSuccess: function() {
 	        $('#cmtyx_landingView').hide('slow');
 	        this.securityView.onLogoutSuccess();
-	        this.onMedicalAppAuth();
+	        this.onSecureAuth();
 	    },
-	    onMedicalAppAuth: function() {
-	        medicalActions.medicurisAuthentication(this.fullCode)
+	    onSecureAuth: function() {
+	        securityActions.medicurisAuthentication(this.fullCode)
 	            .then(function(authData) {
 	                var isValid = authData.isValid;
 
@@ -54,7 +54,7 @@ define([
 	            }.bind(this));
 	    },
 	    getSASLcodeByPIN: function(pin) {
-	        medicalActions.getSASLcodeByPIN(this.authData, pin)
+	        securityActions.getSASLcodeByPIN(this.authData, pin)
 	            .then(function(response) {
 	                var isValid = response.isValid;
 	                    
@@ -71,7 +71,7 @@ define([
 	            }.bind(this));
 	    },
 	    verifySASLcodeAndRetrieveUID: function() {
-	        medicalActions.verifySASLcodeAndRetrieveUID(this.saslCode, this.authData)
+	        securityActions.verifySASLcodeAndRetrieveUID(this.saslCode, this.authData)
 	            .then(function(userData) { 
 	                this.securityView.afterVerify();
 
@@ -82,8 +82,9 @@ define([
 	    },
 
 	    onCredentialsReceived: function(userData) {
-	        sessionActions.onMedicurisLogin(userData);
+	        sessionActions.onSecureLogin(userData);
+	        this.dispatcher.get('popups').onLoginStatusChanged();
 	    }
 	});
-	return MedicalController;
+	return SecurityController;
 });

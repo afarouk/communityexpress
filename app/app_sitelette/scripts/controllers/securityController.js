@@ -25,7 +25,7 @@ module.exports = {
         this.securityView.listenTo(this.securityView, 'ticketWasConfirmed', this.onTicketWasConfirmed.bind(this));
         this.securityView.listenTo(this.securityView, 'ticketWasRejected', this.onTicketWasRejected.bind(this));
         Vent.on('logout_success', this.onLogoutSuccess.bind(this));
-        this.onSecurityAppAuth();
+        this.onSecureAuth();
     },
     onPinEntered: function(val) {
         this.getSASLcodeByPIN(val);
@@ -39,9 +39,9 @@ module.exports = {
     onLogoutSuccess: function() {
         $('#cmtyx_landingView').hide('slow');
         this.securityView.onLogoutSuccess();
-        this.onSecurityAppAuth();
+        this.onSecureAuth();
     },
-    onSecurityAppAuth: function() {
+    onSecureAuth: function() {
         securityActions.securityAuthentication(this.fullCode)
             .then(function(authData) {
                 var isValid = authData.isValid;
@@ -85,7 +85,7 @@ module.exports = {
     },
 
     onCredentialsReceived: function(userData) {
-        sessionActions.onMedicurisLogin(userData);
+        sessionActions.onSecureLogin(userData);
     },
 
 };
