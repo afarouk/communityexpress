@@ -89,6 +89,7 @@ define([
 		initSubviews: function() {
 			if (this.checkSecurity()) {
 				this.get('landing').start();
+				this.get('landing').onLoginStatusChanged();
 			} else {
 				this.get('catalogs').manageCatalog();
 				this.get('landing').start();
@@ -103,8 +104,7 @@ define([
 
 		onLoginStatusChanged: function() {
 			if (this.checkSecurity()) {
-				//
-
+				this.initSubviews();
 			} else {
 				this.get('landing').onLoginStatusChanged();
 				this.get('order').onLoginStatusChanged();

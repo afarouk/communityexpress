@@ -49,8 +49,9 @@
 
                 <!----- End of welcome block  ---------------->
 
+                <!-- ................................... -->
                 <!-- POLL CONTESTS -->
-                <div class="grid-item grid-item--height3 cmtyx_poll_block">
+                <div id="cmtyx_poll_block" class="grid-item grid-item--height3 cmtyx_poll_block">
                     <div class="header cmtyx_color_3">
                         <div class="title">Poll <span class="collapse_btn"></span></div>
                     </div>
@@ -68,7 +69,6 @@
                 </div>
 
                 <!----- Selfie Contest (Photo contest)  ---------------->       
-    
                 <div id="cmtyx_photo_contest_block" class="grid-item grid-item--height3 photo_contest_block">
                   <div class="header cmtyx_color_4">
                     <div class="title">Upload photo
@@ -80,7 +80,7 @@
                       <#list photocontests as photo>
                         <li class="photo_item" data-uuid="${photo.contestUUID}">
                             <div class="contest_container">
-                              <div class="photo_block_title"><p>&nbsp</p></div>
+                              <div class="photo_block_title" style="display:  none;"><p>&nbsp</p></div>
                               <img src="${photo.imageURL}" class="photo_image"></img>
                               <span class="contest_task">${photo.displayText}</span>
                               <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
@@ -96,8 +96,8 @@
                     </ul>
                   </div>
                 </div>
-    
                 <!----- End of Selfie Contest (Photo contest)  ---------------->
+                <!-- ................................... -->
               </div>
             </div>
           </div>

@@ -1,0 +1,27 @@
+.cmtyx_desktop_application {
+  .home_tabs_list {
+  /***** VIDEO *****/
+    #cmtyx_video_block {
+      .body {
+        & > img {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .video_title {
+          width: 100%;
+          color: white;
+          text-align: center;
+          padding-bottom: 15px;
+          display: inline-block;
+        }
+        .video_item_message {
+          display: block;
+          color: white;
+          font: 300 12px 'Open Sans', sans-serif;
+        }
+      }
+    }
+    /***** END OF VIDEO *****/
+  }
+}

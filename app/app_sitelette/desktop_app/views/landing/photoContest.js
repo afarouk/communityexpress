@@ -54,17 +54,17 @@ define([
             onToolsInitialized: function(){
                 $el.find('.dropzone').find('.btn').addClass('cmtyx_text_color_1');
                 var height = -($el.find('.dropzone').height() - 100);
-                this.changeSlideHeight($el, height);
+                // this.changeSlideHeight($el, height);
             }.bind(this),
             onAfterProcessImage: function(){
                 $(this.element).find('.btn').addClass('cmtyx_text_color_1');
                 var height = 450;
-                this.changeSlideHeight($el, height);
+                // this.changeSlideHeight($el, height);
             }.bind(this),
             onAfterCancel: function() {
                 $el.find('.dropzone').removeClass('added');
                 var height = 400;
-                this.changeSlideHeight($el, height);
+                // this.changeSlideHeight($el, height);
             }.bind(this)
         });
     },
@@ -118,7 +118,61 @@ define([
           var link = $(this);
           link.attr('href', links[index]);
         });
-    }
+    },
+
+    onSaveImage: function($el, image) {
+        var message = $el.find('.comntyex-upload_message_input').val(),
+            contestUUID = $el.data('uuid'),
+            file = h().dataURLtoBlob(image.data);
+//TODO fix this V
+        contestActions.enterPhotoContest(this.sa, this.sl,
+            contestUUID, file, message)
+            .then(function(result) {
+                if (this.medicalType) {
+                    this.render(this.contest);
+                } else {
+                    $el.slideUp('fast', function() {
+                        $el.next().slideDown('fast', function() {
+
+                        }.bind(this));
+                    }.bind(this));
+                }
+                // this.showPrizes($el);
+                loader.showFlashMessage('contest entered');
+            }.bind(this))
+            .fail(function(err){
+                //TODO manage error
+                loader.showErrorMessage(e, 'error uploading photo');
+            }.bind(this));
+    },
+
+    enterContest: function () {
+        var user = userController.getCurrentUser(),
+            sasl = user.favorites.at(0);
+        popupController.requireLogIn(sasl, function() {
+            popupController.upload(sasl, {
+                action: function (sa, sl, file, message) {
+                    loader.show('');
+                    // this.model.contestUUID null because we should get contests
+                    return contestActions.enterPhotoContest(sa, sl, null, file, message)
+                        .then(function () {
+                            loader.showFlashMessage('contest entered');
+                        }, function (e) {
+                            loader.showErrorMessage(e, 'error uploading photo');
+                        });
+                }.bind(this)
+            });
+        }.bind(this));
+    },
+
+    changeSlideHeight: function($target, additional) {
+        var $el = $target.parents('.slick-list[aria-live="polite"]'),
+            height = $el.height(),
+            visible = $target.is(':visible');
+        if (visible) additional = -additional;
+        $el.css('transition', '0.3s');
+        $el.height(height + additional + 'px');
+    },
 
 	});
 	return PhotoContestView;

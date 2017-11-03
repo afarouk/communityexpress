@@ -42,7 +42,6 @@
     font: 400 16px/24px 'Open Sans', sans-serif;
     text-transform: uppercase;
     margin-bottom: 15px;
-    /* display: none; */
 }
 .photo_contest_block .photo_block_title span {
     overflow: hidden;
@@ -66,10 +65,8 @@
     padding-left: 40px !important;
 }
 .photo_contest_block img {
-    /* max-height: 230px; */
     padding: 0;
     width: 100%;
-    margin-bottom: 10px;
 }
 
 .photo_contest_block .body li {
@@ -92,7 +89,17 @@
 }
 .photo_contest_block .send_photo_btn {
     font: 400 16px 'Open Sans', sans-serif;
-    margin-bottom: 20px;
+    background-color: transparent;
+    text-shadow: none;
+    border-width: 1px;
+    border-style: solid;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    outline: none;
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 .photo_contest_block .send_photo_btn:focus {
     box-shadow: none;
@@ -101,6 +108,17 @@
     max-height: 568px;
     margin-bottom: 20px;
     display: none;
+
+    textarea {
+      height: 60px;
+      font: 300 16px 'Open Sans', sans-serif;
+      color: #bbbbbb;
+      width: 100%;
+      background-color: transparent;
+      resize: none;
+      padding: 4px 1.6px;
+      border: 0.1rem solid #757373;
+    }
 }
 .photo_contest_block .photo_contest_upload_image img {
     max-height: none;

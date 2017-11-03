@@ -51,7 +51,7 @@
 
                 <!----- Videos  ---------------->   
                 <#if (externalMedia)?has_content >
-                  <li id="cmtyx_video_block" class="video_block">
+                  <div id="cmtyx_video_block" class="grid-item grid-item--height3 video_block">
                     <div class="header cmtyx_color_1">
                       <div class="title">Instructions <span class="collapse_btn"></span></div>
                     </div>
@@ -82,17 +82,17 @@
                           </#list>
                       </ul>
                     </div>
-                  </li>
+                  </div>
                 </#if>
                 <!----- End of Videos  ---------------->
 
                 <!-- POLL CONTESTS -->
-                <div class="grid-item grid-item--height3 cmtyx_poll_block">
+                <div id="cmtyx_poll_block" class="grid-item grid-item--height3 cmtyx_poll_block">
                     <div class="header cmtyx_color_3">
-                        <div class="title">Poll <span class="collapse_btn"></span></div>
+                        <div class="title">Vote <span class="collapse_btn"></span></div>
                     </div>
                     <div class="body">
-                        <img src="themes/6/desktop/images/coffee.png" alt="poll image">
+                        <img src="themes/5/desktop/images/coffee.png" alt="poll image">
                         <span class="question">Our coffee is awesome</span>
                         <form class="question_ans_form">
                             <input type="radio" name="radio-choice-ans" id="a_ans" class="ansRadioChoice" checked='checked'>
@@ -117,7 +117,7 @@
                         <#list photocontests as photo>
                           <li class="photo_item" data-uuid="${photo.contestUUID}">
                               <div class="contest_container">
-                                <div class="photo_block_title"><p>&nbsp</p></div>
+                                <div class="photo_block_title" style="display:  none;"><p>&nbsp</p></div>
                                 <img src="${photo.imageURL}" class="photo_image"></img>
                                 <span class="contest_task">${photo.displayText}</span>
                                 <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>

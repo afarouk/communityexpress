@@ -1,0 +1,134 @@
+<div class="header cmtyx_color_2">
+    <% if (securityType === "MEDICURIS") { %>
+        <span class="title">Poll</span>
+    <% } else if (securityType === "MOBILEVOTE") { %>
+        <span class="title">Vote</span>
+    <% } else { %>
+        <span class="title">Sweepstake</span>
+    <% } %>
+</div>
+<div class="body">
+    <ul class="poll_gallery">
+        <% _.each(contests, function(poll, poll_index){ %>
+            <li class="poll_item" data-uuid="<%= poll.contestUUID %>">
+                <% if (!securityType) { %>
+                    <ul class="contest_prizes shown">
+                        <div class="poll_block_title"><span>Enter to win</span>&nbsp</div>
+                        <div class="prizes_title">
+                            <span class="prize_cup_icon"></span>
+                            <span>All entries are entered into our mini sweepstakes!</span>
+                        </div>
+                        <% _.each(poll.prizes, function(prize, index){ %>
+                            <li>
+                                <div class="prize_block">
+                                    <div class="prize_container">
+                                        <div class="prize_img_block">
+                                            <img src="<%= prize.imageUrl %>"></img>
+                                        </div>
+                                        <div class="prize_text_block">
+                                            <span class="prize_text"><%= prize.contestPrizeName %></span>
+                                            <span class="prize_condition"><%= prize.displayText %></span>
+                                            <span class="prize_date"><%= prize.quantity %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+                <div class="contest_container">
+                    <img class="poll_image" src="<%= poll.imageURL %>"></img>
+                    <span class="poll_displaytext"><%= poll.displayText %>?</span>
+
+                    <ul class="poll_ans_form <% if (poll.answerStatus.enumText === 'ANSWERED') { %>answered<% } %>" data-index="<%= poll_index %>">
+                        <% _.each(poll.choices, function(choice, index){ %>
+                            <li>
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="radio" name="radio-choice-ans" data-poll-index="<%= poll_index %>" id="ans_<%= index %>-<%= poll.contestUUID %>" data-uuid="<%= poll.contestUUID %>" data-choice="<%= choice.choiceId %>" class="ansRadioChoice" <% if (poll.answerStatus.enumText === 'ANSWERED') {
+                                            if (choice.thisIsYourChoice) {%> checked="checked"<% } %>
+                                        <% } else if ( index === 0 ) { %>checked='checked'<% } %>>
+                                        <label for="ans_<%= index %>-<%= poll.contestUUID %>">
+                                            <span><span></span></span>
+                                            <div class="question_item">
+                                                <div class="bar">
+                                                    <% if (poll.answerStatus.enumText !== 'ANSWERED') { %>
+                                                        <div class="back cmtyx_color_<%= (index % 4) + 1 %>"></div>
+                                                        <span class="percent"></span>
+                                                    <% } else { %>
+                                                        <div class="back cmtyx_color_<%= (index % 4) + 1 %>" style="width: <%= Math.round(choice.percentOfTotalResponses) %>%"></div>
+                                                        <span class="percent"><%= Math.round(choice.percentOfTotalResponses) %>%</span>
+                                                    <% } %>
+                                                </div>
+                                                <p class="question_text"><%= choice.displayText %></p>
+                                            </div>
+                                        </label>
+                                        <% if (choice.imageURL) { %>
+                                            <div class="question_thumbnail" data-src="<%= choice.imageURL %>" data-title="<%= choice.displayText %>">
+                                                <img src="<%= choice.imageURL %>" alt="">
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </li>
+                        <% }) %>
+                        <% if (securityType) { %>
+                            <div class="medical-answered">
+                                <span>Answer again</span>
+                            </div>
+                        <% } %>
+                    </ul>
+                    <% if (poll.answerStatus.enumText !== 'ANSWERED') { %>
+                        <button class="submit_poll_button open_menu_btn cmtyx_text_color_2 ui-btn ui-corner-all cmtyx_color_1 cmtyx_border_color_1" data-uuid="<%= poll.contestUUID %>">Submit</button>
+                    <% } else { %>
+                        <!-- <div class="poll-answered">
+                            <span class="alert_sign_icon"></span>
+                            You have already answered this question
+                        </div> -->
+                    <% } %>
+                    <div class="poll_results answerBar jqplot-target" id="pollBar-<%= poll.contestUUID %>"></div>
+                </div>
+                <% if (!securityType) { %>
+                    <div class="share_container">
+                        <div class="item_buttons">
+                            <div class="share_btn_block cmtyx_share_icon_color"
+                                uuid="">
+                                <span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
+                            </div>
+                        </div>
+                        <div class="share-block" data-uuid="<%= poll.contestUUID %>">
+                            <div class="sms_input_block">
+                              <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                              <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+                            </div>
+                            <div class="icons-container-wrapper">
+                              <div class="icons-container">
+                                <div class="text sms_block">
+                                    <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="text email_block">
+                                    <a href="" name="share_email" class="share_email cmtyx_text_color_1">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="text facebook_block">
+                                    <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="text twitter_block">
+                                    <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </li>
+        <% }) %>
+    </ul>
+</div>

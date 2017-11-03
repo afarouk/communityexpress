@@ -388,6 +388,18 @@ div.ui-dialog.ui-widget {
 		    }
 		}
 	}
+
+	.expand-image {
+		.header-title {
+			text-align: center;
+			color: $white;
+		}
+
+		.ui-content {
+			display: flex;
+    		justify-content: center;
+		}
+	}
 }
 
 .ui-widget-overlay {

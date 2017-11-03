@@ -8,154 +8,299 @@
           margin-bottom: 10px;
         }
 
-        .question {
-          display: block;
-          margin-bottom: 20px;
-          font-weight: $style-normal;
-          font-size: $size-sm-medium;
-          color: $question-text;
+        .submit_poll_button {
+            width: 60%;
+            margin: 10px auto;
+            font-weight: 700;
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: center;
+            color: white;
         }
 
-        .question_ans_form {
-          display: block;
-          margin-bottom: 20px;
-
-          input {
-            outline: none;
-            cursor: pointer;
-          }
-
-          label {
-            font-weight: $style-normal-strong;
-            font-size: $size-lg-normal-small;
-            color: $question-text;
-            position: relative;
-            bottom: 1px;
-            cursor: pointer;
-            
-            .answer_color_container {
-              display: inline-block;
-              float: right;
-              width: 27px;
-              height: 22px;
-              position: relative;
-              bottom: 3px;
-
-              &.answer_color_1 { background-color: $cmtyx_color_1; }
-              &.answer_color_2 { background-color: $cmtyx_color_3; }
-            }
-          }
-        }
-
-        .question_results { 
-          margin-bottom: 30px;
-
-          .a_ans_graph {
-            display: inline-block;
-            width: 85%;
-            height: 22px;
-            margin-bottom: 10px;
-            margin-right: 10px;
-
-            &.answer_color_1 { background-color: $cmtyx_color_1; }
-          } 
-
-          .b_ans_graph {
-            display: inline-block;
-            width: 15%;
-            height: 22px;
-            margin-right: 10px;
-
-            &.answer_color_2 { background-color: $cmtyx_color_3; }
-          }
-
-          .a_ans_percent_num,
-          .b_ans_percent_num {
-            display: inline-block;
-            font-weight: $style-normal;
-            font-size: $size-sm-medium;
-            color: $question-text;
-            position: relative;
-            bottom: 14px;
-          }
-
-          .b_ans_percent_num {
-            bottom: 4px;
-          }
+        .poll_block_title {
+            text-align: center;
+            color: #ddd;
+            font: 400 16px/24px 'Open Sans', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 5px;
         }
 
         .prizes_title {
-          text-align: center;
           font-weight: $style-normal;
           font-size: $size-normal-small;
           color: $question-text;
           text-transform: uppercase;
+          text-align: center;
+          display: flex;
+          align-items: center;
           margin-bottom: 15px;
         }
 
-        ul {
-          list-style-type: none;
-          padding: 0;
+        .prize_cup_icon {
+            display: inline-block;
+            background: url('../images/prize_cup_icon.png') no-repeat;
+            background-size: contain;
+            height: 30px;
+            width: 30px;
+            position: relative;
+            left: 10px;
+            top: 5px;
+            float: right;
+            position: relative;
+            right: 10px;
+            bottom: 2px;
+        }
 
-          .discount_block {
+        .poll_item {
+          color: $white;
+        }
+
+        .medical-answered {
+            display: none;
+        }
+        .poll_ans_form.answered.medical .medical-answered {
+            display: block;
+            color: #66a966;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            background-color: white;
+            padding: 5px;
+            margin-top: 20px;
+        }
+
+        .prize_container {
+            max-height: 180px;
+            background-color: #fff;
             width: 100%;
-            min-height: 112px;
-            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
 
-            .discount_container { 
-              background-color: $white; 
-              
-              .discount_text_block {
-                text-align: left;
-                padding: 25px 0 25px 25px;
-                display: inline-block;
-                width: 50%;
-
-                .discount_text {
-                  display: block;
-                  font-weight: $style-normal-strong;
-                  font-size: $size-normal;
-                  color: $cmtyx_color_4;
-                  text-transform: uppercase;
-                  margin-bottom: 10px;
-                }
-
-                .discount_condition {
-                  display: block;
-                  font-weight: $style-normal-strong;
-                  font-size: $size-normal;
-                  color: $discount-text;
-                  margin-bottom: 8px;
-                }
-
-                .discount_date {
-                  display: block;
-                  font-weight: $style-normal-strong;
-                  font-size: $size-small;
-                  color: $cart-text;
-                }
-              }
-
-              .prize-picture-container {
-                display: inline-flex;
-                align-items: center;
-                width: 48%;
-                vertical-align: top;
-                height: 113px;
-                float: right;
-                background-size: 90% 90%;
-                background-position: center;
-                background-repeat: no-repeat;
-
-                img {
-                  height: 80%;
-                }
+            .prize_img_block {
+              width: 50%;
+              img {
+                width: 100%;
               }
             }
-          }
+            .prize_text_block {
+              width: 50%;
+              text-align: left;
+              padding: 10px;
+
+              .prize_text {
+                  display: block;
+                  font: 400 14px/19px 'Open Sans', sans-serif;
+                  color: #e34a20;
+                  margin-bottom: 10px;
+              }
+              .prize_condition {
+                  display: block;
+                  font: 300 12px/17px 'Open Sans', sans-serif;
+                  color: #414141;
+                  margin-bottom: 8px;
+              }
+              .prize_date {
+                  display: block;
+                  font: 500 11px 'Open Sans', sans-serif;
+                  color: rgba(65, 65, 65, 0.7);
+              }
+            }
         }
+
+        .contest_container {
+            padding: 10px 0px 0 0px;
+
+            img {
+              padding: 0;
+              width: 100%;
+            }
+
+            .poll_displaytext {
+                display: block;
+                font: 400 16px / 18px 'Open Sans', sans-serif;
+                color: #ececec;
+                margin: 10px 0 20px 0;
+            }
+        }
+
+        
+
+        .poll_ans_form {
+          &.answered>li {
+            pointer-events: none;
+          }
+          input:focus {
+              outline: none;
+          }
+
+          input[type="radio"] {
+              width: 20px;
+              height: 20px;
+          }
+
+          .question_item {
+              min-height: 24px;
+              width: 90%;
+              position: relative;
+              list-style-type: none;
+              float: right;
+              margin-left: 10px;
+
+              .question_text {
+                z-index: 1;
+                top: 0;
+                padding-left: 3px;
+                width: 80%;
+                word-wrap: break-word;
+                line-height: 24px;
+                position: relative;
+                margin: 0;
+              }
+
+              .bar {
+                  position: absolute;
+                  width: 100%;
+                  top: 0;
+                  bottom: 0;
+                  right: 0;
+                  left:0;
+                  margin: auto;
+
+                  span {
+                      position: absolute;
+                      right: 0;
+                      top: 0;
+                      z-index: 9;
+                      padding-right: 3px;
+                      line-height: 24px;
+                  }
+
+                  .back {
+                      position: relative;
+                      width: 0;
+                      height: 100%;
+                      transition: 1.5s;
+                  }
+              }
+          }
+
+          li .ui-block-a {
+              display: flex;
+              align-items: center;
+          }
+
+          .question_thumbnail {
+              width: 80px;
+              margin-left: 5px;
+              pointer-events: all;
+              cursor: pointer;
+          }
+
+        }
+
+        .ansRadioChoice + label {
+            font: 400 14px 'Open Sans', sans-serif;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        
       }
     }
     /***** END OF POLL *****/
   }
+}
+.poll_block .header {
+    padding-left: 40px !important;
+}
+
+.poll_block .header .prize_cup_icon,
+.photo_contest_block .header .prize_cup_icon {
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 2px;
+}
+
+.poll_block .body {
+    padding: 0 !important;
+}
+.poll_block .contest_container {
+    padding: 20px 20px 0 20px;
+}
+
+.poll_block img {
+    padding: 0;
+    width: 100%;
+/* AF  max-height: 230px; */
+}
+/*.poll_block .poll_displaytext {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font: 400 14px/21px 'Open Sans', sans-serif;
+    color: #ececec;
+}*/
+.poll_block .submit_poll_button {
+    width: 60%;
+    margin: 10px auto;
+    /* margin-bottom: 25px; */
+}
+.poll_block .poll_ans_form {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.poll_block .answer_color_container {
+    display: inline-block;
+    float: right;
+    width: 27px;
+    height: 22px;
+    position: relative;
+}
+.poll_block .ansRadioChoice {
+    float: left;
+}
+.poll_block .poll_results {
+    /* margin-bottom: 15px; */
+    display: none;
+}
+#cmtyx_poll_block .poll_ans_form .ui-block-a {
+    width: 100%;
+    padding-top: 0;
+}
+#cmtyx_poll_block .poll_ans_form .ui-block-b {
+    width: 10%;
+}
+.jqplot-target,
+.jqplot-point-label,
+.jqplot-yaxis-tick {
+    color: #ececec;
+    font-size: 12px;
+    font-weight: 400;
+}
+.jqplot-point-label {
+    /* right: 0; */
+}
+.poll_block .contest_prizes {
+    display: none;
+    padding: 15px 20px 0 20px;
+    border-bottom: solid 1px #636363;
+}
+.poll_block .contest_prizes.shown {
+    display: block;
+}
+.poll_block .contest_prizes.shown .prize_block {
+    display: block;
+}
+
+.poll_block input[type=radio]:not(old){
+  display: none;
 }

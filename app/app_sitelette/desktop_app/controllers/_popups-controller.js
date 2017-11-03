@@ -16,12 +16,13 @@ define([
 	'../views/landing/share',
 	'../views/popups/sendsms',
 	'../views/popups/ordersHistory',
+	'../views/popups/expandImage',
 	'../../scripts/actions/contactActions',
 	'../../../vendor/scripts/js.cookie'
 	], function(appCache, h, userController, sessionActions,
 		PopupsLayoutView, LoginView, SigninView, SignupView, 
 		SignoutView, ForgotView, MessageView, LoaderView, 
-		ShareView, SendsmsView, OrdersHistoryView, 
+		ShareView, SendsmsView, OrdersHistoryView, ExpandImageView,
 		contactActions, Cookies){
 	var PopupsController = Mn.Object.extend({
 		initialize: function() {
@@ -236,6 +237,15 @@ define([
 			this.initializeDialog(ordersHistoryView.$el);
 			ordersHistoryView.onShow();
 		},
+		expandImage: function(imgSource, title) {
+			var expandImageView = new ExpandImageView({
+				imgSource: imgSource,
+				title: title
+			});
+			this.layout.showChildView('popupsContainer', expandImageView);
+			this.initializeDialog(expandImageView.$el);
+			expandImageView.onShow();
+		}
 	});
 	return PopupsController;
 });

@@ -451,6 +451,93 @@
                     <div id="cmtyx_loyalty_program_block" class="grid-item cmtyx_loyalty_program_block"></div>
                   <!----- End of Loyalty Program  ---------------->
 
+                  <!-- ................................... -->
+                  <!-- POLL CONTESTS -->
+                  <div id="cmtyx_poll_block" class="grid-item grid-item--height3 cmtyx_poll_block">
+                      <div class="header cmtyx_color_3">
+                          <div class="title">Sweepstake <span class="collapse_btn"></span></div>
+                      </div>
+                      <div class="body">
+                          <img src="themes/5/desktop/images/coffee.png" alt="poll image">
+                          <span class="question">Our coffee is awesome</span>
+                          <form class="question_ans_form">
+                              <input type="radio" name="radio-choice-ans" id="a_ans" class="ansRadioChoice" checked='checked'>
+                              <label for="a_ans">YES <span class="answer_color_container answer_color_1"></span></label>
+                              <br><br>
+                              <input type="radio" name="radio-choice-ans" id="b_ans" class="ansRadioChoice"> 
+                              <label for="b_ans">NO <span class="answer_color_container answer_color_2"></span></label>
+                          </form>
+                      </div>
+                  </div>
+
+                  <!----- Selfie Contest (Photo contest)  ---------------->       
+                  <div id="cmtyx_photo_contest_block" class="grid-item grid-item--height3 photo_contest_block">
+                    <div class="header cmtyx_color_4">
+                      <div class="title">Selfie contest
+                        <span class="collapse_btn"></span>
+                      </div>
+                    </div>
+                    <div class="body">
+                      <ul class="photo_gallery">
+                        <#list photocontests as photo>
+                          <li class="photo_item" data-uuid="${photo.contestUUID}">
+                              <div class="contest_container">
+                                <div class="photo_block_title" style="display:  none;"><p>&nbsp</p></div>
+                                <img src="${photo.imageURL}" class="photo_image"></img>
+                                <span class="contest_task">${photo.displayText}</span>
+                                <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
+                                <div class="photo_contest_upload_image" data-uuid="${photo.contestUUID}">
+                                  <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
+                                  <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+                                    <input type="file" name="thumb" />
+                                  </div>
+                                </div>
+                              </div>
+                          </li>
+                        </#list>
+                      </ul>
+                    </div>
+                  </div>
+                  <!----- End of Selfie Contest (Photo contest)  ---------------->
+
+                  <!----- Videos  ---------------->   
+                  <#if (externalMedia)?has_content >
+                    <div id="cmtyx_video_block" class="grid-item grid-item--height3 video_block">
+                      <div class="header cmtyx_color_1">
+                        <div class="title">Videos <span class="collapse_btn"></span></div>
+                      </div>
+                      <div class="body last">
+                          <ul>
+                            <#list externalMedia as media>
+                              <li>
+                                <span class="video_title">${media.title}</span>
+                                <#if videoNeedsPlaceholder>
+                                  <div id="externalvideo${media.idMedia}" class="embedded_videos external" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
+                                    <a href="#">
+                                      <img src="themes/1/mobile/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
+                                    </a>
+                                  </div>
+                                  <div class="video_item_message">
+                                    <span>${media.message}</span>
+                                  </div>
+                                <#else>
+                                  <div class="embedded_videos">
+                                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/${media.vid}?playsinline=1"frameborder="0" allowfullscreen="1"></iframe>
+                                    <br>
+                                    <div class="video_item_message">
+                                      <span>${media.message}</span>
+                                    </div>
+                                  </div>
+                                </#if>
+                              </li>
+                            </#list>
+                        </ul>
+                      </div>
+                    </div>
+                  </#if>
+                  <!----- End of Videos  ---------------->
+                  <!-- ................................... -->
+
                   <!-- events -->
                     <#if (eventsSummary.events)?has_content >
                       <!-- <div class="grid-item grid-item--height3 cmtyx_events_block">

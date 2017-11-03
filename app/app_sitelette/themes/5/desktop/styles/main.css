@@ -902,6 +902,12 @@ div.ui-dialog.ui-widget {
         padding: 3px;
         border: 3px solid #330000;
         background-color: white; }
+  div.ui-dialog.ui-widget .expand-image .header-title {
+    text-align: center;
+    color: white; }
+  div.ui-dialog.ui-widget .expand-image .ui-content {
+    display: flex;
+    justify-content: center; }
 
 .ui-widget-overlay {
   opacity: 0.5;
@@ -2998,114 +3004,236 @@ footer {
   .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body > img {
     width: 100%;
     margin-bottom: 10px; }
-  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question {
-    display: block;
-    margin-bottom: 20px;
-    font-weight: 400;
-    font-size: 18px;
-    color: #ececec; }
-  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_ans_form {
-    display: block;
-    margin-bottom: 20px; }
-    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_ans_form input {
-      outline: none;
-      cursor: pointer; }
-    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_ans_form label {
-      font-weight: 500;
-      font-size: 15px;
-      color: #ececec;
-      position: relative;
-      bottom: 1px;
-      cursor: pointer; }
-      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_ans_form label .answer_color_container {
-        display: inline-block;
-        float: right;
-        width: 27px;
-        height: 22px;
-        position: relative;
-        bottom: 3px; }
-        .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_ans_form label .answer_color_container.answer_color_1 {
-          background-color: #faa019; }
-        .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_ans_form label .answer_color_container.answer_color_2 {
-          background-color: #f05d13; }
-  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_results {
-    margin-bottom: 30px; }
-    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_results .a_ans_graph {
-      display: inline-block;
-      width: 85%;
-      height: 22px;
-      margin-bottom: 10px;
-      margin-right: 10px; }
-      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_results .a_ans_graph.answer_color_1 {
-        background-color: #faa019; }
-    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_results .b_ans_graph {
-      display: inline-block;
-      width: 15%;
-      height: 22px;
-      margin-right: 10px; }
-      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_results .b_ans_graph.answer_color_2 {
-        background-color: #f05d13; }
-    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_results .a_ans_percent_num,
-    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_results .b_ans_percent_num {
-      display: inline-block;
-      font-weight: 400;
-      font-size: 18px;
-      color: #ececec;
-      position: relative;
-      bottom: 14px; }
-    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .question_results .b_ans_percent_num {
-      bottom: 4px; }
-  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prizes_title {
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .submit_poll_button {
+    width: 60%;
+    margin: 10px auto;
+    font-weight: 700;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: center;
+    color: white; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_block_title {
     text-align: center;
+    color: #ddd;
+    font: 400 16px/24px 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 5px; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prizes_title {
     font-weight: 400;
     font-size: 12px;
     color: #ececec;
     text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    align-items: center;
     margin-bottom: 15px; }
-  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul {
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_cup_icon {
+    display: inline-block;
+    background: url(prize_cup_icon.png) no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    left: 10px;
+    top: 5px;
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 2px; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_item {
+    color: white; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .medical-answered {
+    display: none; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form.answered.medical .medical-answered {
+    display: block;
+    color: #66a966;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+    margin-top: 20px; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_container {
+    max-height: 180px;
+    background-color: #fff;
+    width: 100%;
+    display: flex;
+    align-items: center; }
+    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_container .prize_img_block {
+      width: 50%; }
+      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_container .prize_img_block img {
+        width: 100%; }
+    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_container .prize_text_block {
+      width: 50%;
+      text-align: left;
+      padding: 10px; }
+      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_container .prize_text_block .prize_text {
+        display: block;
+        font: 400 14px/19px 'Open Sans', sans-serif;
+        color: #e34a20;
+        margin-bottom: 10px; }
+      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_container .prize_text_block .prize_condition {
+        display: block;
+        font: 300 12px/17px 'Open Sans', sans-serif;
+        color: #414141;
+        margin-bottom: 8px; }
+      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_container .prize_text_block .prize_date {
+        display: block;
+        font: 500 11px 'Open Sans', sans-serif;
+        color: rgba(65, 65, 65, 0.7); }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .contest_container {
+    padding: 10px 0px 0 0px; }
+    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .contest_container img {
+      padding: 0;
+      width: 100%; }
+    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .contest_container .poll_displaytext {
+      display: block;
+      font: 400 16px / 18px 'Open Sans', sans-serif;
+      color: #ececec;
+      margin: 10px 0 20px 0; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form.answered > li {
+    pointer-events: none; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form input:focus {
+    outline: none; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form input[type="radio"] {
+    width: 20px;
+    height: 20px; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form .question_item {
+    min-height: 24px;
+    width: 90%;
+    position: relative;
     list-style-type: none;
-    padding: 0; }
-    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul .discount_block {
+    float: right;
+    margin-left: 10px; }
+    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form .question_item .question_text {
+      z-index: 1;
+      top: 0;
+      padding-left: 3px;
+      width: 80%;
+      word-wrap: break-word;
+      line-height: 24px;
+      position: relative;
+      margin: 0; }
+    .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form .question_item .bar {
+      position: absolute;
       width: 100%;
-      min-height: 112px;
-      margin-bottom: 10px; }
-      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul .discount_block .discount_container {
-        background-color: white; }
-        .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul .discount_block .discount_container .discount_text_block {
-          text-align: left;
-          padding: 25px 0 25px 25px;
-          display: inline-block;
-          width: 50%; }
-          .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul .discount_block .discount_container .discount_text_block .discount_text {
-            display: block;
-            font-weight: 500;
-            font-size: 14px;
-            color: #e34a20;
-            text-transform: uppercase;
-            margin-bottom: 10px; }
-          .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul .discount_block .discount_container .discount_text_block .discount_condition {
-            display: block;
-            font-weight: 500;
-            font-size: 14px;
-            color: #414141;
-            margin-bottom: 8px; }
-          .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul .discount_block .discount_container .discount_text_block .discount_date {
-            display: block;
-            font-weight: 500;
-            font-size: 11px;
-            color: #ddd; }
-        .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul .discount_block .discount_container .prize-picture-container {
-          display: inline-flex;
-          align-items: center;
-          width: 48%;
-          vertical-align: top;
-          height: 113px;
-          float: right;
-          background-size: 90% 90%;
-          background-position: center;
-          background-repeat: no-repeat; }
-          .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body ul .discount_block .discount_container .prize-picture-container img {
-            height: 80%; }
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto; }
+      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form .question_item .bar span {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 9;
+        padding-right: 3px;
+        line-height: 24px; }
+      .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form .question_item .bar .back {
+        position: relative;
+        width: 0;
+        height: 100%;
+        transition: 1.5s; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form li .ui-block-a {
+    display: flex;
+    align-items: center; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form .question_thumbnail {
+    width: 80px;
+    margin-left: 5px;
+    pointer-events: all;
+    cursor: pointer; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .ansRadioChoice + label {
+    font: 400 14px 'Open Sans', sans-serif;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; }
+
+.poll_block .header {
+  padding-left: 40px !important; }
+
+.poll_block .header .prize_cup_icon,
+.photo_contest_block .header .prize_cup_icon {
+  float: right;
+  position: relative;
+  right: 10px;
+  bottom: 2px; }
+
+.poll_block .body {
+  padding: 0 !important; }
+
+.poll_block .contest_container {
+  padding: 20px 20px 0 20px; }
+
+.poll_block img {
+  padding: 0;
+  width: 100%;
+  /* AF  max-height: 230px; */ }
+
+/*.poll_block .poll_displaytext {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font: 400 14px/21px 'Open Sans', sans-serif;
+    color: #ececec;
+}*/
+.poll_block .submit_poll_button {
+  width: 60%;
+  margin: 10px auto;
+  /* margin-bottom: 25px; */ }
+
+.poll_block .poll_ans_form {
+  display: block;
+  margin-bottom: 20px; }
+
+.poll_block .answer_color_container {
+  display: inline-block;
+  float: right;
+  width: 27px;
+  height: 22px;
+  position: relative; }
+
+.poll_block .ansRadioChoice {
+  float: left; }
+
+.poll_block .poll_results {
+  /* margin-bottom: 15px; */
+  display: none; }
+
+#cmtyx_poll_block .poll_ans_form .ui-block-a {
+  width: 100%;
+  padding-top: 0; }
+
+#cmtyx_poll_block .poll_ans_form .ui-block-b {
+  width: 10%; }
+
+.jqplot-target,
+.jqplot-point-label,
+.jqplot-yaxis-tick {
+  color: #ececec;
+  font-size: 12px;
+  font-weight: 400; }
+
+.jqplot-point-label {
+  /* right: 0; */ }
+
+.poll_block .contest_prizes {
+  display: none;
+  padding: 15px 20px 0 20px;
+  border-bottom: solid 1px #636363; }
+
+.poll_block .contest_prizes.shown {
+  display: block; }
+
+.poll_block .contest_prizes.shown .prize_block {
+  display: block; }
+
+.poll_block input[type=radio]:not(old) {
+  display: none; }
 
 .cmtyx_desktop_application .home_tabs_list {
   /***** PHOTO contest *****/
@@ -3141,8 +3269,7 @@ footer {
     color: #ddd;
     font: 400 16px/24px 'Open Sans', sans-serif;
     text-transform: uppercase;
-    margin-bottom: 15px;
-    /* display: none; */ }
+    margin-bottom: 15px; }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .photo_block_title span {
     overflow: hidden;
     white-space: nowrap;
@@ -3159,10 +3286,8 @@ footer {
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .header {
     padding-left: 40px !important; }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block img {
-    /* max-height: 230px; */
     padding: 0;
-    width: 100%;
-    margin-bottom: 10px; }
+    width: 100%; }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .body li {
     /* margin-bottom: 20px; */ }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .body li.last {
@@ -3177,13 +3302,32 @@ footer {
     margin: 10px 0 20px 0; }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .send_photo_btn {
     font: 400 16px 'Open Sans', sans-serif;
-    margin-bottom: 20px; }
+    background-color: transparent;
+    text-shadow: none;
+    border-width: 1px;
+    border-style: solid;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    outline: none;
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    padding-top: 10px; }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .send_photo_btn:focus {
     box-shadow: none; }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .photo_contest_upload_image {
     max-height: 568px;
     margin-bottom: 20px;
     display: none; }
+    .cmtyx_desktop_application .home_tabs_list .photo_contest_block .photo_contest_upload_image textarea {
+      height: 60px;
+      font: 300 16px 'Open Sans', sans-serif;
+      color: #bbbbbb;
+      width: 100%;
+      background-color: transparent;
+      resize: none;
+      padding: 4px 1.6px;
+      border: 0.1rem solid #757373; }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .photo_contest_upload_image img {
     max-height: none; }
   .cmtyx_desktop_application .home_tabs_list .photo_contest_block .photo_contest_upload_image .dropzone {
@@ -3271,6 +3415,23 @@ footer {
           background-repeat: no-repeat; }
           .cmtyx_desktop_application .home_tabs_list .body ul .discount_block .discount_container .prize-picture-container img {
             height: 80%; }
+
+.cmtyx_desktop_application .home_tabs_list {
+  /***** VIDEO *****/
+  /***** END OF VIDEO *****/ }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_video_block .body > img {
+    width: 100%;
+    margin-bottom: 10px; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_video_block .body .video_title {
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding-bottom: 15px;
+    display: inline-block; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_video_block .body .video_item_message {
+    display: block;
+    color: white;
+    font: 300 12px 'Open Sans', sans-serif; }
 
 .cmtyx_desktop_application .grid .cmtyx_cart_block .cart_page {
   padding: 25px 20px 20px 20px;
