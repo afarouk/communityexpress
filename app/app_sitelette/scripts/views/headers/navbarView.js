@@ -112,7 +112,7 @@ var NavbarView = Backbone.View.extend({
     },
 
     triggerContestsView: function() {
-        debugger;
+       // debugger;
         this.page.withLogIn(function () {
             Vent.trigger('viewChange', 'contests', [this.sa, this.sl]);
         }.bind(this));

@@ -2379,7 +2379,7 @@ input#subject {
 .glyphicon-ok {
   color: #EF6E12;
 }
-#contactUsSuccessRow {
+#contactUsSuccessRow,#contactUsErrorRow{
   margin: 40px 0;
 }
 span.icon-size {
@@ -2387,6 +2387,18 @@ span.icon-size {
 }
 #contactUsSuccessDiv {
   color: #EF6E12;
+  margin: 0;
+}
+
+#contactUsErrorRow {
+  text-align: center;
+  display: none;
+}
+.glyphicon-remove {
+  color: #f30404;
+}
+#contactUsErrorDiv {
+  color: #f30404;
   margin: 0;
 }
 .callUs_wrap {
