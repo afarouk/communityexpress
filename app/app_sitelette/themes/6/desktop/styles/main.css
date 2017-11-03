@@ -3448,16 +3448,16 @@ footer {
 .cmtyx_desktop_application .home_tabs_list {
   /***** VIDEO *****/
   /***** END OF VIDEO *****/ }
-  .cmtyx_desktop_application .home_tabs_list .cmtyx_video_block .body > img {
+  .cmtyx_desktop_application .home_tabs_list #cmtyx_video_block .body > img {
     width: 100%;
     margin-bottom: 10px; }
-  .cmtyx_desktop_application .home_tabs_list .cmtyx_video_block .body .video_title {
+  .cmtyx_desktop_application .home_tabs_list #cmtyx_video_block .body .video_title {
     width: 100%;
     color: white;
     text-align: center;
     padding-bottom: 15px;
     display: inline-block; }
-  .cmtyx_desktop_application .home_tabs_list .cmtyx_video_block .body .video_item_message {
+  .cmtyx_desktop_application .home_tabs_list #cmtyx_video_block .body .video_item_message {
     display: block;
     color: white;
     font: 300 12px 'Open Sans', sans-serif; }
