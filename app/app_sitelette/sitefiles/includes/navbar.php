@@ -27,7 +27,7 @@
             <!--
               <li class="li_demo"><a href="sendsample">Try It</a></li>
             -->
-              <li class="li_flayer"><a href="testflyer">Flyers</a></li>
+             <!--  <li class="li_flayer"><a href="testflyer">Flyers</a></li> -->
               <!-- <li class="li_flayer"><a href="themeoption">Theme</a></li> -->
             <li>
               <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
@@ -40,8 +40,11 @@
             <li class="li_login" <?php modifyUrlAndClass("portalexpress") ?> >
               <a href="portalexpress" class="login_btn">Log in</a>
             </li>
-            <li class="li_support"><a href="support">Support</a></li>
-            <li class="li_paypal"><a target="_blank" href="paypalsetup">Paypal Support</a></li>
+            <li class="FAQ" <?php modifyUrlAndClass("faq") ?> >
+              <a href="./sitefiles/common_docs_legal/FAQ.pdf" target="_blank" class="faq_button">FAQ</a>
+            </li>
+            <!-- <li class="li_support"><a href="support">Support</a></li>
+            <li class="li_paypal"><a target="_blank" href="paypalsetup">Paypal Support</a></li> -->
             <li>
           </ul>
         </div>

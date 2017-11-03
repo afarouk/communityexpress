@@ -5,11 +5,16 @@ function hideEmailRegistrationError() {
 function showEmailResultMessage(success, messageToShow) {
  if (success) {
   $('#contactUsFormRow').hide();
+  $('#contactUsErrorRow').hide();
   $('#contactUsSuccessDiv').empty().text(messageToShow);
   $('#contactUsSuccessRow').fadeIn();
   // $('#contactUsSuccessDiv').css("display","block");
  } else {
   console.log("error :"+messageToShow);
+  $('#contactUsFormRow').hide();
+  $('#contactUsSuccessRow').hide();
+  $('#contactUsErrorDiv').empty().text(messageToShow);
+  $('#contactUsErrorRow').fadeIn();
  }
 }
 
@@ -21,9 +26,9 @@ function attachBootstrapValidatorsToContactUsForm() {
  var form = $('#contactUsForm');
 
  // IMPORTANT: You must declare .on('init.field.fv')
- // before calling .formValidation(options)
+ // before calling .formValidation(options)   icon
  form.on('init.field.fv', function(e, data) {
-   $('#contactSubmit').prop('disabled', true);
+   //$('#contactSubmit').prop('disabled', true);
    var $icon = data.element.data('fv.icon'),
     options = data.fv.getOptions(), // Entire
     validators = data.fv.getOptions(data.field).validators;
@@ -51,8 +56,8 @@ function attachBootstrapValidatorsToContactUsForm() {
     name: {
      trigger: ' blur',
      validators: {
-      notEmpty: {
-       message: 'Name is Required'
+     notEmpty: {
+     message: 'Name is Required'
       }
      }
     },
@@ -131,6 +136,7 @@ function attachBootstrapValidatorsToContactUsForm() {
     var formObject = $("#contactUsForm").serializeObject();
     var postPayload = JSON.stringify(formObject);
     /* ajax calling for mail */
+
     $.ajax({
      url: apiurl,
      method: "POST",
@@ -141,7 +147,6 @@ function attachBootstrapValidatorsToContactUsForm() {
       json: "application/json"
      }
     }).done(function(result) {
-
      // ladda_signup_submit_button.stop();
 
      if (typeof result !== 'undefined') {
@@ -182,5 +187,4 @@ function attachBootstrapValidatorsToContactUsForm() {
 $(document).ready(function() {
  parseCommunityURL();
  attachBootstrapValidatorsToContactUsForm();
-
 });
