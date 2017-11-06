@@ -166,17 +166,13 @@
             }
         } 
 
-        .photo-answered,
-        .poll-answered {
+        .photo-answered {
             text-align: center;
             color: #ececec;
             font: 400 12px/19px 'Open Sans', sans-serif;
             margin: 15px;
             border: solid 1px #ececec;
             padding: 7px 20px;
-        }
-        .photo-answered {
-            // margin-bottom: 25px;
         }
       }
     }

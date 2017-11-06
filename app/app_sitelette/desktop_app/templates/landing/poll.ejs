@@ -81,10 +81,10 @@
                     <% if (poll.answerStatus.enumText !== 'ANSWERED') { %>
                         <button class="submit_poll_button open_menu_btn cmtyx_text_color_2 ui-btn ui-corner-all cmtyx_color_1 cmtyx_border_color_1" data-uuid="<%= poll.contestUUID %>">Submit</button>
                     <% } else { %>
-                        <!-- <div class="poll-answered">
+                        <div class="poll-answered">
                             <span class="alert_sign_icon"></span>
-                            You have already answered this question
-                        </div> -->
+                            ! You have already answered this question
+                        </div>
                     <% } %>
                     <div class="poll_results answerBar jqplot-target" id="pollBar-<%= poll.contestUUID %>"></div>
                 </div>

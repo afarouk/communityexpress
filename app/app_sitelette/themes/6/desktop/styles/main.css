@@ -3122,6 +3122,13 @@ footer {
       font: 400 16px / 18px 'Open Sans', sans-serif;
       color: #ececec;
       margin: 10px 0 20px 0; }
+  .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll-answered {
+    text-align: center;
+    color: #ececec;
+    font: 400 12px/19px 'Open Sans', sans-serif;
+    margin: 15px;
+    border: solid 1px #ececec;
+    padding: 7px 10px; }
   .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form.answered > li {
     pointer-events: none; }
   .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form input:focus {
@@ -3181,88 +3188,6 @@ footer {
     display: flex;
     justify-content: flex-start;
     align-items: center; }
-
-.poll_block .header {
-  padding-left: 40px !important; }
-
-.poll_block .header .prize_cup_icon,
-.photo_contest_block .header .prize_cup_icon {
-  float: right;
-  position: relative;
-  right: 10px;
-  bottom: 2px; }
-
-.poll_block .body {
-  padding: 0 !important; }
-
-.poll_block .contest_container {
-  padding: 20px 20px 0 20px; }
-
-.poll_block img {
-  padding: 0;
-  width: 100%;
-  /* AF  max-height: 230px; */ }
-
-/*.poll_block .poll_displaytext {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font: 400 14px/21px 'Open Sans', sans-serif;
-    color: #ececec;
-}*/
-.poll_block .submit_poll_button {
-  width: 60%;
-  margin: 10px auto;
-  /* margin-bottom: 25px; */ }
-
-.poll_block .poll_ans_form {
-  display: block;
-  margin-bottom: 20px; }
-
-.poll_block .answer_color_container {
-  display: inline-block;
-  float: right;
-  width: 27px;
-  height: 22px;
-  position: relative; }
-
-.poll_block .ansRadioChoice {
-  float: left; }
-
-.poll_block .poll_results {
-  /* margin-bottom: 15px; */
-  display: none; }
-
-#cmtyx_poll_block .poll_ans_form .ui-block-a {
-  width: 100%;
-  padding-top: 0; }
-
-#cmtyx_poll_block .poll_ans_form .ui-block-b {
-  width: 10%; }
-
-.jqplot-target,
-.jqplot-point-label,
-.jqplot-yaxis-tick {
-  color: #ececec;
-  font-size: 12px;
-  font-weight: 400; }
-
-.jqplot-point-label {
-  /* right: 0; */ }
-
-.poll_block .contest_prizes {
-  display: none;
-  padding: 15px 20px 0 20px;
-  border-bottom: solid 1px #636363; }
-
-.poll_block .contest_prizes.shown {
-  display: block; }
-
-.poll_block .contest_prizes.shown .prize_block {
-  display: block; }
-
-.poll_block input[type=radio]:not(old) {
-  display: none; }
 
 .cmtyx_desktop_application .home_tabs_list {
   /***** PHOTO contest *****/ }
@@ -3385,8 +3310,7 @@ footer {
         .cmtyx_desktop_application .home_tabs_list #cmtyx_photo_contest_block .body .contest_container .photo_contest_upload_image .dropzone .btn {
           background-color: #464646;
           border-color: #464646; }
-  .cmtyx_desktop_application .home_tabs_list #cmtyx_photo_contest_block .body .photo-answered,
-  .cmtyx_desktop_application .home_tabs_list #cmtyx_photo_contest_block .body .poll-answered {
+  .cmtyx_desktop_application .home_tabs_list #cmtyx_photo_contest_block .body .photo-answered {
     text-align: center;
     color: #ececec;
     font: 400 12px/19px 'Open Sans', sans-serif;
