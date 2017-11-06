@@ -1888,6 +1888,7 @@ a.get_started_btn:active {
   font: 600 54px/54px Roboto;
 }
 .heading_block h2 {
+  padding-top: 280px;
   color: white;
   line-height: 1.2;
   font: 500 36px/36px Roboto;
