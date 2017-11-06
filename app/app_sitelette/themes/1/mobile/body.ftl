@@ -591,6 +591,7 @@
 					<div class="header cmtyx_color_3">
 						<span class="title">gallery</span> <span class="collapse_btn">&#9660;</span>
 					</div>
+					<#if (medias)?has_content >
 					<div class="body">
 						<ul class="gallery">
 							<#list medias as media>
@@ -649,6 +650,13 @@
 							</#list>
 						</ul>
 					</div>
+					<#else>
+						<div class="body">
+							<div class="no_promotions">
+								(No Galleries)
+							</div>
+						</div>
+					</#if>
 				</li>
 				
 				<!----- End of Gallery  ---------------->
@@ -1040,10 +1048,10 @@
 				</li>
 				</#if>
 				
-		<!----- End of User Reviews  ---------------->				
+			<!----- End of User Reviews  ---------------->				
 
-		<!----- Videos  ---------------->		
-		<#if (externalMedia)?has_content >
+			<!----- Videos  ---------------->		
+			<#if (externalMedia)?has_content >
 				<li id="cmtyx_video_block" class="video_block">
 					<div class="header cmtyx_color_1">
 						<span class="title">video</span> <span class="collapse_btn">&#9660;</span>

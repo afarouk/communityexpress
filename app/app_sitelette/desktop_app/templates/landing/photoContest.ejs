@@ -1,0 +1,99 @@
+<div class="header cmtyx_color_4">
+    <% if (secureType) { %>
+        <span class="title">Upload Picture</span>
+    <% } else { %>
+        <span class="title">Selfie contest</span>
+    <% } %>
+</div>
+<div class="body">
+    <ul class="photo_gallery">
+        <% _.each(contests, function(photo, index){ %>
+            <li class="photo_item" data-uuid="<%= photo.contestUUID %>">
+                <% if (!secureType) { %>
+                    <ul class="contest_prizes shown">
+                        <div class="photo_block_title"><span>Enter to win</span></div>
+                        <div class="prizes_title">
+                            <span class="prize_cup_icon"></span>
+                            <span>All entries are entered into our mini sweepstakes!</span>
+                        </div>
+                        <% _.each(photo.prizes, function(prize, index){ %>
+                            <li>
+                                <div class="prize_block">
+                                    <div class="prize_container">
+                                        <div class="prize_img_block">
+                                            <img src="<%= prize.imageUrl %>"></img>
+                                        </div>
+                                        <div class="prize_text_block">
+                                            <span class="prize_text"><%= prize.contestPrizeName %></span>
+                                            <span class="prize_condition"><%= prize.displayText %></span>
+                                            <span class="prize_date"><%= prize.quantity %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+                <div class="contest_container">
+                    <img src="<%= photo.imageURL %>" class="photo_image" data-index="<%= index %>"></img>
+                    <span class="contest_task"><%= photo.displayText %></span>
+                    <% if (photo.responseStatus.enumText !== "ANSWERED") { %>
+                        <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
+                        <div class="photo_contest_upload_image" data-uuid="<%= photo.contestUUID %>">
+                            <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
+                            <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
+                                <input type="file" name="thumb" />
+                            </div>
+                        </div>
+                    </div>
+                    <% } else { %>
+                        <div class="poll-answered">
+                            <span class="alert_sign_icon"></span>
+                            ! You have already sent a photo
+                        </div>
+                    <% } %>
+                    <% if (!secureType) { %>
+                        <div class="share_container">
+                            <div class="item_buttons">
+                                <div class="share_btn_block cmtyx_share_icon_color"
+                                    uuid="">
+                                    <span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
+                                </div>
+                            </div>
+                            <div class="share-block" data-uuid="<%= photo.contestUUID %>">
+                                <div class="sms_input_block" data-uuid="<%= photo.contestUUID %>">
+                                  <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64">
+                                  <button class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</button>
+                                </div>
+                                <div class="icons-container-wrapper">
+                                  <div class="icons-container">
+                                    <div class="text sms_block">
+                                        <a href="" name="share_sms" class="share_sms cmtyx_text_color_1">
+                                            <i class="fa fa-mobile" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text email_block">
+                                        <a href="" name="share_email" class="share_email cmtyx_text_color_1">
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text facebook_block">
+                                        <a name="share_facebook" href="" target="_blank" class="share_facebook cmtyx_text_color_1">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text twitter_block">
+                                        <a name="share_twitter" href="" target="_blank" class="share_twitter cmtyx_text_color_1">
+                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </li>
+        <% }) %>
+    </ul>
+</div>

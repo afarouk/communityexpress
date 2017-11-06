@@ -53,7 +53,7 @@
                 <!-- POLL CONTESTS -->
                 <div id="cmtyx_poll_block" class="grid-item grid-item--height3 cmtyx_poll_block">
                     <div class="header cmtyx_color_3">
-                        <div class="title">Poll <span class="collapse_btn"></span></div>
+                        <div class="title">Poll</div>
                     </div>
                     <div class="body">
                         <img src="themes/5/desktop/images/coffee.png" alt="poll image">
@@ -71,9 +71,7 @@
                 <!----- Selfie Contest (Photo contest)  ---------------->       
                 <div id="cmtyx_photo_contest_block" class="grid-item grid-item--height3 photo_contest_block">
                   <div class="header cmtyx_color_4">
-                    <div class="title">Upload photo
-                      <span class="collapse_btn"></span>
-                    </div>
+                    <div class="title">Upload photo</div>
                   </div>
                   <div class="body">
                     <ul class="photo_gallery">

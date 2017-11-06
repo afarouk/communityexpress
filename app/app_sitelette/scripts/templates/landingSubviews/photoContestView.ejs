@@ -1,5 +1,5 @@
 <div class="header cmtyx_color_4">
-    <% if (medical) { %>
+    <% if (secureType) { %>
         <span class="title">Upload Picture</span>
         <span class="collapse_btn">&#9660;</span>
     <% } else { %>
@@ -14,7 +14,7 @@
     <ul class="photo_gallery">
         <% _.each(contests, function(photo, index){ %>
             <li class="photo_item" data-uuid="<%= photo.contestUUID %>">
-                <% if (!medical) { %>
+                <% if (!secureType) { %>
                     <ul class="contest_prizes shown">
                         <div class="photo_block_title"><span>Enter to win</span></div>
                         <div class="ui-grid-a prizes_title">
@@ -56,51 +56,53 @@
                             </div>
                         </div>
                     </div>
-                <% } else { %>
-                    <div class="poll-answered">
-                        <span class="alert_sign_icon"></span>
-                        You have already sent a photo
-                    </div>
-                <% } %>
-                <% if (!medical) { %>
-                    <div class="share_container">
-                        <div class="share_btn_block cmtyx_share_icon_color"
-                            uuid="">
-                            <span class="icon cmtyx_share_icon_color fa fa-share"></span> <span class="text">Share</span>
+                    <% } else { %>
+                        <div class="poll-answered">
+                            <span class="alert_sign_icon"></span>
+                            You have already sent a photo
                         </div>
-                        <div class="share_block" data-uuid="<%= photo.contestUUID %>">
-                            <div class="ui-grid-c">
-                                <div class="sms_input_block" data-uuid="<%= photo.contestUUID %>">
-                                    <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
-                                    <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
-                                </div>
-                                <div class="ui-block-a text sms_block">
-                                    <a href="" class="share_sms">
-                                        <div class="share_icons_round_block">
-                                            <i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="ui-block-b text email_block">
-                                    <a href="" class="share_email">
-                                        <div class="share_icons_round_block">
-                                            <i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="ui-block-c text facebook_block">
-                                    <a href="" target="_blank" class="share_facebook">
-                                        <div class="share_icons_round_block">
-                                            <i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="ui-block-d text twitter_block">
-                                    <a href="" target="_blank" class="share_twitter">
-                                        <div class="share_icons_round_block">
-                                            <i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
-                                        </div>
-                                    </a>
+                    <% } %>
+                    <% if (!secureType) { %>
+                        <div class="share_container">
+                            <div class="share_btn_block cmtyx_share_icon_color"
+                                uuid="">
+                                <span class="icon cmtyx_share_icon_color fa fa-share"></span>
+                                <span class="text">Share</span>
+                            </div>
+                            <div class="share_block" data-uuid="<%= photo.contestUUID %>">
+                                <div class="ui-grid-c">
+                                    <div class="sms_input_block" data-uuid="<%= photo.contestUUID %>">
+                                        <input class="phone_us sms_input" type="tel" name="sms_input" placeholder="(US mobile)" value="" size="14" maxlength="64" data-role="none">
+                                        <span class="sms_send_button cmtyx_color_1 cmtyx_border_color_1">Send</span>
+                                    </div>
+                                    <div class="ui-block-a text sms_block">
+                                        <a href="" class="share_sms">
+                                            <div class="share_icons_round_block">
+                                                <i class="cmtyx_share_icon_color share_icon_round fa fa-mobile"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="ui-block-b text email_block">
+                                        <a href="" class="share_email">
+                                            <div class="share_icons_round_block">
+                                                <i class="cmtyx_share_icon_color share_icon_round fa fa-envelope"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="ui-block-c text facebook_block">
+                                        <a href="" target="_blank" class="share_facebook">
+                                            <div class="share_icons_round_block">
+                                                <i class="cmtyx_share_icon_color share_icon_round fa fa-facebook"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="ui-block-d text twitter_block">
+                                        <a href="" target="_blank" class="share_twitter">
+                                            <div class="share_icons_round_block">
+                                                <i class="cmtyx_share_icon_color share_icon_round fa fa-twitter"></i>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

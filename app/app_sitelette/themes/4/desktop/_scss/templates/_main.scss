@@ -110,6 +110,10 @@
       .body { 
         padding: 20px;
         
+        .empty-catalog {
+          color: $white;
+        }
+        
         .share_container {
           .item_buttons {
             .share_btn_block {

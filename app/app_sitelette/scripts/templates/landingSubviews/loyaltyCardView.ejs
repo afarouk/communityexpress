@@ -6,23 +6,22 @@
     <span class="loyalty_card_icon"></span>
 </div>
 <div class="body">
+    <% if (hasLoyaltyProgram) { %>
     <div class="loyalty_inner_wrapper">
         <div class="prize_block">
-            <% if (hasLoyaltyProgram) { %>
-                <div class="ui-grid-a prize_container">
-                    <div class="ui-block-a">
-                        <div class="prize_text_block">
-                            <span class="prize_text"><%= displayText %></span>
-                            <span class="prize_condition"><%= conditions %></span>
-                            <span class="prize_date"><% if (expirationDate) { %> till <%= expirationDate %> <% } %></span>
-                        </div>
-                    </div>
-                    <div class="ui-block-b ">
-                        <img src="<%= url %>"></img>
+            <div class="ui-grid-a prize_container">
+                <div class="ui-block-a">
+                    <div class="prize_text_block">
+                        <span class="prize_text"><%= displayText %></span>
+                        <span class="prize_condition"><%= conditions %></span>
+                        <span class="prize_date"><% if (expirationDate) { %> till <%= expirationDate %> <% } %></span>
                     </div>
                 </div>
-                <div class="loyalty_status"></div>
-            <% } %>
+                <div class="ui-block-b ">
+                    <img src="<%= url %>"></img>
+                </div>
+            </div>
+            <div class="loyalty_status"></div>
         </div>
         <div class="no_qr_code_block cmtyx_color1">
             <button class="refresh_button_style1 cmtyx_border_color_1 cmtyx_text_color_1"> Refresh </button>
@@ -77,4 +76,9 @@
             </div>
         </div>
     </div>
+    <% } else { %>
+    <div class="no_promotions">
+        (No Loyalty program)
+    </div>
+    <% } %>
 </div>

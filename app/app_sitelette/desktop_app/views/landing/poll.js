@@ -9,11 +9,9 @@ define([
 		ui: {
       show_share_btn: '.share_btn_block',
       show_sms_block: '.sms_block',
-      send_sms: '.sms_send_button',
-      send_photo: '.send_photo_btn'
+      send_sms: '.sms_send_button'
     },
     events: {
-      'click @ui.send_photo': 'onClickSendPhoto',
       'click @ui.show_share_btn': 'showShareBlock',
       'click @ui.show_sms_block': 'showSMSInput',
       'click @ui.send_sms': 'onSendSMS',
@@ -72,7 +70,7 @@ define([
           val = $target.prev().val(); //(650) 617-3439
       //todo toggle block 
 
-      this.trigger('onSendSMS', 'POLL', val, uuid, shareUrl);
+      this.trigger('onSendSMS', 'POLL_CONTEST', val, uuid, shareUrl);
     },
 
     getLinks: function() {

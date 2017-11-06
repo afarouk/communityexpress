@@ -1,8 +1,10 @@
 'use strict';
 
 define([
-  'ejs!../../templates/landing/loyaltyCard.ejs'
-	], function(template){
+  '../../../scripts/globalHelpers',
+  '../../../scripts/actions/contestActions',
+  'ejs!../../templates/landing/photoContest.ejs'
+	], function(h, contestActions, template){
 	var PhotoContestView = Mn.View.extend({
     template: template,
     el: '#cmtyx_photo_contest_block',
@@ -14,13 +16,29 @@ define([
     },
     events: {
       'click @ui.send_photo': 'onClickSendPhoto',
+      'click @ui.show_share_btn': 'showShareBlock',
+      'click @ui.show_sms_block': 'showSMSInput',
+      'click @ui.send_sms': 'onSendSMS'
     },
     initialize: function() {
-
-      this.setShareLinks();
+      this.secureType = window.saslData.domainEnum === 'MEDICURIS' ||
+          window.saslData.domainEnum === 'MOBILEVOTE' ? window.saslData.domainEnum : false;
+      if (!this.secureType) {
+        this.setShareLinks();
+      }
     },
 
-    render: function() {
+    render: function(contest) {
+      this.contest = contest;
+      this.$el.html(this.template({
+          contests: contest,
+          secureType: this.secureType
+      }));
+      if (contest) {
+        this.$el.show();
+      } else {
+        this.$el.hide();
+      }
       this.bindUIElements();
       return this;
     },
@@ -87,13 +105,13 @@ define([
     onSendSMS: function(e) {
       var $el = this.$el.find('.sms_input_block'),
           $target = $(e.currentTarget),
-          uuid = this.photoUUID,
+          uuid = $target.parent().parent().data('uuid'),
           demo = window.community.demo ? 'demo=true&' : '',
           shareUrl = window.location.href.split('?')[0] + 
             '?' + demo + 't=p&u=' + uuid,
           val = $target.prev().val(); //(650) 617-3439
       //todo toggle block 
-      this.trigger('onSendSMS', 'PHOTO', val, uuid, shareUrl);
+      this.trigger('onSendSMS', 'PHOTO_CONTEST', val, uuid, shareUrl);
     },
 
     getLinks: function() {
@@ -122,46 +140,18 @@ define([
 
     onSaveImage: function($el, image) {
         var message = $el.find('.comntyex-upload_message_input').val(),
-            contestUUID = $el.data('uuid'),
-            file = h().dataURLtoBlob(image.data);
-//TODO fix this V
-        contestActions.enterPhotoContest(this.sa, this.sl,
-            contestUUID, file, message)
-            .then(function(result) {
-                if (this.medicalType) {
-                    this.render(this.contest);
-                } else {
-                    $el.slideUp('fast', function() {
-                        $el.next().slideDown('fast', function() {
+            contestUUID = $el.data('uuid')
 
-                        }.bind(this));
-                    }.bind(this));
-                }
-                // this.showPrizes($el);
-                loader.showFlashMessage('contest entered');
-            }.bind(this))
-            .fail(function(err){
-                //TODO manage error
-                loader.showErrorMessage(e, 'error uploading photo');
-            }.bind(this));
-    },
-
-    enterContest: function () {
-        var user = userController.getCurrentUser(),
-            sasl = user.favorites.at(0);
-        popupController.requireLogIn(sasl, function() {
-            popupController.upload(sasl, {
-                action: function (sa, sl, file, message) {
-                    loader.show('');
-                    // this.model.contestUUID null because we should get contests
-                    return contestActions.enterPhotoContest(sa, sl, null, file, message)
-                        .then(function () {
-                            loader.showFlashMessage('contest entered');
-                        }, function (e) {
-                            loader.showErrorMessage(e, 'error uploading photo');
-                        });
-                }.bind(this)
-            });
+        this.trigger('onEnterPhoto', contestUUID, image, message, function() {
+          if (this.secureType) {
+              this.render(this.contest);
+          } else {
+              $el.slideUp('fast', function() {
+                  $el.next().slideDown('fast');
+                  this.contest[0].responseStatus.enumText = 'ANSWERED';
+                  this.render(this.contest);
+              }.bind(this));
+          }
         }.bind(this));
     },
 

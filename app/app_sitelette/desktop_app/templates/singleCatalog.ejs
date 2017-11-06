@@ -10,6 +10,13 @@
       </div>
     </div>
   <% } %>
+  <% if (!catalogId && !filled) { %>
+    <div class="header">
+        <div class="empty-catalog">
+          empty catalog
+        </div>
+    </div>
+  <% } %>
   <div class="catalog-container" id="catalog-group">
     <!-- render group items here -->
   </div>

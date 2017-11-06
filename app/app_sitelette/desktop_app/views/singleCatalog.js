@@ -21,11 +21,13 @@ define([
 		},
 		serializeData: function() {
 			return {
-				catalogId: this.options.catalogId
+				catalogId: this.options.catalogId,
+				filled: this.options.catalog.collection.groups.length ? true : false
 			};
 		},
 		onRender: function() {
 			var groups = new Backbone.Collection(this.options.catalog.collection.groups);
+			if (!groups.length) return;
 			var catalogTabs = new CatalogTabsView({
 				collection: groups
 			})

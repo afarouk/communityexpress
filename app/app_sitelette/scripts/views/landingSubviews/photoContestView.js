@@ -36,7 +36,7 @@ module.exports = Backbone.View.extend({
         this.sl = community.serviceLocationId;
         Vent.on('openPhotoByShareUrl', this.openPhotoByShareUrl, this);
 
-        this.medicalType = window.saslData.domainEnum === 'MEDICURIS' ||
+        this.secureType = window.saslData.domainEnum === 'MEDICURIS' ||
             window.saslData.domainEnum === 'MOBILEVOTE' ? true : false;
     },
 
@@ -45,9 +45,9 @@ module.exports = Backbone.View.extend({
         this.contest = photos;
         this.$el.html(photoContestTemplate({
             contests: photos,
-            medical: this.medicalType
+            secureType: this.secureType
         }));
-        if (!this.medicalType) {
+        if (!this.secureType) {
             this.setLinksForEachPhoto();
         }
         
@@ -248,7 +248,7 @@ module.exports = Backbone.View.extend({
             }.bind(this),
             onAfterProcessImage: function(){
                 $(this.element).find('.btn').addClass('cmtyx_text_color_1');
-                var height = 450;
+                var height = 510;
                 this.changeSlideHeight($el, height);
             }.bind(this),
             onAfterCancel: function() {
@@ -297,13 +297,13 @@ module.exports = Backbone.View.extend({
         contestActions.enterPhotoContest(this.sa, this.sl,
             contestUUID, file, message)
             .then(function(result) {
-                if (this.medicalType) {
+                if (this.secureType) {
                     this.render(this.contest);
                 } else {
                     $el.slideUp('fast', function() {
-                        $el.next().slideDown('fast', function() {
-
-                        }.bind(this));
+                        $el.next().slideDown('fast');
+                        this.contest[0].responseStatus.enumText = 'ANSWERED';
+                        this.render(this.contest);
                     }.bind(this));
                 }
                 // this.showPrizes($el);
@@ -314,6 +314,15 @@ module.exports = Backbone.View.extend({
                 loader.showErrorMessage(e, 'error uploading photo');
             }.bind(this));
     },
+
+    changeSlideHeight: function($target, additional) {
+      var $el = $target.parents('.slick-list[aria-live="polite"]'),
+          height = $el.height(),
+          visible = $target.is(':visible');
+      if (visible) additional = -additional;
+      $el.css('transition', '0.3s');
+      $el.height(height + additional + 'px');
+  },
 
     enterContest: function () {
         var user = userController.getCurrentUser(),

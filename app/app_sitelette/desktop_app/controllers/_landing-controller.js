@@ -9,6 +9,7 @@ define([
 	'../views/landing/appointments',
 	'../views/landing/photoContest',
 	'../views/landing/poll',
+	'../views/landing/videos',
 	'../views/landing/share',
 	'../../scripts/actions/contactActions',
 	'../../scripts/actions/loyaltyActions',
@@ -16,7 +17,7 @@ define([
 	'../views/popups/sendsms',
 	'../views/backBtnView',
 	], function(appCache, h,
-		DiscountsView, PromotionsView, LoyaltyCardView, AppointmentsView, PhotoContestView, PollView,
+		DiscountsView, PromotionsView, LoyaltyCardView, AppointmentsView, PhotoContestView, PollView, VideosView,
 		ShareView, contactActions, loyaltyActions, contestActions, SendsmsView, BackBtnView){
 	var LandingController = Mn.Object.extend({
 		sa: community.serviceAccommodatorId,
@@ -43,10 +44,14 @@ define([
 
 			//TODO photo contests view
 			this.photoContestView = new PhotoContestView();
+			this.listenTo(this.photoContestView, 'onSendSMS', this.onSendSMS.bind(this));
+			this.listenTo(this.photoContestView, 'onEnterPhoto', this.onEnterPhoto.bind(this));
 
 			this.pollView = new PollView();
 			this.listenTo(this.pollView, 'onSendSMS', this.onSendSMS.bind(this));
 			this.listenTo(this.pollView, 'onEnterPoll', this.onEnterPoll.bind(this));
+
+			this.videosView = new VideosView();
 
 			var shareView = new ShareView();
 			this.listenTo(shareView, 'onSendSMS', this.onSendSMS.bind(this));
@@ -58,20 +63,41 @@ define([
 		},
 		onLoginStatusChanged: function() {
 			var user = appCache.get('user'),
-				uuid = user ? user.getUID() : null;
-			this.landingViewsRender(uuid);
+				uid = user ? user.getUID() : null;
+			this.landingViewsRender(uid);
 		},
-		landingViewsRender: function(uuid) {
-			this.loyaltyRender(uuid);
-			this.pollRender(uuid);
+		landingViewsRender: function(uid) {
+			this.loyaltyRender(uid);
+			this.pollRender(uid);
+			this.photoRender(uid);
 		},
-		pollRender: function(uuid) {
-			if (!uuid && this.pollView) {
+		photoRender: function(uid) {
+			if (!uid && this.photoContestView) {
+				this.photoContestView.render();
+			}
+			if (uid) this.retrievePhoto(uid);
+		},
+		retrievePhoto: function() {
+			contestActions.photoBySASL(this.sa,this.sl)
+				.then(function(contest) {
+				    if (contest) {
+						this.photoContestView.render(contest);
+				    } else {
+				    	this.photoContestView.$el.hide();
+				    }
+				}.bind(this))
+				.fail(function(err){
+				    //TODO manage error
+				    this.$el.hide();
+				}.bind(this));
+		},
+		pollRender: function(uid) {
+			if (!uid && this.pollView) {
 				this.pollView.render();
 			}
-			if (uuid) this.retrievePoll(uuid);
+			if (uid) this.retrievePoll(uid);
 		},
-		retrievePoll: function() {
+		retrievePoll: function(uid) {
 			contestActions.pollBySASL(this.sa,this.sl)
 				.then(function(poll) {
 				    if (poll) {
@@ -96,14 +122,33 @@ define([
 	                }.bind(this));
 			}.bind(this));
 		},
-		loyaltyRender: function(uuid) {
-			if (!uuid && this.loyaltyCardView) {
+		onEnterPhoto: function(contestUUID, image, message, callback) {
+			var file = h().dataURLtoBlob(image.data);
+
+	        contestActions.enterPhotoContest(this.sa, this.sl,
+	            contestUUID, file, message)
+	            .then(function(result) {
+	            	callback(result);
+	            	this.dispatcher.get('popups').showMessage({
+						message: 'Photo contest entered.',
+						loader: true
+					});
+	            }.bind(this))
+	            .fail(function(err){
+	                this.dispatcher.get('popups').showMessage({
+						message: 'error uploading photo.',
+						loader: true
+					});
+	            }.bind(this));
+		},
+		loyaltyRender: function(uid) {
+			if (!uid && this.loyaltyCardView) {
 				this.loyaltyCardView.render(this.loyaltyProgram);
 			}
-			if (uuid) this.retrieveLoyaltyStatus(uuid);
+			if (uid) this.retrieveLoyaltyStatus(uid);
 		},
-		retrieveLoyaltyStatus: function(uuid) {
-			loyaltyActions.updateLoyaltyStatus(uuid)
+		retrieveLoyaltyStatus: function(uid) {
+			loyaltyActions.updateLoyaltyStatus(uid)
 				.then(function(resp) {
 	          		if (resp.hasLoyaltyProgram) {
 	          			this.loyaltyCardView.renderLoyaltyDetails(resp);

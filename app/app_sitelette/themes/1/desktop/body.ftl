@@ -455,7 +455,7 @@
                   <!-- POLL CONTESTS -->
                   <div id="cmtyx_poll_block" class="grid-item grid-item--height3 cmtyx_poll_block">
                       <div class="header cmtyx_color_3">
-                          <div class="title">Sweepstake <span class="collapse_btn"></span></div>
+                          <div class="title">Sweepstake</div>
                       </div>
                       <div class="body">
                           <img src="themes/5/desktop/images/coffee.png" alt="poll image">
@@ -473,9 +473,7 @@
                   <!----- Selfie Contest (Photo contest)  ---------------->       
                   <div id="cmtyx_photo_contest_block" class="grid-item grid-item--height3 photo_contest_block">
                     <div class="header cmtyx_color_4">
-                      <div class="title">Selfie contest
-                        <span class="collapse_btn"></span>
-                      </div>
+                      <div class="title">Selfie contest</div>
                     </div>
                     <div class="body">
                       <ul class="photo_gallery">
@@ -504,34 +502,45 @@
                   <#if (externalMedia)?has_content >
                     <div id="cmtyx_video_block" class="grid-item grid-item--height3 video_block">
                       <div class="header cmtyx_color_1">
-                        <div class="title">Videos <span class="collapse_btn"></span></div>
+                        <div class="title">Videos</div>
                       </div>
                       <div class="body last">
-                          <ul>
-                            <#list externalMedia as media>
-                              <li>
-                                <span class="video_title">${media.title}</span>
-                                <#if videoNeedsPlaceholder>
-                                  <div id="externalvideo${media.idMedia}" class="embedded_videos external" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
-                                    <a href="#">
-                                      <img src="themes/1/mobile/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
-                                    </a>
-                                  </div>
-                                  <div class="video_item_message">
-                                    <span>${media.message}</span>
-                                  </div>
-                                <#else>
-                                  <div class="embedded_videos">
-                                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/${media.vid}?playsinline=1"frameborder="0" allowfullscreen="1"></iframe>
-                                    <br>
-                                    <div class="video_item_message">
-                                      <span>${media.message}</span>
+                        <div class="owl-carousel video-container">
+                          <#list externalMedia as media>
+                            <div class="slide videos-item">
+                              <div class="video_item">
+                                <div class="video_type">
+                                  <div class="video_title">${media.title}</div>
+                                </div>
+
+                                <div class="video_item_container_wrapper">
+                                  <div class="ui-grid-a video_item_container">
+                                    <div class="ui-block-a">
+                                      <#if videoNeedsPlaceholder>
+                                        <div id="externalvideo${media.idMedia}" class="embedded_videos external" idmedia="${media.idMedia}" idVideo="${media.vid}" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1" style="background: #000 url(&quot;${media.thumbnailURL}&quot;)  no-repeat center center;">
+                                          <a href="#">
+                                            <img src="themes/1/mobile/css/images/play.png" alt="Play" srcmedia="https://www.youtube.com/embed/${media.vid}?playsinline=1">
+                                          </a>
+                                        </div>
+                                        <div class="video_item_message">
+                                          <span>${media.message}</span>
+                                        </div>
+                                      <#else>
+                                        <div class="embedded_videos">
+                                          <iframe width="100%" height="250" src="https://www.youtube.com/embed/${media.vid}?playsinline=1"frameborder="0" allowfullscreen="1"></iframe>
+                                          <br>
+                                          <div class="video_item_message">
+                                            <span>${media.message}</span>
+                                          </div>
+                                        </div>
+                                      </#if>
                                     </div>
                                   </div>
-                                </#if>
-                              </li>
-                            </#list>
-                        </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </#list>
+                        </div>
                       </div>
                     </div>
                   </#if>
