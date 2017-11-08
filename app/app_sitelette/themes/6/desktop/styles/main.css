@@ -631,7 +631,9 @@ select {
 
 div.ui-dialog.ui-widget {
   position: fixed;
-  background-color: #363636;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.7);
+  border: 1px solid black;
   border-radius: 2px;
   top: 50vh !important;
   left: 50vw !important;
@@ -977,7 +979,9 @@ body::-webkit-scrollbar-thumb,
   background: url(voting-back.jpg) no-repeat;
   /*temporary*/
   background-size: auto 100%;
-  background-position: bottom; }
+  background-position: bottom;
+  background-attachment: fixed;
+  background-color: #afafaf; }
 
 .subheader-discount,
 .breaking_news {
@@ -1061,7 +1065,8 @@ body::-webkit-scrollbar-thumb,
   .cmtyx_desktop_application .grid .grid-item {
     display: inline-block;
     width: 100%;
-    background-color: #464646;
+    background-color: rgba(23, 22, 22, 0.65);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.65);
     border-radius: 0 0 3px 3px;
     margin: 0 0 30px 0; }
     .cmtyx_desktop_application .grid .grid-item > .header {
@@ -1368,6 +1373,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center; }
+  header.cmtyx_special_background_color {
+    /*temporary*/
+    background-color: #9a9a9a !important;
+    border-bottom: 2px solid #fcfcfc; }
   header .back-btn-container {
     position: absolute;
     left: 0;
@@ -1512,7 +1521,9 @@ header {
 
 footer {
   border-top: solid 3px #616161;
-  padding: 20px 0 20px 45px; }
+  padding: 20px 0 20px 45px;
+  background-color: #9a9a9a !important;
+  border-top: 2px solid #fcfcfc; }
   footer > div {
     display: inline-block;
     vertical-align: top;
@@ -1918,7 +1929,8 @@ footer {
   color: white;
   display: flex;
   justify-content: center;
-  flex-direction: column; }
+  flex-direction: column;
+  font: 400 20px 'Open Sans', sans-serif; }
 
 #cmtyx_medicalSecureView .secure-container .approve-message.mismatch .type-code,
 #cmtyx_medicalSecureView .secure-container .approve-message.approve .type-code,
@@ -1929,7 +1941,8 @@ footer {
   color: #f8f86f;
   display: none;
   justify-content: center;
-  flex-direction: column; }
+  flex-direction: column;
+  font: 400 20px 'Open Sans', sans-serif; }
 
 #cmtyx_medicalSecureView .secure-container .approve-message.mismatch .mismatch-code {
   display: flex; }
@@ -1939,7 +1952,8 @@ footer {
   display: none; }
 
 #cmtyx_medicalSecureView .secure-container .approve-message .ticket-match {
-  color: #8dd7e3;
+  color: white;
+  font: 400 20px 'Open Sans', sans-serif;
   display: none;
   justify-content: center;
   flex-direction: column; }
@@ -1949,15 +1963,14 @@ footer {
 
 #cmtyx_medicalSecureView .secure-container .approve-message .ticket-btns {
   text-align: center;
-  margin-top: 15px; }
+  margin-top: 20px; }
 
 #cmtyx_medicalSecureView .secure-container .approve-message .ticket-btns button {
   text-align: center;
   color: white;
-  border-radius: 5px;
-  padding: 7px 16px;
-  margin-left: 6px;
-  margin-right: 6px; }
+  padding: 15px 30px;
+  margin-left: 8px;
+  margin-right: 8px; }
 
 #cmtyx_medicalSecureView .secure-container .approve-message .ticket-btns .confirm {
   background-color: #3fbfbf;
@@ -1975,7 +1988,8 @@ footer {
   display: none; }
 
 #cmtyx_medicalSecureView .secure-container .approve-message.approved .ticket-approved {
-  display: flex; }
+  display: flex;
+  font: 400 20px 'Open Sans', sans-serif; }
 
 .cmtyx_share_block .share-block {
   display: flex;
@@ -2890,14 +2904,16 @@ footer {
     padding: 0 0 10px 0; }
 
 .cmtyx_desktop_application .home_tabs_list .cmtyx_welcome_block {
-  background-color: #202020; }
+  background-color: transparent;
+  box-shadow: none; }
   .cmtyx_desktop_application .home_tabs_list .cmtyx_welcome_block .body {
     padding: 0;
     text-align: center;
-    background-color: #202020;
+    background-color: transparent;
     position: relative; }
     .cmtyx_desktop_application .home_tabs_list .cmtyx_welcome_block .body img {
-      width: 100%; }
+      width: 100%;
+      box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.65); }
     .cmtyx_desktop_application .home_tabs_list .cmtyx_welcome_block .body .text-container {
       position: absolute;
       top: 0;
@@ -3043,14 +3059,15 @@ footer {
     margin-bottom: 10px; }
   .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .submit_poll_button {
     width: 60%;
-    margin: 10px auto;
+    margin: 20px auto 0;
+    font-size: 19px;
     font-weight: 700;
     border: 1px solid white;
     border-radius: 5px;
     padding: 15px 25px;
     display: flex;
-    justify-content: center;
-    color: white; }
+    background-color: #c2de9a !important;
+    justify-content: center; }
   .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_block_title {
     text-align: center;
     color: #ddd;
@@ -3085,13 +3102,14 @@ footer {
     display: none; }
   .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .poll_ans_form.answered.medical .medical-answered {
     display: block;
-    color: #66a966;
-    font-size: 18px;
+    color: #4db84d;
+    font-size: 19px;
     font-weight: 600;
     text-align: center;
     background-color: white;
-    padding: 5px;
-    margin-top: 20px; }
+    padding: 13px 5px;
+    margin-top: 20px;
+    cursor: pointer; }
   .cmtyx_desktop_application .home_tabs_list .cmtyx_poll_block .body .prize_container {
     max-height: 180px;
     background-color: #fff;

@@ -1,16 +1,20 @@
 .cmtyx_desktop_application {
   .home_tabs_list {    
     .cmtyx_welcome_block {
-      background-color: $welcome-block-background;
+      // background-color: $welcome-block-background;
+      background-color: transparent;
+      box-shadow: none;
 
       .body {
         padding: 0;
         text-align: center;
-        background-color: $welcome-block-background;
+        // background-color: $welcome-block-background;
+        background-color: transparent;
         position: relative;
 
         img {
           width: 100%;
+          box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.65);
         }
 
         .text-container {

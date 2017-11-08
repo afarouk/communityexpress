@@ -411,6 +411,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    font: 400 20px 'Open Sans', sans-serif;
 }
 #cmtyx_medicalSecureView .secure-container .approve-message.mismatch .type-code,
 #cmtyx_medicalSecureView .secure-container .approve-message.approve .type-code,
@@ -422,6 +423,7 @@
     display: none;
     justify-content: center;
     flex-direction: column;
+    font: 400 20px 'Open Sans', sans-serif;
 }
 #cmtyx_medicalSecureView .secure-container .approve-message.mismatch .mismatch-code {
     display: flex;
@@ -431,7 +433,9 @@
     display: none;
 }
 #cmtyx_medicalSecureView .secure-container .approve-message .ticket-match {
-    color: #8dd7e3;
+    // color: #8dd7e3;
+    color: white;
+    font: 400 20px 'Open Sans', sans-serif;
     display: none;
     justify-content: center;
     flex-direction: column;
@@ -441,15 +445,14 @@
 }
 #cmtyx_medicalSecureView .secure-container .approve-message .ticket-btns {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 #cmtyx_medicalSecureView .secure-container .approve-message .ticket-btns button {
     text-align: center;
     color: white;
-    border-radius: 5px;
-    padding: 7px 16px;
-    margin-left: 6px;
-    margin-right: 6px;
+    padding: 15px 30px;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 #cmtyx_medicalSecureView .secure-container .approve-message .ticket-btns .confirm {
     background-color: #3fbfbf;
@@ -469,4 +472,5 @@
 }
 #cmtyx_medicalSecureView .secure-container .approve-message.approved .ticket-approved {
     display: flex;
+    font: 400 20px 'Open Sans', sans-serif;
 }

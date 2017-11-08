@@ -2,6 +2,8 @@
   background: url('../images/voting-back.jpg') no-repeat; /*temporary*/
   background-size: auto 100%;
   background-position: bottom;
+  background-attachment: fixed;
+  background-color: #afafaf;
 }
 .subheader-discount,
 .breaking_news {
@@ -99,7 +101,9 @@
     .grid-item {
       display: inline-block;
       width: 100%;
-      background-color: $cart-cards;
+      // background-color: $cart-cards;
+      background-color: rgba(23, 22, 22, 0.65);
+      box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.65);
       border-radius: 0 0 3px 3px;
       margin: 0 0 30px 0;
 

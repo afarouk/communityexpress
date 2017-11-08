@@ -6,6 +6,12 @@ header {
   justify-content: space-between;
   align-items: center;
 
+  &.cmtyx_special_background_color {
+    /*temporary*/
+    background-color: #9a9a9a!important;
+    border-bottom: 2px solid #fcfcfc;
+  }
+
   .back-btn-container {
     position: absolute;
     left: 0;

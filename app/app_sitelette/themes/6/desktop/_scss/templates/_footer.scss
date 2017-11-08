@@ -2,6 +2,9 @@ footer {
   border-top: solid 3px $footer-divider;
   padding: 20px 0 20px 45px;
 
+  background-color: #9a9a9a!important;
+  border-top: 2px solid #fcfcfc;
+
   & > div {
   	display: inline-block;
 	vertical-align: top;

@@ -10,14 +10,15 @@
 
         .submit_poll_button {
             width: 60%;
-            margin: 10px auto;
+            margin: 20px auto 0;
+            font-size: 19px;
             font-weight: 700;
             border: 1px solid white;
             border-radius: 5px;
             padding: 15px 25px;
             display: flex;
+            background-color: #c2de9a !important;
             justify-content: center;
-            color: white;
         }
 
         .poll_block_title {
@@ -63,13 +64,14 @@
         }
         .poll_ans_form.answered.medical .medical-answered {
             display: block;
-            color: #66a966;
-            font-size: 18px;
+            color: #4db84d;
+            font-size: 19px;
             font-weight: 600;
             text-align: center;
             background-color: white;
-            padding: 5px;
+            padding: 13px 5px;
             margin-top: 20px;
+            cursor: pointer;
         }
 
         .prize_container {

@@ -1,6 +1,9 @@
 div.ui-dialog.ui-widget {
 	position: fixed;
-	background-color: $body-background;
+	// background-color: $body-background;
+	background-color: rgba(0, 0, 0, 0.7);
+	box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.7);
+	border: 1px solid black;
 	border-radius: 2px;
 	top: 50vh !important;
     left: 50vw !important;
