@@ -8,7 +8,9 @@ header {
 
   &.cmtyx_special_background_color {
     /*temporary*/
-    background-color: #9a9a9a!important;
+    // background-color: #9a9a9a!important;
+    // background-color: rgba(14, 15, 41, 0.65)!important;
+    background-color: rgba(116, 14, 20, 0.65)!important;
     border-bottom: 2px solid #fcfcfc;
   }
 
@@ -136,12 +138,13 @@ header {
           display: inline-block;
           font-weight: 700;
           border: 1px solid #faa019;
-          background-color: transparent;
-          border-radius: 5px;
+          border-radius: 1px;
           text-transform: uppercase;
           cursor: pointer;
           vertical-align: top;
-          background-color: rgba(255,255,255,0.2);
+          // background-color: rgba(14, 15, 41, 0.8);
+          // background-color: rgba(255,255,255,0.2);
+          background-color: rgba(116, 14, 20, 0.8)!important;
 
           .caret {
               display: inline-block;
@@ -155,8 +158,21 @@ header {
           }
         }
 
+        &.open {
+          .user-dropdown-btn {
+            border-bottom: none;
+          }
+        }
+
         .dropdown-menu {
-          color: white;
+          border: 1px solid #faa019;
+          // background-color: rgba(14, 15, 41, 0.8)!important;
+          background-color: rgba(116, 14, 20, 0.8)!important;
+          border-top: none;
+          border-radius: 1px;
+          margin-top: -1px;
+          padding-top: 8px;
+          width: 100%;
 
           li {
 

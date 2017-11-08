@@ -1,9 +1,33 @@
+#cmtyx_desktop_application {
+  // background-color: #afafaf;
+  // background-attachment: fixed;
+  // background: linear-gradient(63deg, #bbb 23%, transparent 23%) 7px 0, linear-gradient(63deg, transparent 74%, #bbb 78%), linear-gradient(63deg, transparent 34%, #bbb 38%, #bbb 58%, transparent 62%), rgb(222, 222, 222);
+  // background-size: 16px 48px;
+  background: 
+    linear-gradient(324deg, #740e14 4%, transparent 4%) -70px 43px, 
+    linear-gradient(36deg, #740e14 4%, transparent 4%) 30px 43px, 
+    linear-gradient(72deg, #dedede 8.5%, transparent 8.5%) 30px 43px, 
+    linear-gradient(288deg, #dedede 8.5%, transparent 8.5%) -70px 43px, 
+    linear-gradient(216deg, #dedede 7.5%, transparent 7.5%) -70px 23px, 
+    linear-gradient(144deg, #dedede 7.5%, transparent 7.5%) 30px 23px, 
+    linear-gradient(324deg, #740e14 4%, transparent 4%) -20px 93px, 
+    linear-gradient(36deg, #740e14 4%, transparent 4%) 80px 93px, 
+    linear-gradient(72deg, #dedede 8.5%, transparent 8.5%) 80px 93px, 
+    linear-gradient(288deg, #dedede 8.5%, transparent 8.5%) -20px 93px, 
+    linear-gradient(216deg, #dedede 7.5%, transparent 7.5%) -20px 73px, 
+    linear-gradient(144deg, #dedede 7.5%, transparent 7.5%) 80px 73px;
+  background-color: #740e14;
+  background-size: 100px 100px;
+  background-attachment: fixed;
+}
+
 #cmtyx_landingView {
   background: url('../images/voting-back.jpg') no-repeat; /*temporary*/
   background-size: auto 100%;
   background-position: bottom;
   background-attachment: fixed;
-  background-color: #afafaf;
+  // background-color: #afafaf;
+  background-color: transparent;
 }
 .subheader-discount,
 .breaking_news {
