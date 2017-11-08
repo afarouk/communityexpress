@@ -1034,10 +1034,10 @@ body::-webkit-scrollbar-thumb,
   /***** SALE *****/
   /***** END OF SALE *****/ }
   .cmtyx_desktop_application .grid.flex-container {
-    display: flex; }
+    display: flex;
+    justify-content: center; }
   .cmtyx_desktop_application .grid .left-block {
-    width: calc(68% - 30px);
-    margin-right: 30px; }
+    width: 50%; }
     .cmtyx_desktop_application .grid .left-block .wrapper {
       width: 100%;
       -webkit-column-count: 2;
@@ -1045,7 +1045,9 @@ body::-webkit-scrollbar-thumb,
       column-count: 2;
       -webkit-column-gap: 30px;
       -moz-column-gap: 30px;
-      column-gap: 30px; }
+      column-gap: 30px;
+      display: flex;
+      flex-direction: column; }
   .cmtyx_desktop_application .grid .right-block {
     display: inline-block;
     width: 32%;

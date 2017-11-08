@@ -1,3 +1,8 @@
+#cmtyx_landingView {
+  background: url('../images/voting-back.jpg') no-repeat; /*temporary*/
+  background-size: auto 100%;
+  background-position: bottom;
+}
 .subheader-discount,
 .breaking_news {
   background-color: $red-news;
@@ -60,11 +65,12 @@
 
     &.flex-container {
       display: flex;
+      justify-content: center;
     }
 
     .left-block {
-      width: calc(68% - 30px);
-      margin-right: 30px;
+      width: 50%;
+      // margin-right: 30px;
 
       .wrapper {
         width: 100%;
@@ -79,6 +85,8 @@
         // flex-wrap: wrap;
         // justify-content: space-between;
         // align-items: flex-start;
+        display: flex;
+        flex-direction: column;
       }
     }
 

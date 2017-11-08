@@ -20,6 +20,14 @@
           color: white;
           font: 300 12px 'Open Sans', sans-serif;
         }
+
+        .video_item {
+          .embedded_videos {
+            iframe {
+              height: calc(100vw / 3);
+            }
+          }
+        }
       }
     }
     /***** END OF VIDEO *****/
