@@ -32,7 +32,6 @@ define([
 		        if (window.saslData.domainEnum === 'MEDICURIS' ||
 		            window.saslData.domainEnum === 'MOBILEVOTE') {
 		            dispatcher.get('security').init(this.params);
-		        	// this.options.initSubviews();
 		        } else {
 			        if (this.params.UID) {
 			            Cookies.set("cmxUID", this.params.UID, {expires:365});

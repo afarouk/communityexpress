@@ -147,7 +147,7 @@
               <span class="r"></span>
               <span class="b"></span>
               <span class="l"></span>
-              <input type="text" pattern="\d*" maxlength="3" name="" class="secure-input" placeholder="???">
+              <input type="text" pattern="\d*" maxlength="3" name="" value="" class="secure-input" placeholder="???">
             </div>
           </div>
           <div class="approve-message">

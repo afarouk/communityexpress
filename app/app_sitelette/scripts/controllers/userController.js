@@ -30,7 +30,6 @@ var facebookLogout = function() {
 
 var killUser = function(response) {
     appCache.get('user').kill();
-    //localStorage.removeItem('cmxUID');
     Cookies.remove('cmxUID');
     Vent.trigger('logout_success');
     facebookLogout();

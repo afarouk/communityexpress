@@ -22,6 +22,7 @@ var SecurityView = Mn.View.extend({
     },
     initialize: function() {
         this.bindUIElements();
+        this.ui.input.val('');
     },
     onInputFocus: function(e) {
         setTimeout(function(){

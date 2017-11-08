@@ -27,7 +27,6 @@ var onLoginSuccess = function (response, withAdhoc) {
     favoriteActions.getFavoritesForCurrentUser();
 
     if (response.localStorage !== false) {
-        //localStorage.setItem('cmxUID', response.uid);
         Cookies.set('cmxUID',response.uid , {expires : 365});
     };
     Vent.trigger('login_success');
@@ -35,25 +34,6 @@ var onLoginSuccess = function (response, withAdhoc) {
     if (typeof response.messageCount !== 'undefined') {
         Vent.trigger('update_message_count', response.messageCount);
     }
-
-    // if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-    //     //var a = localStorage.getItem("cmxUID");
-    //     var a = Cookies.get("cmxUID");
-    //     if ("undefined" !== typeof a && null !== a) {
-    //         loyaltyActions.updateLoyaltyStatus(a);
-    //         loyaltyActions.retrieveCalendar(a);
-    //     } else {
-    //         console.log("1. NO cmxUID, try to create one");
-    //         /*
-    //         * create user
-    //         */
-    //         loyaltyActions.createAnonymousUser();
-    //         console.log("anonymous user created");
-    //     }
-
-    // } else {
-    //     console.log("no api url");
-    // }
 
     return {
         uid: response.uid,
@@ -115,7 +95,6 @@ module.exports = {
         persistedUID = Cookies.get('cmxUID');
         Cookies.set('cmxAdhocEntry', false);
         if (persistedUID) {
-            window.asdesds=persistedUID;
             gateway.sendRequest('getAuthenticationStatus', {
                 UID: persistedUID
             }).then(function (response) {
@@ -250,11 +229,7 @@ module.exports = {
     },
 
     onSecureLogin: function(userData) {
-        onLoginSuccess({
-            uid: userData.uid,
-            userName: userData.userName,
-            messageCount: userData.messageCount
-        }, null);
+        onLoginSuccess(userData, null);
     }
 
 };
