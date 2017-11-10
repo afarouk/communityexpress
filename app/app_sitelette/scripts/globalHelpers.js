@@ -225,7 +225,7 @@ var helpers = function() {
                 bb = new Blob([ab], {
                     'type': (mimeString)
                 });
-                return bb;this.showPrizes();
+                return bb;
             }
         },
 
