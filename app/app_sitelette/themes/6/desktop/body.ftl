@@ -226,7 +226,7 @@
         </div>
       </div>
         
-      <footer>
+      <footer class="cmtyx_special_background_color">
         <div class="rights-block">
           <img src="themes/6/desktop/images/chalkboards_tiny.png" alt="logo" class="logo">
           <p>©  2016. All rights reserved.</p>

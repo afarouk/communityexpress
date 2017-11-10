@@ -1381,7 +1381,6 @@ header {
   align-items: center; }
   header.cmtyx_special_background_color {
     /*temporary*/
-    background-color: rgba(116, 14, 20, 0.65) !important;
     border-bottom: 2px solid #fcfcfc; }
   header .back-btn-container {
     position: absolute;
@@ -1480,7 +1479,6 @@ header {
         border-bottom: none; }
       header .links-container .link .user-dropdown .dropdown-menu {
         border: 1px solid #faa019;
-        background-color: rgba(116, 14, 20, 0.8) !important;
         border-top: none;
         border-radius: 1px;
         margin-top: -1px;
@@ -1535,7 +1533,6 @@ header {
 footer {
   border-top: solid 3px #616161;
   padding: 20px 0 20px 45px;
-  background-color: rgba(116, 14, 20, 0.8) !important;
   border-top: 2px solid #fcfcfc; }
   footer > div {
     display: inline-block;
