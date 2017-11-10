@@ -1,3 +1,21 @@
+#cmtyx_desktop_application {
+  background-color: #aeb7bc;
+  background-image: 
+    repeating-linear-gradient(45deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 84px), 
+    repeating-linear-gradient(135deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 84px), 
+    linear-gradient(45deg, rgba(0,0,0,.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.05) 75%, rgba(0,0,0,.05)), 
+    linear-gradient(135deg, rgba(0,0,0,.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.05) 75%, rgba(0,0,0,.05));
+  background-size: 120px 120px;
+}
+#cmtyx_landingView {
+  background: url('../images/medicuris-back.png') no-repeat; /*temporary*/
+  background-size: auto 100%;
+  background-position: bottom;
+  background-attachment: fixed;
+  // background-color: #afafaf;
+  background-color: transparent;
+}
+
 .subheader-discount,
 .breaking_news {
   background-color: $red-news;
@@ -58,6 +76,8 @@
     width: 92%;
     max-width: 1650px;
 
+    opacity: 0.9; /*temporary*/
+
     &.flex-container {
       display: flex;
       justify-content: center;
@@ -94,7 +114,9 @@
     .grid-item {
       display: inline-block;
       width: 100%;
-      background-color: $cart-cards;
+      // background-color: $cart-cards;
+      background-color: rgba(23, 22, 22, 0.95);
+      box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.65);
       border-radius: 0 0 3px 3px;
       margin: 0 0 30px 0;
 

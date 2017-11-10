@@ -973,6 +973,19 @@ body::-webkit-scrollbar-thumb,
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px; }
 
+#cmtyx_desktop_application {
+  background-color: #aeb7bc;
+  background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 84px), repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 84px), linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05)), linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05));
+  background-size: 120px 120px; }
+
+#cmtyx_landingView {
+  background: url(medicuris-back.png) no-repeat;
+  /*temporary*/
+  background-size: auto 100%;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-color: transparent; }
+
 .subheader-discount,
 .breaking_news {
   background-color: #ca1d1d;
@@ -1021,6 +1034,8 @@ body::-webkit-scrollbar-thumb,
   padding: 20px 0 20px 0;
   width: 92%;
   max-width: 1650px;
+  opacity: 0.9;
+  /*temporary*/
   /***** GALLERY *****/
   /***** END OF GALLERY *****/
   /***** EVENTS *****/
@@ -1055,7 +1070,8 @@ body::-webkit-scrollbar-thumb,
   .cmtyx_desktop_application .grid .grid-item {
     display: inline-block;
     width: 100%;
-    background-color: #464646;
+    background-color: rgba(23, 22, 22, 0.95);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.65);
     border-radius: 0 0 3px 3px;
     margin: 0 0 30px 0; }
     .cmtyx_desktop_application .grid .grid-item > .header {
@@ -1362,6 +1378,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center; }
+  header.cmtyx_special_background_color {
+    background-color: rgba(174, 183, 188, 0.65) !important;
+    border-bottom: 2px solid white; }
   header .back-btn-container {
     position: absolute;
     left: 0;
@@ -1440,13 +1459,13 @@ header {
       header .links-container .link .user-dropdown .user-dropdown-btn {
         display: inline-block;
         font-weight: 700;
-        border: 1px solid #faa019;
+        border: 1px solid #0fa3f8;
         background-color: transparent;
         border-radius: 5px;
         text-transform: uppercase;
         cursor: pointer;
         vertical-align: top;
-        background-color: rgba(255, 255, 255, 0.2); }
+        background-color: rgba(174, 183, 188, 0.75) !important; }
         header .links-container .link .user-dropdown .user-dropdown-btn .caret {
           display: inline-block;
           width: 0;
@@ -1456,7 +1475,16 @@ header {
           border-top: 5px dashed;
           border-right: 5px solid transparent;
           border-left: 5px solid transparent; }
+      header .links-container .link .user-dropdown.open .user-dropdown-btn {
+        border-bottom: none; }
       header .links-container .link .user-dropdown .dropdown-menu {
+        border: 1px solid #0fa3f8;
+        background-color: rgba(174, 183, 188, 0.75) !important;
+        border-top: none;
+        border-radius: 1px;
+        margin-top: -1px;
+        padding-top: 8px;
+        width: 100%;
         color: white; }
         header .links-container .link .user-dropdown .dropdown-menu li a {
           color: white;
@@ -1505,8 +1533,9 @@ header {
           color: white; }
 
 footer {
-  border-top: solid 3px #616161;
-  padding: 20px 0 20px 45px; }
+  padding: 20px 0 20px 45px;
+  background-color: rgba(174, 183, 188, 0.65) !important;
+  border-top: 2px solid white; }
   footer > div {
     display: inline-block;
     vertical-align: top;
@@ -2855,14 +2884,16 @@ footer {
     padding: 0 0 10px 0; }
 
 .cmtyx_desktop_application .home_tabs_list .cmtyx_welcome_block {
-  background-color: #202020; }
+  background-color: transparent;
+  box-shadow: none; }
   .cmtyx_desktop_application .home_tabs_list .cmtyx_welcome_block .body {
     padding: 0;
     text-align: center;
-    background-color: #202020;
+    background-color: transparent;
     position: relative; }
     .cmtyx_desktop_application .home_tabs_list .cmtyx_welcome_block .body img {
-      width: 100%; }
+      width: 100%;
+      box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.65); }
     .cmtyx_desktop_application .home_tabs_list .cmtyx_welcome_block .body .text-container {
       position: absolute;
       top: 0;

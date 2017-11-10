@@ -6,6 +6,11 @@ header {
   justify-content: space-between;
   align-items: center;
 
+  &.cmtyx_special_background_color {
+    background-color: rgba(174, 183, 188, 0.65) !important;
+    border-bottom: 2px solid white;
+  }
+
   .back-btn-container {
     position: absolute;
     left: 0;
@@ -129,13 +134,14 @@ header {
         .user-dropdown-btn {
           display: inline-block;
           font-weight: 700;
-          border: 1px solid #faa019;
+          border: 1px solid #0fa3f8;
           background-color: transparent;
           border-radius: 5px;
           text-transform: uppercase;
           cursor: pointer;
           vertical-align: top;
-          background-color: rgba(255,255,255,0.2);
+          // background-color: rgba(255,255,255,0.2);
+          background-color: rgba(174, 183, 188, 0.75) !important;
 
           .caret {
               display: inline-block;
@@ -149,7 +155,20 @@ header {
           }
         }
 
+        &.open {
+          .user-dropdown-btn {
+            border-bottom: none;
+          }
+        }
+
         .dropdown-menu {
+          border: 1px solid #0fa3f8;
+          background-color: rgba(174, 183, 188, 0.75) !important;
+          border-top: none;
+          border-radius: 1px;
+          margin-top: -1px;
+          padding-top: 8px;
+          width: 100%;
           color: white;
 
           li {
