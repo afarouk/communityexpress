@@ -2810,7 +2810,17 @@ nav.navbar {
 .flyer_carousal_container {
   font-size: 0;
   padding-bottom: 60px;
+  text-align: center;
 }
+
+
+
+.flyer_carousal_container a:last-child{
+  display:none !important;
+}
+
+
+
 .flyer_carousal_container a.flyer_pic {
   display: inline-block;
   width: 20%;
@@ -2888,6 +2898,193 @@ a.flyer_pic img {
   padding: 6px 30px;
   margin-top: 10px;
 }
+  
+
+.aboutUsb{
+  padding: 70px 0 50px 0;
+  text-align:left;
+}
+
+.abutus_header, .pricing_header{
+  display: block;
+  text-transform: uppercase;
+  font: 700 28px Roboto;
+  color: #EF6E12;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.abutus_txt {
+    display: block;
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: 300;
+    text-align: left;
+    color: #555555;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+.abutus_address p{
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.abutus_payment_block{
+
+}
+.abutus_sub_heading{
+    font-size: 24px;
+    line-height: 40px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.payment_icon_set{ 
+  position: relative;
+  padding: 20px 20px;
+  background: #ececec;
+  border-radius: 5px;
+}
+.payment_icon_set span{ 
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 40px; 
+}
+.paypal_logob a img{
+  width: 160px;
+}
+
+.pricingb{
+  padding: 70px 0 50px 0;
+  text-align:left;
+}
+.picing_conty {
+    text-align: center;
+    margin-top: 25px;
+    background: #ececec;
+    padding: 30px;
+}
+.callAdd{
+    font: 300 24px Roboto;
+    color: #555555;
+    margin-bottom: 30px;
+}
+.callAdd span{
+    font-size: 40px;
+    vertical-align: middle;
+    margin: 0 10px;
+    font-weight: 500;
+    display: inline-block;
+}
+.marg_m{
+  margin-top: -13px !important;
+}
+
+
+
+
+
+table.ckb_c_table {
+    width: 100%;
+}
+
+table.ckb_c_table thead tr th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: roboto;
+    /* background: #cccccc; */
+}
+
+table.ckb_c_table thead tr th:last-child {
+    border-right: 1px solid #ccc;
+}
+
+table.ckb_c_table tbody tr td {
+    text-align: left;
+    padding: 5px;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-family: roboto;
+    font-size: 14px;
+    background: #fdfdfd;
+}
+
+table.ckb_c_table tbody tr td:last-child {
+    border-right: 1px solid #ccc;
+}
+
+table.ckb_c_table tbody tr td:first-child {
+    background: #ffffff!important;
+}
+
+table.ckb_c_table tbody tr:nth-of-type(odd) td {
+    background: #ebf9ff;
+}
+
+table.ckb_c_table tbody tr:nth-of-type(even) td {
+    background: #cae8f5;
+}
+
+
+.bnrtxtw{
+  width: 40%;
+  margin: 0 auto;
+  text-align: left;
+}
+.bnrtxt ul{
+  text-align: left;
+  color: #ffffff;
+  margin-left: 0px: 
+}
+.bnrtxt ul li{
+  font-family: roboto;
+  font-size: 38px;
+  margin:20px 0;
+  font-weight: 500;
+  list-style: disc;
+}
+
+@media only screen and (max-width: 786px){
+  .bnrtxtw{
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .bnrtxt ul{
+    text-align: left;
+    color: #ffffff;
+    margin-left: 0px: 
+  }
+  .bnrtxt ul li{
+    font-family: roboto;
+    font-size: 24px;
+    margin:8px 0;
+    font-weight: 500;
+    list-style: disc;
+  }
+}
+
+@media only screen and (max-width: 500px){
+  .bnrtxtw{
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .bnrtxt ul{
+    text-align: left;
+    color: #ffffff;
+    padding-left: 22px;
+  }
+  .bnrtxt ul li{
+    font-family: roboto;
+    font-size: 20px;
+    margin:5px 0;
+    font-weight: 500;
+    list-style: disc;
+  }
+}
+
 @media all and (max-width:991px) {
   .form-group.frmeL {
     margin-right: -15px;
