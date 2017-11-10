@@ -157,6 +157,9 @@ if (validateParams('friendlyURL')) {
       case 'support':
           $pageAccess = 'common_support.php';
           break;
+	 case 'Pricing':
+          $pageAccess = 'common_pricing.php';
+          break;
       default:
     }
     }
