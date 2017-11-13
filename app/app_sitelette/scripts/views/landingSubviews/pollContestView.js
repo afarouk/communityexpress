@@ -53,7 +53,7 @@ module.exports = Backbone.View.extend({
         this.sl = community.serviceLocationId;
         Vent.on('openPollByShareUrl', this.openPollByShareUrl, this);
 
-        this.securityType = window.saslData.domainEnum === 'MEDICURIS' ||
+        this.secureType = window.saslData.domainEnum === 'MEDICURIS' ||
             window.saslData.domainEnum === 'MOBILEVOTE' ? window.saslData.domainEnum : false;
     },
 
@@ -62,9 +62,9 @@ module.exports = Backbone.View.extend({
         this.poll = poll;
         this.$el.html(pollTemplate({
             contests: poll,
-            securityType: this.securityType
+            secureType: this.secureType
         }));
-        if (!this.securityType) {
+        if (!this.secureType) {
             this.setLinksForEachPoll();
         }
         
@@ -235,8 +235,8 @@ module.exports = Backbone.View.extend({
         }
     },
 
-    afterTriedToLogin: function() {
-        this.getPollContests();
+    afterTriedToLogin: function(logged) {
+        this.getPollContests(logged);
     },
 
     submitPoll: function(e) {
@@ -249,7 +249,7 @@ module.exports = Backbone.View.extend({
 
             contestActions.enterPoll(this.sa,this.sl, uuid, choise)
                 .then(function(result) {
-                    if (this.securityType) {
+                    if (this.secureType) {
                         this.displayAnsweredMessage($container);
                     } else {
                         $container.find('.submit_poll_button').slideUp('slow', _.bind(function() {
@@ -321,11 +321,16 @@ module.exports = Backbone.View.extend({
         // this.changeSlideHeight($container, height, true);
     },
 
-    getPollContests: function() {
+    getPollContests: function(logged) {
         contestActions.pollBySASL(this.sa,this.sl)
             .then(function(poll) {
                 if (poll) {
                     this.render(poll);
+                    if (logged && this.secureType) {
+                        setTimeout(function(){
+                            this.toggleCollapse();
+                        }.bind(this), 100);
+                    }
                 } else {
                     this.$el.hide();
                 }

@@ -68,9 +68,9 @@ var App = function() {
         this.delegateEvents(events);
     }
 
-    Vent.on('login_success', this.afterTriedToLogin, this);
-    Vent.on('logout_success', this.afterTriedToLogin, this);
-    Vent.on('force_logout', this.afterTriedToLogin, this);
+    Vent.on('login_success', this.afterTriedToLogin.bind(this, true));
+    Vent.on('logout_success', this.afterTriedToLogin.bind(this, false));
+    Vent.on('force_logout', this.afterTriedToLogin.bind(this, false));
 };
 
 App.prototype = {
@@ -131,7 +131,7 @@ App.prototype = {
                     });
                 });
             } else {
-                this.afterTriedToLogin();
+                this.afterTriedToLogin(false);
                 return;
             }
         }
@@ -197,10 +197,10 @@ App.prototype = {
         }
     },
 
-    afterTriedToLogin: function() {
+    afterTriedToLogin: function(logged) {
         _.each(this.viewsInLanding, function(view) {
             if (view && typeof view.afterTriedToLogin === 'function') {
-                view.afterTriedToLogin();
+                view.afterTriedToLogin(logged);
             }
         });
     },

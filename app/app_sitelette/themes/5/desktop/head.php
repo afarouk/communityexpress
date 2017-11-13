@@ -27,7 +27,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDon847P6x8IUl-pBwSMvvuZd3g2186uhQ"></script>
     <script src="https://connect.facebook.net/en_US/sdk.js"></script>
 
-    <link rel="icon" href="themes/5/favicon.ico?v=1.1">
+    <link rel="icon" href="themes/5/favicon.ico?v=1.2">
 
     <script>
         window.saslData = <?php

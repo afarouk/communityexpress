@@ -1,15 +1,18 @@
 'use strict';
 
 define([
+	'../../scripts/appCache',
+	'../../../vendor/scripts/js.cookie',
 	'./_catalogs-controller',
 	'./_customize-controller',
 	'./_order-controller',
 	'./_landing-controller',
 	'./_popups-controller',
 	'./_history-controller',
-	'./_security-controller'
-	], function(CatalogsController, CustomizeController, OrderController, 
-		LandingController, PopupsController, HistoryController, SecurityController){
+	'./_security-controller',
+	'../../chat_app/chat.js'
+	], function(appCache, Cookies, CatalogsController, CustomizeController, OrderController, 
+		LandingController, PopupsController, HistoryController, SecurityController, Chat){
 	var ControllersDispatcher = Mn.Object.extend({
 		initialize: function() {
 			Mn.CollectionView.prototype.dispatcher = this;
@@ -30,7 +33,8 @@ define([
 				this.controllers = {
 					'landing': new LandingController(),
 					'popups': new PopupsController(),
-					'security': new SecurityController()
+					'security': new SecurityController(),
+					'chat': new Chat()
 				};
 			} else {
 				this.controllers = {
@@ -39,7 +43,8 @@ define([
 					'order': new OrderController(),
 					'landing': new LandingController(),
 					'popups': new PopupsController(),
-					'history': new HistoryController()
+					'history': new HistoryController(),
+					'chat': new Chat()
 				};
 			}
 			_.each(this.controllers, function(controller) {
@@ -102,13 +107,27 @@ define([
 			}
 		},
 
+		onChatStateChange: function() {
+			var user = appCache.get('user'),
+				adhocEntry = Cookies.get('cmxAdhocEntry'),
+				logged = user && user.getUID() && adhocEntry == 'false' ? true : false;
+			if (logged) {
+				this.get('chat').onStart(user);
+			} else {
+				this.get('chat').onStop(user);
+			}
+		},
+
 		onLoginStatusChanged: function() {
+			this.onChatStateChange()
 			if (this.checkSecurity()) {
 				this.initSubviews();
 			} else {
 				this.get('landing').onLoginStatusChanged();
 				this.get('order').onLoginStatusChanged();
 			}
+
+
 		}
 	});
 	return new ControllersDispatcher();

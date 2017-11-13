@@ -1,15 +1,15 @@
 #cmtyx_desktop_application {
-  // background-color: #aeb7bc;
-  background-color: #9c9c9c;
+  background-color: #aeb7bc;
   background-image: 
     repeating-linear-gradient(45deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 84px), 
     repeating-linear-gradient(135deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 84px), 
     linear-gradient(45deg, rgba(0,0,0,.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.05) 75%, rgba(0,0,0,.05)), 
     linear-gradient(135deg, rgba(0,0,0,.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.05) 75%, rgba(0,0,0,.05));
   background-size: 120px 120px;
+  background-attachment: fixed;
 }
 #cmtyx_landingView {
-  background: url('../images/medicuris-back.jpg') no-repeat; /*temporary*/
+  // background: url('../images/medicuris-back.jpg') no-repeat; /*temporary*/
   background-size: auto 100%;
   background-position: bottom;
   background-attachment: fixed;

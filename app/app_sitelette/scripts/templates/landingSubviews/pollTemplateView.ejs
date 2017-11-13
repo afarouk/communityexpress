@@ -1,8 +1,8 @@
 <div class="header cmtyx_color_2">
-    <% if (securityType === "MEDICURIS") { %>
-        <span class="title">Poll</span>
+    <% if (secureType === "MEDICURIS") { %>
+        <span class="title">QUESTIONNAIRE</span>
         <div class="collapse_btn">&#9660;</div>
-    <% } else if (securityType === "MOBILEVOTE") { %>
+    <% } else if (secureType === "MOBILEVOTE") { %>
         <span class="title">Vote</span>
         <div class="collapse_btn">&#9660;</div>
     <% } else { %>
@@ -17,7 +17,7 @@
     <ul class="poll_gallery">
         <% _.each(contests, function(poll, poll_index){ %>
             <li class="poll_item" data-uuid="<%= poll.contestUUID %>">
-                <% if (!securityType) { %>
+                <% if (!secureType) { %>
                     <ul class="contest_prizes shown">
                         <div class="poll_block_title"><span>Enter to win</span>&nbsp</div>
                         <div class="ui-grid-a prizes_title">
@@ -83,7 +83,7 @@
                                 </div>
                             </li>
                         <% }) %>
-                        <% if (securityType) { %>
+                        <% if (secureType) { %>
                             <div class="medical-answered">
                                 <span>Answer again</span>
                             </div>
@@ -99,7 +99,7 @@
                     <% } %>
                     <div class="poll_results answerBar jqplot-target" id="pollBar-<%= poll.contestUUID %>"></div>
                 </div>
-                <% if (!securityType) { %>
+                <% if (!secureType) { %>
                     <div class="share_container">
                         <div class="share_btn_block cmtyx_share_icon_color"
                             uuid="">

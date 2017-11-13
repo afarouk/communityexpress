@@ -213,8 +213,8 @@ module.exports = Backbone.View.extend({
         }
     },
 
-    afterTriedToLogin: function() {
-        this.getPhotoContest();
+    afterTriedToLogin: function(logged) {
+        this.getPhotoContest(logged);
     },
 
     onClickSendPhoto: function(e) {
@@ -273,11 +273,16 @@ module.exports = Backbone.View.extend({
         }, this));
     },
 
-    getPhotoContest: function() {
+    getPhotoContest: function(logged) {
         contestActions.photoBySASL(this.sa,this.sl)
             .then(function(contest) {
                 if (contest) {
                     this.render(contest);
+                    if (logged && this.secureType) {
+                        setTimeout(function(){
+                            this.toggleCollapse();
+                        }.bind(this), 100);
+                    }
                 }
             }.bind(this))
             .fail(function(err){

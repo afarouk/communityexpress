@@ -74,7 +74,7 @@
 				<!----- Sweepstakes (Poll)  ---------------->
 				<li id="cmtyx_poll_block" class="poll_block">
 					<div class="header cmtyx_color_2">
-						<span class="title">Poll</span> <span class="collapse_btn">&#9660;</span>
+						<span class="title">QUESTIONNAIRE</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
 						<ul class="poll_gallery">
@@ -186,13 +186,13 @@
 	<div id="cmtyx_medicalSecureView">
 		<div class="secure-container">
 			<#if sasl.domainEnum.enumText=="MEDICURIS">
-				<div class="medical-name">
-					<!-- <span>Medicuris</span> -->
-				</div>
 				<div class="medical-logo">
-					<img src="themes/5/placeholder_images/medicuris-logo.png"></img>
-					<!-- <span class="fa fa-heartbeat"></span> -->
-				</div>		    
+	              <div class="medical-name">
+	                <span>Medicuris</span>
+	              </div>
+	              <img src="themes/5/placeholder_images/medicuris-logo.png"></img>
+	              <!-- <span class="fa fa-heartbeat"></span> -->
+	            </div>    
 			<#else>
 				<div class="vote-name">
 					<span>Mobilevote</span>

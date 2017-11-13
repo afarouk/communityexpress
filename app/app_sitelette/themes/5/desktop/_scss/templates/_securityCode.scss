@@ -71,6 +71,13 @@
     top: -43%;
     font-size: 28px;
 }
+#cmtyx_medicalSecureView .secure-container .medical-name {
+    font-size: 60px;
+    font-family: Raleway;
+    color: #40afec;
+    position: static;
+}
+
 #cmtyx_medicalSecureView .secure-container .vote-name {
     color: green;
 }
@@ -89,6 +96,16 @@
     // animation: heartbeat 1s infinite;
     transform-origin: center;
     transform: translate3d(0, 0, 0);
+}
+#cmtyx_medicalSecureView .secure-container .medical-logo {
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 240px;
+
+    img {
+        width: 160px;
+    }
 }
 #cmtyx_medicalSecureView .secure-container .vote-logo {
     color: green;
@@ -139,7 +156,7 @@
     position: relative;
     width: 300px;
     height: 160px;
-    background: repeating-linear-gradient(45deg, #ffe9be, #ffe9be 20px, #40afec 20px, #40afec 40px);
+    background: repeating-linear-gradient(45deg, #ebd099, #ebd099 20px, #fd4059 20px, #fd4059 40px);
     clip-path: polygon(0px 10px, 75px 2px, 150px 0px, 225px 2px, 300px 10px, 310px 10px, 310px 160px, 300px 160px, 225px 152px, 150px 150px, 75px 152px, 0px 160px);
 }
 
@@ -163,7 +180,7 @@
 }
 #cmtyx_medicalSecureView .secure-container .ticket .ticket-center {
     position: absolute;
-    background-color: #ffe9be;
+    background-color: #ebd099;
     top: 20px;
     left: 30px;
     width: 240px;
@@ -291,7 +308,7 @@
     -webkit-border-radius: 4em;
     -moz-border-radius: 4em;
     border-radius: 2em;
-    background-color: #ffe9be;
+    background-color: #ebd099;
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .puzzle .l {
     width: 0.8em;
@@ -302,7 +319,7 @@
     -webkit-border-radius: 4em;
     -moz-border-radius: 4em;
     border-radius: 2em;
-    background-color: #ffe9be;
+    background-color: #ebd099;
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .puzzle .secure-text {
     position: absolute;

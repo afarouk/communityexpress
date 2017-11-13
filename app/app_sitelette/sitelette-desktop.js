@@ -16,7 +16,7 @@ require('owl.carousel');
 require('moment');
 
 define([
-    './desktop_app/app.js',
+    './desktop_app/app.js'
     ], function(App){
     console.log('Starting desktop...');
     $(document).ready(function(){

@@ -14,9 +14,9 @@
     url("fonts/navbar-icons-font.woff") format("woff"),
     url("fonts/navbar-icons-font.ttf") format("truetype"),
     url("fonts/navbar-icons-font.svg#navbar-icons-font") format("svg");
+    url("Raleway-v4020-Regular.otf") format("otf");
   font-weight: normal;
   font-style: normal;
-
 }
 
 [data-icon]:before {
@@ -189,6 +189,12 @@ body {
 #cmtyx_medicalSecureView .secure-container .vote-name {
     color: green;
 }
+#cmtyx_medicalSecureView .secure-container .medical-name {
+    font-size: 40px;
+    font-family: Raleway;
+    color: #40afec;
+    position: static;
+}
 
 #cmtyx_medicalSecureView .secure-container .vote-logo,
 #cmtyx_medicalSecureView .secure-container .medical-logo {
@@ -206,11 +212,18 @@ body {
     transform: translate3d(0, 0, 0);
 }
 #cmtyx_medicalSecureView .secure-container .medical-logo img {
-    width: 50%;
+    width: 40%;
 }
 #cmtyx_medicalSecureView .secure-container .vote-logo {
     color: green;
     animation: none;
+}
+
+#cmtyx_medicalSecureView .secure-container .medical-logo {
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 30%;
 }
 
 @keyframes heartbeat {
@@ -257,7 +270,7 @@ body {
     position: relative;
     width: 300px;
     height: 160px;
-    background: repeating-linear-gradient(45deg, #ffe9be, #ffe9be 20px, #40afec 20px, #40afec 40px);
+    background: repeating-linear-gradient(45deg, #ebd099, #ebd099 20px, #fd4059 20px, #fd4059 40px);
     clip-path: polygon(0px 10px, 75px 2px, 150px 0px, 225px 2px, 300px 10px, 310px 10px, 310px 160px, 300px 160px, 225px 152px, 150px 150px, 75px 152px, 0px 160px);
 }
 
@@ -281,7 +294,7 @@ body {
 }
 #cmtyx_medicalSecureView .secure-container .ticket .ticket-center {
     position: absolute;
-    background-color: #ffe9be;
+    background-color: #ebd099;
     top: 20px;
     left: 30px;
     width: 240px;
@@ -409,7 +422,7 @@ body {
     -webkit-border-radius: 4em;
     -moz-border-radius: 4em;
     border-radius: 2em;
-    background-color: #ffe9be;
+    background-color: #ebd099;
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .puzzle .l {
     width: 0.8em;
@@ -420,7 +433,7 @@ body {
     -webkit-border-radius: 4em;
     -moz-border-radius: 4em;
     border-radius: 2em;
-    background-color: #ffe9be;
+    background-color: #ebd099;
 }
 #cmtyx_medicalSecureView .secure-container .secure-block .puzzle .secure-text {
     position: absolute;
