@@ -1533,6 +1533,7 @@ header {
 footer {
   border-top: solid 3px #616161;
   padding: 20px 0 20px 45px;
+  background-color: rgba(116, 14, 20, 0.8) !important;
   border-top: 2px solid #fcfcfc; }
   footer > div {
     display: inline-block;
