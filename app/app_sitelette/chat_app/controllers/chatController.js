@@ -3,23 +3,22 @@
 'use strict';
 
 define([
-	'../appCache',
-	'../APIGateway/gameService',
-    '../views/chat/chat',
-    '../views/chat/chatUsersModal',
-    '../views/chat/chatMessagesModal',
+	'../APIGateway/chatService',
+    '../views/chat',
+    '../views/chatUsersModal',
+    '../views/chatMessagesModal',
     '../models/usersCollection',
     '../models/messagesCollection'
-    ], function(appCache, service, 
+    ], function(service, 
     	ChatView, ChatUsersModalView, ChatMessagesModalView, UsersCollection, MessagesCollection){
     var ChatController = Mn.Object.extend({
     	initialize: function() {
     		this.chatProxy = this._chatProxy();
     	},
-		create: function(layout, region) {
+		create: function(region) {
 			this.view = new ChatView();
 			this.listenTo(this.view, 'chat:show', this.onChatShow.bind(this));
-			layout.showChildView( region, this.view );
+			region.show( this.view );
 		},
 		resetPosition: function() {
 			this.view.triggerMethod('resetPosition');
@@ -51,7 +50,7 @@ define([
                 }
             }.bind(this), function(xhr){
             	this.hideLoader();
-                this.publicController.getModalsController().apiErrorPopup(xhr);
+                // this.publicController.getModalsController().apiErrorPopup(xhr);
             }.bind(this));
 		},
 		createChatUsersModal: function(response) {
@@ -98,7 +97,7 @@ define([
                 this.createMessagesModal(users, otherUserName, messages);
             }.bind(this), function(xhr){
             	this.hideLoader();
-                this.publicController.getModalsController().apiErrorPopup(xhr);
+                // this.publicController.getModalsController().apiErrorPopup(xhr);
             }.bind(this));
 		},
 		createMessagesModal: function(users, otherUserName, messages) {
@@ -141,7 +140,7 @@ define([
 				});
 				this.updateUnreadTotal(users, forMark.length);
             }.bind(this), function(xhr){
-                this.publicController.getModalsController().apiErrorPopup(xhr);
+                // this.publicController.getModalsController().apiErrorPopup(xhr);
             }.bind(this));
 		},
 		onChatScrolled: function(users, messages) {
@@ -189,7 +188,7 @@ define([
                 view.triggerMethod('scrollBottom');
             }.bind(this), function(xhr){
             	this.hideLoader();
-                this.publicController.getModalsController().apiErrorPopup(xhr);
+                // this.publicController.getModalsController().apiErrorPopup(xhr);
             }.bind(this));
 
 		},

@@ -1,0 +1,17 @@
+<% if(withDate) { %>
+	<div class="date">
+		<div class="line"></div>
+		<span><%= date %></span>
+	</div>
+<% } %>
+<div class="message-container <% if (me) {%>me<% } %> <% if(withAvatar || withDate) { %>avatar<% } %>">
+	<div class="user">
+		<div class="circle">
+			<span class="first-letter"><%= shortAuthorName %></span>
+		</div>
+	</div>
+	<div class="message">
+		<span class="message-text"><%= messageBody %></span>
+	</div>
+	<span class="time"><%= localTime %></span>
+</div>
