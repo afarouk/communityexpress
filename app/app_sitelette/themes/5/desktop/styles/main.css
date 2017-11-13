@@ -974,12 +974,12 @@ body::-webkit-scrollbar-thumb,
       border-bottom-right-radius: 2px; }
 
 #cmtyx_desktop_application {
-  background-color: #aeb7bc;
+  background-color: #9c9c9c;
   background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 84px), repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 84px), linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05)), linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05));
   background-size: 120px 120px; }
 
 #cmtyx_landingView {
-  background: url(medicuris-back.png) no-repeat;
+  background: url(medicuris-back.jpg) no-repeat;
   /*temporary*/
   background-size: auto 100%;
   background-position: bottom;
@@ -1379,7 +1379,7 @@ header {
   justify-content: space-between;
   align-items: center; }
   header.cmtyx_special_background_color {
-    background-color: rgba(174, 183, 188, 0.65) !important;
+    background-color: rgba(156, 156, 156, 0.65) !important;
     border-bottom: 2px solid white; }
   header .back-btn-container {
     position: absolute;
@@ -1534,7 +1534,7 @@ header {
 
 footer {
   padding: 20px 0 20px 45px;
-  background-color: rgba(174, 183, 188, 0.65) !important;
+  background-color: rgba(156, 156, 156, 0.65) !important;
   border-top: 2px solid white; }
   footer > div {
     display: inline-block;
@@ -1656,7 +1656,6 @@ footer {
   justify-content: center;
   top: -30%;
   font-size: 80px;
-  animation: heartbeat 1s infinite;
   transform-origin: center;
   transform: translate3d(0, 0, 0); }
 
@@ -1694,7 +1693,7 @@ footer {
   position: relative;
   width: 300px;
   height: 160px;
-  background: repeating-linear-gradient(45deg, #ebd099, #ebd099 20px, #fd4059 20px, #fd4059 40px);
+  background: repeating-linear-gradient(45deg, #ffe9be, #ffe9be 20px, #40afec 20px, #40afec 40px);
   clip-path: polygon(0px 10px, 75px 2px, 150px 0px, 225px 2px, 300px 10px, 310px 10px, 310px 160px, 300px 160px, 225px 152px, 150px 150px, 75px 152px, 0px 160px); }
 
 #cmtyx_medicalSecureView .secure-container .ticket .left-waves {
@@ -1717,7 +1716,7 @@ footer {
 
 #cmtyx_medicalSecureView .secure-container .ticket .ticket-center {
   position: absolute;
-  background-color: #ebd099;
+  background-color: #ffe9be;
   top: 20px;
   left: 30px;
   width: 240px;
@@ -1840,7 +1839,7 @@ footer {
   -webkit-border-radius: 4em;
   -moz-border-radius: 4em;
   border-radius: 2em;
-  background-color: #ebd099; }
+  background-color: #ffe9be; }
 
 #cmtyx_medicalSecureView .secure-container .secure-block .puzzle .l {
   width: 0.8em;
@@ -1851,7 +1850,7 @@ footer {
   -webkit-border-radius: 4em;
   -moz-border-radius: 4em;
   border-radius: 2em;
-  background-color: #ebd099; }
+  background-color: #ffe9be; }
 
 #cmtyx_medicalSecureView .secure-container .secure-block .puzzle .secure-text {
   position: absolute;
