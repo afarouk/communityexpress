@@ -176,22 +176,21 @@
         </div>
       </div>
         
-      <footer class="cmtyx_special_background_color">
+      <footer>
         <div class="rights-block">
-          <img src="themes/5/desktop/images/chalkboards_tiny.png" alt="logo" class="logo">
-          <p>©  2016. All rights reserved.</p>
-          <p><a href="https://chalkboardstoday.com">chalkboardstoday.com</a> by Orinoco Inc.</p>
+        
         </div>
         <div class="contacts-block">
-          <p class="title">Contacts</p>
+          <p class="title">Doctor Contacts</p>
           <p class="text">${sasl.email}</p>
           <p class="text">${sasl.telephoneNumber}</p>
         </div>
         <div class="visit-block">
-          <p class="title">Visit</p>
+          <p class="title">Doctor address</p>
+          <p class="text">${sasl.saslName}</p>
           <p class="text">${sasl.number} ${sasl.street} ${sasl.street2}, </p>
           <p class="text">${sasl.city} ${sasl.state} ${sasl.zip},</p>
-          <p class="text">${sasl.saslName}</p>
+          
         </div>
       </footer>
         
