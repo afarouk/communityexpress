@@ -187,10 +187,11 @@
 		<div class="secure-container">
 			<#if sasl.domainEnum.enumText=="MEDICURIS">
 				<div class="medical-name">
-					<span>Medicuris</span>
+					<!-- <span>Medicuris</span> -->
 				</div>
 				<div class="medical-logo">
-					<span class="fa fa-heartbeat"></span>
+					<img src="themes/5/placeholder_images/medicuris-logo.png"></img>
+					<!-- <span class="fa fa-heartbeat"></span> -->
 				</div>		    
 			<#else>
 				<div class="vote-name">
