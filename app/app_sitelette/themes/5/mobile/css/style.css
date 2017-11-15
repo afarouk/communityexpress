@@ -14,7 +14,13 @@
     url("fonts/navbar-icons-font.woff") format("woff"),
     url("fonts/navbar-icons-font.ttf") format("truetype"),
     url("fonts/navbar-icons-font.svg#navbar-icons-font") format("svg");
-    url("Raleway-v4020-Regular.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("fonts/Raleway-v4020-Regular.otf") format("OpenType");
   font-weight: normal;
   font-style: normal;
 }
@@ -191,7 +197,7 @@ body {
 }
 #cmtyx_medicalSecureView .secure-container .medical-name {
     font-size: 40px;
-    font-family: Raleway;
+    font-family: "Raleway";
     color: #40afec;
     position: static;
 }
@@ -212,7 +218,7 @@ body {
     transform: translate3d(0, 0, 0);
 }
 #cmtyx_medicalSecureView .secure-container .medical-logo img {
-    width: 40%;
+    width: 25%;
 }
 #cmtyx_medicalSecureView .secure-container .vote-logo {
     color: green;
@@ -223,7 +229,7 @@ body {
     top: 20px;
     display: flex;
     flex-direction: column;
-    height: 30%;
+    height: 25%;
 }
 
 @keyframes heartbeat {

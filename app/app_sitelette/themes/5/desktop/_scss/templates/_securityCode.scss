@@ -72,7 +72,7 @@
     font-size: 28px;
 }
 #cmtyx_medicalSecureView .secure-container .medical-name {
-    font-size: 60px;
+    font-size: 50px;
     font-family: Raleway;
     color: #40afec;
     position: static;
@@ -98,13 +98,13 @@
     transform: translate3d(0, 0, 0);
 }
 #cmtyx_medicalSecureView .secure-container .medical-logo {
-    top: 30px;
+    top: 5%;
     display: flex;
     flex-direction: column;
-    height: 240px;
+    height: 180px;
 
     img {
-        width: 160px;
+        width: 120px;
     }
 }
 #cmtyx_medicalSecureView .secure-container .vote-logo {

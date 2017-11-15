@@ -37,6 +37,7 @@
           display: flex;
           align-items: center;
           margin-bottom: 15px;
+          justify-content: center;
         }
 
         .prize_cup_icon {
@@ -45,13 +46,7 @@
             background-size: contain;
             height: 30px;
             width: 30px;
-            position: relative;
-            left: 10px;
-            top: 5px;
-            float: right;
-            position: relative;
-            right: 10px;
-            bottom: 2px;
+            position: static;
         }
 
         .poll_item {

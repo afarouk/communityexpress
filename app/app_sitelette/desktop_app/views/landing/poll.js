@@ -32,7 +32,7 @@ define([
           contests: poll,
           securityType: this.securityType
       }));
-      if (poll) {
+      if (poll && poll.length) {
         this.$el.show();
       } else {
         this.$el.hide();

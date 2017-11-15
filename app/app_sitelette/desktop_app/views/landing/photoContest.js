@@ -34,7 +34,7 @@ define([
           contests: contest,
           secureType: this.secureType
       }));
-      if (contest) {
+      if (contest && contest.length) {
         this.$el.show();
       } else {
         this.$el.hide();
