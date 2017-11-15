@@ -46,6 +46,9 @@
             <!-- <li class="li_support"><a href="support">Support</a></li>
             <li class="li_paypal"><a target="_blank" href="paypalsetup">Paypal Support</a></li> -->
             <li class="li_Pricing"><a href="/Pricing">Pricing</a></li>
+            <li class="DifferentOptions" <?php modifyUrlAndClass("DifferentOptions") ?> >
+              <a href="./sitefiles/common_docs_legal/DifferentOptions.pdf" target="_blank" class="faq_button">Different-Options</a>
+            </li>
           </ul>
         </div>
       </div>
