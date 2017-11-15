@@ -6,6 +6,13 @@
 	<div class="popup_container"></div>
 
 	<div id="cmtyx_header" data-role="header" class="header common_header">
+		<div id="cmtyx_header_menu_button" class="menu_btn">
+			<div class="menu_btn_hamburger cmtyx_special_icon_color">&#9776;</div>
+			<span class="messages_counter" style="display:none;"></span>
+		</div>
+		<div id="cmtyx_header_back_button" data-role="button" data-icon="back">
+			<span class="glyphicon glyphicon-arrow-left cmtyx_special_icon_color"></span>
+		</div>
 		<div class="logo_container cmtyx_special_background_color">
 			<img src="${bannerImageURL}" />
 		</div>
@@ -77,67 +84,7 @@
 						<span class="title">QUESTIONNAIRE</span> <span class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
-						<ul class="poll_gallery">
-        					<#list polls as poll>
-            					<li class="poll_item" data-uuid="${poll.contestUUID}">
-                					<div class="contest_container">
-                						<div class="poll_block_title">&nbsp</div>
-					                    <img class="poll_image" src="${poll.imageURL}"></img>
-					                    <span class="poll_displaytext">${poll.displayText}?</span>
-					                    <ul class="poll_ans_form <#if poll.answerStatus.enumText == 'ANSWERED'>answered</#if>">
-				                    		<#list poll.choices as choice>
-					                            <li>
-					                                <div class="ui-grid-a">
-					                                    <div class="ui-block-a">
-					                                        <input data-role="none" type="radio" name="radio-choice-ans" id="ans_${choice_index}-${poll.contestUUID}" data-uuid="${poll.contestUUID}" data-choice="${choice.choiceId}" class="ansRadioChoice" <#if choice_index == 0>checked="checked"</#if> >
-					                                        <label for="ans_${choice_index}-${poll.contestUUID}"><span><span></span></span></label>
-					                                        <div class="question_item">
-					                                            <div class="bar">
-					                                            	<div class="back cmtyx_color_${(choice_index % 4) + 1}"></div>
-                                                    				<span class="percent"></span>
-					                                            </div>
-					                                            <p class="question_text">${choice.displayText}</p>
-					                                        </div>
-					                                    </div>
-					                                </div>
-					                            </li>
-					                        </#list>
-					                    </ul>
-					                    <#if poll.answerStatus.enumText != "ANSWERED">
-					                        <button class="submit_poll_button open_menu_btn cmtyx_border_color_1 cmtyx_text_color_1 ui-btn ui-corner-all" data-uuid="${poll.contestUUID}">submit</button>
-					                    </#if>
-					                    <div class="ui-grid-a prizes_title">
-						                    <div class="ui-block-a">
-						                        <div class="medal_icon"></div>
-						                    </div>
-						                    <div class="ui-block-b">All uploads are confidential</div>
-						                </div>
-						                <ul class="contest_prizes <#if poll.answerStatus.enumText == 'ANSWERED'>shown</#if>">
-						                    <#list poll.prizes as prize>
-						                        <li>
-						                            <div class="prize_block">
-						                                <div class="ui-grid-a prize_container">
-						                                    <#if prize.imageUrl??>
-						                                      <div class="ui-block-a">
-						                                        <img src="${prize.imageUrl}"></img>
-						                                      </div>
-						                                    </#if>
-						                                    <div class="ui-block-b ">
-						                                        <div class="prize_text_block">
-						                                            <span class="prize_text">${prize.contestPrizeName}</span>
-						                                            <span class="prize_condition">${prize.displayText}</span>
-						                                            <span class="prize_date">${prize.quantity}</span>
-						                                        </div>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                        </li>
-						                    </#list>
-						                </ul>
-						            </div>
-						        </li>
-							</#list>
-						</ul>
+						<!-- empty -->
 					</div>
 				</li>
 				
@@ -152,24 +99,7 @@
 							class="collapse_btn">&#9660;</span>
 					</div>
 					<div class="body">
-						<ul class="photo_gallery">
-							<#list photocontests as photo>
-					            <li class="photo_item" data-uuid="${photo.contestUUID}">
-					                <div class="contest_container">
-					                    <div class="photo_block_title"><p>&nbsp</p></div>
-					                    <img src="${photo.imageURL}" class="photo_image"></img>
-					                    <span class="contest_task">${photo.displayText}</span>
-				                        <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
-				                        <div class="photo_contest_upload_image" data-uuid="${photo.contestUUID}">
-				                            <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
-				                            <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
-				                                <input type="file" name="thumb" />
-				                            </div>
-				                        </div>
-					                </div>
-					            </li>
-					        </#list>
-					    </ul>
+						<!-- empty -->
 					</div>
 				</li>
 				

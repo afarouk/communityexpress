@@ -2921,6 +2921,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
 .logo_container {
     text-align: center;
 }
+.logo_container.cmtyx_special_background_color { /*temporary*/
+    background-color: rgb(194, 222, 154) !important;
+}
 .logo {
     display: inline-block;
     height: 30px;

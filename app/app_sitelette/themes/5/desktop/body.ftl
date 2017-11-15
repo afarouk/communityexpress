@@ -60,15 +60,8 @@
                         <div class="title">QUESTIONNAIRE</div>
                     </div>
                     <div class="body">
-                        <img src="themes/5/desktop/images/coffee.png" alt="poll image">
-                        <span class="question">Our coffee is awesome</span>
-                        <form class="question_ans_form">
-                            <input type="radio" name="radio-choice-ans" id="a_ans" class="ansRadioChoice" checked='checked'>
-                            <label for="a_ans">YES <span class="answer_color_container answer_color_1"></span></label>
-                            <br><br>
-                            <input type="radio" name="radio-choice-ans" id="b_ans" class="ansRadioChoice"> 
-                            <label for="b_ans">NO <span class="answer_color_container answer_color_2"></span></label>
-                        </form>
+                        <!-- empty -->
+                        <span>Loading...</span>
                     </div>
                 </div>
 
@@ -78,24 +71,8 @@
                     <div class="title">UPLOAD PICTURE</div>
                   </div>
                   <div class="body">
-                    <ul class="photo_gallery">
-                      <#list photocontests as photo>
-                        <li class="photo_item" data-uuid="${photo.contestUUID}">
-                            <div class="contest_container">
-                              <div class="photo_block_title" style="display:  none;"><p>&nbsp</p></div>
-                              <img src="${photo.imageURL}" class="photo_image"></img>
-                              <span class="contest_task">${photo.displayText}</span>
-                              <button class="ui-btn ui-corner-all back_btn send_photo_btn cmtyx_border_color_1 cmtyx_text_color_1">SEND A PHOTO</button>
-                              <div class="photo_contest_upload_image" data-uuid="${photo.contestUUID}">
-                                <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input ui-input-text ui-shadow-inset ui-body-inherit ui-textinput-autogrow" id="message" name="message" data-corners="false" style="height: 60px;"></textarea>
-                                <div class="dropzone" data-width="320" data-height="568" style="width: 100%;">
-                                  <input type="file" name="thumb" />
-                                </div>
-                              </div>
-                            </div>
-                        </li>
-                      </#list>
-                    </ul>
+                      <!-- empty -->
+                      <span>Loading...</span>
                   </div>
                 </div>
                 <!----- End of Selfie Contest (Photo contest)  ---------------->

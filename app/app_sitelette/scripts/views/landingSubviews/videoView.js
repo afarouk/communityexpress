@@ -18,7 +18,16 @@ var VideoView = Backbone.View.extend({
     this.slicked = false;
     if (visible) this.initSlick();
 
+    this.secureType = window.saslData.domainEnum === 'MEDICURIS' ||
+        window.saslData.domainEnum === 'MOBILEVOTE' ? window.saslData.domainEnum : false;
+
     this.resolved();
+  },
+
+  afterTriedToLogin: function() {
+    if (this.secureType) {
+      setTimeout(this.toggleCollapse.bind(this), 200);
+    }
   },
 
   toggleCollapse: function() {
