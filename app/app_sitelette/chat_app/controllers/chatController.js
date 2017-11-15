@@ -20,6 +20,11 @@ define([
 			this.listenTo(this.view, 'chat:show', this.onChatShow.bind(this));
 			region.show( this.view );
 		},
+		chatDestroy: function() {
+			if (this.view) {
+				this.view.destroy();
+			}
+		},
 		resetPosition: function() {
 			this.view.triggerMethod('resetPosition');
 		},
@@ -50,6 +55,27 @@ define([
                 }
             }.bind(this), function(xhr){
             	this.hideLoader();
+            	//temporary
+            	var response = {
+            		count: 1,
+            		users: [{
+            			'userName': 'member0',
+						'uid': 'user20.781305772384780045',
+						'presence': 'UNDEFINED',
+						'imageURL': 'https://communitylive.co/apptsvc/static/images/placeholder_200x200.png',
+						'email': null,
+						'telephone': null,
+						'lastMessage': null,
+						'lastMessageState': {  
+							'id': 1,
+							'enumText': 'UNREAD',
+							'displayText': 'Unread'
+						},
+						'unReadMessageCount': 3,
+						'timeOfLastMessage': '2017-11-15T11:54:23:UTC'
+            		}]
+            	};
+            	this.createChatUsersModal(response);
                 // this.publicController.getModalsController().apiErrorPopup(xhr);
             }.bind(this));
 		},
@@ -105,6 +131,7 @@ define([
 					otherUserName: otherUserName,
 					collection: messages
 				});
+
 			this.view.showChildView( 'modal', modal );
 			this.listenTo(modal, 'chat:send', this.onMessageSend.bind(this, otherUserName, messages));
 			this.listenTo(modal, 'chat:scrolled', this.onChatScrolled.bind(this, users, messages));

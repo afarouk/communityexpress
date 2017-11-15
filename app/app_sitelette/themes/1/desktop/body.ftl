@@ -124,6 +124,9 @@
                   </div> -->
                   
                   <div class="wrapper">
+                    <!-- there is chat block -->
+                    <div class="grid-item cmtyx_chat_block" id="cmtyx_chat_block"></div>
+                    <!-- end of chat block -->
 
                     <!----- Discount coupons  ---------------->
                 

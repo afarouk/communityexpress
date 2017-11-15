@@ -42,7 +42,7 @@ define([
     var ChatMessagesCollection = Backbone.Collection.extend({
         initialize: function(collection) {
             var user = appCache.get('user');
-            UID = user.get('uid');
+            UID = user ? user.getUID() : null;
             if (collection.length === 0) {
                 collection.push({type: 'no-messages'});
             }

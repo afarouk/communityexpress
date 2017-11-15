@@ -12,7 +12,7 @@ define([
                 params = h().parseQueryString(search);
             if (params) {
                 if(params.server) {
-                    config.setBaseRoot(params.server);
+                    config.setAPIRoot(params.server);
                 }
             }
         }

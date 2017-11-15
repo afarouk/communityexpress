@@ -11,18 +11,19 @@ define([
 			modal: '#chat-modal'
 		},
 		ui: {
+			container: '.chat-container',
 			chatBtn: '[name="chat-btn"]',
 			messages: '[name="new_messages_number"]',
 			modal: '.modal-content',
 			loader: '.chat-loader'
 		},
 		events: {
-			'click @ui.chatBtn': 'clickChatBtn'
+			'click @ui.container': 'clickChatBtn'
 		},
 		onRender: function() {
 			this.trigger('chat:show', this);
 			this.ui.modal.draggable({
-				containment: $('#game-layout')
+				containment: $('#cmtyx_landingView')
 			});
 		},
 		onUpdateTotal: function(total) {
@@ -32,11 +33,12 @@ define([
 		},
 		clickChatBtn: function() {
 			this.ui.modal.show('slow');
-			this.ui.chatBtn.hide();
+			$('#cmtyx_chat_block').addClass('chat-hide');
+			// this.ui.container.hide();
 		},
 		onChildviewChatClose: function() {
 			this.ui.modal.hide('slow');
-			this.ui.chatBtn.show();
+			$('#cmtyx_chat_block').removeClass('chat-hide');
 		},
 		onChildviewChatBack: function() {
 			this.trigger('chat:show', this);
