@@ -34,6 +34,7 @@ define([
 		clickChatBtn: function() {
 			this.ui.modal.show('slow');
 			$('#cmtyx_chat_block').addClass('chat-hide');
+			this.trigger('chat:scroll', this);
 			// this.ui.container.hide();
 		},
 		onChildviewChatClose: function() {

@@ -2,11 +2,13 @@
 
 'use strict';
 
-var gateway = require('../APIGateway/gateway.js'),
+var Vent = require('../Vent.js'),
+    gateway = require('../APIGateway/gateway.js'),
     appCache = require('../appCache.js'),
     MessageCollection = require('../collections/messages.js'),
     NotificationsCollection = require('../collections/notifications.js'),
-    CommunicationModel = require('../models/communicationModel.js');
+    CommunicationModel = require('../models/communicationModel.js'),
+    ChatApplication = require('../../chat_app/chat.js');
 
 var getUID = function () {
     return appCache.get('user') ? appCache.get('user').getUID() : '';
@@ -48,7 +50,8 @@ module.exports = {
                 inReplyToMessageId: messageId,
                 communicationId: communicationId,
             },
-            UID: uid
+            UID: uid,
+            simulate: true
         }).then( function (response) {
             return new CommunicationModel(response);
         });
@@ -66,5 +69,18 @@ module.exports = {
             },
             UID: uid
         })
+    },
+
+    listenSaslMessages: function() {
+        var chat = (new ChatApplication()).start('mobile');
+        Vent.on('login_success', this.onLoginSuccess.bind(this, chat));
+        Vent.on('logout_success', this.onLogoutSuccess.bind(this, chat));
+    },
+
+    onLoginSuccess: function(chat) {
+        chat.chatStart();
+    },
+    onLogoutSuccess: function(chat) {
+        chat.chatStop();
     }
 };

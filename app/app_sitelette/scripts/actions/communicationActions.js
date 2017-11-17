@@ -117,6 +117,17 @@ module.exports = {
             });
     },
 
+    onMessageReceived: function(sa, sl, uid, message) {
+        var cache = getCachedConversations(sa, sl, uid);
+        message.fromUser = false; //temporary tweak
+        if (cache) {
+            cache.conversation.unshift(message);
+        } else {
+            var cachedConversations = createConversationCache(sa, sl, uid);
+            cachedConversations.unshift(message);
+        }
+    },
+
     sendContactUsMessage: function(sa, sl, name, email, messageBody) {
         var sessionActions = require('./sessionActions');
         var uid = sessionActions.getCurrentUser().getUID();

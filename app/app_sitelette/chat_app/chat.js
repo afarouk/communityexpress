@@ -1,11 +1,12 @@
 'use strict';
 
 define([
-    '../scripts/appCache.js',
+	'../scripts/Vent',
+    '../scripts/appCache',
     './controllers/socketController',
     './controllers/chatController',
     '../scripts/controllers/userController'
-	], function(appCache, socketController, chatController, userController) {
+	], function(Vent, appCache, socketController, chatController, userController) {
 
 	var Chat = Mn.Application.extend({
 		region: '#cmtyx_chat_block',
@@ -24,10 +25,12 @@ define([
 		chackIfChatAvailable: function() {
 			return this.checkSecurity() && this.checkMessagingService();
 		},
-		onStart: function() {
+		onStart: function(app, device) {
+			this.device = device;
 			return this;
 		},
-		chatStart: function(user) {
+		chatStart: function() {
+			var user = appCache.get('user');
 			if (this.chackIfChatAvailable()) {
 				this.started = true;
 				socketController.start(user.UID);
@@ -37,11 +40,16 @@ define([
 			if (this.started && this.chackIfChatAvailable()) {
 				this.started = false;
 				chatController.chatDestroy();
+				socketController.stop();
 			}
 		},
 		onSocketConnected: function() {
-			var main = this.getRegion();
-			chatController.create(main);
+			if (this.device === 'mobile') {
+				//todo something
+			} else {
+				var main = this.getRegion();
+				chatController.create(main);
+			}
 		},
 		onReconnectAllowed: function () {
 			var user = appCache.get('user');
@@ -50,7 +58,18 @@ define([
 		onMessage: function(message) {
 			switch (message.signal) {
 				case 'FORCED_LOGOUT':
-					this.dispatcher.get('popups').onForceLogout();
+					if (this.device === 'mobile') {
+						userController.onForceLogout();
+					} else {
+						this.dispatcher.get('popups').onForceLogout();
+					}
+					break;
+				case 'MESSAGE_RECEIVED':
+					if (this.device === 'mobile') {
+						Vent.trigger('onChatMessage', message);
+					} else {
+						chatController.onChatSignal(message);
+					}
 					break;
 				default:
 					

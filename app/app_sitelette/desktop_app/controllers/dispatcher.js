@@ -34,7 +34,7 @@ define([
 					'landing': new LandingController(),
 					'popups': new PopupsController(),
 					'security': new SecurityController(),
-					'chat': (new Chat()).start()
+					'chat': (new Chat()).start('desktop')
 				};
 			} else {
 				this.controllers = {
@@ -44,7 +44,7 @@ define([
 					'landing': new LandingController(),
 					'popups': new PopupsController(),
 					'history': new HistoryController(),
-					'chat': (new Chat()).start()
+					'chat': (new Chat()).start('desktop')
 				};
 			}
 			_.each(this.controllers, function(controller) {
@@ -112,9 +112,9 @@ define([
 				adhocEntry = Cookies.get('cmxAdhocEntry'),
 				logged = user && user.getUID() && adhocEntry == 'false' ? true : false;
 			if (logged) {
-				this.get('chat').chatStart(user);
+				this.get('chat').chatStart();
 			} else {
-				this.get('chat').chatStop(user);
+				this.get('chat').chatStop();
 			}
 		},
 

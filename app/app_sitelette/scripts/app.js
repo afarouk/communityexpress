@@ -6,6 +6,7 @@ var userController = require('./controllers/userController'),
     sessionActions = require('./actions/sessionActions'),
     pageController = require('./pageController.js'),
     securityController = require('./controllers/securityController.js'),
+    communicationsController = require('./controllers/communicationsController'),
     config = require('./appConfig.js'),
     h = require('./globalHelpers'),
     Vent = require('./Vent.js'),
@@ -101,6 +102,7 @@ App.prototype = {
         if (this.params.embedded) {
             conf.set('embedded', true);
         };
+        communicationsController.listenSaslMessages();
         if (window.saslData.domainEnum === 'MEDICURIS' ||
             window.saslData.domainEnum === 'MOBILEVOTE') {
             securityController.init(this.params);

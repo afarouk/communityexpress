@@ -17,7 +17,11 @@ define([
 		create: function(region) {
 			this.view = new ChatView();
 			this.listenTo(this.view, 'chat:show', this.onChatShow.bind(this));
+			this.listenTo(this.view, 'chat:scroll', this.scrollBottom.bind(this));
 			region.show( this.view );
+		},
+		scrollBottom: function() {
+			this.modal.triggerMethod('scrollBottom');
 		},
 		chatDestroy: function() {
 			if (this.view) {
@@ -78,16 +82,16 @@ define([
 	            }.bind(this));
 		},
 		createMessagesModal: function(messages) {
-			var modal = new ChatMessagesModalView({
+			this.modal = new ChatMessagesModalView({
 					otherUserName: appCache.get('saslData').saslName,
 					collection: messages
 				});
 
-			this.view.showChildView( 'modal', modal );
-			this.listenTo(modal, 'chat:send', this.onMessageSend.bind(this, messages));
-			this.listenTo(modal, 'chat:scrolled', this.onChatScrolled.bind(this, messages));
+			this.view.showChildView( 'modal', this.modal );
+			this.listenTo(this.modal, 'chat:send', this.onMessageSend.bind(this, messages));
+			this.listenTo(this.modal, 'chat:scrolled', this.onChatScrolled.bind(this, messages));
 			this.chatProxy.set(this.addMessage.bind(this, messages));
-			modal.triggerMethod('scrollBottom');
+			this.modal.triggerMethod('scrollBottom');
 		},
 		onMarkAsRead: function(messages, forMark) {
 			var payload,
@@ -148,7 +152,7 @@ define([
 			}.bind(this));
 		},
 		addMessage: function(messages, message) {
-			messages.add(message.messageFromUserToUser);
+			messages.add(message.messageFromSASLToUser);
 		},
 		onMessageSend: function( messages, view) {
 			this.showLoader();
@@ -178,11 +182,7 @@ define([
 			}
 		},
 		onChatSignal: function(message) {
-			switch (message.signal) {
-				case 'MESSAGE_RECEIVED':
-					this.chatProxy.handle(message);
-					break;
-			}
+			this.chatProxy.handle(message);
 		}
     });
 

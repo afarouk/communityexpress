@@ -46,7 +46,8 @@ var ChatView = Backbone.View.extend({
     onShow:  function() {
         this.renderMessages();
         this.listenTo( Vent, 'logout_success', this.goBack, this);
-        this.startPolling();
+        // this.startPolling();
+        this.startMessageListening();
     },
 
     renderMessages: function() {
@@ -73,7 +74,9 @@ var ChatView = Backbone.View.extend({
     // },
 
     sendMessage: function() {
-        var val = this.$('.input_container input').val();
+        var $msg = this.$('.input_container input'),
+            val = $msg.val();
+
         if (val.length <= 0) {
             popupController.textPopup({ text: 'Please, type your message'});
             return;
@@ -81,6 +84,7 @@ var ChatView = Backbone.View.extend({
         loader.show('sending message');
         communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), val)
             .then(function() {
+                $msg.val('');
                 loader.hide();
                 // popupController.textPopup({text: 'message sent'});
             }, function(e) {
@@ -90,31 +94,44 @@ var ChatView = Backbone.View.extend({
             });
     },
 
-    startPolling: function() {
-        console.log('start polling');
-        this.runTimer();
+    startMessageListening: function() {
+        Vent.on('onChatMessage', this.onMessageReceived, this);
     },
 
-    runTimer: function() {
-        var self = this;
-        this.pollTimer = setTimeout( function() {
-                self.poll();
-                self.runTimer();
-            } ,10000);
+    stopMessageListening: function() {
+        Vent.off('onChatMessage', this.onMessageReceived);
     },
 
-    stopPolling: function() {
-        console.log('stop polling');
-        clearInterval(this.pollTimer);
+    onMessageReceived: function(message) {
+        communicationActions.onMessageReceived(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID(), message.messageFromSASLToUser);
     },
 
-    poll: function() {
-        console.log('polling');
-        communicationActions.getConversation(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID());
-    },
+    // startPolling: function() {
+    //     console.log('start polling');
+    //     this.runTimer();
+    // },
+
+    // runTimer: function() {
+    //     var self = this;
+    //     this.pollTimer = setTimeout( function() {
+    //             self.poll();
+    //             self.runTimer();
+    //         } ,10000);
+    // },
+
+    // stopPolling: function() {
+    //     console.log('stop polling');
+    //     clearInterval(this.pollTimer);
+    // },
+
+    // poll: function() {
+    //     console.log('polling');
+    //     communicationActions.getConversation(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID());
+    // },
 
     goBack: function() {
-        this.stopPolling();
+        // this.stopPolling();
+        this.stopMessageListening();
         Vent.trigger( 'viewChange', 'restaurant', this.restaurant.getUrlKey());
     }
 });

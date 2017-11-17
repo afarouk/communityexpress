@@ -5,7 +5,7 @@
 var APIRoot = 'simfel.com',//'54.191.91.125',
 	WSRoot = 'simfel.com',//'54.191.91.125',
 	apiSufix = '/apptsvc/rest',
-	wsSufix = '/apptsvc/ws/gaming/gamingsecret';
+	wsSufix = '/apptsvc/ws/sasl/gamingsecret';
 
 module.exports = {
 	setAPIRoot: function(server) {
