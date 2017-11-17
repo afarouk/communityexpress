@@ -3670,7 +3670,7 @@ footer {
     top: 1px;
     right: 1px;
     margin-top: 0px;
-    margin-right: -0px;
+    margin-right: -5px;
     border-radius: 50%;
     background-color: orange;
     padding: 0 3px;
@@ -3777,7 +3777,8 @@ footer {
                 height: 30px;
                 position: relative;
                 flex: 0 0 50px;
-                visibility: hidden; }
+                visibility: hidden;
+                display: none; }
                 #cmtyx_chat_block .chat-content .modal-content .modal-body .messages-region .chat-messages li .message-container .user .circle {
                   position: absolute;
                   display: grid;
@@ -3794,13 +3795,13 @@ footer {
                     display: block; }
               #cmtyx_chat_block .chat-content .modal-content .modal-body .messages-region .chat-messages li .message-container .message {
                 color: lightgray;
-                margin: 0 30px 0 0;
+                margin: 0 30px 0 10px;
                 position: relative;
-                max-width: 220px;
+                max-width: 250px;
                 word-wrap: break-word;
                 display: flex;
                 align-items: center;
-                flex: 0 0 220px;
+                flex: 0 0 250px;
                 justify-content: flex-start; }
                 #cmtyx_chat_block .chat-content .modal-content .modal-body .messages-region .chat-messages li .message-container .message .message-text {
                   white-space: pre-line;
@@ -3828,7 +3829,7 @@ footer {
               #cmtyx_chat_block .chat-content .modal-content .modal-body .messages-region .chat-messages li .message-container.me .user {
                 visibility: hidden; }
               #cmtyx_chat_block .chat-content .modal-content .modal-body .messages-region .chat-messages li .message-container.me .message {
-                margin: 0 0 0 30px;
+                margin: 0 0 0 40px;
                 justify-content: flex-end; }
                 #cmtyx_chat_block .chat-content .modal-content .modal-body .messages-region .chat-messages li .message-container.me .message .message-text {
                   background-color: rgba(89, 146, 146, 0.82);

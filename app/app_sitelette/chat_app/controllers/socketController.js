@@ -18,7 +18,9 @@ define([
                     this._super.onSocketConnected();
                     break;
                 case 'Disconnected':
-                    this.restart();
+                    if(this._super.onReconnectAllowed()) {
+                        this.restart();
+                    }
                     break;
             }
         },

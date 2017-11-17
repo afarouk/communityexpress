@@ -201,6 +201,17 @@ define([
         		}.bind(this), 2000);
         	}.bind(this));
 		},
+		onForceLogout: function() {
+			userController.onForceLogout();
+			this.onLoginStatusChanged();
+			this.showMessage({
+    			message: '⚠Parallel login detected',
+    			loader: true
+    		});
+			setTimeout(function() {
+    			this.dispatcher.onLogoutSuccess();
+    		}.bind(this), 2000);
+		},
 		onOrderHistory: function() {
 			this.dispatcher.get('history').getHistory();
 		},

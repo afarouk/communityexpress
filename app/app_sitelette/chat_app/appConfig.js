@@ -3,7 +3,7 @@
 'use strict';
 
 var APIRoot = 'simfel.com',//'54.191.91.125',
-	WSRoot = '54.191.91.125',
+	WSRoot = 'simfel.com',//'54.191.91.125',
 	apiSufix = '/apptsvc/rest',
 	wsSufix = '/apptsvc/ws/gaming/gamingsecret';
 

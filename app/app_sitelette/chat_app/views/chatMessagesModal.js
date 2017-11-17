@@ -13,7 +13,6 @@ define([
 		},
 		ui: {
 			close: 'button.close',
-			back: 'button.back',
 			messagesContainer: '[name="chat-messages"]',
 			message: '[name="message"]',
 			send: '[name="send"]',
@@ -27,7 +26,6 @@ define([
 		},
 		triggers: {
 			'click @ui.close': 'chat:close',
-			'click @ui.back': 'chat:back',
 			'click @ui.send': 'chat:send'
 		},
 		initialize: function() {

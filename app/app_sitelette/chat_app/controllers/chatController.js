@@ -3,14 +3,13 @@
 'use strict';
 
 define([
+	'../../scripts/appCache.js',
 	'../APIGateway/chatService',
     '../views/chat',
-    '../views/chatUsersModal',
     '../views/chatMessagesModal',
-    '../models/usersCollection',
     '../models/messagesCollection'
-    ], function(service, 
-    	ChatView, ChatUsersModalView, ChatMessagesModalView, UsersCollection, MessagesCollection){
+    ], function(appCache, service, 
+    	ChatView, ChatMessagesModalView, MessagesCollection){
     var ChatController = Mn.Object.extend({
     	initialize: function() {
     		this.chatProxy = this._chatProxy();
@@ -30,7 +29,7 @@ define([
 		},
 
 		onChatShow: function() {
-			this.getChatUsers();
+			this.onGetConversation();
 		},
 
 		showLoader: function() {
@@ -41,57 +40,10 @@ define([
 			this.view.ui.loader.removeClass('show');
 		},
 
-		getChatUsers: function() {
-			this.showLoader();
-			service.getAvailableUsers({
-				forChat: true
-			}).then(function(response){
-				this.hideLoader();
-                if (response.count > 0) {
-                    this.createChatUsersModal(response);
-                } else {
-                	//TODO ask Alamgir if this case is possible
-                    // this.showEmptyList('leftList', 'No users are present.');
-                }
-            }.bind(this), function(xhr){
-            	this.hideLoader();
-            	//temporary
-            	var response = {
-            		count: 1,
-            		users: [{
-            			'userName': 'member0',
-						'uid': 'user20.781305772384780045',
-						'presence': 'UNDEFINED',
-						'imageURL': 'https://communitylive.co/apptsvc/static/images/placeholder_200x200.png',
-						'email': null,
-						'telephone': null,
-						'lastMessage': null,
-						'lastMessageState': {  
-							'id': 1,
-							'enumText': 'UNREAD',
-							'displayText': 'Unread'
-						},
-						'unReadMessageCount': 3,
-						'timeOfLastMessage': '2017-11-15T11:54:23:UTC'
-            		}]
-            	};
-            	this.createChatUsersModal(response);
-                // this.publicController.getModalsController().apiErrorPopup(xhr);
-            }.bind(this));
-		},
-		createChatUsersModal: function(response) {
-			var users = new UsersCollection(response.users),
-				modal = new ChatUsersModalView({
-					collection: users
-				});
-			this.view.showChildView( 'modal', modal );
-			this.listenTo(modal, 'user:selected', this.onUserSelected.bind(this, users));
-			this.chatProxy.set(this.messageFromUser.bind(this, users));
-			this.updateUnreadTotal(users);
-		},
-		updateUnreadTotal: function(users, minus) {
-			var total = users.reduce(function(sum, user){
-				return sum + user.get('unReadMessageCount');
+		updateUnreadTotal: function(messages, minus) {
+			var total = messages.reduce(function(sum, message){
+				var unread = message.get('state').enumText === 'UNREAD' ? 1 : 0;
+				return sum + unread;
 			}, 0);
 			total = total - ( minus || 0 );
 			this.view.triggerMethod('updateTotal', total);
@@ -112,33 +64,32 @@ define([
 			lastMessageState.displayText = 'UNREAD';
 			this.updateUnreadTotal(users);
 		},
-		onUserSelected: function(users, model) {
-			var otherUserName = model.get('userName');
+		onGetConversation: function() {
 			this.showLoader();
-			service.getConversationBetweenUsers({
-				otherUserName: otherUserName
-			}).then(function(conversation){
-				this.hideLoader();
-                var messages = new MessagesCollection(conversation.messages);
-                this.createMessagesModal(users, otherUserName, messages);
-            }.bind(this), function(xhr){
-            	this.hideLoader();
-                // this.publicController.getModalsController().apiErrorPopup(xhr);
-            }.bind(this));
+			service.getConversationBetweenUserSASL()
+				.then(function(conversation){
+					this.hideLoader();
+	                var messages = new MessagesCollection(conversation.messages);
+	                this.createMessagesModal(messages);
+	                this.updateUnreadTotal(messages);
+	            }.bind(this), function(xhr){
+	            	this.hideLoader();
+	                // this.publicController.getModalsController().apiErrorPopup(xhr);
+	            }.bind(this));
 		},
-		createMessagesModal: function(users, otherUserName, messages) {
+		createMessagesModal: function(messages) {
 			var modal = new ChatMessagesModalView({
-					otherUserName: otherUserName,
+					otherUserName: appCache.get('saslData').saslName,
 					collection: messages
 				});
 
 			this.view.showChildView( 'modal', modal );
-			this.listenTo(modal, 'chat:send', this.onMessageSend.bind(this, otherUserName, messages));
-			this.listenTo(modal, 'chat:scrolled', this.onChatScrolled.bind(this, users, messages));
+			this.listenTo(modal, 'chat:send', this.onMessageSend.bind(this, messages));
+			this.listenTo(modal, 'chat:scrolled', this.onChatScrolled.bind(this, messages));
 			this.chatProxy.set(this.addMessage.bind(this, messages));
 			modal.triggerMethod('scrollBottom');
 		},
-		onMarkAsRead: function(users, forMark) {
+		onMarkAsRead: function(messages, forMark) {
 			var payload,
 				idList;
 			idList = forMark.map(function(model){
@@ -157,6 +108,7 @@ define([
     				messageId: idList[0].messageId,
 				};
 			}
+
 			service.markAsReadUser({
 				payload: payload
 			}).then(function(response){
@@ -165,12 +117,12 @@ define([
 					state.enumText = 'READ';
 					state.displayText = 'Read';
 				});
-				this.updateUnreadTotal(users, forMark.length);
+				this.updateUnreadTotal(messages, forMark.length);
             }.bind(this), function(xhr){
                 // this.publicController.getModalsController().apiErrorPopup(xhr);
             }.bind(this));
 		},
-		onChatScrolled: function(users, messages) {
+		onChatScrolled: function(messages) {
 			var allDefs = [];
 			messages.each(function(model){
 				var unread = model.get('state').enumText === 'UNREAD',
@@ -191,32 +143,27 @@ define([
 				}
 				//get from models
 				if (forMark.length) {
-					this.onMarkAsRead(users, forMark);
+					this.onMarkAsRead(messages, forMark);
 				}
 			}.bind(this));
 		},
 		addMessage: function(messages, message) {
 			messages.add(message.messageFromUserToUser);
 		},
-		onMessageSend: function(otherUserName, messages, view) {
+		onMessageSend: function( messages, view) {
 			this.showLoader();
 			var message = view.ui.input.val();
 			if (!message) return;
-			service.sendMessageFromUserToUser({
-				payload: {
-					messageBody: message,
-				    urgent: false,
-				    userName: otherUserName
-				} 
-			}).then(function(response){
-				this.hideLoader();
-                messages.add(response);
-                view.ui.input.val('').keydown();
-                view.triggerMethod('scrollBottom');
-            }.bind(this), function(xhr){
-            	this.hideLoader();
-                // this.publicController.getModalsController().apiErrorPopup(xhr);
-            }.bind(this));
+			service.sendMessageToSASL(message)
+				.then(function(response){
+					this.hideLoader();
+	                messages.add(response);
+	                view.ui.input.val('').keydown();
+	                view.triggerMethod('scrollBottom');
+	            }.bind(this), function(xhr){
+	            	this.hideLoader();
+	                // this.publicController.getModalsController().apiErrorPopup(xhr);
+	            }.bind(this));
 
 		},
 		_chatProxy: function(){

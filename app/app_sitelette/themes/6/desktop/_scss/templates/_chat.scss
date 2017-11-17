@@ -60,7 +60,7 @@ $chat-fw-msg: 400;
         top: 1px;
         right: 1px;
         margin-top: 0px;
-        margin-right: -0px;
+        margin-right: -5px;
         border-radius: 50%;
         background-color: $chat_warning;
         padding: 0 3px;
@@ -196,6 +196,7 @@ $chat-fw-msg: 400;
                                 position: relative;
                                 flex: 0 0 50px;
                                 visibility: hidden;
+                                display: none;
 
                                 .circle {
                                     position: absolute;
@@ -218,13 +219,13 @@ $chat-fw-msg: 400;
 
                             .message {
                                 color: lightgray;
-                                margin: 0 30px 0 0;
+                                margin: 0 30px 0 10px;
                                 position: relative;
-                                max-width: 220px;
+                                max-width: 250px;
                                 word-wrap: break-word;
                                 display: flex;
                                 align-items: center;
-                                flex: 0 0 220px;
+                                flex: 0 0 250px;
                                 justify-content: flex-start;
 
                                 .message-text {
@@ -269,7 +270,7 @@ $chat-fw-msg: 400;
                                     visibility: hidden;
                                 }
                                 .message {
-                                    margin: 0 0 0 30px;
+                                    margin: 0 0 0 40px;
                                     justify-content: flex-end;
 
                                     .message-text {

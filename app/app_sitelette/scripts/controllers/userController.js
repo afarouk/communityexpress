@@ -64,6 +64,10 @@ module.exports = {
         });
     },
 
+    onForceLogout: function() {
+        killUser();
+    },
+
     logout: function(UID){
         return gateway.sendRequest('logout',{
             UID: UID

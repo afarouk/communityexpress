@@ -3,12 +3,18 @@
 'use strict';
 
 define([
-    '../appConfig'
-    ], function(config){
+    '../appConfig',
+    '../../scripts/appCache.js'
+    ], function(config, appCache){
     //TODO simulate socket errors and disconnect
     var socketConnect = Mn.Object.extend({
         initialize: function(UID) {
-            var URL = config.getWebSocketRoot() + '?UID=' + UID;
+            var params = {
+                   UID: UID,
+                   serviceAccommodatorId: appCache.sa(),
+                   serviceLocationId: appCache.sl()
+                },
+                URL = config.getWebSocketRoot() + '?' + $.param(params);
             this.connect(URL);
 
             this.setDisconnectTimeout();

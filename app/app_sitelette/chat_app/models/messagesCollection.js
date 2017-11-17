@@ -13,7 +13,7 @@ define([
         initialize: function(attrs, options) {
             if (attrs.type === 'no-messages') return;
             var authorName = this.get('authorName'),
-                authorNames = authorName.split(' '),
+                authorNames = authorName ? authorName.split(' ') : '? ?',
                 shortAuthorName = (authorNames[0][0] + (authorNames[1] ? authorNames[1][0] : '')).toUpperCase(),
                 timeStamp = this.get('timeStamp'),
                 utc = typeof timeStamp === 'number' ? timeStamp : timeStamp.replace(':UTC', ''),

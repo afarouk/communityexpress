@@ -40,6 +40,14 @@ module.exports = _.extend( Backbone.Events, {
         for( key in cache ){
             cache[key] = null;
         }
+    },
+
+    sa: function() {
+        return this.get('saslData').serviceAccommodatorId;
+    },
+
+    sl: function() {
+        return this.get('saslData').serviceLocationId;
     }
 
 });
