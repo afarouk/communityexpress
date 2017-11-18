@@ -7,7 +7,7 @@ module.exports = {
             /* chat */
             getConversationBetweenUserSASL: ['GET', '/communication/getConversationBetweenUserSASL'],
             sendMessageToSASL: ['POST', '/communication/sendMessageToSASL'],
-            markAsReadUser: ['PUT', '/communication/markAsReadUser'],
+            markAsReadSASLUser: ['PUT', '/communication/markAsReadSASLUser'],
             /*debug*/
             killSocket: ['GET', '/gaming/killSocket'],
         };

@@ -32,7 +32,7 @@ module.exports = {
             retrievePromotionsBySASL: ['GET', '/promotions/retrievePromotionSATiersMetaDataBySASL'],
             activatePromotion: ['PUT', '/promotions/activatePromotionSATier'],
             deActivatePromotion: ['PUT', '/promotions/deActivatePromotionSATier'],
-            
+
             getTilesByUIDAndLocation: ['GET', '/sasl/getPromotionsSummaryByUIDAndLocation'],
             getLocations: ['GET', '/sasl/retrieveClusterLatLongs'],
 
@@ -61,7 +61,7 @@ module.exports = {
             likeDislikePost: ['GET', '/communication/likeDislikePost'],
 
             getNotificationsByUIDAndLocation: ['GET', '/communication/getNotificationsByUIDAndLocation'],
-            markAsRead: ['PUT', '/communication/markAsReadUser'],
+            markAsRead: ['PUT', '/communication/markAsReadSASLUser'],
 
             retrieveReviews: ['GET', '/communication/retrieveReviews'],
             addReview: ['POST', '/usersasl/createReview'],

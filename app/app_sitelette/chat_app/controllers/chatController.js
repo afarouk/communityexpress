@@ -8,7 +8,7 @@ define([
     '../views/chat',
     '../views/chatMessagesModal',
     '../models/messagesCollection'
-    ], function(appCache, service, 
+    ], function(appCache, service,
     	ChatView, ChatMessagesModalView, MessagesCollection){
     var ChatController = Mn.Object.extend({
     	initialize: function() {
@@ -113,7 +113,7 @@ define([
 				};
 			}
 
-			service.markAsReadUser({
+			service.markAsReadSASLUser({
 				payload: payload
 			}).then(function(response){
 				forMark.forEach(function(model){

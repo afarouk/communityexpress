@@ -37,12 +37,12 @@ define([
             return gateway.sendRequest('sendMessageToSASL', params);
         },
 
-        markAsReadUser: function(params) {
+        markAsReadSASLUser: function(params) {
             var user = appCache.get('user'),
                 uid = user ? user.getUID() : null;
             params = params || {};
             params.UID = uid;
-            return gateway.sendRequest('markAsReadUser', params);
+            return gateway.sendRequest('markAsReadSASLUser', params);
         },
 
         /*debug*/

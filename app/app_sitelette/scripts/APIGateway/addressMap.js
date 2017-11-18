@@ -58,7 +58,7 @@ module.exports = {
             likeDislikePost: ['GET', '/communication/likeDislikePost'],
 
             getNotificationsByUIDAndLocation: ['GET', '/communication/getNotificationsByUIDAndLocation'],
-            markAsRead: ['PUT', '/communication/markAsReadUser'],
+            markAsRead: ['PUT', '/communication/markAsReadSASLUser'],
 
             retrieveReviews: ['GET', '/communication/retrieveReviews'],
             addReview: ['POST', '/usersasl/createReview'],
