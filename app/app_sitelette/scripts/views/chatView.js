@@ -18,6 +18,7 @@ var ChatView = Backbone.View.extend({
     id: 'cmntyex_chat',
 
     events: {
+        'click .smile_icon_button': 'addSmile',
         'click .send_message_button': 'sendMessage'
     },
 
@@ -60,6 +61,12 @@ var ChatView = Backbone.View.extend({
                     parent: this
                 }).render().el);
             }.bind(this));
+    },
+
+    addSmile: function() {
+        var $msg = this.$('.input_container input');
+        $msg.val($msg.val() + '☺');
+        $msg.focus();
     },
 
     sendMessage: function() {

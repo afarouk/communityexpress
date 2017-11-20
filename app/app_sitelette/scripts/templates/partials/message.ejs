@@ -1,20 +1,23 @@
 <div class="chat_message_time">
     <%= timeStamp %>
 </div>
-<table>
-	<tbody>
-		<tr>
-			<% if (fromUser === true) { %>
-				<td class="message">
-					<div class="message_text"><%= messageBody %></div>
-				</td>
-                <td class="time"><div><%= (userName || '') %></div><div><%= toTimeString %></div></td>
-			<% } else { %>
-                <td class="time"><div><%= saslName %></div><div><%= toTimeString %></div></td>
-				<td class="message">
-					<div class="message_text"><%= messageBody %></div>
-				</td>
-			<% } %>
-		</tr>
-	</tbody>
-</table>
+<div class="chat_message_container">
+	<% if (fromUser === true) { %>
+		<div class="message">
+			<div class="message_text"><%= messageBody %></div>
+		</div>
+	    <div class="time">
+	    	<div><%= (userName || '') %></div>
+	    	<div><%= toTimeString %></div>
+	    </div>
+	<% } else { %>
+	    <div class="time">
+	    	<div><%= saslName %></div>
+	    	<div><%= toTimeString %></div>
+	    </div>
+		<div class="message">
+			<div class="message_text"><%= messageBody %></div>
+		</div>
+	<% } %>
+</div>
+
