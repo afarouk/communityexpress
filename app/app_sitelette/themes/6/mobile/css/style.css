@@ -2870,6 +2870,9 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     position: relative;
     top: -2px;
 }
+.left_panel_menu .menu_item_title .message-count:empty {
+    display: none;
+}
 
 #cmytx_landingView .left_panel_menu .close_cart_button {
     position: relative;

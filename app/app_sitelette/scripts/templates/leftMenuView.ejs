@@ -10,7 +10,7 @@
         <% _.each(buttons, function(button) { %>
             <li class="menu_item <%= button.key %>">
                 <div class="menu_item_icon <%= button.className %>"></div>
-                <span class="menu_item_title"><%= button.displayText %><% if (button.key === "messagingService" && messageCount) { %><i class="message-count"><%= messageCount %></i><% } %></span>
+                <span class="menu_item_title"><%= button.displayText %><% if (button.key === "messagingService") { %><i class="message-count"><%= messageCount %></i><% } %></span>
             </li>
         <% }) %>
         <!-- <li class="menu_item open_catalog_btn">

@@ -49,7 +49,7 @@ var LeftMenuView = PanelView.extend({
         return {
             buttons: buttons,
             user: user,
-            messageCount: user.messageCount || null
+            messageCount: user.messageCount || ''
         };
     },
 

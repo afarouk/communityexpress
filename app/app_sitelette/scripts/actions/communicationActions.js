@@ -3,6 +3,7 @@
 'use strict';
 
 var appCache = require('../appCache'),
+    sessionActions = require('../actions/sessionActions.js'),
     communicationsController = require('../controllers/communicationsController'),
     ConversationModel = require('../models/conversationModel'),
     MessageCollection = require('../collections/messages'),
@@ -42,9 +43,9 @@ var createConversationCache = function (sa, sl, uid, conversation) {
 
 module.exports = {
 
-    getConversation: function (sa, sl, uid, count) {
-
-        var cache = getCachedConversations(sa, sl, uid);
+    getConversation: function (sa, sl, count) {
+        var uid = sessionActions.getCurrentUser().getUID(),
+            cache = getCachedConversations(sa, sl, uid);
 
         var remote = communicationsController.getConversation(sa, sl, uid, (count || 10))
             .then(function (conversation) {
@@ -61,16 +62,15 @@ module.exports = {
 
     },
 
-    getMessages: function(sa, sl, uid) {
-        var cache = getCachedConversations(sa, sl, uid);
+    getMessages: function(sa, sl) {
+        var uid = sessionActions.getCurrentUser().getUID(),
+            cache = getCachedConversations(sa, sl, uid);
         return cache.conversation;
     },
 
     getNotificationsByUIDAndLocation: function (lat, lng) {
-
-        var cache = appCache.fetch('notifications', new MessageCollection());
-
-        var uid = sessionActions.getCurrentUser().getUID();
+        var cache = appCache.fetch('notifications', new MessageCollection()),
+            uid = sessionActions.getCurrentUser().getUID();
 
         var remote = gateway.sendRequest('getNotificationsByUIDAndLocation', {
             latitude: lat,
@@ -85,7 +85,6 @@ module.exports = {
     },
 
     markAsRead: function (params) {
-        var sessionActions = require('./sessionActions');
         var uid = sessionActions.getCurrentUser().getUID();
 
         params.UID = uid;
@@ -94,11 +93,10 @@ module.exports = {
     },
 
     sendMessage: function (sa, sl, messageBody) {
-        var sessionActions = require('./sessionActions');
-        var uid = sessionActions.getCurrentUser().getUID();
-        var cache = getCachedConversations(sa, sl, uid);
-        var offset;
-        var communicationId;
+        var uid = sessionActions.getCurrentUser().getUID(),
+            cache = getCachedConversations(sa, sl, uid),
+            offset,
+            communicationId;
 
         if (cache && cache.conversation && cache.conversation.length) {
             //TODO doesn't work properly V
@@ -118,8 +116,9 @@ module.exports = {
             });
     },
 
-    onMessageReceived: function(sa, sl, uid, message) {
-        var cache = getCachedConversations(sa, sl, uid);
+    onMessageReceived: function(sa, sl, message) {
+        var uid = sessionActions.getCurrentUser().getUID(),
+            cache = getCachedConversations(sa, sl, uid);
         message.fromUser = false; //temporary tweak
         if (cache) {
             cache.conversation.unshift(message);
@@ -130,7 +129,6 @@ module.exports = {
     },
 
     sendContactUsMessage: function(sa, sl, name, email, messageBody) {
-        var sessionActions = require('./sessionActions');
         var uid = sessionActions.getCurrentUser().getUID();
         return communicationsController.sendContactUsMessage(sa, sl, name, email, messageBody, uid);
     }

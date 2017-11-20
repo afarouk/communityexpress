@@ -4,7 +4,6 @@
 
 var userController = require('../controllers/userController.js'),
     favoriteActions = require('./favoriteActions.js'),
-    communicationActions = require('./communicationActions.js'),
     loyaltyActions = require('./loyaltyActions'),
     Vent = require('../Vent.js'),
     appCache = require('../appCache.js'),

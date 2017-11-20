@@ -50,7 +50,7 @@ var ChatView = Backbone.View.extend({
     },
 
     renderMessages: function() {
-        communicationActions.getConversation(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID())
+        communicationActions.getConversation(this.restaurant.sa(), this.restaurant.sl())
             .then( function (messages) {
                 this.$('.cmntyex-messages_placeholder').html( new ListView({
                     ListItemView: MessageView,
@@ -96,7 +96,7 @@ var ChatView = Backbone.View.extend({
         var blockHeight = this.$el.height() - 50,
             $messages = this.$el.find('.chat_message'),
             unread = [],
-            cachedMsgs = communicationActions.getMessages(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID());
+            cachedMsgs = communicationActions.getMessages(this.restaurant.sa(), this.restaurant.sl());
         $messages.each(function(index, el){
             var $el = $(el),
                 position = $el.position(),
@@ -143,7 +143,7 @@ var ChatView = Backbone.View.extend({
     },
 
     updateUnreadTotal: function() {
-        var messages = communicationActions.getMessages(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID()),
+        var messages = communicationActions.getMessages(this.restaurant.sa(), this.restaurant.sl()),
             total = messages.reduce(function(sum, message){
                 var unread = message.get('state').enumText === 'UNREAD' && !message.get('fromUser') ? 1 : 0;
                 return sum + unread;
@@ -165,7 +165,7 @@ var ChatView = Backbone.View.extend({
         fromSASL.state = {
             enumText: fromSASL.state
         };
-        communicationActions.onMessageReceived(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID(), message.messageFromSASLToUser);
+        communicationActions.onMessageReceived(this.restaurant.sa(), this.restaurant.sl(), message.messageFromSASLToUser);
         this.onScroll();
     },
 
