@@ -52,22 +52,7 @@ define([
 			total = total - ( minus || 0 );
 			this.view.triggerMethod('updateTotal', total);
 		},
-		messageFromUser: function(users, message) {
-			var messageFrom = message.messageFromUserToUser,
-				autor = users.findWhere({
-					uid: messageFrom.authorId
-				}),
-				lastMessageState = autor.get('lastMessageState'),
-				unReadMessageCount = autor.get('unReadMessageCount');
-			autor.set({
-				lastMessage: messageFrom.messageBody,
-				timeOfLastMessage: messageFrom.timeStamp,
-				unReadMessageCount: ++unReadMessageCount
-			});
-			lastMessageState.enumText = 'UNREAD';
-			lastMessageState.displayText = 'UNREAD';
-			this.updateUnreadTotal(users);
-		},
+
 		onGetConversation: function() {
 			this.showLoader();
 			service.getConversationBetweenUserSASL()
@@ -102,17 +87,11 @@ define([
 					messageId: model.get('messageId')
 				}
 			});
-			if (forMark.length > 1) {
-				payload = {
-					idList: idList
-				};
-			} else {
-				payload = {
-					communicationId: idList[0].communicationId,
-    				messageId: idList[0].messageId,
-				};
-			}
-
+			
+			payload = {
+				idList: idList
+			};
+			
 			service.markAsReadSASLUser({
 				payload: payload
 			}).then(function(response){
@@ -121,7 +100,7 @@ define([
 					state.enumText = 'READ';
 					state.displayText = 'Read';
 				});
-				this.updateUnreadTotal(messages, forMark.length);
+				this.updateUnreadTotal(messages);
             }.bind(this), function(xhr){
                 // this.publicController.getModalsController().apiErrorPopup(xhr);
             }.bind(this));
@@ -131,7 +110,7 @@ define([
 			messages.each(function(model){
 				var unread = model.get('state').enumText === 'UNREAD',
 					$def = $.Deferred();
-				if (unread) {
+				if (unread && !model.get('fromUser')) {
 					allDefs.push($def);
 					model.trigger('check:unread', $def);
 				}
@@ -152,7 +131,13 @@ define([
 			}.bind(this));
 		},
 		addMessage: function(messages, message) {
-			messages.add(message.messageFromSASLToUser);
+			var fromSASL = message.messageFromSASLToUser;
+			fromSASL.fromUser = false;
+			fromSASL.state = {
+				enumText: fromSASL.state //tweak wrong socket signal 
+			};
+			messages.add(fromSASL);
+			this.updateUnreadTotal(messages);
 		},
 		onMessageSend: function( messages, view) {
 			this.showLoader();
@@ -161,6 +146,7 @@ define([
 			service.sendMessageToSASL(message)
 				.then(function(response){
 					this.hideLoader();
+					response.fromUser = true;
 	                messages.add(response);
 	                view.ui.input.val('').keydown();
 	                view.triggerMethod('scrollBottom');
