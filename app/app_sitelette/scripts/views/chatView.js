@@ -18,8 +18,6 @@ var ChatView = Backbone.View.extend({
     id: 'cmntyex_chat',
 
     events: {
-        // 'click .back': 'triggerLandingView',
-        // 'click .navbutton_write_review': 'openNewMessage',
         'click .send_message_button': 'sendMessage'
     },
 
@@ -46,8 +44,9 @@ var ChatView = Backbone.View.extend({
     onShow:  function() {
         this.renderMessages();
         this.listenTo( Vent, 'logout_success', this.goBack, this);
-        // this.startPolling();
         this.startMessageListening();
+        this.$el.bind('scroll', this.onScroll.bind(this));
+        this.onScroll();
     },
 
     renderMessages: function() {
@@ -62,16 +61,6 @@ var ChatView = Backbone.View.extend({
                 }).render().el);
             }.bind(this));
     },
-
-    // openNewMessage: function () {
-    //     this.withLogIn(function () {
-    //         this.openSubview('newMessage', this.restaurant, {
-    //             onSubmit: function (form) {
-    //                 return communicationActions.sendMessage(this.restaurant.sa(), this.restaurant.sl(), form.messageBody);
-    //             }.bind(this)
-    //         });
-    //     }.bind(this));
-    // },
 
     sendMessage: function() {
         var $msg = this.$('.input_container input'),
@@ -94,6 +83,75 @@ var ChatView = Backbone.View.extend({
             });
     },
 
+    onScroll: function() {
+        //trigger only after scroll was stopped
+        if (this.chatTimeout) clearTimeout(this.chatTimeout)
+        this.chatTimeout = setTimeout(function() {
+            this.onCheckUnread();
+        }.bind(this), 1000);
+    },
+
+    onCheckUnread: function() {
+        //check if message visible
+        var blockHeight = this.$el.height() - 50,
+            $messages = this.$el.find('.chat_message'),
+            unread = [],
+            cachedMsgs = communicationActions.getMessages(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID());
+        $messages.each(function(index, el){
+            var $el = $(el),
+                position = $el.position(),
+                message = cachedMsgs.at(index);
+            if (position.top > 0 && position.top < blockHeight) { //visible ???
+                if (!message.get('fromUser') && message.get('state').enumText === 'UNREAD') { //unread from sasl
+                    unread.push(cachedMsgs.at(index));
+                }
+            }
+        });
+        if (unread.length > 0) {
+            this.onMarkAsRead(unread);
+        } else {
+            this.updateUnreadTotal();
+        }
+    },
+
+    onMarkAsRead: function(unread) {
+        var payload,
+            idList;
+        idList = unread.map(function(model){
+            return {
+                communicationId: model.get('communicationId'),
+                messageId: model.get('messageId')
+            }
+        });
+        
+        payload = {
+            idList: idList
+        };
+        
+        communicationActions.markAsRead({
+            payload: payload
+        }).then(function(response){
+            unread.forEach(function(model){
+                var state = model.get('state');
+                state.enumText = 'READ';
+                state.displayText = 'Read';
+            });
+            this.updateUnreadTotal();
+        }.bind(this), function(xhr){
+            // this.publicController.getModalsController().apiErrorPopup(xhr);
+        }.bind(this));
+    },
+
+    updateUnreadTotal: function() {
+        var messages = communicationActions.getMessages(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID()),
+            total = messages.reduce(function(sum, message){
+                var unread = message.get('state').enumText === 'UNREAD' && !message.get('fromUser') ? 1 : 0;
+                return sum + unread;
+            }, 0);
+        this.user.messageCount = total;
+        Vent.trigger('update_message_count', total);
+    },
+
     startMessageListening: function() {
         Vent.on('onChatMessage', this.onMessageReceived, this);
     },
@@ -103,34 +161,15 @@ var ChatView = Backbone.View.extend({
     },
 
     onMessageReceived: function(message) {
+        var fromSASL = message.messageFromSASLToUser;
+        fromSASL.state = {
+            enumText: fromSASL.state
+        };
         communicationActions.onMessageReceived(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID(), message.messageFromSASLToUser);
+        this.onScroll();
     },
 
-    // startPolling: function() {
-    //     console.log('start polling');
-    //     this.runTimer();
-    // },
-
-    // runTimer: function() {
-    //     var self = this;
-    //     this.pollTimer = setTimeout( function() {
-    //             self.poll();
-    //             self.runTimer();
-    //         } ,10000);
-    // },
-
-    // stopPolling: function() {
-    //     console.log('stop polling');
-    //     clearInterval(this.pollTimer);
-    // },
-
-    // poll: function() {
-    //     console.log('polling');
-    //     communicationActions.getConversation(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID());
-    // },
-
     goBack: function() {
-        // this.stopPolling();
         this.stopMessageListening();
         Vent.trigger( 'viewChange', 'restaurant', this.restaurant.getUrlKey());
     }

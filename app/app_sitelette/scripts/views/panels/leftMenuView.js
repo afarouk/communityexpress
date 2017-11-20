@@ -34,27 +34,32 @@ var LeftMenuView = PanelView.extend({
         this.sasl = new RestaurantModel(this.saslData);
         this.model = new Backbone.Model(this.getActiveButtonsAndUser());
         setTimeout(this._onOpen.bind(this), 500);
+
+        Vent.on('update_message_count', this.updateMessageCount, this);
     },
 
     getActiveButtonsAndUser: function() {
         var user = sessionActions.checkIfUserAppropriate(),
-            buttons = _.filter(this.sasl.get('services'), function (option, key) {
-                // if (option && option.masterEnabled === false) option.masterEnabled = true; //temporary for testing
-                
+            buttons = _.filter(this.sasl.get('services'), function (option, key) {   
                 if (!option || !option.masterEnabled) return false;
                 option.key = key;
                 return true;
             }.bind(this));
+
         return {
             buttons: buttons,
-            user: user
+            user: user,
+            messageCount: user.messageCount || null
         };
     },
 
-    // render : function() {
-    //     this.$el.html(this.template());
-    //     return this;
-    // }
+    updateMessageCount: function(count) {
+        if (count > 0) {
+            this.$('.message-count').text(count).show();
+        } else {
+            this.$('.message-count').hide();
+        }
+    },
 
     onOpenCatalog: function() {
         if (this.saslData) {

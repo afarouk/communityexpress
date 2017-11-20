@@ -44,12 +44,11 @@ define([
 			this.view.ui.loader.removeClass('show');
 		},
 
-		updateUnreadTotal: function(messages, minus) {
+		updateUnreadTotal: function(messages) {
 			var total = messages.reduce(function(sum, message){
-				var unread = message.get('state').enumText === 'UNREAD' ? 1 : 0;
+				var unread = message.get('state').enumText === 'UNREAD' && !message.get('fromUser') ? 1 : 0;
 				return sum + unread;
 			}, 0);
-			total = total - ( minus || 0 );
 			this.view.triggerMethod('updateTotal', total);
 		},
 

@@ -37,7 +37,6 @@ module.exports = {
         //???
     },
     onLogoutSuccess: function() {
-        $('#cmtyx_landingView').hide('slow');
         this.securityView.onLogoutSuccess();
         this.onSecureAuth();
     },

@@ -73,7 +73,6 @@ var SecurityView = Backbone.View.extend({
     afterVerify: function() {
         this.ui.securityBlock.addClass('secured');
         setTimeout(function() {
-            $('#cmtyx_landingView').show('slow');
             this.$el.hide('slow');
         }.bind(this), 2000);
         this.ui.approveMessage

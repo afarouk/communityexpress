@@ -15,7 +15,7 @@ var userController = require('../controllers/userController.js'),
 
 var onLoginSuccess = function (response, withAdhoc) {
     var user = appCache.fetch('user', new User());
-    user.initiate(response.uid, response.userName);
+    user.initiate(response.uid, response.userName, response.messageCount);
     if (response.adhocEntry === false) {
         Cookies.set('cmxAdhocEntry', false);
         $('.menu_button_5').addClass('sign_out');
@@ -37,7 +37,8 @@ var onLoginSuccess = function (response, withAdhoc) {
 
     return {
         uid: response.uid,
-        username: response.userName
+        username: response.userName,
+        messageCount: response.messageCount
     };
 };
 

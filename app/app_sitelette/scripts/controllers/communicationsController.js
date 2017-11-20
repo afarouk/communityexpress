@@ -75,6 +75,7 @@ module.exports = {
         var chat = (new ChatApplication()).start('mobile');
         Vent.on('login_success', this.onLoginSuccess.bind(this, chat));
         Vent.on('logout_success', this.onLogoutSuccess.bind(this, chat));
+        Vent.on('onChatMessage', this.onMessageReceived, this);
     },
 
     onLoginSuccess: function(chat) {
@@ -82,5 +83,11 @@ module.exports = {
     },
     onLogoutSuccess: function(chat) {
         chat.chatStop();
-    }
+    },
+
+    onMessageReceived: function() {
+        var user = appCache.get('user');
+        user.messageCount = user.messageCount + 1;
+        Vent.trigger('update_message_count', user.messageCount);
+    },
 };

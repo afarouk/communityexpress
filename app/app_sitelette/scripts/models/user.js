@@ -22,9 +22,10 @@ var UserModel = function(UID, userName) {
 
 UserModel.prototype = {
 
-    initiate: function(UID, username) {
+    initiate: function(UID, username, messageCount) {
         this.UID = UID;
         this.userName = username;
+        this.messageCount = messageCount;
     },
 
     kill: function(){

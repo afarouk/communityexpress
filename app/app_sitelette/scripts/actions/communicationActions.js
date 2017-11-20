@@ -61,6 +61,11 @@ module.exports = {
 
     },
 
+    getMessages: function(sa, sl, uid) {
+        var cache = getCachedConversations(sa, sl, uid);
+        return cache.conversation;
+    },
+
     getNotificationsByUIDAndLocation: function (lat, lng) {
 
         var cache = appCache.fetch('notifications', new MessageCollection());
@@ -79,18 +84,13 @@ module.exports = {
         return cache ? $.Deferred().resolve(cache).promise() : remote;
     },
 
-    markAsRead: function (communicationId, offset) {
+    markAsRead: function (params) {
+        var sessionActions = require('./sessionActions');
         var uid = sessionActions.getCurrentUser().getUID();
 
-        if (!uid) return $.Deferred().resolve().promise();
+        params.UID = uid;
 
-        return gateway.sendRequest('markAsRead', {
-            UID: uid,
-            payload: {
-                communicationId: communicationId,
-                offset: offset
-            }
-        });
+        return gateway.sendRequest('markAsRead', params);
     },
 
     sendMessage: function (sa, sl, messageBody) {
@@ -101,9 +101,10 @@ module.exports = {
         var communicationId;
 
         if (cache && cache.conversation && cache.conversation.length) {
+            //TODO doesn't work properly V
             // get the most recent message in this conversation
-            offset = cache.conversation.at(0).get('offset');
-            communicationId = cache.conversation.at(0).get('communicationId');
+            // offset = cache.conversation.at(0).get('offset');
+            // communicationId = cache.conversation.at(0).get('communicationId');
         }
         return communicationsController.sendMessage(sa, sl, messageBody, uid, offset, communicationId)
             .then(function (message) {
