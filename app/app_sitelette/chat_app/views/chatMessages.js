@@ -26,7 +26,7 @@ define([
 		},
 		onCheckUnread: function($def) {
 			//check if message visible
-			var blockHeight = 240,
+			var blockHeight = 480,
 				position = this.$el.position();
 			if (position.top > 0 && position.top < blockHeight) {
 				$def.resolve(this.model);

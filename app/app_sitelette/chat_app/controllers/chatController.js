@@ -44,6 +44,50 @@ define([
 			this.view.ui.loader.removeClass('show');
 		},
 
+		//.........
+		getChatUsers: function() {
+			this.showLoader();
+			service.getAvailableUsers({
+				forChat: true
+			}).then(function(response){
+				this.hideLoader();
+                if (response.count > 0) {
+                    this.createChatUsersModal(response);
+                } else {
+                	//TODO ask Alamgir if this case is possible
+                    // this.showEmptyList('leftList', 'No users are present.');
+                }
+            }.bind(this), function(xhr){
+            	this.hideLoader();
+                this.publicController.getModalsController().apiErrorPopup(xhr);
+            }.bind(this));
+		},
+		createChatUsersModal: function(response) {
+			var users = new UsersCollection(response.users),
+				modal = new ChatUsersModalView({
+					collection: users
+				});
+			this.view.showChildView( 'modal', modal );
+			this.listenTo(modal, 'user:selected', this.onUserSelected.bind(this, users));
+			this.chatProxy.set(this.messageFromUser.bind(this, users));
+			this.updateUnreadTotal(users);
+		},
+		onUserSelected: function(users, model) {
+			var otherUserName = model.get('userName');
+			this.showLoader();
+			service.getConversationBetweenUsers({
+				otherUserName: otherUserName
+			}).then(function(conversation){
+				this.hideLoader();
+                var messages = new MessagesCollection(conversation.messages);
+                this.createMessagesModal(users, otherUserName, messages);
+            }.bind(this), function(xhr){
+            	this.hideLoader();
+                this.publicController.getModalsController().apiErrorPopup(xhr);
+            }.bind(this));
+		},
+		//.........
+
 		updateUnreadTotal: function(messages) {
 			var total = messages.reduce(function(sum, message){
 				var unread = message.get('state').enumText === 'UNREAD' && !message.get('fromUser') ? 1 : 0;

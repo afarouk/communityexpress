@@ -4,6 +4,7 @@
 module.exports = {
     getAddressMap: function(){
         return {
+            getAvailableUsers: ['GET', '/gaming/getAvailableUsers'],
             /* chat */
             getConversationBetweenUserSASL: ['GET', '/communication/getConversationBetweenUserSASL'],
             sendMessageToSASL: ['POST', '/communication/sendMessageToSASL'],

@@ -29,8 +29,7 @@ define([
 		        if (this.params.embedded) {
 		            conf.set('embedded', true);
 		        };
-		        if (window.saslData.domainEnum === 'MEDICURIS' ||
-		            window.saslData.domainEnum === 'MOBILEVOTE') {
+		        if (dispatcher.checkSecurity()) {
 		            dispatcher.get('security').init(this.params);
 		        } else {
 			        if (this.params.UID) {

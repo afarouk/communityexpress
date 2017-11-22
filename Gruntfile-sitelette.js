@@ -16,7 +16,7 @@ webpackConfig.forEach(function(config){
 // Creating multiple stylesheet's paths with diff themes (for cssmin task)
 var themes = function() {
     // Number of themes
-    var themeNumber = 6;
+    var themeNumber = 7;
     var themesConf = {};
     var distStyle = {};
     var copyImages = [];

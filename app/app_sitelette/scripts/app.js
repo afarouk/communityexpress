@@ -103,7 +103,8 @@ App.prototype = {
             conf.set('embedded', true);
         };
         communicationsController.listenSaslMessages();
-        if (window.saslData.domainEnum === 'MEDICURIS' ||
+        if (window.saslData.domainEnum === 'SECURECHAT' ||
+            window.saslData.domainEnum === 'MEDICURIS' ||
             window.saslData.domainEnum === 'MOBILEVOTE') {
             securityController.init(this.params);
         } else {

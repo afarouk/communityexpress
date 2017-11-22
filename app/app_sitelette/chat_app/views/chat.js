@@ -4,9 +4,16 @@
 
 define([
 	'ejs!../templates/chat.ejs',
-	], function(template){
+	'ejs!../templates/chatBlock.ejs',
+	], function(chatModal, chatBlock){
 	var ChatView = Mn.View.extend({
-		template: template,
+		getTemplate: function(){
+		    if ( this.isChatApp() ){
+		      return chatBlock;
+		    } else {
+		      return chatModal;
+		    }
+		},
 		regions: {
 			modal: '#chat-modal'
 		},
@@ -22,9 +29,14 @@ define([
 		},
 		onRender: function() {
 			this.trigger('chat:show', this);
-			this.ui.modal.draggable({
-				containment: $('#cmtyx_landingView')
-			});
+			if ( !this.isChatApp() ) {
+				this.ui.modal.draggable({
+					containment: $('#cmtyx_landingView')
+				});
+			}
+		},
+		isChatApp: function() {
+			return window.saslData.domainEnum === 'SECURECHAT';
 		},
 		onUpdateTotal: function(total) {
 			if (total > 0) {
@@ -33,7 +45,9 @@ define([
 		},
 		clickChatBtn: function() {
 			this.ui.modal.show('slow');
-			$('#cmtyx_chat_block').addClass('chat-hide');
+			if ( !this.isChatApp() ) {
+				$('#cmtyx_chat_block').addClass('chat-hide');
+			}
 			this.trigger('chat:scroll', this);
 			// this.ui.container.hide();
 		},

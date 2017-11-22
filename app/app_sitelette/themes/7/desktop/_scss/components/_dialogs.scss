@@ -1,0 +1,408 @@
+div.ui-dialog.ui-widget {
+	position: fixed;
+	background-color: $body-background;
+	border-radius: 2px;
+	top: 50vh !important;
+    left: 50vw !important;
+    transform: translate(-50%, -50%);
+
+	&.ui-widget-content {
+		border: none;	
+	}
+
+	.ui-dialog-titlebar {
+		background-color: transparent;
+		border: none;
+		color: $cart-text;
+
+		.ui-dialog-title {
+			display: inline-block;
+			margin-top: 10px;
+			font-size: $size-medium;
+			line-height: 24px;
+			white-space: normal;
+			width: 100%;
+
+			&.sendsms-title {
+				font-weight: $style-normal-strong;
+				font-size: 17px;
+				line-height: 20px;
+			}
+		}
+
+		button {
+			background: transparent;
+    		border: none;
+    		top: 10px;
+    		z-index: 1;
+		}
+	}
+
+	.ui-dialog-content {
+		padding-top: 0;
+		min-height: auto !important;
+
+		button:not(.sms_send_button) {
+			width: 100%;
+			border-radius: 2px;
+			background-color: transparent;
+			border: solid 1px $cart-text;
+			color: $cart-text;
+			text-transform: uppercase;
+			padding: 10px 0;
+			font-weight: $style-semi-bold;
+			cursor: pointer;
+			margin: 10px 0;
+		}
+
+		a.forgot_btn {
+			color: $href-color;
+			outline: none;
+			float: right;
+			display: inline-block;
+    		margin-bottom: 20px;
+    		font-size: $size-normal-small;
+    		cursor: pointer;
+
+			&:hover {
+				color: $href-hover-color;
+			}
+		}
+
+		.material-textfield {
+			width: 100%;
+			height: 2em;
+			margin-bottom: 15px;
+		}
+
+		& > label {
+			color: $cart-text;
+			font-size: $size-normal;
+			display: block;
+			margin-top: -10px;
+			margin-bottom: 15px;
+			cursor: pointer;
+
+			input {
+				outline: none;
+				margin-right: 5px;
+				position: relative;
+				top: 1px;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.signin-popup {
+		.material-textfield {
+			label::before {
+				color: $cart-text;
+			}
+		}
+
+		button.signup_btn {
+			padding: 5px 0;
+			font-size: $size-normal;
+		}
+
+		.error {
+			color: $error-color;
+			margin: -10px 0 20px 0;
+		    font-size: $size-normal;
+
+		    &.hidden {
+		    	display: none;
+		    }
+		}
+
+		.show_password {
+			margin-top: -17px;
+			font-style: italic;
+			color: $cart-text;
+		}
+
+		.new-title {
+			text-align: center;
+		    font-weight: $style-normal-strong;
+		    font-size: $size-normal;
+		    margin: 5px 0;
+		    color: $cart-text;
+
+		    display: none;
+
+		    &:before,
+		    &:after {
+	    	    content: "";
+			    border-bottom: solid 1px $white;
+			    width: 18%;
+			    display: inline-block;
+			    position: relative;
+			    top: 7px;
+			    float: left;
+		    }
+
+		    &:after {
+		    	float: right;
+		    }
+		}
+
+		.login_with_facebook {
+		    text-align: center;
+		    padding: 0;
+		    margin: 0;
+		    margin: 10px 0;
+
+		    span {
+			    background: url('../images/login-with-facebook.png');
+			    display: inline-block;
+			    width: 180px;
+			    height: 40px;
+			    background-size: 180px 40px;
+			    background-repeat: no-repeat;
+			}
+		}
+
+		button {
+			color: $white;
+			border-color: $white;
+		}
+	}
+
+	.signup-popup {
+		padding-top: 20px;
+
+		.error {
+			color: $error-color;
+			margin: -15px 0 20px 0;
+		    font-size: $size-normal;
+
+		    &.hidden {
+		    	display: none;
+		    }
+		}
+
+		.submit_signup_btn {
+			margin-top: 0;
+		}
+	}
+
+	.forgot-popup {
+		padding-top: 20px;
+
+		.error {
+			color: $error-color;
+			margin: -10px 0 20px 0;
+		    font-size: $size-normal;
+
+		    &.hidden {
+		    	display: none;
+		    }
+		}
+
+		.submit_forgot_btn {
+			margin-top: 0;
+		}
+	}
+
+	.signout-popup {
+		padding: 20px;
+		
+		.text {
+		    font-size: $size-lg-normal;
+		    color: $cart-text;
+		    margin-bottom: 10px;
+		}
+
+		.btns_container {
+			display: flex;
+			justify-content: space-between;
+
+			button {
+				width: 48%;
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.message-popup {
+		padding: 15px 20px 20px 20px;
+		color: $cart-text;
+		text-align: center;
+
+		.loader {
+			border: 4px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 4px solid #363636;
+			width: 30px;
+			height: 30px;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+
+		@-webkit-keyframes spin {
+			0% { -webkit-transform: rotate(0deg); }
+			100% { -webkit-transform: rotate(360deg); }
+		}
+
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		button {
+			margin: 15px 0 0 0;
+		}
+	}
+
+	.loader-popup {
+		padding: 15px 20px 20px 20px;
+		color: $cart-text;
+		text-align: center;
+
+		.loader {
+			border: 4px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 4px solid #363636;
+			width: 30px;
+			height: 30px;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+	},
+
+	.sendsms-popup {
+	    .sms_input_block {
+          text-align: center;
+          padding: 10px 0 20px 0;
+
+          .sms_input {
+            background-color: transparent;
+            border: solid 1px $cart-scroll;
+            padding: 5px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+            color: $cart-text;
+          }
+
+          .sms_send_button {
+            height: 31px;
+            border: solid 1px;
+            position: relative;
+            right: 5px;
+            bottom: 1px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            color: $white;
+          }
+        }
+	}
+
+	.orders-history-popup {
+		
+		text-align: center;
+
+		.orders_history_container {
+		    padding: 0 5px;
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    margin: 10px 0 20px 0;
+
+		    .history-title {
+			    color: white;
+			    text-align: center;
+			    margin-bottom: 10px;
+			}
+
+			.table-container {
+				max-height: 480px;
+				overflow-y: auto;
+				width: 100%;
+
+			    table {
+				    width: 100%;
+				    color: white;
+
+				    th {
+					    text-align: center;
+					    background-color: rgba(255, 255, 255, 0.2);
+					}
+
+					th, td {
+					    border: 1px solid white;
+					    padding: 5px;
+					}
+
+					tbody tr {
+					    cursor: pointer;
+
+					    &:hover {
+						    background-color: rgba(60, 255, 80, 0.25);
+						}
+					}
+				}
+			}
+		}
+
+		.order_details_back {
+		    color: white;
+		    text-align: left;
+		    background-color: #aaa;
+		    height: 25px;
+		    width: 64px;
+		    padding: 0 2px;
+		    border-radius: 2px;
+		    text-transform: uppercase;
+		    font-size: 13px;
+		    font-weight: 600;
+		    cursor: pointer;
+
+		    .back-arrow {
+		    	line-height: 30px;
+			    font-size: 40px;
+			    position: relative;
+			    bottom: 6px;
+			    font-weight: 300;
+		    }
+		    .back-text {
+		    	position: relative;
+				bottom: 11px;
+		    }
+		}
+
+		.order_details_container {
+			max-height: 480px;
+		    height: 480px;
+		    margin: 10px 0;
+
+		    iframe {
+		    	width: 100%;
+    			height: 100%;
+    			padding: 3px;
+			    border: 3px solid rgb(51, 0, 0);
+			    background-color: white;
+		    }
+		}
+	}
+
+	.expand-image {
+		.header-title {
+			text-align: center;
+			color: $white;
+		}
+
+		.ui-content {
+			display: flex;
+    		justify-content: center;
+		}
+	}
+}
+
+.ui-widget-overlay {
+	opacity: 0.5;
+	background: #696969;
+}

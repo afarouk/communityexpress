@@ -7,6 +7,12 @@ define([
     '../../scripts/appCache'
     ], function(gateway, appCache){
     var ChatService = Mn.Object.extend({
+        getAvailableUsers: function(params) {
+            var user = appCache.get('user');
+            params = params || {};
+            params.UID = user.get('uid');
+            return gateway.sendRequest('getAvailableUsers', params);
+        },
         /* chat */
         getConversationBetweenUserSASL: function() {
             var user = appCache.get('user'),
