@@ -1,11 +1,19 @@
-<div class="top">
-	<div class="user">
-		<span class="user-name"><%= userName %><div class="unread-count">
-			<span class="count"><%= unReadMessageCount %></span>
-		</div></span>
+<div class="short-name">
+	<div class="circle">
+		<span class="first-letter"><%= shortName %></span>
 	</div>
-	<span class="time"><%= date %></span>
 </div>
-<div class="bottom">
-	<div class="message"><i class="fa fa-exclamation-circle unread-sign <% if (lastMessageState.enumText === 'UNREAD') { %>visible<% } %>" aria-hidden="true"></i><% if (lastMessage) { %><%= lastMessage %><% } else { %>No unread messages.<% } %></div>
+<div class="user-info">
+	<div class="top">
+		<div class="user">
+			<span class="user-name"><%= userName %></span>
+		</div>
+		<span class="time"><%= date %></span>
+	</div>
+	<div class="bottom">
+		<div class="message"><i class="fa fa-exclamation-circle unread-sign <% if (lastMessageState.enumText === 'UNREAD') { %>visible<% } %>" aria-hidden="true"></i><% if (lastMessage) { %><%= lastMessage %><% } else { %>No unread messages.<% } %></div>
+	</div>
+</div>
+<div class="unread-count">
+	<span class="count"><%= unReadMessageCount %></span>
 </div>

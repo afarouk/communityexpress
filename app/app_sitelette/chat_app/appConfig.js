@@ -5,7 +5,8 @@
 var APIRoot = 'simfel.com',//'54.191.91.125',
 	WSRoot = 'simfel.com',//'54.191.91.125',
 	apiSufix = '/apptsvc/rest',
-	wsSufix = '/apptsvc/ws/sasl/gamingsecret';
+	wsSufix = '/apptsvc/ws/sasl/gamingsecret',
+	wsChatAppSufix = '/apptsvc/ws/gaming/gamingsecret'
 
 module.exports = {
 	setAPIRoot: function(server) {
@@ -22,9 +23,9 @@ module.exports = {
 
     getWebSocketRoot: function() {
         if ( WSRoot === 'localhost:8080' || WSRoot === '54.191.91.125') {
-			return 'ws://' + WSRoot + wsSufix;
+			return 'ws://' + WSRoot + (window.saslData.domainEnum === 'SECURECHAT' ? wsChatAppSufix : wsSufix);
 		} else {
-			return 'wss://' + WSRoot + wsSufix;
+			return 'wss://' + WSRoot + (window.saslData.domainEnum === 'SECURECHAT' ? wsChatAppSufix : wsSufix);
 		}
     },
 };

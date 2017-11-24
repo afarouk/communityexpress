@@ -3968,7 +3968,9 @@ footer {
             resize: none;
             overflow: hidden;
             color: transparent;
-            caret-color: white; }
+            caret-color: white;
+            font-size: 14px;
+            font-weight: 300; }
             #cmtyx_chat_block .chat-content .modal-content .modal-body .type-message div.message .message-input:focus {
               background-color: transparent;
               box-shadow: none; }

@@ -7,13 +7,35 @@ define([
     '../../scripts/appCache'
     ], function(gateway, appCache){
     var ChatService = Mn.Object.extend({
-        getAvailableUsers: function(params) {
-            var user = appCache.get('user');
-            params = params || {};
-            params.UID = user.get('uid');
+        /* chat application */
+        getAvailableUsers: function() {
+            var user = appCache.get('user'),
+                uid = user ? user.getUID() : null,
+                params = {
+                    UID: uid
+                };
             return gateway.sendRequest('getAvailableUsers', params);
         },
-        /* chat */
+        getConversationBetweenUsers: function(params) {
+            var user = appCache.get('user');
+            params = params || {};
+            params.UID = user ? user.getUID() : null;
+            return gateway.sendRequest('getConversationBetweenUserUser', params);
+        },
+
+        sendMessageFromUserToUser: function(params) {
+            var user = appCache.get('user');
+            params = params || {};
+            params.UID = user ? user.getUID() : null;
+            return gateway.sendRequest('sendMessageFromUserToUser', params);
+        },
+        markAsReadUser: function(params) {
+            var user = appCache.get('user');
+            params = params || {};
+            params.UID = user ? user.getUID() : null;
+            return gateway.sendRequest('markAsReadUser', params);
+        },
+        /* sasl chat */
         getConversationBetweenUserSASL: function() {
             var user = appCache.get('user'),
                 uid = user ? user.getUID() : null,

@@ -20,6 +20,9 @@ define([
 				   window.saslData.domainEnum === 'MEDICURIS' ||
 		           window.saslData.domainEnum === 'MOBILEVOTE';
 		},
+		isChatApp: function() {
+			return window.saslData.domainEnum === 'SECURECHAT';
+		},
 		checkMessagingService: function() {
 			return true;//window.saslData.services.messagingService.masterEnabled; //temporary, must get from sasl
 		},

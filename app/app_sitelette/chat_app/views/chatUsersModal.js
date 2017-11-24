@@ -3,7 +3,7 @@
 'use strict';
 
 define([
-	'ejs!../../templates/chat/chatUsersModal.ejs',
+	'ejs!../templates/chatUsersModal.ejs',
 	'./chatUsers'
 	], function(template, ChatUsersView){
 	var ChatUsersModalView = Mn.View.extend({

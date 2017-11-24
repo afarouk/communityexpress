@@ -463,6 +463,8 @@ $chat-fw-msg: 400;
                         overflow: hidden;
                         color: transparent;
                         caret-color: $chat_text;
+                        font-size: 14px;
+                        font-weight: 300;
                         // color: transparent;
                         &:focus {
                             background-color: transparent;

@@ -14,7 +14,7 @@ define([
             if (attrs.type === 'no-messages') return;
             var authorName = this.get('authorName'),
                 authorNames = authorName ? authorName.split(' ') : '? ?',
-                shortAuthorName = (authorNames[0][0] + (authorNames[1] ? authorNames[1][0] : '')).toUpperCase(),
+                shortAuthorName = (authorNames[0][0] + (authorNames[1] ? authorNames[1][0] : authorNames[0][authorNames[0].length - 1])).toUpperCase(),
                 timeStamp = this.get('timeStamp'),
                 utc = typeof timeStamp === 'number' ? timeStamp : timeStamp.replace(':UTC', ''),
                 localDate = moment.utc(utc).local(),
@@ -26,6 +26,7 @@ define([
             } else {
                 this.set('me', false, {silent: true});
             }
+            console.log(shortAuthorName);
             this.set('shortAuthorName', shortAuthorName, {silent: true});
             console.log('date: ', date);
             this.set('localTime', localTime);

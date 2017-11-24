@@ -15,6 +15,7 @@ define([
 		    }
 		},
 		regions: {
+			users: '#chat-users',
 			modal: '#chat-modal'
 		},
 		ui: {

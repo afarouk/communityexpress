@@ -3,7 +3,7 @@
 'use strict';
 
 define([
-	'ejs!../../templates/chat/chatUser.ejs'
+	'ejs!../templates/chatUser.ejs'
 	], function(template){
 	var UserView = Mn.View.extend({
 		tagName: 'li',
@@ -20,8 +20,15 @@ define([
 		tagName: 'ul',
 		className: 'chat-users',
 		childView: UserView,
-		onChildviewUserSelected: function(view) {
-			this.trigger('user:selected', view.model);
+		onChildviewUserSelected: function(selectedView) {
+			this.children.each(function(view){
+				if (view === selectedView) {
+					view.$el.addClass('selected');
+				} else {
+					view.$el.removeClass('selected');
+				}
+			});
+			this.trigger('user:selected', selectedView.model);
 		}
 	});
 	return ChatUsersView;

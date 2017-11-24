@@ -8,7 +8,13 @@ define([
     ], function(moment, appCache){
     var ChatUsersModel = Backbone.Model.extend({
         initialize: function() {
+            this.setShortName();
             this.setMessageDate();
+        },
+        setShortName: function() {
+            var name = this.get('userName'),
+                shortName = (name[0] + name[name.length - 1]).toUpperCase();
+            this.set('shortName', shortName, {silent: true});
         },
         setMessageDate: function() {
             var timeOfLastMessage = this.get('timeOfLastMessage'),
