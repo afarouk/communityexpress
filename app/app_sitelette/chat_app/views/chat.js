@@ -37,7 +37,7 @@ define([
 			}
 		},
 		isChatApp: function() {
-			return window.saslData.domainEnum === 'SECURECHAT';
+			return window.saslData.domainEnum === 'SIMFEL';
 		},
 		onUpdateTotal: function(total) {
 			if (total > 0) {

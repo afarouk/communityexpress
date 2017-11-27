@@ -10,16 +10,23 @@ define([
 		className: '',
 		template: template,
 		modelEvents: {
-			'change': 'render'
+			'change': 'render',
+			'select': 'triggerSelected'
 		},
 		triggers: {
 			'click': 'user:selected'
+		},
+		triggerSelected: function() {
+			this.trigger('user:selected', this);
 		}
 	});
 	var ChatUsersView = Mn.CollectionView.extend({
 		tagName: 'ul',
 		className: 'chat-users',
 		childView: UserView,
+		collectionEvents: {
+		    unselect: 'onUnselectAll'
+		},
 		onChildviewUserSelected: function(selectedView) {
 			this.children.each(function(view){
 				if (view === selectedView) {
@@ -29,6 +36,11 @@ define([
 				}
 			});
 			this.trigger('user:selected', selectedView.model);
+		},
+		onUnselectAll: function() {
+			this.children.each(function(view){
+				view.$el.removeClass('selected');
+			});
 		}
 	});
 	return ChatUsersView;

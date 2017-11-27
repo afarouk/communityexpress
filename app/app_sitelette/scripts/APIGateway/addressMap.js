@@ -126,6 +126,7 @@ module.exports = {
 
             simfelAuthentication: ['POST', '/test/simfelAuthentication'],
             medicurisAuthentication: ['POST', '/test/medicurisAuthentication'],
+            secureChatAuthentication: ['POST', '/test/secureChatAuthentication'],
             getSASLcodeByPIN: ['POST', '/test/getSASLcodeByPIN'],
             verifySASLcodeAndRetrieveUID: ['POST', '/test/verifySASLcodeAndRetrieveUID']
         };

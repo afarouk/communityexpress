@@ -49,8 +49,12 @@ define([
 			var $container = this.ui.messagesContainer,
 				$ul = $container.find('.chat-messages');
 
-			$container.scrollTop($ul.height());
-			this.ui.messagesContainer.bind('scroll', this.onScroll.bind(this));
+            if ($container.height() > $ul.height()) {
+            	this.trigger('chat:scrolled');
+            } else {
+				$container.scrollTop($ul.height());
+				this.ui.messagesContainer.bind('scroll', this.onScroll.bind(this));
+			}
 		},
 
 		onScroll: function() {
@@ -78,8 +82,34 @@ define([
 					this.ui.message.removeClass('long');
 				}
 				this.ui.message.css('height', lines * 20 + 'px');
+				this.onTyping();
 			}.bind(this), 5);
 			return true;
+		},
+		//notify other user that typing
+		onTyping: function() {
+			this.activity = 'TYPING';
+			if (this.activityTimeout) {
+				clearTimeout(this.activityTimeout);
+			}
+			this.activityTimeout = setTimeout(function(){
+				this.activity = 'IDLING';
+			}.bind(this), 2000);
+
+			if (!this.notificationTimeout && this.activity === 'TYPING') {
+				this.sendTypingNotification();
+			}
+		},
+		sendTypingNotification: function() {
+			if (this.activity === 'TYPING') {
+				this.trigger('chat:typing');
+				this.notificationTimeout = setTimeout(function(){
+					this.sendTypingNotification();
+				}.bind(this), 2000);
+			} else {
+				clearTimeout(this.notificationTimeout);
+				this.notificationTimeout = null;
+			}
 		}
 	});
 	return ChatMessagesModalView;

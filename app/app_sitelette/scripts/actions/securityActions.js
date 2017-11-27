@@ -13,7 +13,7 @@ module.exports = {
             return this.medicurisAuthentication(fullCode);
         } else if (domain === 'MOBILEVOTE') {
             return this.voteAuthentication(fullCode);
-        } else if (domain === 'SECURECHAT') {
+        } else if (domain === 'SIMFEL') {
             return this.chatAuthentication(fullCode);
         }
     },
@@ -35,7 +35,7 @@ module.exports = {
     },
 
     chatAuthentication: function (fullCode) {
-        return gateway.sendRequest('simfelAuthentication', {
+        return gateway.sendRequest('secureChatAuthentication', {
             payload: {
                 fullCode: fullCode
             }

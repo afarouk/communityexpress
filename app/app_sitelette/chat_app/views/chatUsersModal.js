@@ -12,10 +12,10 @@ define([
 			users: '[name="chat-users"]'
 		},
 		ui: {
-			close: 'button.close'
+			addContact: '[name="add-contact"]'
 		},
 		triggers: {
-			'click @ui.close': 'chat:close'
+			'click @ui.addContact': 'user:add'
 		},
 		onRender: function() {
 			this.onShowUsers();

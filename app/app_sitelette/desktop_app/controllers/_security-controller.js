@@ -39,7 +39,7 @@ define([
 	        this.onSecureAuth();
 	    },
 	    onSecureAuth: function() {
-	        securityActions.medicurisAuthentication(this.fullCode)
+	        securityActions.securityAuthentication(this.fullCode)
 	            .then(function(authData) {
 	                var isValid = authData.isValid;
 

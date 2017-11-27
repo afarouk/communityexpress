@@ -25,7 +25,7 @@ define([
 		},
 		//different type of application MEDICURIS or MOBILEVOTE APP
 		checkSecurity: function() {
-			return window.saslData.domainEnum === 'SECURECHAT' ||
+			return window.saslData.domainEnum === 'SIMFEL' ||
 				   window.saslData.domainEnum === 'MEDICURIS' ||
 		           window.saslData.domainEnum === 'MOBILEVOTE';
 		},

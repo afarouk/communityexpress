@@ -8,13 +8,34 @@ define([
     ], function(gateway, appCache){
     var ChatService = Mn.Object.extend({
         /* chat application */
-        getAvailableUsers: function() {
+        getUserFriends: function() {
             var user = appCache.get('user'),
                 uid = user ? user.getUID() : null,
                 params = {
-                    UID: uid
+                    UID: uid,
+                    groupId: '1',
+                    domain: 'SIMFEL'
                 };
-            return gateway.sendRequest('getAvailableUsers', params);
+            return gateway.sendRequest('getUserFriends', params);
+        },
+        inviteAndRegister: function(payload) {
+            var user = appCache.get('user'),
+                params = {
+                    UID: user.getUID(),
+                    payload: _.extend(payload, {
+                        serviceAccommodatorId: appCache.sa(),
+                        serviceLocationId: appCache.sl(),
+                        domain: 'SIMFEL',
+                        groupId: '1'
+                    })
+                };
+            return gateway.sendRequest('inviteAndRegister', params);
+        },
+        sendMessageFromUserToUser: function(params) {
+            var user = appCache.get('user');
+            params = params || {};
+            params.UID = user ? user.getUID() : null;
+            return gateway.sendRequest('sendMessageFromUserToUser', params);
         },
         getConversationBetweenUsers: function(params) {
             var user = appCache.get('user');
@@ -34,6 +55,33 @@ define([
             params = params || {};
             params.UID = user ? user.getUID() : null;
             return gateway.sendRequest('markAsReadUser', params);
+        },
+        notifyOnActivity: function(otherUID, type) {
+            //type="TYPING|IDLING" 
+            var user = appCache.get('user'),
+                uid = user ? user.getUID() : null,
+                params = {
+                    UID: uid,
+                    otherUID: otherUID,
+                    type: type,
+                    serviceAccommodatorId: appCache.sa(),
+                    serviceLocationId: appCache.sl()
+                };
+
+            return gateway.sendRequest('notifyOnActivity', params);
+        },
+        registerForPresenceSignals: function(otherUID) {
+            //type="TYPING|IDLING" 
+            var user = appCache.get('user'),
+                uid = user ? user.getUID() : null,
+                params = {
+                    UID: uid,
+                    otherUID: otherUID,
+                    serviceAccommodatorId: appCache.sa(),
+                    serviceLocationId: appCache.sl()
+                };
+
+            return gateway.sendRequest('registerForPresenceSignals', params);
         },
         /* sasl chat */
         getConversationBetweenUserSASL: function() {

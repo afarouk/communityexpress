@@ -975,7 +975,7 @@ body::-webkit-scrollbar-thumb,
 
 #cmtyx_desktop_application {
   background-color: #fff;
-  background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px), linear-gradient(#eee 0.1em, transparent 0.1em);
+  background-image: linear-gradient(#eee 0.1em, transparent 0.1em);
   background-size: 100% 1.2em;
   background-attachment: fixed; }
 
@@ -2367,14 +2367,22 @@ footer {
         #cmtyx_chat_block .chat-content .chat-users-block .modal-body .messages-region .chat-messages,
         #cmtyx_chat_block .chat-content .chat-block .modal-body .messages-region .chat-messages {
           list-style: none;
-          padding: 5px 0 0 0; }
+          padding: 5px 0 0 0;
+          margin-bottom: 25px; }
           #cmtyx_chat_block .chat-content .chat-users-block .modal-body .messages-region .chat-messages li,
           #cmtyx_chat_block .chat-content .chat-block .modal-body .messages-region .chat-messages li {
             max-width: 520px;
             margin-bottom: 2px; }
-            #cmtyx_chat_block .chat-content .chat-users-block .modal-body .messages-region .chat-messages li.no-messages .empty,
-            #cmtyx_chat_block .chat-content .chat-block .modal-body .messages-region .chat-messages li.no-messages .empty {
-              font-size: 18px; }
+            #cmtyx_chat_block .chat-content .chat-users-block .modal-body .messages-region .chat-messages li.no-messages,
+            #cmtyx_chat_block .chat-content .chat-block .modal-body .messages-region .chat-messages li.no-messages {
+              height: 465px;
+              display: flex;
+              justify-content: center;
+              align-items: center; }
+              #cmtyx_chat_block .chat-content .chat-users-block .modal-body .messages-region .chat-messages li.no-messages .empty,
+              #cmtyx_chat_block .chat-content .chat-block .modal-body .messages-region .chat-messages li.no-messages .empty {
+                font-size: 26px;
+                color: #606060; }
             #cmtyx_chat_block .chat-content .chat-users-block .modal-body .messages-region .chat-messages li .date,
             #cmtyx_chat_block .chat-content .chat-block .modal-body .messages-region .chat-messages li .date {
               text-align: center;
@@ -2503,6 +2511,36 @@ footer {
               #cmtyx_chat_block .chat-content .chat-users-block .modal-body .messages-region .chat-messages li .message-container.me.avatar .message .message-text:before,
               #cmtyx_chat_block .chat-content .chat-block .modal-body .messages-region .chat-messages li .message-container.me.avatar .message .message-text:before {
                 content: none; }
+      #cmtyx_chat_block .chat-content .chat-users-block .modal-body .user-typing,
+      #cmtyx_chat_block .chat-content .chat-block .modal-body .user-typing {
+        display: flex;
+        justify-content: flex-start;
+        color: #7f80b0;
+        margin: 3px 15px;
+        font-size: 14px;
+        font-weight: 600;
+        display: none; }
+        #cmtyx_chat_block .chat-content .chat-users-block .modal-body .user-typing.typing,
+        #cmtyx_chat_block .chat-content .chat-block .modal-body .user-typing.typing {
+          display: flex; }
+        #cmtyx_chat_block .chat-content .chat-users-block .modal-body .user-typing .typing-message,
+        #cmtyx_chat_block .chat-content .chat-block .modal-body .user-typing .typing-message {
+          margin-left: 40px;
+          display: flex; }
+          #cmtyx_chat_block .chat-content .chat-users-block .modal-body .user-typing .typing-message i.ellipsis,
+          #cmtyx_chat_block .chat-content .chat-block .modal-body .user-typing .typing-message i.ellipsis {
+            width: 0px;
+            display: block;
+            overflow: hidden;
+            animation: typing-animation 2s infinite; }
+
+@keyframes typing-animation {
+  0% {
+    width: 0px; }
+  50% {
+    width: 15px; }
+  100% {
+    width: 15px; } }
       #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users,
       #cmtyx_chat_block .chat-content .chat-block .modal-body .chat-users {
         list-style: none;
@@ -2669,8 +2707,10 @@ footer {
               box-shadow: none; }
           #cmtyx_chat_block .chat-content .chat-users-block .modal-body .type-message div.message .placeholder,
           #cmtyx_chat_block .chat-content .chat-block .modal-body .type-message div.message .placeholder {
-            color: darkgray;
-            line-height: 20px; }
+            color: #e0e0e0;
+            line-height: 24px;
+            font-size: 10px;
+            position: relative; }
           #cmtyx_chat_block .chat-content .chat-users-block .modal-body .type-message div.message .message-text,
           #cmtyx_chat_block .chat-content .chat-block .modal-body .type-message div.message .message-text {
             pointer-events: none;
@@ -2707,8 +2747,18 @@ footer {
       width: 100%;
       height: 100%; }
     #cmtyx_chat_block .chat-content .chat-users-block .modal-header {
-      border-bottom: none;
+      background-color: lightblue;
       padding: 0 !important; }
+      #cmtyx_chat_block .chat-content .chat-users-block .modal-header .add-contact {
+        height: 30px;
+        margin: 5px 5px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0ea3f8; }
+        #cmtyx_chat_block .chat-content .chat-users-block .modal-header .add-contact .add-friend {
+          margin-left: 5px; }
   #cmtyx_chat_block .chat-content .chat-block {
     width: 540px;
     background-color: #f4f4f4;
@@ -2723,6 +2773,66 @@ footer {
       color: #ccccd6; }
     #cmtyx_chat_block .chat-content .chat-block .modal-body {
       max-height: 515px; }
+    #cmtyx_chat_block .chat-content .chat-block .add-contact-block {
+      display: flex;
+      color: black;
+      flex-direction: column;
+      padding: 100px 0;
+      text-align: center;
+      justify-content: center;
+      align-items: center; }
+      #cmtyx_chat_block .chat-content .chat-block .add-contact-block .contact-message {
+        font-size: 18px;
+        font-weight: 400;
+        color: #606060; }
+      #cmtyx_chat_block .chat-content .chat-block .add-contact-block .select-how {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+        justify-content: space-between;
+        width: 120px; }
+        #cmtyx_chat_block .chat-content .chat-block .add-contact-block .select-how .selection {
+          border-radius: 50%;
+          background-color: #606060;
+          color: white;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+          #cmtyx_chat_block .chat-content .chat-block .add-contact-block .select-how .selection.selected, #cmtyx_chat_block .chat-content .chat-block .add-contact-block .select-how .selection:hover {
+            background-color: #8bbac9; }
+          #cmtyx_chat_block .chat-content .chat-block .add-contact-block .select-how .selection.by-mobile {
+            font-size: 30px; }
+          #cmtyx_chat_block .chat-content .chat-block .add-contact-block .select-how .selection.by-email {
+            font-size: 20px; }
+      #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by {
+        margin-top: 50px; }
+        #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-email,
+        #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-mobile {
+          flex-direction: column;
+          justify-content: space-between;
+          font-size: 14px;
+          height: 80px;
+          display: none; }
+          #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-email .add-email-button,
+          #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-email .add-number-button,
+          #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-mobile .add-email-button,
+          #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-mobile .add-number-button {
+            background: white;
+            -webkit-appearance: none;
+            font-size: 13px;
+            font-weight: 400;
+            border-radius: 4px; }
+            #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-email .add-email-button:hover,
+            #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-email .add-number-button:hover,
+            #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-mobile .add-email-button:hover,
+            #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by .add-by-mobile .add-number-button:hover {
+              background-color: lightblue; }
+        #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by.mobile .add-by-mobile {
+          display: flex; }
+        #cmtyx_chat_block .chat-content .chat-block .add-contact-block .add-contact-by.email .add-by-email {
+          display: flex; }
   #cmtyx_chat_block .chat-content .chat-loader {
     display: none;
     position: absolute;

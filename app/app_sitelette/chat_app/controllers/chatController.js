@@ -7,11 +7,12 @@ define([
 	'../APIGateway/chatService',
     '../views/chat',
     '../views/chatUsersModal',
+    '../views/chatAddContact',
     '../views/chatMessagesModal',
     '../models/usersCollection',
     '../models/messagesCollection'
     ], function(appCache, service,
-    	ChatView, ChatUsersModalView, ChatMessagesModalView, UsersCollection, MessagesCollection){
+    	ChatView, ChatUsersModalView, ChatAddContactView, ChatMessagesModalView, UsersCollection, MessagesCollection){
     var ChatController = Mn.Object.extend({
     	initialize: function() {
     		this.chatProxy = this._chatProxy();
@@ -36,7 +37,7 @@ define([
 
 		onChatShow: function() {
 			if ( this._super.isChatApp() ) {
-				this.getChatUsers();
+				this.getUserFriends();
 			} else {
 				this.onGetConversation();
 			}
@@ -51,67 +52,117 @@ define([
 		},
 
 		//.........
-		getChatUsers: function() {
+		getUserFriends: function(friend) {
 			this.showLoader();
-			service.getAvailableUsers({
+			service.getUserFriends({
 				forChat: true
 			}).then(function(response){
 				this.hideLoader();
                 if (response.count > 0) {
-                    this.createChatUsersModal(response);
+                    this.createChatUsersModal(response, friend);
                 } else {
                 	//TODO ask Alamgir if this case is possible
                     // this.showEmptyList('leftList', 'No users are present.');
                 }
             }.bind(this), function(xhr){
             	this.hideLoader();
-                var resp = '{"users":[{"userName":"member0","uid":"user20.781305772384780045","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":2,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member1","uid":"user21.7578346144526449638","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":2,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member2","uid":"user22.6662439130873646901","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":1,"enumText":"UNREAD","displayText":"Unread"},"unReadMessageCount":1,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member3","uid":"user23.3461576254527693463","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":1,"enumText":"UNREAD","displayText":"Unread"},"unReadMessageCount":0,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member4","uid":"user24.5128921143405809408","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":0,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member5","uid":"user25.6477315059918792364","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":4,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member6","uid":"user26.7804416392944027503","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":4,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member7","uid":"user27.6119357015922301005","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":1,"enumText":"UNREAD","displayText":"Unread"},"unReadMessageCount":4,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member8","uid":"user28.8988186142143867652","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":1,"enumText":"UNREAD","displayText":"Unread"},"unReadMessageCount":0,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member9","uid":"user29.7840256569276561209","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":1,"enumText":"UNREAD","displayText":"Unread"},"unReadMessageCount":3,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member10","uid":"user30.3821758555792807572","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":1,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member11","uid":"user31.355177705204454505","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":1,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member13","uid":"user33.6986583253764309891","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":1,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member14","uid":"user34.5492526087766429635","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":1,"enumText":"UNREAD","displayText":"Unread"},"unReadMessageCount":1,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member15","uid":"user35.8261657968494859314","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":1,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member16","uid":"user36.6050055426457441958","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":"This is a random message...","lastMessageState":{"id":1,"enumText":"UNREAD","displayText":"Unread"},"unReadMessageCount":2,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member17","uid":"user37.5312849002850936947","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":3,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member18","uid":"user38.4163954949559135759","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":1,"enumText":"UNREAD","displayText":"Unread"},"unReadMessageCount":2,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"},{"userName":"member19","uid":"user39.498401029833846712","presence":"UNDEFINED","imageURL":"https://communitylive.co/apptsvc/static/images/placeholder_200x200.png","email":null,"telephone":null,"lastMessage":null,"lastMessageState":{"id":3,"enumText":"READ","displayText":"Read"},"unReadMessageCount":0,"timeOfLastMessage":"2017-11-24T08:05:18:UTC"}],"count":19}';
-                var parsed = JSON.parse(resp);
-                this.createChatUsersModal(parsed);
             }.bind(this));
 		},
-		createChatUsersModal: function(response) {
+		createChatUsersModal: function(response, friend) {
 			var users = new UsersCollection(response.users),
 				modal = new ChatUsersModalView({
 					collection: users
 				});
 			this.view.showChildView( 'users', modal );
 			this.listenTo(modal, 'user:selected', this.onUserSelected.bind(this, users));
+			this.listenTo(modal, 'user:add', this.onAddContact.bind(this, users));
 			this.chatProxy.set('users', this.messageFromUser.bind(this, users));
 			// this.updateUnreadTotal(users);
+			if (friend) {
+				//start conversation with new friend
+				var model = users.findWhere({userName: friend.userName});
+				model.trigger('select');
+			}
 		},
 		messageFromUser: function(users, message) {
 			var messageFrom = message.messageFromUserToUser,
-				autor = users.findWhere({
+				author = users.findWhere({
 					uid: messageFrom.authorId
 				}),
-				lastMessageState = autor.get('lastMessageState'),
-				unReadMessageCount = autor.get('unReadMessageCount');
-			autor.set({
-				lastMessage: messageFrom.messageBody,
-				timeOfLastMessage: messageFrom.timeStamp,
-				unReadMessageCount: ++unReadMessageCount
-			});
-			lastMessageState.enumText = 'UNREAD';
-			lastMessageState.displayText = 'UNREAD';
+				lastMessageState = author ? author.get('lastMessageState') : null,
+				unReadMessageCount = author ? author.get('unReadMessageCount') : null;
+			if (messageFrom.authorId === appCache.get('user').getUID()) return;
+			if (author) {
+				author.set({
+					lastMessage: messageFrom.messageBody,
+					timeOfLastMessage: messageFrom.timeStamp,
+					unReadMessageCount: ++unReadMessageCount
+				});
+				lastMessageState.enumText = 'UNREAD';
+				lastMessageState.displayText = 'UNREAD';
+			}
 			// this.updateUnreadTotal(users);
 		},
 		onUserSelected: function(users, model) {
 			var otherUserName = model.get('userName');
+			this.registerForPresenceSignals(model);
 			this.showLoader();
 			service.getConversationBetweenUsers({
 				otherUserName: otherUserName
 			}).then(function(conversation){
 				this.hideLoader();
                 var messages = new MessagesCollection(conversation.messages);
-                // this.createMessagesModal(users, otherUserName, messages);
-                this.createMessagesModal(messages, otherUserName);
+                this.createMessagesModal(messages, otherUserName, users);
             }.bind(this), function(xhr){
             	this.hideLoader();
-                this.publicController.getModalsController().apiErrorPopup(xhr);
+                // this.publicController.getModalsController().apiErrorPopup(xhr);
             }.bind(this));
 		},
+		registerForPresenceSignals: function(model) {
+			var otherUID = model.get('uid');
+			service.registerForPresenceSignals(otherUID)
+				.then(function(friend){
+					//.........
+	            }.bind(this), function(xhr){
+	            	//.........
+	            }.bind(this));
+		},
 		//.........
+		onAddContact: function(users) {
+			var addContactView = new ChatAddContactView();
+			users.trigger('unselect');//unselect selected conversation
+			this.view.showChildView( 'modal', addContactView );
+			this.listenTo(addContactView, 'chat:send:mobile', this.onMobileSend.bind(this));
+			this.listenTo(addContactView, 'chat:send:email', this.onEmailSend.bind(this));
+		},
+		onMobileSend: function(number, callback) {
+			console.log(number);
+			this.inviteAndRegister({
+				email: null,
+				mobile: number
+			}, callback);
+		},
+		onEmailSend: function(email, callback) {
+			console.log(email);
+			this.inviteAndRegister({
+				email: email,
+				mobile: null
+			}, callback);
+		},
+
+		inviteAndRegister: function(payload, callback) {
+			this.showLoader();
+			service.inviteAndRegister(payload)
+				.then(function(friend){
+					this.hideLoader();
+	                this.getUserFriends(friend);
+	            }.bind(this), function(xhr){
+	            	this.hideLoader();
+	            	callback(xhr);
+	                // this.publicController.getModalsController().apiErrorPopup(xhr);
+	            }.bind(this));
+		},
+		//........
 
 		updateUnreadTotal: function(messages) {
 			var total = messages.reduce(function(sum, message){
@@ -134,7 +185,7 @@ define([
 	                // this.publicController.getModalsController().apiErrorPopup(xhr);
 	            }.bind(this));
 		},
-		createMessagesModal: function(messages, otherUserName) {
+		createMessagesModal: function(messages, otherUserName, users) {
 			this.modal = new ChatMessagesModalView({
 					otherUserName: otherUserName ? otherUserName : appCache.get('saslData').saslName,
 					collection: messages
@@ -143,8 +194,21 @@ define([
 			this.view.showChildView( 'modal', this.modal );
 			this.listenTo(this.modal, 'chat:send', this.onMessageSend.bind(this, messages, otherUserName));
 			this.listenTo(this.modal, 'chat:scrolled', this.onChatScrolled.bind(this, messages));
+			this.listenTo(this.modal, 'chat:typing', this.onChatTyping.bind(this, otherUserName, users));
 			this.chatProxy.set('messages', this.addMessage.bind(this, messages));
 			this.modal.triggerMethod('scrollBottom');
+		},
+		onChatTyping: function(otherUserName, users){
+			if (otherUserName && users.length > 0) {
+				var otherUser = users.findWhere({userName: otherUserName});
+				if (!otherUser) return;
+				service.notifyOnActivity(otherUser.get('uid'), 'TYPING')
+					.then(function(friend){
+						//.........
+		            }.bind(this), function(xhr){
+		            	//.........
+		            }.bind(this));
+			}
 		},
 		onMarkAsRead: function(messages, forMark) {
 			var payload,
@@ -177,9 +241,10 @@ define([
 		onChatScrolled: function(messages) {
 			var allDefs = [];
 			messages.each(function(model){
+				if (model.get('type') === 'no-messages') return;
 				var unread = model.get('state').enumText === 'UNREAD',
 					$def = $.Deferred();
-				if (unread && !model.get('fromUser')) {
+				if (unread && !model.get('fromUser') && model.get('authorId') !== appCache.get('user').getUID()) {
 					allDefs.push($def);
 					model.trigger('check:unread', $def);
 				}
@@ -202,6 +267,7 @@ define([
 		addMessage: function(messages, message) {
 			var chatApp = this._super.isChatApp(),
 				from = chatApp ? message.messageFromUserToUser : message.messageFromSASLToUser;
+			if (from.authorId === appCache.get('user').getUID()) return;
 			from.fromUser = false;
 			from.state = {
 				enumText: from.state //tweak wrong socket signal 
@@ -218,11 +284,11 @@ define([
 			if (!message) return;
 			if (chatApp) {
 				params = {
+					simulate: true,
 					payload: {
 						messageBody: message,
 					    urgent: false,
-					    userName: otherUserName,
-					    // simulate: true
+					    userName: otherUserName
 					} 
 				};
 			} else {

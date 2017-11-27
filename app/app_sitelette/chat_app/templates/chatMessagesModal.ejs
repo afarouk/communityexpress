@@ -6,10 +6,18 @@
 	<div class="messages-region" name="chat-messages">
 		<!-- chat messages view will be rendered here -->
 	</div>
+	<div class="user-typing">
+		<div class="typing-icon">
+			_<i class="fa fa-pencil" aria-hidden="true"></i>
+		</div>
+		<div class="typing-message">
+			<%= otherUserName %> is typing<i class="ellipsis">...</i>
+		</div>
+	</div>
 	<div class="type-message">
 		<div class="message" name="message">
 			<textarea type="text" class="message-input" name="" required="required"></textarea>
-			<span class="placeholder">Type something...</span>
+			<span class="placeholder">Type a message here...</span>
 			<span class="message-text"></span>
 		</div>
 		<button type="button" name="send" class="btn btn-primary">↑</button>
