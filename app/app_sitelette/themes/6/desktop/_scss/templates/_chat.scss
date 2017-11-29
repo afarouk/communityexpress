@@ -112,6 +112,13 @@ $chat-fw-msg: 400;
             .otherUser {
                 padding-left: 10px;
             }
+
+            .user-presence {
+                display: none;
+            }
+            .back-arrow {
+                display: none;
+            }
         }
 
         .modal-body {
@@ -123,6 +130,10 @@ $chat-fw-msg: 400;
             flex-direction: column;
             max-height: 267px;
             overflow: hidden;
+
+            .user-typing {
+                display: none;
+            }
 
             .messages-region {
                 padding: 0 5px;

@@ -6,21 +6,29 @@ define([
 	'../../scripts/appCache.js',
 	'../APIGateway/chatService',
     '../views/chat',
+    '../views/chatMobile',
     '../views/chatUsersModal',
     '../views/chatAddContact',
     '../views/chatMessagesModal',
     '../models/usersCollection',
     '../models/messagesCollection'
     ], function(appCache, service,
-    	ChatView, ChatUsersModalView, ChatAddContactView, ChatMessagesModalView, UsersCollection, MessagesCollection){
+    	ChatView, ChatMobileView, ChatUsersModalView, ChatAddContactView, 
+    	ChatMessagesModalView, UsersCollection, MessagesCollection){
     var ChatController = Mn.Object.extend({
     	initialize: function() {
     		this.chatProxy = this._chatProxy();
     	},
-		create: function(region) {
-			this.view = new ChatView();
-			this.listenTo(this.view, 'chat:show', this.onChatShow.bind(this));
-			this.listenTo(this.view, 'chat:scroll', this.scrollBottom.bind(this));
+		create: function(device, region) {
+			this.device = device;
+			if (device === 'mobile') {
+				this.view = new ChatMobileView();
+				this.listenTo(this.view, 'chat:show', this.onChatShow.bind(this));
+			} else {
+				this.view = new ChatView();
+				this.listenTo(this.view, 'chat:show', this.onChatShow.bind(this));
+				this.listenTo(this.view, 'chat:scroll', this.scrollBottom.bind(this));
+			}
 			region.show( this.view );
 		},
 		scrollBottom: function() {
@@ -58,17 +66,18 @@ define([
 				forChat: true
 			}).then(function(response){
 				this.hideLoader();
-                if (response.count > 0) {
-                    this.createChatUsersModal(response, friend);
-                } else {
-                	//TODO ask Alamgir if this case is possible
-                    // this.showEmptyList('leftList', 'No users are present.');
-                }
+                // if (response.count > 0) {
+                this.createChatUsersModal(response, friend);
+                // } else {
+                // 	//TODO ask Alamgir if this case is possible
+                //     // this.showEmptyList('leftList', 'No users are present.');
+                // }
             }.bind(this), function(xhr){
             	this.hideLoader();
             }.bind(this));
 		},
 		createChatUsersModal: function(response, friend) {
+			// response.users = []; //for testing
 			var users = new UsersCollection(response.users),
 				modal = new ChatUsersModalView({
 					collection: users
@@ -197,6 +206,9 @@ define([
 			this.listenTo(this.modal, 'chat:typing', this.onChatTyping.bind(this, otherUserName, users));
 			this.chatProxy.set('messages', this.addMessage.bind(this, messages));
 			this.modal.triggerMethod('scrollBottom');
+			if (this._super.isChatApp() && this.device === 'mobile') {
+				this.modal.triggerMethod('showMobile');
+			}
 		},
 		onChatTyping: function(otherUserName, users){
 			if (otherUserName && users.length > 0) {
@@ -284,7 +296,7 @@ define([
 			if (!message) return;
 			if (chatApp) {
 				params = {
-					simulate: true,
+					// simulate: true,
 					payload: {
 						messageBody: message,
 					    urgent: false,
@@ -322,8 +334,14 @@ define([
 				}
 			}
 		},
-		onChatSignal: function(message) {
+		onChatMessage: function(message) {
 			this.chatProxy.handle(message);
+		},
+		onOpponentTyping: function() {
+			this.modal.triggerMethod('opponentTyping');
+		},
+		opponentOnline: function(online) {
+			this.modal.triggerMethod('opponentOnline', online);
 		}
     });
 

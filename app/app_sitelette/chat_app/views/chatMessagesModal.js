@@ -17,12 +17,16 @@ define([
 			message: '[name="message"]',
 			send: '[name="send"]',
 			input: '.message-input',
-			text: '.message-text'
+			text: '.message-text',
+			typing: '.user-typing',
+			presence: '.user-presence',
+			back: '.back-arrow'
 		},
 		events: {
 			'keydown @ui.input': 'onKeyPressed',
 			'paste @ui.input': 'onKeyPressed',
-			'cut @ui.input': 'onKeyPressed'
+			'cut @ui.input': 'onKeyPressed',
+			'click @ui.back': 'onBackMobile'
 		},
 		triggers: {
 			'click @ui.close': 'chat:close',
@@ -43,6 +47,14 @@ define([
 					collection: this.options.collection
 				});
 			this.showChildView( 'messages', messages );
+		},
+
+		onShowMobile: function() {
+			this.$el.parent().addClass('active');
+		},
+
+		onBackMobile: function() {
+			this.$el.parent().removeClass('active');
 		},
 
 		onScrollBottom: function() {
@@ -109,6 +121,20 @@ define([
 			} else {
 				clearTimeout(this.notificationTimeout);
 				this.notificationTimeout = null;
+			}
+		},
+		onOpponentTyping: function() {
+			this.ui.typing.addClass('typing');
+			if (this.otherTyping) clearTimeout(this.otherTyping);
+			this.otherTyping = setTimeout(function(){
+				this.ui.typing.removeClass('typing');
+			}.bind(this), 2000);
+		},
+		onOpponentOnline: function(online) {
+			if (online) {
+				this.ui.presence.addClass('online');
+			} else {
+				this.ui.presence.removeClass('online');
 			}
 		}
 	});

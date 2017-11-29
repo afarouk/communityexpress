@@ -83,6 +83,7 @@ $chat-fw-msg: 400;
             padding: 2px 5px 2px!important;
             background-color: rgb(14, 163, 248);
             border-bottom: 1px solid rgb(14, 163, 248);
+            display: flex;
             button {
                 color: $chat_text!important;
                 opacity: 0.7;
@@ -98,8 +99,37 @@ $chat-fw-msg: 400;
                 -webkit-appearance: none;
                 display: none;
             }
+            .user-presence {
+                margin-top: 3px;
+                height: 13px;
+                width: 13px;
+                border-radius: 50%;
+                background-color: white;
+                .online {
+                    margin-top: -2px;
+                    color: #6bef6b;
+                    display: none;
+                }
+                .offline {
+                    margin-top: -2px;
+                    color: lightgray;
+                    display: block;
+                }
+                &.online {
+                    .online {
+                        display: block;
+                    }
+                    .offline {
+                        display: none;
+                    }
+                }
+            }
             .otherUser {
                 padding-left: 10px;
+            }
+
+            .back-arrow {
+                display: none;
             }
         }
 
@@ -330,7 +360,7 @@ $chat-fw-msg: 400;
                         width: 0px;
                         display: block;
                         overflow: hidden;
-                        animation: typing-animation 2s infinite;
+                        animation: typing-animation 1s infinite;
 
                         @keyframes typing-animation {
                             0% {
@@ -604,6 +634,7 @@ $chat-fw-msg: 400;
             padding: 0 !important;
 
             .add-contact {
+                width: 100%;
                 height: 30px;
                 margin: 5px 5px;
                 text-align: center;

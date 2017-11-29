@@ -48,11 +48,13 @@ define([
 			}
 		},
 		onSocketConnected: function() {
+			var main = this.getRegion();
 			if (this.device === 'mobile') {
-				//todo something
+				if (this.isChatApp()) {
+					chatController.create('mobile', main);
+				}
 			} else {
-				var main = this.getRegion();
-				chatController.create(main);
+				chatController.create('desktop', main);
 			}
 		},
 		onReconnectAllowed: function () {
@@ -72,9 +74,24 @@ define([
 					if (this.device === 'mobile') {
 						Vent.trigger('onChatMessage', message);
 					} else {
-						chatController.onChatSignal(message);
+						chatController.onChatMessage(message);
 					}
 					break;
+				case 'OPPONENT_TYPING':
+					if (this.device === 'mobile') {
+						// Vent.trigger('onChatMessage', message);
+					} else {
+						chatController.onOpponentTyping();
+						chatController.opponentOnline(true); // <-- temporary for testing
+					}
+					break;
+				case 'OPPONENT_OFFLINE':
+                    chatController.opponentOnline(false);
+                    break;
+
+                case 'OPPONENT_ONLINE':
+                    chatController.opponentOnline(true);
+                    break;
 				default:
 					
 					break;

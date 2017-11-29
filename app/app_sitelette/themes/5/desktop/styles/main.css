@@ -3690,6 +3690,10 @@ footer {
         -webkit-appearance: none; }
       #cmtyx_chat_block .chat-content .modal-content .modal-header .otherUser {
         padding-left: 10px; }
+      #cmtyx_chat_block .chat-content .modal-content .modal-header .user-presence {
+        display: none; }
+      #cmtyx_chat_block .chat-content .modal-content .modal-header .back-arrow {
+        display: none; }
     #cmtyx_chat_block .chat-content .modal-content .modal-body {
       padding: 0 !important;
       color: white;
@@ -3699,6 +3703,8 @@ footer {
       flex-direction: column;
       max-height: 267px;
       overflow: hidden; }
+      #cmtyx_chat_block .chat-content .modal-content .modal-body .user-typing {
+        display: none; }
       #cmtyx_chat_block .chat-content .modal-content .modal-body .messages-region {
         padding: 0 5px;
         max-height: 240px;
