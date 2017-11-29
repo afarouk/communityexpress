@@ -2784,7 +2784,8 @@ footer {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #0ea3f8; }
+        background-color: #0ea3f8;
+        cursor: pointer; }
         #cmtyx_chat_block .chat-content .chat-users-block .modal-header .add-contact .add-friend {
           margin-left: 5px; }
   #cmtyx_chat_block .chat-content .chat-block {
