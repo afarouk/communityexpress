@@ -84,6 +84,11 @@ define([
 		onKeyPressed: function() {
 			setTimeout(function() {
 				var val = this.ui.input.val();
+				if (val) {
+					this.ui.send.attr('disabled', false);
+				} else {
+					this.ui.send.attr('disabled', true);
+				}
 				this.ui.text.html(val.replace(/\n/g, '<br/>'));
 				var lht = parseInt(this.ui.text.css('lineHeight'), 10);
 				var lines = Math.round(this.ui.text.prop('scrollHeight') / lht) || 1;

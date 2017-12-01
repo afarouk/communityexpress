@@ -2737,7 +2737,8 @@ footer {
             color: #e0e0e0;
             line-height: 24px;
             font-size: 10px;
-            position: relative; }
+            position: relative;
+            pointer-events: none; }
           #cmtyx_chat_block .chat-content .chat-users-block .modal-body .type-message div.message .message-text,
           #cmtyx_chat_block .chat-content .chat-block .modal-body .type-message div.message .message-text {
             pointer-events: none;
@@ -2768,6 +2769,9 @@ footer {
           width: 25px;
           padding: 0 5px 5px;
           background-color: #27aaf7; }
+          #cmtyx_chat_block .chat-content .chat-users-block .modal-body .type-message button:disabled,
+          #cmtyx_chat_block .chat-content .chat-block .modal-body .type-message button:disabled {
+            background-color: #b9b9b9 !important; }
   #cmtyx_chat_block .chat-content .chat-users-block {
     width: 260px; }
     #cmtyx_chat_block .chat-content .chat-users-block > div {
