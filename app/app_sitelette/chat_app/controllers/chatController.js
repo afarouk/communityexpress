@@ -5,6 +5,7 @@
 define([
 	'../../scripts/appCache.js',
 	'../APIGateway/chatService',
+	'../../scripts/loader',
     '../views/chat',
     '../views/chatMobile',
     '../views/chatUsersModal',
@@ -12,7 +13,7 @@ define([
     '../views/chatMessagesModal',
     '../models/usersCollection',
     '../models/messagesCollection'
-    ], function(appCache, service,
+    ], function(appCache, service, loader,
     	ChatView, ChatMobileView, ChatUsersModalView, ChatAddContactView, 
     	ChatMessagesModalView, UsersCollection, MessagesCollection){
     var ChatController = Mn.Object.extend({
@@ -52,11 +53,19 @@ define([
 		},
 
 		showLoader: function() {
-			this.view.ui.loader.addClass('show');
+			if (this.device === 'mobile') {
+				loader.show('loading');
+			} else {
+				this.view.ui.loader.addClass('show');
+			}
 		},
 
 		hideLoader: function() {
-			this.view.ui.loader.removeClass('show');
+			if (this.device === 'mobile') {
+				loader.hide();
+			} else {
+				this.view.ui.loader.removeClass('show');
+			}
 		},
 
 		//.........
@@ -66,18 +75,12 @@ define([
 				forChat: true
 			}).then(function(response){
 				this.hideLoader();
-                // if (response.count > 0) {
                 this.createChatUsersModal(response, friend);
-                // } else {
-                // 	//TODO ask Alamgir if this case is possible
-                //     // this.showEmptyList('leftList', 'No users are present.');
-                // }
             }.bind(this), function(xhr){
             	this.hideLoader();
             }.bind(this));
 		},
 		createChatUsersModal: function(response, friend) {
-			// response.users = []; //for testing
 			var users = new UsersCollection(response.users),
 				modal = new ChatUsersModalView({
 					collection: users
@@ -143,6 +146,9 @@ define([
 			this.view.showChildView( 'modal', addContactView );
 			this.listenTo(addContactView, 'chat:send:mobile', this.onMobileSend.bind(this));
 			this.listenTo(addContactView, 'chat:send:email', this.onEmailSend.bind(this));
+			if (this._super.isChatApp() && this.device === 'mobile') {
+				addContactView.triggerMethod('showMobile');
+			}
 		},
 		onMobileSend: function(number, callback) {
 			console.log(number);
@@ -197,7 +203,8 @@ define([
 		createMessagesModal: function(messages, otherUserName, users) {
 			this.modal = new ChatMessagesModalView({
 					otherUserName: otherUserName ? otherUserName : appCache.get('saslData').saslName,
-					collection: messages
+					collection: messages,
+					device: this.device
 				});
 
 			this.view.showChildView( 'modal', this.modal );
@@ -288,12 +295,15 @@ define([
 			this.updateUnreadTotal(messages);
 		},
 		onMessageSend: function( messages, otherUserName, view) {
-			this.showLoader();
 			var message = view.ui.input.val(),
 				chatApp = this._super.isChatApp(),
 				sendService = chatApp ? service.sendMessageFromUserToUser : service.sendMessageToSASL,
 				params;
-			if (!message) return;
+			if (!message) {
+				view.ui.send.attr('disabled', true);
+				return;
+			} 
+			this.showLoader();
 			if (chatApp) {
 				params = {
 					// simulate: true,

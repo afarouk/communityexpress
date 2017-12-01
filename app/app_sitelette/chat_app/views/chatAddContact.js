@@ -16,6 +16,7 @@ define([
 			email: '[name="email"]',
 			sendNumber: '[name="send-mobile"]',
 			sendEmail: '[name="send-email"]',
+			back: '.back-arrow'
 		},
 		events: {
 			'click @ui.byMobile': 'onByMobileClicked',
@@ -23,13 +24,24 @@ define([
 			'keypress @ui.number': 'onEnterOnNumber',
 			'keypress @ui.email': 'onEnterOnEmail',
 			'click @ui.sendNumber': 'onMobileSend',
-			'click @ui.sendEmail': 'onEmailSend'
+			'click @ui.sendEmail': 'onEmailSend',
+			'click @ui.back': 'onBackMobile'
 		},
 		triggers: {
 			
 		},
 		onRender: function() {
 			
+		},
+
+		onShowMobile: function() {
+			$('#cmtyx_landingView').addClass('fullscreen-view');
+			this.$el.parent().addClass('active');
+		},
+
+		onBackMobile: function() {
+			$('#cmtyx_landingView').removeClass('fullscreen-view');
+			this.$el.parent().removeClass('active');
 		},
 
 		onByMobileClicked: function() {

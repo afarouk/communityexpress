@@ -2371,9 +2371,9 @@ footer {
       #cmtyx_chat_block .chat-content .chat-users-block .modal-header .otherUser,
       #cmtyx_chat_block .chat-content .chat-block .modal-header .otherUser {
         padding-left: 10px; }
-      #cmtyx_chat_block .chat-content .chat-users-block .modal-header .back-arrow,
-      #cmtyx_chat_block .chat-content .chat-block .modal-header .back-arrow {
-        display: none; }
+    #cmtyx_chat_block .chat-content .chat-users-block .back-arrow,
+    #cmtyx_chat_block .chat-content .chat-block .back-arrow {
+      display: none; }
     #cmtyx_chat_block .chat-content .chat-users-block .modal-body,
     #cmtyx_chat_block .chat-content .chat-block .modal-body {
       padding: 0 !important;

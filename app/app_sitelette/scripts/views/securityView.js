@@ -45,6 +45,7 @@ var SecurityView = Backbone.View.extend({
         this.ui.input.blur();
     },
     onLogoutSuccess: function() {
+        $('#cmtyx_landingView').removeClass('fullscreen-view'); //for mobile chat app
         this.$el.show('slow');
         this.ui.input.val('');
         this.ui.securityBlock.removeClass('secured');

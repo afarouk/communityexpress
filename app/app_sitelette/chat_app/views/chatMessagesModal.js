@@ -4,10 +4,17 @@
 
 define([
 	'ejs!../templates/chatMessagesModal.ejs',
+	'ejs!../templates/chatMessagesMobileModal.ejs',
 	'./chatMessages'
-	], function(template, ChatMessagesView){
+	], function(desktopTemplate, mobileTemplate, ChatMessagesView){
 	var ChatMessagesModalView = Mn.View.extend({
-		template: template,
+		getTemplate: function() {
+			if (this.options.device === 'mobile') {
+				return mobileTemplate;
+			} else {
+				return desktopTemplate;
+			}
+		},
 		regions: {
 			messages: '[name="chat-messages"]'
 		},
@@ -50,10 +57,12 @@ define([
 		},
 
 		onShowMobile: function() {
+			$('#cmtyx_landingView').addClass('fullscreen-view');
 			this.$el.parent().addClass('active');
 		},
 
 		onBackMobile: function() {
+			$('#cmtyx_landingView').removeClass('fullscreen-view');
 			this.$el.parent().removeClass('active');
 		},
 
@@ -89,18 +98,20 @@ define([
 				} else {
 					this.ui.send.attr('disabled', true);
 				}
-				this.ui.text.html(val.replace(/\n/g, '<br/>'));
-				var lht = parseInt(this.ui.text.css('lineHeight'), 10);
-				var lines = Math.round(this.ui.text.prop('scrollHeight') / lht) || 1;
-				if (val.slice(-1) === '\n') lines++;
-				if (lines > 5) {
-					this.ui.message.addClass('long');
-				} else {
-					this.ui.message.removeClass('long');
+				if (this.device !== 'mobile') {
+					this.ui.text.html(val.replace(/\n/g, '<br/>'));
+					var lht = parseInt(this.ui.text.css('lineHeight'), 10);
+					var lines = Math.round(this.ui.text.prop('scrollHeight') / lht) || 1;
+					if (val.slice(-1) === '\n') lines++;
+					if (lines > 5) {
+						this.ui.message.addClass('long');
+					} else {
+						this.ui.message.removeClass('long');
+					}
+					this.ui.message.css('height', lines * 20 + 'px');
 				}
-				this.ui.message.css('height', lines * 20 + 'px');
 				this.onTyping();
-			}.bind(this), 5);
+			}.bind(this), 10);
 			return true;
 		},
 		//notify other user that typing
