@@ -6087,7 +6087,7 @@ input[name=promocode] {
     top: 0;
     bottom: 0;
     left: 100%;
-    background-color: lightblue;
+    background-color: rgb(217, 234, 239);
     max-height: 100%;
     height: 100%;
     width: 100%;
@@ -6164,7 +6164,7 @@ input[name=promocode] {
     padding: 0!important;
     color: white;
     font-size: 12px;
-    background-color: #ffffffd9;
+    background-color: rgb(217, 234, 239);
     display: grid;
     grid-template-rows: auto 0 40px;
     overflow: hidden;
