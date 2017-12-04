@@ -73,7 +73,12 @@
 
 /* ::-webkit-scrollbar { display: none; } */
 
-html {}
+html.ui-mobile {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans);
 
@@ -109,10 +114,14 @@ body {
 }
 .ui-mobile-viewport {
     background-color: #363636;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 .ui-page {
     background-color: #fff;
-    background-image: linear-gradient(#eee .1em, transparent .1em);
+    /*background-image: linear-gradient(#eee .1em, transparent .1em);*/
     background-size: 100% 1.2em;
     padding: 0 0 100px 0;
     text-shadow: none;
@@ -5914,7 +5923,7 @@ input[name=promocode] {
 }
 
 #cmtyx_chat_block {
-    background: #add8e696;
+    /*background: #add8e696;*/
     font-weight: 400;
     padding: 0;
     margin: 0;
@@ -5976,6 +5985,7 @@ input[name=promocode] {
     width: 100%;
     max-width: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;
     background-color: rgba(128, 128, 128, 0.1);
     margin-bottom: 5px;
@@ -5987,25 +5997,32 @@ input[name=promocode] {
 
 
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .short-name {
-    width: 11%;
-    margin: 6px 4px 0 0;
+    width: 40px; /*width: 12%;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .short-name .circle {
-    margin: auto;
+    /*margin: auto; */
+    display: flex;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    top: 0;
     background-color: rgb(114, 114, 167);
     border-radius: 50%;
 }
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .short-name .circle .first-letter {
     font-size: 13px;
-    line-height: 30px;
+    line-height: 35px;
     text-align: center;
     display: block;
+    color: white;
 }
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .user-info {
-    width: 80%;
+    /*width: 80%;*/
+    width: calc(100% - 70px);
 }
 
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .user-info .top {
@@ -6029,7 +6046,7 @@ input[name=promocode] {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 180px;
+    max-width: 185px;
     white-space: nowrap;
 }
 
@@ -6037,7 +6054,7 @@ input[name=promocode] {
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .user-info .top .time {
     color: rgb(138, 121, 155);
     font-size: 8px;
-    margin-right: -20px;
+    margin-right: -28px;
     margin-top: -4px;
 }
 
@@ -6054,8 +6071,9 @@ input[name=promocode] {
     display: block;
     height: 18px;
     line-height: 18px;
+    font-size: 12px;
     text-overflow: ellipsis;
-    max-width: 200px;
+    max-width: 220px;
     white-space: nowrap;
 }
 
@@ -6069,7 +6087,11 @@ input[name=promocode] {
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .user-info .bottom .message .unread-sign.visible {
     display: inline;
 }
-
+#cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .unread-count-container {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+}
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .unread-count {
     margin: 2px 0 0 6px;
     height: 16px;
@@ -6087,18 +6109,21 @@ input[name=promocode] {
     top: 0;
     bottom: 0;
     left: 100%;
-    background-color: rgb(217, 234, 239);
+    background-color: #dcebf0;
     max-height: 100%;
     height: 100%;
     width: 100%;
     transition: 0.35s;
+    pointer-events: all;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile > div {
     position: absolute;
     top: 0;
     bottom: 0;
+    left: 0;
+    right: 0;
     display: grid;
-    grid-template-rows: 30px auto;
+    grid-template-rows: 40px auto;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile.active {
     left: 0;
@@ -6106,9 +6131,9 @@ input[name=promocode] {
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-header {
     padding: 2px 5px 2px!important;
     background-color: rgb(14, 163, 248);
-    border-bottom: 1px solid rgb(14, 163, 248);
+    border-bottom: 1px solid rgb(19, 36, 45);
     display: flex;
-    height: 30px;
+    height: 40px;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-header button {
     color: white!important;
@@ -6126,45 +6151,74 @@ input[name=promocode] {
     display: none;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .back-arrow {
-    font-size: 15px;
+    font-size: 20px;
     font-style: normal;
-    padding: 0 10px 0 5px;
+    padding: 5px 10px 0 5px;
     line-height: 25px;
+    color: white;
+}
+#cmtyx_chat_block .chat-content .chat-block.mobile .contact-block.back-arrow {
+    font-size: 20px;
+    font-style: normal;
+    padding: 7px 0 0 10px;
+    line-height: 25px;
+    color: white;
+    border-bottom: 1px solid #d2cfcf;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .user-presence {
-    margin-top: 6px;
-    height: 13px;
-    width: 13px;
-    font-size: 15px;
-    border-radius: 50%;
-    background-color: white;
+    line-height: 20px;
+    height: 20px;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .user-presence .online {
-    margin-top: 0;
-    color: #6bef6b;
     display: none;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .user-presence .offline {
-    margin-top: 0;
-    color: lightgray;
-    display: block;
+    display: flex;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .user-presence.online .online {
-    display: block;
+    display: flex;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .user-presence.online .offline {
     display: none;
 }
-#cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .otherUser {
-    padding-left: 10px;
-    line-height: 25px;
+#cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .other-user {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+#cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .other-user .otherUser {
+    padding: 0;
+    line-height: 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+}
+#cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .other-user .user-presence .online,
+#cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .other-user .user-presence .offline {
+    margin-top: 2px;
+    color: white;
+    font-size: 12px;
+    line-height: 14px;
+    font-style: normal;
+}
+#cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .other-user .user-presence .online .presence-online,
+#cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .other-user .user-presence .offline .presence-offline {
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+    margin-top: 1px;
+    border-radius: 50%;
+    background-color: lightgray;
+}
+#cmtyx_chat_block .chat-content .chat-block.mobile .modal-header .other-user .user-presence .online .presence-online {
+    background-color: #61f961;
 }
 
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-body {
     padding: 0!important;
     color: white;
     font-size: 12px;
-    background-color: rgb(217, 234, 239);
+    background-color: #dcebf0;
     display: grid;
     grid-template-rows: auto 0 40px;
     overflow: hidden;
@@ -6172,8 +6226,8 @@ input[name=promocode] {
 
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .messages-region {
     padding: 0 2px;
-    max-height: calc(100vh - 145px); /* temporary mobile fix */
-    height: calc(100vh - 145px);
+    max-height: calc(100vh - 155px); /* temporary mobile fix */
+    height: calc(100vh - 155px);
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -6273,6 +6327,7 @@ input[name=promocode] {
     line-height: 30px;
     text-align: center;
     display: block;
+    color: white;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .messages-region .chat-messages li .message-container .message {
     color: lightgray;
@@ -6430,7 +6485,8 @@ input[name=promocode] {
     display: flex;
     color: black;
     flex-direction: column;
-    padding: 100px 0;
+    padding: 0;
+    margin-top: -40px;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -6481,12 +6537,13 @@ input[name=promocode] {
     flex-direction: column;
     justify-content: space-between;
     font-size: 14px;
-    height: 80px;
+    height: 90px;
     display: none;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .add-contact-block .add-contact-by .add-by-email input,
 #cmtyx_chat_block .chat-content .chat-block.mobile .add-contact-block .add-contact-by .add-by-mobile input {
     border: 2px solid white;
+    -webkit-appearance: none;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile .add-contact-block .add-contact-by .add-by-email .add-email-button,
 #cmtyx_chat_block .chat-content .chat-block.mobile .add-contact-block .add-contact-by .add-by-email .add-number-button,
@@ -6497,6 +6554,7 @@ input[name=promocode] {
     font-size: 13px;
     font-weight: 400;
     border-radius: 4px;
+    height: 30px;
 }
 
 
@@ -6511,7 +6569,13 @@ input[name=promocode] {
 #cmtyx_landingView.fullscreen-view {
     position: fixed !important;
     width: 100%;
+    height: calc(100vh - 75px) !important;
+    /*height: 100%;*/
+    margin: 0;
+    padding: 0;
     top: 0;
     bottom: 0;
     z-index: 99999;
+    overflow: scroll;
+    pointer-events: none;
 }

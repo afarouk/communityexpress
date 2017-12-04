@@ -33,7 +33,8 @@ define([
 			'keydown @ui.input': 'onKeyPressed',
 			'paste @ui.input': 'onKeyPressed',
 			'cut @ui.input': 'onKeyPressed',
-			'click @ui.back': 'onBackMobile'
+			'click @ui.back': 'onBackMobile',
+			'blur @ui.input': 'tweakChangeOverflow'
 		},
 		triggers: {
 			'click @ui.close': 'chat:close',
@@ -59,11 +60,26 @@ define([
 		onShowMobile: function() {
 			$('#cmtyx_landingView').addClass('fullscreen-view');
 			this.$el.parent().addClass('active');
+			this.overflowInterval = setInterval(function(){
+				this.tweakChangeOverflow();
+			}.bind(this), 1000);
+		},
+
+		tweakChangeOverflow: function() { //tweak for mobile safary issue;
+			var overflow = $('#cmtyx_landingView').css('overflow-y');
+			if (overflow === 'auto') {
+				overflow = 'scroll';
+			} else {
+				overflow = 'auto';
+			}
+			// console.log(overflow);
+			$('#cmtyx_landingView').css('overflow-y', overflow);
 		},
 
 		onBackMobile: function() {
 			$('#cmtyx_landingView').removeClass('fullscreen-view');
 			this.$el.parent().removeClass('active');
+			clearInterval(this.overflowInterval);
 		},
 
 		onScrollBottom: function() {

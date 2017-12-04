@@ -1,13 +1,20 @@
 <div class="modal-header">
 	<div class="back-arrow">
-		<span class="glyphicon glyphicon-arrow-left cmtyx_special_icon_color"></span>
+		<span class="glyphicon glyphicon-arrow-left"></span>
 	</div>
-	<div class="user-presence">
-		<i class="fa fa-circle-o offline" aria-hidden="true"></i>
-		<i class="fa fa-check-circle online" aria-hidden="true"></i>
+	<div class="other-user">
+		<span class="otherUser"><%= otherUserName %></span>
+		<div class="user-presence">
+			<div class="offline">
+				<div class="presence-offline"></div>
+				<i class="presence-message">offline</i>
+			</div>
+			<div class="online">
+				<div class="presence-online"></div>
+				<i class="presence-message">online</i>
+			</div>
+		</div>
 	</div>
-	<span class="otherUser"><%= otherUserName %></span>
-	<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 </div>
 <div class="modal-body">
 	<div class="messages-region" name="chat-messages">

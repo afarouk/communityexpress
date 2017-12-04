@@ -14,6 +14,8 @@
 		<div class="message"><i class="fa fa-exclamation-circle unread-sign <% if (lastMessageState.enumText === 'UNREAD') { %>visible<% } %>" aria-hidden="true"></i><% if (lastMessage) { %><%= lastMessage %><% } else { %>No unread messages.<% } %></div>
 	</div>
 </div>
-<div class="unread-count">
-	<span class="count"><%= unReadMessageCount %></span>
+<div class="unread-count-container">
+	<div class="unread-count">
+		<span class="count"><%= unReadMessageCount %></span>
+	</div>
 </div>

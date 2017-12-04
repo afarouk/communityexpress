@@ -23,6 +23,7 @@ var SecurityView = Backbone.View.extend({
             input: this.$('.secure-block .right.puzzle .secure-input'),
             approveMessage: this.$('.approve-message')
         }
+        this.ui.input.val('');
     },
     onInputFocus: function(e) {
         setTimeout(function(){
@@ -74,7 +75,9 @@ var SecurityView = Backbone.View.extend({
     afterVerify: function() {
         this.ui.securityBlock.addClass('secured');
         setTimeout(function() {
-            this.$el.hide('slow');
+            this.$el.hide('slow', function(){
+                this.ui.input.val('');
+            }.bind(this));
         }.bind(this), 2000);
         this.ui.approveMessage
             .removeClass('approve')
