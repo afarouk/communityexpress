@@ -22,7 +22,6 @@ define([
                 localDate = moment.utc(utc).local(),
                 date = this.getDate(localDate);
             this.set('date', date, {silent: true});
-            console.log('date: ', date);
         },
         getDate: function(localDate) {
             return moment(localDate).calendar(null, {

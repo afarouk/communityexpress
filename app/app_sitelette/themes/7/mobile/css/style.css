@@ -4429,6 +4429,7 @@ li.driving_directions_block {
 
 .ui-footer {
     border: none;
+    border-top: 1px solid #255874;
 }
 .home_footer {
     position: fixed;
@@ -6052,10 +6053,11 @@ input[name=promocode] {
 
 
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .user-info .top .time {
-    color: rgb(138, 121, 155);
+    color: rgb(82, 62, 82);
     font-size: 8px;
     margin-right: -28px;
     margin-top: -4px;
+    font-weight: 600;
 }
 
 #cmtyx_chat_block .chat-content .chat-users-block .modal-body .chat-users li .user-info .bottom {
@@ -6104,14 +6106,16 @@ input[name=promocode] {
     text-align: center;
 }
 #cmtyx_chat_block .chat-content .chat-block.mobile {
-    position: absolute;
+    /*position: absolute;*/
+    position: fixed;
     z-index: 99999;
     top: 0;
     bottom: 0;
     left: 100%;
     background-color: #dcebf0;
     max-height: 100%;
-    height: 100%;
+    /*height: 100%;*/
+    height: 100vh;
     width: 100%;
     transition: 0.35s;
     pointer-events: all;
@@ -6408,7 +6412,7 @@ input[name=promocode] {
     position: relative;
     top: -22px;
     height: 22px;
-    background-color: #f3f9fb;
+    background-color: #dcebf0;
     display: none;
 }      
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .user-typing.typing {

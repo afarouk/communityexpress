@@ -72,14 +72,19 @@ define([
 					break;
 				case 'MESSAGE_RECEIVED':
 					if (this.device === 'mobile') {
-						Vent.trigger('onChatMessage', message);
+						if (this.isChatApp()) {
+							chatController.onChatMessage(message);
+						} else {
+							Vent.trigger('onChatMessage', message);
+						}
 					} else {
 						chatController.onChatMessage(message);
 					}
 					break;
 				case 'OPPONENT_TYPING':
 					if (this.device === 'mobile') {
-						// Vent.trigger('onChatMessage', message);
+						chatController.onOpponentTyping();
+						chatController.opponentOnline(true);
 					} else {
 						chatController.onOpponentTyping();
 						chatController.opponentOnline(true); // <-- temporary for testing

@@ -110,6 +110,9 @@ define([
 					timeOfLastMessage: messageFrom.timeStamp,
 					unReadMessageCount: ++unReadMessageCount
 				});
+				if (!messageFrom.authorName) {
+					messageFrom.authorName = author.get('userName');
+				}
 				lastMessageState.enumText = 'UNREAD';
 				lastMessageState.displayText = 'UNREAD';
 			}

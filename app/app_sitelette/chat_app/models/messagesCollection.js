@@ -26,9 +26,7 @@ define([
             } else {
                 this.set('me', false, {silent: true});
             }
-            console.log(shortAuthorName);
             this.set('shortAuthorName', shortAuthorName, {silent: true});
-            console.log('date: ', date);
             this.set('localTime', localTime);
         },
         getDate: function(localDate) {

@@ -47,6 +47,9 @@ define([
 				otherUserName: this.options.otherUserName
 			};
 		},
+		onDestroy: function() {
+			this.onBackMobile(); //on force logout also clear
+		},
 		onRender: function() {
 			this.onShowMessages();
 		},
@@ -156,6 +159,7 @@ define([
 			}
 		},
 		onOpponentTyping: function() {
+			console.log('typing');
 			this.ui.typing.addClass('typing');
 			if (this.otherTyping) clearTimeout(this.otherTyping);
 			this.otherTyping = setTimeout(function(){
