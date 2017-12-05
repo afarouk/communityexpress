@@ -6,7 +6,7 @@ module.exports = {
         return {
             /*chat app*/
             getUserFriends: ['GET', '/communication/getUserFriends'],
-            inviteAndRegister: ['PUT', '/communication/inviteAndRegister'],
+            inviteAndRegister: ['POST', '/communication/inviteAndRegister'],
             getConversationBetweenUserUser: ['GET', '/communication/getConversationBetweenUserUser'],
             sendMessageFromUserToUser: ['POST', '/communication/sendMessageFromUserToUser'],
             markAsReadUser: ['PUT', '/communication/markAsReadUser'],
