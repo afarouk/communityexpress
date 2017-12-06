@@ -12,14 +12,14 @@ define([
             this.listenTo(this.connector, 'updateStatus', this.updateStatus, this);
             this.listenTo(this.connector, 'onMessage', this.onMessage, this);
         },
-        updateStatus: function(status) {
+        updateStatus: function(status, code) {
             switch (status) {
                 case 'Connected':
                     this._super.onSocketConnected();
                     break;
                 case 'Disconnected':
                     if(this._super.onReconnectAllowed()) {
-                        this.restart();
+                        this.restart(code);
                     }
                     break;
             }
@@ -29,9 +29,12 @@ define([
             this.connector.destroy();
         },
 
-        restart: function() {
-            this.stop();
-            this.start(this.uid);
+        restart: function(code) {
+            this._super.onWSDisconnected(code);
+            setTimeout(function(){
+                this.stop();
+                this.start(this.uid);
+            }.bind(this), 2000);
         },
 
         onMessage: function(message) {

@@ -49,6 +49,8 @@ module.exports = {
             theme: options.theme || 'b',
             textonly: options.textonly || true
         });
-        setTimeout(self.hide, 3000);
+        if (!options.infinite) {
+            setTimeout(self.hide, 3000);
+        }
     }
 };

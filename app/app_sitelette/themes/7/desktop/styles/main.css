@@ -2281,8 +2281,11 @@ footer {
   justify-content: center;
   color: white;
   pointer-events: all;
+  visibility: hidden;
   /*transform: translate3d(0, 0, 0);*/
   line-height: 17px; }
+  #cmtyx_chat_block.visible {
+    visibility: visible; }
   #cmtyx_chat_block > div {
     width: 100%; }
   #cmtyx_chat_block .fa-commenting {

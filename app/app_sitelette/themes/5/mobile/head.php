@@ -74,6 +74,7 @@
         window.community.themeId = <?php echo $themeId ?>;
         window.community.domain = '<?php echo $domain ?>';
         window.community.protocol = '<?php echo $protocol?>';
+        window.community.wsProtocol = '<?php echo $wsProtocol?>';
         window.community.UID = '<?php echo $UID ?>';
         window.community.fullCode = '<?php echo $fullCode ?>';
         window.community.type = '<?php echo $type ?>';

@@ -76,10 +76,11 @@ if (validateParams('server')) {
 
 if (strpos($server, 'localhost') !== false) {
     $protocol = 'http://';
+    $wsProtocol = 'ws://';
 } else {
     $protocol = 'https://';
+    $wsProtocol = 'wss://';
 }
-
 /* is IOS embedded specified?*/
 
 if (validateParams('embedded')) {

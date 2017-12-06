@@ -29,6 +29,7 @@ define([
 				this.view = new ChatView();
 				this.listenTo(this.view, 'chat:show', this.onChatShow.bind(this));
 				this.listenTo(this.view, 'chat:scroll', this.scrollBottom.bind(this));
+				region.$el.addClass('visible');
 			}
 			region.show( this.view );
 		},
@@ -78,6 +79,7 @@ define([
                 this.createChatUsersModal(response, friend);
             }.bind(this), function(xhr){
             	this.hideLoader();
+            	this._super.onShowError(xhr.responseJSON.error.message);
             }.bind(this));
 		},
 		createChatUsersModal: function(response, friend) {
@@ -130,7 +132,7 @@ define([
                 this.createMessagesModal(messages, otherUserName, users);
             }.bind(this), function(xhr){
             	this.hideLoader();
-                // this.publicController.getModalsController().apiErrorPopup(xhr);
+                this._super.onShowError(xhr.responseJSON.error.message);
             }.bind(this));
 		},
 		registerForPresenceSignals: function(model) {
@@ -140,9 +142,9 @@ define([
 					//.........
 	            }.bind(this), function(xhr){
 	            	//.........
+	            	this._super.onShowError(xhr.responseJSON.error.message);
 	            }.bind(this));
 		},
-		//.........
 		onAddContact: function(users) {
 			var addContactView = new ChatAddContactView();
 			users.trigger('unselect');//unselect selected conversation
@@ -177,10 +179,8 @@ define([
 	            }.bind(this), function(xhr){
 	            	this.hideLoader();
 	            	callback(xhr);
-	                // this.publicController.getModalsController().apiErrorPopup(xhr);
 	            }.bind(this));
 		},
-		//........
 
 		updateUnreadTotal: function(messages) {
 			var total = messages.reduce(function(sum, message){
@@ -200,7 +200,7 @@ define([
 	                this.updateUnreadTotal(messages);
 	            }.bind(this), function(xhr){
 	            	this.hideLoader();
-	                // this.publicController.getModalsController().apiErrorPopup(xhr);
+	                this._super.onShowError(xhr.responseJSON.error.message);
 	            }.bind(this));
 		},
 		createMessagesModal: function(messages, otherUserName, users) {
@@ -228,7 +228,7 @@ define([
 					.then(function(friend){
 						//.........
 		            }.bind(this), function(xhr){
-		            	//.........
+		            	this._super.onShowError(xhr.responseJSON.error.message);
 		            }.bind(this));
 			}
 		},
@@ -257,7 +257,7 @@ define([
 				});
 				this.updateUnreadTotal(messages);
             }.bind(this), function(xhr){
-                // this.publicController.getModalsController().apiErrorPopup(xhr);
+                this._super.onShowError(xhr.responseJSON.error.message);
             }.bind(this));
 		},
 		onChatScrolled: function(messages) {
@@ -328,7 +328,7 @@ define([
 	                view.triggerMethod('scrollBottom');
 	            }.bind(this), function(xhr){
 	            	this.hideLoader();
-	                // this.publicController.getModalsController().apiErrorPopup(xhr);
+	                this._super.onShowError(xhr.responseJSON.error.message);
 	            }.bind(this));
 
 		},

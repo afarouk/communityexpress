@@ -113,16 +113,16 @@ define([
                 
 
             console.log('websocket disconnected: ', event.code + ":" + reason);
-            this.updateStatus('Disconnected');
+            this.updateStatus('Disconnected', event.code);
         },
 
         destroy: function() {
             this.websocket.close();
         },
 
-        updateStatus: function(status) {
+        updateStatus: function(status, code) {
             console.log(status);
-            this.trigger('updateStatus', status);
+            this.trigger('updateStatus', status, code);
         },
 
         sendMessage: function() {

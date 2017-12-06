@@ -16,7 +16,11 @@ define([
 			        appCache.set('saslData', window.saslData);
 			    }
 			    if (window.saslData.error) {
-		            loader.showFlashMessage(window.saslData.error.message);
+			    	dispatcher.get('popups').showMessage({
+						message: window.saslData.error.message,
+						loader: true
+					});
+					//TODO show error screen
 		            return;
 		        }
 

@@ -15,8 +15,12 @@ $chat-fw-msg: 400;
     justify-content: center;
     color: $chat_text;
     pointer-events: all;
+    visibility: hidden;
 
     /*transform: translate3d(0, 0, 0);*/
+    &.visible {
+        visibility: visible;
+    }
 
     line-height: 17px;
 

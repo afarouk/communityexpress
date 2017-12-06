@@ -3,10 +3,12 @@
 define([
 	'../scripts/Vent',
     '../scripts/appCache',
+    '../scripts/loader',
     './controllers/socketController',
     './controllers/chatController',
     '../scripts/controllers/userController'
-	], function(Vent, appCache, socketController, chatController, userController) {
+	], function(Vent, appCache, loader, 
+		socketController, chatController, userController) {
 
 	var Chat = Mn.Application.extend({
 		region: '#cmtyx_chat_block',
@@ -60,6 +62,31 @@ define([
 		onReconnectAllowed: function () {
 			var user = appCache.get('user');
 			return user && user.getUID() ? true : false;
+		},
+		onWSDisconnected: function(code) {
+			if (code === 1006) {
+				if (this.device === 'mobile') {
+					loader.showFlashMessage('Websockets error!', {
+						infinite: true
+					});
+				} else {
+					this.dispatcher.get('popups').showMessage({
+						message: 'Websockets error!',
+						loader: true,
+						infinite: true
+					});
+				}
+			}
+		},
+		onShowError: function(message) {
+			if (this.device === 'mobile') {
+				loader.showFlashMessage(message);
+			} else {
+				this.dispatcher.get('popups').showMessage({
+					message: message,
+					loader: true
+				});
+			}
 		},
 		onMessage: function(message) {
 			switch (message.signal) {
