@@ -6047,7 +6047,7 @@ input[name=promocode] {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 185px;
+    max-width: calc(100vw - 135px);
     white-space: nowrap;
 }
 
@@ -6075,7 +6075,7 @@ input[name=promocode] {
     line-height: 18px;
     font-size: 12px;
     text-overflow: ellipsis;
-    max-width: 220px;
+    max-width: calc(100vw - 90px);
     white-space: nowrap;
 }
 
