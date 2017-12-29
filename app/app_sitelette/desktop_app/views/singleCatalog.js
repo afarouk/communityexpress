@@ -3,9 +3,11 @@
 define([
 	'ejs!../templates/singleCatalog.ejs',
 	'./catalogTabs',
-	'./partials/catalogGroup'
-	], function(template, CatalogTabsView, CatalogGroupView){
+	'./partials/catalogGroup',
+	'moment'
+	], function(template, CatalogTabsView, CatalogGroupView, moment){
 	var SingleCatalogView = Mn.View.extend({
+		moment: moment,
 		template: template,
 		regions: {
 			tabs: '#catalog-tabs',
@@ -20,13 +22,30 @@ define([
 			this.options = options;
 		},
 		serializeData: function() {
+			this.groups = this.getValidGroups();
 			return {
 				catalogId: this.options.catalogId,
-				filled: this.options.catalog.collection.groups.length ? true : false
+				filled: this.groups.length ? true : false
 			};
 		},
+		getValidGroups: function() {
+			//filter groups by isValidSomeTimeOnly
+			var groups = this.options.catalog.collection.groups,
+				filtered = _.filter(groups, function(group){
+					if (!group.isValidSomeTimeOnly) {
+						return group;
+					} else {
+						var validity = group.groupValidityTimeSlots, //hasValidTime
+							startTime = (this.moment()).hour(validity.timeSlot.hour).minute(validity.timeSlot.minute),
+							endTime = (this.moment()).hour(validity.timeSlot.endHour).minute(validity.timeSlot.endMinute),
+							isBetween = this.moment().isBetween(startTime, endTime);
+						if (isBetween) return group;
+					}
+				}.bind(this));
+			return filtered;
+		},
 		onRender: function() {
-			var groups = new Backbone.Collection(this.options.catalog.collection.groups);
+			var groups = new Backbone.Collection(this.groups);
 			if (!groups.length) return;
 			var catalogTabs = new CatalogTabsView({
 				collection: groups

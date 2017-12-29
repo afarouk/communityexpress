@@ -13,9 +13,12 @@ CatalogItemView = require('./partials/catalog_item'),
 SidesCatalogItemView = require('./partials/sides_catalog_item'),
 popupController = require('../controllers/popupController'),
 RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),
-ListView = require('./components/listView');
+ListView = require('./components/listView'),
+moment = require('moment');
 
 var CatalogView = Backbone.View.extend({
+
+    moment: moment,
 
     name : 'catalog',
 
@@ -297,6 +300,22 @@ console.log('Preopen: ', this.preopenAllPictures);
         return this.colors[index % this.colors.length];
     },
 
+    getValidGroups: function(groups) {
+        //filter groups by isValidSomeTimeOnly
+        var filtered = _.filter(groups, function(group){
+                if (!group.isValidSomeTimeOnly) {
+                    return group;
+                } else {
+                    var validity = group.groupValidityTimeSlots, //hasValidTime
+                        startTime = (this.moment()).hour(validity.timeSlot.hour).minute(validity.timeSlot.minute),
+                        endTime = (this.moment()).hour(validity.timeSlot.endHour).minute(validity.timeSlot.endMinute),
+                        isBetween = this.moment().isBetween(startTime, endTime);
+                    if (isBetween) return group;
+                }
+            }.bind(this));
+        return filtered;
+    },
+
     renderItems: function() {
 
         this.updateBasket();
@@ -307,10 +326,12 @@ console.log('Preopen: ', this.preopenAllPictures);
         var catalogId = this.catalogId;
         var catalogDisplayText = this.catalogDisplayText;
 
+        var groups = this.getValidGroups(this.items.groups);
+
         switch (catalogType) {
         case 'COMBO':
 
-            _(this.items.groups).each(function(group, i) {
+            _(groups).each(function(group, i) {
                 if (group.unSubgroupedItems.length === 0)
                     return;
 
@@ -371,7 +392,7 @@ console.log('Preopen: ', this.preopenAllPictures);
         case 'ITEMIZED':
         case 'UNDEFINED':
         default:
-            _(this.items.groups).each(function(group, i) {
+            _(groups).each(function(group, i) {
                 if (group.unSubgroupedItems.length === 0)
                     return;
 
