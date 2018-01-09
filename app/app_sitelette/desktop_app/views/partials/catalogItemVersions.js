@@ -39,12 +39,13 @@ define([
 	            this.$el.addClass('out-of-stock');
 	        }
 		},
+
 		onCustomize: function(e) {
 			var $el = this.getRegion('customization').$el;
 			this.ui.customMark.removeClass('visible');
 			if ($el.is(':visible')) {
 				$el.slideToggle('slow');
-				this.ui.customize.removeClass('opened')
+				this.ui.customize.removeClass('opened');
 			} else {
 				this.dispatcher.get('customize')
 					.triggerMethod('customizeItem', this, this.savedVersion.subItems);
@@ -73,6 +74,13 @@ define([
 	        if (text2) available.push(text2);
 	        if (text3) available.push(text3);
 	        return available;
+	    },
+	    onUpdateItemPrice:  function(selectedItems) {
+	    	var adjustedPrice = 0;
+	    	_.each(selectedItems, function(item){
+	    		adjustedPrice += _.reduce(_.pluck(item.selected, 'priceAdjustment'), function(a, b) {return a+b;});
+	    	});
+	    	this.$('.version_order_price').text('$' + ( this.savedVersion.price + adjustedPrice ));
 	    },
 	    updateAddVersionButton: function() {
 	        var itemVersions = this.model.get('itemVersions'),

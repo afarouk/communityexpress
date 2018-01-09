@@ -17,7 +17,7 @@ define([
 			var allSelected = this.children.all(function(view){
 			  return view.selected;
 			});
-			this.trigger('selection:changed', allSelected);
+			this.trigger('selection:changed', allSelected, this.options.selectedItems);
 		}
 	});
 	return CustomizationCollectionView;

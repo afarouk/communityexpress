@@ -19,13 +19,13 @@ define([
 			this.listenTo(view, 'selection:changed', this.onSelectionChanged.bind(this));
 		},
 
-		onSelectionChanged: function(allSelected) {
+		onSelectionChanged: function(allSelected, selectedItems) {
 			if (allSelected) {
 				this.allSelected = true;
 			} else {
 				this.allSelected = false;				
 			}
-			this.trigger('selection:changed', allSelected);
+			this.trigger('selection:changed', allSelected, selectedItems);
 		}
 
 	});

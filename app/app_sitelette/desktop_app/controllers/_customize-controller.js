@@ -36,12 +36,13 @@ define([
 			layout.ui.customize.addClass('opened');
 		},
 
-		onSelectionChanged: function(layout, allSelected) {
+		onSelectionChanged: function(layout, allSelected, selectedItems) {
 			if (allSelected) {
 				layout.ui.customMark.addClass('visible');
 			} else {
 				layout.ui.customMark.removeClass('visible');	
 			}
+			layout.triggerMethod('updateItemPrice', selectedItems);
 		},
 		
 		onCustomConfirmed: function(layout, customizationView, selectedItems, def, model) {
@@ -69,7 +70,7 @@ define([
 				customizesModel.set('customizationNote', customizationNote);
 				customizesModel.set('wasCustomized', true);
 				customizesModel.set('price', adjustedPrice);
-				customizesModel.set('subItems', selectedItems);
+				customizesModel.set('subItems', Object.assign({}, selectedItems)); // <= clone without reference
 
 				return this.resolver(def, customizesModel);
 			} else {
@@ -87,6 +88,10 @@ define([
 			} else {
 				return this.resolver(def, model);
 			}
+		},
+
+		onResetCustomization: function() {
+			debugger;
 		}
 	});
 	return CustomizeController;
