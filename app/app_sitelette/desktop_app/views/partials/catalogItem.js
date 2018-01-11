@@ -53,12 +53,16 @@ define([
 			var price = this.model.get('price') * this.quantity;
 			this.ui.price.text(price.toFixed(2));
 		},
+		customizationReset: function() {
+			this.trigger('custom:reset');
+		},
 		onCustomize: function(e) {
 			var $el = this.getRegion('customization').$el;
 			this.ui.customMark.removeClass('visible');
 			if ($el.is(':visible')) {
 				$el.slideToggle('slow');
-				this.ui.customize.removeClass('opened')
+				this.ui.customize.removeClass('opened');
+				this.customizationReset();
 			} else {
 				this.dispatcher.get('customize')
 					.triggerMethod('customizeItem', this, this.model.get('subItems'));
