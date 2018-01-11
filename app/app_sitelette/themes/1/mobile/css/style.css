@@ -1572,8 +1572,12 @@ li.cmntyex-catalog-item.sub-radio-list.not-allow {
     top: -10px;
     right: -10px;
 }
-.customization-reset.visible {
+.customization-btn-container.resetVisible .customization-reset {
     display: inline-block;
+    pointer-events: all;
+}
+.customization-btn-container.resetVisible {
+    pointer-events: none;
 }
 
 .sides_extras_item_versions .versions_buttons .ui-select {

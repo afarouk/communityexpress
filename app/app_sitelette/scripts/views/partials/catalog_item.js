@@ -179,7 +179,7 @@ var CatalogItemView = Backbone.View.extend({
             this.$('.order_price').html('<br>');
         }
         this.$('.customization-mark').removeClass('visible');
-        this.$('.customization-reset').removeClass('visible');
+        this.$('.customization-btn-container').removeClass('resetVisible');
         this.$('.customization-note').text('');
     },
 
@@ -293,7 +293,7 @@ var CatalogItemView = Backbone.View.extend({
         var model,
             adjustedPrice;
         this.$('.customization-mark').addClass('visible');
-        this.$('.customization-reset').addClass('visible');
+        this.$('.customization-btn-container').addClass('resetVisible');
         if (this.model.get('hasVersions')) {
             model = this.savedVersion.version;
             adjustedPrice = model.get('price');
@@ -327,7 +327,7 @@ var CatalogItemView = Backbone.View.extend({
             this.savedVersion.version.unset('wasCustomized');
         } else {
             this.$('.customization-mark').removeClass('visible');
-            this.$('.customization-reset').removeClass('visible');
+            this.$('.customization-btn-container').removeClass('resetVisible');
             this.model.set('price', this.model.get('originalPrice'));
             this.model.set('subItems', this.model.get('originalSubItems'));
             this.model.unset('customizationNote');
