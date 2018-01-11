@@ -26,14 +26,25 @@ define([
 					itemModel: layout.model,
 					selectedItems: selectedItems
 				});
-				
+	
 			layout.customized = true;
 			layout.off('custom:confirmed')
 				  .on('custom:confirmed', this.onCustomConfirmed.bind(this, layout, customizationView, selectedItems));
+			layout.off('custom:reset')
+				  .on('custom:reset', this.onCustomReset.bind(this, selectedItems));
 			layout.showChildView('customization', customizationView);
 			layout.listenTo(customizationView, 'selection:changed', this.onSelectionChanged.bind(this, layout));
 			layout.getRegion('customization').$el.slideToggle('slow');
 			layout.ui.customize.addClass('opened');
+		},
+
+		onCustomReset: function(selectedItems) {
+			//remove all props from object without destroy reference
+			for (var prop in selectedItems) { 
+				if (selectedItems.hasOwnProperty(prop)) { 
+					delete selectedItems[prop]; 
+				} 
+			}
 		},
 
 		onSelectionChanged: function(layout, allSelected, selectedItems) {
