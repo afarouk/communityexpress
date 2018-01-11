@@ -192,6 +192,12 @@ if (validateParams('u')) {
     $uuidURL = null;
 }
 
+if (validateParams('catalogId')) {
+    $catalogId = $_REQUEST['catalogId'];
+} else {
+    $catalogId = null;
+}
+
 if (validateParams('street')) {
     $street = $_REQUEST['street'];
 } else {

@@ -122,7 +122,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
         return this.remove(this.getUUID(item));
     },
 
-    addItem : function(item, count, groupId, groupDisplayText,catalogId,catalogDisplayText) {
+    addItem : function(item, count, groupId, groupDisplayText,catalogId,catalogDisplayText, silent) {
         var itemModel = this.getItem(item);
         if (itemModel) {
             itemModel.add(count);
@@ -150,7 +150,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
             /*
              * add the itemModel to the collection
              */
-            this.add(itemModel);
+            this.add(itemModel, {silent:silent});
         }
         this.dumpCartToConsole();
     },

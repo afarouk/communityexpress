@@ -95,6 +95,11 @@ module.exports = {
             UID: getUser().getUID()
         });
     },
+    retrieveOrderByUUID: function(orderUUID) {
+        return gateway.sendRequest('retrieveOrderByUUID', {
+            orderUUID: orderUUID
+        });
+    },
     retrieveOrderByID: function(orderId) {
         return gateway.sendRequest('retrieveOrderByID', {
             o: orderId

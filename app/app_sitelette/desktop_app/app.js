@@ -92,10 +92,12 @@ define([
 			checkType: function() {
 				//TODO not ready
                 var type = window.community.type,
-                	uuid = window.community.uuidURL;
+                	uuid = window.community.uuidURL,
+                	catalogId = window.community.catalogId;
                 if (!type) return;
 		        delete community.type;
 		        delete community.uuidURL;
+		        delete community.catalogId;
 
 		        switch (type) {
 		            case 'd':
@@ -117,6 +119,15 @@ define([
 		                });
 		                //'openPromotionByShareUrl', uuid
 		                //&t=p&u=wtvngYZDQaKRcFZYfN2wCA
+		            	break;
+		            case 'i':
+		            	//Reorder
+		                //http://localhost/democicero?t=i&u=1ov96bO-Qv6_L3kpD6JYgQ&catalogId=43QYLDB6TRSHD3tBUNpopw&UID=user20.781305772384780045&demo=true
+		            	//http://localhost/democicero?t=i&u=fjcH2NQNSKC97wkH0x_Q4w&catalogId=43QYLDB6TRSHD3tBUNpopw&UID=user20.781305772384780045&demo=true
+		            	dispatcher.get('catalogs').getCatalogForReorder({
+		                	orderUUID: uuid,
+		                	catalogId: catalogId
+		                });
 		            	break;
 		            default:
 		            	throw new Error('Community type is wrong');

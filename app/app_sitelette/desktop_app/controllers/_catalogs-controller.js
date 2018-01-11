@@ -5,13 +5,14 @@ define([
 	'../../scripts/actions/saslActions',
     '../../scripts/actions/catalogActions',
     '../../scripts/actions/sessionActions',
+    '../../scripts/actions/orderActions',
     '../views/catalogsLayout',
     '../views/catalogs',
     '../views/singleCatalog',
     '../views/ItemPromotion',
     '../../scripts/models/CatalogBasketModel.js',
     '../views/blinderView'
-	], function(appCache, saslActions, catalogActions, sessionActions,
+	], function(appCache, saslActions, catalogActions, sessionActions, orderActions,
 		CatalogsLayoutView, CatalogsView, SingleCatalogView, ItemPromotionView, CatalogBasketModel,
 		BlinderView){
 	var CatalogsController = Mn.Object.extend({
@@ -20,12 +21,10 @@ define([
 			this.basket = null;
 		},
 		manageCatalog: function() {
+			if (window.community.type === 'i') return;
 			var saslData = appCache.get('saslData');
 	        if (saslData) {
 	            switch (saslData.retailViewType) {
-	                case 'ROSTER':
-	                    this.showRosterView(saslData);
-	                    break;
 	                case 'CATALOGS':
 	                    this.showCatalogsView(saslData);
 	                    break;
@@ -36,10 +35,6 @@ define([
 	            		break;
 	            }
 	        }
-		},
-
-		showRosterView: function(saslData) {
-
 		},
 
 		showCatalogsView: function(saslData) {
@@ -122,8 +117,80 @@ define([
 	            }.bind(this));
 		},
 
+		getCatalogForReorder: function(options) {
+			var sasl,
+	            id = [saslData.serviceAccommodatorId, saslData.serviceLocationId];
+			return saslActions.getSasl(id)
+	            .then(function(ret) {
+	                sasl = ret;
+	                return catalogActions.getCatalog(sasl.sa(), sasl.sl(), options.catalogId);
+	            }.bind(this)).then(function(catalog) {
+	                var isOpen = catalog.data.isOpen,
+	                    isOpenWarningMessage = catalog.data.isOpenWarningMessage;
+	                var catalogDetails = {
+	                    catalogUUID: catalog.data.catalogId,
+	                    catalogDisplayText: catalog.data.displayText,
+	                    catalogType: catalog.data.catalogType.enumText
+	                };
+	                
+                    var basket = new CatalogBasketModel();
+                    basket.setCatalogDetails(catalogDetails);
+                    appCache.set(sasl.sa() + ':' + sasl.sl() + ':' + catalog.data.catalogId + ':catalogbasket', basket);
+                    
+	                basket.each(function(item, index, list) {
+	                    var quantity = item.get('quantity');
+	                    var itemName = item.itemName;
+	                    var group = item.groupId;
+	                    console.log("retrieved catalog from cache ### " + itemName + ":[" + quantity + "] from Group:" + group);
+	                });
+
+	                basket.off('add remove change reset');
+	                basket.on('add remove change reset', this.onBasketChange.bind(this, {
+	                	basket: basket, 
+	                	sasl: sasl,
+	                	catalogId: options.catalogId,
+	                	deliveryPickupOptions: catalog.data.deliveryPickupOptions
+	                }));
+
+	                this.basket = basket; //not sure that it is good solution ???
+
+	                var singleCatalogView = new SingleCatalogView({
+	                        sasl: sasl,
+		                    catalog: catalog,
+		                    user: sessionActions.getCurrentUser(),
+		                    url: this.getUrl(sasl) + '/catalog',
+		                    basket: basket,
+		                    catalogId: options.catalogId,
+		                    isOpen: isOpen,
+		                    isOpenWarningMessage: isOpenWarningMessage
+		                });
+	            	this.layout.showChildView('catalogsContainer', singleCatalogView);
+	            	this.listenTo(singleCatalogView, 'backToCatalog' , this.onBackToCatalogs.bind(this));
+
+	            	this.retrieveOrder(options, catalog);
+	            }.bind(this));
+		},
+
+		retrieveOrder: function(options, catalog) {
+			orderActions.retrieveOrderByUUID(options.orderUUID)
+				.then(function(order) {
+					_.each(order.items, function(orderItem) {
+						console.log(orderItem);
+						console.log(orderItem.item);
+						//temporary tweak
+						if (orderItem.item.hasVersions) {
+							orderItem.item.hasVersions = false;
+							orderItem.item.isVersion = true;
+						}
+
+						this.basket.addItem(new Backbone.Model(orderItem.item), orderItem.quantity , null, null, null, null, true);
+					}.bind(this));
+					this.basket.trigger('change', 'silent');
+				}.bind(this));
+		},
+
 		onBasketChange: function(options, model, temp, changed) {
-			var changes = 'quantity';
+			var changes = model === 'silent' ? false : 'quantity';
 			if (changed) {
 				if (changed.add) {
 					changes = 'add';
@@ -132,9 +199,6 @@ define([
 				}
 			}
 			this.dispatcher.get('order').renderOrder(options, changes);
-
-			//basket reset
-			// if ((temp.previousModels && temp.previousModels.length > 0) && options.basket.length === 0) {}
 		},
 
 		showBlinder: function() {

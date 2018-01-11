@@ -94,6 +94,7 @@ module.exports = {
 
             retrieveOrdersByUID: ['GET', '/retail/retrieveOrdersByUID'],
             retrieveOrderByID: ['GET', '/html/retrieveOrderByID'],
+            retrieveOrderByUUID: ['GET', '/retail/retrieveOrderByUUID'],
 
             validatePromoCode: ['POST', '/retail/validateRetailPromoCode'],
             retrievePromoCodeByUUID: ['GET', '/retail/retrieveRetailPromoCodeByUUID'],
