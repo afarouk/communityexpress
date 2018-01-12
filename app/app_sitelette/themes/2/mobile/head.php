@@ -77,6 +77,7 @@
         window.community.UID = '<?php echo $UID ?>';
         window.community.type = '<?php echo $type ?>';
         window.community.uuidURL = '<?php echo $uuidURL ?>';
+        window.community.catalogId = '<?php echo $catalogId ?>';
         window.community.embedded = <?php echo  $embedded==TRUE?'true':'false'  ?>;
         window.community.desktop = <?php echo  $isDesktop==TRUE?'true':'false' ?>;
         window.community.publicAccess = <?php echo  $urlKeyAccess==TRUE?'true':'false'?>;

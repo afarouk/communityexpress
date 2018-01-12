@@ -166,6 +166,7 @@ App.prototype = {
 
         // !!! We should render all views and wait a little before scroll to block
         var defrs = _.pluck(this.viewsInLanding, 'deferred');
+        defrs = defrs.filter(function(n){ return n != undefined }); 
         $.when.apply( this, defrs )
             .then( function() {
                 if (typeof window.community.type !== 'undefined' && window.community.type !== '') {
@@ -209,9 +210,11 @@ App.prototype = {
     },
 
     checkType: function(type) {
-        var uuid = window.community.uuidURL;
+        var uuid = window.community.uuidURL,
+            catalogId = window.community.catalogId;
         delete community.type;
         delete community.uuidURL;
+        delete community.catalogId;
 
         switch (type) {
             case 'e':
@@ -271,6 +274,20 @@ App.prototype = {
                     rosterId: uuid,
                     launchedViaURL: true
                  }, { reverse: false });
+            break;
+            case 'i':
+                //Reorder
+                //http://localhost/democicero?t=i&u=ezH0YR9wQrqZgpVtCNe6CQ&catalogId=43QYLDB6TRSHD3tBUNpopw&UID=user20.781305772384780045&demo=true
+                this.goToPage('catalog', {
+                    sasl: appCache.get('saslData'),
+                    orderUUID: uuid,
+                    reOrder: true,
+                    catalogId: catalogId,
+                    backToRoster: false,
+                    backToCatalogs: false,
+                    backToCatalog: false,
+                    launchedViaURL: true
+                }, { reverse: false });
             break;
         };
     },

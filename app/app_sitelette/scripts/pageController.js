@@ -222,6 +222,8 @@ module.exports = {
         var catalogId = options.catalogId;
         var navbarView = options.navbarView;
         var launchedViaURL = options.launchedViaURL;
+        var reOrder = options.reOrder;
+        var orderUUID = options.orderUUID;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
@@ -258,6 +260,10 @@ module.exports = {
                 });
                 if (catalogId === 'SIDES' && rosterBasket) {
                     basket = rosterBasket;
+                }
+
+                if (reOrder) {
+                    //TODO get order by uuid
                 }
 
                 return {

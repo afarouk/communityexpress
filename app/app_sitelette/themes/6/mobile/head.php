@@ -77,6 +77,7 @@
         window.community.wsProtocol = '<?php echo $wsProtocol?>';
         window.community.UID = '<?php echo $UID ?>';
         window.community.fullCode = '<?php echo $fullCode ?>';
+        window.community.catalogId = '<?php echo $catalogId ?>';
         window.community.type = '<?php echo $type ?>';
         window.community.uuidURL = '<?php echo $uuidURL ?>';
         window.community.embedded = <?php echo  $embedded==TRUE?'true':'false'  ?>;
