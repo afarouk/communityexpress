@@ -122,8 +122,7 @@ define([
 		            	break;
 		            case 'i':
 		            	//Reorder
-		                //http://localhost/democicero?t=i&u=1ov96bO-Qv6_L3kpD6JYgQ&catalogId=43QYLDB6TRSHD3tBUNpopw&UID=user20.781305772384780045&demo=true
-		            	//http://localhost/democicero?t=i&u=fjcH2NQNSKC97wkH0x_Q4w&catalogId=43QYLDB6TRSHD3tBUNpopw&UID=user20.781305772384780045&demo=true
+		                //http://localhost/democicero?t=i&u=ezH0YR9wQrqZgpVtCNe6CQ&catalogId=43QYLDB6TRSHD3tBUNpopw&UID=user20.781305772384780045&demo=true
 		            	dispatcher.get('catalogs').getCatalogForReorder({
 		                	orderUUID: uuid,
 		                	catalogId: catalogId

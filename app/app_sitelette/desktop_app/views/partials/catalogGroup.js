@@ -37,7 +37,7 @@ define([
 			this.dispatcher.get('customize')
 				.checkCustomization(childView, basketItem)
 				.then(function(model){
-					console.log(model);
+					console.log(model.toJSON());
 					this.basket.addItem(model, 1,
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);
