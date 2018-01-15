@@ -257,9 +257,8 @@ console.log('Preopen: ', this.preopenAllPictures);
             this.$('.cart_items_number').text(this.basket.getItemsNumber());
             this.$('.total_price').text('$ ' + this.basket.getTotalPrice().toFixed(2));
         }
-
         //add items animation
-        if (model && model.get('quantity')) {
+        if (model && model != 're-order' && model.get('quantity')) {
             var $animElement = this.$('[name="cart-item-added"]');
             //reset animation on fasl click add item
             $animElement.addClass('stop');
@@ -279,6 +278,10 @@ console.log('Preopen: ', this.preopenAllPictures);
                 // animation quantity changed
                 $animElement.removeClass('added').addClass('changed').text('Item quantity changed');
             }
+        }
+
+        if (model === 're-order') {
+            this.openBasketEditPanel();
         }
     },
 

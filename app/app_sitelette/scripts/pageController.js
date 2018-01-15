@@ -263,7 +263,7 @@ module.exports = {
                 }
 
                 if (reOrder) {
-                    //TODO get order by uuid
+                    this.reOrder(catalog, orderUUID, basket);
                 }
 
                 return {
@@ -283,7 +283,132 @@ module.exports = {
                     isOpen: isOpen,
                     isOpenWarningMessage: isOpenWarningMessage
                 };
+            }.bind(this));
+    },
+
+    reOrder: function(catalog, orderUUID, basket) {
+        //TODO get order by uuid
+        orderActions.retrieveOrderByUUID(orderUUID)
+            .then(function(order) {
+               this.addOrderItems(order, catalog, basket);
+                //trigger change without show add item change quantity animation
+                basket.trigger('change', 're-order'); 
+            }.bind(this));
+    },
+
+    addOrderItems: function(order, catalog, basket) {
+        var groups = catalog.collection.groups,
+            unSubgroupedItems = [];
+        _.each(groups, function(group){
+            //prepare full items list from each group
+            unSubgroupedItems = unSubgroupedItems.concat(group.unSubgroupedItems);
+        });
+        _.each(order.items, function(orderItem) {
+            var item = orderItem.item,
+                itemId = item.itemId,
+                hasVersions = item.hasVersions,
+                itemVersion = item.itemVersion,
+                subItems = orderItem.subItems,
+                itemInCatalog = _.findWhere(unSubgroupedItems, {itemId: itemId});
+                //take order item and find it in catalog unsubgupped items list
+            if (itemInCatalog) {
+                var itemVersions = itemInCatalog.itemVersions,
+                    itemName = itemInCatalog.itemName,
+                    model;
+                if (hasVersions && itemVersions) {
+                    var version = _.findWhere(itemVersions, {itemVersion:itemVersion});
+                    //check if order item is version
+                    if (version) {
+                        var preparedSubItems = [];
+                        version.isVersion = true;
+                        version.itemName = itemName;
+
+                        //check if we have subItems in version
+                        if (version.subItems && subItems && subItems.length > 0) {
+                            model = this.prepareModelWithCustomization(version, subItems);
+                        } else {
+                            //add version without customization
+                            model = new Backbone.Model(version);
+                        }
+                    }
+                } else {
+                    if (itemInCatalog.subItems && subItems) {
+                        model = this.prepareModelWithCustomization(itemInCatalog, subItems);
+                    } else {
+                        model = new Backbone.Model(item);
+                    }
+                }
+                basket.addItem(model, orderItem.quantity , null, null, null, null, true);
+            }
+            
+        }.bind(this));
+    },
+
+    prepareModelWithCustomization: function(item, subItems) {
+        var preparedSubItems = [],
+            subItemsList = {},
+            subItemsInItem = item.subItems;
+        //make more appropriate subItemIds and subSubItemIds data structure
+        _.each(subItems, function(subItem){
+            var subSubItems = subItem.subSubItems;
+            _.each(subSubItems, function(subSubItem){
+                var subItemId = subSubItem.subItemId,
+                    subSubItemId = subSubItem.subSubItemId;
+                if (subItemsList[subItemId]) {
+                    subItemsList[subItemId].push(subSubItemId);
+                } else {
+                    subItemsList[subItemId] = [subSubItemId];
+                }
             });
+        });
+        //find subItems in version subItems list
+        _.each(subItemsList, function(itemInList, itemInListId) {
+            var itemSubItem = _.findWhere(subItemsInItem, {subItemId: +itemInListId});
+            if (itemSubItem) {
+                var prepared = {
+                    displayText: itemSubItem.displayText,
+                    selected: []
+                };
+                //prepare subItems list with appropriate for customization item in basket format
+                _.each(itemInList, function(subSubItemIdInList){
+                    var preparedSubSudItem = _.findWhere(itemSubItem.subSubItems, {subSubItemId: subSubItemIdInList});
+                    if (preparedSubSudItem) {
+                        prepared.selected.push(preparedSubSudItem);
+                    }
+                });
+                preparedSubItems.push(prepared);
+            }
+        });
+        //add item with subItems (customized)
+        return this.getCustomizedModel(item, preparedSubItems);
+    }, 
+
+    getCustomizedModel: function(item, preparedSubItems) {
+        console.log(item, preparedSubItems);
+        var customizationNote = item.itemName,
+            adjustedPrice = item.price;
+
+        customizationNote += '[';
+        _.each(preparedSubItems, function(subItem, sId) {
+            var selected = subItem.selected,
+                displayText = subItem.displayText;
+            customizationNote += displayText + ':';
+            customizationNote += _.reduce(selected, function(first, second){
+                var first = first || '';
+                return first + '+ ' + second.displayText + '(' + second.priceAdjustment.toFixed(2) + '),'; 
+            }, 0);
+            customizationNote = customizationNote.slice(0, -1);
+            customizationNote += '; ';
+            adjustedPrice += _.reduce(_.pluck(selected, 'priceAdjustment'), function(a, b) {return a+b;});
+        });
+        customizationNote = customizationNote.slice(0, -2);
+        customizationNote += ']';
+        var customizesModel = new Backbone.Model(item);
+        customizesModel.set('customizationNote', customizationNote);
+        customizesModel.set('wasCustomized', true);
+        customizesModel.set('price', adjustedPrice);
+        customizesModel.set('subItems', Object.assign({}, preparedSubItems)); // <= clone without reference
+        return customizesModel;
     },
 
     catalogs: function(options) {

@@ -278,6 +278,7 @@ App.prototype = {
             case 'i':
                 //Reorder
                 //http://localhost/democicero?t=i&u=ezH0YR9wQrqZgpVtCNe6CQ&catalogId=43QYLDB6TRSHD3tBUNpopw&UID=user20.781305772384780045&demo=true
+                //http://localhost/democicero?t=i&u=sUF3XHgFTqWWSpVO7ZrPDA&catalogId=43QYLDB6TRSHD3tBUNpopw&UID=user20.781305772384780045&demo=true
                 this.goToPage('catalog', {
                     sasl: appCache.get('saslData'),
                     orderUUID: uuid,
