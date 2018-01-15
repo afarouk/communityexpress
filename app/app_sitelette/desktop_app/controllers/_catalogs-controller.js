@@ -210,54 +210,63 @@ define([
 
 							//check if we have subItems in version
 							if (version.subItems && subItems && subItems.length > 0) {
-								var subItemsList = {},
-									subItemsInVersion = version.subItems;
-								//make more appropriate subItemIds and subSubItemIds data structure
-								_.each(subItems, function(subItem){
-									var subSubItems = subItem.subSubItems;
-									_.each(subSubItems, function(subSubItem){
-										var subItemId = subSubItem.subItemId,
-											subSubItemId = subSubItem.subSubItemId;
-										if (subItemsList[subItemId]) {
-											subItemsList[subItemId].push(subSubItemId);
-										} else {
-											subItemsList[subItemId] = [subSubItemId];
-										}
-									});
-								});
-								//find subItems in version subItems list
-								_.each(subItemsList, function(itemInList, itemInListId) {
-									var versionSubItem = _.findWhere(subItemsInVersion, {subItemId: +itemInListId});
-									if (versionSubItem) {
-										var prepared = {
-											displayText: versionSubItem.displayText,
-											selected: []
-										};
-										//prepare subItems list with appropriate for customization item in basket format
-										_.each(itemInList, function(subSubItemIdInList){
-											var preparedSubSudItem = _.findWhere(versionSubItem.subSubItems, {subSubItemId: subSubItemIdInList});
-											if (preparedSubSudItem) {
-												prepared.selected.push(preparedSubSudItem);
-											}
-										});
-										preparedSubItems.push(prepared);
-									}
-								});
-								//add version with subItems (customized)
-								model = this.getCustomizedModel(version, preparedSubItems);
+								model = this.prepareModelWithCustomization(version, subItems);
 							} else {
 								//add version without customization
 								model = new Backbone.Model(version);
 							}
 						}
 					} else {
-						model = new Backbone.Model(item);
+						if (itemInCatalog.subItems && subItems) {
+							model = this.prepareModelWithCustomization(itemInCatalog, subItems);
+						} else {
+							model = new Backbone.Model(item);
+						}
 					}
 					this.basket.addItem(model, orderItem.quantity , null, null, null, null, true);
 				}
 				
 			}.bind(this));
 		},
+
+		prepareModelWithCustomization: function(item, subItems) {
+			var preparedSubItems = [],
+				subItemsList = {},
+				subItemsInItem = item.subItems;
+			//make more appropriate subItemIds and subSubItemIds data structure
+			_.each(subItems, function(subItem){
+				var subSubItems = subItem.subSubItems;
+				_.each(subSubItems, function(subSubItem){
+					var subItemId = subSubItem.subItemId,
+						subSubItemId = subSubItem.subSubItemId;
+					if (subItemsList[subItemId]) {
+						subItemsList[subItemId].push(subSubItemId);
+					} else {
+						subItemsList[subItemId] = [subSubItemId];
+					}
+				});
+			});
+			//find subItems in version subItems list
+			_.each(subItemsList, function(itemInList, itemInListId) {
+				var itemSubItem = _.findWhere(subItemsInItem, {subItemId: +itemInListId});
+				if (itemSubItem) {
+					var prepared = {
+						displayText: itemSubItem.displayText,
+						selected: []
+					};
+					//prepare subItems list with appropriate for customization item in basket format
+					_.each(itemInList, function(subSubItemIdInList){
+						var preparedSubSudItem = _.findWhere(itemSubItem.subSubItems, {subSubItemId: subSubItemIdInList});
+						if (preparedSubSudItem) {
+							prepared.selected.push(preparedSubSudItem);
+						}
+					});
+					preparedSubItems.push(prepared);
+				}
+			});
+			//add item with subItems (customized)
+			return this.getCustomizedModel(item, preparedSubItems);
+		}, 
 
 		getCustomizedModel: function(item, preparedSubItems) {
 			console.log(item, preparedSubItems);
