@@ -129,7 +129,9 @@ module.exports = {
             medicurisAuthentication: ['POST', '/test/medicurisAuthentication'],
             secureChatAuthentication: ['POST', '/test/secureChatAuthentication'],
             getSASLcodeByPIN: ['POST', '/test/getSASLcodeByPIN'],
-            verifySASLcodeAndRetrieveUID: ['POST', '/test/verifySASLcodeAndRetrieveUID']
+            verifySASLcodeAndRetrieveUID: ['POST', '/test/verifySASLcodeAndRetrieveUID'],
+
+            vantivTransactionSetup: ['POST', '/ext/vantivTransactionSetup']
         };
     }
 };

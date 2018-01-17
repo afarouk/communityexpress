@@ -104,5 +104,12 @@ module.exports = {
         return gateway.sendRequest('retrieveOrderByID', {
             o: orderId
         });
+    },
+
+    vantivTransactionSetup: function(orderDetails, returnURL) {
+        return gateway.sendRequest('vantivTransactionSetup', {
+            orderDetails: orderDetails,
+            returnURL: returnURL
+        });
     }
 };
