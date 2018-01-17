@@ -28,6 +28,9 @@ define([
 					this.basket.addItem(model, model.get('quantity'), 
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);
+					if (model.get('wasCustomized')) {
+						childView.triggerMethod('closeCustomization');
+					}
 				}.bind(this));
 
 			event.preventDefault();
@@ -41,6 +44,9 @@ define([
 					this.basket.addItem(model, 1,
 						 this.options.groupId, this.options.groupDisplayText, 
 						 this.options.catalogId,this.options.catalogDisplayText);
+					if (model.get('wasCustomized')) {
+						childView.triggerMethod('closeCustomization');
+					}
 				}.bind(this));
 		},
 		onChildviewItemsCustomized: function(childView) {

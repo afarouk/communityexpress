@@ -180,7 +180,6 @@ define([
 				}.bind(this));
 		},
 
-		//*wasn't covered case when regular item has customization
 		addOrderItems: function(order, catalog) {
 			var groups = catalog.collection.groups,
 				unSubgroupedItems = [];

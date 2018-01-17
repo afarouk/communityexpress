@@ -67,7 +67,17 @@ define([
 				this.dispatcher.get('customize')
 					.triggerMethod('customizeItem', this, this.model.get('subItems'));
 			}
-		}
+		},
+		
+		onCloseCustomization: function() {
+	    	var $el = this.getRegion('customization').$el;
+			this.ui.customMark.removeClass('visible');
+			if ($el.is(':visible')) {
+				$el.slideToggle('slow');
+				this.ui.customize.removeClass('opened');
+				this.customizationReset();
+			}
+	    },
 	});
 
 	return CatalogGroupItemView;
