@@ -1,9 +1,14 @@
 .cmtyx_desktop_application {
   .grid {
     .cmtyx_cart_block {
-      .summary_page {
-        padding: 15px 10px 70px 10px;
-        height: 702px;
+      .vantiv_page {
+        padding: 0;
+        height: 400px;
+
+        iframe {
+          width: 100%;
+          height: 100%;
+        }
 
         .navigation_block {
           .nav_next_btn {
@@ -13,12 +18,6 @@
               visibility: visible;
             }
           }
-        }
-
-        .summary-wrapper {
-          height: calc(100% - 90px);
-          overflow-y: auto;
-          padding-right: 10px;
         }
       }
     }

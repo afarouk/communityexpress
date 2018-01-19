@@ -158,8 +158,14 @@ if (validateParams('friendlyURL')) {
       case 'support':
           $pageAccess = 'common_support.php';
           break;
-	 case 'Pricing':
+	  case 'Pricing':
           $pageAccess = 'common_pricing.php';
+          break;
+      case 'Vantiv':
+          $pageAccess = 'common_vantiv.php';
+          if (validateParams('HostedPaymentStatus')) {
+            $HostedPaymentStatus = $_REQUEST['HostedPaymentStatus'];
+          }
           break;
       default:
     }

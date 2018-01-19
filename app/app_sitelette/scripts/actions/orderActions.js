@@ -106,10 +106,7 @@ module.exports = {
         });
     },
 
-    vantivTransactionSetup: function(orderDetails, returnURL) {
-        return gateway.sendRequest('vantivTransactionSetup', {
-            orderDetails: orderDetails,
-            returnURL: returnURL
-        });
+    vantivTransactionSetup: function(vantivParams) {
+        return gateway.sendRequest('vantivTransactionSetup', vantivParams);
     }
 };

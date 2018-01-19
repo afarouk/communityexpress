@@ -15,10 +15,12 @@ define([
 	'../views/order/choosePayment',
 	'../views/order/addCard',
 	'../views/order/summary',
+	'../views/order/vantiv',
+	'ejs!../templates/order/vantivStyles.ejs',
 	'../views/cartLoader',
 	], function(appCache, h, orderActions, saslActions, sessionActions, RosterOrderModel,
 		OrderLayoutView, CartPageView, ChooseAddressView, AddAddressView, 
-		OrderTimeView, ChoosePaymentView, AddCardView, SummaryView, CartLoader){
+		OrderTimeView, ChoosePaymentView, AddCardView, SummaryView, VantivView, VantivStyles, CartLoader){
 	var OrderController = Mn.Object.extend({
 		initialize: function() {
 			this.layout = new OrderLayoutView();
@@ -132,15 +134,18 @@ define([
                 sasl = ret;
                 return orderActions.getOrderPrefillInfo();
             }).then(function(ret) {
+            	var sa = sasl.get('serviceAccommodatorId'),
+                    sl = sasl.get('serviceLocationId'),
+                    paymentProcessor = this.options.sasl.get('services').catalog.paymentProcessor;
                 addresses = ret.addresses;
                 fundsource = ret.fundsource;
-                var sa = sasl.get('serviceAccommodatorId'),
-                    sl = sasl.get('serviceLocationId');
+	        	// if (paymentProcessor === 'VANTIV') {
 
             	var modelOptions = {
             		sasl: sasl,
                     addresses: addresses,
                     fundsource: fundsource,
+                    paymentProcessor: paymentProcessor,
                     user: sessionActions.getCurrentUser(),
                     basket: options.basket,
                     catalogId: options.catalogId,
@@ -330,11 +335,59 @@ define([
 			}.bind(this));
 		},
 		onSummaryNext: function(model) {
-			this.onPlaceOrder(model);
+			if (model.additionalParams.paymentProcessor === 'VANTIV') {
+				this.onVantivSetup(model);
+			} else {
+				this.onPlaceOrder(model);
+			}
 		},
 		onSummaryBack: function(model) {
 			this.showChoosePayment(model);
 		},
+		//........vantiv
+		onVantivSetup: function(model) {
+			var user = appCache.get('user'),
+				uuid = user ? user.getUID() : null,
+				vantivParams = {
+					UID: uuid,
+					serviceAccommodatorId: model.additionalParams.sasl.sa(),
+					serviceLocationId: model.additionalParams.sasl.sl(),
+					payload: {
+						tipAmount: model.get('tipAmount'),
+						taxAmount: model.get('taxAmount'),
+						totalAmount: model.get('totalAmount'),
+						currencyCode: model.get('currencyCode'),
+						vantivReturnURL: (community.host === 'localhost' ? 'http://' : community.protocol) + community.host + '/Vantiv',
+						vantivCSS: VantivStyles() //tweak for vantiv styles
+					}
+				};
+			orderActions.vantivTransactionSetup(vantivParams)
+	            .then(function(response){
+					this.showVantivIframe(response, model);
+	            }.bind(this));
+		},
+		showVantivIframe: function(data, model) {
+			var vantiv = new VantivView({
+                	model: new Backbone.Model(data)
+                });
+			model.set('orderUUID', data.orderUUID);
+			vantiv.dispatcher = this.dispatcher;
+            this.layout.showChildView('orderContainer', vantiv);
+            this.listenTo(vantiv, 'vantiv.success', this.onVantivResponse.bind(this, model));
+		},
+		onVantivResponse: function(model, status) {
+			if (status === 'Complete') {
+				this.onPlaceOrder(model);
+			} else {
+				model.set('orderUUID', null);
+				this.showSummary(model);
+	            this.dispatcher.get('popups').showMessage({
+	            	message: 'Credit card error',
+	            	confirm: 'ok'
+	            });
+			}
+		},
+		//...............
 		//.......
 		onPlaceOrder: function(model) {
 			console.log('place order');

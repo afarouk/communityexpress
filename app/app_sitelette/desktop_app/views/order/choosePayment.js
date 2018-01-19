@@ -65,7 +65,8 @@ define([
 	            discount: this.model.additionalParams.discountDisplay ? this.model.additionalParams.discountDisplay.toFixed(2) : 0,
 	            afterDiscount: this.model.additionalParams.afterDiscount ? this.model.additionalParams.afterDiscount.toFixed(2) : null,
 	            promoCode: this.model.additionalParams.promoCode,
-	            minimumPurchase: this.model.additionalParams.minimumPurchase
+	            minimumPurchase: this.model.additionalParams.minimumPurchase,
+	            paymentProcessor: this.model.additionalParams.paymentProcessor
 			});
                         
 		},
@@ -246,7 +247,11 @@ define([
 				this.model.set('cashSelected', false);
         		this.model.set('creditCardSelected', true);
 			}
-	    	this.trigger('onNextStep', card, this.tabActive);
+			if (this.model.additionalParams.paymentProcessor === 'VANTIV') {
+	    		this.trigger('onNextStep', 'saved', this.tabActive);
+	    	} else {
+	    		this.trigger('onNextStep', card, this.tabActive);
+	    	}
 	    },
 
 	    onBack: function() {

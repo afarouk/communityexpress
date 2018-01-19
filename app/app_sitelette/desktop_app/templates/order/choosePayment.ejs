@@ -23,22 +23,28 @@
 </div>
 
 <div id="credit" class="tabcontent card">
-  <div class="title">
-    Choose card:
-  </div>
+  <% if (paymentProcessor !== 'VANTIV') { %>
+    <div class="title">
+      Choose card:
+    </div>
 
-  <form>
-      <% if (cardNumber) { %>
-          <input data-card="saved" type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice" checked='checked'>
-          <label for="saved_card"><%= creditCard.cardNumber %></label>
-          <br>
-          <input data-card="another" type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice">
-          <label for="use_another">Add another card</label>
-      <% } else { %>
-          <input data-card="another" type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice" checked='checked'>
-          <label for="use_another">Add another card</label>
-      <% } %>
-  </form>
+    <form>
+        <% if (cardNumber) { %>
+            <input data-card="saved" type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice" checked='checked'>
+            <label for="saved_card"><%= creditCard.cardNumber %></label>
+            <br>
+            <input data-card="another" type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice">
+            <label for="use_another">Add another card</label>
+        <% } else { %>
+            <input data-card="another" type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice" checked='checked'>
+            <label for="use_another">Add another card</label>
+        <% } %>
+    </form>
+  <% } else { %>
+    <div class="title">
+      Use card for payment.
+    </div>
+  <% } %>
 
   <div class="bottom_btn_wrapper">
     <div class="bottom_next_btn nav_next_btn">

@@ -12,13 +12,15 @@ define([
 		className: 'page summary_page',
 		ui: {
 			back: '.nav_back_btn',
-			next: '.place_order_btn',
+			next: '.nav_next_btn',
+			order: '.place_order_btn',
 			add_note_btn: '.add-note',
 			add_note_text: '.note-text'
 		},
 		events: {
 			'click @ui.back': 'onBack',
 			'click @ui.next': 'onNext',
+			'click @ui.order': 'onNext',
 			'click .plus_button': 'incrementTip',
             'click .minus_button': 'decrementTip',
             'click .add-note': 'toggleAddNote',
@@ -58,7 +60,8 @@ define([
 	            discount: this.model.additionalParams.discountDisplay ? this.model.additionalParams.discountDisplay.toFixed(2) : 0,
 	            afterDiscount: this.model.additionalParams.afterDiscount ? this.model.additionalParams.afterDiscount.toFixed(2) : null,
 	            promoCode: this.model.additionalParams.promoCode,
-	            minimumPurchase: this.model.additionalParams.minimumPurchase
+	            minimumPurchase: this.model.additionalParams.minimumPurchase,
+	            paymentProcessor: this.model.additionalParams.paymentProcessor
 			});
 		},
 		getAddressFromSasl: function() {
