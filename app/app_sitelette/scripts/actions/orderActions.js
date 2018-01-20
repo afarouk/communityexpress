@@ -21,7 +21,7 @@ module.exports = {
     moment: moment,
     placeOrder: function (sa, sl, options) {
         checkOptions(options);
-        return gateway.sendRequest('createUserOrder', {
+        return gateway.sendRequest('createAdhocOrderWeb', {
             payload: _.extend(options, {
                 userName: getUser().getUserName(),
                 serviceAccommodatorId: sa,

@@ -84,9 +84,9 @@ module.exports = {
             getCatalogs: ['GET', '/retail/retrieveCatalogsIds'],
             getSubItems: ['GET', '/retail/retrieveSubItems'],
             getRoster: ['GET', '/retail/retrieveRoster'],
-            createUserOrder: ['POST', '/retail/createUserOrderClient'],
-            createUserPromoOrderSingleton: ['POST', '/retail/createUserOrderSingleton'],
-            createUserEventOrderSingleton: ['POST', '/reservations/createUserOrderSingleton'],
+            createAdhocOrderWeb: ['POST', '/retail/createAdhocOrderWeb'],
+            createUserPromoOrderSingleton: ['POST', '/retail/createAdhocOrderWebSingleton'],
+            createUserEventOrderSingleton: ['POST', '/reservations/createAdhocOrderWebSingleton'],
             getItemDetailsForPromoItem: ['GET', '/retail/retreiveItemDetailsForPromo'],
             getEventDetails: ['GET', '/reservations/retreiveEventDetailsForPurchase'],
 

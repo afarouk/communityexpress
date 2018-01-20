@@ -10568,7 +10568,7 @@ com.faralam.getSliderPicURLs = function (step, itemId) {
 }
 
 com.faralam.common.SubmitUserOrder = function () {
-    com.faralam.SubmitUserOrder = com.faralam.serverURL + 'retail/createUserOrder';
+    com.faralam.SubmitUserOrder = com.faralam.serverURL + 'retail/createAdhocOrderWeb';
     com.faralam.SubmitUserOrder = com.faralam.SubmitUserOrder + "?" + encodeURI('UID=' + sessionStorage.UID );
     var items='';
     $("#order_item_table tr").each(function(index,element){
