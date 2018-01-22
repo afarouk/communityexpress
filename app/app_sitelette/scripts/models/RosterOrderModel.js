@@ -19,6 +19,7 @@ var RosterOrderModel = Backbone.Model.extend({
 		this.setAdditionalParams(options);
 	    this.set('promoCode',options.promoCode);
 	    this.set('promoUUID',options.promoUUID);
+	    this.set('paymentProcessor',options.paymentProcessor);
 	},
 
 	setAdditionalParams: function(options) {
@@ -57,11 +58,8 @@ var RosterOrderModel = Backbone.Model.extend({
 			promoCode: options.promoCode,
 			promoCodeActive: false,
 			deliveryDate: null,
-			deliveryPickupOptions: options.deliveryPickupOptions || null,
-			paymentProcessor: options.paymentProcessor
+			deliveryPickupOptions: options.deliveryPickupOptions || null
 		});
-           
-
 	},
 
 	getDefaults: function(options) {

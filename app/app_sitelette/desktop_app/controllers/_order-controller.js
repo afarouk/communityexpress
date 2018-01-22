@@ -139,7 +139,6 @@ define([
                     paymentProcessor = this.options.sasl.get('services').catalog.paymentProcessor;
                 addresses = ret.addresses;
                 fundsource = ret.fundsource;
-	        	// if (paymentProcessor === 'VANTIV') {
 
             	var modelOptions = {
             		sasl: sasl,
@@ -335,7 +334,7 @@ define([
 			}.bind(this));
 		},
 		onSummaryNext: function(model) {
-			if (model.additionalParams.paymentProcessor === 'VANTIV') {
+			if (model.get('paymentProcessor') === 'VANTIV') {
 				this.onVantivSetup(model);
 			} else {
 				this.onPlaceOrder(model);
@@ -373,11 +372,22 @@ define([
 			model.set('orderUUID', data.orderUUID);
 			vantiv.dispatcher = this.dispatcher;
             this.layout.showChildView('orderContainer', vantiv);
-            this.listenTo(vantiv, 'vantiv.success', this.onVantivResponse.bind(this, model));
+            this.listenTo(vantiv, 'vantiv.success', this.onVantivResponse.bind(this, data.transactionSetupId, data.validationCode, model));
 		},
-		onVantivResponse: function(model, status) {
+		onVantivResponse: function(transactionSetupId, validationCode, model, vantiv) {
+			var status = vantiv.transactionId1;
 			if (status === 'Complete') {
-				this.onPlaceOrder(model);
+				if (vantiv.paymentDetails1 == transactionSetupId && vantiv.paymentDetails2 == validationCode) {
+					_.extend(model.attributes, vantiv);
+					this.onPlaceOrder(model);
+				} else {
+					model.set('orderUUID', null);
+					this.showSummary(model);
+		            this.dispatcher.get('popups').showMessage({
+		            	message: 'Transaction error',
+		            	confirm: 'ok'
+		            });
+				}
 			} else {
 				model.set('orderUUID', null);
 				this.showSummary(model);

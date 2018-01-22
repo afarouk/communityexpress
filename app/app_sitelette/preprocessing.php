@@ -163,9 +163,18 @@ if (validateParams('friendlyURL')) {
           break;
       case 'Vantiv':
           $pageAccess = 'common_vantiv.php';
-          if (validateParams('HostedPaymentStatus')) {
-            $HostedPaymentStatus = $_REQUEST['HostedPaymentStatus'];
-          }
+          $vantivPaymentDetails1 = $_REQUEST['TransactionSetupID'];
+          $vantivPaymentDetails2 = $_REQUEST['ValidationCode'];
+          $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
+          $vantivTransactionId2 = $_REQUEST['TransactionID'];
+          $vantivTransactionId3 = $_REQUEST['ExpressResponseCode'];
+          $vantivTransactionId4 = $_REQUEST['ExpressResponseMessage'];
+          $vantivTransactionId5 = $_REQUEST['CVVResponseCode'];
+          $vantivTransactionId6 = $_REQUEST['ApprovalNumber'];
+          $vantivTransactionId7 = $_REQUEST['LastFour'];
+          $vantivTransactionId8 = $_REQUEST['CardLogo'];
+          $vantivTransactionId9 = $_REQUEST['ApprovedAmount'];
+          $vantivTransactionId10 = $_REQUEST['Bin'];
           break;
       default:
     }
