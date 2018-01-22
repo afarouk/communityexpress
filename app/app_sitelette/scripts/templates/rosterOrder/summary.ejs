@@ -12,7 +12,7 @@
                 <p class="delivery_date_text">Selected date</p>
                 <p class="selected_date"><%= deliveryDate.day + ' ' + deliveryDate.time.displayString %></p>
             <% } %>
-            <% if (cardNumber) { %>
+            <% if (cardNumber && paymentProcessor !== 'VANTIV') { %>
                 <p class="card_text">Card</p>
                 <p class="card_number"><%= cardNumber %></p>
             <% } %>
@@ -108,7 +108,11 @@
                     <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
                 </div>
                 <div class="ui-block-b p-l-10">
-                    <button class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Place order</button>
+                    <% if (paymentProcessor === 'VANTIV') { %>
+                        <button class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                    <% } else { %>
+                        <button class="ui-btn ui-corner-all next_btn cmtyx_color_1 cmtyx_border_color_1">Place order</button>
+                    <% } %>
                 </div>
             </div>
         </div>

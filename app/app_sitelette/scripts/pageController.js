@@ -18,6 +18,7 @@ var Vent = require('./Vent'),
     catalogActions = require('./actions/catalogActions'),
     contestActions = require('./actions/contestActions'),
     eventActions = require('./actions/eventActions'),
+    vantivStyles = require('ejs!./templates/rosterOrder/vantivStyles.ejs'),
     ReviewsCollection = require('./collections/reviews');
 
 var visited = {
@@ -819,7 +820,8 @@ module.exports = {
                 addresses = ret.addresses;
                 fundsource = ret.fundsource;
                 var sa = sasl.get('serviceAccommodatorId'),
-                    sl = sasl.get('serviceLocationId');
+                    sl = sasl.get('serviceLocationId'),
+                    paymentProcessor = sasl.get('services').catalog.paymentProcessor;
                 /*
                  * pull up the basket for this sasl
                  */
@@ -831,6 +833,7 @@ module.exports = {
                     uuid: uuid,
                     addresses: addresses,
                     fundsource: fundsource,
+                    paymentProcessor: paymentProcessor,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/roster',
                     basket: basket,
@@ -868,6 +871,35 @@ module.exports = {
 
     summary: function(options) {
         return $.Deferred().resolve(options).promise();
+    },
+
+    vantiv: function(options) {
+        return saslActions.getSasl(options.id)
+            .then(function(ret) {
+                var sasl = ret,
+                    user = sessionActions.getCurrentUser(),
+                    vantivParams = {
+                        UID: user.getUID(),
+                        serviceAccommodatorId: sasl.sa(),
+                        serviceLocationId: sasl.sl(),
+                        payload: {
+                            tipAmount: options.model.get('tipAmount'),
+                            taxAmount: options.model.get('taxAmount'),
+                            totalAmount: options.model.get('totalAmount'),
+                            currencyCode: options.model.get('currencyCode'),
+                            vantivReturnURL: (community.host === 'localhost' ? 'http://' : community.protocol) + community.host + '/Vantiv',
+                            vantivCSS: vantivStyles() //tweak for vantiv styles
+                        }
+                    };
+            return orderActions.vantivTransactionSetup(vantivParams)
+                .then(function(data){
+                    options.model.set('orderUUID', data.orderUUID);
+                    return {
+                        model: new Backbone.Model(data),
+                        summaryModel: options.model
+                    };
+                }.bind(this));
+            });
     },
 
     roster_order: function(options) {

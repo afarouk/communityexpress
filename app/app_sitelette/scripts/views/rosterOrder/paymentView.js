@@ -179,10 +179,14 @@ var PaymentView = Backbone.View.extend({
         var checked = this.$(this.radio).find(':checked');
         if (this.cashSelected) {
             this.onPlaceOrder();
-        } else if (checked.attr('id') === 'use_another') {
-            this.triggerPaymentCard();
         } else {
-            this.triggerSummary();
+            if (this.model.get('paymentProcessor') === 'VANTIV') {
+                this.triggerSummary();
+            } else if (checked.attr('id') === 'use_another') {
+                this.triggerPaymentCard();
+            } else {
+                this.triggerSummary();
+            }
         }
     },
 

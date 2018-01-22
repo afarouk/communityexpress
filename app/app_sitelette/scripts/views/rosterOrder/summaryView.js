@@ -30,6 +30,7 @@ var SummaryView = Backbone.View.extend({
         this.$el.html(template(this.renderData()));
         this.createCircles();
         this.setElement(this.$el.children().eq(0));
+
         return this;
     },
 
@@ -43,14 +44,16 @@ var SummaryView = Backbone.View.extend({
             tpl = $(html).html();
 
         this.$el.html(tpl);
+
+        if (this.options.fromVantiv) this.onVantivResponse(this.options.fromVantiv);
     },
 
     onShow: function() {
         this.getTipInfo();
         this.setTotalPriceWithTip();
         this.addEvents({
-            'click .placeOrderBtn': 'onPlaceOrder',
-            'click .next_btn': 'onPlaceOrder',
+            'click .placeOrderBtn': 'onNext',
+            'click .next_btn': 'onNext',
             'click .nav_back_btn': 'goBack',
             'click .plus_button': 'incrementTip',
             'click .minus_button': 'decrementTip',
@@ -220,6 +223,43 @@ var SummaryView = Backbone.View.extend({
 
         this.model.set({'totalAmount': totalAmount.toFixed(2)}, {silent:true});
         this.model.trigger('change');
+    },
+
+    onNext: function() {
+        if (this.model.get('paymentProcessor') === 'VANTIV') {
+            this.options.fromVantiv = null;
+            Vent.trigger('viewChange', 'vantiv', {
+                model: this.model,
+                backTo: 'payment'
+            });
+        } else {
+            this.onPlaceOrder();
+        }
+    },
+
+    onVantivResponse: function(fromVantiv) {
+        var vantiv = fromVantiv.response,
+            validationCode = fromVantiv.validationCode,
+            status = vantiv.transactionId1;
+        this.options.fromVantiv = null;
+        if (status === 'Complete') {
+            if (validationCode == vantiv.paymentDetails2) {
+                _.extend(this.model.attributes, vantiv);
+                this.onPlaceOrder();
+            } else {
+                this.model.unset('orderUUID');
+                popupController.textPopup({
+                    text: 'Vantiv validation error.'
+                });
+                return;
+            }
+        } else {
+            this.model.unset('orderUUID');
+            popupController.textPopup({
+                text: 'Credit card error.'
+            });
+            return;
+        }
     },
 
     onPlaceOrder: function() {

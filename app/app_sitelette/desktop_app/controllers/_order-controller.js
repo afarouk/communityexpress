@@ -379,6 +379,7 @@ define([
 			if (status === 'Complete') {
 				if (vantiv.paymentDetails1 == transactionSetupId && vantiv.paymentDetails2 == validationCode) {
 					_.extend(model.attributes, vantiv);
+					// console.log(JSON.stringify(model.toJSON()));
 					this.onPlaceOrder(model);
 				} else {
 					model.set('orderUUID', null);

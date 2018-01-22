@@ -34,6 +34,7 @@ var LandingView = require('./views/landingView'), //
     PaymentView = require('./views/rosterOrder/paymentView'),
     PaymentCardView = require('./views/rosterOrder/paymentCardView'),
     SummaryView = require('./views/rosterOrder/summaryView'),
+    VantivView = require('./views/rosterOrder/vantivView'),
     NavbarView = require('./views/headers/navbarView');
 
 module.exports = {
@@ -236,6 +237,9 @@ module.exports = {
             break;
         case 'summary':
             view = new SummaryView(options);
+            break;
+        case 'vantiv':
+            view = new VantivView(options);
             break;
         case 'eventActive':
             view = new EventActiveView(_.extend(options, {

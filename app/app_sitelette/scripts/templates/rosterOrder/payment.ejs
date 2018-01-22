@@ -18,28 +18,40 @@
         </div>
         <% if (paymentOnlineAccepted) { %>
             <div id="credit" class="ui-body-d ui-content">
-                <p class="choose_card_text">Choose card:</p>
-                <form>
-                    <% if (cardNumber) { %>
-                        <label for="saved_card"><%= creditCard.cardNumber %></label>
-                        <input type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice" checked='checked'>
-                        <label for="use_another">Add another card</label>
-                        <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice">
-                    <% } else { %>
-                        <label for="saved_card" class="hidden"></label>
-                        <input type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice hidden" checked='checked'>
-                        <label for="use_another">Add another card</label>
-                        <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice" checked='checked'>
-                    <% } %>
-                </form>
-                <div class="ui-grid-a back_next_btns">
-                    <div class="ui-block-a p-r-10">
-                        <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                <% if (paymentProcessor !== 'VANTIV') { %>
+                    <p class="choose_card_text">Choose card:</p>
+                    <form>
+                        <% if (cardNumber) { %>
+                            <label for="saved_card"><%= creditCard.cardNumber %></label>
+                            <input type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice" checked='checked'>
+                            <label for="use_another">Add another card</label>
+                            <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice">
+                        <% } else { %>
+                            <label for="saved_card" class="hidden"></label>
+                            <input type="radio" name="radio-choice-card" id="saved_card" class="cardRadioChoice hidden" checked='checked'>
+                            <label for="use_another">Add another card</label>
+                            <input type="radio" name="radio-choice-card" id="use_another" class="cardRadioChoice" checked='checked'>
+                        <% } %>
+                    </form>
+                    <div class="ui-grid-a back_next_btns">
+                        <div class="ui-block-a p-r-10">
+                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                        </div>
+                        <div class="ui-block-b p-l-10">
+                            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                        </div>
                     </div>
-                    <div class="ui-block-b p-l-10">
-                        <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                <% } else { %>
+                    <p class="choose_card_text">Use card for payment.</p>
+                    <div class="ui-grid-a back_next_btns">
+                        <div class="ui-block-a p-r-10">
+                            <button class="ui-btn ui-corner-all back_btn nav_back_btn cmtyx_border_color_1 cmtyx_text_color_1">Back</button>
+                        </div>
+                        <div class="ui-block-b p-l-10">
+                            <button class="ui-btn ui-corner-all next_btn nav_next_btn cmtyx_color_1 cmtyx_border_color_1">Next</button>
+                        </div>
                     </div>
-                </div>
+                <% } %>
             </div>
         <% } %>
         <% if (allowCash) { %>

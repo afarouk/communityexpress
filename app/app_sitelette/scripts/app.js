@@ -365,7 +365,11 @@ App.prototype = {
         //check if view was created
         exists = this.checkInstance(viewName);
         if (this.shouldBeLoadedFromCache(viewName, exists, params)) {
-            if (params && params.backTo) exists.options.backTo = params.backTo;
+            if (params) {
+                if (params.backTo) exists.options.backTo = params.backTo;
+                if (params.fromVantiv) exists.options.fromVantiv = params.fromVantiv;
+            }
+
             this.changePage(exists, options);
             loader.hide();
         } else {
@@ -402,6 +406,7 @@ App.prototype = {
                 viewName === 'customization' ||
                 viewName === 'orders_history' ||
                 viewName === 'order_details' ||
+                viewName === 'vantiv' ||
                 (viewName === 'address' && this.previousViewName === 'roster' ) ||
                 (viewName === 'address' && this.previousViewName === 'catalog' ) ||
                 (viewName === 'address' && this.previousViewName === 'singleton' ) ||
