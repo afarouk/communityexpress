@@ -164,8 +164,7 @@ if (validateParams('friendlyURL')) {
       case 'Vantiv':
           $pageAccess = 'common_vantiv.php';
           if (validateParams('HostedPaymentStatus') && $_REQUEST['HostedPaymentStatus'] === 'Complete') {
-              $vantivPaymentDetails1 = $_REQUEST['TransactionSetupID'];
-              $vantivPaymentDetails2 = $_REQUEST['ValidationCode'];
+              $vantivValidationCode = $_REQUEST['ValidationCode'];
               $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
               $vantivTransactionId2 = $_REQUEST['TransactionID'];
               $vantivTransactionId3 = $_REQUEST['ExpressResponseCode'];
@@ -177,8 +176,7 @@ if (validateParams('friendlyURL')) {
               $vantivTransactionId9 = $_REQUEST['ApprovedAmount'];
               $vantivTransactionId10 = $_REQUEST['Bin'];
           } else {
-              $vantivPaymentDetails1 = null;
-              $vantivPaymentDetails2 = null;
+              $vantivValidationCode = null;
               $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
               $vantivTransactionId2 = null;
               $vantivTransactionId3 = null;

@@ -882,14 +882,10 @@ module.exports = {
                         UID: user.getUID(),
                         serviceAccommodatorId: sasl.sa(),
                         serviceLocationId: sasl.sl(),
-                        payload: {
-                            tipAmount: options.model.get('tipAmount'),
-                            taxAmount: options.model.get('taxAmount'),
-                            totalAmount: options.model.get('totalAmount'),
-                            currencyCode: options.model.get('currencyCode'),
+                        payload: _.extend(options.model.toJSON() , {
                             vantivReturnURL: (community.host === 'localhost' ? 'http://' : community.protocol) + community.host + '/Vantiv',
-                            vantivCSS: vantivStyles() //tweak for vantiv styles
-                        }
+                            vantivCSS: vantivStyles() //tweak for vantiv styles)
+                        })
                     };
             return orderActions.vantivTransactionSetup(vantivParams)
                 .then(function(data){

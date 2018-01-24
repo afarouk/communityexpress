@@ -351,14 +351,10 @@ define([
 					UID: uuid,
 					serviceAccommodatorId: model.additionalParams.sasl.sa(),
 					serviceLocationId: model.additionalParams.sasl.sl(),
-					payload: {
-						tipAmount: model.get('tipAmount'),
-						taxAmount: model.get('taxAmount'),
-						totalAmount: model.get('totalAmount'),
-						currencyCode: model.get('currencyCode'),
+					payload: _.extend(model.toJSON() , {
 						vantivReturnURL: (community.host === 'localhost' ? 'http://' : community.protocol) + community.host + '/Vantiv',
-						vantivCSS: VantivStyles() //tweak for vantiv styles
-					}
+						vantivCSS: VantivStyles() //tweak for vantiv styles)
+					})
 				};
 			orderActions.vantivTransactionSetup(vantivParams)
 	            .then(function(response){
@@ -372,14 +368,15 @@ define([
 			model.set('orderUUID', data.orderUUID);
 			vantiv.dispatcher = this.dispatcher;
             this.layout.showChildView('orderContainer', vantiv);
-            this.listenTo(vantiv, 'vantiv.success', this.onVantivResponse.bind(this, data.transactionSetupId, data.validationCode, model));
+            this.listenTo(vantiv, 'vantiv.success', this.onVantivResponse.bind(this, data.validationCode, model));
 		},
-		onVantivResponse: function(transactionSetupId, validationCode, model, vantiv) {
+		onVantivResponse: function(validationCode, model, vantiv, code) {
 			var status = vantiv.transactionId1;
 			if (status === 'Complete') {
-				if (vantiv.paymentDetails1 == transactionSetupId && vantiv.paymentDetails2 == validationCode) {
+				if (code == validationCode) {
 					_.extend(model.attributes, vantiv);
 					// console.log(JSON.stringify(model.toJSON()));
+					this.showSummary(model);
 					this.onPlaceOrder(model);
 				} else {
 					model.set('orderUUID', null);
@@ -468,7 +465,7 @@ define([
 	            	message: text,
 	            	loader: true
 	            });
-	        });
+	        }.bind(this));
 		},
 
 		onPlaceSingletonOrder: function() {
@@ -509,7 +506,7 @@ define([
 	            this.dispatcher.get('popups').textPopup({
 	                text: text
 	            });
-	        });
+	        }.bind(this));
 	    },
 
 		afterOrder: function() {

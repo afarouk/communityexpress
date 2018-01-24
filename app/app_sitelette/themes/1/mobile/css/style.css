@@ -133,7 +133,7 @@ body {
 
 #vantiv.ui-page iframe {
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 45px);
 }
 
 .ui-focus {
@@ -206,6 +206,10 @@ td {
     text-align: center;
     position: relative;
     bottom: 5px;
+}
+.page_title.vantiv {
+    padding: 15px 0 5px 0;
+    width: 100%;
 }
 .left_arr_block {
     background: url('images/arrow-point-to-right-copy.png') no-repeat top left;

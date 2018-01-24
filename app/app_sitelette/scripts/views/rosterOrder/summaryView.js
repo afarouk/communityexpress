@@ -44,7 +44,7 @@ var SummaryView = Backbone.View.extend({
             tpl = $(html).html();
 
         this.$el.html(tpl);
-
+        this.createCircles();
         if (this.options.fromVantiv) this.onVantivResponse(this.options.fromVantiv);
     },
 
@@ -238,12 +238,12 @@ var SummaryView = Backbone.View.extend({
     },
 
     onVantivResponse: function(fromVantiv) {
-        var vantiv = fromVantiv.response,
+        var vantiv = fromVantiv.vantiv,
             validationCode = fromVantiv.validationCode,
             status = vantiv.transactionId1;
         this.options.fromVantiv = null;
         if (status === 'Complete') {
-            if (validationCode == vantiv.paymentDetails2) {
+            if (validationCode == fromVantiv.code) {
                 _.extend(this.model.attributes, vantiv);
                 this.onPlaceOrder();
             } else {

@@ -21,7 +21,7 @@ var VantivView = Backbone.View.extend({
         $(window).off('message').on('message', function(e){
             var data = e.originalEvent.data;
           if(data.type=="vantiv.success"){
-            this.onVantivResponse(data.status);
+            this.onVantivResponse(data.vantiv, data.code);
           }
         }.bind(this));
 	},
@@ -45,11 +45,12 @@ var VantivView = Backbone.View.extend({
         return this.model.toJSON();
     },
 
-    onVantivResponse: function(response) {
+    onVantivResponse: function(vantiv, code) {
         Vent.trigger('viewChange', 'summary', {
             model: this.model,
             fromVantiv: {
-                response: response,
+                vantiv: vantiv,
+                code: code,
                 validationCode: this.model.get('validationCode')
             },
             backTo: 'payment'

@@ -22,6 +22,7 @@ module.exports = {
     placeOrder: function (sa, sl, options) {
         checkOptions(options);
         return gateway.sendRequest('createAdhocOrderWeb', {
+            // throw: true,
             payload: _.extend(options, {
                 userName: getUser().getUserName(),
                 serviceAccommodatorId: sa,

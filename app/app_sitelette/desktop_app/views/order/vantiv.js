@@ -13,11 +13,12 @@ define([
 		initialize: function() {
 		},
 		onRender: function() {
-			window.addEventListener('message',function(message){
-			  if(message.data.type=="vantiv.success"){
-			    this.trigger('vantiv.success', message.data.status);
-			  }
-			}.bind(this));
+			$(window).off('message').on('message', function(e){
+	            var data = e.originalEvent.data;
+				if(data.type=="vantiv.success"){
+					this.trigger('vantiv.success', data.vantiv, data.code);
+				}
+	        }.bind(this));
 		}
 	});
 	return VantivView;
