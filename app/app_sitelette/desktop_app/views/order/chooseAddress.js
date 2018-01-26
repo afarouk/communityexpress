@@ -9,6 +9,7 @@ define([
 		behaviors: [SwitchTabsBehavior],
 		className: 'page choose_address_page',
 		ui: {
+			tabs: '.tabs',
 			back: '.nav_back_btn',
 			next: '.nav_next_btn'
 		},
@@ -57,14 +58,16 @@ define([
 	            options = {
 	                center: new google.maps.LatLng(lat, long),
 	                zoom: 10,
-	                disableDefaultUI:true
+	                disableDefaultUI:true,
+	                zoomControl: true,
+	                gestureHandling: 'none'
 	            };
 	        this.map = new google.maps.Map(el, options);
 	        this.restaurantMarker = new google.maps.Marker({
 	            position: {lat: lat, lng: long},
 	            map: this.map
 	        });
-	        google.maps.event.addListener(this.map, 'click', _.bind(this.calculateRoute, this));
+	        // google.maps.event.addListener(this.map, 'click', _.bind(this.calculateRoute, this));
 	        //tweak for view reload
 	        google.maps.event.trigger(this.map, 'resize');
 	        this.map.setZoom( this.map.getZoom() );
@@ -95,6 +98,9 @@ define([
 	    onTabShown: function() {
 	    	if (this.tabActive === 'pick_up') {
 	    		setTimeout(this.showMap.bind(this), 1); //tweak for view reload
+	    	}
+	    	if (!this.model.additionalParams.allowDelivery && this.model.additionalParams.allowPickUp) {
+	    		this.ui.tabs.css('visibility', 'hidden');
 	    	}
 	    },
 

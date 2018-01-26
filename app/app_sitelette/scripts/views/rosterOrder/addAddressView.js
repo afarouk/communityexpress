@@ -257,11 +257,19 @@ var AddAddressView = Backbone.View.extend({
         if (this.validate()) {
             this.model.trigger('change');
             if (!this.options.futureOrRegular) {
-                Vent.trigger('viewChange', 'payment', {
-                    circles: this.options.circles,
-                    model: this.model,
-                    backTo: 'add_address'
-                });
+                if (!this.model.additionalParams.allowCash && this.model.get('paymentProcessor') === 'VANTIV') {
+                    Vent.trigger('viewChange', 'summary', {
+                        model: this.model,
+                        circles: this.options.circles,
+                        backTo: 'add_address'
+                    });
+                } else {
+                    Vent.trigger('viewChange', 'payment', {
+                        circles: this.options.circles,
+                        model: this.model,
+                        backTo: 'add_address'
+                    });
+                }
             } else {
                 Vent.trigger('viewChange', 'order_time', {
                     model: this.model,

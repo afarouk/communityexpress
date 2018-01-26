@@ -276,16 +276,20 @@ define([
 		},
 		//choose payment part
 		showChoosePayment: function(model) {
-			this.validatePromoCode(model).always(function(code){
-				var choosePayment = new ChoosePaymentView({
-	                	model: model
-	                });
-				choosePayment.dispatcher = this.dispatcher;
-	            this.layout.showChildView('orderContainer', choosePayment);
-	            this.listenTo(choosePayment, 'onNextStep', this.onChoosePaymentNext.bind(this, model));
-	            this.listenTo(choosePayment, 'onBackStep', this.onChoosePaymentBack.bind(this, model));
-				this.listenTo(choosePayment, 'onValidatePromoCode', this.validatePromoCode.bind(this, model));
-			}.bind(this));
+			if (!model.additionalParams.allowCash && model.get('paymentProcessor') === 'VANTIV') {
+				this.showSummary(model);
+			} else {
+				this.validatePromoCode(model).always(function(code){
+					var choosePayment = new ChoosePaymentView({
+		                	model: model
+		                });
+					choosePayment.dispatcher = this.dispatcher;
+		            this.layout.showChildView('orderContainer', choosePayment);
+		            this.listenTo(choosePayment, 'onNextStep', this.onChoosePaymentNext.bind(this, model));
+		            this.listenTo(choosePayment, 'onBackStep', this.onChoosePaymentBack.bind(this, model));
+					this.listenTo(choosePayment, 'onValidatePromoCode', this.validatePromoCode.bind(this, model));
+				}.bind(this));
+			}
 		},
 		onChoosePaymentNext: function(model, card, active) {
 			if (active === 'cash') {
@@ -341,7 +345,11 @@ define([
 			}
 		},
 		onSummaryBack: function(model) {
-			this.showChoosePayment(model);
+			if (!model.additionalParams.allowCash && model.get('paymentProcessor') === 'VANTIV') {
+				this.showChooseAddress(model);
+			} else {
+				this.showChoosePayment(model);
+			}
 		},
 		//........vantiv
 		onVantivSetup: function(model) {

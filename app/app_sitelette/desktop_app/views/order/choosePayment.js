@@ -93,12 +93,14 @@ define([
 		onTabShown: function() {
 	    	if (this.tabActive === 'cash') {
 	    		this.onCashSelected();
-	    		this.$el.find('.navigation_block .nav_next_btn').css('visibility', 'hidden');
+	    		this.ui.next.addClass('order').html('<span class="text">ORDER</span><span class="arr right-arrow"></span>');
+	    		// this.ui.next.css('visibility', 'hidden');
 	    		this.ui.bottom_btns_block.show();
 	    	}
 	    	else {
 	    		this.onCreditCardSelected();
-	    		this.ui.next.css('visibility', 'visible');
+	    		// this.ui.next.css('visibility', 'visible');
+	    		this.ui.next.removeClass('order').html('<span class="text">next</span><span class="arr right-arrow">&rsaquo;</span>');;
 	    		this.ui.bottom_btns_block.hide();
 	    	}
 	    },

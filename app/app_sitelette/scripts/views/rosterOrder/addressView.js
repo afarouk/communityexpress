@@ -138,11 +138,19 @@ var AddressView = Backbone.View.extend({
     triggerPayment: function() {
         //temporary for testing
         if (!this.options.futureOrRegular) {
-            Vent.trigger('viewChange', 'payment', {
-                circles: this.options.circles,
-                model: this.model,
-                backTo: 'address'
-            });
+            if (!this.model.additionalParams.allowCash && this.model.get('paymentProcessor') === 'VANTIV') {
+                Vent.trigger('viewChange', 'summary', {
+                    model: this.model,
+                    circles: this.options.circles,
+                    backTo: 'address'
+                });
+            } else {
+                Vent.trigger('viewChange', 'payment', {
+                    circles: this.options.circles,
+                    model: this.model,
+                    backTo: 'address'
+                });
+            }
         } else {
             Vent.trigger('viewChange', 'order_time', {
                 model: this.model,
@@ -182,14 +190,16 @@ var AddressView = Backbone.View.extend({
             options = {
                 center: new google.maps.LatLng(lat, long),
                 zoom: 10,
-                disableDefaultUI:true
+                disableDefaultUI:true,
+                zoomControl: true,
+                gestureHandling: 'none'
             };
         this.map = new google.maps.Map(el, options);
         this.restaurantMarker = new google.maps.Marker({
             position: {lat: lat, lng: long},
             map: this.map
         });
-        google.maps.event.addListener(this.map, 'click', _.bind(this.calculateRoute, this));
+        // google.maps.event.addListener(this.map, 'click', _.bind(this.calculateRoute, this));
     },
 
     calculateRoute: function(location) {

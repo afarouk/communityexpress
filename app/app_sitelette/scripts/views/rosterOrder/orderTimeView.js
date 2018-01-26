@@ -144,13 +144,23 @@ var OrderTimeView = Backbone.View.extend({
     },
     triggerNext: function() {
         this.setDeliveryDate();
-        Vent.trigger('viewChange', 'payment', {
+        if (!this.model.additionalParams.allowCash && this.model.get('paymentProcessor') === 'VANTIV') {
+            Vent.trigger('viewChange', 'summary', {
+                deliveryPickupOptions: this.options.deliveryPickupOptions,
+                futureOrRegular: this.options.futureOrRegular,
+                model: this.model,
+                circles: this.options.circles,
+                backTo: 'order_time'
+            });
+        } else {
+            Vent.trigger('viewChange', 'payment', {
                 deliveryPickupOptions: this.options.deliveryPickupOptions,
                 futureOrRegular: this.options.futureOrRegular,
                 circles: this.options.circles,
                 model: this.model,
                 backTo: 'order_time'
             });
+        }
     },
 
     goBack : function() {

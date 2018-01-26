@@ -437,7 +437,7 @@
                       <div class="promo-used">
                         <div class="attention-sign">
                           <i class="fa fa-check" aria-hidden="true"></i>
-                          <span>Promotion code applied, Please proceed to order</span>
+                          <span>Item added to cart,<br>Please proceed to order</span>
                         </div>
                       </div>
                       <#else>

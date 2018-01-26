@@ -19,7 +19,7 @@ var RosterOrderModel = Backbone.Model.extend({
 		this.setAdditionalParams(options);
 	    this.set('promoCode',options.promoCode);
 	    this.set('promoUUID',options.promoUUID);
-	    this.set('paymentProcessor',options.paymentProcessor);
+	    this.set('paymentProcessor',options.paymentProcessor);//'VANTIV'
 	},
 
 	setAdditionalParams: function(options) {
