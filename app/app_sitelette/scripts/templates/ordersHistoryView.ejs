@@ -15,7 +15,7 @@
     				<% _.each(ordersHistory, function(order) { %>
     					<tr class="order-row" data-uuid="<%= order.orderUUID %>">
 	    					<td><%= order.orderId %></td>
-	    					<td>$<%= order.totalAmount %></td>
+	    					<td>$<%= order.totalAmount.toFixed(2) %></td>
                             <td><%= order.saslName %></td>
 	    					<td><%= order.dateTimeOrderPlacedOn %></td>
 	    				</tr>

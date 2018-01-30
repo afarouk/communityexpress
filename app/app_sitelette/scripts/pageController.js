@@ -339,7 +339,7 @@ module.exports = {
                         model = new Backbone.Model(item);
                     }
                 }
-                basket.addItem(model, orderItem.quantity , null, null, null, null, true);
+                basket.addItem(model, orderItem.quantity , item.groupId, null, item.catalogId, null, true);
             }
             
         }.bind(this));

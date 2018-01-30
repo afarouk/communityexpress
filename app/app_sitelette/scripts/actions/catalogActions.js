@@ -70,6 +70,14 @@ module.exports = {
         });
     },
 
+    retrieveItemByUUID: function(sa, sl, itemUUID) {
+        return gateway.sendRequest('retrieveItemByUUID', {
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            itemUUID: itemUUID
+        });
+    },
+
     getEventDetails: function(uuid) {
         return gateway.sendRequest('getEventDetails', {
             UID: getUID,

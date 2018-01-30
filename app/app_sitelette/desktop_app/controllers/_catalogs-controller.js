@@ -222,7 +222,7 @@ define([
 							model = new Backbone.Model(item);
 						}
 					}
-					this.basket.addItem(model, orderItem.quantity , null, null, null, null, true);
+					this.basket.addItem(model, orderItem.quantity , item.groupId, null, item.catalogId, null, true);
 				}
 				
 			}.bind(this));
@@ -365,38 +365,44 @@ define([
 		},
 
 		singleItemPromotion: function(options) {
-			var sasl;
+			var sasl,
+				price;
 			return saslActions.getSasl()
 	        .then(function(ret) {
 	            sasl = ret;
 	            return catalogActions.getItemDetailsForPromoItem(options.uuid);
 	        }).then(function(item) {
-	        	var basket = new CatalogBasketModel();
+	        	price = item.price;
+	        	return catalogActions.retrieveItemByUUID(sasl.sa(), sasl.sl(), item.uuid)
+        				.then(function(item){
+        					var basket = new CatalogBasketModel();
 
-	            basket.off('add remove change reset');
-                basket.on('add remove change reset', this.onBasketChange.bind(this, {
-                	basket: basket, 
-                	sasl: sasl,
-                	catalogId: null,
-                	deliveryPickupOptions: null,
-                	singlePromotion: true,
-                	promoUUID: options.uuid,
-                	uuid: item.uuid
-                }));
+        					item.price = price;
+				            basket.off('add remove change reset');
+			                basket.on('add remove change reset', this.onBasketChange.bind(this, {
+			                	basket: basket, 
+			                	sasl: sasl,
+			                	catalogId: null,
+			                	deliveryPickupOptions: null,
+			                	singlePromotion: false,
+			                	promoUUID: options.uuid,
+			                	uuid: item.uuid
+			                }));
 
-                basket.addItem(new Backbone.Model(item), 1);
+			                basket.addItem(new Backbone.Model(item), 1, item.groupId, null, item.catalogId, null, false);
 
-                this.basket = basket; //not sure that it is good solution ???
+			                this.basket = basket; //not sure that it is good solution ???
 
-                var itemPromotionView = new ItemPromotionView({
-                        promoUUID: options.uuid,
-		                uuid: item.uuid,
-		                sasl: sasl,
-		                basket: basket,
-		                item: item
-	                });
-            	this.layout.showChildView('catalogsContainer', itemPromotionView);
-            	this.listenTo(itemPromotionView, 'backToCatalog' , this.onBackToCatalogs.bind(this)); //todo
+			                var itemPromotionView = new ItemPromotionView({
+			                        promoUUID: options.uuid,
+					                uuid: item.uuid,
+					                sasl: sasl,
+					                basket: basket,
+					                item: item
+				                });
+			            	this.layout.showChildView('catalogsContainer', itemPromotionView);
+			            	this.listenTo(itemPromotionView, 'backToCatalog' , this.onBackToCatalogs.bind(this)); //todo
+        				}.bind(this));
 	        }.bind(this));
 		}
 	});

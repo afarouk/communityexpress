@@ -92,6 +92,8 @@ module.exports = {
 
             getOrderPrefillInfo: ['GET', '/retail/getOrderPrefillInfo'],
 
+            retrieveItemByUUID: ['GET', '/retail/retrieveItemByUUID'],
+
             retrieveOrdersByUID: ['GET', '/retail/retrieveOrdersByUID'],
             retrieveOrderByID: ['GET', '/html/retrieveOrderByID'],
             retrieveOrderByUUID: ['GET', '/retail/retrieveOrderByUUID'],
