@@ -188,7 +188,8 @@ module.exports = {
             // Should we have isOpen and isOpenWarningMessage in response?
                 isOpen = true,
                 isOpenWarningMessage = 'message';
-            basket.addItem(new Backbone.Model(item), 1);
+            basket.addItem(new Backbone.Model(item), 1, item.groupId, null, item.catalogId, null, false);
+            
             if (backToSingleton) {
                 basket = appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':' + item.uuid + ':catalogbasket', basket);
             } else {

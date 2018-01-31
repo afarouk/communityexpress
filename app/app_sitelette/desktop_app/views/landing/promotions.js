@@ -5,14 +5,12 @@ define([
 	var PromotionsView = Mn.View.extend({
     el: '#cmtyx_promotion_block',
 		ui: {
-			promo: '.promoCode_image img',
       buy: '.promotions-buybutton',
       show_share_btn: '.share_btn_block',
       show_sms_block: '.sms_block',
       send_sms: '.sms_send_button'
 		},
 		events: {
-			'click @ui.promo': 'onBuy',
       'click @ui.buy': 'onBuy',
       'click @ui.show_share_btn': 'showShareBlock',
       'click @ui.show_sms_block': 'showSMSInput',
@@ -34,6 +32,8 @@ define([
       var $target = $(e.currentTarget),
           uuid = $target.data('uuid'),
           promoPrice = parseFloat($target.data('price'));
+          e.preventDefault();
+          e.stopPropagation();
 
       this.trigger('onPromotion', {
           uuid: uuid,

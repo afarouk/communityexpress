@@ -85,14 +85,11 @@ module.exports = {
             getSubItems: ['GET', '/retail/retrieveSubItems'],
             getRoster: ['GET', '/retail/retrieveRoster'],
             createAdhocOrderWeb: ['POST', '/retail/createAdhocOrderWeb'],
-            createUserPromoOrderSingleton: ['POST', '/retail/createAdhocOrderWebSingleton'],
             createUserEventOrderSingleton: ['POST', '/reservations/createAdhocOrderWebSingleton'],
             getItemDetailsForPromoItem: ['GET', '/retail/retreiveItemDetailsForPromo'],
             getEventDetails: ['GET', '/reservations/retreiveEventDetailsForPurchase'],
 
             getOrderPrefillInfo: ['GET', '/retail/getOrderPrefillInfo'],
-
-            retrieveItemByUUID: ['GET', '/retail/retrieveItemByUUID'],
 
             retrieveOrdersByUID: ['GET', '/retail/retrieveOrdersByUID'],
             retrieveOrderByID: ['GET', '/html/retrieveOrderByID'],

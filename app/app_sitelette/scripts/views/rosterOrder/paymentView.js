@@ -321,51 +321,7 @@ var PaymentView = Backbone.View.extend({
     },
 
     onPlaceOrder: function() {
-        this.model.additionalParams.backToSingleton ?
-        this.onPlaceSingletonOrder() :
         this.onPlaceMultipleOrder();
-    },
-
-    onPlaceSingletonOrder: function() {
-        var params = this.model.additionalParams,
-            items = this.model.get('items'),
-            request;
-
-        if (!items) {
-            popupController.textPopup({
-                text: 'Can\'t place order.'
-            });
-            return;
-        }
-
-        loader.show('placing your order');
-        this.model.set({
-            itemUUID: this.model.additionalParams.itemUUID,
-            quantity: items[0].quantity,
-            tipAmount: this.tipSum
-        });
-        this.model.unset('items');
-        request = params.type === 'PROMO'? orderActions.placePromoSingletonOrder :
-            orderActions.placeEventSingletonOrder
-        return request(
-            params.sasl.sa(),
-            params.sasl.sl(),
-            this.model.toJSON()
-        ).then(function() {
-            loader.hide();
-            appCache.set('promoCode', null);
-            appCache.set('updateDiscount', true);
-            var callback = _.bind(this.triggerSingletonView, this);
-            popupController.textPopup({
-                text: 'order placed'
-            }, callback);
-        }.bind(this), function(e) {
-            loader.hide();
-            var text = h().getErrorMessage(e, 'Error placing your order');
-            popupController.textPopup({
-                text: text
-            });
-        });
     },
 
     onPlaceMultipleOrder: function() {
@@ -388,10 +344,10 @@ var PaymentView = Backbone.View.extend({
             appCache.set('promoCode', null);
             appCache.set('updateDiscount', true);
             var callback;
-            if (params.backToCatalog) {
-                callback = _.bind(this.triggerCatalogView, this)
+            if (params.backToSingleton) {
+                callback = _.bind(this.triggerSingletonView, this);
             } else {
-                callback = _.bind(this.triggerRosterView, this);
+                callback = _.bind(this.triggerCatalogView, this);
             }
             popupController.textPopup({
                 text: 'order placed'
@@ -412,7 +368,7 @@ var PaymentView = Backbone.View.extend({
             backToRoster: false,
             backToCatalogs: false,
             backToCatalog: false,
-            backToSingleton: true
+            backToSingleton: false
         }, { reverse: false });
     },
 

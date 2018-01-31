@@ -415,11 +415,8 @@ define([
 	        	infinite: true
 	        });
 
-	        if (this.options.singlePromotion) {
-	        	this.placeSingleOrder(model);
-	        } else {
-	        	this.placeRegularOrder(model);
-	        }
+	        
+	        this.placeRegularOrder(model);
 		},
 
 		placeRegularOrder: function(model) {
@@ -445,77 +442,6 @@ define([
 	            });
 	        }.bind(this));
 		},
-
-		placeSingleOrder: function(model) {
-			var params = model.additionalParams,
-	            items = model.get('items');
-
-	        model.set({
-	            itemUUID: model.additionalParams.itemUUID,
-	            quantity: model.get('items')[0].quantity
-	        });
-	        model.unset('items');
-	        return orderActions.placePromoSingletonOrder(
-	            params.sasl.sa(),
-	            params.sasl.sl(),
-	            model.toJSON()
-	        ).then(function() {
-	            params.basket.reset();
-	            this.hideLoader();
-	            this.dispatcher.get('popups').showMessage({
-	            	message: 'order placed',
-	            	confirm: 'ok',
-	            	callback: this.afterOrder.bind(this, model)
-	            });
-	        }.bind(this), function(e) {
-	            var text = h().getErrorMessage(e, 'Error placing your order');
-	            this.dispatcher.get('popups').showMessage({
-	            	message: text,
-	            	loader: true
-	            });
-	        }.bind(this));
-		},
-
-		onPlaceSingletonOrder: function() {
-	        var params = this.model.additionalParams,
-	            items = this.model.get('items'),
-	            request;
-
-	        if (!items) {
-	            this.dispatcher.get('popups').textPopup({
-	                text: 'Can\'t place order.'
-	            });
-	            return;
-	        }
-	        loader.show('placing your order');
-	        this.model.set({
-	            itemUUID: this.model.additionalParams.itemUUID,
-	            quantity: this.model.get('items')[0].quantity,
-	            tipAmount: this.tipSum
-	        });
-	        this.model.unset('items');
-	        request = params.type === 'PROMO'? orderActions.placePromoSingletonOrder :
-	            orderActions.placeEventSingletonOrder
-	        return request(
-	            params.sasl.sa(),
-	            params.sasl.sl(),
-	            this.model.toJSON()
-	        ).then(function() {
-	            loader.hide();
-	            appCache.set('promoCode', null);
-	            appCache.set('updateDiscount', true);
-	            var callback = _.bind(this.triggerSingletonView, this);
-	            this.dispatcher.get('popups').textPopup({
-	                text: 'order placed'
-	            }, callback);
-	        }.bind(this), function(e) {
-	            loader.hide();
-	            var text = h().getErrorMessage(e, 'Error placing your order');
-	            this.dispatcher.get('popups').textPopup({
-	                text: text
-	            });
-	        }.bind(this));
-	    },
 
 		afterOrder: function() {
 			//TODO return to catalog

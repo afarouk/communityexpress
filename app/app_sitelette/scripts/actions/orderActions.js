@@ -32,18 +32,6 @@ module.exports = {
         });
     },
 
-    placePromoSingletonOrder: function(sa, sl, options) {
-        checkOptions(options);
-        return gateway.sendRequest('createUserPromoOrderSingleton', {
-            payload: _.extend(options, {
-                userName: getUser().getUserName(),
-                serviceAccommodatorId: sa,
-                serviceLocationId: sl
-            }),
-            UID: getUser().getUID()
-        });
-    },
-
     placeEventSingletonOrder: function(sa, sl, options) {
         checkOptions(options);
         return gateway.sendRequest('createUserEventOrderSingleton', {
