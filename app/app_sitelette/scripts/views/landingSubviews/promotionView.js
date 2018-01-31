@@ -219,6 +219,7 @@ var PromotionView = Backbone.View.extend({
   },
 
   triggerSingleton : function(promoUUID, promoPrice) {
+      appCache.set('promoCode', null);
       Vent.trigger('viewChange', 'singleton', {
           type: 'PROMO',
           promoPrice: promoPrice || null,

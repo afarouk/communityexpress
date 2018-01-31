@@ -300,6 +300,7 @@ var PaymentView = Backbone.View.extend({
                     break;
                 default:
             }
+            this.model.additionalParams.afterDiscount = null;
             if (this.model.additionalParams.discountDisplay) {
                 this.model.additionalParams.afterDiscount = this.model.additionalParams.subTotal - this.model.additionalParams.discountDisplay;
             }
@@ -341,7 +342,8 @@ var PaymentView = Backbone.View.extend({
             params.basket.reset();
             params.basket.versions = undefined;
             params.backToRoster = false;
-            appCache.set('promoCode', null);
+            // appCache.set('promoCode', null);
+            this.model.additionalParams.promoCodeActive = false;
             appCache.set('updateDiscount', true);
             var callback;
             if (params.backToSingleton) {
@@ -379,7 +381,8 @@ var PaymentView = Backbone.View.extend({
             id: params.catalogId,
             backToCatalog: params.backToCatalog === false ? false : true,
             catalogId: params.catalogId,
-            launchedViaURL: params.launchedViaURL
+            launchedViaURL: params.launchedViaURL,
+            promoCode: params.promoCode
         }, {
             reverse: false
         });

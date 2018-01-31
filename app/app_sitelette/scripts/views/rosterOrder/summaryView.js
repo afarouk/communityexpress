@@ -283,7 +283,8 @@ var SummaryView = Backbone.View.extend({
             params.basket.reset();
             params.basket.versions = undefined;
             params.backToRoster = false;
-            appCache.set('promoCode', null);
+            // appCache.set('promoCode', null);
+            this.model.additionalParams.promoCodeActive = false;
             appCache.set('updateDiscount', true);
             var callback;
             if (params.backToSingleton) {

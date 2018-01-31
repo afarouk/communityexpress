@@ -27,7 +27,7 @@ var SingletonView = Backbone.View.extend({
         'click .catalog_item_main_view': 'expandCollapseDetails',
         'click .plus_button': 'incrementQuantity',
         'click .minus_button': 'decrementQuantity',
-        'click .order_button' : 'triggerOrder',
+        'click .order_button' : 'openEditPanel',
         'click .basket_icon_container' : 'openEditPanel'
     },
 
