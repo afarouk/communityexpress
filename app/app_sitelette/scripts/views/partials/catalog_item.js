@@ -212,6 +212,7 @@ var CatalogItemView = Backbone.View.extend({
             } else {
                 this.incrementQuantity();
             }
+            this.onCustomizationReset();
         }
     },
     onVersionAdded: function () {

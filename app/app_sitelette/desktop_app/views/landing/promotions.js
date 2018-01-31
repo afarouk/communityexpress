@@ -32,9 +32,7 @@ define([
       var $target = $(e.currentTarget),
           uuid = $target.data('uuid'),
           promoPrice = parseFloat($target.data('price'));
-          e.preventDefault();
-          e.stopPropagation();
-
+          
       this.trigger('onPromotion', {
           uuid: uuid,
           promoPrice: promoPrice
