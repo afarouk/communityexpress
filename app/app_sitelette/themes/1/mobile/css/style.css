@@ -2627,6 +2627,12 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     font: 700 18px/19px 'Open Sans', sans-serif;
     color: #ffffff;
     letter-spacing: 1px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 3px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 0;
 }
 .welcome_block .undertitle {
     font: 300 12px / 19px 'Open Sans', sans-serif;
@@ -2653,6 +2659,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     margin-left: auto;
     margin-right: auto;
     width: 80%;
+    background-color: rgba(0,0,0,0.6);
 }
 .home_tabs_list {
     padding: 20px 10px 0 10px;
