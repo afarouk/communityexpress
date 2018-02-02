@@ -4,21 +4,16 @@ ini_set('display_errors', 1);
 
 include_once('preprocessing.php');
 
-// not mobile or tablet and not already in the iframe
-if (isset($pageAccess)) {
-  include_once('sitefiles/pages/' . $pageAccess);
-} else if ($saslAccess || $urlKeyAccess) {
+if ($saslAccess || $urlKeyAccess) {
   if ($isDesktop) {
     if (!is_null($errorMessage)) {
       include_once('error_page/error_page.php');
     } else {
-    // include_once('sitefiles/pages/' . 'common_desktop.php');
       include_once 'themes/'.$themeId.'/desktop/head.php';
       if ($useTemplate) {
         echo $siteletteJSON['landingViewHTML'];
       } else {
         include_once 'themes/'.$themeId.'/desktop/body.html';
-      // echo $siteletteJSON['landingViewHTML'];
       }
       echo '</html>';
     }
@@ -35,14 +30,12 @@ if (isset($pageAccess)) {
       echo '</html>';
     }
   }
+} else if (isset($pageAccess)) {
+    include_once('sitefiles/pages/' . $pageAccess);
 } else {
   /*
    * neither sasl access or urlkey access.
    * neither URL nor sa,sl provided
    */
-   /* make the following code part of common_chalkboards.php */
-   //if($TilesAvailable){
-   //   /* include common head, tiles html then rest of the page */
-   //}
   include_once('sitefiles/pages/' . 'common_chalkboards.php');
 }
