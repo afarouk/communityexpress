@@ -7,7 +7,7 @@ div.ui-dialog.ui-widget {
     transform: translate(-50%, -50%);
 
 	&.ui-widget-content {
-		border: none;	
+		border: none;
 	}
 
 	.ui-dialog-titlebar {
@@ -206,7 +206,7 @@ div.ui-dialog.ui-widget {
 
 	.signout-popup {
 		padding: 20px;
-		
+
 		.text {
 		    font-size: $size-lg-normal;
 		    color: $cart-text;
@@ -302,7 +302,7 @@ div.ui-dialog.ui-widget {
 	}
 
 	.orders-history-popup {
-		
+
 		text-align: center;
 
 		.orders_history_container {
@@ -312,40 +312,44 @@ div.ui-dialog.ui-widget {
 		    align-items: center;
 		    margin: 10px 0 20px 0;
 
+				a {
+					color: white;
+				}
+
 		    .history-title {
 			    color: white;
 			    text-align: center;
 			    margin-bottom: 10px;
-			}
+			  }
 
-			.table-container {
-				max-height: 480px;
-				overflow-y: auto;
-				width: 100%;
+			  .table-container {
+				  max-height: 480px;
+				  overflow-y: auto;
+				  width: 100%;
 
-			    table {
+			      table {
 				    width: 100%;
 				    color: white;
 
 				    th {
 					    text-align: center;
 					    background-color: rgba(255, 255, 255, 0.2);
-					}
+					  }
 
-					th, td {
+					  th, td {
 					    border: 1px solid white;
 					    padding: 5px;
-					}
+					  }
 
-					tbody tr {
+					  tbody tr {
 					    cursor: pointer;
 
 					    &:hover {
 						    background-color: rgba(60, 255, 80, 0.25);
-						}
-					}
-				}
-			}
+						  }
+					  }
+				  }
+			  }
 		}
 
 		.order_details_back {

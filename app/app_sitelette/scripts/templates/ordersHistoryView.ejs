@@ -1,14 +1,15 @@
 <div data-role="page" id="orders_history">
     <div class="body">
     	<div class="orders_history_container">
-    		<h4 class="history-title">Orders history:</h4>
+    		<h4 class="history-title">Order history</h4>
     		<table>
     			<thead>
     				<tr>
     					<th>orderId</th>
     					<th>Total</th>
-                        <th>Biz Name</th>
+              <th>Biz Name</th>
     					<th>Date</th>
+              <th>ReOrder</th>
     				</tr>
     			</thead>
     			<tbody>
@@ -16,8 +17,9 @@
     					<tr class="order-row" data-uuid="<%= order.orderUUID %>">
 	    					<td><%= order.orderId %></td>
 	    					<td>$<%= order.totalAmount.toFixed(2) %></td>
-                            <td><%= order.saslName %></td>
+                <td><%= order.saslName %></td>
 	    					<td><%= order.dateTimeOrderPlacedOn %></td>
+                <td><a href="<%= order.reorderURL %>">ReOrder</a></td>
 	    				</tr>
     				<% }) %>
     			</tbody>
