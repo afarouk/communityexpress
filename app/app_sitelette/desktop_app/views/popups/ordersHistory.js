@@ -39,6 +39,7 @@ define([
 			                orderId: order.orderId,
 			                totalAmount: order.totalAmount,
 			                saslName: order.saslName,
+											reorderURL:order.reorderURL,
 			                dateTimeOrderPlacedOn: this.moment(date).format('MMM D \'YY')
 			            };
 			        }.bind(this))
