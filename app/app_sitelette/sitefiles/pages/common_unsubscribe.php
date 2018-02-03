@@ -9,7 +9,7 @@
   <meta name="keywords" content="">
   <?php include 'sitefiles/includes/stylesheets.html'; ?>
   <link href="sitefiles/css/bootstrap-select.min.css" rel="stylesheet">
-  <link href="sitefiles/css/style.css" rel="stylesheet">
+  <link href="sitefiles/css/droplet_theme_style.css" rel="stylesheet">
   <title> Chalkboards - unsubscribe </title>
 <!-- insert page specific css here -->
   </head>
