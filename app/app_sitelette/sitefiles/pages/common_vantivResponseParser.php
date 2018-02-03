@@ -28,7 +28,7 @@ include ('sitefiles/includes/stylesheets.html');
 include ('sitefiles/includes/scriptfiles.html');
   ?>
   <?php
-include ('sitefiles/includes/vantiv_returnToOrder.html');
+include ('sitefiles/pages/content_vantivResponseParser.html');
   ?>
  </body>
 </html>

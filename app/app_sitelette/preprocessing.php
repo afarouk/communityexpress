@@ -162,7 +162,7 @@ if (validateParams('friendlyURL')) {
           $pageAccess = 'common_pricing.php';
           break;
       case 'Vantiv':
-          $pageAccess = 'common_vantiv.php';
+          $pageAccess = 'common_vantivResponseParser.php';
           if (validateParams('HostedPaymentStatus') && $_REQUEST['HostedPaymentStatus'] === 'Complete') {
               $vantivValidationCode = $_REQUEST['ValidationCode'];
               $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
