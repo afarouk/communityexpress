@@ -23,7 +23,8 @@ var OrdersHistoryView = Backbone.View.extend({
     },
     templateData: function(ordersHistory) {
         return ordersHistory.map(function(order){
-            var date = order.dateTimeOrderPlacedOn.replace('at', '');
+            //var date = order.dateTimeOrderPlacedOn.replace('at', '');
+            var date = order.dateTimeOrderPlacedOn.replace('at', '').replace('\'', '20');
             return {
                 orderUUID: order.orderUUID,
                 orderId: order.orderId,
