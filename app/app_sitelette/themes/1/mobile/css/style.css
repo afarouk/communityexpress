@@ -4107,7 +4107,49 @@ li.driving_directions_block {
     padding: 5px;
 }
 #orders_history .body .orders_history_container a {
-    color:#FFFFFFF;
+  font-weight: 300;
+  color:#FFFFFFF;
+}
+#orders_history .body .orders_history_container a:link {
+  font-weight: 300;
+  color: #FFFFFF;
+}
+#orders_history .body .orders_history_container a:visited {
+  font-weight: 300;
+  color: #FFFFFF;
+}
+#orders_history .body .orders_history_container a:hover {
+  font-weight: 300;
+  color: #FFFFFF;
+}
+#orders_history .body .orders_history_container a:active {
+  font-weight: 300;
+  color: #FFFFFF;
+}
+
+.reorderButton {
+	background-color:#16b805;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	border:1px solid #16b805;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+  font-weight: 300;
+	padding:3px 5px;
+	text-decoration:none;
+}
+
+.reorderButton:hover {
+	background-color:#5cbf2a;
+}
+
+.reorderButton:active {
+	position:relative;
+	top:1px;
 }
 
 /************************** Contact Us View *************************/
