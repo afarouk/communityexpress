@@ -7,3 +7,27 @@ button:disabled {
     background-color: $cart-scroll !important;
     color: $cart-tabs !important;
 }
+
+.reorderButton {
+	background-color:#16b805;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	border:1px solid #16b805;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:5px 10px;
+	text-decoration:none;
+}
+
+.reorderButton:hover {
+	background-color:#5cbf2a;
+}
+
+.reorderButton:active {
+	position:relative;
+	top:1px;
+}

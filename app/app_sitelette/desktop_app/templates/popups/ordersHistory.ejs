@@ -4,11 +4,11 @@
 		<table>
 			<thead>
 				<tr>
-					<th>orderId</th>
+					<th>Order #</th>
 					<th>Total</th>
 	        <th>Biz Name</th>
 					<th>Date</th>
-					<th>ReOrder</th>
+					<th>Re-order</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,7 +18,7 @@
 						<td>$<%= order.totalAmount.toFixed(2) %></td>
 	          <td><%= order.saslName %></td>
 						<td><%= order.dateTimeOrderPlacedOn %></td>
-						<td><a href="<%= order.reorderURL %>">ReOrder</a></td>
+						<td><a class="reorderButton" href="<%= order.reorderURL %>">Re-order</a></td>
 					</tr>
 				<% }) %>
 			</tbody>
