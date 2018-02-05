@@ -16,7 +16,14 @@ define([
 		},
 		events: {
 			'click @ui.submit_btn': 'validateForm',
+			'keypress @ui.password': 'onCheckEnter',
 			'focus input': 'hideError'
+		},
+
+		onCheckEnter: function(e) {
+		    if(e.which == 13) {
+		        this.validateForm();
+		    }
 		},
 
 		validateForm: function() {

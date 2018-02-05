@@ -30,6 +30,7 @@ var SigninView = PopupView.extend({
         this.addEvents({
             'focus input': 'hideLoginError',
             'click .submit_button': 'submitForm',
+            'keypress input[name="password"]': 'onCheckEnter',
             'click .signup_button': 'openSignupView',
             'click .forgot_password_button': 'forgotPassword',
             'click .login_with_facebook span': 'loginWithFacebook',
@@ -39,6 +40,12 @@ var SigninView = PopupView.extend({
         FB.getLoginStatus(function (response) {
             this.facebookStatus = response.status;
         }.bind(this), true);
+    },
+
+    onCheckEnter: function(e) {
+        if(e.which == 13) {
+            this.submitForm();
+        }
     },
 
     beforeShow: function () {
