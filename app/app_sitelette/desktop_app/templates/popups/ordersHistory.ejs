@@ -13,11 +13,11 @@
 			</thead>
 			<tbody>
 				<% _.each(ordersHistory, function(order) { %>
-					<tr class="order-row" name="order-row" data-uuid="<%= order.orderUUID %>">
-						<td><%= order.orderId %></td>
-						<td>$<%= order.totalAmount.toFixed(2) %></td>
-	          <td><%= order.saslName %></td>
-						<td><%= order.dateTimeOrderPlacedOn %></td>
+					<tr name="order-row" data-uuid="<%= order.orderUUID %>">
+						<td class="order-row" data-uuid="<%= order.orderUUID %>"><%= order.orderId %></td>
+						<td class="order-row" data-uuid="<%= order.orderUUID %>" >$<%= order.totalAmount.toFixed(2) %></td>
+	          <td class="order-row" data-uuid="<%= order.orderUUID %>"><%= order.saslName %></td>
+						<td class="order-row" data-uuid="<%= order.orderUUID %>"><%= order.dateTimeOrderPlacedOn %></td>
 						<td><a class="reorderButton" href="<%= order.reorderURL %>">Re-order</a></td>
 					</tr>
 				<% }) %>
