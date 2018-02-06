@@ -1,5 +1,5 @@
-/* 
- *  Owl Carousel CSS3 Transitions 
+/*
+ *  Owl Carousel CSS3 Transitions
  *  v1.3.2
  */
 
@@ -71,15 +71,15 @@
 }
 @-webkit-keyframes fadeIn {
   0% { opacity:0; }
-  100% { opacity:0.6; }
+  100% { opacity:1; }
 }
 @-moz-keyframes fadeIn {
   0% { opacity:0; }
-  100% { opacity:0.6; }
+  100% { opacity:1; }
 }
 @keyframes fadeIn {
   0% { opacity:0; }
-  100% { opacity:0.6; }
+  100% { opacity:1; }
 }
 @-webkit-keyframes fadeOut {
   0% { opacity:1; }

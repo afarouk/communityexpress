@@ -62,7 +62,7 @@ body {
   border: 0;
   margin: 0;
   padding: 0;
-  color: #333333;
+  color: black;
   font-size: 14px;
   background: #fff;
 }
@@ -1869,62 +1869,72 @@ a.get_started_btn:active {
   color: #333333;
   max-width: 355px;
 }
-.heading_block {
+
+.heading_block  {
+  /* padding: 19% 0 18% 0; */
+  padding: 0% 0% 0% 0%;
+  height: auto;
+  text-align: center;
+}
+
+.heading_block .addBackGround {
   background: url(../images/landing/announcingChalkboards.png) no-repeat;
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
   -o-background-size: 100% auto;
   background-size: 100% auto;
-  /* padding: 19% 0 18% 0; */
-
-  padding: 0% 0% 0% 0%;
   min-height: 800px;
-  height: auto;
-  text-align: center;
 }
+
 .heading_block h1 {
   margin-top:100px;
-  padding-top: 280px;
-  color: white;
+ /*  padding-top: 280px; */
+  color: black;
   font: 600 54px/54px Roboto;
 }
+
 .heading_block h2 {
-  color: white;
+  color: black;
   font: 500 38px/38px Roboto;
   line-height: normal;
 }
 .heading_block h3 {
-  color: white;
+  color: black;
   line-height: 1.2;
   font: 400 18px/18px Roboto;
 }
+
 .heading_block img {
   padding-top: 190px;
   width: 90%;
 }
+
 .heading_block .color_fade_block {
   background-color: #130d01;
   position: absolute;
   bottom: 0px;
 }
 .sub_heading_block {
-  color: #333333;
+  /* color: #333333; */
   line-height: 1.5 !important;
   font: 300 18px/18px Roboto;
   text-align: center;
   padding-top:20px;
 }
 .middle_block {
+  color:black;
+  padding: 20% 0% 23% 0%;
+  min-height: 600px;
+  height: auto;
+  text-align: center;
+}
+
+.middle_block .addBackGround{
   background: url(../images/landing/conversation.png) no-repeat;
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
   -o-background-size: 100% auto;
   background-size: 100% auto;
-  color:white;
-  padding: 20% 0% 23% 0%;
-  min-height: 600px;
-  height: auto;
-  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -1959,7 +1969,7 @@ a.get_started_btn:active {
     margin-top: 30px;
     padding-top: 30px;
     min-height: 140px;
-  }
+   }
 
   .heading_block h1 {
     margin-top:auto;
@@ -1978,56 +1988,60 @@ a.get_started_btn:active {
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 667px) and (orientation: portrait) {
   .middle_block {
+    padding-top: 150px;
+  }
+  .middle_block .addBackGround{
     background: url(../images/landing/conversationMobile.png) no-repeat center;
     -webkit-background-size: 100% auto;
     -moz-background-size: 100% auto;
     -o-background-size: 100% auto;
     background-size: 100% auto;
-    padding-top: 150px;
-    min-height: auto;
   }
   .middle_block h1 {
     padding-top: 10px;
-    color: white;
+    color: black;
     font: 700 30px Roboto;
   }
 
   .middle_block h2 {
-    color: white;
+    color: black;
     line-height: 1.0;
     font: 500 20px/20px Roboto;
   }
 
   .middle_block h3 {
-    color: white;
+    color: black;
     line-height: 2em;
     font: 400 14px Roboto;
   }
 
   .heading_block {
+    padding-top: 70px;
+    min-height:auto;
+   }
+
+  .heading_block .addBackGround{
     background: url(../images/landing/announcingChalkboardsMobile.png) no-repeat center;
     -webkit-background-size: 100% auto;
     -moz-background-size: 100% auto;
     -o-background-size: 100% auto;
     background-size: 100% auto;
-    padding-top: 70px;
-    min-height:auto;
   }
 
   .heading_block h1 {
     padding-top: 10px;
-    color: white;
+    color: black;
     font: 700 30px Roboto;
   }
 
   .heading_block h2 {
-    color: white;
+    color: black;
     line-height: 1.0;
     font: 500 20px/20px Roboto;
   }
 
   .heading_block h3 {
-    color: white;
+    color: black;
     line-height: 2em;
     font: 400 14px Roboto;
   }
@@ -2089,7 +2103,7 @@ a.get_started_btn:active {
 }
 .how_works_block .text {
   font: 300 16px / 23px Roboto;
-  color: #333333;
+  color: black;
   margin-bottom: 30px;
 }
 .how_works_block .left_block {
@@ -2898,7 +2912,7 @@ a.flyer_pic img {
   padding: 6px 30px;
   margin-top: 10px;
 }
-  
+
 
 .aboutUsb{
   padding: 70px 0 50px 0;
@@ -2936,16 +2950,16 @@ a.flyer_pic img {
     font-weight: 500;
     text-transform: uppercase;
 }
-.payment_icon_set{ 
+.payment_icon_set{
   position: relative;
   padding: 20px 20px;
   background: #ececec;
   border-radius: 5px;
 }
-.payment_icon_set span{ 
+.payment_icon_set span{
   display: inline-block;
   vertical-align: middle;
-  margin-right: 40px; 
+  margin-right: 40px;
 }
 .paypal_logob a img{
   width: 160px;
@@ -3030,12 +3044,12 @@ table.ckb_c_table tbody tr:nth-of-type(even) td {
 .bnrtxtw{
   width: 40%;
   margin: 0 auto;
-  text-align: left;
+  /* text-align: left; */
 }
 .bnrtxt ul{
   text-align: left;
-  color: #ffffff;
-  margin-left: 0px: 
+  color: #black;
+  margin-left: 0px:
 }
 .bnrtxt ul li{
   font-family: roboto;
@@ -3053,8 +3067,8 @@ table.ckb_c_table tbody tr:nth-of-type(even) td {
   }
   .bnrtxt ul{
     text-align: left;
-    color: #ffffff;
-    margin-left: 0px: 
+    color: #black;
+    margin-left: 0px:
   }
   .bnrtxt ul li{
     font-family: roboto;
@@ -3073,7 +3087,7 @@ table.ckb_c_table tbody tr:nth-of-type(even) td {
   }
   .bnrtxt ul{
     text-align: left;
-    color: #ffffff;
+    color: #black;
     padding-left: 22px;
   }
   .bnrtxt ul li{
@@ -3088,67 +3102,67 @@ table.ckb_c_table tbody tr:nth-of-type(even) td {
 
 
 @media only screen and (max-width: 800px) {
-  
+
   /* Force table to not be like tables anymore */
-  #no-more-tables table, 
-  #no-more-tables thead, 
-  #no-more-tables tbody, 
-  #no-more-tables th, 
-  #no-more-tables td, 
-  #no-more-tables tr { 
-    display: block; 
+  #no-more-tables table,
+  #no-more-tables thead,
+  #no-more-tables tbody,
+  #no-more-tables th,
+  #no-more-tables td,
+  #no-more-tables tr {
+    display: block;
   }
- 
+
   /* Hide table headers (but not display: none;, for accessibility) */
-  #no-more-tables thead tr { 
+  #no-more-tables thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
- 
-  #no-more-tables tr { 
-        border: 1px solid #cdcdcd; 
+
+  #no-more-tables tr {
+        border: 1px solid #cdcdcd;
         margin-bottom: 10px;
     }
-    #no-more-tables tr:last-child { 
+    #no-more-tables tr:last-child {
         margin-bottom: 0px;
     }
- 
-  #no-more-tables td { 
+
+  #no-more-tables td {
     /* Behave  like a "row" */
     border: none;
-    border-bottom: 1px solid #cdcdcd; 
+    border-bottom: 1px solid #cdcdcd;
     position: relative;
-    padding-left: 50%; 
+    padding-left: 50%;
     white-space: normal;
     text-align:left;
   }
 
-  #no-more-tables tr td:first-child { 
-    padding-left: 5px; 
+  #no-more-tables tr td:first-child {
+    padding-left: 5px;
     font-weight: 700;
   }
- 
-  #no-more-tables td:before { 
+
+  #no-more-tables td:before {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
     top: 6px;
     left: 6px;
-    width: 45%; 
-    padding-right: 10px; 
+    width: 45%;
+    padding-right: 10px;
     white-space: nowrap;
     text-align:left;
     font-weight: bold;
   }
- 
+
   /*
   Label the data
   */
   #no-more-tables td:before { content: attr(data-title); }
-    
-    
-    
+
+
+
     .table_btn_block{
         text-align: left;
     }
