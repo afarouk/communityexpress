@@ -3149,10 +3149,17 @@ table.ckb_c_table tbody tr:nth-of-type(even) td {
   background: #cae8f5;
 }
 
+table.bannerTable {
+  margin: auto;
+  text-align: left;
+  font-size: 34px;
+  line-height: 1.5em;
+}
+
+/*
 .bnrtxtw {
   width: 40%;
   margin: 0 auto;
-  /* text-align: left; */
 }
 
 .bnrtxt ul {
@@ -3168,44 +3175,23 @@ table.ckb_c_table tbody tr:nth-of-type(even) td {
   font-weight: 500;
   list-style: disc;
 }
+*/
 
 @media only screen and (max-width: 786px) {
-  .bnrtxtw {
-    width: 60%;
-    margin: 0 auto;
+  table.bannerTable {
+    margin: auto;
     text-align: left;
-  }
-  .bnrtxt ul {
-    text-align: left;
-    color: #black;
-    margin-left: 0px:
-  }
-  .bnrtxt ul li {
-    font-family: roboto;
-    font-size: 24px;
-    margin: 8px 0;
-    font-weight: 500;
-    list-style: disc;
+    font-size: 25px;
+    line-height: 1.5em;
   }
 }
 
 @media only screen and (max-width: 500px) {
-  .bnrtxtw {
-    width: 60%;
-    margin: 0 auto;
+  table.bannerTable {
+    margin: auto;
     text-align: left;
-  }
-  .bnrtxt ul {
-    text-align: left;
-    color: #black;
-    padding-left: 22px;
-  }
-  .bnrtxt ul li {
-    font-family: roboto;
-    font-size: 20px;
-    margin: 5px 0;
-    font-weight: 500;
-    list-style: disc;
+    font-size: 18px;
+    line-height: 1.5em;
   }
 }
 
