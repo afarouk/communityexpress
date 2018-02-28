@@ -9,6 +9,8 @@
  */
 
 $(window).load(function() {
+	/*
+	** AF: Disabled saslSummary and marker loading **
 	var url = "https://simfel.com/apptsvc/rest/sasl/getSASLSummaryLightByUIDAndLocation?domain=ALL&UID=&latitude=37.307793&longitude=-122.002228&simulate=true",
 		sasls = getSASLS(url),
 		markers = getMarkers(sasls),
@@ -34,7 +36,7 @@ $(window).load(function() {
 
 	function getMarkers(sasls) {
 		var sasls = sasls,
-			markers = []; 
+			markers = [];
 
 		for( var index in sasls ) {
 			var marker, position, name, url;
@@ -47,7 +49,7 @@ $(window).load(function() {
 			url = sasls[index].onClickURL;
 
 			marker = {
-				name: name, 
+				name: name,
 				position : position,
 				url: url
 			};
@@ -68,7 +70,7 @@ $(window).load(function() {
 	}
 
 	function placeMarkers(map, markers) {
-		for( var index in markers ) { 
+		for( var index in markers ) {
 			var marker = new MarkerWithLabel({
 			   position: markers[index].position,
 			   map: map,
@@ -94,6 +96,8 @@ $(window).load(function() {
 			placeMarkers(map, markers);
 		}, 1000);
 	});
+	** AF: END disabled sasl summmary and marker loading
+	*/
 });
 
 $(window).load(function() { // makes sure the whole site is loaded
