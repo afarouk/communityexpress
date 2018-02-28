@@ -135,9 +135,9 @@ $(window).load(function() { // makes sure the whole site is loaded
 				$('nav.navbar').css('background-color','#363636');
 				$('.li_signin').addClass('active');
 			}
-			if (window.location.pathname == "/testflyer") {
+			if (window.location.pathname == "/flyers") {
 				$('nav.navbar').css('background-color','#363636');
-				$('.li_flayer').addClass('active');
+				$('.li_flyers').addClass('active');
 			}
 			if (window.location.pathname == "/support") {
 				$('nav.navbar').css('background-color','#363636');

@@ -27,8 +27,8 @@
             <!--
               <li class="li_demo"><a href="sendsample">Try It</a></li>
             -->
-             <!--  <li class="li_flayer"><a href="testflyer">Flyers</a></li> -->
-              <!-- <li class="li_flayer"><a href="themeoption">Theme</a></li> -->
+             <!--  <li class="li_flyers"><a href="flyers">Flyers</a></li> -->
+              <!-- <li class="li_flyers"><a href="themeoption">Theme</a></li> -->
             <li>
               <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
             </li>

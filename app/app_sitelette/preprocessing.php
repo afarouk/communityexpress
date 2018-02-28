@@ -149,8 +149,8 @@ if (validateParams('friendlyURL')) {
       case 'signup':
         $pageAccess = 'common_signup.php';
         break;
-      case 'testflyer':
-        $pageAccess = 'common_testflyer.php';
+      case 'flyers':
+        $pageAccess = 'common_flyers.php';
         break;
       case 'themeoption':
         $pageAccess = 'common_themeoption.php';
@@ -356,7 +356,7 @@ if ($saslAccess || $urlKeyAccess) {
             $showSASLTiles            = $saslTiles['showSASLTiles'];
             $saslTilesJSON            = json_decode($saslTiles['saslTilesJSON'], true);
             $saslTilesHTML            = $saslTiles['saslTilesHTML'];
-        } 
+        }
     }
     ** END AF: disabled call to retrieve tiles **
     */

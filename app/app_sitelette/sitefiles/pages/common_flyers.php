@@ -27,7 +27,7 @@ include 'sitefiles/includes/navbar.php';
  ?>
  <!-- Header end -->
  <?php
-include 'sitefiles/pages/content_testflyer.html';
+include 'sitefiles/pages/content_flyers.html';
  ?>
   <?php
 include 'sitefiles/includes/scriptfiles.html';
