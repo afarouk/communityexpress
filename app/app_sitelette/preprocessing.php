@@ -342,6 +342,8 @@ if ($saslAccess || $urlKeyAccess) {
 } else {
     $errorMessage           = null;
     $showSASLTiles          =false;
+    /*
+    ** AF: disabled call to retrieve tiles **
     $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSASLTilesByUIDAndLocation?UID=&latitude=&longitude=&ua='.$userAgent. '&ftl=' . $ftlfile;
 
     $saslTiles = makeApiCall($apiURL);
@@ -354,9 +356,10 @@ if ($saslAccess || $urlKeyAccess) {
             $showSASLTiles            = $saslTiles['showSASLTiles'];
             $saslTilesJSON            = json_decode($saslTiles['saslTilesJSON'], true);
             $saslTilesHTML            = $saslTiles['saslTilesHTML'];
-        }
-    /*end no error*/
+        } 
     }
+    ** END AF: disabled call to retrieve tiles **
+    */
   /*end can reach server */
 }
 
