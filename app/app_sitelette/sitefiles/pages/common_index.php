@@ -23,7 +23,7 @@
 include 'sitefiles/includes/stylesheets.html';
   ?>
   <title>Chalkboards </title>
-<style type="text/css">
+  <style type="text/css">
      .form-control-feedback
     {
         /*top:38px !important;*/
