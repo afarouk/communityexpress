@@ -1,0 +1,121 @@
+@font-face{
+    font-family:Josefix;
+    src:url(../fonts/Josefix700normal.woff2) format("woff2"),url(../fonts/Josefix700normal.woff) format("woff"),url(../fonts/Josefix700normal.ttf) format("truetype");
+    font-weight:700;
+    font-style:normal;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Josefix;
+    src:url(../fonts/Josefix600normal.woff2) format("woff2"),url(../fonts/Josefix600normal.woff) format("woff"),url(../fonts/Josefix600normal.ttf) format("truetype");
+    font-weight:600;
+    font-style:normal;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Josefix;
+    src:url(../fonts/Josefix600italic.woff2) format("woff2"),url(../fonts/Josefix600italic.woff) format("woff"),url(../fonts/Josefix600italic.ttf) format("truetype");
+    font-weight:600;
+    font-style:italic;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Josefix;
+    src:url(../fonts/Josefix700italic.woff2) format("woff2"),url(../fonts/Josefix700italic.woff) format("woff"),url(../fonts/Josefix700italic.ttf) format("truetype");
+    font-weight:700;
+    font-style:italic;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Merriweather;
+    src:url(../fonts/Josefix400italic.woff2) format("woff2"),url(../fonts/Josefix400italic.woff) format("woff"),url(../fonts/Josefix400italic.ttf) format("truetype");
+    font-weight:400;
+    font-style:italic;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Josefix;
+    src:url(../fonts/Josefix300normal.woff2) format("woff2"),url(../fonts/Josefix300normal.woff) format("woff"),url(../fonts/Josefix300normal.ttf) format("truetype");
+    font-weight:300;
+    font-style:normal;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Josefix;
+    src:url(../fonts/Josefix300italic.woff2) format("woff2"),url(../fonts/Josefix300italic.woff) format("woff"),url(../fonts/Josefix300italic.ttf) format("truetype");
+    font-weight:300;
+    font-style:italic;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Merriweather;
+    src:url(../fonts/Merriweather300normal.woff2) format("woff2"),url(../fonts/Merriweather300normal.woff) format("woff"),url(../fonts/Merriweather300normal.ttf) format("truetype");
+    font-weight:300;
+    font-style:normal;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Merriweather;
+    src:url(../fonts/Merriweather300italic.woff2) format("woff2"),url(../fonts/Merriweather300italic.woff) format("woff"),url(../fonts/Merriweather300italic.ttf) format("truetype");
+    font-weight:300;
+    font-style:italic;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Merriweather;
+    src:url(../fonts/Merriweather700normal.woff2) format("woff2"),url(../fonts/Merriweather700normal.woff) format("woff"),url(../fonts/Merriweather700normal.ttf) format("truetype");
+    font-weight:700;
+    font-style:normal;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Merriweather;
+    src:url(../fonts/Merriweather700italic.woff2) format("woff2"),url(../fonts/Merriweather700italic.woff) format("woff"),url(../fonts/Merriweather700italic.ttf) format("truetype");
+    font-weight:700;
+    font-style:italic;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Josefix;
+    src:url(../fonts/Josefix400normal.woff2) format("woff2"),url(../fonts/Josefix400normal.woff) format("woff"),url(../fonts/Josefix400normal.ttf) format("truetype");
+    font-weight:400;
+    font-style:normal;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Josefix;
+    src:url(../fonts/Josefix400italic.woff2) format("woff2"),url(../fonts/Josefix400italic.woff) format("woff"),url(../fonts/Josefix400italic.ttf) format("truetype");
+    font-weight:400;
+    font-style:italic;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+@font-face{
+    font-family:Allura;
+    src:url(../fonts/Allura400normal.woff2) format("woff2"),url(../fonts/Allura400normal.woff) format("woff"),url(../fonts/Allura400normal.ttf) format("truetype");
+    font-weight:400;
+    font-style:normal;
+    font-rendering:swap .5s;
+    font-display:swap
+}
+
+body, p {
+  font-family: 'Josefix', 'Arial', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 23px;
+  color:gray;
+  /*letter-spacing: 1px;*/
+}
