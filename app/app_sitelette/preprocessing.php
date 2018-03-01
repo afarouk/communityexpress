@@ -106,7 +106,7 @@ if (validateParams('serviceLocationId')) {
 if (validateParams('friendlyURL')) {
     $friendlyURL = $_REQUEST['friendlyURL'];
     if (isset($friendlyURL)) {
-        switch ($friendlyURL) {
+      switch ($friendlyURL) {
       case 'embedded_userguide':
             $pageAccess = 'embedded_userguide.php';
         break;
@@ -156,41 +156,41 @@ if (validateParams('friendlyURL')) {
         $pageAccess = 'common_themeoption.php';
         break;
       case 'support':
-          $pageAccess = 'common_support.php';
-          break;
-	  case 'Pricing':
-          $pageAccess = 'common_pricing.php';
-          break;
+        $pageAccess = 'common_support.php';
+        break;
+	    case 'Pricing':
+        $pageAccess = 'common_pricing.php';
+        break;
       case 'Vantiv':
-          $pageAccess = 'common_vantivResponseParser.php';
-          if (validateParams('HostedPaymentStatus') && $_REQUEST['HostedPaymentStatus'] === 'Complete') {
-              $vantivValidationCode = $_REQUEST['ValidationCode'];
-              $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
-              $vantivTransactionId2 = $_REQUEST['TransactionID'];
-              $vantivTransactionId3 = $_REQUEST['ExpressResponseCode'];
-              $vantivTransactionId4 = $_REQUEST['ExpressResponseMessage'];
-              $vantivTransactionId5 = $_REQUEST['CVVResponseCode'];
-              $vantivTransactionId6 = $_REQUEST['ApprovalNumber'];
-              $vantivTransactionId7 = $_REQUEST['LastFour'];
-              $vantivTransactionId8 = $_REQUEST['CardLogo'];
-              $vantivTransactionId9 = $_REQUEST['ApprovedAmount'];
-              $vantivTransactionId10 = $_REQUEST['Bin'];
-          } else {
-              $vantivValidationCode = null;
-              $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
-              $vantivTransactionId2 = null;
-              $vantivTransactionId3 = null;
-              $vantivTransactionId4 = null;
-              $vantivTransactionId5 = null;
-              $vantivTransactionId6 = null;
-              $vantivTransactionId7 = null;
-              $vantivTransactionId8 = null;
-              $vantivTransactionId9 = null;
-              $vantivTransactionId10 =null;
-          }
-          break;
+        $pageAccess = 'common_vantivResponseParser.php';
+        if (validateParams('HostedPaymentStatus') && $_REQUEST['HostedPaymentStatus'] === 'Complete') {
+            $vantivValidationCode = $_REQUEST['ValidationCode'];
+            $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
+            $vantivTransactionId2 = $_REQUEST['TransactionID'];
+            $vantivTransactionId3 = $_REQUEST['ExpressResponseCode'];
+            $vantivTransactionId4 = $_REQUEST['ExpressResponseMessage'];
+            $vantivTransactionId5 = $_REQUEST['CVVResponseCode'];
+            $vantivTransactionId6 = $_REQUEST['ApprovalNumber'];
+            $vantivTransactionId7 = $_REQUEST['LastFour'];
+            $vantivTransactionId8 = $_REQUEST['CardLogo'];
+            $vantivTransactionId9 = $_REQUEST['ApprovedAmount'];
+            $vantivTransactionId10 = $_REQUEST['Bin'];
+        } else {
+            $vantivValidationCode = null;
+            $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
+            $vantivTransactionId2 = null;
+            $vantivTransactionId3 = null;
+            $vantivTransactionId4 = null;
+            $vantivTransactionId5 = null;
+            $vantivTransactionId6 = null;
+            $vantivTransactionId7 = null;
+            $vantivTransactionId8 = null;
+            $vantivTransactionId9 = null;
+            $vantivTransactionId10 =null;
+        }
+        break;
       default:
-    }
+      }
     }
 } else {
     $friendlyURL = null;

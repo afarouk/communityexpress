@@ -37,5 +37,5 @@ if ($saslAccess || $urlKeyAccess) {
    * neither sasl access or urlkey access.
    * neither URL nor sa,sl provided
    */
-  include_once('sitefiles/pages/' . 'common_chalkboards.php');
+  include_once('sitefiles/pages/' . 'common_index.php');
 }
