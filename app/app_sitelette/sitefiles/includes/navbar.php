@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse clearfix navMenu" id="bs-example-navbar-collapse-1" role="navigation">
           <ul class="nav navbar-nav navbar-right">
             <li <?php modifyUrlAndClass("") ?>>
-              <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","slider-part") ?>>Home</a>
+              <a class="page-scroll" href="/"> Home</a>
               </li>
             <!--
             <li>
