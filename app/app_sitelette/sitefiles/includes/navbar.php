@@ -18,7 +18,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li <?php modifyUrlAndClass("") ?>>
               <a class="page-scroll" href="/"> Home</a>
-              </li>
+            </li>
             <!--
             <li>
               <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","features") ?>>Features</a>
