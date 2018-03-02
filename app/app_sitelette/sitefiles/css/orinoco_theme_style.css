@@ -136,12 +136,12 @@ nav.navbar-no-border{
   border:none;
 }
 .heading_block {
-  background: url(../images/landing/conversation.png) no-repeat;
+  background: url(../images/landing/conversation_tall.png) no-repeat;
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
   -o-background-size: 100% auto;
   background-size: 100% auto;
-  min-height:700px;
+  min-height:900px;
   margin-top:0px;
   /*  text color */
   color:white;
