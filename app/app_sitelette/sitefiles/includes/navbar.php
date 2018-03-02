@@ -1,5 +1,5 @@
 <header id="header" role="banner">
-  <nav class="navbar navbar-default navbar-fixed-top" id="tf-menu">
+  <nav class="navbar navbar-default navbar-fixed-top navbar-no-border" id="tf-menu">
     <div class="container-fluid p-r-0 p-l-0">
       <div class="col-md-10 col-md-offset-1">
         <div class="navbar-header">
