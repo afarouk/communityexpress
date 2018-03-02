@@ -171,16 +171,25 @@ nav.navbar-no-border{
   margin-top:200px;
 }
 
-.allura{
+.feature_title{
+  font-family: 'Josefix', 'Arial', serif;
+  font-weight: 500;
+  font-style:normal;
+  font-size: 30px;
+  line-height: 1.2em;
+  color: gray;
+}
+
+.main_heading_styled{
   font-family: 'Allura', 'Times-Roman', serif;
   font-weight: 500;
-  font-style:italic;
+  font-style:normal;
   font-size: 76px;
   line-height: 1.2em;
   color: #c59d5f;
 }
 
-.josefix{
+.main_heading{
   font-family: 'Josefix', 'Arial', serif;
   font-weight: 500;
   font-style:normal;

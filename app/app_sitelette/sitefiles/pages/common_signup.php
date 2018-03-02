@@ -21,7 +21,7 @@ include ('sitefiles/pages/content_signup.html');
 include ('sitefiles/includes/scriptfiles.html');
   ?>
 
-  <script type="text/javascript" src="sitefiles/pages_js/content_signup.js"></script>
+  <!-- <script type="text/javascript" src="sitefiles/pages_js/content_signup.js"></script> -->
   <!-- <script type="text/javascript" src="sitefiles/pages_js/content_packages.js"></script> -->
 
   <?php
