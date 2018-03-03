@@ -4,7 +4,7 @@
  <head>
  <!-- og meta tags -->
  <meta property="og:type"               content="article" />
- <meta property="og:title"              content="A new marketing tool for your small business"/>
+ <meta property="og:title"              content="A smarter POS with built-in marketing tools"/>
  <meta property="og:description"        content="Make your coupons and discounts work harder for you. Get Chalkboards for your business."/>
  <meta property="og:image"              content="sitefiles/images/ogImage.png"/>
 
@@ -82,7 +82,7 @@ include 'sitefiles/includes/scriptfiles.html';
 		time : 2000
 	});
   </script>
-     <!-- <script type="text/javascript" src="sitefiles/pages_js/content_packages.js"></script> -->
+     <script type="text/javascript" src="sitefiles/pages_js/content_packages.js"></script>
      <script type="text/javascript" src="sitefiles/pages_js/content_contactUs.js"></script>
  </body>
 </html>

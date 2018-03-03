@@ -132,26 +132,28 @@ body, p {
   color: rgb(136, 136, 136);
   /*letter-spacing: 1px;*/
 }
-nav.navbar-no-border{
-  border:none;
+
+nav.navbar-no-border {
+  border: none;
 }
+
 .heading_block {
   background: url(../images/landing/conversation_tall.png) no-repeat;
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
   -o-background-size: 100% auto;
   background-size: 100% auto;
-  min-height:900px;
-  margin-top:0px;
+  min-height: 900px;
+  margin-top: 0px;
   /*  text color */
-  color:white;
+  color: white;
 }
 
 .feature_icon img {
-  max-height:80px;
+  max-height: 80px;
 }
 
-.text {
+.feature_text {
   font-family: 'Merriweather', 'Georgia', sans-serif;
   font-weight: 300;
   font-size: 16px;
@@ -159,7 +161,7 @@ nav.navbar-no-border{
   color: rgb(136, 136, 136);
 }
 
-.row sub_heading_block{
+.row sub_heading_block {
   font-family: 'Merriweather', 'Arial', sans-serif;
   font-weight: 300;
   font-size: 18px;
@@ -167,32 +169,47 @@ nav.navbar-no-border{
   color: rgb(136, 136, 136);
 }
 
-.title {
-  margin-top:200px;
+.push_down {
+  margin-top: 200px;
 }
 
-.feature_title{
+.feature_title {
   font-family: 'Josefix', 'Arial', serif;
   font-weight: 500;
-  font-style:normal;
+  font-style: normal;
   font-size: 30px;
   line-height: 1.2em;
   color: gray;
+  position:relative;
 }
 
-.main_heading_styled{
+.vertical-middle {
+  position:relative;
+}
+
+.vertical-middle img {
+  vertical-align: middle;
+  max-height: 80px;
+}
+
+.vertical-middle span {
+  display: inline-block;
+  vertical-align: middle
+}
+
+.main_heading_styled {
   font-family: 'Allura', 'Times-Roman', serif;
   font-weight: 500;
-  font-style:normal;
+  font-style: normal;
   font-size: 76px;
   line-height: 1.2em;
   color: #c59d5f;
 }
 
-.main_heading{
+.main_heading {
   font-family: 'Josefix', 'Arial', serif;
   font-weight: 500;
-  font-style:normal;
+  font-style: normal;
   font-size: 50px;
   line-height: 1.2em;
   color: #FFFFFF;
