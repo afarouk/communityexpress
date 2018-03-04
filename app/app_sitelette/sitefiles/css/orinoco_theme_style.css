@@ -214,3 +214,13 @@ nav.navbar-no-border {
   line-height: 1.2em;
   color: #FFFFFF;
 }
+
+.main_heading_smaller {
+    font-family: 'Josefix', 'Arial', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 1.2em;
+    color: #ffffff;
+  }
+}
