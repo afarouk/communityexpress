@@ -133,9 +133,16 @@ body, p {
   /*letter-spacing: 1px;*/
 }
 
-nav.navbar-no-border {
+nav.navbar-orinoco {
   border: none;
+  background-color: none;
+  font-family:"Josefix", "Arial", serif;
+  font-weight:500;
+  font-style:normal;
+  font-size:20px;
+  color:#FFFFFF
 }
+ 
 
 .heading_block {
   background: url(../images/landing/conversation_tall.png) no-repeat;
