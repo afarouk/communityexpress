@@ -143,6 +143,14 @@ nav.navbar-orinoco {
   color: #FFFFFF
 }
 
+nav.navbar-orinoco.navbar-default .navbar-nav > li > a {
+  color:white;
+}
+
+nav.navbar-orinoco.navbar-default .navbar-nav > li > a:hover {
+  color:#c59d5f;
+}
+
 .heading_block {
   background: url(../images/landing/conversation_tall.png) no-repeat;
   -webkit-background-size: 100% auto;
