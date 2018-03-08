@@ -60,7 +60,7 @@
   font-rendering: swap .5s;
   font-display: swap
 }
-
+/*
 @font-face {
   font-family: Merriweather;
   src: url(../fonts/Merriweather300normal.woff2) format("woff2"), url(../fonts/Merriweather300normal.woff) format("woff"), url(../fonts/Merriweather300normal.ttf) format("truetype");
@@ -96,7 +96,7 @@
   font-rendering: swap .5s;
   font-display: swap
 }
-
+*/
 @font-face {
   font-family: Josefix;
   src: url(../fonts/Josefix400normal.woff2) format("woff2"), url(../fonts/Josefix400normal.woff) format("woff"), url(../fonts/Josefix400normal.ttf) format("truetype");
@@ -125,9 +125,9 @@
 }
 
 body, p {
-  font-family: 'Merriweather', 'Arial', sans-serif;
+  font-family: 'Raleway', 'Arial', sans-serif;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.2em;
   color: rgb(136, 136, 136);
   /*letter-spacing: 1px;*/
@@ -190,7 +190,7 @@ nav.navbar-orinoco.navbar-default .navbar-nav .active > a {
   font-family: 'Raleway', 'Arial', sans-serif;
   font-weight: 300;
   font-size: 16px;
-  line-height: 1.3em;
+  line-height: 1.5em;
   color: rgb(136, 136, 136);
 }
 
