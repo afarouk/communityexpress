@@ -1,3 +1,4 @@
+/*
 @font-face {
   font-family: Josefix;
   src: url(../fonts/Josefix700normal.woff2) format("woff2"), url(../fonts/Josefix700normal.woff) format("woff"), url(../fonts/Josefix700normal.ttf) format("truetype");
@@ -34,14 +35,6 @@
   font-display: swap
 }
 
-@font-face {
-  font-family: Merriweather;
-  src: url(../fonts/Josefix400italic.woff2) format("woff2"), url(../fonts/Josefix400italic.woff) format("woff"), url(../fonts/Josefix400italic.ttf) format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-rendering: swap .5s;
-  font-display: swap
-}
 
 @font-face {
   font-family: Josefix;
@@ -60,13 +53,23 @@
   font-rendering: swap .5s;
   font-display: swap
 }
-
+*/
 /*
 @font-face {
   font-family: Merriweather;
   src: url(../fonts/Merriweather300normal.woff2) format("woff2"), url(../fonts/Merriweather300normal.woff) format("woff"), url(../fonts/Merriweather300normal.ttf) format("truetype");
   font-weight: 300;
   font-style: normal;
+  font-rendering: swap .5s;
+  font-display: swap
+}
+
+
+@font-face {
+  font-family: Merriweather;
+  src: url(../fonts/Josefix400italic.woff2) format("woff2"), url(../fonts/Josefix400italic.woff) format("woff"), url(../fonts/Josefix400italic.ttf) format("truetype");
+  font-weight: 400;
+  font-style: italic;
   font-rendering: swap .5s;
   font-display: swap
 }
@@ -98,7 +101,7 @@
   font-display: swap
 }
 */
-
+/*
 @font-face {
   font-family: Josefix;
   src: url(../fonts/Josefix400normal.woff2) format("woff2"), url(../fonts/Josefix400normal.woff) format("woff"), url(../fonts/Josefix400normal.ttf) format("truetype");
@@ -116,7 +119,8 @@
   font-rendering: swap .5s;
   font-display: swap
 }
-
+*/
+/*
 @font-face {
   font-family: Allura;
   src: url(../fonts/Allura400normal.woff2) format("woff2"), url(../fonts/Allura400normal.woff) format("woff"), url(../fonts/Allura400normal.ttf) format("truetype");
@@ -125,7 +129,7 @@
   font-rendering: swap .5s;
   font-display: swap
 }
-
+*/
 body, p {
   font-family: 'Raleway', 'Arial', sans-serif;
   font-weight: 300;
@@ -141,7 +145,7 @@ body, p {
 nav.navbar-orinoco {
   border: none;
   background-color: none;
-  font-family: "Josefix", "Arial", serif;
+  font-family: 'Josefin Sans', "Arial", serif;
   font-weight: 500;
   font-style: normal;
   font-size: 20px;
@@ -383,8 +387,8 @@ nav.navbar-orinoco.navbar-default .navbar-nav .active>a {
   padding-top:80px;
 }
 .main_heading_styled {
-  font-family: 'Allura', 'Times-Roman', serif;
-  font-weight: 500;
+  font-family: 'Allura', sans-serif;
+  font-weight: 300;
   font-style: normal;
   font-size: 76px;
   line-height: 1.2em;
@@ -400,8 +404,8 @@ nav.navbar-orinoco.navbar-default .navbar-nav .active>a {
 }
 
 .main_heading {
-  font-family: 'Josefix', 'Arial', serif;
-  font-weight: 400;
+  font-family: 'Josefin Sans', 'Arial', serif;
+  font-weight: 300;
   font-style: normal;
   font-size: 50px;
   line-height: 1.2em;
@@ -409,7 +413,7 @@ nav.navbar-orinoco.navbar-default .navbar-nav .active>a {
 }
 
 .main_heading_smaller {
-  font-family: 'Josefix', 'Arial', serif;
+  font-family: 'Josefin Sans', 'Arial', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 36px;
