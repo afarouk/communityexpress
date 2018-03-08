@@ -281,18 +281,43 @@ nav.navbar-orinoco.navbar-default .navbar-nav .active>a {
     font-size: 10px;
   }
 }
+
 /* Various blocks
 ===================================================*/
+
 .heading_block {
   background: url(../images/landing/conversation_tall.png) no-repeat;
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
   -o-background-size: 100% auto;
-  background-size: 100% auto;
-  min-height: 900px;
+  background-size: cover;
+  /* min-height: 900px; */
   margin-top: 0px;
   /*  text color */
   color: white;
+  background-position: center;
+  padding-bottom: 500px;
+}
+
+/* iphone 6,7,8 media query */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px)
+/* and (orientation : landscape) */
+
+  {
+  .heading_block {
+    background: url(../images/landing/background_portrait.png) no-repeat;
+    -webkit-background-size: auto auto;
+    -moz-background-size: auto auto;
+    -o-background-size: auto auto;
+    background-size: cover;
+    /* min-height: 900px; */
+    margin-top: 0px;
+    /*  text color */
+    color: gray;
+    background-position: center;
+    padding-bottom: 100px;
+  }
 }
 
 .feature_block {
@@ -362,6 +387,14 @@ nav.navbar-orinoco.navbar-default .navbar-nav .active>a {
   font-size: 76px;
   line-height: 1.2em;
   color: #c59d5f;
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px)
+/* and (orientation : landscape) */
+  {
+  .main_heading_styled {
+    font-size: 48px;
+  }
 }
 
 .main_heading {
