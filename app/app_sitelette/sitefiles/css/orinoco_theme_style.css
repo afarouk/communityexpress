@@ -379,7 +379,9 @@ nav.navbar-orinoco.navbar-default .navbar-nav .active>a {
   display: inline-block;
   vertical-align: middle
 }
-
+.push_down_for_menu{
+  padding-top:80px;
+}
 .main_heading_styled {
   font-family: 'Allura', 'Times-Roman', serif;
   font-weight: 500;
