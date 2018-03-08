@@ -60,6 +60,7 @@
   font-rendering: swap .5s;
   font-display: swap
 }
+
 /*
 @font-face {
   font-family: Merriweather;
@@ -97,6 +98,7 @@
   font-display: swap
 }
 */
+
 @font-face {
   font-family: Josefix;
   src: url(../fonts/Josefix400normal.woff2) format("woff2"), url(../fonts/Josefix400normal.woff) format("woff"), url(../fonts/Josefix400normal.ttf) format("truetype");
@@ -133,6 +135,9 @@ body, p {
   /*letter-spacing: 1px;*/
 }
 
+/* Navbar
+===============================================*/
+
 nav.navbar-orinoco {
   border: none;
   background-color: none;
@@ -143,19 +148,141 @@ nav.navbar-orinoco {
   color: #FFFFFF
 }
 
-nav.navbar-orinoco.navbar-default .navbar-nav > li > a {
-  color:white;
+nav.navbar-orinoco.navbar-default .navbar-nav>li>a {
+  color: white;
 }
 
-nav.navbar-orinoco.navbar-default .navbar-nav > li > a:hover {
-  color:#c59d5f;
+nav.navbar-orinoco.navbar-default .navbar-nav>li>a:hover {
+  color: #c59d5f;
 }
 
-nav.navbar-orinoco.navbar-default .navbar-nav .active > a {
-  color:#828282;
+nav.navbar-orinoco.navbar-default .navbar-nav .active>a {
+  color: #828282;
 }
 
+/*RESPONSIVE
+=============================================================*/
 
+@media (max-width: 990px) {
+  .navbar-brand {
+    margin-left: 15px !important;
+  }
+  a.signup_btn {
+    margin-right: 15px;
+  }
+  .mobile_power_block .right_block {
+    text-align: center;
+  }
+  .mobile_power_block .right_block ul {
+    display: inline-block;
+    text-align: left;
+  }
+  .how_works_block {
+    text-align: center;
+  }
+  .how_works_block .title {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar>.container-fluid .navbar-brand {
+    margin-top: 5px;
+    margin-left: 0 !important;
+    padding: 0;
+    width: 160px;
+    height: 40px;
+    position: initial;
+  }
+  nav.navbar {
+    background-color: #fff;
+    padding-top: 0;
+    box-shadow: 0 0 20px #000;
+  }
+  .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    margin-right: 0;
+    background-color: transparent;
+  }
+  .navbar-default .navbar-collapse {
+    text-align: center;
+  }
+  .nav li a {
+    display: inline-block;
+    color: #F99C19 !important;
+    border-color: #F99C19;
+  }
+  .nav li a:hover {
+    color: #F06013 !important;
+    border-color: #F06013;
+  }
+  a.signup_btn {
+    margin-right: 0px;
+  }
+  .slider {
+    margin-top: 50px;
+  }
+  a.signup_btn {
+    margin-left: 0;
+  }
+  .banner {
+    min-height: 400px;
+  }
+  .title_text_img_container {
+    margin-top: 200px;
+    width: 290px;
+    height: 70px;
+    background-size: contain;
+  }
+  .banner a.get_started_btn {
+    margin-bottom: 50px;
+  }
+  .mobile_power_block {
+    padding: 20px 0 0 0;
+  }
+  .mobile_power_block .title_block {
+    padding: 0 15px;
+  }
+  .mobile_power_block .title_block .undertitle {
+    margin-bottom: 25px;
+  }
+  .list_item .last {
+    margin-bottom: 0;
+  }
+  .browse_chalkboards_block .title {
+    padding: 0 20px;
+    font: 700 30px / 36px Roboto;
+  }
+  .browse_chalkboards_block .text {
+    padding: 0 20px;
+    font: 300 18px / 24px Roboto
+  }
+  .how_works_block {
+    padding: 20px 0;
+  }
+  .how_works_block .left_block {
+    padding: 0 15px;
+  }
+  .how_works_block .text {
+    margin-bottom: 20px;
+  }
+  .contact_us_block {
+    padding: 20px 0;
+  }
+  .send_message_btn {
+    padding: 20px 50px;
+  }
+  .footer_block .left_block {
+    padding-bottom: 0px;
+  }
+  .footer_block ul {
+    margin-bottom: 30px;
+  }
+  .footer_last_line p {
+    font-size: 10px;
+  }
+}
+/* Various blocks
+===================================================*/
 .heading_block {
   background: url(../images/landing/conversation_tall.png) no-repeat;
   -webkit-background-size: 100% auto;
@@ -496,4 +623,85 @@ table.bannerTable {
   text-align: left;
   font-size: 34px;
   line-height: 1.5em;
+}
+
+@media only screen and (max-width: 786px) {
+  table.bannerTable {
+    margin: auto;
+    text-align: left;
+    font-size: 25px;
+    line-height: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  table.bannerTable {
+    margin: auto;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  /* Force table to not be like tables anymore */
+  #no-more-tables table, #no-more-tables thead, #no-more-tables tbody, #no-more-tables th, #no-more-tables td, #no-more-tables tr {
+    display: block;
+  }
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #no-more-tables thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  #no-more-tables tr {
+    border: 1px solid #cdcdcd;
+    margin-bottom: 10px;
+  }
+  #no-more-tables tr:last-child {
+    margin-bottom: 0px;
+  }
+  #no-more-tables td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #cdcdcd;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+  }
+  #no-more-tables tr td:first-child {
+    padding-left: 5px;
+    font-weight: 700;
+  }
+  #no-more-tables td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+  /*
+  Label the data
+  */
+  #no-more-tables td:before {
+    content: attr(data-title);
+  }
+  .table_btn_block {
+    text-align: left;
+  }
+}
+
+@media all and (max-width:991px) {
+  .form-group.frmeL {
+    margin-right: -15px;
+  }
+  .form-group.frmeR {
+    margin-left: -15px;
+  }
 }
