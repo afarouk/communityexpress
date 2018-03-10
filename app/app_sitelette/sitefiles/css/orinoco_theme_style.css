@@ -284,9 +284,6 @@
    max-height: 250px;
  }
 
- .feature_block {
-   padding-top: 30px;
- }
 
  .paragraph_text {
    font-family: 'Merriweather', 'Arial', sans-serif;
@@ -318,9 +315,7 @@
    color: rgb(136, 136, 136);
  }
 
- .push_down {
-   margin-top: 200px;
- }
+
 
  .vertical-middle {
    position: relative;
@@ -348,6 +343,9 @@
    line-height: 1.2em;
    color: #c59d5f;
  }
+ .main_heading_styled.push_down {
+   margin-top: 240px;
+ }
 
  @media only screen and (min-device-width: 375px) and (max-device-width: 667px)
  /* and (orientation : landscape) */
@@ -355,6 +353,9 @@
    {
    .main_heading_styled {
      font-size: 48px;
+   }
+   .main_heading_styled.push_down {
+     margin-top: 140px;
    }
  }
 
