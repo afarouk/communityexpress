@@ -220,7 +220,30 @@
    color: white;
    background-position: center;
  }
-
+ .secondary_block_tab {
+   background: url(../images/landing/restaurant_tables.jpg) no-repeat;
+   -webkit-background-size: 100% auto;
+   -moz-background-size: 100% auto;
+   -o-background-size: 100% auto;
+   background-size: cover;
+   /* min-height: 900px; */
+   margin-top: 0px;
+   /*  text color */
+   color: white;
+   background-position: center;
+ }
+.secondary_block_rpd {
+  background: url(../images/landing/hands-coffee-smartphone.jpg) no-repeat;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: cover;
+  /* min-height: 900px; */
+  margin-top: 0px;
+  /*  text color */
+  color: white;
+  background-position: center;
+}
  .secondary_block_end {
    background: url(../images/landing/qr_code.jpg) no-repeat;
    -webkit-background-size: 100% auto;
