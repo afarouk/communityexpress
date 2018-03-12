@@ -738,23 +738,23 @@
 
  @media only screen and (max-width: 800px) {
    /* Force table to not be like tables anymore */
-   #no-more-tables table, #no-more-tables thead, #no-more-tables tbody, #no-more-tables th, #no-more-tables td, #no-more-tables tr {
+   #comparison_table table, #comparison_table thead, #comparison_table tbody, #comparison_table th, #comparison_table td, #comparison_table tr {
      display: block;
    }
    /* Hide table headers (but not display: none;, for accessibility) */
-   #no-more-tables thead tr {
+   #comparison_table thead tr {
      position: absolute;
      top: -9999px;
      left: -9999px;
    }
-   #no-more-tables tr {
+   #comparison_table tr {
      border: 1px solid #cdcdcd;
      margin-bottom: 10px;
    }
-   #no-more-tables tr:last-child {
+   #comparison_table tr:last-child {
      margin-bottom: 0px;
    }
-   #no-more-tables td {
+   #comparison_table td {
      /* Behave  like a "row" */
      border: none;
      border-bottom: 1px solid #cdcdcd;
@@ -763,11 +763,11 @@
      white-space: normal;
      text-align: left;
    }
-   #no-more-tables tr td:first-child {
+   #comparison_table tr td:first-child {
      padding-left: 5px;
      font-weight: 700;
    }
-   #no-more-tables td:before {
+   #comparison_table td:before {
      /* Now like a table header */
      position: absolute;
      /* Top/left values mimic padding */
@@ -782,7 +782,7 @@
    /*
   Label the data
   */
-   #no-more-tables td:before {
+   #comparison_table td:before {
      content: attr(data-title);
    }
    .table_btn_block {
