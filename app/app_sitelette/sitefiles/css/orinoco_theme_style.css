@@ -35,6 +35,43 @@
    color: #828282;
  }
 
+ /* Back To Top Button
+ ======================================*/
+
+ #back-top {
+   position: fixed;
+   right: 30px;
+   bottom: 35px;
+   z-index: 9999;
+ }
+
+ #back-top a {
+   opacity: 0.5;
+   -webkit-transition: all 0.3s;
+   -moz-transition: all 0.3s;
+   transition: all 0.3s;
+ }
+
+ #back-top a i {
+   padding-top: 8px;
+   text-align: center;
+ }
+
+ #back-top .btn-primary {
+   background: #F89618;
+   border-color: #F89618;
+   padding: 0px;
+   font-size: 18px;
+   width: 36px;
+   height: 36px;
+   border-radius: 100%;
+ }
+
+ #back-top a:hover {
+   background: #F89618;
+   opacity: 1;
+ }
+
  /*RESPONSIVE
 =============================================================*/
 
@@ -232,6 +269,20 @@
    color: white;
    background-position: center;
  }
+
+ .secondary_block_cmp {
+   background: url(../images/landing/apples_oranges.jpg) no-repeat;
+   -webkit-background-size: 100% auto;
+   -moz-background-size: 100% auto;
+   -o-background-size: 100% auto;
+   background-size: cover;
+   /* min-height: 900px; */
+   margin-top: 0px;
+   /*  text color */
+   color: white;
+   background-position: center;
+ }
+
 .secondary_block_rpd {
   background: url(../images/landing/hands-coffee-smartphone.jpg) no-repeat;
   -webkit-background-size: 100% auto;
