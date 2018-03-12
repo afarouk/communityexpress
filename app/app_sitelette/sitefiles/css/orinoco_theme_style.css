@@ -257,6 +257,7 @@
    color: white;
    background-position: center;
  }
+
  .secondary_block_tab {
    background: url(../images/landing/restaurant_tables.jpg) no-repeat;
    -webkit-background-size: 100% auto;
@@ -283,18 +284,19 @@
    background-position: center;
  }
 
-.secondary_block_rpd {
-  background: url(../images/landing/hands-coffee-smartphone.jpg) no-repeat;
-  -webkit-background-size: 100% auto;
-  -moz-background-size: 100% auto;
-  -o-background-size: 100% auto;
-  background-size: cover;
-  /* min-height: 900px; */
-  margin-top: 0px;
-  /*  text color */
-  color: white;
-  background-position: center;
-}
+ .secondary_block_rpd {
+   background: url(../images/landing/hands-coffee-smartphone.jpg) no-repeat;
+   -webkit-background-size: 100% auto;
+   -moz-background-size: 100% auto;
+   -o-background-size: 100% auto;
+   background-size: cover;
+   /* min-height: 900px; */
+   margin-top: 0px;
+   /*  text color */
+   color: white;
+   background-position: center;
+ }
+
  .secondary_block_end {
    background: url(../images/landing/qr_code.jpg) no-repeat;
    -webkit-background-size: 100% auto;
@@ -307,10 +309,11 @@
    color: white;
    background-position: center;
  }
+
  .secondary_block_heading {
    font-family: 'Josefin Sans', "Arial", serif;
-   font-weight: 400;
-   font-size: 40px;
+   font-weight: 600;
+   font-size: 36px;
    font-style: normal;
    text-transform: uppercase;
    line-height: 1.8em;
@@ -325,6 +328,34 @@
    font-style: normal;
    line-height: 1.8em;
    color: white;
+   text-align: center;
+ }
+
+ .paragraph_text {
+   font-family: 'Merriweather', 'Arial', sans-serif;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 1.8em;
+   color: rgb(60, 60, 60);
+   text-align: center;
+ }
+
+ .paragrah_heading {
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 400;
+   font-size: 36px;
+   text-transform: uppercase;
+   line-height: 1.8em;
+   color: rgb(60, 60, 60);
+   text-align: center;
+ }
+
+ .paragrah_sub_heading {
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 300;
+   font-size: 36px;
+   line-height: 1.8em;
+   color: rgb(60, 60, 60);
    text-align: center;
  }
 
@@ -358,25 +389,6 @@
    max-height: 250px;
  }
 
-
- .paragraph_text {
-   font-family: 'Merriweather', 'Arial', sans-serif;
-   font-weight: 400;
-   font-size: 20px;
-   line-height: 1.8em;
-   color: rgb(60, 60, 60);
-   text-align: center;
- }
-
- .paragrah_heading {
-   font-family: 'Josefin Sans', sans-serif;
-   font-weight: 500;
-   font-size: 36px;
-   line-height: 1.8em;
-   color: rgb(60, 60, 60);
-   text-align: center;
- }
-
  .overlay-black {
    background-color: rgba(0, 0, 0, .6);
  }
@@ -388,8 +400,6 @@
    line-height: 1.2em;
    color: rgb(136, 136, 136);
  }
-
-
 
  .vertical-middle {
    position: relative;
@@ -417,6 +427,7 @@
    line-height: 1.2em;
    color: #c59d5f;
  }
+
  .main_heading_styled.push_down {
    margin-top: 240px;
  }
