@@ -297,6 +297,19 @@
    background-position: center;
  }
 
+ .secondary_block_loy {
+   background: url(../images/landing/loyalty_background.jpg) no-repeat;
+   -webkit-background-size: 100% auto;
+   -moz-background-size: 100% auto;
+   -o-background-size: 100% auto;
+   background-size: cover;
+   /* min-height: 900px; */
+   margin-top: 0px;
+   /*  text color */
+   color: white;
+   background-position: center;
+ }
+
  .secondary_block_end {
    background: url(../images/landing/qr_code.jpg) no-repeat;
    -webkit-background-size: 100% auto;
