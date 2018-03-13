@@ -43,10 +43,11 @@
             <li class="FAQ" <?php modifyUrlAndClass("faq") ?> >
               <a href="./sitefiles/common_docs_legal/FAQ.pdf" target="_blank" class="faq_button">FAQ</a>
             </li>
-            <!-- <li class="li_support"><a href="support">Support</a></li>
+            <li class="li_support"><a href="./sitefiles/common_docs_legal/API.pdf">API</a></li>
+            <!--
             <li class="li_paypal"><a target="_blank" href="paypalsetup">Paypal Support</a></li> -->
             <!--  <li class="li_Pricing"><a href="/Pricing">Pricing</a></li> -->
-            <li class="li_Pricing"><a href="/flyers">Flyers</a></li> 
+            <li class="li_Pricing"><a href="/flyers">Flyers</a></li>
 
             <li class="DifferentOptions" <?php modifyUrlAndClass("DifferentOptions") ?> >
               <a href="./sitefiles/common_docs_legal/DifferentOptions.pdf" target="_blank" class="faq_button">Options</a>
