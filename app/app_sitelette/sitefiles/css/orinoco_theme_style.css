@@ -355,18 +355,18 @@
 
  .paragrah_heading {
    font-family: 'Josefin Sans', sans-serif;
-   font-weight: 400;
-   font-size: 36px;
+   font-weight: 600;
+   font-size: 40px;
    text-transform: uppercase;
    line-height: 1.8em;
-   color: rgb(60, 60, 60);
+   color: rgb(0, 0, 0);
    text-align: center;
  }
 
  .paragrah_sub_heading {
    font-family: 'Josefin Sans', sans-serif;
    font-weight: 300;
-   font-size: 36px;
+   font-size: 40px;
    line-height: 1.8em;
    color: rgb(60, 60, 60);
    text-align: center;
