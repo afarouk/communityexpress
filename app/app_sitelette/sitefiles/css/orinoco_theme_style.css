@@ -20,11 +20,11 @@
    font-weight: 500;
    font-style: normal;
    font-size: 20px;
-   color: #FFFFFF
+   color: #cdcdcd
  }
 
  nav.navbar-orinoco.navbar-default .navbar-nav>li>a {
-   color: white;
+   color: #cdcdcd;
  }
 
  nav.navbar-orinoco.navbar-default .navbar-nav>li>a:hover {
