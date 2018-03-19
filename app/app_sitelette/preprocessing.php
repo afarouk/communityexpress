@@ -174,7 +174,7 @@ if (validateParams('friendlyURL')) {
             $vantivTransactionId7 = $_REQUEST['LastFour'];
             $vantivTransactionId8 = $_REQUEST['CardLogo'];
             $vantivTransactionId9 = $_REQUEST['ApprovedAmount'];
-            $vantivTransactionId10 = $_REQUEST['Bin'];
+            $vantivTransactionId10 = $_REQUEST['AVSResponseCode'];
         } else {
             $vantivValidationCode = null;
             $vantivTransactionId1 = $_REQUEST['HostedPaymentStatus'];
