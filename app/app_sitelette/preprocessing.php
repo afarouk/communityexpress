@@ -437,5 +437,7 @@ if (validateParams('debug')) {
   echo '$saslTilesJSON=' . $saslTilesJSON . '</br>';
   echo '$saslTilesHTML=' . $saslTilesHTML . '</br>';
 
+  echo '$blockAccess='.($blockAccess ? 'true' : 'false') . '</br>';
+
   exit();
 }
