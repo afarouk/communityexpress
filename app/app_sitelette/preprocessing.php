@@ -117,7 +117,7 @@ if (validateParams('friendlyURL')) {
 	$blocked_friendly_URLS = array();
 	if (empty($blocked_friendly_URLS)) {
 	   //empty array, so read all the blocked URL's
-	   $blocked_friendly_URLS = file("blocked_friendly_URLS.txt", FILE_IGNORE_NEW_LINES);
+	   $blocked_friendly_URLS = file("blocked_friendly_URLS.php", FILE_IGNORE_NEW_LINES);
 	}
 	if (in_array($friendlyURL, $blocked_friendly_URLS)) {
 		$blockAccess = true;
