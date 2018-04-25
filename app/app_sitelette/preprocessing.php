@@ -113,10 +113,15 @@ if (validateParams('friendlyURL')) {
 
     /* Check 1.  is 'friendlyURL' a well know access attempt that
     we want to trap? */
-
-    if($friendlyURL==='testBlockedAccess'){
-      $blockAccess = true;
-      $errorMessage = "blocked access for " . $friendlyURL;
+    //Code by Ravi
+	$blocked_friendly_URLS = array();
+	if (empty($blocked_friendly_URLS)) {
+	   //empty array, so read all the blocked URL's
+	   $blocked_friendly_URLS = file("blocked_friendly_URLS.txt", FILE_IGNORE_NEW_LINES);
+	}
+	if (in_array($friendlyURL, $blocked_friendly_URLS)) {
+		$blockAccess = true;
+	    $errorMessage = "blocked access for " . $friendlyURL;
     }else{
       $blockAccess = false;
 
