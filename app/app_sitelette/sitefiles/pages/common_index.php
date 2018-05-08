@@ -4,16 +4,16 @@
  <head>
  <!-- og meta tags -->
  <meta property="og:type"               content="article" />
- <meta property="og:title"              content="A smarter POS with built-in marketing tools"/>
- <meta property="og:description"        content="Make your coupons and discounts work harder for you. Get Chalkboards for your business."/>
+ <meta property="og:title"              content="A hybrid POS with built-in marketing tools"/>
+ <meta property="og:description"        content="Sell more, Save more, Promote more with a new hybrid point-of-sale."/>
  <meta property="og:image"              content="sitefiles/images/ogImage.png"/>
 
  <!-- twitter meta tags -->
  <meta name="twitter:card"              content=" "/>
  <meta name="twitter:site"              content=" "/>
  <meta name="twitter:creator"           content="@ChalkboardsToday"/>
- <meta name="twitter:title"             content="A new marketing tool for your small business"/>
- <meta name="twitter:description"       content="Make your coupons and discounts work harder for you. Get Chalkboards for your business."/>
+ <meta name="twitter:title"             content="A hybrid POS with built-in marketing tools"/>
+ <meta name="twitter:description"       content="Sell more, Save more, Promote more with a new hybrid point-of-sale."/>
  <meta name="twitter:image"             content="sitefiles/images/ogImage.png"/>
 
  <meta name="apple-mobile-web-app-title" content="Chalkboards">

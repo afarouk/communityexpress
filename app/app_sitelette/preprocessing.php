@@ -343,10 +343,18 @@ if (!$blockAccess) {
         }
 
         if (is_null($type)) {
+          
           $og_title       = $saslJSON['ogTags']['title'];
           $og_description = $saslJSON['ogTags']['description'];
           $og_image       = $saslJSON['ogTags']['image'];
           $og_url         = remove_querystring_var($completeURL, 'desktopiframe');
+
+          /*
+          $og_title       = $saslJSON['ogTags']['title'];
+          $og_description = $saslJSON['ogTags']['description'];
+          $og_image       = $saslJSON['ogTags']['image'];
+          $og_url         = remove_querystring_var($completeURL, 'desktopiframe');
+          */
         } else {
           /* make api call */
           $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveOgTags?type=' . $type . '&uuid=' . $uuidURL;
