@@ -6,7 +6,7 @@
   <?php
 include ('sitefiles/includes/stylesheets.html');
   ?>
-  <title>Chalkboards-Signup</title>
+  <title>Chalkboards-Members</title>
  </head>
  <body data-spy="scroll" data-target=".navbar-fixed-top" >
   <!-- Header start -->
@@ -15,7 +15,7 @@ include ('sitefiles/includes/navbar.php');
   ?>
   <!-- Header end -->
   <?php
-include ('sitefiles/pages/content_signup.html');
+include ('sitefiles/pages/content_memqr.html');
   ?>
   <?php
 include ('sitefiles/includes/scriptfiles.html');

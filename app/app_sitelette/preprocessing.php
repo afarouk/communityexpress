@@ -131,6 +131,9 @@ if (validateParams('friendlyURL')) {
       instead of treating it like a friendlyURL */
 
       switch ($friendlyURL) {
+        case 'memqr':
+          $pageAccess = 'common_memqr.php';
+          break;
         case 'embedded_userguide':
           $pageAccess = 'embedded_userguide.php';
           break;
@@ -343,7 +346,7 @@ if (!$blockAccess) {
         }
 
         if (is_null($type)) {
-          
+
           $og_title       = $saslJSON['ogTags']['title'];
           $og_description = $saslJSON['ogTags']['description'];
           $og_image       = $saslJSON['ogTags']['image'];
