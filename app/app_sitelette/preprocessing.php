@@ -45,7 +45,11 @@ if (validateParams('demo')) {
   $demo = false;
 }
 
-
+if (validateParams('iid')) {
+  $iid = true;
+} else {
+  $iid = false;
+}
 
 $completeURL = full_url($_SERVER, true);
 $serverName  = $_SERVER['SERVER_NAME'];

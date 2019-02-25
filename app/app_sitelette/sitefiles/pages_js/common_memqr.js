@@ -91,6 +91,8 @@ $(document).ready(
   function() {
     $("#memqr_login_anchor").click(function (e){
       e.preventDefault();
-      alert($(this).html())
+      parseCommunityURL();
+
+      alert("iid="+window.communityRequestProfile.iid);
     });
   });

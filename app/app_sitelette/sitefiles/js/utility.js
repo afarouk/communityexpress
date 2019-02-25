@@ -68,8 +68,8 @@ function parseCommunityURL() {
   protocol : "https://",
 
   isUidSpecified : false,
-  uid : undefined
-
+  uid : undefined,
+  iid : undefined
  };
 
  /*
@@ -134,6 +134,16 @@ function parseCommunityURL() {
   communityRequestProfile.isUidSpecified = true;
   communityRequestProfile.uid = uid;
  }
+
+ var iid =url['iid'];
+ if (typeof iid !== 'undefined') {
+	communityRequestProfile.isIidSpecified = true;
+	communityRequestProfile.iid = iid;
+ }
+
+ console.log("iid : " + communityRequestProfile.iid);
+
+
  var uri=new URI();
  var friendlyURL=uri.pathname(); /* directory does not work with localhost */
  if(typeof friendlyURL !=='undefined'){
