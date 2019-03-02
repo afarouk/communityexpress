@@ -1,98 +1,92 @@
-var url = $.url();
-var api_server = url.param('server')
-var portalExpressIframeSrc;
-
-if (typeof api_server !== 'undefined') {
- console.log("Server overriden: " + api_server);
-} else {
-  api_server = 'communitylive.ws';
- //api_server = 'simfel.com';
- console.log("Server defaulting: " + api_server);
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {
+    document.cookie = name+'=; Max-Age=-99999999;';
 }
 
-var protocol;
-if (api_server === 'localhost:8080') {
- protocol = "http://";
-} else {
- protocol = "https://";
-}
 
-var ladda_reset_password_submit_button;
-var uid;
-var newpassword;
-var resetcode;
+$(document).ready(
 
-function disableform() {
-
-}
-
-function showResetPasswordResults(success,message) {
- $('#reset_password_message').text(message);
- $('#reset_password_form_row').hide();
- $('#reset_password_result_row').fadeIn('slow');
-
-
-
-
-}
-/*
- * This is the ajax API call to submit the password change request.
- */
-function submitPasswordChangeRequest() {
- $
-   .ajax(
-     {
-      url : protocol + api_server
-        + '/apptsvc/rest/authentication/resetPassword?UID=' + uid
-        + '&code='+resetcode+'&newpassword='+newpassword,
-      type : 'PUT'
-     })
-   .done(function(response) {
-    console.log("response :" + response);
-    /* TODO show success */
+  function() {
     /*
-     * call function to show message
-     */
-    var message="Your password has been changed.";
-    var success=true;
-    showResetPasswordResults(success,message);
-   })
-   .fail(
-     function(jqXHR, textStatus, errorThrown) {
-      var success=false;
-      var message="Error occured";
+    parse url etc.
+    */
+    parseCommunityURL();
 
-      if (typeof jqXHR.responseJSON !== 'undefined') {
-       if (typeof jqXHR.responseJSON.error !== 'undefined') {
-        if (typeof jqXHR.responseJSON.error.type !== 'undefined') {
-         if (jqXHR.responseJSON.error.type.toUpperCase() === 'UNABLETOCOMPLYEXCEPTION') {
-             message= "Error: " + jqXHR.responseJSON.error.message ;
-         } else if (jqXHR.responseJSON.error.type.toUpperCase() === 'PANICEXCEPTION') {
-            message=    "Panic Error: " + jqXHR.responseJSON.error.message ;
-         }
-        }
-       } else {
-         message=textStatus;
-       }
+    /* bind function to login button */
+    /*
+    $("#memqr_login_anchor").click(function(e) {
+      e.preventDefault();
+
+      alert("iid=" + window.communityRequestProfile.iid);
+    });
+    */
+    
+    /* resolve iid to uid */
+
+    console.log("Server: " + window.communityRequestProfile.api_server);
+
+    var restURL = "http://"+window.communityRequestProfile.api_server + "/apptsvc/rest/authentication/retrieveOrCreateUserByKUID"
+    console.log(restURL);
+
+    var postData = JSON.stringify({
+      kUID:window.communityRequestProfile.iid
+    });
+
+    $.ajax({
+      url: restURL,
+      type: 'POST',
+      data: postData,
+      contentType: "application/json; charset=utf-8"
+    }).done(function(userRegistrationDetails) {
+      console.log("userRegistrationDetails :" + userRegistrationDetails);
+      if (typeof userRegistrationDetails.uid !== 'undefined') {
+
+          /*
+          * save it in localstorage
+          *
+          */
+          console.log(" saving to local storage cmxUID:" +
+              userRegistrationDetails.uid);
+          localStorage.setItem("cmxUID", userRegistrationDetails.uid);
+          setCookie('cmxUID',userRegistrationDetails.uid,365);
+          //Cookies.set('cmxUID',userRegistrationDetails.uid , {expires:365});
+          //this.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
       }
 
-      /*
-       * call function to show message
-       */
-      showResetPasswordResults(success,message);
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      var message = processAjaxError(jqXHR);
+      var success = false;
+      console.log("Error:"+message);
       /*
        *
        */
-     }).always(function() {
-      ladda_reset_password_submit_button.stop();
-   });
-}
-$(document).ready(
-  function() {
-    $("#memqr_login_anchor").click(function (e){
-      e.preventDefault();
-      parseCommunityURL();
-
-      alert("iid="+window.communityRequestProfile.iid);
+    }).always(function() {
+      /* ladda_submit_mobile_button.stop(); */
     });
+
+
+
+
+
+
+
+
   });

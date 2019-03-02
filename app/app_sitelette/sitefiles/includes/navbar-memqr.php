@@ -15,8 +15,8 @@
         </div>
         <div class="collapse navbar-collapse clearfix navMenu" id="bs-example-navbar-collapse-1" role="navigation">
           <ul class="nav navbar-nav navbar-right">
-             <li class="li_login" <?php modifyUrlAndClass("memqr") ?> >
-               <a id="memqr_login_anchor" href="#" class="login_btn">Log in</a>
+             <li class="li_my_favorites" <?php modifyUrlAndClass("memqr") ?> >
+               <a id="memqr_favorites" href="#memqr_favorites_anchor" class="login_btn">My Favorites</a>
             </li>
           </ul>
         </div>
