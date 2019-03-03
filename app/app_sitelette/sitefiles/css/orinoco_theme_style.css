@@ -12,7 +12,6 @@
 
  /* Navbar
 ===============================================*/
-
  nav.navbar-orinoco {
    border: none;
    background-color: none;
@@ -37,7 +36,6 @@
 
  /* Back To Top Button
  ======================================*/
-
  #back-top {
    position: fixed;
    right: 30px;
@@ -74,24 +72,28 @@
 
  /*RESPONSIVE
 =============================================================*/
-
  @media (max-width: 990px) {
    .navbar-brand {
      margin-left: 15px !important;
    }
+
    a.signup_btn {
      margin-right: 15px;
    }
+
    .mobile_power_block .right_block {
      text-align: center;
    }
+
    .mobile_power_block .right_block ul {
      display: inline-block;
      text-align: left;
    }
+
    .how_works_block {
      text-align: center;
    }
+
    .how_works_block .title {
      margin-top: 0;
    }
@@ -106,89 +108,114 @@
      height: 40px;
      position: initial;
    }
+
    nav.navbar {
      background-color: #fff;
      padding-top: 0;
      box-shadow: 0 0 20px #000;
    }
+
    .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
      margin-right: 0;
      background-color: transparent;
    }
+
    .navbar-default .navbar-collapse {
      text-align: center;
    }
+
    .nav li a {
      display: inline-block;
      color: #F99C19 !important;
      border-color: #F99C19;
    }
+
    .nav li a:hover {
      color: #F06013 !important;
      border-color: #F06013;
    }
+
    a.signup_btn {
      margin-right: 0px;
    }
+
    .slider {
      margin-top: 50px;
    }
+
    a.signup_btn {
      margin-left: 0;
    }
+
    .banner {
      min-height: 400px;
    }
+
    .title_text_img_container {
      margin-top: 200px;
      width: 290px;
      height: 70px;
      background-size: contain;
    }
+
    .banner a.get_started_btn {
      margin-bottom: 50px;
    }
+
    .mobile_power_block {
      padding: 20px 0 0 0;
    }
+
    .mobile_power_block .title_block {
      padding: 0 15px;
    }
+
    .mobile_power_block .title_block .undertitle {
      margin-bottom: 25px;
    }
+
    .list_item .last {
      margin-bottom: 0;
    }
+
    .browse_chalkboards_block .title {
      padding: 0 20px;
      font: 700 30px / 36px Roboto;
    }
+
    .browse_chalkboards_block .text {
      padding: 0 20px;
      font: 300 18px / 24px Roboto
    }
+
    .how_works_block {
      padding: 20px 0;
    }
+
    .how_works_block .left_block {
      padding: 0 15px;
    }
+
    .how_works_block .text {
      margin-bottom: 20px;
    }
+
    .contact_us_block {
      padding: 20px 0;
    }
+
    .send_message_btn {
      padding: 20px 50px;
    }
+
    .footer_block .left_block {
      padding-bottom: 0px;
    }
+
    .footer_block ul {
      margin-bottom: 30px;
    }
+
    .footer_last_line p {
      font-size: 10px;
    }
@@ -196,7 +223,6 @@
 
  /* Various blocks
 ===================================================*/
-
  .heading_block {
    background: url(../images/landing/landingChalkboardsFX.jpg) no-repeat;
    /* background: url(../images/landing/conversation_tall.jpg) no-repeat; */
@@ -212,11 +238,14 @@
    padding-bottom: 350px;
  }
 
+ .heading_block.memqr {
+   background: url(../images/memqr/landing.jpg) no-repeat;
+ }
+
  /* iphone 6,7,8 media query */
-
  @media only screen and (min-device-width: 375px) and (max-device-width: 667px)
- /* and (orientation : landscape) */
 
+ /* and (orientation : landscape) */
    {
    .heading_block {
      background: url(../images/landing/background_portrait.jpg) no-repeat;
@@ -231,6 +260,10 @@
      background-position: center;
      padding-bottom: 100px;
    }
+ }
+
+ .heading_block.memqr {
+   background: url(../images/memqr/landing.jpg) no-repeat;
  }
 
  .secondary_block_pos {
@@ -447,12 +480,13 @@
  }
 
  @media only screen and (min-device-width: 375px) and (max-device-width: 667px)
- /* and (orientation : landscape) */
 
+ /* and (orientation : landscape) */
    {
    .main_heading_styled {
      font-size: 48px;
    }
+
    .main_heading_styled.push_down {
      margin-top: 140px;
    }
@@ -478,7 +512,6 @@
 
  /*Contact us section
 =============================================================*/
-
  .contact_us_block {
    padding: 70px 0 50px 0;
    text-align: center;
@@ -627,7 +660,6 @@
 
  /*Footer section
 =============================================================*/
-
  .footer_block {
    background-color: #363636;
    padding-top: 35px;
@@ -666,7 +698,6 @@
 
  /* comparison table
 ===============================================================*/
-
  table.ckb_c_table {
    width: 100%;
  }
@@ -738,23 +769,28 @@
  }
 
  @media only screen and (max-width: 800px) {
+
    /* Force table to not be like tables anymore */
    #comparison_table table, #comparison_table thead, #comparison_table tbody, #comparison_table th, #comparison_table td, #comparison_table tr {
      display: block;
    }
+
    /* Hide table headers (but not display: none;, for accessibility) */
    #comparison_table thead tr {
      position: absolute;
      top: -9999px;
      left: -9999px;
    }
+
    #comparison_table tr {
      border: 1px solid #cdcdcd;
      margin-bottom: 10px;
    }
+
    #comparison_table tr:last-child {
      margin-bottom: 0px;
    }
+
    #comparison_table td {
      /* Behave  like a "row" */
      border: none;
@@ -764,10 +800,12 @@
      white-space: normal;
      text-align: left;
    }
+
    #comparison_table tr td:first-child {
      padding-left: 5px;
      font-weight: 700;
    }
+
    #comparison_table td:before {
      /* Now like a table header */
      position: absolute;
@@ -780,12 +818,14 @@
      text-align: left;
      font-weight: bold;
    }
+
    /*
   Label the data
   */
    #comparison_table td:before {
      content: attr(data-title);
    }
+
    .table_btn_block {
      text-align: left;
    }
@@ -795,6 +835,7 @@
    .form-group.frmeL {
      margin-right: -15px;
    }
+
    .form-group.frmeR {
      margin-left: -15px;
    }

@@ -32,6 +32,28 @@ $(document).ready(
     */
     parseCommunityURL();
 
+    /*
+    SERVER HACK, for demo keytag numbers
+
+    */
+    if(iid!=='undefined'){
+      console.log("Detected iid : " + window.communityRequestProfile.iid);
+
+      if(100<iid<199){
+        if(window.communityRequestProfile.api_server==='communitylive.ws'){
+          window.communityRequestProfile.api_server='simfel.com';
+          console.log(" detected demo keytag, switching server to simfel");
+        }
+      }
+    }else{
+      console.log("iid is undefined");
+      return;
+    }
+
+
+    /*
+    END SERVER HACK
+    */
     /* bind function to login button */
     /*
     $("#memqr_login_anchor").click(function(e) {
@@ -100,7 +122,7 @@ $(document).ready(
     }).always(function() {
       /* ladda_submit_mobile_button.stop(); */
     });
- 
+
 
 
   });

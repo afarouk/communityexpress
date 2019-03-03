@@ -141,9 +141,6 @@ function parseCommunityURL() {
 	communityRequestProfile.iid = iid;
  }
 
- console.log("iid : " + communityRequestProfile.iid);
-
-
  var uri=new URI();
  var friendlyURL=uri.pathname(); /* directory does not work with localhost */
  if(typeof friendlyURL !=='undefined'){
