@@ -85,7 +85,7 @@ module.exports = {
     requireLogIn: function(model, callback) {
         var conf = configurationActions.getConfigurations(),
             view;
-    
+
         if(sessionActions.checkIfUserAppropriate().getUID()) {
             callback();
         // I don't know why do we need that code below, migratet from previous version, maybe outdated
@@ -101,5 +101,15 @@ module.exports = {
             });
             this.show(view);
         }
+    },
+    /*
+      AF: Added this function to get rid of
+      runtime error Backbone tryCatchOn
+      which was looking for this function on this
+      object. Pretty sure the function itself is
+      not doing what it is suppossed to do.
+    */
+    on:function(){
+      console.log("Hack Function, popupController: on() : AF. Please review");
     }
 };
