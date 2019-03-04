@@ -70,11 +70,6 @@
    opacity: 1;
  }
 
- #memqr_root {
-   padding-left: 0;
-   padding-right: 0;
- }
-
  /*RESPONSIVE
 =============================================================*/
  @media (max-width: 990px) {
@@ -278,7 +273,7 @@
    /* min-height: 900px; */
    margin-top: 30px;
    /*  text color */
-   padding-bottom: 50px;
+   padding-bottom: 50px; 
    color: rgb(0, 0, 0);
    text-align: center;
  }

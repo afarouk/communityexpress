@@ -34,6 +34,9 @@ include('sitefiles/includes/scriptfiles.html');
 ?>
 
 <!-- <script type="text/javascript" src="sitefiles/pages_js/content_signup.js"></script> -->
+<script type="text/javascript" src="sitefiles/js/cleave.min.js"></script>
+<script type="text/javascript" src="sitefiles/js/cleave-phone.us.js"></script>
+
 <script type="text/javascript" src="sitefiles/pages_js/common_memqr.js"></script>
 
 <?php
