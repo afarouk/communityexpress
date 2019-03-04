@@ -70,7 +70,7 @@ module.exports = {
         view.enhance();
         //TODO some error sometimes when signin
         view.open();
-        // setTimeout(view.open.bind(view),50);
+        //setTimeout(view.open.bind(view),50);
     },
 
     hide: function(view) {
@@ -102,19 +102,16 @@ module.exports = {
             this.show(view);
         }
     }
-    /*
-    ,
-    */
-    /*
+     ,
+     /*
       AF: Added this function to get rid of
       runtime error Backbone tryCatchOn
       which was looking for this function on this
       object. Pretty sure the function itself is
       not doing what it is suppossed to do.
     */
-    /*
+
     on:function(){
       console.log("Hack Function, popupController: on() : AF. Please review");
     }
-    */
-};
+ };
