@@ -101,7 +101,10 @@ module.exports = {
             });
             this.show(view);
         }
-    },
+    }
+    /*
+    ,
+    */
     /*
       AF: Added this function to get rid of
       runtime error Backbone tryCatchOn
@@ -109,7 +112,9 @@ module.exports = {
       object. Pretty sure the function itself is
       not doing what it is suppossed to do.
     */
+    /*
     on:function(){
       console.log("Hack Function, popupController: on() : AF. Please review");
     }
+    */
 };
