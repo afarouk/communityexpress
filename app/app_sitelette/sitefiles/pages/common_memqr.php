@@ -13,11 +13,11 @@ include('sitefiles/includes/stylesheets.html');
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 
-<link rel="apple-touch-startup-image" href="">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="apple-touch-icon"  href=" ">
-<link rel="icon" sizes="192x192" href=" ">
+<link rel="apple-touch-icon"  href="sitefiles/images/memqr/memqrIcon.png">
+<link rel="icon" sizes="192x192" href="sitefiles/images/memqr/memqrIcon.png">
+<link rel="apple-touch-startup-image" href="sitefiles/images/memqr/memqrIcon.png">
 
 </head>
 <body data-spy="scroll" data-target=".navbar-fixed-top" >

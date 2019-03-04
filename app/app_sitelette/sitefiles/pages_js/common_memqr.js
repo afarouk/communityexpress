@@ -36,10 +36,10 @@ $(document).ready(
     SERVER HACK, for demo keytag numbers
 
     */
-    if(iid!=='undefined'){
+    if(window.communityRequestProfile.iid!=='undefined'){
       console.log("Detected iid : " + window.communityRequestProfile.iid);
 
-      if(100<iid<199){
+      if(100<window.communityRequestProfile.iid<199){
         if(window.communityRequestProfile.api_server==='communitylive.ws'){
           window.communityRequestProfile.api_server='simfel.com';
           console.log(" detected demo keytag, switching server to simfel");
