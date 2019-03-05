@@ -84,11 +84,6 @@ html.ui-mobile {
 
 .popup_container { background-color: #363636; }
 
-/* try to fix very rare bug on iPhone when popup shows up behind the mask */
-.ui-popup-screen,
-.ui-popup-container {
-    transform: translate3d(0, 0, 0);
-}
 
 i.fa {
     margin-right: 5px;
@@ -502,7 +497,7 @@ body {
         border: 2px solid tomato;
     }
 }
-#cmtyx_medicalSecureView .secure-container .secure-block .right .secure-input::placeholder { 
+#cmtyx_medicalSecureView .secure-container .secure-block .right .secure-input::placeholder {
   color: azure;
 }
 
@@ -5087,6 +5082,22 @@ color: #acacac;
     opacity: .3;
     filter: Alpha(Opacity=30);
 }
+
+/* try to fix very rare bug on iPhone when popup shows up behind the mask */
+.ui-popup-container {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.fade.in {
+	opacity: 1;
+	-webkit-animation-duration: 0ms;
+	-webkit-animation-name: fadein;
+	-moz-animation-duration: 0ms;
+	-moz-animation-name: fadein;
+	animation-duration: 0ms;
+	animation-name: fadein;
+}
 #cmntyex_signin_panel .ui-input-text.ui-body-inherit.ui-shadow-inset {
     font-size: 16px;
     color: rgba(250, 250, 250, 0.7);
@@ -6395,7 +6406,7 @@ input[name=promocode] {
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .messages-region .chat-messages li .message-container.me.avatar .user {
     visibility: hidden;
 }
-#cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .messages-region .chat-messages li .message-container.me.avatar .message .message-text:after {                      
+#cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .messages-region .chat-messages li .message-container.me.avatar .message .message-text:after {
     content: '';
     width: 0;
     height: 0;
@@ -6405,10 +6416,10 @@ input[name=promocode] {
     position: absolute;
     top: 4px;
     right: -4px;
-}                
+}
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .messages-region .chat-messages li .message-container.me.avatar .message .message-text:before {
     content: none;
-}     
+}
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .user-typing {
     display: flex;
     justify-content: flex-start;
@@ -6421,7 +6432,7 @@ input[name=promocode] {
     height: 22px;
     background-color: #dcebf0;
     display: none;
-}      
+}
 #cmtyx_chat_block .chat-content .chat-block.mobile .modal-body .user-typing.typing {
     display: flex;
 }

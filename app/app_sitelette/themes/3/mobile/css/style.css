@@ -72,12 +72,6 @@ html {}
 
 .popup_container { background-color: #363636; }
 
-/* try to fix very rare bug on iPhone when popup shows up behind the mask */
-.ui-popup-screen,
-.ui-popup-container {
-    transform: translate3d(0, 0, 0);
-}
-
 
 i.fa {
     margin-right: 5px;
@@ -4463,6 +4457,22 @@ color: #acacac;
 .ui-popup-screen.in {
     opacity: .3;
     filter: Alpha(Opacity=30);
+}
+
+/* try to fix very rare bug on iPhone when popup shows up behind the mask */
+.ui-popup-container {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.fade.in {
+	opacity: 1;
+	-webkit-animation-duration: 0ms;
+	-webkit-animation-name: fadein;
+	-moz-animation-duration: 0ms;
+	-moz-animation-name: fadein;
+	animation-duration: 0ms;
+	animation-name: fadein;
 }
 #cmntyex_signin_panel .ui-input-text.ui-body-inherit.ui-shadow-inset {
     font-size: 16px;
