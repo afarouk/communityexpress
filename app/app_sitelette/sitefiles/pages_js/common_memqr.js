@@ -47,6 +47,7 @@ $(document).ready(
     */
     if(window.communityRequestProfile.iid!=='undefined'){
       console.log("Detected iid : " + window.communityRequestProfile.iid);
+      $("#memqr_echo_check").text(" Echo check "+window.communityRequestProfile.iid);
 
       if(100<window.communityRequestProfile.iid<199){
         if(window.communityRequestProfile.api_server==='communitylive.ws'){
@@ -56,9 +57,11 @@ $(document).ready(
       }
     }else{
       console.log("iid is undefined");
+      $("#memqr_echo_check").text(" Echo check NO iid");
       return;
     }
 
+    $("#memqr_user_data").hide();
 
     /*
     END SERVER HACK
