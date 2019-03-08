@@ -6,7 +6,8 @@
 <?php
 include('sitefiles/includes/stylesheets.html');
 ?>
-<link href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+<link href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet"/>
+<link href="/sitefiles/css/memqr.css" rel="stylesheet"/>
 <title>Chalkboards</title>
 
 <meta charset="utf-8">
@@ -16,9 +17,9 @@ include('sitefiles/includes/stylesheets.html');
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="apple-touch-icon"  href="sitefiles/images/memqr/memqrIcon.png">
-<link rel="icon" sizes="192x192" href="sitefiles/images/memqr/memqrIcon.png">
-<link rel="apple-touch-startup-image" href="sitefiles/images/memqr/memqrIcon.png">
+<link rel="apple-touch-icon"  href="sitefiles/images/memqr/memqrIcon.png" />
+<link rel="icon" sizes="192x192" href="sitefiles/images/memqr/memqrIcon.png" />
+<link rel="apple-touch-startup-image" href="sitefiles/images/memqr/memqrIcon.png" />
 
 </head>
 <body data-spy="scroll" data-target=".navbar-fixed-top" >
