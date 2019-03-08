@@ -18,7 +18,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="paragrah_heading text-center" >
+					<div class="paragrah_heading text-center">
 						Key-tag or mobile check-in
 					</div>
 				</div>
@@ -38,37 +38,40 @@
 	<div id="memqr_echo_check">
 	</div>
 	<section id="memqr_user_data">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="paragrah_heading text-center" style="padding-top:140px;">
-					<form>
-						<div class="form-group">
-							<label for="memqr_mobile">Mobile</label>
- 							<input type="text" class="input-phone form-control" id="memqr_mobile" placeholder="********" >
-						</div>
-						<div class="form-group">
-							<label for="memqr_name">First Name</label>
-							<input type="name" class="form-control" id="memqr_name" placeholder="*******" readonly>
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="memqr_password" placeholder="*******" >
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="memqr_password" placeholder="*******" >
-						</div>
-						<div class="checkbox">
-							<label><input type="checkbox"> Remember me</label>
-						</div>
-						<button type="submit" class="btn btn-primary">Login</button>
-					</form>
+		<div data-role="collapsible">
+			<h3>My Account</h3>
+			<div  class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="paragrah_heading text-center">
+						<form>
+							<div class="form-group">
+								<label for="memqr_mobile">Mobile</label>
+								<input type="text" class="input-phone form-control" id="memqr_mobile" placeholder="********">
+							</div>
+							<div class="form-group">
+								<label for="memqr_name">First Name</label>
+								<input type="name" class="form-control" id="memqr_name" placeholder="*******" readonly>
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" id="memqr_password1" placeholder="*******">
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" id="memqr_password2" placeholder="*******">
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox"> Remember me</label>
+							</div>
+							<button id="memqr_login_button" type="button" class="btn btn-primary">Login</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<section id="memqr_favorites_anchor">
-		  
+
 	</section>
 
 </div>

@@ -6,6 +6,7 @@
 <?php
 include('sitefiles/includes/stylesheets.html');
 ?>
+<link href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet">
 <title>Chalkboards</title>
 
 <meta charset="utf-8">
@@ -36,7 +37,7 @@ include('sitefiles/includes/scriptfiles.html');
 <!-- <script type="text/javascript" src="sitefiles/pages_js/content_signup.js"></script> -->
 <script type="text/javascript" src="sitefiles/js/cleave.min.js"></script>
 <script type="text/javascript" src="sitefiles/js/cleave-phone.us.js"></script>
-
+<script type="text/javascript" src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript" src="sitefiles/pages_js/common_memqr.js"></script>
 
 <?php
