@@ -101,6 +101,11 @@ $(document).ready(
     }).done(function(userRegistrationDetails) {
       console.log("userRegistrationDetails :" + userRegistrationDetails);
       if (typeof userRegistrationDetails.uid !== 'undefined') {
+        /* got user */
+        window.communityRequestProfile.userRegistrationDetails=userRegistrationDetails;
+        $('.qrcode' img).attr('src',userRegistrationDetails.)
+
+
         var adhocEntry;
         var adhocEntryCookie = getCookie('cmxAdhocEntry');
         if (adhocEntryCookie === 'true') {
