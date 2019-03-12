@@ -66,7 +66,7 @@ $(document).ready(
       console.log("this is Overridden click event!");
     });
 
-    //  $("#memqr_user_data").hide();
+    $("#memqr_user_data").hide();
 
     /*
     END SERVER HACK
@@ -117,13 +117,8 @@ $(document).ready(
       if (typeof userAndSASLs.userRegistrationDetails.uid !== 'undefined') {
         /* got user */
         window.communityRequestProfile.userRegistrationDetails = userAndSASLs.userRegistrationDetails;
-        //$('.qrcode' img).attr('src',userRegistrationDetails.)
-
-
-
 
         console.log("Current adhocEntry:" + window.communityRequestProfile.adhocEntry);
-
         var currentCookie = getCookie('cmxUID');
         console.log(" Current  UID=" + currentCookie);
         if (currentCookie === userAndSASLs.userRegistrationDetails.uid) {
@@ -177,13 +172,8 @@ $(document).ready(
               src: bannerImageURL
             }).appendTo($('<a />').attr({
               href: siteURL
-            }).appendTo($('<li />').attr({
-
+            }).appendTo($('<li />').attr({ 
             }).appendTo($("#saslListUL"))));
-
-
-
-
           }
         }
       }
