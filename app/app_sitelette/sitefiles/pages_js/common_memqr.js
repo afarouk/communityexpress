@@ -158,7 +158,7 @@ $(document).ready(
             bannerImageURL = bannerImageURL.replace('http://', 'https://')
 
             var siteURL = userAndSASLs.sitelettes[i].siteURL;
-            siteURL = siteURL.replace('http://', 'https://')
+            //siteURL = siteURL.replace('http://', 'https://')
             if (siteURL.indexOf("?demo") >= 0) {
               siteURL = siteURL.concat('&UID=', userAndSASLs.userRegistrationDetails.uid);
             } else {
@@ -167,13 +167,10 @@ $(document).ready(
             console.log(" Sitelette: " + bannerImageURL);
             console.log(" siteURL: " + siteURL);
 
+            var linkstring='<li> <a target="_blank" href="'+siteURL+'"> <img src="'+bannerImageURL+'"></a></li>';
 
-            $('<img />').attr({
-              src: bannerImageURL
-            }).appendTo($('<a />').attr({
-              href: siteURL
-            }).appendTo($('<li />').attr({ 
-            }).appendTo($("#saslListUL"))));
+            $("#saslListUL").append(linkstring);
+
           }
         }
       }
