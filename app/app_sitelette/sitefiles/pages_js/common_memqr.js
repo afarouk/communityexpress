@@ -42,33 +42,33 @@ $(document).ready(
     parseCommunityURL();
 
 
-    if(window.communityRequestProfile.iid!=='undefined'){
+    if (window.communityRequestProfile.iid !== 'undefined') {
       console.log("Detected iid : " + window.communityRequestProfile.iid);
-      $("#memqr_echo_check").text(" Echo check "+window.communityRequestProfile.iid);
+      $("#memqr_echo_check").text(" Echo check " + window.communityRequestProfile.iid);
 
       /*
         SERVER HACK, for demo keytag numbers
       */
-      if(100<window.communityRequestProfile.iid<1000){
-        if(window.communityRequestProfile.api_server==='communitylive.ws'){
-          window.communityRequestProfile.api_server='simfel.com';
+      if (100 < window.communityRequestProfile.iid < 1000) {
+        if (window.communityRequestProfile.api_server === 'communitylive.ws') {
+          window.communityRequestProfile.api_server = 'simfel.com';
           console.log(" detected demo keytag, switching server to simfel");
         }
       }
-      $("#banner_anchor").attr("href", "/memqr?iid="+window.communityRequestProfile.iid);
-    }else{
+      $("#banner_anchor").attr("href", "/memqr?iid=" + window.communityRequestProfile.iid);
+    } else {
       console.log("iid is undefined");
       $("#memqr_echo_check").text(" Echo check NO iid");
       return;
     }
 
-    $("#memqr_login_button").unbind("click").bind("click", function(e){
-        e.preventDefault();
+    $("#memqr_login_button").unbind("click").bind("click", function(e) {
+      e.preventDefault();
 
-        console.log("this is Overridden click event!");
+      console.log("this is Overridden click event!");
     });
 
-  //  $("#memqr_user_data").hide();
+    //  $("#memqr_user_data").hide();
 
     /*
     END SERVER HACK
@@ -81,16 +81,32 @@ $(document).ready(
       alert("iid=" + window.communityRequestProfile.iid);
     });
     */
+    var adhocEntry;
+    var adhocEntryCookie = getCookie('cmxAdhocEntry');
+    console.log("adhocEntryCookie: " + adhocEntryCookie);
+    if (adhocEntryCookie === 'true' || adhocEntryCookie == true) {
+      adhocEntry = true;
+    } else {
+      adhocEntry = false;
+    }
+    window.communityRequestProfile.adhocEntry = adhocEntry;
+    console.log("Current adhocEntry: " + adhocEntry);
+
+
+    window.communityRequestProfile.uid = getCookie('cmxUID');
 
     /* resolve iid to uid */
+    console.log("uid: " + window.communityRequestProfile.uid);
 
     console.log("Server: " + window.communityRequestProfile.api_server);
 
-    var restURL = window.communityRequestProfile.protocol + window.communityRequestProfile.api_server + "/apptsvc/rest/authentication/retrieveOrCreateUserByKUID"
+    var restURL = window.communityRequestProfile.protocol + window.communityRequestProfile.api_server + "/apptsvc/rest/usersasl/retrieveUserAndSASLsByKUID"
     console.log(restURL);
 
     var postData = JSON.stringify({
-      kUID: window.communityRequestProfile.iid
+      iid: window.communityRequestProfile.iid,
+      adhoc: window.communityRequestProfile.adhocEntry,
+      uid: window.communityRequestProfile.uid
     });
 
     $.ajax({
@@ -98,29 +114,23 @@ $(document).ready(
       type: 'POST',
       data: postData,
       contentType: "application/json; charset=utf-8"
-    }).done(function(userRegistrationDetails) {
-      console.log("userRegistrationDetails :" + userRegistrationDetails);
-      if (typeof userRegistrationDetails.uid !== 'undefined') {
+    }).done(function(userAndSASLs) {
+      console.log("userAndSASLs :" + userAndSASLs);
+      if (typeof userAndSASLs.userRegistrationDetails.uid !== 'undefined') {
         /* got user */
-        window.communityRequestProfile.userRegistrationDetails=userRegistrationDetails;
-        $('.qrcode' img).attr('src',userRegistrationDetails.)
+        window.communityRequestProfile.userRegistrationDetails = userAndSASLs.userRegistrationDetails;
+        //$('.qrcode' img).attr('src',userRegistrationDetails.)
 
 
-        var adhocEntry;
-        var adhocEntryCookie = getCookie('cmxAdhocEntry');
-        if (adhocEntryCookie === 'true') {
-          adhocEntry = true;
-        } else {
-          adhocEntry = false;
-        }
 
-        console.log("Curre t adhocEntry:"+adhocEntry);
 
-        var currentCookie=getCookie('cmxUID');
-        console.log(" Current cookie="+currentCookie);
-        if(currentCookie===userRegistrationDetails.uid){
+        console.log("Current adhocEntry:" + window.communityRequestProfile.adhocEntry);
+
+        var currentCookie = getCookie('cmxUID');
+        console.log(" Current  UID=" + currentCookie);
+        if (currentCookie === userAndSASLs.userRegistrationDetails.uid) {
           console.log("cookie matched");
-        }else{
+        } else {
           console.log("cookies don't match");
         }
         /*
@@ -128,12 +138,12 @@ $(document).ready(
          *
          */
         console.log(" saving to local storage cmxUID:" +
-          userRegistrationDetails.uid);
-        localStorage.setItem("cmxUID", userRegistrationDetails.uid);
+          userAndSASLs.userRegistrationDetails.uid);
+        localStorage.setItem("cmxUID", userAndSASLs.userRegistrationDetails.uid);
 
-        setCookie('cmxUID', userRegistrationDetails.uid, 365);
+        setCookie('cmxUID', userAndSASLs.userRegistrationDetails.uid, 365);
 
-        var boolCookie = (userRegistrationDetails.adhocEntry ? 'true' : 'false');
+        var boolCookie = (userAndSASLs.userRegistrationDetails.adhocEntry ? 'true' : 'false');
         setCookie('cmxAdhocEntry', boolCookie, 365);
 
         /* echo check */
@@ -144,8 +154,9 @@ $(document).ready(
         } else {
           adhocEntry = false;
         }
-        console.log("Echo check: adhocEntry:"+adhocEntry);
+        console.log("Echo check: userSASLs.qrCodeURL:" + userAndSASLs.qrCodeURL);
 
+        $('#qrcode_img').attr('src', userAndSASLs.qrCodeURL);
       }
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
