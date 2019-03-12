@@ -44,7 +44,6 @@ $(document).ready(
 
     if (window.communityRequestProfile.iid !== 'undefined') {
       console.log("Detected iid : " + window.communityRequestProfile.iid);
-      $("#memqr_echo_check").text(" Echo check " + window.communityRequestProfile.iid);
 
       /*
         SERVER HACK, for demo keytag numbers
@@ -58,8 +57,7 @@ $(document).ready(
       $("#banner_anchor").attr("href", "/memqr?iid=" + window.communityRequestProfile.iid);
     } else {
       console.log("iid is undefined");
-      $("#memqr_echo_check").text(" Echo check NO iid");
-      return;
+       return;
     }
 
     $("#memqr_login_button").unbind("click").bind("click", function(e) {
@@ -157,6 +155,37 @@ $(document).ready(
         console.log("Echo check: userSASLs.qrCodeURL:" + userAndSASLs.qrCodeURL);
 
         $('#qrcode_img').attr('src', userAndSASLs.qrCodeURL);
+        if (userAndSASLs.sitelettes !== 'undefined') {
+
+
+          for (i = 0; i < userAndSASLs.sitelettes.length; i++) {
+            var bannerImageURL = userAndSASLs.sitelettes[i].bannerImageURL;
+            bannerImageURL = bannerImageURL.replace('http://', 'https://')
+
+            var siteURL = userAndSASLs.sitelettes[i].siteURL;
+            siteURL = siteURL.replace('http://', 'https://')
+            if (siteURL.indexOf("?demo") >= 0) {
+              siteURL = siteURL.concat('&UID=', userAndSASLs.userRegistrationDetails.uid);
+            } else {
+              siteURL = siteURL.concat('?UID=', userAndSASLs.userRegistrationDetails.uid);
+            }
+            console.log(" Sitelette: " + bannerImageURL);
+            console.log(" siteURL: " + siteURL);
+
+
+            $('<img />').attr({
+              src: bannerImageURL
+            }).appendTo($('<a />').attr({
+              href: siteURL
+            }).appendTo($('<li />').attr({
+
+            }).appendTo($("#saslListUL"))));
+
+
+
+
+          }
+        }
       }
 
     }).fail(function(jqXHR, textStatus, errorThrown) {

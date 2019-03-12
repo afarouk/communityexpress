@@ -15,6 +15,11 @@
   padding-bottom: 0px;
 }
 
+.saslList{
+  padding-top:30px;
+  padding-bottom:20px;
+}
+
 /* iphone 6,7,8 media query */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px)
 
