@@ -57,7 +57,7 @@ $(document).ready(
       $("#banner_anchor").attr("href", "/memqr?iid=" + window.communityRequestProfile.iid);
     } else {
       console.log("iid is undefined");
-       return;
+      return;
     }
 
     $("#memqr_login_button").unbind("click").bind("click", function(e) {
@@ -151,26 +151,34 @@ $(document).ready(
 
         $('#qrcode_img').attr('src', userAndSASLs.qrCodeURL);
         if (userAndSASLs.sitelettes !== 'undefined') {
-
+          var uid = userAndSASLs.userRegistrationDetails.uid;
 
           for (i = 0; i < userAndSASLs.sitelettes.length; i++) {
-            var bannerImageURL = userAndSASLs.sitelettes[i].bannerImageURL;
-            bannerImageURL = bannerImageURL.replace('http://', 'https://')
-
-            var siteURL = userAndSASLs.sitelettes[i].siteURL;
+            var sitelette = userAndSASLs.sitelettes[i];
+            /* add sasl banner */
+            var bannerImageURL = sitelette.bannerImageURL;
+            //bannerImageURL = bannerImageURL.replace('http://', 'https://')
+            var siteURL = sitelette.siteURL;
             //siteURL = siteURL.replace('http://', 'https://')
             if (siteURL.indexOf("?demo") >= 0) {
-              siteURL = siteURL.concat('&UID=', userAndSASLs.userRegistrationDetails.uid);
+              siteURL = siteURL.concat('&UID=', uid);
             } else {
-              siteURL = siteURL.concat('?UID=', userAndSASLs.userRegistrationDetails.uid);
+              siteURL = siteURL.concat('?UID=', uid);
             }
             console.log(" Sitelette: " + bannerImageURL);
             console.log(" siteURL: " + siteURL);
-
-            var linkstring='<li> <a target="_blank" href="'+siteURL+'"> <img src="'+bannerImageURL+'"></a></li>';
-
+            var linkstring = '<li> <a target="_blank" href="' + siteURL + '"> <img src="' + bannerImageURL + '"></a></li>';
             $("#saslListUL").append(linkstring);
-
+            /* now check if sasl has promos. If so put them as links */
+            if (sitelette.promotions !== 'undefined' && sitelette.promotions.length > 0) {
+              for (j = 0; j < sitelette.promotions.length; j++) {
+                var promotion = sitelette.promotions[j];
+                var src = promotion.url;
+                var href = promotion.onClickURL;
+                var promolinkstring = '<li class="promoli"> <a target="_blank" href="' + href + '"> <img class="promoimage" src="' + src + '"></a></li>';
+                $("#saslListUL").append(promolinkstring);
+              }
+            }
           }
         }
       }
