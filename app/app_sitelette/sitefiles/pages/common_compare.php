@@ -23,11 +23,11 @@ include 'sitefiles/includes/navbar.php';
 
 
 <section id="compare">
-  <div class="container-fluid">
+  <div class="push_down_for_menu container-fluid">
     <div class="row  ">
       <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-12 col-sm-8   col-md-8   col-lg-8">
         <div>
-          <p class="push_down"> Compare Chalkboards</p> <!--  -->
+          <p class=" paragrah_heading"> Compare Chalkboards</p> <!--  -->
            <br>
          </div>
       </div>
