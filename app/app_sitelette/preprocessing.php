@@ -141,6 +141,9 @@ if (validateParams('friendlyURL')) {
         case 'embedded_userguide':
           $pageAccess = 'embedded_userguide.php';
           break;
+        case 'compare':
+          $pageAccess = 'common_compare.php';
+          break;
         case 'userguide':
           $pageAccess = 'common_userguide.php';
           break;
