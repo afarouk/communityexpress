@@ -15,7 +15,7 @@
   </head>
 	<body data-spy="scroll" data-target=".navbar-fixed-top" >
 		<?php	include ('sitefiles/includes/navbar.php');?>
-    <?php include ('sitefiles/pages/common_unsubscribe.html'); ?>
+    <?php include ('sitefiles/pages/content_unsubscribe.html'); ?>
     <?php	include ('sitefiles/includes/footer.php');?>
 
     <?php include ('sitefiles/includes/scriptfiles.html') ?>

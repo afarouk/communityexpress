@@ -29,7 +29,7 @@ include('sitefiles/includes/navbar-memqr.php');
 ?>
 <!-- Header end -->
 <?php
-include('sitefiles/pages/common_memqr.html');
+include('sitefiles/pages/content_memqr.html');
 ?>
 <?php
 include('sitefiles/includes/scriptfiles.html');

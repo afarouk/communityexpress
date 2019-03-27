@@ -15,7 +15,7 @@ include ('sitefiles/includes/navbar.php');
   ?>
   <!-- Header end -->
   <?php
-include ('sitefiles/pages/common_userguide.html');
+include ('sitefiles/pages/content_userguide.html');
   ?>
   <?php
   include ('sitefiles/includes/scriptfiles.html');
