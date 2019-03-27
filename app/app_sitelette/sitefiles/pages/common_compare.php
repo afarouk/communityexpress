@@ -34,7 +34,7 @@ include 'sitefiles/includes/navbar.php';
     </div>
   </div>
  <?php
-   include 'sitefiles/pages/common_compare.html';
+   include 'sitefiles/pages/content_compare.html';
  ?>
 </section>
 
