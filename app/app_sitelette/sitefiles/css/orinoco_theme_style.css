@@ -198,7 +198,7 @@
 ===================================================*/
 
  .heading_block {
-   background: url(../images/landing/landingChalkboardsFX.jpg) no-repeat;
+   /* background: url(../images/landing/landingChalkboardsFX.jpg) no-repeat; */
    /* background: url(../images/landing/conversation_tall.jpg) no-repeat; */
    -webkit-background-size: 100% auto;
    -moz-background-size: 100% auto;
@@ -208,6 +208,7 @@
    margin-top: 0px;
    /*  text color */
    color: white;
+   background-color:black;
    background-position: center;
    padding-bottom: 350px;
  }
@@ -434,7 +435,7 @@
  }
 
  .main_heading_styled {
-   font-family: 'Merriweather', sans-serif;
+   font-family: 'Allura', sans-serif;
    font-weight: 300;
    font-style: normal;
    font-size: 76px;
