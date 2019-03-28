@@ -389,7 +389,9 @@
    color: rgb(60, 60, 60);
    text-align: center;
  }
-
+ .paragraph_text .white-text{
+    color: white;
+  }
  .paragrah_heading {
    font-family: 'Josefin Sans', sans-serif;
    font-weight: 600;
