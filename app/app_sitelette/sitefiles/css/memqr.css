@@ -45,10 +45,11 @@
   padding: 10px 10px 10px 10px;
 }
 
-li.promoli{
-  padding-top:10px;
-  padding-bottom:10px;
+li.promoli {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+
 img.promoimage {
   display: block;
   max-width: 100%;
