@@ -40,9 +40,11 @@
             </li>
             -->
             <li class="li_login" <?php modifyUrlAndClass("compare") ?> >
-              <a href="compare">Compare</a>
+             <!--  <a href="compare">Compare</a> -->
+             <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","compare") ?>>Compare</a>
+
             </li>
-            
+
             <li class="FAQ" <?php modifyUrlAndClass("faq") ?> >
               <a href="./sitefiles/common_docs_legal/FAQ.pdf" target="_blank" class="faq_button">FAQ</a>
             </li>
