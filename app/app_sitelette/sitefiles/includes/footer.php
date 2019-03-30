@@ -86,7 +86,7 @@
         </div>
         <div class="col-sm-12 col-md-12 footer_last_line p-r-0">
           <div class="col-md-11 col-md-offset-1 p-r-0">
-            <a href="http://orinoco.us" target="_blank"><p>©  2018. All rights reserved.  | by Orinoco Inc.</p></a>
+            <a href="http://orinoco.us" target="_blank"><p>©  2019. All rights reserved.  | by Orinoco Inc.</p></a>
           </div>
         </div>
       </div>
