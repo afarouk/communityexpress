@@ -15,7 +15,7 @@ include ('sitefiles/includes/navbar.php');
   ?>
   <!-- Header end -->
   <?php
-include ('sitefiles/common_docs_legal/termsandconditions.html');
+include ('sitefiles/common_docs/termsandconditions.html');
   ?>
   <?php
 include ('sitefiles/includes/scriptfiles.html');

@@ -16,7 +16,7 @@ include ('desktop/includes/navbar.php');
   ?>
   <!-- Header end -->
   <?php
-include ('desktop/common_docs_legal/privacypolicy.html');
+include ('desktop/common_docs/privacypolicy.html');
   ?>
   <?php
 include ('desktop/includes/scriptfiles.html');

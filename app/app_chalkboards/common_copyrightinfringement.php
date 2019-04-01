@@ -16,7 +16,7 @@ include ('desktop/includes/navbar.php');
   ?>
   <!-- Header end -->
   <?php
-include ('desktop/common_docs_legal/copyrightinfringment.html');
+include ('desktop/common_docs/copyrightinfringment.html');
   ?>
   <?php
 include ('desktop/includes/scriptfiles.html');

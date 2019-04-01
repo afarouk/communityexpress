@@ -27,11 +27,11 @@
 					<label class="col-lg-3 col-md-3  col-sm-3  col-xs-12   control-label">Domain</label>
 					<div class="col-lg-9 col-md-9 col-sm-9   col-xs-12">
                         <select class="form-control input-sm" name="domain" id="domain"></select>
-						
+
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div>
-                
+
 				<!-- Initials and Agreement -->
 				<div class="form-group   ">
 					<div style="padding-left: 11px;"
@@ -48,10 +48,10 @@
 
 				</div>
 
-				
 
-            
-			
+
+
+
 		</div>
 
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -147,7 +147,7 @@
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div>
-            
+
             <!--Country-->
             <div class="form-group  ">
 					<label class="col-lg-3 col-md-3  col-sm-3  col-xs-12   control-label">Country</label>
@@ -158,9 +158,9 @@
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div>
-			
+
 		</div>
-                <div class="col-xs-12">                    
+                <div class="col-xs-12">
                     <div class="form-group   " style="text-align:center;margin-top:10px;">
                         <button type="submit" id="emailRegistrationSubmit" class="btn btn-primary ladda-button"
                         data-style="expand-left" data-size="l" name="emailRegistrationSubmit" style="margin:0 5px;">
@@ -188,7 +188,7 @@
 	</div>
 	<!-- END Login or create account -->
 	<!-- BEGIN Email Verification Interrupt -->
-	
+
 	<div class="row push-down-for-menu gray-background force-min-height" id="simpleSignupRow3B"  style="display: none;">
 		<form id="buildAppForm2" role="form" class="form-horizontal">
 			<!-- hidden inputs -->
@@ -387,7 +387,7 @@
 						<input id="agreementCheckboxSASLOwner" class="input-md" name="agreementCheckboxSASLOwner" type="checkbox"
 						data-error="custom" required>
 						I agree to the <a target="_blank"
-						href="http://chalkboards.today/common_docs_legal/termsandconditions.html">Terms</a> and am over 18
+						href="http://chalkboards.today/common_docs/termsandconditions.html">Terms</a> and am over 18
 					</div>
 				</div>
 			</div>
@@ -420,6 +420,6 @@
 	<!-- BEGIN Congratulations -->
    	<div id="signupErrorDiv" class="alert alert-danger " style="display: none;" role="alert"></div>
 	<div class="row push-down-for-menu gray-background" id="simpleSignupRow4" style="display: none;">
-		
+
 	</div>
 </div>

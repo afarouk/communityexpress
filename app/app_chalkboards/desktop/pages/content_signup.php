@@ -1,8 +1,8 @@
 <div id="signup_root" class="container push-down-for-menu gray-background force-min-height" >
 	<!-- LOGIN OR CREATE ACCOUNT -->
 	<div class="row " id="simpleSignupRow1">
-        
-        
+
+
 		<h1 class="text-center"><a href="javascript:void(0)" onclick="open_vrfyinvcd_sec()" class="btn btn-primary ladda-button"  data-toggle="modal">I have an Invitation code</a>&nbsp;&nbsp;|&nbsp;Create an account for your business</h1>
 			<form id="emailRegistrationForm" role="form" class="form-horizontal">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="border-right: solid 1px;">
@@ -56,11 +56,11 @@
 					<label class="col-lg-3 col-md-3  col-sm-3  col-xs-12   control-label">Domain</label>
 					<div class="col-lg-9 col-md-9 col-sm-9   col-xs-12">
                         <select class="form-control input-sm" name="domain" id="domain"></select>
-						
+
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div>
-                
+
 				<!-- Initials and Agreement -->
 				<div class="form-group   ">
 					<div style="padding-left: 11px;"
@@ -81,8 +81,8 @@
 					<div class="signupErrorMessageDiv col-lg-offset-3 col-md-offset-3  col-sm-offset-3   "></div>
 				</div>
 
-            
-			
+
+
 		</div>
 
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -178,7 +178,7 @@
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div>
-            
+
             <!--Country-->
             <div class="form-group  ">
 					<label class="col-lg-3 col-md-3  col-sm-3  col-xs-12   control-label">Country</label>
@@ -189,9 +189,9 @@
 					</div>
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
 				</div>
-			
+
 		</div>
-                <div class="col-xs-12">                    
+                <div class="col-xs-12">
                     <div class="form-group   " style="text-align:center;margin-top:10px;">
                         <button type="submit" id="emailRegistrationSubmit" class="btn btn-primary ladda-button"
                         data-style="expand-left" data-size="l" name="emailRegistrationSubmit" style="margin:0 5px;">
@@ -241,7 +241,7 @@
 			</div>
 		</form>
 	</div>
-    
+
     <div class="row push-down-for-menu gray-background force-min-height" id="clkToCRT" style="display: none;">
 		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1  col-sm-offset-1 "
 		style="padding-top: 60px;">
@@ -250,8 +250,8 @@
 					</div>
 		</div>
 
-        
-        
+
+
 			<div class="form-group ">
 				<div class="col-lg-offset-3 col-md-offset-3  col-sm-offset-3 col-lg-9 col-md-9 col-sm-9 ">
 					<label for="cliclToCreate"> Click next to create your app. </label>
@@ -267,9 +267,9 @@
 					</button>
 				</div>
 			</div>
-		
+
 	</div>
-    
+
 	<!-- END Email Verification Interrupt -->
 
 	<!-- BEGIN Feature picker beta signup -->
@@ -569,7 +569,7 @@
 						<input id="agreementCheckboxSASLOwner" class="input-md" name="agreementCheckboxSASLOwner" type="checkbox"
 						data-error="custom" required>
 						I agree to the <a target="_blank"
-						href="http://chalkboards.today/common_docs_legal/termsandconditions.html">Terms</a> and am over 18
+						href="http://chalkboards.today/common_docs/termsandconditions.html">Terms</a> and am over 18
 					</div>
 				</div>
 			</div>
@@ -610,7 +610,7 @@
 		<div id="signupErrorDiv" class="alert alert-danger " style="display: none;" role="alert"></div>
 	</div>
 	<div class="row " id="portalExpressRow" style="display: none;"></div>
-    
+
 <div class="container col-md-10">
  <!-- Modal -->
     <div class="row " id="VrfyInvCd" style="display:none;padding: 112px 90px;">
@@ -637,26 +637,26 @@
       <label class="col-md-4 col-xs-3 col-sm-4" for="invitationCode2">Invitation Code:</label>
          <input type="text" name="invitationCode2" id="invitationCode2"  class="form-control" style="width:50%">
          </br>
-        
+
         <label class="col-md-4 col-xs-3 col-sm-4" for="invitationEmail">Email:</label>
          <input type="email" name="invitationEmail" id="invitationEmail"  class="form-control" style="width:50%">
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
         </br>
-       
+
        <label class="col-md-4 col-xs-3 col-sm-4" for="invitationPsw">Password:</label>
          <input type="password" name="invitationPsw" id="invitationPsw"  class="form-control" style="width:50%">
        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
        </br>
-      
+
       <label class="col-md-4 col-xs-3 col-sm-4" for="invitationCPsw">Re-enter password:</label>
          <input type="password" name="invitationCPsw" id="invitationCPsw"  class="form-control" style="width:50%">
       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 validationErrorMessageClass"></div>
       </br>
-     
+
       <div class="modal-footer" style="width:70%">
        <!-- Qaptcha add this line in your form -->
        <div class="alert fade in alert-danger" id="errorDv2" style="float:left;width:65%;margin-bottom:0px !important;display:none;text-align:center; padding: 5px;">&nbsp;</div>
-          <button type="button" id="InvitationSubmit2" type="button" name="submit"  onclick="createOwnerByInvitation(event)" class="btn btn-primary ladda-button" data-style="expand-left" data-size="l" ><span class="ladda-label">Submit</span><span class="ladda-spinner"> </butto> 
+          <button type="button" id="InvitationSubmit2" type="button" name="submit"  onclick="createOwnerByInvitation(event)" class="btn btn-primary ladda-button" data-style="expand-left" data-size="l" ><span class="ladda-label">Submit</span><span class="ladda-spinner"> </butto>
           <button type="button" onclick="close_createinvcd()" name="cancel" data-dismiss="modal"  class="btn btn-secondary" >Cancel</button>
           <div class="QapTcha"></div>
       </div>
