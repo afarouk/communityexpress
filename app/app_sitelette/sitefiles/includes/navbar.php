@@ -21,7 +21,7 @@
             </li>
             <!--
             <li>
-              <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","features") ?>>Features</a>
+              <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index", "features") ?>>Features</a>
             </li>
             -->
             <!--
@@ -40,9 +40,8 @@
             </li>
             -->
             <li class="li_login" <?php modifyUrlAndClass("compare") ?> >
+             <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index", "compare") ?>>Compare</a>
              <!--  <a href="compare">Compare</a> -->
-             <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","compare") ?>>Compare</a>
-
             </li>
 
             <li class="FAQ" <?php modifyUrlAndClass("faq") ?> >
@@ -51,14 +50,18 @@
             <!--
             <li class="li_paypal"><a target="_blank" href="paypalsetup">Paypal Support</a></li> -->
             <!--  <li class="li_Pricing"><a href="/Pricing">Pricing</a></li> -->
+            <!-- DISABLED OPTIONS
             <li class="DifferentOptions" <?php modifyUrlAndClass("DifferentOptions") ?> >
               <a href="./sitefiles/common_docs/DifferentOptions.pdf" target="_blank" class="faq_button">Options</a>
             </li>
+            -->
             <li class="li_Pricing"><a href="/flyers">Flyers</a></li>
             <li>
-              <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
+              <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index", "contact") ?>>Contact</a>
             </li>
+            <!--
             <li class="li_support"><a href="./sitefiles/common_docs/API.pdf">API</a></li>
+          -->
           </ul>
         </div>
       </div>
