@@ -244,8 +244,8 @@ img.add-padding{
 ===================================================*/
 
  .heading_block {
-   /* background: url(../images/landing/landingChalkboardsFX.jpg) no-repeat; */
-   /* background: url(../images/landing/conversation_tall.jpg) no-repeat; */
+   /*background: url(../images/landing/landingChalkboardsFX.jpg) no-repeat; */
+   background: url(../images/landing/background_landscape.jpg) no-repeat;
    -webkit-background-size: 100% auto;
    -moz-background-size: 100% auto;
    -o-background-size: 100% auto;
@@ -262,7 +262,7 @@ img.add-padding{
  .main_heading_smaller li a,
  .main_heading_smaller li  a:hover,
  .main_heading_smaller li  a:focus {
-     color: white;
+     color: #000000;
      text-decoration: underline;
  }
  /* iphone 6,7,8 media query */
@@ -272,7 +272,7 @@ img.add-padding{
 
    {
    .heading_block {
-     /* background: url(../images/landing/background_portrait.jpg) no-repeat; */
+     background: url(../images/landing/background_portrait.jpg) no-repeat; 
      -webkit-background-size: auto auto;
      -moz-background-size: auto auto;
      -o-background-size: auto auto;
@@ -506,7 +506,7 @@ img.add-padding{
  }
 
  .main_heading_styled.push_down {
-   margin-top: 160px;
+   margin-top: 300px;
  }
 
 
@@ -543,7 +543,7 @@ img.add-padding{
    font-style: normal;
    font-size: 30px;
    line-height: 1.5em;
-   color: #ffffff;
+   color: #000000;
  }
 
  /*Contact us section
