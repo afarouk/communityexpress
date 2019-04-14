@@ -27,7 +27,7 @@ include 'sitefiles/includes/navbar.php';
     <div class="row  ">
       <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-12 col-sm-8   col-md-8   col-lg-8">
         <div>
-          <p class=" paragrah_heading"> Compare Chalkboards</p> <!--  -->
+          <p class=" paragraph_heading"> Compare Chalkboards</p> <!--  -->
            <br>
          </div>
       </div>
