@@ -74,7 +74,9 @@
               <a href="/index.php#contact"><li>Contact Us</li></a>
               <a href="flyers"><li>Flyers</li></a>
               <a href="support"><li>Support</li></a>
+              <!--
               <a target="_blank" href="paypalsetup"><li>Paypal Support</li></a>
+              -->
             </ul>
           </div>
           <div class="col-sm-4 col-md-4">
