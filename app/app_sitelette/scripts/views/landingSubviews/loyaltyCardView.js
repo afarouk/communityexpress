@@ -98,7 +98,7 @@ var LoyaltyCardView = Backbone.View.extend({
         this.$(this.qrCode).find('.qr_code_title.info').text(resp.qrCodeBlockLine2);
         if (!Cookies.get('cmxQrCodeExpanded')) {
           $('#cmtyx_header_qrCode_button').click();
-          Cookies.set('cmxQrCodeExpanded', true);
+          /* Cookies.set('cmxQrCodeExpanded', true); */
         }
         this.resolved();
     }, this));
@@ -130,7 +130,7 @@ var LoyaltyCardView = Backbone.View.extend({
 
   getLinks: function() {
       var demo = window.community.demo ? 'demo=true&' : '',
-        shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] + 
+        shareUrl = window.encodeURIComponent(window.location.href.split('?')[0] +
           '?' + demo + 't=y&u=' + this.loyaltyProgram.loyaltyUUID),
         links = [
             '',
@@ -157,13 +157,13 @@ var LoyaltyCardView = Backbone.View.extend({
           $target = $(e.currentTarget),
           uuid = this.loyaltyProgram.loyaltyUUID,
           demo = window.community.demo ? 'demo=true&' : '',
-          shareUrl = window.location.href.split('?')[0] + 
+          shareUrl = window.location.href.split('?')[0] +
             '?' + demo + 't=p&u=' + uuid,
           val = $target.prev().val(); //(650) 617-3439
 
       loader.showFlashMessage('Sending message to... ' + val);
       $el.slideUp('slow');
-      contactActions.shareURLviaSMS('LOYALTY', this.sasl.serviceAccommodatorId, 
+      contactActions.shareURLviaSMS('LOYALTY', this.sasl.serviceAccommodatorId,
           this.sasl.serviceLocationId, val, uuid, shareUrl)
         .then(function(res){
           loader.showFlashMessage('Sending message success.');
