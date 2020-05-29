@@ -128,11 +128,12 @@ module.exports = {
             .then(onLoginSuccess);
     },
 
-    registerNewMember: function (email, password, password_confirmation) {
+    registerNewMember: function (mobile, password, password_confirmation) {
+        console.log("registerNewMember mobile:"+mobile);
         var payload = {
             serviceAccommodatorId: window.community.serviceAccommodatorId,
             serviceLocationId: window.community.serviceLocationId,
-            email: email,
+            mobile: mobile,
             password: password
         };
         if (Cookies.get('cmxAdhocEntry') == 'true') {

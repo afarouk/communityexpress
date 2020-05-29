@@ -124,7 +124,7 @@ var SigninView = PopupView.extend({
     },
 
     isValid: function(data) {
-        if (data.username === '' || data.password === '' || data.password.length < 6) {
+        if (data.username === '' ||  data.password === '' || data.password.length < 6) {
             this.showLoginError();
             return false;
         }

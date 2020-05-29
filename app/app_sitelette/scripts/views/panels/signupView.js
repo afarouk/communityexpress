@@ -46,7 +46,7 @@ var SignupView = PopupView.extend({
             loader.show();
 
             sessionActions.registerNewMember(
-                data.email,
+                data.username,
                 data.password,
                 data.password_confirmation)
                     .then(this._onSignupSuccess.bind(this), this._onSignupError.bind(this));
@@ -56,11 +56,21 @@ var SignupView = PopupView.extend({
     },
 
     validateForm: function(data) {
+        /*
         var regexEmail = regexEmail = /^(([a-zA-Z]|[0-9])|([-]|[_]|[.]))+[@](([a-zA-Z0-9])|([-])){2,32}[.](([a-z]){2,32})+$/gi;
         if (!regexEmail.test(data.email)) {
             this.showSignupError('email');
             return false;
-        } else if (data.password !== data.password_confirmation) {
+        } else 
+        */
+        console.log('username:'+data.username);
+        console.log('email:'+data.email);
+        var regexMobile = regexMobile = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+        if (!regexMobile.test(data.username)) {
+            this.showSignupError('email');
+            return false;
+        } else 
+        if (data.password !== data.password_confirmation) {
             var text = 'Password does not match the confirm password';
             this.showSignupError('password', text);
             return false;
