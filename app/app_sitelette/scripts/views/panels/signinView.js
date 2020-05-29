@@ -37,6 +37,9 @@ var SigninView = PopupView.extend({
             'click #show_password': 'showPassword'
         });
 
+        $('#mobile_input').mask('(000) 000-0000');
+         
+
         FB.getLoginStatus(function (response) {
             this.facebookStatus = response.status;
         }.bind(this), true);

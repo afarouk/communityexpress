@@ -21,6 +21,8 @@ var SignupView = PopupView.extend({
         this.parent = options.parent;
         this.callback = options.callback || function () {};
 
+        $('#mobile_input_signup').mask('(000) 000-0000');
+        
         this.addEvents({
             'click .submit_signup': 'submitForm',
             'submit': 'submitForm',
