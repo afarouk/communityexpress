@@ -308,6 +308,9 @@ if (validateParams('ftl')) {
 }
 
 $canCreateAnonymousUser = false;
+
+/* start API call using variables from above */
+
 if (!$blockAccess) {
   if ($saslAccess || $urlKeyAccess) {
     $errorMessage        = null;
