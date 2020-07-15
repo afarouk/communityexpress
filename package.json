@@ -19,7 +19,7 @@
     "jquery-bridget": "^2.0.1",
     "jquery-mobile": "^1.4.1",
     "jquery-ui-dist": "^1.12.1",
-    "lodash": "^3.5.0",
+    "lodash": "^4.17.19",
     "strftime": "^0.7.0",
     "underscore": "^1.8.3"
   },
