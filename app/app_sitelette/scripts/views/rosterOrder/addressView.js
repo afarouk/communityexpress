@@ -138,7 +138,7 @@ var AddressView = Backbone.View.extend({
     triggerPayment: function() {
         //temporary for testing
         if (!this.options.futureOrRegular) {
-            if (!this.model.additionalParams.allowCash && this.model.get('paymentProcessor') === 'VANTIV') {
+            if (!this.model.additionalParams.allowCash && this.model.get('paymentProcessor') === 'VANTIV_HID') {
                 Vent.trigger('viewChange', 'summary', {
                     model: this.model,
                     circles: this.options.circles,

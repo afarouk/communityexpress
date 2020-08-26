@@ -226,7 +226,7 @@ var SummaryView = Backbone.View.extend({
     },
 
     onNext: function() {
-        if (this.model.get('paymentProcessor') === 'VANTIV') {
+        if (this.model.get('paymentProcessor') === 'VANTIV_HID') {
             this.options.fromVantiv = null;
             Vent.trigger('viewChange', 'vantiv', {
                 model: this.model,

@@ -276,7 +276,7 @@ define([
 		},
 		//choose payment part
 		showChoosePayment: function(model) {
-			if (!model.additionalParams.allowCash && model.get('paymentProcessor') === 'VANTIV') {
+			if (!model.additionalParams.allowCash && model.get('paymentProcessor') === 'VANTIV_HID') {
 				this.showSummary(model);
 			} else {
 				this.validatePromoCode(model).always(function(code){
@@ -338,14 +338,14 @@ define([
 			}.bind(this));
 		},
 		onSummaryNext: function(model) {
-			if (model.get('paymentProcessor') === 'VANTIV') {
+			if (model.get('paymentProcessor') === 'VANTIV_HID') {
 				this.onVantivSetup(model);
 			} else {
 				this.onPlaceOrder(model);
 			}
 		},
 		onSummaryBack: function(model) {
-			if (!model.additionalParams.allowCash && model.get('paymentProcessor') === 'VANTIV') {
+			if (!model.additionalParams.allowCash && model.get('paymentProcessor') === 'VANTIV_HID') {
 				this.showChooseAddress(model);
 			} else {
 				this.showChoosePayment(model);

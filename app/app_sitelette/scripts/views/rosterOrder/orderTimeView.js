@@ -144,7 +144,7 @@ var OrderTimeView = Backbone.View.extend({
     },
     triggerNext: function() {
         this.setDeliveryDate();
-        if (!this.model.additionalParams.allowCash && this.model.get('paymentProcessor') === 'VANTIV') {
+        if (!this.model.additionalParams.allowCash && this.model.get('paymentProcessor') === 'VANTIV_HID') {
             Vent.trigger('viewChange', 'summary', {
                 deliveryPickupOptions: this.options.deliveryPickupOptions,
                 futureOrRegular: this.options.futureOrRegular,

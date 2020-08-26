@@ -248,7 +248,7 @@ define([
 				this.model.set('cashSelected', false);
         		this.model.set('creditCardSelected', true);
 			}
-			if (this.model.get('paymentProcessor') === 'VANTIV') {
+			if (this.model.get('paymentProcessor') === 'VANTIV_HID') {
 	    		this.trigger('onNextStep', 'saved', this.tabActive);
 	    	} else {
 	    		this.trigger('onNextStep', card, this.tabActive);

@@ -180,7 +180,7 @@ var PaymentView = Backbone.View.extend({
         if (this.cashSelected) {
             this.onPlaceOrder();
         } else {
-            if (this.model.get('paymentProcessor') === 'VANTIV') {
+            if (this.model.get('paymentProcessor') === 'VANTIV_HID') {
                 this.triggerSummary();
             } else if (checked.attr('id') === 'use_another') {
                 this.triggerPaymentCard();
