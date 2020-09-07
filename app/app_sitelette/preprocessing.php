@@ -108,7 +108,7 @@ if (validateParams('serviceLocationId')) {
 }
 
 if (validateParams('friendlyURL')) {
-    /*React App changes*/
+    /* React App changes */
     //need to parse url for nested routes like /demoviva/order-history?demo=true
     $path = explode('/',$_REQUEST['friendlyURL']);
     $friendlyURL = $path[0];
@@ -311,12 +311,13 @@ if (validateParams('ftl')) {
 
 $canCreateAnonymousUser = false;
 
-/*React App changes*/
-/*Handle request to /manifest.json to return dynamically modified file for a specified sasl*/
-if (strpos($_SERVER['REQUEST_URI'],'manifest.json?url') !== false) {
+/* React App changes */
+/* Possible way to handle request to /manifest.json to return dynamically modified file for a specified sasl */
+/* Currently handled with .htaccess line: 16 */
+/* if (strpos($_SERVER['REQUEST_URI'],'manifest.json?url') !== false) {
     include_once 'manifest.php';
-}
-/*React App changes*/
+}*/
+/* React App changes */
 $reactHTMLFile = null;
 
 if (!$blockAccess) {
@@ -333,7 +334,7 @@ if (!$blockAccess) {
 
         $siteletteJSON = makeApiCall($apiURL);
 
-        /*React App changes*/
+        /* React App changes */
         $catalogAndSiteletteApiURL = $protocol . $server . '/apptsvc/rest/sasl/getCatalogAndSiteletteDataModelByURLkey?urlKey=' . $friendlyURL;
         $siteletteDataJSON = makeApiCall($catalogAndSiteletteApiURL);
 

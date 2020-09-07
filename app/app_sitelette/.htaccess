@@ -4,7 +4,7 @@
  RewriteBase /
 
  #path for assets
- RewriteRule ^static/(.*)$ /youdash/static/$1 [R=301,NC,L]
+ RewriteRule ^static/(.*)$ /youdash/static/$1 [NC,L]
 
  #serving service worker from folder
  RewriteRule ^service-worker.js /youdash/service-worker.js [L,QSA]
@@ -13,7 +13,7 @@
  RewriteRule ^favicon.ico /youdash/favicon.ico [L,QSA]
  RewriteRule ^logo192.png /youdash/logo192.png [L,QSA]
  RewriteRule ^logo512.png /youdash/logo512.png [L,QSA]
-# RewriteRule ^manifest.json$ /manifest.php [R=301,NC,L]
+ RewriteRule ^manifest.json$ /manifest.php [L,QSA]
 
 
  RewriteCond %{REQUEST_FILENAME} !-f

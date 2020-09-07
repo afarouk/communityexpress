@@ -22,7 +22,7 @@ if ($blockAccess) {
       }
     } else { 
 //      include_once 'youdash/index.html'  ;
-        /*React App changes*/
+        /* React App changes */
         //recommended to uncomment file above, line: 10 and comment all this block
         echo $reactHTMLFile;
     }
