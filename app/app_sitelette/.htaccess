@@ -6,7 +6,7 @@
  #path for assets
  RewriteRule ^static/(.*)$ /youdash/static/$1 [R=301,NC,L]
 
- #serving service worked from folder
+ #serving service worker from folder
  RewriteRule ^service-worker.js /youdash/service-worker.js [L,QSA]
  #serving manifest files from folder
  RewriteRule ^precache-manifest(.*).js /youdash/$1 [L,QSA]

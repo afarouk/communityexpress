@@ -312,7 +312,7 @@ if (validateParams('ftl')) {
 $canCreateAnonymousUser = false;
 
 /*React App changes*/
-/*Serving request to /manifest.json to return dynamically modified file for each sasl*/
+/*Handle request to /manifest.json to return dynamically modified file for a specified sasl*/
 if (strpos($_SERVER['REQUEST_URI'],'manifest.json?url') !== false) {
     include_once 'manifest.php';
 }
@@ -344,17 +344,21 @@ if (!$blockAccess) {
                 $errorMessage = 'Service unavailable: ' . $siteletteDataJSON['error']['message'];
             } else {
                 $siteletteDataModel = $siteletteDataJSON['siteletteDataModel'];
+
                 $sasl = $siteletteDataModel['sasl'];
                 $ogTags = $sasl['ogTags'];
                 $appleTouchIcon192URL = $sasl['appleTouchIcon192URL'];
-
+                //reading index.html from react app production build
                 $reactHTMLFile = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'youdash' . DIRECTORY_SEPARATOR . 'index.html', true);
+                //changing meta variables
                 $reactHTMLFile = str_replace('__OG_TITLE__', $ogTags['title'], $reactHTMLFile);
                 $reactHTMLFile = str_replace('__OG_DESCRIPTION__', $ogTags['description'], $reactHTMLFile);
                 $reactHTMLFile = str_replace('__OG_IMAGE__', $ogTags['image'], $reactHTMLFile);
                 $reactHTMLFile = str_replace('__LINK_ICON_192__', $appleTouchIcon192URL, $reactHTMLFile);
                 $reactHTMLFile = str_replace('__LINK_APPLE_TOUCH_ICON__', $appleTouchIcon192URL, $reactHTMLFile);
+                //adding dynamic link to /manifest.json, it will be handled through manifest.php file
                 $reactHTMLFile = str_replace('/manifest.json', '/manifest.json?url=' . $friendlyURL . '&demo=' . ($demo ? 'true' : 'false') , $reactHTMLFile);
+                //sending $siteletteDataJSON data to make it available in a react app without additional request
                 $reactHTMLFile = str_replace('window.__SASL_DATA__', 'window.__SASL_DATA__ = ' . json_encode($siteletteDataJSON), $reactHTMLFile);
             }
             /*end valid sitelette*/

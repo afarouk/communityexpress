@@ -22,7 +22,8 @@ if ($blockAccess) {
       }
     } else { 
 //      include_once 'youdash/index.html'  ;
-        //recommended to uncomment file above, line: 10
+        /*React App changes*/
+        //recommended to uncomment file above, line: 10 and comment all this block
         echo $reactHTMLFile;
     }
   } else if (isset($pageAccess)) {
