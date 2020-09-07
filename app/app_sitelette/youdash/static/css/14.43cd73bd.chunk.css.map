@@ -1,1 +1,0 @@
-{"version":3,"sources":["Form.css"],"names":[],"mappings":"AAIA,gCAFE,0CAMF,CAJA,YACE,eAAiB,CACjB,eAEF","file":"14.43cd73bd.chunk.css","sourcesContent":[".form > *,\r\n.form > div > * {\r\n  margin-bottom: var(--default-margin-bottom);\r\n}\r\n.form label {\r\n  font-size: 0.8rem;\r\n  font-weight: 500;\r\n  margin-bottom: var(--default-margin-bottom);\r\n}\r\n"]}
