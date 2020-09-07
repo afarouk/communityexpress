@@ -19,18 +19,8 @@ if ($blockAccess) {
         }
         echo '</html>';
       }
-    } else {
-      if (!is_null($errorMessage)) {
-        include_once('error_page/error_page.php');
-      } else {
-        include_once 'themes/' . $themeId . '/mobile/head.php';
-        if ($useTemplate) {
-          echo $siteletteJSON['landingViewHTML'];
-        } else {
-          include_once 'themes/' . $themeId . '/mobile/body.html';
-        }
-        echo '</html>';
-      }
+    } else { 
+      include_once 'youdash/index.html'  ;  
     }
   } else if (isset($pageAccess)) {
     include_once('sitefiles/pages/' . $pageAccess);

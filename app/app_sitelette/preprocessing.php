@@ -332,7 +332,7 @@ if (!$blockAccess) {
       } else {
         $saslJSON                 = json_decode($siteletteJSON['saslJSON'], true);
         $themeId                  = $saslJSON['themeId'];
-        $barFontColors            = $saslJSON['themeColors']['barFontColors'];
+       # $barFontColors            = $saslJSON['themeColors']['barFontColors'];
         $domain                   = $saslJSON['domainEnum'];
         $serviceAccommodatorId    = $saslJSON['serviceAccommodatorId'];
         $serviceLocationId        = $saslJSON['serviceLocationId'];
