@@ -7,6 +7,7 @@ if ($blockAccess) {
   include_once('error_page/blocked_access.php');
 } else {
   if ($saslAccess || $urlKeyAccess) {
+      /*echo $reactHTMLFile;*/
     if ($isDesktop) {
       if (!is_null($errorMessage)) {
         include_once('error_page/error_page.php');
@@ -20,7 +21,9 @@ if ($blockAccess) {
         echo '</html>';
       }
     } else { 
-      include_once 'youdash/index.html'  ;  
+//      include_once 'youdash/index.html'  ;
+        //recommended to uncomment file above, line: 10
+        echo $reactHTMLFile;
     }
   } else if (isset($pageAccess)) {
     include_once('sitefiles/pages/' . $pageAccess);
