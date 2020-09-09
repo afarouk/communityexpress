@@ -355,6 +355,8 @@ if (!$blockAccess) {
                 $reactHTMLFile = str_replace('__OG_TITLE__', $ogTags['title'], $reactHTMLFile);
                 $reactHTMLFile = str_replace('__OG_DESCRIPTION__', $ogTags['description'], $reactHTMLFile);
                 $reactHTMLFile = str_replace('__OG_IMAGE__', $ogTags['image'], $reactHTMLFile);
+                $ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                $reactHTMLFile = str_replace('__OG_URL__', $ogUrl, $reactHTMLFile);
                 $reactHTMLFile = str_replace('__LINK_ICON_192__', $appleTouchIcon192URL, $reactHTMLFile);
                 $reactHTMLFile = str_replace('__LINK_APPLE_TOUCH_ICON__', $appleTouchIcon192URL, $reactHTMLFile);
                 //adding dynamic link to /manifest.json, it will be handled through manifest.php file
