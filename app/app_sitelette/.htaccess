@@ -9,7 +9,7 @@
  #serving service worker from folder
  RewriteRule ^service-worker.js /youdash/service-worker.js [L,QSA]
  #serving manifest files from folder
- RewriteRule ^precache-manifest(.*).js /youdash/$1 [L,QSA]
+ RewriteRule ^(precache-manifest(.*).js)$ /youdash/$1 [L,QSA]
  RewriteRule ^favicon.ico /youdash/favicon.ico [L,QSA]
  RewriteRule ^logo192.png /youdash/logo192.png [L,QSA]
  RewriteRule ^logo512.png /youdash/logo512.png [L,QSA]
