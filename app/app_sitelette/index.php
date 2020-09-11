@@ -6,8 +6,12 @@ include_once('preprocessing.php');
 if ($blockAccess) {
   include_once('error_page/blocked_access.php');
 } else {
-  if ($saslAccess || $urlKeyAccess) {
-      /*echo $reactHTMLFile;*/
+  if (!is_null($errorMessage)) {
+        include_once('error_page/error_page.php');
+  } else if ($saslAccess || $urlKeyAccess) {
+    echo $reactHTMLFile;
+
+    /*
     if ($isDesktop) {
       if (!is_null($errorMessage)) {
         include_once('error_page/error_page.php');
@@ -21,11 +25,9 @@ if ($blockAccess) {
         echo '</html>';
       }
     } else { 
-//      include_once 'youdash/index.html'  ;
-        /* React App changes */
-        //recommended to uncomment file above, line: 10 and comment all this block
-        echo $reactHTMLFile;
+      echo $reactHTMLFile;
     }
+    */
   } else if (isset($pageAccess)) {
     include_once('sitefiles/pages/' . $pageAccess);
   } else {
