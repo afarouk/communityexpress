@@ -33,8 +33,9 @@ include 'sitefiles/pages/content_test.html';
 include 'sitefiles/includes/scriptfiles.html';
   ?>
   <!-- insert page specific javascript here -->
+  <script type="text/javascript" src="https://ecommerce.merchantware.net/v1/CayanCheckout.js"></script>
   <script src="sitefiles/js/bootstrap-select.min.js"></script>
-<!--  <script src="sitefiles/pages_js/content_senddemo.js"></script>-->
+  <script src="sitefiles/pages_js/content_test.js"></script>-->
 
   <?php
 include 'sitefiles/includes/footer.php';
