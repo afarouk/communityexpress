@@ -2,8 +2,25 @@
 /*
   declare any functions here 
  */
+
+  var token;
+
   function successCallback(tokenResponse) {
     console.log("success  callback");
+
+     
+    console.log(" response   token:"+tokentResponse.token);
+    console.log(" response created:"+tokentResponse.created);
+    console.log(" response expires:"+tokentResponse.token);
+
+
+
+
+
+
+
+
+
     // Populate a hidden field with the single-use token
     $("input[name='paymentToken'").val(tokenResponse.token);
 
@@ -14,8 +31,13 @@
 
   }
 
-  function failureCallback(tokenResponse) {
-     console.log("failure  callback");
+  function failureCallback(errorArray) {
+
+    for(let i = 0; i < errorArray.length; i++){
+      console.log(errorArray[i].error_code+"  "+errorArray[i].reason);
+    }
+
+
 
     $('#submitPayment').prop('disabled', false);
 
@@ -39,7 +61,7 @@ $(document).ready(function() {
 
 
        /* set the API key */
-       CayanCheckout.setWebApiKey("ABCDEF0123456789");
+       CayanCheckout.setWebApiKey("CAQIJ8EHM0VHSCC8");
       
        console.log('after setWebApiKey');
 
