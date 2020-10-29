@@ -194,7 +194,7 @@ if (validateParams('friendlyURL')) {
                 case 'support':
                     $pageAccess = 'common_support.php';
                     break;
-                case 'Pricing':
+                case 'pricing':
                     $pageAccess = 'common_pricing.php';
                     break;
                 case 'Vantiv':
@@ -224,6 +224,9 @@ if (validateParams('friendlyURL')) {
                         $vantivTransactionId9 = null;
                         $vantivTransactionId10 = null;
                     }
+                    break;
+                     case 'test':
+                    $pageAccess = 'common_test.php';
                     break;
                 default:
             }
