@@ -5,34 +5,34 @@
             <div class="text-center">
                 <h2 class="sec-title font_color_white">Test</h2>
                 <div class="line-btm c-white" style="color:#FFF;"></div>
-                 
-<form id="paymentForm" method="post" target="_blank" onsubmit="try {return window.confirm(&quot;This form may not function properly due to certain security constraints.\nContinue?&quot;);} catch (e) {return false;}">
+
+<form id="paymentForm" method="post" >
     <div>
         <span></span>
     </div>
     <div>
         <label>Card Number</label>
-        <input type="text" size="20" name="formcardnumber">
+        <input type="text" size="20" name="formcardnumber" data-cayan="cardnumber">
     </div>
     <div>
         <label>CVV</label>
-        <input type="text" size="4" name="formcvv">
+        <input type="text" size="4" name="formcvv" data-cayan="cvv">
     </div>
     <div>
         <label>Expiration Month</label>
-        <input type="text" size="2" name="formexpiremonth" title="MM">
+        <input type="text" size="2" name="formexpiremonth" title="MM" data-cayan="expirationmonth">
     </div>
     <div>
         <label>Expiration Year</label>
-        <input type="text" size="2" name="formexpireyear" title="YY">
+        <input type="text" size="2" name="formexpireyear" title="YY" data-cayan="expirationyear">
     </div>
     <div>
         <input type="hidden" name="paymentToken" value="">
         <button id="submitPayment" type="button">Submit Payment</button>
     </div>
-</form>  
+</form>
             </div>
-            
+
         </div>
       </div>
     </div>

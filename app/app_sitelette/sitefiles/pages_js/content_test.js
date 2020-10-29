@@ -1,17 +1,17 @@
- 
+
 /*
-  declare any functions here 
+  declare any functions here
  */
 
- 
+
   function successCallback(tokenResponse) {
     console.log("success  callback");
 
-     
-    console.log(" response   token:"+tokentResponse.token);
-    console.log(" response created:"+tokentResponse.created);
-    console.log(" response expires:"+tokentResponse.token);
- 
+
+    console.log(" response   token:"+tokenResponse.token);
+    console.log(" response created:"+tokenResponse.created);
+    console.log(" response expires:"+tokenResponse.token);
+
     // Populate a hidden field with the single-use token
     $("input[name='paymentToken'").val(tokenResponse.token);
 
@@ -55,8 +55,8 @@ $(document).ready(function() {
 
        /* set the API key */
       CayanCheckout.setWebApiKey("CAQIJ8EHM0VHSCC8");
-      
-      console.log('Done with setup');
+
+     // console.log('Done with setup');
 
 
 
