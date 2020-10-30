@@ -5,6 +5,7 @@
 
 
   function successCallback(tokenResponse) {
+	$('#submitPayment').prop('disabled', false);
     console.log("success  callback");
 
 
@@ -15,10 +16,13 @@
     // Populate a hidden field with the single-use token
     $("input[name='paymentToken'").val(tokenResponse.token);
 
+
+
+
     // Submit the form
     $('#paymentForm').submit();
 
-    $('#submitPayment').prop('disabled', false);
+
 
   }
 
