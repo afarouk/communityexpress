@@ -16,7 +16,7 @@
     // Populate a hidden field with the single-use token
     $("input[name='paymentToken'").val(tokenResponse.token);
 
-
+    // CALL Community API with token and Amount
 
 
     // Submit the form
