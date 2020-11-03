@@ -20,7 +20,7 @@
 
 
     // Submit the form
-    $('#paymentForm').submit();
+   // $('#paymentForm').submit();
 
 
 
