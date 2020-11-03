@@ -228,6 +228,10 @@ if (validateParams('friendlyURL')) {
                      case 'test':
                     $pageAccess = 'common_test.php';
                     break;
+                    case 'testCardConnect':
+                    $pageAccess = 'common_testCardConnect.php';
+                    break;
+
                 default:
             }
             /* end switch */
