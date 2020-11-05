@@ -1,0 +1,48 @@
+
+<section id="test1" class="push-down-for-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h2 class="sec-title font_color_white">Test</h2>
+                <div class="line-btm c-white" style="color:#FFF;"></div>
+
+
+
+<form id="VelocityCheckoutForm" name="VelocityCheckoutForm">
+   <div>
+      <label for="PAN">Card Number:</label><input type="text" id="PAN" name="PAN"
+         value="4111111111111111">
+   </div>
+   <div>
+      <label for="Expire">Expire:</label><input type="text" id="Expire" name=
+         "Expire" value="0822">
+   </div>
+   <div>
+      <label for="CVV">CVV:</label><input type="text" id="CVV" name="CVV" value=
+         "123">
+   </div>
+   <div>
+      <label for="Amount">Amount:</label><input type="amount" id="Amount" name=
+         "Amount" value="1.00">
+   </div>
+   <div>
+      <label for="Description">Description:</label><input type="text" id=
+         "Description" name="Description" value="Donation">
+   </div>
+   <div>
+      <input type="hidden" name="FailureCallback" value="velocityFailureCallback">
+      <input type="hidden" name="SuccessCallback" value="velocitySuccessCallback">
+      <input type="hidden" name="PublicKey" value="eyAidGVybWluYWxQcm9maWxlSWQiOiAxNTIwOSB9">
+      <input type="hidden" id="reCaptcha" name="Captcha" value="bypass">
+   </div>
+   <div class="g-recaptcha"
+        id="g-recaptcha"
+        data-callback="responseCaptcha"
+        data-sitekey="6LcCXwwUAAAAAO8617hw-277eL5cMAJ5SBsebhWk">
+   </div>
+   <div>
+      <button onclick='Velocity.sendPost()' type="button">Send Payment</button>
+   </div>
+</form>
+</section>

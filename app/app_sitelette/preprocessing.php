@@ -232,6 +232,12 @@ if (validateParams('friendlyURL')) {
                     $pageAccess = 'common_testCardConnect.php';
                     break;
 
+                    case 'testNABancard':
+                    $pageAccess = 'common_testNABancard.php';
+                    break;
+
+
+
                 default:
             }
             /* end switch */
