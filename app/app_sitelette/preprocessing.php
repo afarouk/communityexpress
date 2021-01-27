@@ -231,10 +231,14 @@ if (validateParams('friendlyURL')) {
                     case 'testCardConnect':
                     $pageAccess = 'common_testCardConnect.php';
                     break;
-
                     case 'testNABancard':
                     $pageAccess = 'common_testNABancard.php';
                     break;
+
+                    case 'testHeartland':
+                    $pageAccess = 'common_testHeartland.php';
+                    break;
+
 
 
 
