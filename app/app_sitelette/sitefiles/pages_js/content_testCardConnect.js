@@ -8,6 +8,7 @@
         var token = JSON.parse(event.data);
         var mytoken = document.getElementById('mytoken');
         mytoken.value = token.message;
+        console.log(" token:"+ mytoken);
     }, false);
 </script>
 
