@@ -62,7 +62,15 @@
  /* http://paletton.com */
  /* link colors for main page */
  /* Navbar
+
 ===============================================*/
+
+ hr.boxshadow {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
  nav.navbar-orinoco {
    border: none;
    background-color: none;
