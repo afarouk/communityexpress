@@ -337,6 +337,10 @@ btn.a{
     box-shadow: 0 10px 10px -10px #8c8b8b inset;
   }
 
+  .btn.btn-primary.btn-chalkboards { 
+    font-size:40px;
+  }
+
 
    .heading_block {
      /*background: url(../images/landing/landingChalkboardsFX.jpg) no-repeat; */
@@ -367,10 +371,9 @@ btn.a{
 
    /* iphone 6,7,8 media query */
    @media only screen and (min-device-width: 360px) and (max-device-width: 667px)
-
-   /* and (orientation : landscape) */
-     {
-     .heading_block {
+   /* and (orientation : landscape) */{
+     .heading_block
+      {
        background: url(../images/landing/background_portrait.jpg) no-repeat;
        -webkit-background-size: auto auto;
        -moz-background-size: auto auto;
