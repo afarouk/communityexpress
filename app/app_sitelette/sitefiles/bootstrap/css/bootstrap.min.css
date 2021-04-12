@@ -83,7 +83,7 @@ sub {
 }
 
 img {
-	border: 0
+	border: 0;
 }
 
 svg:not (:root ){
@@ -113,24 +113,24 @@ code, kbd, pre, samp {
 button, input, optgroup, select, textarea {
 	margin: 0;
 	font: inherit;
-	color: inherit
+	color: inherit;
 }
 
 button {
-	overflow: visible
+	overflow: visible;
 }
 
 button, select {
-	text-transform: none
+	text-transform: none;
 }
 
 button, html input[type=button], input[type=reset], input[type=submit] {
 	-webkit-appearance: button;
-	cursor: pointer
+	cursor: pointer;
 }
 
 button[disabled], html input[disabled] {
-	cursor: default
+	cursor: default;
 }
 
 button::-moz-focus-inner, input::-moz-focus-inner {
@@ -1335,7 +1335,7 @@ td, th {
 :after, :before {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	box-sizing: border-box
+	box-sizing: border-box;
 }
 
 html {
@@ -1348,7 +1348,7 @@ body {
 	font-size: 14px;
 	line-height: 1.42857143;
 	color: #333;
-	background-color: #fff
+	background-color: #fff;
 }
 
 button, input, select, textarea {
@@ -1358,8 +1358,9 @@ button, input, select, textarea {
 }
 
 a {
+	/* text-align: center; */
 	color: #337ab7;
-	text-decoration: none
+	text-decoration: none;
 }
 
 a:focus, a:hover {
@@ -1445,7 +1446,7 @@ hr {
 	font-family: inherit;
 	font-weight: 500;
 	line-height: 1.1;
-	color: inherit
+	color: inherit;
 }
 
 .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, .h4 .small,
@@ -1459,7 +1460,7 @@ hr {
 
 .h1, .h2, .h3, h1, h2, h3 {
 	margin-top: 20px;
-	margin-bottom: 10px
+	/* margin-bottom: 10px; */
 }
 
 .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, h1 .small,
@@ -1490,7 +1491,7 @@ hr {
 }
 
 .h4, h4 {
-	font-size: 18px
+	font-size: 18px;
 }
 
 .h5, h5 {
@@ -1536,7 +1537,7 @@ p {
 }
 
 .text-center {
-	text-align: center
+	text-align: center;
 }
 
 .text-justify {
@@ -1856,12 +1857,12 @@ pre code {
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
-	margin-left: auto
+	margin-left: auto;
 }
 
 .row {
-	margin-right: -15px;
-	margin-left: -15px
+	margin-right: -30px;
+	margin-left: -30px;
 }
 
 .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3,
@@ -1875,7 +1876,7 @@ pre code {
 	position: relative;
 	min-height: 1px;
 	padding-right: 15px;
-	padding-left: 15px
+	padding-left: 15px;
 }
 
 .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3,
@@ -3331,7 +3332,7 @@ select[multiple].input-lg, textarea.input-lg {
 	user-select: none;
 	background-image: none;
 	border: 1px solid transparent;
-	border-radius: 4px
+	border-radius: 4px;
 }
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
@@ -3421,7 +3422,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-primary {
 	color: #fff;
 	background-color: #337ab7;
-	border-color: #2e6da4
+	border-color: #2e6da4;
 }
 
 .btn-primary.focus, .btn-primary:focus {

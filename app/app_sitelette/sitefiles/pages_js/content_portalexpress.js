@@ -27,11 +27,11 @@ function parseHashBangArgs(aURL) {
 function toggleNavBarOnSignUpPanel() {
  if ($('.navbar-wrapper').is(':visible')) {
   $('.navbar-wrapper').hide();
-  $('#dashboard_login').removeClass('push_down_for_menu');
+  $('#dashboard_login').removeClass('margin-top-140');
   $('#toggleMenuButton').text("Show Menu")
  } else {
   $('.navbar-wrapper').fadeIn('slow');
-  $('#dashboard_login').addClass('push_down_for_menu');
+  $('#dashboard_login').addClass('margin-top-140');
   $('#toggleMenuButton').text("Hide Menu")
  }
 }

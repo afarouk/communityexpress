@@ -55,10 +55,12 @@
               <a href="./sitefiles/common_docs/DifferentOptions.pdf" target="_blank" class="faq_button">Options</a>
             </li>
             -->
+            <!--
             <li class="li_Pricing"><a href="/flyers">Flyers</a></li>
             <li>
               <a class="page-scroll p-r-30 p-r-15" href=<?php echoActiveClassIfRequestMatches("index", "contact") ?>>Contact</a>
-            </li>
+            </li>]
+            -->
             <!--
             <li class="li_support"><a href="./sitefiles/common_docs/API.pdf">API</a></li>
           -->
