@@ -100,6 +100,8 @@
      background: #F89618;
      opacity: 1;
 }
+
+
  btn.a{
      color:#FFFFFF;
 }
@@ -112,6 +114,9 @@
 
 .row-striped:nth-of-type(even){
   background-color: #ffffff;
+}
+ul.space-list li:not(:last-child) {
+    margin-bottom: 1em;
 }
 
 /*RESPONSIVE =============================================================*/
@@ -628,13 +633,12 @@
 
     h2{
       font-family: 'Raleway', "Georgia", serif;
-    
-     font-weight: 600;
-     font-size: 20px;
-    /* text-transform: uppercase */
-     line-height: 1.2em;
-     color: rgb(0, 0, 0);
-     text-align: center;
+      font-weight: 600;
+      font-size: 20px;
+      /* text-transform: uppercase */
+      line-height: 1.2em;
+      color: rgb(0, 0, 0);
+      text-align: center;
     }
 
     h3{
