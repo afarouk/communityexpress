@@ -1,5 +1,5 @@
  body, p {
-     font-family: 'Merriweather', 'Arial', sans-serif;
+     font-family: 'Raleway', 'Arial', sans-serif;
      font-weight: 300;
      font-size: 14px;
      line-height: 1.2em;
@@ -54,7 +54,7 @@
  nav.navbar-orinoco {
      border: none;
      background-color: none;
-     font-family: 'Josefin Sans', "Arial", serif;
+     font-family: 'Raleway', "Arial", serif;
      font-weight: 500;
      font-style: normal;
      font-size: 20px;
@@ -274,7 +274,7 @@
      margin-top: 160px;
 }
  h1{
-    /* font-family: 'Merriweather', "Georgia", serif;
+    /* font-family: 'Raleway', "Georgia", serif;
      */
      font-weight: 600;
      font-size: 40px;
@@ -446,7 +446,7 @@
      background-position: center;
 }
  .secondary_block_heading {
-     font-family: 'Josefin Sans', "Arial", serif;
+     font-family: 'Raleway', "Arial", serif;
      font-weight: 600;
      font-size: 36px;
      font-style: normal;
@@ -457,7 +457,7 @@
      text-align: center;
 }
  .secondary_block_text {
-     font-family: 'Merriweather', "Georgia", serif;
+     font-family: 'Raleway', "Georgia", serif;
      font-weight: 100;
      font-size: 18px;
      font-style: normal;
@@ -466,7 +466,7 @@
      text-align: center;
 }
  .paragraph_heading {
-     font-family: 'Josefin Sans', sans-serif;
+     font-family: 'Raleway', sans-serif;
      font-weight: 600;
      font-size: 30px;
     /* text-transform: uppercase */
@@ -475,7 +475,7 @@
      text-align: center;
 }
  .paragraph_sub_heading {
-     font-family: 'Josefin Sans', sans-serif;
+     font-family: 'Raleway', sans-serif;
      font-weight: 400;
      font-size: 24px;
      line-height: 1.8em;
@@ -485,7 +485,7 @@
      text-align: center;
 }
  .paragraph_text {
-     font-family: 'Merriweather', 'Arial', sans-serif;
+     font-family: 'Raleway', 'Arial', sans-serif;
      font-weight: 300;
      font-size: 18px;
      line-height: 1.8em;
@@ -499,7 +499,7 @@
      */
 }
  .feature_title {
-     font-family: 'Josefin Sans', 'Arial', serif;
+     font-family: 'Raleway', 'Arial', serif;
      font-weight: 500;
      font-style: normal;
      font-size: 30px;
@@ -511,7 +511,7 @@
      max-height: 80px;
 }
  .feature_text {
-     font-family: 'Merriweather', 'Arial', sans-serif;
+     font-family: 'Raleway', 'Arial', sans-serif;
      font-weight: 300;
      font-size: 16px;
      line-height: 1.5em;
@@ -531,7 +531,7 @@
      background-color: rgba(0, 0, 0, .6);
 }
  .row sub_heading_block {
-     font-family: 'Merriweather', 'Arial', sans-serif;
+     font-family: 'Raleway', 'Arial', sans-serif;
      font-weight: 300;
      font-size: 18px;
      line-height: 1.2em;
@@ -549,7 +549,7 @@
      vertical-align: middle 
 }
  .main_heading_styled {
-     font-family: 'Merriweather', sans-serif;
+     font-family: 'Raleway', sans-serif;
      font-weight: 600;
      font-style: normal;
      font-size: 56px;
@@ -562,7 +562,7 @@
      margin-top: 300px;
 }
  .main_heading {
-     font-family: 'Josefin Sans', 'Arial', serif;
+     font-family: 'Raleway', 'Arial', serif;
      font-weight: 400;
      font-style: normal;
      font-size: 50px;
@@ -573,7 +573,7 @@
      color: #c59d5f;
 }
  .main_heading_smaller {
-     font-family: 'Josefin Sans', 'Arial', serif;
+     font-family: 'Raleway', 'Arial', serif;
      font-weight: 400;
      font-style: normal;
      font-size: 30px;
@@ -587,7 +587,7 @@
          font-size: 36px;
     }
      .main_heading {
-         font-family: 'Josefin Sans', 'Arial', serif;
+         font-family: 'Raleway', 'Arial', serif;
          font-weight: 400;
          font-style: normal;
          font-size: 32px;
@@ -595,7 +595,7 @@
          color: #FFFFFF;
     }
      .main_heading_smaller {
-         font-family: 'Josefin Sans', 'Arial', serif;
+         font-family: 'Raleway', 'Arial', serif;
          font-weight: 400;
          font-style: normal;
          font-size: 24px;
@@ -616,7 +616,7 @@
     }
     
     h1{
-      font-family: 'Merriweather', "Georgia", serif;
+      font-family: 'Raleway', "Georgia", serif;
     
      font-weight: 600;
      font-size: 30px;
@@ -627,7 +627,7 @@
     }
 
     h2{
-      font-family: 'Merriweather', "Georgia", serif;
+      font-family: 'Raleway', "Georgia", serif;
     
      font-weight: 600;
      font-size: 20px;
@@ -638,7 +638,7 @@
     }
 
     h3{
-      font-family: 'Merriweather', "Georgia", serif;
+      font-family: 'Raleway', "Georgia", serif;
       font-weight: 600;
       font-size: 18px;
       /* text-transform: uppercase */
@@ -648,7 +648,7 @@
     }
 
     h4{
-      font-family: 'Merriweather', "Georgia", serif;
+      font-family: 'Raleway', "Georgia", serif;
     
      font-weight: 600;
      font-size: 14px;
