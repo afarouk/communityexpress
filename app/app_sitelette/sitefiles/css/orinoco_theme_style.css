@@ -6,6 +6,7 @@
      letter-spacing: 1px;
      -moz-osx-font-smoothing: grayscale;
      -webkit-text-size-adjust: 100%;
+     color:rgba(0,0,0,1);
     /* -moz-text-size-adjust: ; */
 }
 /* CSS - Cascading Style Sheet */
@@ -486,12 +487,11 @@
 }
  .paragraph_text {
      font-family: 'Raleway', 'Arial', sans-serif;
-     font-weight: 300;
+     font-weight: 500;
      font-size: 18px;
-     line-height: 1.8em;
-     color: #000000;
-    /* rgb(60, 60, 60);
-    */
+     line-height: 1.5em;
+     /* color: #000000; */
+     color:rgb(0, 0, 0);
      text-align: center;
 }
  .feature_block {
