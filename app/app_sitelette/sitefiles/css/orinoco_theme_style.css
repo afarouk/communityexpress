@@ -337,10 +337,9 @@ btn.a{
     box-shadow: 0 10px 10px -10px #8c8b8b inset;
   }
 
-  .btn.btn-primary.btn-chalkboards { 
-    font-size:40px;
+.btn-request-a-demo{
+    font-size:30px;
   }
-
 
    .heading_block {
      /*background: url(../images/landing/landingChalkboardsFX.jpg) no-repeat; */
