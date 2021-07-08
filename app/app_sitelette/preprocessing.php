@@ -343,6 +343,7 @@ if (!$blockAccess) {
         $saslName = null;
         $appleTouchIcon60URL = null;
         $isPrivate = false;
+        /*
         if ($urlKeyAccess) {
             $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSiteletteByURLkeyAndTemplate?UID=&latitude=&longitude=&urlKey=' . $friendlyURL . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false') . '&videoNeedsPlaceholder=' . ($videoNeedsPlaceholder ? 'true' : 'false') . '&ua=' . $userAgent . '&ftl=' . $ftlfile;
         } else {
@@ -350,6 +351,9 @@ if (!$blockAccess) {
         }
 
         $siteletteJSON = makeApiCall($apiURL);
+        */
+
+
 
         /* React App changes */
         $catalogAndSiteletteApiURL = $protocol . $server . '/apptsvc/rest/sasl/getCatalogAndSiteletteDataModelByURLkey?urlKey=' . $friendlyURL;
@@ -380,11 +384,114 @@ if (!$blockAccess) {
                 $reactHTMLFile = str_replace('/manifest.json', '/manifest.json?url=' . $friendlyURL . '&demo=' . ($demo ? 'true' : 'false') , $reactHTMLFile);
                 //sending $siteletteDataJSON data to make it available in a react app without additional request
                 $reactHTMLFile = str_replace('window.__SASL_DATA__', 'window.__SASL_DATA__ = ' . json_encode($siteletteDataJSON), $reactHTMLFile);
+            
+                /* moved from previous call */
+
+
+
+                $domain = $sasl['domainEnum'];
+                $serviceAccommodatorId = $sasl['serviceAccommodatorId'];
+                $serviceLocationId = $sasl['serviceLocationId'];
+                $saslName = $sasl['saslName'];
+                $appleTouchIcon60URL = $sasl['appleTouchIcon60URL'];
+                $androidHomeScreenIconURL = $sasl['androidHomeScreenIconURL'];
+                $canCreateAnonymousUser = $sasl['canCreateAnonymousUser'];;
+
+                if (is_null($friendlyURL)) {
+                    if (array_key_exists('anchorURL', $sasl)) {
+                        $anchorURL = $sasl['anchorURL'];
+                        if (array_key_exists('friendlyURL', $anchorURL)) {
+                            $friendlyURL = $anchorURL['friendlyURL'];
+                        } else {
+                            $friendlyURL = null;
+                        }
+                    } else {
+                        $friendlyURL = null;
+                    }
+                }
+
+                if (is_null($type)) {
+
+                    $og_title = $sasl['ogTags']['title'];
+                    $og_description = $sasl['ogTags']['description'];
+                    $og_image = $sasl['ogTags']['image'];
+                    $og_url = remove_querystring_var($completeURL, 'desktopiframe');
+
+                    /*
+                    $og_title       = $sasl['ogTags']['title'];
+                    $og_description = $sasl['ogTags']['description'];
+                    $og_image       = $sasl['ogTags']['image'];
+                    $og_url         = remove_querystring_var($completeURL, 'desktopiframe');
+                    */
+                } else {
+                    /* make api call */
+                    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveOgTags?type=' . $type . '&uuid=' . $uuidURL;
+
+                    $ogTags = makeApiCall($apiURL);
+
+                    $og_title = $ogTags['title'];
+                    $og_description = $ogTags['description'];
+                    $og_image = $ogTags['image'];
+                    $og_url = $completeURL;
+                }
+
+                $twitter_card = "summary_large_image";
+                $twitter_site = "@ChalkboardsToday";
+
+                $twitter_title = $og_title;
+                $twitter_description = $og_description;
+                $twitter_image = $og_image;
+                $twitter_url = $og_url;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /* END moved from previous call */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
             /*end valid sitelette*/
         }
         /*React App changes end*/
 
+        /*
         if ($siteletteJSON['curl_error']) {
             $errorMessage = 'Service unavailable: ' . $siteletteJSON['curl_error'];
         } else {
@@ -392,8 +499,7 @@ if (!$blockAccess) {
                 $errorMessage = 'Service unavailable: ' . $siteletteJSON['error']['message'];
             } else {
                 $saslJSON = json_decode($siteletteJSON['saslJSON'], true);
-                $themeId = $saslJSON['themeId'];
-                # $barFontColors            = $saslJSON['themeColors']['barFontColors'];
+                
                 $domain = $saslJSON['domainEnum'];
                 $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
                 $serviceLocationId = $saslJSON['serviceLocationId'];
@@ -422,14 +528,8 @@ if (!$blockAccess) {
                     $og_image = $saslJSON['ogTags']['image'];
                     $og_url = remove_querystring_var($completeURL, 'desktopiframe');
 
-                    /*
-                    $og_title       = $saslJSON['ogTags']['title'];
-                    $og_description = $saslJSON['ogTags']['description'];
-                    $og_image       = $saslJSON['ogTags']['image'];
-                    $og_url         = remove_querystring_var($completeURL, 'desktopiframe');
-                    */
+                    
                 } else {
-                    /* make api call */
                     $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveOgTags?type=' . $type . '&uuid=' . $uuidURL;
 
                     $ogTags = makeApiCall($apiURL);
@@ -448,9 +548,9 @@ if (!$blockAccess) {
                 $twitter_image = $og_image;
                 $twitter_url = $og_url;
             }
-            /*end valid sitelette*/
+            /*end valid sitelette//
         }
-        /*end can reach server */
+        /*end can reach server //
     } else {
         $errorMessage = null;
         $showSASLTiles = false;
@@ -481,9 +581,11 @@ if (!$blockAccess) {
 /* NOTE: if debug=true then PHP will echo variables and exit */
 
 if (validateParams('debug')) {
+
     echo '$completeURL=' . $completeURL . '</br>';
     echo '$serverName=' . $serverName . '</br>';
     echo '$friendlyURL=' . $friendlyURL . '</br>';
+    echo '$saslName=' . $saslName . '</br>';
     echo '$server=' . $server . '</br>';
     echo '$embedded=' . ($embedded ? 'true' : 'false') . '</br>';
     echo '$demo=' . ($demo ? 'true' : 'false') . '</br>';
@@ -518,10 +620,7 @@ if (validateParams('debug')) {
         echo ' $og_image:' . $og_image . '</br>';
     }
 
-    echo '$showSASLTiles=' . $showSASLTiles . '</br>';
-    echo '$saslTilesJSON=' . $saslTilesJSON . '</br>';
-    echo '$saslTilesHTML=' . $saslTilesHTML . '</br>';
-
+   
     echo '$blockAccess=' . ($blockAccess ? 'true' : 'false') . '</br>';
 
     exit();
