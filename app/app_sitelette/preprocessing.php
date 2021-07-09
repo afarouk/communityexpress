@@ -6,6 +6,9 @@ include_once('sitefiles/php/detecturl.php');
 $tileViewDetails = false;
 $useTemplate = true;
 $blockAccess = false;
+$showSASLTiles=false;
+$errorMessage =null;
+
 /* is desktopiframe=true
  *
  * if this is true, we load normally even when we detect
