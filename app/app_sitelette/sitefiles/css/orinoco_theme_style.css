@@ -9,6 +9,14 @@
      color:rgba(0,0,0,1);
     /* -moz-text-size-adjust: ; */
 }
+
+.hero {
+    font-size: 4em;
+    font-weight: 500;
+    padding-top: 12%;
+    padding-bottom: 10%;
+    line-height: 1.2;
+}
 /* CSS - Cascading Style Sheet */
 /* Palette color codes */
 /* Palette URL: http://paletton.com/#uid=1160u0klllliRJ1k5t0mAdFnP5+ */
@@ -937,4 +945,6 @@ ul.space-list li:not(:last-child) {
      .form-group.frmeR {
          margin-left: -15px;
     }
+
+
 }
