@@ -8,6 +8,7 @@ $useTemplate = true;
 $blockAccess = false;
 $showSASLTiles=false;
 $errorMessage =null;
+$appAccess = false;
 
 /* is desktopiframe=true
  *
@@ -111,7 +112,8 @@ if (validateParams('serviceLocationId')) {
 }
 
 if (validateParams('friendlyURL')) {
-    /* React App changes */
+    
+
     //need to parse url for nested routes like /demoviva/order-history?demo=true
     $path = explode('/',$_REQUEST['friendlyURL']);
     $friendlyURL = $path[0];
@@ -122,7 +124,7 @@ if (validateParams('friendlyURL')) {
 
         /* Check 1.  is 'friendlyURL' a well know access attempt that
         we want to trap? */
-        //Code by Ravi
+
         $blocked_friendly_URLS = array();
         if (empty($blocked_friendly_URLS)) {
             //empty array, so read all the blocked URL's
@@ -140,6 +142,10 @@ if (validateParams('friendlyURL')) {
             instead of treating it like a friendlyURL */
 
             switch ($friendlyURL) {
+                case 'app':
+                    $appAccess = true;
+                   
+                    break;
                 case 'memqr':
                     $pageAccess = 'common_memqr.php';
                     break;
@@ -242,9 +248,6 @@ if (validateParams('friendlyURL')) {
                     $pageAccess = 'common_testHeartland.php';
                     break;
 
-
-
-
                 default:
             }
             /* end switch */
@@ -331,17 +334,23 @@ if (validateParams('ftl')) {
 
 $canCreateAnonymousUser = false;
 
-/* React App changes */
+/* YouDash App changes */
 /* Possible way to handle request to /manifest.json to return dynamically modified file for a specified sasl */
 /* Currently handled with .htaccess line: 16 */
 /* if (strpos($_SERVER['REQUEST_URI'],'manifest.json?url') !== false) {
     include_once 'manifest.php';
 }*/
-/* React App changes */
-$reactHTMLFile = null;
+/* END YouDash App changes */
+
+$youdashHTMLFile = null;
+$appHTMLFile = null;
 
 if (!$blockAccess) {
     if ($saslAccess || $urlKeyAccess) {
+
+
+        /* create youdashHTML file */
+
         $errorMessage = null;
         $saslName = null;
         $appleTouchIcon60URL = null;
@@ -356,41 +365,40 @@ if (!$blockAccess) {
         $siteletteJSON = makeApiCall($apiURL);
         */
 
-
-
-        /* React App changes */
         $catalogAndSiteletteApiURL = $protocol . $server . '/apptsvc/rest/sasl/getCatalogAndSiteletteDataModelByURLkey?urlKey=' . $friendlyURL;
         $siteletteDataJSON = makeApiCall($catalogAndSiteletteApiURL);
 
         if ($siteletteDataJSON['curl_error']) {
             $errorMessage = 'Service unavailable: ' . $siteletteDataJSON['curl_error'];
         } else {
+
             if (isset($siteletteDataJSON['error'])) {
                 $errorMessage = 'Service unavailable: ' . $siteletteDataJSON['error']['message'];
             } else {
+
+                /* begin valid sitelette*/
+
+
                 $siteletteDataModel = $siteletteDataJSON['siteletteDataModel'];
 
                 $sasl = $siteletteDataModel['sasl'];
                 $ogTags = $sasl['ogTags'];
                 $appleTouchIcon192URL = $sasl['appleTouchIcon192URL'];
-                //reading index.html from react app production build
-                $reactHTMLFile = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'youdash' . DIRECTORY_SEPARATOR . 'index.html', true);
+                //reading index.html from YouDash app production build
+                $youdashHTMLFile = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'youdash' . DIRECTORY_SEPARATOR . 'index.html', true);
                 //changing meta variables
-                $reactHTMLFile = str_replace('__OG_TITLE__', $ogTags['title'], $reactHTMLFile);
-                $reactHTMLFile = str_replace('__OG_DESCRIPTION__', $ogTags['description'], $reactHTMLFile);
-                $reactHTMLFile = str_replace('__OG_IMAGE__', $ogTags['image'], $reactHTMLFile);
+                $youdashHTMLFile = str_replace('__OG_TITLE__', $ogTags['title'], $youdashHTMLFile);
+                $youdashHTMLFile = str_replace('__OG_DESCRIPTION__', $ogTags['description'], $youdashHTMLFile);
+                $youdashHTMLFile = str_replace('__OG_IMAGE__', $ogTags['image'], $youdashHTMLFile);
                 $ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                $reactHTMLFile = str_replace('__OG_URL__', $ogUrl, $reactHTMLFile);
-                $reactHTMLFile = str_replace('__LINK_ICON_192__', $appleTouchIcon192URL, $reactHTMLFile);
-                $reactHTMLFile = str_replace('__LINK_APPLE_TOUCH_ICON__', $appleTouchIcon192URL, $reactHTMLFile);
+                $youdashHTMLFile = str_replace('__OG_URL__', $ogUrl, $youdashHTMLFile);
+                $youdashHTMLFile = str_replace('__LINK_ICON_192__', $appleTouchIcon192URL, $youdashHTMLFile);
+                $youdashHTMLFile = str_replace('__LINK_APPLE_TOUCH_ICON__', $appleTouchIcon192URL, $youdashHTMLFile);
                 //adding dynamic link to /manifest.json, it will be handled through manifest.php file
-                $reactHTMLFile = str_replace('/manifest.json', '/manifest.json?url=' . $friendlyURL . '&demo=' . ($demo ? 'true' : 'false') , $reactHTMLFile);
-                //sending $siteletteDataJSON data to make it available in a react app without additional request
-                $reactHTMLFile = str_replace('window.__SASL_DATA__', 'window.__SASL_DATA__ = ' . json_encode($siteletteDataJSON), $reactHTMLFile);
+                $youdashHTMLFile = str_replace('/manifest.json', '/manifest.json?url=' . $friendlyURL . '&demo=' . ($demo ? 'true' : 'false') , $youdashHTMLFile);
+                //sending $siteletteDataJSON data to make it available in a YouDash app without additional request
+                $youdashHTMLFile = str_replace('window.__SASL_DATA__', 'window.__SASL_DATA__ = ' . json_encode($siteletteDataJSON), $youdashHTMLFile);
             
-                /* moved from previous call */
-
-
 
                 $domain = $sasl['domainEnum'];
                 $serviceAccommodatorId = $sasl['serviceAccommodatorId'];
@@ -446,141 +454,22 @@ if (!$blockAccess) {
                 $twitter_image = $og_image;
                 $twitter_url = $og_url;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                /* END moved from previous call */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
             /*end valid sitelette*/
         }
-        /*React App changes end*/
-
-        /*
-        if ($siteletteJSON['curl_error']) {
-            $errorMessage = 'Service unavailable: ' . $siteletteJSON['curl_error'];
-        } else {
-            if (isset($siteletteJSON['error'])) {
-                $errorMessage = 'Service unavailable: ' . $siteletteJSON['error']['message'];
-            } else {
-                $saslJSON = json_decode($siteletteJSON['saslJSON'], true);
-                
-                $domain = $saslJSON['domainEnum'];
-                $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
-                $serviceLocationId = $saslJSON['serviceLocationId'];
-                $saslName = $saslJSON['saslName'];
-                $appleTouchIcon60URL = $saslJSON['appleTouchIcon60URL'];
-                $androidHomeScreenIconURL = $saslJSON['androidHomeScreenIconURL'];
-                $canCreateAnonymousUser = $saslJSON['canCreateAnonymousUser'];;
-
-                if (is_null($friendlyURL)) {
-                    if (array_key_exists('anchorURL', $saslJSON)) {
-                        $anchorURL = $saslJSON['anchorURL'];
-                        if (array_key_exists('friendlyURL', $anchorURL)) {
-                            $friendlyURL = $anchorURL['friendlyURL'];
-                        } else {
-                            $friendlyURL = null;
-                        }
-                    } else {
-                        $friendlyURL = null;
-                    }
-                }
-
-                if (is_null($type)) {
-
-                    $og_title = $saslJSON['ogTags']['title'];
-                    $og_description = $saslJSON['ogTags']['description'];
-                    $og_image = $saslJSON['ogTags']['image'];
-                    $og_url = remove_querystring_var($completeURL, 'desktopiframe');
-
-                    
-                } else {
-                    $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveOgTags?type=' . $type . '&uuid=' . $uuidURL;
-
-                    $ogTags = makeApiCall($apiURL);
-
-                    $og_title = $ogTags['title'];
-                    $og_description = $ogTags['description'];
-                    $og_image = $ogTags['image'];
-                    $og_url = $completeURL;
-                }
-
-                $twitter_card = "summary_large_image";
-                $twitter_site = "@ChalkboardsToday";
-
-                $twitter_title = $og_title;
-                $twitter_description = $og_description;
-                $twitter_image = $og_image;
-                $twitter_url = $og_url;
-            }
-            /*end valid sitelette//
-        }
-        /*end can reach server //
-    } else {
-        $errorMessage = null;
-        $showSASLTiles = false;
-        /*
-         ** AF: disabled call to retrieve tiles **
-         $apiURL = $protocol . $server . '/apptsvc/rest/html/retrieveSASLTilesByUIDAndLocation?UID=&latitude=&longitude=&ua='.$userAgent. '&ftl=' . $ftlfile;
-
-         $saslTiles = makeApiCall($apiURL);
-         if ($saslTiles['curl_error']) {
-         $errorMessage = 'Service unavailable: ' . $saslTiles['curl_error'];
-         } else {
-         if (isset($saslTiles['error'])) {
-         $errorMessage = 'Service unavailable: ' . $saslTiles['error']['message'];
-         } else {
-         $showSASLTiles            = $saslTiles['showSASLTiles'];
-         $saslTilesJSON            = json_decode($saslTiles['saslTilesJSON'], true);
-         $saslTilesHTML            = $saslTiles['saslTilesHTML'];
-         }
-         }
-         ** END AF: disabled call to retrieve tiles **
-         */
-        /*end can reach server */
+        
+    } else if($appAccess){
+        
+        /* generate appAccessHTMLFiles for handling with app */
+        $appHTMLFile = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'index.html', true);
+        console.log($appHTMLfile);
     }
 } else {
     /* block access true */
     /* do nothing */
 }
+
+
 /* NOTE: if debug=true then PHP will echo variables and exit */
 
 if (validateParams('debug')) {

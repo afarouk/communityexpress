@@ -9,25 +9,14 @@ if ($blockAccess) {
   if (!is_null($errorMessage)) {
         include_once('error_page/error_page.php');
   } else if ($saslAccess || $urlKeyAccess) {
-    echo $reactHTMLFile;
+    /* handle with YouDash app */
+    echo $youdashHTMLFile;
+    
+  } else if($appAccess){
+   
+    /* handle with new App (old memqr replacement ) */
+    echo $appHTMLFile;
 
-    /*
-    if ($isDesktop) {
-      if (!is_null($errorMessage)) {
-        include_once('error_page/error_page.php');
-      } else {
-        include_once 'themes/' . $themeId . '/desktop/head.php';
-        if ($useTemplate) {
-          echo $siteletteJSON['landingViewHTML'];
-        } else {
-          include_once 'themes/' . $themeId . '/desktop/body.html';
-        }
-        echo '</html>';
-      }
-    } else { 
-      echo $reactHTMLFile;
-    }
-    */
   } else if (isset($pageAccess)) {
     include_once('sitefiles/pages/' . $pageAccess);
   } else {
@@ -38,3 +27,4 @@ if ($blockAccess) {
     include_once('sitefiles/pages/' . 'common_index.php');
   }
 }
+ 
