@@ -636,10 +636,10 @@ ul.space-list li:not(:last-child) {
          color: #000000;
     }
      .paragraph_heading {
-         font-size: 30px;
+         font-size: 24px;
     }
      .paragraph_sub_heading {
-         font-size: 30px;
+         font-size: 18px;
     }
      img.add-padding-right {
          padding-right: 0px;
