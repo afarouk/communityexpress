@@ -59,6 +59,15 @@
 .orinoco-color{
    color: #c59d5f;
 }
+.orinoco-ad {    
+    border:solid 4px red;
+    text-align: left;
+
+}
+.orinoco-ad li:not(:last-child) {
+    margin-bottom: 20px;
+}
+ 
 
 .background-black { 
     background-color: #000000;
