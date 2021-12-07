@@ -144,7 +144,9 @@ if (validateParams('friendlyURL')) {
             switch ($friendlyURL) {
                 case 'app':
                     $appAccess = true;
-                   
+                    break;
+                case 'products':
+                    $pageAccess = 'common_products.php';
                     break;
                 case 'memqr':
                     $pageAccess = 'common_memqr.php';

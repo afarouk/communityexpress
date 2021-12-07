@@ -16,14 +16,14 @@
 
         <div class="collapse navbar-collapse clearfix navMenu" id="bs-example-navbar-collapse-1" role="navigation">
           <ul class="nav navbar-nav navbar-right">
-            <li <?php modifyUrlAndClass("") ?>>
+            <!--  <li <?php modifyUrlAndClass("") ?>>
               <a class="page-scroll" href="/"> Home</a>
             </li>
-            <!--
-            <li>
+           
+             <li>
               <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index", "features") ?>>Features</a>
             </li>
-            -->
+            --> 
             <!--
               <li class="li_demo"><a href="sendsample">Try It</a></li>
             -->
@@ -33,7 +33,10 @@
             <li class="li_signin" <?php modifyUrlAndClass("signup") ?> >
               <a href="signup" class="signup_btn">Sign up</a>
             </li>
-            -->
+          -->
+            <li class="li_signin" <?php modifyUrlAndClass("products") ?> >
+              <a href="products"  >Products</a>
+            </li>
             <!--
             <li class="li_login" <?php modifyUrlAndClass("portalexpress") ?> >
               <a href="portalexpress" class="login_btn">Log in</a>
