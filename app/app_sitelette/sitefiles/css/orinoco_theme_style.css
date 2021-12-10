@@ -1,4 +1,4 @@
- body, p {
+body  {
      font-family: 'Raleway', 'Arial', sans-serif;
      font-weight: 300;
      font-size: 14px;
@@ -503,7 +503,7 @@ ul.space-list li:not(:last-child) {
 }
  .secondary_block_text {
      font-family: 'Raleway', "Georgia", serif;
-     font-weight: 100;
+     font-weight: 300;
      font-size: 18px;
      font-style: normal;
      line-height: 1.8em;
