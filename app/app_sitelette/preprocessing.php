@@ -76,7 +76,7 @@ if (validateParams('server')) {
     }
 } else {
     if ($demo) {
-        $server = 'simfel.com';
+        $server = 'chalkboardsdemo.dev';
     } else {
         $server = 'communitylive.ws';
     }
@@ -112,7 +112,7 @@ if (validateParams('serviceLocationId')) {
 }
 
 if (validateParams('friendlyURL')) {
-    
+
 
     //need to parse url for nested routes like /demoviva/order-history?demo=true
     $path = explode('/',$_REQUEST['friendlyURL']);
@@ -400,7 +400,7 @@ if (!$blockAccess) {
                 $youdashHTMLFile = str_replace('/manifest.json', '/manifest.json?url=' . $friendlyURL . '&demo=' . ($demo ? 'true' : 'false') , $youdashHTMLFile);
                 //sending $siteletteDataJSON data to make it available in a YouDash app without additional request
                 $youdashHTMLFile = str_replace('window.__SASL_DATA__', 'window.__SASL_DATA__ = ' . json_encode($siteletteDataJSON), $youdashHTMLFile);
-            
+
 
                 $domain = $sasl['domainEnum'];
                 $serviceAccommodatorId = $sasl['serviceAccommodatorId'];
@@ -459,9 +459,9 @@ if (!$blockAccess) {
             }
             /*end valid sitelette*/
         }
-        
+
     } else if($appAccess){
-        
+
         /* generate appAccessHTMLFiles for handling with app */
         $appHTMLFile = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'index.html', true);
         console.log($appHTMLfile);
@@ -514,7 +514,7 @@ if (validateParams('debug')) {
         echo ' $og_image:' . $og_image . '</br>';
     }
 
-   
+
     echo '$blockAccess=' . ($blockAccess ? 'true' : 'false') . '</br>';
 
     exit();

@@ -45,7 +45,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
    $server = $server . ':8080';
  } else {
   if ($demo) {
-   $server = "simfel.com";
+   $server = "chalkboardsdemo.dev";
   } else {
    $server = "communitylive.ws";
   }

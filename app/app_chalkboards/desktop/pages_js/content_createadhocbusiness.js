@@ -19,7 +19,7 @@ function fetchDomain_form(){
              {
             $("<option></option>", {value: result[i].enumText,text : result[i].displayText }).appendTo('#domain');
              }
-         
+
      }).fail(function(jqXHR, textStatus, errorThrown) { });
 
 }
@@ -159,7 +159,7 @@ function attachBootstrapValidatorsToRegistrationForm() {
       submitcreateadhocbusinessFormToAPI(createadhocbusinessUrl, postPayload,formValidation);
 
       /*
-       * 
+       *
        */
      }).on('err.form.fv', function(e, data) {
 
@@ -178,7 +178,7 @@ function hideEmailRegistrationError() {
 function attachButtonHandlers() {
 
  /*
-  * 
+  *
   */
  ladda_signup_submit_button = Ladda.create(document
    .querySelector('#emailRegistrationSubmit'));
@@ -208,7 +208,7 @@ function attachButtonHandlers() {
   var demoChecked = $('#useDemoServerSwitch').prop('checked');
   if (demoChecked) {
    api_server_before_demo_switch = communityRequestProfile.api_server;
-   communityRequestProfile.api_server = 'simfel.com';
+   communityRequestProfile.api_server = 'chalkboardsdemo.dev';
   } else {
    communityRequestProfile.api_server = api_server_before_demo_switch;
   }
@@ -241,9 +241,9 @@ function submitcreateadhocbusinessFormToAPI(apiurl, postPayload, formValidation)
         newUID = result.uID;
            document.getElementById("emailRegistrationForm").reset();
            var html='<div id="signupErrorDiv" class="alert alert-success " style="width:96%;margin-left:2%"><p style="color:green">The Inviation code for <b>'+result.businessName+'</b> is <b> '+result.userName+'</b></p><p style="color:green" >Please Share this with business and ASK owner to create userid/password for his business.</p></div><br></br></br>';
-$('#simpleSignupRow1').hide(); 
+$('#simpleSignupRow1').hide();
 $('#simpleSignupRow4').fadeIn('slow');
-$("#signup_root").removeClass("force-min-height"); 
+$("#signup_root").removeClass("force-min-height");
            console.log(html);
 $("#simpleSignupRow4").html(html);
        }
@@ -279,7 +279,7 @@ function updateAllAPIURLS() {
 $(document).ready(function() {
  parseCommunityURL();
  updateAllAPIURLS();
- fetchDomain_form(); 
+ fetchDomain_form();
 /*
   * hook up the validators
   */

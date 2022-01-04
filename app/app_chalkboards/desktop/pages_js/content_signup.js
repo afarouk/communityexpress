@@ -1513,7 +1513,7 @@ ladda_check_incode_button = Ladda.create(document
   var demoChecked = $('#useDemoServerSwitch').prop('checked');
   if (demoChecked) {
    api_server_before_demo_switch = communityRequestProfile.api_server;
-   communityRequestProfile.api_server = 'simfel.com';
+   communityRequestProfile.api_server = 'chalkboardsdemo.dev';
   } else {
    communityRequestProfile.api_server = api_server_before_demo_switch;
   }

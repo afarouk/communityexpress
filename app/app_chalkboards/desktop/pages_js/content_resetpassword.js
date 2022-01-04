@@ -6,7 +6,7 @@ if (typeof api_server !== 'undefined') {
  console.log("Server overriden: " + api_server);
 } else {
  // api_server = 'communitylive.ws';
- api_server = 'simfel.com';
+ api_server = 'chalkboardsdemo.dev';
  console.log("Server defaulting: " + api_server);
 }
 
@@ -27,13 +27,13 @@ function disableform() {
 }
 
 function showResetPasswordResults(success,message) {
- $('#reset_password_message').text(message);   
+ $('#reset_password_message').text(message);
  $('#reset_password_form_row').hide();
  $('#reset_password_result_row').fadeIn('slow');
- 
- 
- 
- 
+
+
+
+
 }
 /*
  * This is the ajax API call to submit the password change request.
@@ -61,7 +61,7 @@ function submitPasswordChangeRequest() {
      function(jqXHR, textStatus, errorThrown) {
       var success=false;
       var message="Error occured";
-      
+
       if (typeof jqXHR.responseJSON !== 'undefined') {
        if (typeof jqXHR.responseJSON.error !== 'undefined') {
         if (typeof jqXHR.responseJSON.error.type !== 'undefined') {
@@ -81,7 +81,7 @@ function submitPasswordChangeRequest() {
        */
       showResetPasswordResults(success,message);
       /*
-       * 
+       *
        */
      }).always(function() {
       ladda_reset_password_submit_button.stop();
@@ -93,8 +93,8 @@ $(document).ready(
    /*
     * check the url and pick out the parameters. Without proper code, disable
     * the dialog so that we avoid false hits or google bot hits.
-    * 
-    * 
+    *
+    *
     */
 
    if (typeof url.param('svc') !== 'undefined') {
@@ -104,11 +104,11 @@ $(document).ready(
        resetcode = url.param('code');
        uid = url.param('UID');
 
-    
+
      var form = $('#reset_password_form');
      /*
       * ok, url is valid.
-      * 
+      *
       * attach form validator (to check repeated password match and passwords
       * are right length
       */
@@ -195,7 +195,7 @@ $(document).ready(
           // data.bv --> The BootstrapValidator instance
           // data.field --> The field name
           // data.element --> The field element
-        
+
          }).on('error.form.bv', function(e, data) {
         console.log("error.form.bv event fired");
        }).on('status.field.bv', function(e, data) {
@@ -206,7 +206,7 @@ $(document).ready(
         e.preventDefault();
         var $form = $(e.target);        // The form instance
         newpassword    = $form.find('input[name="password"]').val();
-        // submit Form To API 
+        // submit Form To API
         submitPasswordChangeRequest();
        });
      /*

@@ -451,7 +451,7 @@ $(document).ready(
   /* hack. normally we use communitylive as default server.
   but for this, the default is simfel */
   if(communityRequestProfile.api_server==='communitylive.ws'){
-    communityRequestProfile.api_server='simfel.com';
+    communityRequestProfile.api_server='chalkboardsdemo.dev';
   }
   /*
   var $demoInstructionsCarousel = $('#demoinstructions_carousel');

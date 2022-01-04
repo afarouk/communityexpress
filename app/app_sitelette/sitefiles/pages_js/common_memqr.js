@@ -50,7 +50,7 @@ $(document).ready(
       */
       if (100 < window.communityRequestProfile.iid < 1000) {
         if (window.communityRequestProfile.api_server === 'communitylive.ws') {
-          window.communityRequestProfile.api_server = 'simfel.com';
+          window.communityRequestProfile.api_server = 'chalkboardsdemo.dev';
           console.log(" detected demo keytag, switching server to simfel");
         }
       }

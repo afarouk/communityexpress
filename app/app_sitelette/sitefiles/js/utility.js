@@ -93,7 +93,7 @@ function parseCommunityURL() {
   communityRequestProfile.api_server = api_server;
  } else {
   if (communityRequestProfile.isDemo) {
-   communityRequestProfile.api_server = 'simfel.com';
+   communityRequestProfile.api_server = 'chalkboardsdemo.dev';
   } else {
    communityRequestProfile.api_server = 'communitylive.ws';
   }

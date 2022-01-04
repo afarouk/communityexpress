@@ -66,18 +66,18 @@ function open_forgot_sec(){
     $('#loginFormRow').hide();
     $('#loginResultRow').hide();
     $('#forgotPasswordRw').show();
-    
+
 }
 
 function open_login_sec(evt){
     evt.preventDefault();
     $('#forgotPasswordRw').hide();
     $('#loginFormRow').show();
-    
+
 }
 
 function submitResetPass(evt){
-  
+
    evt.preventDefault();
     var email=$('#emailForForgotPass').val();
     /*var url='http://simfel.com:8080/apptsvc/rest/authentication/sendEmailForResetPassword?usernameOrEmail='+email;*/
@@ -97,13 +97,13 @@ function submitResetPass(evt){
          $('#aldv').show();
          $('#wrongReset').hide();
          $('#al_ss').html(result.explanation);
-         
+
      }).fail(function(jqXHR, textStatus, errorThrown) {
        $('#aldv').hide();
        var msg=JSON.parse(jqXHR.responseText);
         $('#wrongReset').show();
        $("#al_ww").html(msg.error.message);
-   
+
    });
 
 }
@@ -136,7 +136,7 @@ $(document)
      });
      /*
       * ------------ check the URL and show login if ?s=login
-      * 
+      *
       */
      vars = parseHashBangArgs();
 
@@ -152,13 +152,13 @@ $(document)
      }
      /*
       * ------------ set up the URLs -----------------------*/
-	 
+
      url = $.url();
      api_server = url.param('server');
-		
-	 var demoServer = "simfel.com";
-	 var liveServer = "communitylive.ws";	
-		
+
+	 var demoServer = "chalkboardsdemo.dev";
+	 var liveServer = "communitylive.ws";
+
      if (typeof api_server !== 'undefined') {
       console.log("Server overriden: " + api_server);
      } else {
@@ -180,7 +180,7 @@ $(document)
      // 'https://sitelettes.com/plugins/portalexpress/?server='
      // 'https://' + api_server;
      //portalExpressURL = location.origin + '/plugins/portalexpress/'+ location.search;
-     
+
      portalExpressURL = location.origin + '/desktop/plugins/portalexpress/' + location.search + '&server='+liveServer +'ignorehistory=true';
      /*
       * ------------------ demo mode switch
@@ -193,9 +193,9 @@ $(document)
         if ($(this).is(':checked')) {
          api_server_before_demo_switch = api_server;
          api_server = demoServer;
-         portalExpressURL = location.origin + '/desktop/plugins/portalexpress/?s=login&server='+api_server; 
+         portalExpressURL = location.origin + '/desktop/plugins/portalexpress/?s=login&server='+api_server;
 
-         
+
          formSubmissionURL = protocol + api_server + '/apptsvc/rest/authentication/loginBootStrap';
          // $('#login_emailorusername').val("samfel1");
          // $('#login_password').val("community");
@@ -207,11 +207,11 @@ $(document)
           api_server = api_server_before_demo_switch;
          portalExpressURL = location.origin + 'desktop/plugins/portalexpress/'
            + location.search;
-         
+
          formSubmissionURL = protocol + api_server
          + '/apptsvc/rest/authentication/loginBootStrap';
-         
-         
+
+
          $('#loginForm').bootstrapValidator('resetForm', true);
         }
 
@@ -244,7 +244,7 @@ $(document)
       hidePortalExpress();
       hideLoginError();
       /*
-       * 
+       *
        */
 
       $('#demo_mode_true_false_switch').prop('checked', false);
@@ -253,7 +253,7 @@ $(document)
       window.switcheryDemoModeSwitch.setPosition(false);
       $('#loginForm').bootstrapValidator('resetForm', true);
       /*
-       * 
+       *
        */
      });
 
@@ -367,8 +367,8 @@ $(document)
              if (typeof result !== 'undefined') {
               if (typeof result.uid !== 'undefined') {
                /*
-                * 
-                * 
+                *
+                *
                 */
                    $('#forgotPasswordRw').hide();
                portalExpressURL = portalExpressURL + '&UID=' + result.uid;

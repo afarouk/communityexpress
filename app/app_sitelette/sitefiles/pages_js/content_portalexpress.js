@@ -157,7 +157,7 @@ $(document)
    url = $.url();
    api_server = url.param('server');
 
-   var demoServer = "simfel.com";
+   var demoServer = "chalkboardsdemo.dev";
    var liveServer = "communitylive.ws";
 
    if (typeof api_server !== 'undefined') {

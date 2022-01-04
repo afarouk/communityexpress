@@ -110,7 +110,7 @@ include ('sitefiles/includes/stylesheets.html');
 		 * ------------- bootstrap fileinput -----------
 		 */
 		if (window.communityRequestProfile.api_server == 'communitylive.ws')
-			window.communityRequestProfile.api_server = 'simfel.com'
+			window.communityRequestProfile.api_server = 'chalkboardsdemo.dev'
 		window.server = window.communityRequestProfile.protocol + window.communityRequestProfile.api_server;
 		console.log('server being used : ' + window.server);
 		window.ladda_template_submit_button = Ladda.create(document.querySelector('#applyTemplate'));

@@ -66,7 +66,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
    $server = $server . ':8080';
  } else {
   if ($demo) {
-   $server = "simfel.com";
+   $server = "chalkboardsdemo.dev";
   } else {
    $server = "communitylive.ws";
   }
@@ -196,7 +196,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
     $saslJSON = json_decode($siteletteJSON['saslJSON'], TRUE);
     //
     $themeId = $saslJSON['themeId'];
-    $domain = $saslJSON['domainEnum']; 
+    $domain = $saslJSON['domainEnum'];
 
     $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
     $serviceLocationId = $saslJSON['serviceLocationId'];
